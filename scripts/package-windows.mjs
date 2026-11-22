@@ -46,7 +46,7 @@ const manifest = await loadManifest(out, v);
 manifest.release = v;
 // Release notes shown in the Update Center: the CHANGELOG section for this version.
 try {
-  const log = await readFile(resolve(root, 'CHANGELOG.md'), 'utf8');
+  const log = (await readFile(resolve(root, 'CHANGELOG.md'), 'utf8')).replace(/\r\n/g, '\n'); // Windows checkouts use CRLF
   const start = log.indexOf(`## [${v}]`);
   if (start >= 0) {
     const rest = log.slice(start + 1);
