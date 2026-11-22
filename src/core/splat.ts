@@ -41,20 +41,18 @@ export function makeSplat(radius: number, seed: number): SplatShape {
     blob.push({ x: Math.cos(a) * radius * prev, y: Math.sin(a) * radius * prev });
   }
   const arms: SplatShape['arms'] = [];
-  const armCount = 5 + Math.floor(rng() * 4);
+  const armCount = 4 + Math.floor(rng() * 3);
+  let ang = rng() * Math.PI * 2;
   for (let i = 0; i < armCount; i++) {
-    arms.push({
-      a: (i / armCount) * Math.PI * 2 + rrange(rng, -0.35, 0.35),
-      len: radius * rrange(rng, 0.95, 1.55),
-      width: radius * rrange(rng, 0.14, 0.3)
-    });
+    ang += (Math.PI * 2) / armCount + rrange(rng, -0.55, 0.55);
+    arms.push({ a: ang, len: radius * rrange(rng, 0.85, 1.3), width: radius * rrange(rng, 0.22, 0.4) });
   }
   const drops: SplatShape['drops'] = [];
-  const dropCount = 9 + Math.floor(rng() * 7);
+  const dropCount = 6 + Math.floor(rng() * 5);
   for (let i = 0; i < dropCount; i++) {
     const a = rng() * Math.PI * 2;
     const d = radius * rrange(rng, 1.15, 2.05);
-    drops.push({ x: Math.cos(a) * d, y: Math.sin(a) * d, r: radius * rrange(rng, 0.045, 0.15) * (1.6 - d / (radius * 2)) });
+    drops.push({ x: Math.cos(a) * d, y: Math.sin(a) * d, r: radius * rrange(rng, 0.05, 0.13) * (1.5 - d / (radius * 2)) });
   }
   const shines: SplatShape['shines'] = [];
   for (let i = 0; i < 3; i++) {
@@ -94,16 +92,26 @@ export function drawSplat(ctx: CanvasRenderingContext2D, x: number, y: number, s
   // main blob
   blobPath(ctx, shape.blob, 0.35 + 0.65 * ease);
   ctx.fill();
-  // arms
+  // arms: soft tapered drips (wide at the base, rounded at the tip)
   for (const arm of shape.arms) {
     const len = arm.len * ease;
-    ctx.lineWidth = arm.width * (0.6 + 0.4 * ease);
+    const r0 = arm.width * 0.62 * (0.6 + 0.4 * ease);
+    const r1 = arm.width * 0.34 * (0.6 + 0.4 * ease);
+    const cos = Math.cos(arm.a);
+    const sin = Math.sin(arm.a);
+    const bx = cos * len * 0.35;
+    const by = sin * len * 0.35;
+    const tx = cos * len;
+    const ty = sin * len;
     ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.lineTo(Math.cos(arm.a) * len * 0.8, Math.sin(arm.a) * len * 0.8);
-    ctx.stroke();
+    ctx.moveTo(bx - sin * r0, by + cos * r0);
+    ctx.lineTo(tx - sin * r1, ty + cos * r1);
+    ctx.lineTo(tx + sin * r1, ty - cos * r1);
+    ctx.lineTo(bx + sin * r0, by - cos * r0);
+    ctx.closePath();
+    ctx.fill();
     ctx.beginPath();
-    ctx.arc(Math.cos(arm.a) * len, Math.sin(arm.a) * len, arm.width * 0.62 * ease, 0, Math.PI * 2);
+    ctx.arc(tx, ty, r1, 0, Math.PI * 2);
     ctx.fill();
   }
   // droplets fly out slightly later

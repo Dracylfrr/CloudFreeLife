@@ -21,7 +21,7 @@
   let { artworkId }: { artworkId: string } = $props();
 
   let meta = $state<ArtworkMeta | null>(null);
-  let engine: PaintEngine | null = null;
+  let engine = $state.raw<PaintEngine | null>(null);
   let ready = $state(false);
   let failed = $state(false);
   let autosaver: Autosaver | null = null;
@@ -327,9 +327,9 @@
   async function resetPage() {
     if (!engine) return;
     const ok = await confirmDialog({
-      title: 'Reset this page?',
-      message: 'This clears all the color on the page. You can still undo right after.',
-      confirmLabel: 'Reset page',
+      title: hasRegions ? 'Reset this page?' : 'Clear this canvas?',
+      message: hasRegions ? 'This clears all the color on the page. You can still undo right after.' : 'This clears everything you drew. You can still undo right after.',
+      confirmLabel: hasRegions ? 'Reset page' : 'Clear canvas',
       danger: true
     });
     if (ok) {
@@ -372,9 +372,7 @@
       <Button variant="ghost" size="sm" icon="zoomIn" title="Zoom in (+)" onclick={() => zoomAt(1.25)} />
     </div>
     <Button variant="soft" size="sm" icon="download" onclick={exportPng}>Export PNG</Button>
-    {#if hasRegions}
-      <Button variant="danger" size="sm" icon="refresh" onclick={resetPage}>Reset page</Button>
-    {/if}
+    <Button variant="danger" size="sm" icon="refresh" onclick={resetPage}>{hasRegions ? 'Reset page' : 'Clear canvas'}</Button>
   </header>
 
   <div class="work">
