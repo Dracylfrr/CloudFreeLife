@@ -1,0 +1,49 @@
+{
+  "id": "meadow_calm",
+  "name": "Meadow Calm",
+  "description": "Grassy greens, buttercups and wildflowers.",
+  "colors": [
+    {
+      "id": "meadow_green",
+      "name": "Meadow Green",
+      "hex": "#b9e4b4"
+    },
+    {
+      "id": "clover",
+      "name": "Clover",
+      "hex": "#a1d4a4"
+    },
+    {
+      "id": "fresh_grass",
+      "name": "Fresh Grass",
+      "hex": "#cdeeb5"
+    },
+    {
+      "id": "buttercup",
+      "name": "Buttercup",
+      "hex": "#fff0a0"
+    },
+    {
+      "id": "wild_lilac",
+      "name": "Wild Lilac",
+      "hex": "#d8c4f0"
+    },
+    {
+      "id": "poppy_milk",
+      "name": "Poppy Milk",
+      "hex": "#fbc6c0"
+    },
+    {
+      "id": "sky_patch",
+      "name": "Sky Patch",
+      "hex": "#bfe0f6"
+    },
+    {
+      "id": "soil_cream",
+      "name": "Soil Cream",
+      "hex": "#ead7bb"
+    }
+  ],
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0"
+}

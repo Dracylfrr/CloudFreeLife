@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+<rect width="1000" height="750" fill="#ffffff"/>
+<g stroke="#6e6a8e" stroke-linejoin="round" stroke-linecap="round">
+<path data-region="back_wall" data-name="Wall" d="M-6 -6h1012v762h-1012z" fill="#ffffff" stroke-width="5"/>
+<path data-region="ball_pink" data-name="Pink circle" d="M95 220a105 105 0 1 0 210 0a105 105 0 1 0 -210 0z" fill="#ffffff" stroke-width="5"/>
+<path data-region="square_blue" data-name="Blue square" d="M431 120H569A36 36 0 0 1 605 156V294A36 36 0 0 1 569 330H431A36 36 0 0 1 395 294V156A36 36 0 0 1 431 120z" fill="#ffffff" stroke-width="5"/>
+<path data-region="star_yellow" data-name="Yellow star" d="M792.3 117.6Q800 100 807.7 117.6L825.2 157.1Q832.9 174.7 852 176.6L895 181Q914.1 182.9 899.8 195.7L867.6 224.5Q853.3 237.3 857.3 256.1L866.5 298.3Q870.5 317.1 853.9 307.4L816.6 285.7Q800 276 783.4 285.7L746.1 307.4Q729.5 317.1 733.5 298.3L742.7 256.1Q746.7 237.3 732.4 224.5L700.2 195.7Q685.9 182.9 705 181L748 176.6Q767.1 174.7 774.8 157.1z" fill="#ffffff" stroke-width="5"/>
+<path data-region="triangle_mint" data-name="Mint triangle" d="M213.1 617.5Q200 640 186.9 617.5L108.1 482.5Q95 460 121 460L279 460Q305 460 291.9 482.5z" fill="#ffffff" stroke-width="5"/>
+<path data-region="cloud_lilac" data-name="Lilac cloud" d="M410 550A25 25 0 1 1 413.1 500.2A42.5 42.5 0 0 1 465.6 466.3A55 55 0 0 1 561.5 470A40 40 0 0 1 601.3 500.3A25 25 0 0 1 597.5 550z" fill="#ffffff" stroke-width="5"/>
+<path data-region="drop_peach" data-name="Peach drop" d="M800 440Q890 560 800 650Q710 560 800 440Z" fill="#ffffff" stroke-width="5"/>
+</g></svg>

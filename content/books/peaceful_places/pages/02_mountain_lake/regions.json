@@ -1,0 +1,113 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cloud_b",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "mountain_left",
+      "name": "Left mountain",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "snow_left",
+      "name": "Snow cap",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "mountain_right",
+      "name": "Right mountain",
+      "suggested": "#a4d2f2"
+    },
+    {
+      "id": "snow_right",
+      "name": "Snow cap",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "meadow",
+      "name": "Meadow",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "lake",
+      "name": "Lake",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "boat_sail",
+      "name": "Sail",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "boat_hull",
+      "name": "Boat",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "bank",
+      "name": "Grassy bank",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "pine_left_trunk",
+      "name": "Tree trunk",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "pine_left_low",
+      "name": "Pine branches",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "pine_left_mid",
+      "name": "Pine branches",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "pine_left_top",
+      "name": "Pine top",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "pine_right_trunk",
+      "name": "Tree trunk",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "pine_right_low",
+      "name": "Pine branches",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "pine_right_mid",
+      "name": "Pine branches",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "pine_right_top",
+      "name": "Pine top",
+      "suggested": "#c6ecda"
+    }
+  ]
+}

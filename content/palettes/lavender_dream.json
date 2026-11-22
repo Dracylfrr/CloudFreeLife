@@ -1,0 +1,49 @@
+{
+  "id": "lavender_dream",
+  "name": "Lavender Dream",
+  "description": "Dreamy purples, lilacs and moonlit pinks.",
+  "colors": [
+    {
+      "id": "lavender_cloud",
+      "name": "Lavender Cloud",
+      "hex": "#d4c6f3"
+    },
+    {
+      "id": "lilac_whisper",
+      "name": "Lilac Whisper",
+      "hex": "#e6dcf8"
+    },
+    {
+      "id": "violet_haze",
+      "name": "Violet Haze",
+      "hex": "#b9a6e8"
+    },
+    {
+      "id": "plum_milk",
+      "name": "Plum Milk",
+      "hex": "#d9b3e0"
+    },
+    {
+      "id": "orchid_cream",
+      "name": "Orchid Cream",
+      "hex": "#f0d2ef"
+    },
+    {
+      "id": "dream_blue",
+      "name": "Dream Blue",
+      "hex": "#bcd0f2"
+    },
+    {
+      "id": "rose_mist",
+      "name": "Rose Mist",
+      "hex": "#f6c8dc"
+    },
+    {
+      "id": "moon_pearl",
+      "name": "Moon Pearl",
+      "hex": "#f6f1ff"
+    }
+  ],
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0"
+}

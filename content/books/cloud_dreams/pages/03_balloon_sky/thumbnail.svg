@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+<rect width="1000" height="750" fill="#ffffff"/>
+<g stroke="#6e6a8e" stroke-linejoin="round" stroke-linecap="round">
+<path data-region="sky" data-name="Sky" d="M-6 -6h1012v762h-1012z" fill="#bfe4f7" stroke-width="5"/>
+<path data-region="sun" data-name="Sun" d="M876 90a44 44 0 1 0 88 0a44 44 0 1 0 -88 0z" fill="#ffe9a8" stroke-width="5"/>
+<path data-region="cloud_a" data-name="Cloud" d="M68 134A20 20 0 1 1 70.5 94.2A34 34 0 0 1 112.4 67.1A44 44 0 0 1 189.2 70A32 32 0 0 1 221 94.2A20 20 0 0 1 218 134z" fill="#ffffff" stroke-width="5"/>
+<path data-region="cloud_b" data-name="Cloud" d="M417.2 119.2A20.8 20.8 0 1 1 423.2 78.5A32 32 0 0 1 478.8 67A28.8 28.8 0 0 1 523.7 84.1A17.6 17.6 0 1 1 526 119.2z" fill="#ffffff" stroke-width="5"/>
+<path data-region="cloud_c" data-name="Cloud" d="M58.8 491.6A21.6 21.6 0 1 1 65.2 449.4A34.2 34.2 0 0 1 102.7 423.5A43.2 43.2 0 0 1 181.1 445.9A23.4 23.4 0 0 1 174 491.6z" fill="#ffffff" stroke-width="5"/>
+<path data-region="balloon_small_ropes_basket" data-name="Basket" d="M787.8 336.4H812.2A5 5 0 0 1 817.2 341.4V354.8A5 5 0 0 1 812.2 359.8H787.8A5 5 0 0 1 782.8 354.8V341.4A5 5 0 0 1 787.8 336.4z" fill="#e9c7a3" stroke-width="5"/>
+<path d="M778.94 315.3L784.4 336.36M821.06 315.3L815.6 336.36" fill="none" stroke-width="4"/>
+<path data-region="balloon_small_envelope" data-name="Balloon" d="M722 210A78 78 0 1 1 878 210Q860.84 291.9 821.84 315.3L778.16 315.3Q739.16 291.9 722 210z" fill="#ffd3e2" stroke-width="5"/>
+<path data-region="balloon_small_stripe" data-name="Balloon stripe" d="M800 132Q863.96 210 815.6 315.3L784.4 315.3Q736.04 210 800 132z" fill="#fff2bd" stroke-width="5"/>
+<path data-region="balloon_left_ropes_basket" data-name="Basket" d="M232.1 438.5H267.9A5 5 0 0 1 272.9 443.5V464.7A5 5 0 0 1 267.9 469.7H232.1A5 5 0 0 1 227.1 464.7V443.5A5 5 0 0 1 232.1 438.5z" fill="#e9c7a3" stroke-width="5"/>
+<path d="M221.92 410.4L229.2 438.48M278.08 410.4L270.8 438.48" fill="none" stroke-width="4"/>
+<path data-region="balloon_left_envelope" data-name="Balloon" d="M146 270A104 104 0 1 1 354 270Q331.12 379.2 279.12 410.4L220.88 410.4Q168.88 379.2 146 270z" fill="#d9cdf6" stroke-width="5"/>
+<path data-region="balloon_left_stripe" data-name="Balloon stripe" d="M250 166Q335.28 270 270.8 410.4L229.2 410.4Q164.72 270 250 166z" fill="#c6ecda" stroke-width="5"/>
+<path data-region="balloon_big_ropes_basket" data-name="Basket" d="M546 593.8H594A5 5 0 0 1 599 598.8V628.4A5 5 0 0 1 594 633.4H546A5 5 0 0 1 541 628.4V598.8A5 5 0 0 1 546 593.8z" fill="#e9c7a3" stroke-width="5"/>
+<path d="M534.36 558.2L543.6 593.84M605.64 558.2L596.4 593.84" fill="none" stroke-width="4"/>
+<path data-region="balloon_big_envelope" data-name="Balloon" d="M438 380A132 132 0 1 1 702 380Q672.96 518.6 606.96 558.2L533.04 558.2Q467.03999999999996 518.6 438 380z" fill="#ffdcc8" stroke-width="5"/>
+<path data-region="balloon_big_stripe" data-name="Balloon stripe" d="M570 248Q678.24 380 596.4 558.2L543.6 558.2Q461.76 380 570 248z" fill="#f6b8cf" stroke-width="5"/>
+<path data-region="hill_far" data-name="Far hill" d="M-10 640C31.7 633.3 151.7 600 240 600C328.3 600 430 640 520 640C610 640 698.3 600 780 600C861.7 600 971.7 633.3 1010 640L1010 640V750H-10V640L-10 640z" fill="#a9dcb4" stroke-width="5"/>
+<path data-region="hill_near" data-name="Near hill" d="M-10 700C41.7 694.7 195 667.2 300 668C405 668.8 501.7 704.3 620 705C738.3 705.7 945 677.5 1010 672L1010 672V750H-10V700L-10 700z" fill="#c2e8c4" stroke-width="5"/>
+<path d="M360.2 520q9.9 -14.4 19.8 1.8q9.9 -16.2 19.8 -1.8M425.7 545q7.2 -10.4 14.3 1.3q7.2 -11.7 14.3 -1.3" fill="none" stroke-width="4"/>
+</g></svg>

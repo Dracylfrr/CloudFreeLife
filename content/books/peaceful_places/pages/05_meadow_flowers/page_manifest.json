@@ -1,0 +1,11 @@
+{
+  "id": "meadow_flowers",
+  "name": "Meadow Flowers",
+  "description": "Flowers, butterflies and a sunny meadow.",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

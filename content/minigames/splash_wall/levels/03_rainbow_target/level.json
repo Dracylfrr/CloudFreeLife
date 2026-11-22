@@ -1,0 +1,30 @@
+{
+  "id": "rainbow_target",
+  "name": "Rainbow Target",
+  "description": "A soft pastel target. Match each ring to its color.",
+  "minigame": "splash_wall",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "objective": "Match every ring to the color it shows as a hint.",
+  "wall": "wall.svg",
+  "goal": {
+    "type": "color_match",
+    "targets": {
+      "ring_1": "#f6b8cf",
+      "ring_2": "#ffdcc8",
+      "ring_3": "#fff2bd",
+      "ring_4": "#c6ecda",
+      "ring_5": "#bfe4f7",
+      "bullseye": "#d9cdf6"
+    }
+  },
+  "colors": [
+    "#f6b8cf",
+    "#ffdcc8",
+    "#fff2bd",
+    "#c6ecda",
+    "#bfe4f7",
+    "#d9cdf6"
+  ]
+}

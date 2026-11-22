@@ -1,0 +1,88 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "space",
+      "name": "Night sky",
+      "suggested": "#7a7bbd"
+    },
+    {
+      "id": "nebula_outer",
+      "name": "Outer nebula",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "nebula_middle",
+      "name": "Middle nebula",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "nebula_inner",
+      "name": "Inner nebula",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "galaxy_core",
+      "name": "Galaxy core",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star1",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star2",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star3",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star4",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star5",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star6",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star7",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star8",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "planet_a",
+      "name": "Planet",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "planet_b",
+      "name": "Planet",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "moon",
+      "name": "Moon",
+      "suggested": "#fff3c4"
+    }
+  ]
+}

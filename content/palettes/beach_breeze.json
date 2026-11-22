@@ -1,0 +1,49 @@
+{
+  "id": "beach_breeze",
+  "name": "Beach Breeze",
+  "description": "Sea glass, warm sand and seashell pinks.",
+  "colors": [
+    {
+      "id": "sea_glass",
+      "name": "Sea Glass",
+      "hex": "#b4e6e0"
+    },
+    {
+      "id": "lagoon_blue",
+      "name": "Lagoon Blue",
+      "hex": "#a8d8f0"
+    },
+    {
+      "id": "wave_foam",
+      "name": "Wave Foam",
+      "hex": "#e3f6f6"
+    },
+    {
+      "id": "warm_sand",
+      "name": "Warm Sand",
+      "hex": "#f6e2bf"
+    },
+    {
+      "id": "shell_pink",
+      "name": "Shell Pink",
+      "hex": "#f9cdc4"
+    },
+    {
+      "id": "coral_pop",
+      "name": "Coral Pop",
+      "hex": "#ffb8a2"
+    },
+    {
+      "id": "sun_shell",
+      "name": "Sun Shell",
+      "hex": "#ffefb0"
+    },
+    {
+      "id": "driftwood",
+      "name": "Driftwood",
+      "hex": "#e6c9a8"
+    }
+  ],
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0"
+}

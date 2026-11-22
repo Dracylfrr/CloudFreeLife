@@ -1,0 +1,26 @@
+{
+  "id": "garden_blocks",
+  "name": "Garden Blocks",
+  "description": "Flowers and grass growing in tidy rows.",
+  "minigame": "pastel_breaker",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "objective": "Pick every flower and clear the garden.",
+  "grid": [
+    "..ppp...ccc.",
+    ".ppbpp.ccbcc",
+    "..ppp...ccc.",
+    "...g.....g..",
+    "...g..lll.g.",
+    "..gg.lblg.gg",
+    "gggggggggggg"
+  ],
+  "legend": {
+    "p": "#ffd3e2",
+    "c": "#ffdcc8",
+    "b": "#fff2bd",
+    "l": "#e6d8f8",
+    "g": "#a9dcb4"
+  }
+}

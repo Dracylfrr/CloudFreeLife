@@ -1,0 +1,11 @@
+{
+  "id": "forest_path",
+  "name": "Forest Path",
+  "description": "A quiet path winding through friendly trees.",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

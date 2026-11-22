@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+<rect width="1000" height="750" fill="#ffffff"/>
+<g stroke="#6e6a8e" stroke-linejoin="round" stroke-linecap="round">
+<path data-region="back_wall" data-name="Wall" d="M-6 -6h1012v762h-1012z" fill="#fff8ec" stroke-width="5"/>
+<path data-region="panel_left" data-name="Left panel" d="M96 70H294A36 36 0 0 1 330 106V644A36 36 0 0 1 294 680H96A36 36 0 0 1 60 644V106A36 36 0 0 1 96 70z" fill="#ffffff" stroke-width="5"/>
+<path data-region="panel_center" data-name="Center panel" d="M401 70H599A36 36 0 0 1 635 106V644A36 36 0 0 1 599 680H401A36 36 0 0 1 365 644V106A36 36 0 0 1 401 70z" fill="#ffffff" stroke-width="5"/>
+<path data-region="panel_right" data-name="Right panel" d="M706 70H904A36 36 0 0 1 940 106V644A36 36 0 0 1 904 680H706A36 36 0 0 1 670 644V106A36 36 0 0 1 706 70z" fill="#ffffff" stroke-width="5"/>
+</g></svg>

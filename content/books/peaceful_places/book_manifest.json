@@ -1,0 +1,18 @@
+{
+  "id": "peaceful_places",
+  "name": "Peaceful Places",
+  "description": "Beaches, meadows, mountains, forests, lakes and cozy cottages.",
+  "cover": "cover.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "kind": "coloring",
+  "accent": "#8ed2b2",
+  "pages": [
+    "01_sunny_beach",
+    "02_mountain_lake",
+    "03_cozy_cottage",
+    "04_forest_path",
+    "05_meadow_flowers",
+    "06_lakeside_sunrise"
+  ]
+}

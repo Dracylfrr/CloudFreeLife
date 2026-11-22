@@ -1,0 +1,31 @@
+{
+  "id": "star_constellation",
+  "name": "Star Constellation",
+  "description": "Seven big stars joined by dotted lines.",
+  "minigame": "splash_wall",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "objective": "Light up all seven stars.",
+  "wall": "wall.svg",
+  "goal": {
+    "type": "regions",
+    "regions": [
+      "star_1",
+      "star_2",
+      "star_3",
+      "star_4",
+      "star_5",
+      "star_6",
+      "star_7"
+    ]
+  },
+  "colors": [
+    "#f6b8cf",
+    "#bfe4f7",
+    "#c6ecda",
+    "#fff2bd",
+    "#d9cdf6",
+    "#ffdcc8"
+  ]
+}

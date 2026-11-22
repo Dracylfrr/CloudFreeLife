@@ -1,0 +1,11 @@
+{
+  "id": "sunset_sea",
+  "name": "Sunset Sea",
+  "description": "A sailboat glides toward the setting sun.",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

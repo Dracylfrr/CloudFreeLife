@@ -1,0 +1,30 @@
+{
+  "id": "color_match",
+  "name": "Color Match",
+  "description": "Six shapes, each with a color to match.",
+  "minigame": "splash_wall",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "objective": "Splash each shape with the color it shows as a hint.",
+  "wall": "wall.svg",
+  "goal": {
+    "type": "color_match",
+    "targets": {
+      "ball_pink": "#f6b8cf",
+      "square_blue": "#bfe4f7",
+      "star_yellow": "#fff2bd",
+      "triangle_mint": "#c6ecda",
+      "cloud_lilac": "#d9cdf6",
+      "drop_peach": "#ffdcc8"
+    }
+  },
+  "colors": [
+    "#f6b8cf",
+    "#bfe4f7",
+    "#fff2bd",
+    "#c6ecda",
+    "#d9cdf6",
+    "#ffdcc8"
+  ]
+}

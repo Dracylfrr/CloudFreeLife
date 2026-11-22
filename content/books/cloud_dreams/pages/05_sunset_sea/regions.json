@@ -1,0 +1,93 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky_top",
+      "name": "Upper sky",
+      "suggested": "#e8c4e4"
+    },
+    {
+      "id": "sky_mid",
+      "name": "Middle sky",
+      "suggested": "#ffd0b5"
+    },
+    {
+      "id": "sky_low",
+      "name": "Low sky",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "cloud_b",
+      "name": "Cloud",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "cloud_c",
+      "name": "Cloud",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "sun_glow",
+      "name": "Sun glow",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe0a0"
+    },
+    {
+      "id": "far_island",
+      "name": "Far island",
+      "suggested": "#aeb0e6"
+    },
+    {
+      "id": "sea",
+      "name": "Sea",
+      "suggested": "#bdeeea"
+    },
+    {
+      "id": "reflect_a",
+      "name": "Sun reflection",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "reflect_b",
+      "name": "Sun reflection",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "reflect_c",
+      "name": "Sun reflection",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "reflect_d",
+      "name": "Sun reflection",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "sail_big",
+      "name": "Big sail",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "sail_small",
+      "name": "Small sail",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "hull",
+      "name": "Boat",
+      "suggested": "#ffc3b0"
+    }
+  ]
+}

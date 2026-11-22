@@ -1,0 +1,108 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "hill_far",
+      "name": "Far hills",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "ground",
+      "name": "Forest floor",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "tree_far_left_trunk",
+      "name": "Tree trunk",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "tree_far_left_crown",
+      "name": "Tree leaves",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "tree_far_right_trunk",
+      "name": "Tree trunk",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "tree_far_right_crown",
+      "name": "Tree leaves",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "path",
+      "name": "Winding path",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "tree_left_trunk",
+      "name": "Tree trunk",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "tree_left_crown",
+      "name": "Tree leaves",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "tree_right_trunk",
+      "name": "Tree trunk",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "tree_right_crown",
+      "name": "Tree leaves",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "bush_a",
+      "name": "Bush",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "bush_b",
+      "name": "Bush",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "mushroom_stem_a",
+      "name": "Mushroom",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "mushroom_cap_a",
+      "name": "Mushroom cap",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "mushroom_stem_b",
+      "name": "Mushroom",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "mushroom_cap_b",
+      "name": "Mushroom cap",
+      "suggested": "#ffd3e2"
+    }
+  ]
+}

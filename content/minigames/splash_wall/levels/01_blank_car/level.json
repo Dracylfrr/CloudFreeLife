@@ -1,0 +1,31 @@
+{
+  "id": "blank_car",
+  "name": "Paint the Car",
+  "description": "A big cartoon car, waiting for color.",
+  "minigame": "splash_wall",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "objective": "Splash color onto the body, windows, wheels and the wall behind.",
+  "wall": "wall.svg",
+  "goal": {
+    "type": "regions",
+    "regions": [
+      "car_body",
+      "cabin",
+      "window_a",
+      "window_b",
+      "wheel_back",
+      "wheel_front",
+      "back_wall"
+    ]
+  },
+  "colors": [
+    "#f6b8cf",
+    "#bfe4f7",
+    "#c6ecda",
+    "#fff2bd",
+    "#d9cdf6",
+    "#ffdcc8"
+  ]
+}

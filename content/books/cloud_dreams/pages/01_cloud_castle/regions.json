@@ -1,0 +1,118 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sun_rays",
+      "name": "Sun rays",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_top",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cloud_right",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cloud_left",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "sparkle1",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "sparkle2",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "sparkle3",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "wall",
+      "name": "Castle wall",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "tower_left",
+      "name": "Left tower",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "tower_right",
+      "name": "Right tower",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "tower_center",
+      "name": "Center tower",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "roof_left",
+      "name": "Left roof",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "roof_right",
+      "name": "Right roof",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "roof_center",
+      "name": "Center roof",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "flag",
+      "name": "Flag",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "window_left",
+      "name": "Window",
+      "suggested": "#a4d2f2"
+    },
+    {
+      "id": "window_right",
+      "name": "Window",
+      "suggested": "#a4d2f2"
+    },
+    {
+      "id": "window_center",
+      "name": "Window",
+      "suggested": "#a4d2f2"
+    },
+    {
+      "id": "door",
+      "name": "Door",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "cloud_base",
+      "name": "Cloud base",
+      "suggested": "#ffffff"
+    }
+  ]
+}

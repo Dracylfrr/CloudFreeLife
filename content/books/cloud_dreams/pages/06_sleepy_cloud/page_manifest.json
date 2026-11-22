@@ -1,0 +1,11 @@
+{
+  "id": "sleepy_cloud",
+  "name": "Sleepy Cloud",
+  "description": "A drowsy cloud under the moon and stars.",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

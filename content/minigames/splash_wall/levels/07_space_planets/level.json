@@ -1,0 +1,29 @@
+{
+  "id": "space_planets",
+  "name": "Space Planets",
+  "description": "Five round planets drifting in space.",
+  "minigame": "splash_wall",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "objective": "Give every planet and moon a color.",
+  "wall": "wall.svg",
+  "goal": {
+    "type": "regions",
+    "regions": [
+      "planet_a",
+      "planet_b",
+      "planet_c",
+      "planet_d",
+      "moon"
+    ]
+  },
+  "colors": [
+    "#f6b8cf",
+    "#bfe4f7",
+    "#c6ecda",
+    "#fff2bd",
+    "#d9cdf6",
+    "#ffdcc8"
+  ]
+}

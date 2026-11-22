@@ -1,0 +1,11 @@
+{
+  "id": "cozy_cottage",
+  "name": "Cozy Cottage",
+  "description": "A little cottage with a garden and a smoking chimney.",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "cosmic_colors",
+  "name": "Cosmic Colors",
+  "description": "Gentle stars, planets, moons, galaxies, nebulae and comets.",
+  "cover": "cover.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "kind": "coloring",
+  "accent": "#a698e0",
+  "pages": [
+    "01_ringed_planet",
+    "02_rocket_ride",
+    "03_moon_and_stars",
+    "04_galaxy_swirl",
+    "05_astronaut_friend",
+    "06_comet_night"
+  ]
+}

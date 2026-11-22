@@ -1,0 +1,85 @@
+{
+  "id": "free_canvas",
+  "name": "Free Canvas",
+  "description": "A blank canvas for drawing anything, on a soft pastel background.",
+  "cover": "cover.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "kind": "free_canvas",
+  "accent": "#f49bbd",
+  "pages": [],
+  "backgrounds": [
+    {
+      "id": "white",
+      "name": "Clean White",
+      "type": "solid",
+      "colors": [
+        "#ffffff"
+      ]
+    },
+    {
+      "id": "warm_cream",
+      "name": "Warm Cream",
+      "type": "solid",
+      "colors": [
+        "#fff6e6"
+      ]
+    },
+    {
+      "id": "cloud_blue",
+      "name": "Cloud Blue",
+      "type": "gradient",
+      "colors": [
+        "#d6ecfb",
+        "#eaf5fd"
+      ]
+    },
+    {
+      "id": "lavender",
+      "name": "Lavender",
+      "type": "gradient",
+      "colors": [
+        "#e6dcfa",
+        "#f3eefd"
+      ]
+    },
+    {
+      "id": "mint",
+      "name": "Mint",
+      "type": "gradient",
+      "colors": [
+        "#d4f1e3",
+        "#eaf8f1"
+      ]
+    },
+    {
+      "id": "pastel_pink",
+      "name": "Pastel Pink",
+      "type": "gradient",
+      "colors": [
+        "#ffdce8",
+        "#fff0f5"
+      ]
+    },
+    {
+      "id": "starry_sky",
+      "name": "Starry Sky",
+      "type": "stars",
+      "colors": [
+        "#6f74b8",
+        "#8f88cc",
+        "#b59ad8"
+      ]
+    },
+    {
+      "id": "soft_clouds",
+      "name": "Soft Clouds",
+      "type": "clouds",
+      "colors": [
+        "#a9d6f3",
+        "#d6ecfa",
+        "#f3f9fd"
+      ]
+    }
+  ]
+}

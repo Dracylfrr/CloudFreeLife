@@ -1,0 +1,88 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "space",
+      "name": "Night sky",
+      "suggested": "#7a7bbd"
+    },
+    {
+      "id": "planet_a",
+      "name": "Planet",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "planet_a_band_a",
+      "name": "Planet stripe",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "planet_b",
+      "name": "Planet",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "planet_b_band_a",
+      "name": "Planet stripe",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "star1",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star2",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star3",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star4",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star5",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star6",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star7",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "tail_outer",
+      "name": "Comet tail",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "tail_mid",
+      "name": "Comet tail",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "tail_inner",
+      "name": "Comet tail",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "comet_head",
+      "name": "Comet",
+      "suggested": "#fff3c4"
+    }
+  ]
+}

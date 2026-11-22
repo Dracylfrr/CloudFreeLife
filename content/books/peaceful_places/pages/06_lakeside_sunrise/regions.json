@@ -1,0 +1,148 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky_top",
+      "name": "Upper sky",
+      "suggested": "#e8c4e4"
+    },
+    {
+      "id": "sky_glow",
+      "name": "Glowing sky",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "sun",
+      "name": "Rising sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "cloud_b",
+      "name": "Cloud",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "hill_left",
+      "name": "Left hill",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "hill_right",
+      "name": "Right hill",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "lake",
+      "name": "Lake",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "reflect_a",
+      "name": "Sun reflection",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "reflect_b",
+      "name": "Sun reflection",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "reflect_c",
+      "name": "Sun reflection",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "tree_a_trunk",
+      "name": "Tree trunk",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "tree_a_crown",
+      "name": "Tree leaves",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "tree_b_trunk",
+      "name": "Tree trunk",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "tree_b_crown",
+      "name": "Tree leaves",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "duck_wing_back",
+      "name": "Duck tail",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "duck_body",
+      "name": "Duck",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "duck_head",
+      "name": "Duck head",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "duck_beak",
+      "name": "Beak",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "duck_wing",
+      "name": "Wing",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "pad_a",
+      "name": "Lily pad",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "pad_b",
+      "name": "Lily pad",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "pad_c",
+      "name": "Lily pad",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "lily_petals",
+      "name": "Lily",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "lily_center",
+      "name": "Lily center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "cattail_1",
+      "name": "Cattail",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "cattail_2",
+      "name": "Cattail",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "cattail_3",
+      "name": "Cattail",
+      "suggested": "#e9c7a3"
+    }
+  ]
+}

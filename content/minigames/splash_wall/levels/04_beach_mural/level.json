@@ -1,0 +1,23 @@
+{
+  "id": "beach_mural",
+  "name": "Beach Mural",
+  "description": "A sunny beach scene waiting for summer colors.",
+  "minigame": "splash_wall",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "objective": "Splash the whole beach with color.",
+  "wall": "wall.svg",
+  "goal": {
+    "type": "coverage",
+    "target": 0.65
+  },
+  "colors": [
+    "#f6b8cf",
+    "#bfe4f7",
+    "#c6ecda",
+    "#fff2bd",
+    "#d9cdf6",
+    "#ffdcc8"
+  ]
+}

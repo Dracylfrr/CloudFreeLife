@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+<rect width="1000" height="750" fill="#ffffff"/>
+<g stroke="#6e6a8e" stroke-linejoin="round" stroke-linecap="round">
+<path data-region="space" data-name="Night sky" d="M-6 -6h1012v762h-1012z" fill="#ffffff" stroke-width="5"/>
+<path data-region="big_planet" data-name="Planet" d="M40 610a140 140 0 1 0 280 0a140 140 0 1 0 -280 0z" fill="#ffffff" stroke-width="5"/>
+<path data-region="big_planet_band_a" data-name="Planet stripe" d="M48.9 561L311.1 561A140 140 0 0 1 319.8 603L40.2 603A140 140 0 0 1 48.9 561z" fill="#ffffff" stroke-width="5"/>
+<path data-region="small_planet" data-name="Small planet" d="M798 170a62 62 0 1 0 124 0a62 62 0 1 0 -124 0z" fill="#ffffff" stroke-width="5"/>
+<path data-region="moon" data-name="Moon" d="M784 560a46 46 0 1 0 92 0a46 46 0 1 0 -92 0z" fill="#ffffff" stroke-width="5"/>
+<path data-region="star1" data-name="Star" d="M118.5 101.2Q120 98 121.5 101.2L124.7 108.3Q126.2 111.5 129.7 111.9L137.4 112.8Q140.9 113.2 138.3 115.6L132.6 120.9Q130 123.3 130.7 126.7L132.2 134.3Q132.9 137.8 129.9 136.1L123.1 132.3Q120 130.6 116.9 132.3L110.1 136.1Q107.1 137.8 107.8 134.3L109.3 126.7Q110 123.3 107.4 120.9L101.7 115.6Q99.1 113.2 102.6 112.8L110.3 111.9Q113.8 111.5 115.3 108.3z" fill="#ffffff" stroke-width="4"/>
+<path data-region="star2" data-name="Star" d="M328.9 56.3Q330 54 331.1 56.3L333.4 61.5Q334.5 63.8 337.1 64.1L342.7 64.8Q345.2 65.1 343.3 66.8L339.2 70.6Q337.3 72.4 337.8 74.9L338.9 80.4Q339.4 82.9 337.2 81.7L332.2 78.9Q330 77.7 327.8 78.9L322.8 81.7Q320.6 82.9 321.1 80.4L322.2 74.9Q322.7 72.4 320.8 70.6L316.7 66.8Q314.8 65.1 317.3 64.8L322.9 64.1Q325.5 63.8 326.6 61.5z" fill="#ffffff" stroke-width="4"/>
+<path data-region="star3" data-name="Star" d="M638.7 72.9Q640 70 641.3 72.9L644.3 79.3Q645.6 82.2 648.8 82.6L655.8 83.4Q659 83.8 656.7 86L651.5 90.8Q649.1 93 649.8 96.1L651.1 103Q651.8 106.2 649 104.6L642.8 101.2Q640 99.6 637.2 101.2L631 104.6Q628.2 106.2 628.9 103L630.2 96.1Q630.9 93 628.5 90.8L623.3 86Q621 83.8 624.2 83.4L631.2 82.6Q634.4 82.2 635.7 79.3z" fill="#ffffff" stroke-width="4"/>
+<path data-region="star4" data-name="Star" d="M918.8 364.6Q920 362 921.2 364.6L923.9 370.4Q925.1 373 927.9 373.3L934.3 374.1Q937.1 374.4 935 376.4L930.3 380.7Q928.2 382.7 928.8 385.5L930 391.7Q930.6 394.6 928.1 393.2L922.5 390Q920 388.6 917.5 390L911.9 393.2Q909.4 394.6 910 391.7L911.2 385.5Q911.8 382.7 909.7 380.7L905 376.4Q902.9 374.4 905.7 374.1L912.1 373.3Q914.9 373 916.1 370.4z" fill="#ffffff" stroke-width="4"/>
+<path data-region="star5" data-name="Star" d="M678.7 672.9Q680 670 681.3 672.9L684.3 679.3Q685.6 682.2 688.8 682.6L695.8 683.4Q699 683.8 696.7 686L691.5 690.8Q689.1 693 689.8 696.1L691.1 703Q691.8 706.2 689 704.6L682.8 701.2Q680 699.6 677.2 701.2L671 704.6Q668.2 706.2 668.9 703L670.2 696.1Q670.9 693 668.5 690.8L663.3 686Q661 683.8 664.2 683.4L671.2 682.6Q674.4 682.2 675.7 679.3z" fill="#ffffff" stroke-width="4"/>
+<path data-region="flame_outer" data-name="Flame" d="M446 494Q500 690 554 494Z" fill="#ffffff" stroke-width="5" transform="rotate(24 500 380)"/>
+<path data-region="flame_inner" data-name="Flame glow" d="M472 494Q500 590 528 494Z" fill="#ffffff" stroke-width="5" transform="rotate(24 500 380)"/>
+<path data-region="fin_left" data-name="Fin" d="M412 394Q412 380 404.4 391.8L329.6 508.2Q322 520 334.6 513.9L399.4 482.1Q412 476 412 462z" fill="#ffffff" stroke-width="5" transform="rotate(24 500 380)"/>
+<path data-region="fin_right" data-name="Fin" d="M588 394Q588 380 595.6 391.8L670.4 508.2Q678 520 665.4 513.9L600.6 482.1Q588 476 588 462z" fill="#ffffff" stroke-width="5" transform="rotate(24 500 380)"/>
+<path data-region="body" data-name="Rocket body" d="M500 110Q596 214 596 380V476H404V380Q404 214 500 110Z" fill="#ffffff" stroke-width="5" transform="rotate(24 500 380)"/>
+<path data-region="nose" data-name="Nose cone" d="M500 110Q538 152 560 214H440Q462 152 500 110Z" fill="#ffffff" stroke-width="5" transform="rotate(24 500 380)"/>
+<path data-region="stripe" data-name="Stripe" d="M404 410h192v28h-192z" fill="#ffffff" stroke-width="5" transform="rotate(24 500 380)"/>
+<path data-region="window_rim" data-name="Window" d="M446 320a54 54 0 1 0 108 0a54 54 0 1 0 -108 0z" fill="#ffffff" stroke-width="5" transform="rotate(24 500 380)"/>
+<path data-region="window_glass" data-name="Window glass" d="M464 320a36 36 0 1 0 72 0a36 36 0 1 0 -72 0z" fill="#ffffff" stroke-width="5" transform="rotate(24 500 380)"/>
+<path data-region="engine" data-name="Engine" d="M446 474H554A10 10 0 0 1 564 484V490A10 10 0 0 1 554 500H446A10 10 0 0 1 436 490V484A10 10 0 0 1 446 474z" fill="#ffffff" stroke-width="5" transform="rotate(24 500 380)"/>
+<path d="M250 250l-60 20M240 330l-80 10M730 500l60 24" fill="none" stroke-width="5"/>
+</g></svg>

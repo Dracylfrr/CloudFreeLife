@@ -1,0 +1,38 @@
+{
+  "name": "cloud-freelife",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Cloud-Freelife - a calm pastel coloring, drawing and mini-game app for Windows.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "content:generate": "node scripts/generate-content.mjs",
+    "content:pack": "node scripts/pack-content.mjs",
+    "icons": "node scripts/make-icons.mjs",
+    "tauri": "tauri",
+    "package:win": "node scripts/package-windows.mjs"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^7.3.1",
+    "@tauri-apps/cli": "^2.12.6",
+    "sharp": "^0.35.5",
+    "svelte": "^5.59.1",
+    "svelte-check": "^4.7.8",
+    "typescript": "^6.0.3",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.1"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.12.5",
+    "@tauri-apps/plugin-dialog": "^2.8.4",
+    "@tauri-apps/plugin-fs": "^2.7.1",
+    "@tauri-apps/plugin-http": "^2.9.0",
+    "@tauri-apps/plugin-opener": "^2.7.3"
+  }
+}

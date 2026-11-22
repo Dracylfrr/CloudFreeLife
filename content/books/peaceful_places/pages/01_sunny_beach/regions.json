@@ -1,0 +1,98 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sun_rays",
+      "name": "Sun rays",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cloud_b",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "sea_far",
+      "name": "Far sea",
+      "suggested": "#bdeeea"
+    },
+    {
+      "id": "sea_near",
+      "name": "Near sea",
+      "suggested": "#a9dcf0"
+    },
+    {
+      "id": "sand",
+      "name": "Sand",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "palm_trunk",
+      "name": "Palm trunk",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "palm_leaves",
+      "name": "Palm leaves",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "coconuts",
+      "name": "Coconuts",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "umbrella_pole",
+      "name": "Umbrella pole",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "umbrella_top",
+      "name": "Umbrella",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "umbrella_stripe",
+      "name": "Umbrella stripe",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "towel",
+      "name": "Beach towel",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "beach_ball",
+      "name": "Beach ball",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "ball_stripe",
+      "name": "Ball stripe",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "starfish",
+      "name": "Starfish",
+      "suggested": "#ffdcc8"
+    }
+  ]
+}

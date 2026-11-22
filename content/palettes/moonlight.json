@@ -1,0 +1,49 @@
+{
+  "id": "moonlight",
+  "name": "Moonlight",
+  "description": "Silvery blues, pearl and a pale golden moon.",
+  "colors": [
+    {
+      "id": "moon_silver",
+      "name": "Moon Silver",
+      "hex": "#dfe6f5"
+    },
+    {
+      "id": "night_pearl",
+      "name": "Night Pearl",
+      "hex": "#c6cdea"
+    },
+    {
+      "id": "midnight_haze",
+      "name": "Midnight Haze",
+      "hex": "#a2aadc"
+    },
+    {
+      "id": "pale_moon",
+      "name": "Pale Moon",
+      "hex": "#fff1bf"
+    },
+    {
+      "id": "lunar_lilac",
+      "name": "Lunar Lilac",
+      "hex": "#d4c8ee"
+    },
+    {
+      "id": "mist_blue",
+      "name": "Mist Blue",
+      "hex": "#b8d4ee"
+    },
+    {
+      "id": "dream_rose",
+      "name": "Dream Rose",
+      "hex": "#f0cbe0"
+    },
+    {
+      "id": "cloud_veil",
+      "name": "Cloud Veil",
+      "hex": "#f4f6fc"
+    }
+  ],
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0"
+}

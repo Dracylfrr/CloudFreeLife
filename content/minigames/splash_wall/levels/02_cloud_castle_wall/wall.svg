@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+<rect width="1000" height="750" fill="#ffffff"/>
+<g stroke="#6e6a8e" stroke-linejoin="round" stroke-linecap="round">
+<path data-region="sky" data-name="Sky" d="M-6 -6h1012v762h-1012z" fill="#ffffff" stroke-width="5"/>
+<path data-region="sun_rays" data-name="Sun rays" d="M223.2 134.9Q223.2 128.9 228.8 131L248.4 138Q254 140 248.4 142L228.8 149Q223.2 151.1 223.2 145.1zM212.2 178.9Q215.7 174.1 219.1 179L230.8 196.2Q234.1 201.1 228.4 199.4L208.5 193.6Q202.7 192 206.2 187.1zM177.4 208Q183.1 206.2 182.9 212.2L182.3 232.9Q182.1 238.9 178.5 234.2L165.8 217.8Q162.1 213 167.8 211.2zM132.2 211.2Q137.9 213 134.2 217.8L121.5 234.2Q117.9 238.9 117.7 232.9L117.1 212.2Q116.9 206.2 122.6 208zM93.8 187.1Q97.3 192 91.5 193.6L71.6 199.4Q65.9 201.1 69.2 196.2L80.9 179Q84.3 174.1 87.8 178.9zM76.8 145.1Q76.8 151.1 71.2 149L51.6 142Q46 140 51.6 138L71.2 131Q76.8 128.9 76.8 134.9zM87.8 101.1Q84.3 105.9 80.9 101L69.2 83.8Q65.9 78.9 71.6 80.6L91.5 86.4Q97.3 88 93.8 92.9zM122.6 72Q116.9 73.8 117.1 67.8L117.7 47.1Q117.9 41.1 121.5 45.8L134.2 62.2Q137.9 67 132.2 68.8zM167.8 68.8Q162.1 67 165.8 62.2L178.5 45.8Q182.1 41.1 182.3 47.1L182.9 67.8Q183.1 73.8 177.4 72zM206.2 92.9Q202.7 88 208.5 86.4L228.4 80.6Q234.1 78.9 230.8 83.8L219.1 101Q215.7 105.9 212.2 101.1z" fill="#ffffff" stroke-width="5"/>
+<path data-region="sun" data-name="Sun" d="M92 140a58 58 0 1 0 116 0a58 58 0 1 0 -116 0z" fill="#ffffff" stroke-width="5"/>
+<path data-region="cloud_top" data-name="Cloud" d="M735.4 142.8A22.8 22.8 0 1 1 742.1 98.2A36.1 36.1 0 0 1 781.8 70.9A45.6 45.6 0 0 1 864.5 94.6A24.7 24.7 0 0 1 857 142.8z" fill="#ffffff" stroke-width="5"/>
+<path data-region="cloud_right" data-name="Cloud" d="M781.6 352.8A19 19 0 1 1 784 314.9A32.3 32.3 0 0 1 823.8 289.2A41.8 41.8 0 0 1 896.7 292A30.4 30.4 0 0 1 927 315A19 19 0 0 1 924.1 352.8z" fill="#ffffff" stroke-width="5"/>
+<path data-region="cloud_left" data-name="Cloud" d="M93.9 350.4A22.1 22.1 0 1 1 100.3 307.1A34 34 0 0 1 159.4 294.9A30.6 30.6 0 0 1 207.1 313.2A18.7 18.7 0 1 1 209.5 350.4z" fill="#ffffff" stroke-width="5"/>
+<path data-region="sparkle1" data-name="Star" d="M608.7 72.9Q610 70 611.3 72.9L614.3 79.3Q615.6 82.2 618.8 82.6L625.8 83.4Q629 83.8 626.7 86L621.5 90.8Q619.1 93 619.8 96.1L621.1 103Q621.8 106.2 619 104.6L612.8 101.2Q610 99.6 607.2 101.2L601 104.6Q598.2 106.2 598.9 103L600.2 96.1Q600.9 93 598.5 90.8L593.3 86Q591 83.8 594.2 83.4L601.2 82.6Q604.4 82.2 605.7 79.3z" fill="#ffffff" stroke-width="4"/>
+<path data-region="sparkle2" data-name="Star" d="M379 57.2Q380 55 381 57.2L383.2 62Q384.2 64.2 386.6 64.5L391.9 65.1Q394.3 65.4 392.5 67L388.6 70.6Q386.8 72.2 387.3 74.6L388.3 79.8Q388.8 82.1 386.7 81L382.1 78.4Q380 77.2 377.9 78.4L373.3 81Q371.2 82.1 371.7 79.8L372.7 74.6Q373.2 72.2 371.4 70.6L367.5 67Q365.7 65.4 368.1 65.1L373.4 64.5Q375.8 64.2 376.8 62z" fill="#ffffff" stroke-width="4"/>
+<path data-region="sparkle3" data-name="Star" d="M928.9 465.5Q930 463 931.1 465.5L933.7 470.9Q934.8 473.4 937.5 473.7L943.5 474.4Q946.2 474.7 944.2 476.6L939.8 480.7Q937.8 482.5 938.3 485.2L939.5 491.1Q940 493.8 937.6 492.4L932.4 489.5Q930 488.2 927.6 489.5L922.4 492.4Q920 493.8 920.5 491.1L921.7 485.2Q922.2 482.5 920.2 480.7L915.8 476.6Q913.8 474.7 916.5 474.4L922.5 473.7Q925.2 473.4 926.3 470.9z" fill="#ffffff" stroke-width="4"/>
+<path data-region="wall" data-name="Castle wall" d="M336 400H664A6 6 0 0 1 670 406V594A6 6 0 0 1 664 600H336A6 6 0 0 1 330 594V406A6 6 0 0 1 336 400z" fill="#ffffff" stroke-width="5"/>
+<path data-region="tower_left" data-name="Left tower" d="M263 330H347A8 8 0 0 1 355 338V592A8 8 0 0 1 347 600H263A8 8 0 0 1 255 592V338A8 8 0 0 1 263 330z" fill="#ffffff" stroke-width="5"/>
+<path data-region="tower_right" data-name="Right tower" d="M653 330H737A8 8 0 0 1 745 338V592A8 8 0 0 1 737 600H653A8 8 0 0 1 645 592V338A8 8 0 0 1 653 330z" fill="#ffffff" stroke-width="5"/>
+<path data-region="tower_center" data-name="Center tower" d="M448 250H552A8 8 0 0 1 560 258V592A8 8 0 0 1 552 600H448A8 8 0 0 1 440 592V258A8 8 0 0 1 448 250z" fill="#ffffff" stroke-width="5"/>
+<path data-region="roof_left" data-name="Left roof" d="M255 344Q243 344 248.4 333.3L299.6 232.7Q305 222 310.4 232.7L361.6 333.3Q367 344 355 344z" fill="#ffffff" stroke-width="5"/>
+<path data-region="roof_right" data-name="Right roof" d="M645 344Q633 344 638.4 333.3L689.6 232.7Q695 222 700.4 232.7L751.6 333.3Q757 344 745 344z" fill="#ffffff" stroke-width="5"/>
+<path data-region="roof_center" data-name="Center roof" d="M440 264Q426 264 432.1 251.4L493.9 124.6Q500 112 506.1 124.6L567.9 251.4Q574 264 560 264z" fill="#ffffff" stroke-width="5"/>
+<path d="M500 112V62" fill="none" stroke-width="6"/>
+<path data-region="flag" data-name="Flag" d="M500 68Q500 62 505.7 63.9L554.3 80.1Q560 82 554.4 84.1L505.6 101.9Q500 104 500 98z" fill="#ffffff" stroke-width="5"/>
+<path data-region="window_left" data-name="Window" d="M283 446V402A22 22 0 0 1 327 402V446z" fill="#ffffff" stroke-width="5"/>
+<path data-region="window_right" data-name="Window" d="M673 446V402A22 22 0 0 1 717 402V446z" fill="#ffffff" stroke-width="5"/>
+<path data-region="window_center" data-name="Window" d="M476 376V324A24 24 0 0 1 524 324V376z" fill="#ffffff" stroke-width="5"/>
+<path data-region="door" data-name="Door" d="M458 560V482A42 42 0 0 1 542 482V560z" fill="#ffffff" stroke-width="5"/>
+<path d="M368 470h60M368 510h60M570 470h60M570 510h60" fill="none" stroke-width="3.5"/>
+<path data-region="cloud_base" data-name="Cloud base" d="M80 735A50 50 0 1 1 120 655A80 80 0 0 1 242.2 587.1A100 100 0 0 1 357.3 538.8A120 120 0 0 1 547.2 544.6A100 100 0 0 1 667.5 571.9A90 90 0 0 1 792 591A80 80 0 0 1 918.5 639.8A50 50 0 1 1 940 735z" fill="#ffffff" stroke-width="5"/>
+<circle cx="460.9" cy="668" r="8.6" fill="#6e6a8e" stroke="none"/>
+<circle cx="539.1" cy="668" r="8.6" fill="#6e6a8e" stroke="none"/>
+<path d="M482.8 688.7q17.3 19.5 34.5 0" fill="none" stroke-width="4.5"/>
+<path d="M240.2 190q9.9 -14.4 19.8 1.8q9.9 -16.2 19.8 -1.8" fill="none" stroke-width="4"/>
+<path d="M364.6 150q7.7 -11.2 15.4 1.4q7.7 -12.6 15.4 -1.4" fill="none" stroke-width="4"/>
+</g></svg>

@@ -1,0 +1,27 @@
+{
+  "id": "ocean_bubbles",
+  "name": "Ocean Bubbles",
+  "description": "Waves and floating bubbles under a calm sky.",
+  "minigame": "pastel_breaker",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "objective": "Burst the bubbles and ride the waves. Deep blue takes two hits.",
+  "grid": [
+    ".t....s...t.",
+    "t.t..s.s.t.t",
+    ".t....s...t.",
+    "............",
+    "ssssssssssss",
+    "tttttttttttt",
+    "dtdtdtdtdtdt"
+  ],
+  "legend": {
+    "t": "#bdeeea",
+    "s": "#bfe4f7",
+    "d": "#a4d2f2"
+  },
+  "tough": [
+    "d"
+  ]
+}

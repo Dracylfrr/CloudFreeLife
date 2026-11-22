@@ -1,0 +1,113 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "sun_rays",
+      "name": "Sun rays",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_left",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cloud_top",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cloud_right",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "rock_top",
+      "name": "Small island rock",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "grass_top",
+      "name": "Small island grass",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "rock_big",
+      "name": "Island rock",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "grass_big",
+      "name": "Island grass",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "trunk_big",
+      "name": "Tree trunk",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "crown_big",
+      "name": "Tree leaves",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "house_wall",
+      "name": "House",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "house_roof",
+      "name": "Roof",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "house_door",
+      "name": "Door",
+      "suggested": "#a4d2f2"
+    },
+    {
+      "id": "rock_right",
+      "name": "Island rock",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "grass_right",
+      "name": "Island grass",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "trunk_right",
+      "name": "Tree trunk",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "crown_right",
+      "name": "Tree leaves",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "flower_petals",
+      "name": "Flower petals",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "flower_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

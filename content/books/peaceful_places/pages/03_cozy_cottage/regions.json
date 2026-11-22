@@ -1,0 +1,123 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cloud_b",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "hill_back",
+      "name": "Back hill",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "grass",
+      "name": "Garden",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "tree_trunk",
+      "name": "Tree trunk",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "tree_crown",
+      "name": "Tree leaves",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "chimney",
+      "name": "Chimney",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "smoke_a",
+      "name": "Smoke",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "smoke_b",
+      "name": "Smoke",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cottage_wall",
+      "name": "Cottage wall",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "roof",
+      "name": "Roof",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "attic_window",
+      "name": "Round window",
+      "suggested": "#a4d2f2"
+    },
+    {
+      "id": "door",
+      "name": "Door",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "window_left",
+      "name": "Window",
+      "suggested": "#a4d2f2"
+    },
+    {
+      "id": "window_right",
+      "name": "Window",
+      "suggested": "#a4d2f2"
+    },
+    {
+      "id": "path",
+      "name": "Garden path",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "fence",
+      "name": "Fence",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "flower_a_petals",
+      "name": "Flower petals",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "flower_a_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_b_petals",
+      "name": "Flower petals",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "flower_b_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

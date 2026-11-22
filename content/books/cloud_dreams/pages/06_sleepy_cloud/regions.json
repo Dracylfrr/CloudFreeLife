@@ -1,0 +1,73 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Night sky",
+      "suggested": "#aeb0e6"
+    },
+    {
+      "id": "moon",
+      "name": "Moon",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star1",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star2",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star3",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star4",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star5",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star6",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star7",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "cloud_right",
+      "name": "Small cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cloud_low_left",
+      "name": "Small cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cloud_low_right",
+      "name": "Small cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "big_cloud",
+      "name": "Big sleepy cloud",
+      "suggested": "#ffffff"
+    }
+  ]
+}

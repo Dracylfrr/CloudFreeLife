@@ -1,0 +1,88 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cloud_b",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cloud_c",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "balloon_small_ropes_basket",
+      "name": "Basket",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "balloon_small_envelope",
+      "name": "Balloon",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "balloon_small_stripe",
+      "name": "Balloon stripe",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "balloon_left_ropes_basket",
+      "name": "Basket",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "balloon_left_envelope",
+      "name": "Balloon",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "balloon_left_stripe",
+      "name": "Balloon stripe",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "balloon_big_ropes_basket",
+      "name": "Basket",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "balloon_big_envelope",
+      "name": "Balloon",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "balloon_big_stripe",
+      "name": "Balloon stripe",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "hill_far",
+      "name": "Far hill",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "hill_near",
+      "name": "Near hill",
+      "suggested": "#c2e8c4"
+    }
+  ]
+}

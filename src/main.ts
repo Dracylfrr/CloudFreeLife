@@ -1,0 +1,55 @@
+import { mount } from 'svelte';
+import './app.css';
+import App from './App.svelte';
+import { initAudio } from './core/audio';
+import { loadCatalog } from './core/content/registry';
+import { runLeaveGuards } from './core/router';
+import { applySettingsToDocument, getSettings, loadSettings, settings, updateSettings } from './core/settings';
+import { getStorage, isTauri } from './core/storage';
+import { refreshArtworks } from './features/gallery/artwork';
+import { startupUpdateCheck } from './features/updates/updater';
+
+async function boot() {
+  const target = document.getElementById('app')!;
+  mount(App, { target });
+
+  // Settings first (instant, local), then content. The update check never blocks any of this.
+  const st = await getStorage();
+  const firstRun = (await st.readText('settings.json')) === null;
+  await loadSettings();
+  if (firstRun && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) updateSettings({ reducedMotion: true });
+  settings.subscribe(applySettingsToDocument);
+  initAudio();
+
+  await Promise.all([loadCatalog(), refreshArtworks()]);
+
+  // Pause decorative animation when the window is hidden or minimised.
+  const syncPaused = () => document.documentElement.setAttribute('data-paused', String(document.hidden));
+  document.addEventListener('visibilitychange', syncPaused);
+  syncPaused();
+
+  if (isTauri()) {
+    const { getCurrentWindow } = await import('@tauri-apps/api/window');
+    const win = getCurrentWindow();
+    // Make sure the artwork being painted is saved before the window closes.
+    await win.onCloseRequested(async (event) => {
+      event.preventDefault();
+      try {
+        await runLeaveGuards();
+      } finally {
+        await win.destroy();
+      }
+    });
+  } else {
+    window.addEventListener('beforeunload', () => void runLeaveGuards());
+  }
+
+  startupUpdateCheck();
+  void getSettings;
+}
+
+boot().catch((err) => {
+  console.error('Cloud-Freelife failed to start', err);
+  const t = document.getElementById('app');
+  if (t) t.textContent = 'Cloud-Freelife could not start. Please restart the app.';
+});

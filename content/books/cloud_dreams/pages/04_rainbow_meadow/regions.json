@@ -1,0 +1,113 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sun_rays",
+      "name": "Sun rays",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_top_left",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cloud_top",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "band_1",
+      "name": "Rainbow band 1",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "band_2",
+      "name": "Rainbow band 2",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "band_3",
+      "name": "Rainbow band 3",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "band_4",
+      "name": "Rainbow band 4",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "band_5",
+      "name": "Rainbow band 5",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "inside",
+      "name": "Sky inside the rainbow",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "hill_back",
+      "name": "Back hill",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "hill_front",
+      "name": "Front hill",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "cloud_left",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cloud_right",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "flower_a_petals",
+      "name": "Flower petals",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "flower_a_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_b_petals",
+      "name": "Flower petals",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "flower_b_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_c_petals",
+      "name": "Flower petals",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "flower_c_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

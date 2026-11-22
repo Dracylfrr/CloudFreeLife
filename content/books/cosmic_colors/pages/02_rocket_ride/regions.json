@@ -1,0 +1,108 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "space",
+      "name": "Night sky",
+      "suggested": "#aeb0e6"
+    },
+    {
+      "id": "big_planet",
+      "name": "Planet",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "big_planet_band_a",
+      "name": "Planet stripe",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "small_planet",
+      "name": "Small planet",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "moon",
+      "name": "Moon",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star1",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star2",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star3",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star4",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star5",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "flame_outer",
+      "name": "Flame",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "flame_inner",
+      "name": "Flame glow",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "fin_left",
+      "name": "Fin",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "fin_right",
+      "name": "Fin",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "body",
+      "name": "Rocket body",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "nose",
+      "name": "Nose cone",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "stripe",
+      "name": "Stripe",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "window_rim",
+      "name": "Window",
+      "suggested": "#a4d2f2"
+    },
+    {
+      "id": "window_glass",
+      "name": "Window glass",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "engine",
+      "name": "Engine",
+      "suggested": "#e3e0f0"
+    }
+  ]
+}

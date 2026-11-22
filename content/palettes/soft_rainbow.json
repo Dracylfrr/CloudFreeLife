@@ -1,0 +1,49 @@
+{
+  "id": "soft_rainbow",
+  "name": "Soft Rainbow",
+  "description": "A gentle seven-color rainbow.",
+  "colors": [
+    {
+      "id": "strawberry_milk",
+      "name": "Strawberry Milk",
+      "hex": "#f7b6c8"
+    },
+    {
+      "id": "tangerine_cream",
+      "name": "Tangerine Cream",
+      "hex": "#ffcfa6"
+    },
+    {
+      "id": "lemon_chiffon",
+      "name": "Lemon Chiffon",
+      "hex": "#fff2a8"
+    },
+    {
+      "id": "fresh_mint",
+      "name": "Fresh Mint",
+      "hex": "#bfe8c6"
+    },
+    {
+      "id": "sky_drop",
+      "name": "Sky Drop",
+      "hex": "#b3dcf6"
+    },
+    {
+      "id": "periwinkle",
+      "name": "Periwinkle",
+      "hex": "#c4c3f0"
+    },
+    {
+      "id": "grape_soda",
+      "name": "Grape Soda",
+      "hex": "#dcb8ec"
+    },
+    {
+      "id": "cloud_white",
+      "name": "Cloud White",
+      "hex": "#fbfbff"
+    }
+  ],
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0"
+}

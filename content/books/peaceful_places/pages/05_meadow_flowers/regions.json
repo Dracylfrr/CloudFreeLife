@@ -1,0 +1,133 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sun_rays",
+      "name": "Sun rays",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cloud_b",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "hill_far",
+      "name": "Far hill",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "meadow",
+      "name": "Meadow",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "leaf_1",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "leaf_2",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "leaf_3",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "leaf_4",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "leaf_5",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "flower_1_petals",
+      "name": "Flower petals",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "flower_1_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_2_petals",
+      "name": "Flower petals",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "flower_2_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_3_petals",
+      "name": "Flower petals",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "flower_3_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_4_petals",
+      "name": "Flower petals",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "flower_4_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_5_petals",
+      "name": "Flower petals",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_5_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "butterfly_a_wings",
+      "name": "Butterfly",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "butterfly_b_wings",
+      "name": "Butterfly",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "ladybug",
+      "name": "Ladybug",
+      "suggested": "#ffc3b0"
+    }
+  ]
+}

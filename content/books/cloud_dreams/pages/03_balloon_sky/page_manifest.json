@@ -1,0 +1,11 @@
+{
+  "id": "balloon_sky",
+  "name": "Balloon Sky",
+  "description": "Three hot-air balloons on a breezy day.",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

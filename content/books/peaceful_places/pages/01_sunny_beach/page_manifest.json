@@ -1,0 +1,11 @@
+{
+  "id": "sunny_beach",
+  "name": "Sunny Beach",
+  "description": "Sand, sea, a palm tree and a striped umbrella.",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

@@ -1,0 +1,83 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "space",
+      "name": "Night sky",
+      "suggested": "#7a7bbd"
+    },
+    {
+      "id": "moon",
+      "name": "Moon",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star1",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star2",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star3",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star4",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star5",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star6",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star7",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star8",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "planet",
+      "name": "Small planet",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cloud_b",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "shooting_tail",
+      "name": "Shooting star tail",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "shooting_star",
+      "name": "Shooting star",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

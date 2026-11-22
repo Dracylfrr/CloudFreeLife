@@ -1,0 +1,83 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "space",
+      "name": "Night sky",
+      "suggested": "#8d8ed0"
+    },
+    {
+      "id": "star1",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star2",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star3",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star4",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star5",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "moon",
+      "name": "Moon",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "small_planet",
+      "name": "Small planet",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "ring_back",
+      "name": "Planet ring",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "planet",
+      "name": "Planet",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "planet_band_a",
+      "name": "Planet stripe",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "planet_band_b",
+      "name": "Planet stripe",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "ring_front",
+      "name": "Planet ring front",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "comet_tail",
+      "name": "Comet tail",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "comet_head",
+      "name": "Comet",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

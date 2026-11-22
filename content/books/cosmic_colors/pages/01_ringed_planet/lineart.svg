@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+<rect width="1000" height="750" fill="#ffffff"/>
+<g stroke="#6e6a8e" stroke-linejoin="round" stroke-linecap="round">
+<path data-region="space" data-name="Night sky" d="M-6 -6h1012v762h-1012z" fill="#ffffff" stroke-width="5"/>
+<path data-region="star1" data-name="Star" d="M108.4 69.5Q110 66 111.6 69.5L115.2 77.2Q116.8 80.7 120.6 81.1L129 82.1Q132.8 82.6 130 85.2L123.8 91Q121 93.6 121.7 97.3L123.4 105.7Q124.1 109.4 120.8 107.5L113.4 103.4Q110 101.5 106.6 103.4L99.2 107.5Q95.9 109.4 96.6 105.7L98.3 97.3Q99 93.6 96.2 91L90 85.2Q87.2 82.6 91 82.1L99.4 81.1Q103.2 80.7 104.8 77.2z" fill="#ffffff" stroke-width="4"/>
+<path data-region="star2" data-name="Star" d="M878.1 66.1Q880 62 881.9 66.1L886 75.1Q887.9 79.1 892.3 79.7L902.2 80.8Q906.6 81.3 903.3 84.4L896.1 91.1Q892.8 94.2 893.7 98.5L895.6 108.3Q896.5 112.7 892.5 110.5L883.9 105.6Q880 103.4 876.1 105.6L867.5 110.5Q863.5 112.7 864.4 108.3L866.3 98.5Q867.2 94.2 863.9 91.1L856.7 84.4Q853.4 81.3 857.8 80.8L867.7 79.7Q872.1 79.1 874 75.1z" fill="#ffffff" stroke-width="4"/>
+<path data-region="star3" data-name="Star" d="M898.7 402.9Q900 400 901.3 402.9L904.3 409.3Q905.6 412.2 908.8 412.6L915.8 413.4Q919 413.8 916.7 416L911.5 420.8Q909.1 423 909.8 426.1L911.1 433Q911.8 436.2 909 434.6L902.8 431.2Q900 429.6 897.2 431.2L891 434.6Q888.2 436.2 888.9 433L890.2 426.1Q890.9 423 888.5 420.8L883.3 416Q881 413.8 884.2 413.4L891.2 412.6Q894.4 412.2 895.7 409.3z" fill="#ffffff" stroke-width="4"/>
+<path data-region="star4" data-name="Star" d="M88.5 541.2Q90 538 91.5 541.2L94.7 548.3Q96.2 551.5 99.7 551.9L107.4 552.8Q110.9 553.2 108.3 555.6L102.6 560.9Q100 563.3 100.7 566.7L102.2 574.3Q102.9 577.8 99.9 576.1L93.1 572.3Q90 570.6 86.9 572.3L80.1 576.1Q77.1 577.8 77.8 574.3L79.3 566.7Q80 563.3 77.4 560.9L71.7 555.6Q69.1 553.2 72.6 552.8L80.3 551.9Q83.8 551.5 85.3 548.3z" fill="#ffffff" stroke-width="4"/>
+<path data-region="star5" data-name="Star" d="M698.9 76.3Q700 74 701.1 76.3L703.4 81.5Q704.5 83.8 707.1 84.1L712.7 84.8Q715.2 85.1 713.3 86.8L709.2 90.6Q707.3 92.4 707.8 94.9L708.9 100.4Q709.4 102.9 707.2 101.7L702.2 98.9Q700 97.7 697.8 98.9L692.8 101.7Q690.6 102.9 691.1 100.4L692.2 94.9Q692.7 92.4 690.8 90.6L686.7 86.8Q684.8 85.1 687.3 84.8L692.9 84.1Q695.5 83.8 696.6 81.5z" fill="#ffffff" stroke-width="4"/>
+<path data-region="moon" data-name="Moon" d="M108 230a52 52 0 1 0 104 0a52 52 0 1 0 -104 0z" fill="#ffffff" stroke-width="5"/>
+<path d="M140 214a8 8 0 1 0 16 0a8 8 0 1 0-16 0M168 250a6 6 0 1 0 12 0a6 6 0 1 0-12 0" fill="none" stroke-width="3.5"/>
+<path data-region="small_planet" data-name="Small planet" d="M794 600a56 56 0 1 0 112 0a56 56 0 1 0 -112 0z" fill="#ffffff" stroke-width="5"/>
+<path data-region="ring_back" data-name="Planet ring" d="M160 380a340 88 0 1 0 680 0a340 88 0 1 0 -680 0zM242 380a258 58 0 1 1 516 0a258 58 0 1 1 -516 0z" fill="#ffffff" stroke-width="5" transform="rotate(-16 500 380)"/>
+<path data-region="planet" data-name="Planet" d="M330 380a170 170 0 1 0 340 0a170 170 0 1 0 -340 0z" fill="#ffffff" stroke-width="5"/>
+<path data-region="planet_band_a" data-name="Planet stripe" d="M340.8 320.5L659.2 320.5A170 170 0 0 1 669.8 371.5L330.2 371.5A170 170 0 0 1 340.8 320.5z" fill="#ffffff" stroke-width="5"/>
+<path data-region="planet_band_b" data-name="Planet stripe" d="M337.8 431L662.2 431A170 170 0 0 1 633.4 485.4L366.6 485.4A170 170 0 0 1 337.8 431z" fill="#ffffff" stroke-width="5"/>
+<path data-region="ring_front" data-name="Planet ring front" d="M160 380A340 88 0 0 0 840 380L758 380A258 58 0 0 1 242 380z" fill="#ffffff" stroke-width="5" transform="rotate(-16 500 380)"/>
+<path data-region="comet_tail" data-name="Comet tail" d="M750.4 702.7Q760 700 750.7 696.3L619.3 643.7Q610 640 617.1 647.1L682.9 712.9Q690 720 699.6 717.3z" fill="#ffffff" stroke-width="5"/>
+<path data-region="comet_head" data-name="Comet" d="M760 706a22 22 0 1 0 44 0a22 22 0 1 0 -44 0z" fill="#ffffff" stroke-width="5"/>
+</g></svg>

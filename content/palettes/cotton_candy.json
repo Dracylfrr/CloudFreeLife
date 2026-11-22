@@ -1,0 +1,49 @@
+{
+  "id": "cotton_candy",
+  "name": "Cotton Candy",
+  "description": "Fluffy pinks, blues and sweet lilacs.",
+  "colors": [
+    {
+      "id": "cotton_pink",
+      "name": "Cotton Pink",
+      "hex": "#ffc7dc"
+    },
+    {
+      "id": "candy_floss",
+      "name": "Candy Floss",
+      "hex": "#f7a9c8"
+    },
+    {
+      "id": "bubblegum_milk",
+      "name": "Bubblegum Milk",
+      "hex": "#ffd9e8"
+    },
+    {
+      "id": "sugar_blue",
+      "name": "Sugar Blue",
+      "hex": "#b8dcf7"
+    },
+    {
+      "id": "lilac_sugar",
+      "name": "Lilac Sugar",
+      "hex": "#dac4f3"
+    },
+    {
+      "id": "cream_soda",
+      "name": "Cream Soda",
+      "hex": "#fff1cf"
+    },
+    {
+      "id": "berry_haze",
+      "name": "Berry Haze",
+      "hex": "#e7aed0"
+    },
+    {
+      "id": "sky_candy",
+      "name": "Sky Candy",
+      "hex": "#cfe8fb"
+    }
+  ],
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0"
+}

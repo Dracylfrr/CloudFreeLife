@@ -1,0 +1,11 @@
+{
+  "id": "cloud_castle",
+  "name": "Cloud Castle",
+  "description": "A little castle resting on a big, happy cloud.",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

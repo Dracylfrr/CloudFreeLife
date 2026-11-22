@@ -1,0 +1,11 @@
+{
+  "id": "mountain_lake",
+  "name": "Mountain Lake",
+  "description": "Snowy peaks above a calm blue lake.",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

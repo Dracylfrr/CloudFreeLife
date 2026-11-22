@@ -1,0 +1,26 @@
+{
+  "id": "rainbow_arch",
+  "name": "Rainbow Arch",
+  "description": "A bright pastel rainbow to bring down, band by band.",
+  "minigame": "pastel_breaker",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "objective": "Pop all the rainbow bands.",
+  "grid": [
+    "...rrrrrr...",
+    "..rccccccr..",
+    ".rcbbbbbbcr.",
+    ".rcbmmmmbcr.",
+    "rcbmssssmbcr",
+    "rcbm....mbcr",
+    "rcb......bcr"
+  ],
+  "legend": {
+    "r": "#f6b8cf",
+    "c": "#ffdcc8",
+    "b": "#fff2bd",
+    "m": "#c6ecda",
+    "s": "#bfe4f7"
+  }
+}

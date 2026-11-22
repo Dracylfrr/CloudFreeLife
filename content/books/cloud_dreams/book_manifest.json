@@ -1,0 +1,18 @@
+{
+  "id": "cloud_dreams",
+  "name": "Cloud Dreams",
+  "description": "Clouds, castles in the sky, floating islands, balloons, rainbows and sunsets.",
+  "cover": "cover.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "kind": "coloring",
+  "accent": "#8fc7ec",
+  "pages": [
+    "01_cloud_castle",
+    "02_floating_islands",
+    "03_balloon_sky",
+    "04_rainbow_meadow",
+    "05_sunset_sea",
+    "06_sleepy_cloud"
+  ]
+}

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+<rect width="1000" height="750" fill="#ffffff"/>
+<g stroke="#6e6a8e" stroke-linejoin="round" stroke-linecap="round">
+<path data-region="sky_top" data-name="Upper sky" d="M-6 -6h1012v540h-1012z" fill="#e8c4e4" stroke-width="5"/>
+<path data-region="sky_mid" data-name="Middle sky" d="M-10 220Q53.8 204 117.5 220Q181.3 236 245 220Q308.8 204 372.5 220Q436.3 236 500 220Q563.8 204 627.5 220Q691.3 236 755 220Q818.8 204 882.5 220Q946.3 236 1010 220V540H-10z" fill="#ffd0b5" stroke-width="5"/>
+<path data-region="sky_low" data-name="Low sky" d="M-10 370Q41 356 92 370Q143 384 194 370Q245 356 296 370Q347 384 398 370Q449 356 500 370Q551 384 602 370Q653 356 704 370Q755 384 806 370Q857 356 908 370Q959 384 1010 370V540H-10z" fill="#fff2bd" stroke-width="5"/>
+<path data-region="cloud_a" data-name="Cloud" d="M113.6 188.8A24 24 0 1 1 116.6 141A40.8 40.8 0 0 1 166.9 108.5A52.8 52.8 0 0 1 259 112A38.4 38.4 0 0 1 297.3 141.1A24 24 0 0 1 293.6 188.8z" fill="#ffd3e2" stroke-width="5"/>
+<path data-region="cloud_b" data-name="Cloud" d="M720.7 315.2A27.3 27.3 0 1 1 728.6 261.8A42 42 0 0 1 801.6 246.7A37.8 37.8 0 0 1 860.5 269.2A23.1 23.1 0 1 1 863.5 315.2z" fill="#e6d8f8" stroke-width="5"/>
+<path data-region="cloud_c" data-name="Cloud" d="M482.2 130.4A20.4 20.4 0 1 1 488.2 90.5A32.3 32.3 0 0 1 523.7 66.1A40.8 40.8 0 0 1 597.7 87.3A22.1 22.1 0 0 1 591 130.4z" fill="#ffd3e2" stroke-width="5"/>
+<path data-region="sun_glow" data-name="Sun glow" d="M350 480a150 150 0 1 0 300 0a150 150 0 1 0 -300 0z" fill="#ffe9a8" stroke-width="5"/>
+<path data-region="sun" data-name="Sun" d="M395 480a105 105 0 1 0 210 0a105 105 0 1 0 -210 0z" fill="#ffe0a0" stroke-width="5"/>
+<path data-region="far_island" data-name="Far island" d="M-10 484Q110 400 240 484Z" fill="#aeb0e6" stroke-width="5"/>
+<path data-region="sea" data-name="Sea" d="M-6 480h1012v276h-1012z" fill="#bdeeea" stroke-width="5"/>
+<path data-region="reflect_a" data-name="Sun reflection" d="M428 506H572A8 8 0 0 1 580 514V514A8 8 0 0 1 572 522H428A8 8 0 0 1 420 514V514A8 8 0 0 1 428 506z" fill="#fff2bd" stroke-width="5"/>
+<path data-region="reflect_b" data-name="Sun reflection" d="M398 552H602A8 8 0 0 1 610 560V560A8 8 0 0 1 602 568H398A8 8 0 0 1 390 560V560A8 8 0 0 1 398 552z" fill="#fff2bd" stroke-width="5"/>
+<path data-region="reflect_c" data-name="Sun reflection" d="M447 598H553A7 7 0 0 1 560 605V605A7 7 0 0 1 553 612H447A7 7 0 0 1 440 605V605A7 7 0 0 1 447 598z" fill="#fff2bd" stroke-width="5"/>
+<path data-region="reflect_d" data-name="Sun reflection" d="M408 644H592A8 8 0 0 1 600 652V652A8 8 0 0 1 592 660H408A8 8 0 0 1 400 652V652A8 8 0 0 1 408 644z" fill="#fff2bd" stroke-width="5"/>
+<path data-region="sail_big" data-name="Big sail" d="M787.1 490.2Q782 484 782 492L782 596Q782 604 790 604L872 604Q880 604 874.9 597.8z" fill="#ffffff" stroke-width="5"/>
+<path data-region="sail_small" data-name="Small sail" d="M765.4 510.6Q770 504 770 512L770 596Q770 604 762 604L708 604Q700 604 704.6 597.4z" fill="#ffdcc8" stroke-width="5"/>
+<path data-region="hull" data-name="Boat" d="M694.3 616.2Q688 606 700 606L880 606Q892 606 885.9 616.4L864.1 653.6Q858 664 846 664L736 664Q724 664 717.7 653.8z" fill="#ffc3b0" stroke-width="5"/>
+<path d="M776 600V470" fill="none" stroke-width="6"/>
+<path d="M280.2 330q9.9 -14.4 19.8 1.8q9.9 -16.2 19.8 -1.8M345.7 300q7.2 -10.4 14.3 1.3q7.2 -11.7 14.3 -1.3M602.4 260q8.8 -12.8 17.6 1.6q8.8 -14.4 17.6 -1.6" fill="none" stroke-width="4"/>
+<path d="M110 560q40-14 80 0M250 700q40-14 80 0M640 700q40-14 80 0M860 540q40-14 80 0" fill="none" stroke-width="3.5"/>
+</g></svg>

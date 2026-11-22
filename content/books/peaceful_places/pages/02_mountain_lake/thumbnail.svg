@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+<rect width="1000" height="750" fill="#ffffff"/>
+<g stroke="#6e6a8e" stroke-linejoin="round" stroke-linecap="round">
+<path data-region="sky" data-name="Sky" d="M-6 -6h1012v762h-1012z" fill="#dff0fb" stroke-width="5"/>
+<path data-region="sun" data-name="Sun" d="M126 150a54 54 0 1 0 108 0a54 54 0 1 0 -108 0z" fill="#ffe9a8" stroke-width="5"/>
+<path data-region="cloud_a" data-name="Cloud" d="M491.6 132.8A19 19 0 1 1 494 94.9A32.3 32.3 0 0 1 533.8 69.2A41.8 41.8 0 0 1 606.7 72A30.4 30.4 0 0 1 637 95A19 19 0 0 1 634.1 132.8z" fill="#ffffff" stroke-width="5"/>
+<path data-region="cloud_b" data-name="Cloud" d="M820.5 228A19.5 19.5 0 1 1 826.1 189.8A30 30 0 0 1 878.3 179.1A27 27 0 0 1 920.4 195.1A16.5 16.5 0 1 1 922.5 228z" fill="#ffffff" stroke-width="5"/>
+<path data-region="mountain_left" data-name="Left mountain" d="M2 450Q-20 450 -4.8 434.1L204.8 215.9Q220 200 235.9 215.2L464.1 434.8Q480 450 458 450z" fill="#d9cdf6" stroke-width="5"/>
+<path data-region="snow_left" data-name="Snow cap" d="M224.4 204.1Q220 200 215.8 204.2L162.2 257.8Q158 262 163.5 259.6L184.5 250.4Q190 248 194.5 252L217.5 272Q222 276 226.4 271.9L247.6 252.1Q252 248 257.6 250.2L281.4 259.8Q287 262 282.6 257.9z" fill="#ffffff" stroke-width="5"/>
+<path data-region="mountain_right" data-name="Right mountain" d="M412 450Q390 450 405 433.9L635 186.1Q650 170 665.8 185.3L924.2 434.7Q940 450 918 450z" fill="#a4d2f2" stroke-width="5"/>
+<path data-region="snow_right" data-name="Snow cap" d="M654.4 174.1Q650 170 645.9 174.4L589.1 235.6Q585 240 590.6 237.8L614.4 228.2Q620 226 624.7 229.8L647.3 248.2Q652 252 656.7 248.2L679.3 229.8Q684 226 689.7 227.9L719.3 238.1Q725 240 720.6 235.9z" fill="#ffffff" stroke-width="5"/>
+<path data-region="meadow" data-name="Meadow" d="M-10 462C75 458.3 330 440 500 440C670 440 925 458.3 1010 462L1010 462V750H-10V462L-10 462z" fill="#a9dcb4" stroke-width="5"/>
+<path data-region="lake" data-name="Lake" d="M90 540C128.3 516.7 215 498 300 490C385 482 500 484.3 600 492C700 499.7 843.3 514.7 900 536C956.7 557.3 973.3 592.7 940 620C906.7 647.3 806.7 686.7 700 700C593.3 713.3 405 711.7 300 700C195 688.3 105 656.7 70 630C35 603.3 51.7 563.3 90 540z" fill="#bfe4f7" stroke-width="5"/>
+<path d="M280 560h90M560 540h110M420 610h140M700 600h90" fill="none" stroke-width="4"/>
+<path data-region="boat_sail" data-name="Sail" d="M556.4 552.1Q552 548 552 554L552 594Q552 600 558 600L602 600Q608 600 603.6 595.9z" fill="#ffffff" stroke-width="5"/>
+<path data-region="boat_hull" data-name="Boat" d="M526.3 608.7Q522 602 530 602L622 602Q630 602 625.7 608.7L616.3 623.3Q612 630 604 630L548 630Q540 630 535.7 623.3z" fill="#ffc3b0" stroke-width="5"/>
+<path d="M548 604V528" fill="none" stroke-width="5"/>
+<path data-region="bank" data-name="Grassy bank" d="M-10 712C41.7 707.3 190 683.7 300 684C410 684.3 531.7 714.7 650 714C768.3 713.3 950 685.7 1010 680L1010 680V750H-10V712L-10 712z" fill="#c2e8c4" stroke-width="5"/>
+<path data-region="pine_left_trunk" data-name="Tree trunk" d="M121.3 657H138.7A6 6 0 0 1 144.7 663V718.2A6 6 0 0 1 138.7 724.2H121.3A6 6 0 0 1 115.3 718.2V663A6 6 0 0 1 121.3 657z" fill="#e9c7a3" stroke-width="5"/>
+<path data-region="pine_left_low" data-name="Pine branches" d="M47.5 665.4Q35.5 665.4 42.1 655.3L123.4 530.6Q130 520.5 136.6 530.6L217.9 655.3Q224.5 665.4 212.5 665.4z" fill="#a9dcb4" stroke-width="5"/>
+<path data-region="pine_left_mid" data-name="Pine branches" d="M68.5 583.5Q56.5 583.5 62.5 573.1L124 467.9Q130 457.5 136 467.9L197.5 573.1Q203.5 583.5 191.5 583.5z" fill="#c2e8c4" stroke-width="5"/>
+<path data-region="pine_left_top" data-name="Pine top" d="M89.6 499.5Q79.6 499.5 84.3 490.7L125.3 413.8Q130 405 134.7 413.8L175.7 490.7Q180.4 499.5 170.4 499.5z" fill="#c6ecda" stroke-width="5"/>
+<path data-region="pine_right_trunk" data-name="Tree trunk" d="M872.7 659H887.3A6 6 0 0 1 893.3 665V713.8A6 6 0 0 1 887.3 719.8H872.7A6 6 0 0 1 866.7 713.8V665A6 6 0 0 1 872.7 659z" fill="#e9c7a3" stroke-width="5"/>
+<path data-region="pine_right_low" data-name="Pine branches" d="M806.5 666.6Q794.5 666.6 801.1 656.5L873.4 545.6Q880 535.5 886.6 545.6L958.9 656.5Q965.5 666.6 953.5 666.6z" fill="#a9dcb4" stroke-width="5"/>
+<path data-region="pine_right_mid" data-name="Pine branches" d="M825.5 592.5Q813.5 592.5 819.5 582.1L874 488.9Q880 478.5 886 488.9L940.5 582.1Q946.5 592.5 934.5 592.5z" fill="#c2e8c4" stroke-width="5"/>
+<path data-region="pine_right_top" data-name="Pine top" d="M844.4 516.5Q834.4 516.5 839.1 507.7L875.3 439.8Q880 431 884.7 439.8L920.9 507.7Q925.6 516.5 915.6 516.5z" fill="#c6ecda" stroke-width="5"/>
+</g></svg>

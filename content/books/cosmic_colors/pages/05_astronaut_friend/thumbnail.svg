@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+<rect width="1000" height="750" fill="#ffffff"/>
+<g stroke="#6e6a8e" stroke-linejoin="round" stroke-linecap="round">
+<path data-region="space" data-name="Night sky" d="M-6 -6h1012v762h-1012z" fill="#aeb0e6" stroke-width="5"/>
+<path data-region="planet" data-name="Planet" d="M680 650a170 170 0 1 0 340 0a170 170 0 1 0 -340 0z" fill="#ffdcc8" stroke-width="5"/>
+<path data-region="planet_band_a" data-name="Planet stripe" d="M690.8 590.5L1009.2 590.5A170 170 0 0 1 1019.8 641.5L680.2 641.5A170 170 0 0 1 690.8 590.5z" fill="#ffc3b0" stroke-width="5"/>
+<path data-region="moon" data-name="Moon" d="M96 150a54 54 0 1 0 108 0a54 54 0 1 0 -108 0z" fill="#fff3c4" stroke-width="5"/>
+<path data-region="star1" data-name="Star" d="M348.5 61.2Q350 58 351.5 61.2L354.7 68.3Q356.2 71.5 359.7 71.9L367.4 72.8Q370.9 73.2 368.3 75.6L362.6 80.9Q360 83.3 360.7 86.7L362.2 94.3Q362.9 97.8 359.9 96.1L353.1 92.3Q350 90.6 346.9 92.3L340.1 96.1Q337.1 97.8 337.8 94.3L339.3 86.7Q340 83.3 337.4 80.9L331.7 75.6Q329.1 73.2 332.6 72.8L340.3 71.9Q343.8 71.5 345.3 68.3z" fill="#fff3c4" stroke-width="4"/>
+<path data-region="star2" data-name="Star" d="M658.8 94.6Q660 92 661.2 94.6L663.9 100.4Q665.1 103 667.9 103.3L674.3 104.1Q677.1 104.4 675 106.4L670.3 110.7Q668.2 112.7 668.8 115.5L670 121.7Q670.6 124.6 668.1 123.2L662.5 120Q660 118.6 657.5 120L651.9 123.2Q649.4 124.6 650 121.7L651.2 115.5Q651.8 112.7 649.7 110.7L645 106.4Q642.9 104.4 645.7 104.1L652.1 103.3Q654.9 103 656.1 100.4z" fill="#fff3c4" stroke-width="4"/>
+<path data-region="star3" data-name="Star" d="M878.5 211.2Q880 208 881.5 211.2L884.7 218.3Q886.2 221.5 889.7 221.9L897.4 222.8Q900.9 223.2 898.3 225.6L892.6 230.9Q890 233.3 890.7 236.7L892.2 244.3Q892.9 247.8 889.9 246.1L883.1 242.3Q880 240.6 876.9 242.3L870.1 246.1Q867.1 247.8 867.8 244.3L869.3 236.7Q870 233.3 867.4 230.9L861.7 225.6Q859.1 223.2 862.6 222.8L870.3 221.9Q873.8 221.5 875.3 218.3z" fill="#fff3c4" stroke-width="4"/>
+<path data-region="star4" data-name="Star" d="M118.8 404.6Q120 402 121.2 404.6L123.9 410.4Q125.1 413 127.9 413.3L134.3 414.1Q137.1 414.4 135 416.4L130.3 420.7Q128.2 422.7 128.8 425.5L130 431.7Q130.6 434.6 128.1 433.2L122.5 430Q120 428.6 117.5 430L111.9 433.2Q109.4 434.6 110 431.7L111.2 425.5Q111.8 422.7 109.7 420.7L105 416.4Q102.9 414.4 105.7 414.1L112.1 413.3Q114.9 413 116.1 410.4z" fill="#fff3c4" stroke-width="4"/>
+<path data-region="star5" data-name="Star" d="M178.4 629.5Q180 626 181.6 629.5L185.2 637.2Q186.8 640.7 190.6 641.1L199 642.1Q202.8 642.6 200 645.2L193.8 651Q191 653.6 191.7 657.3L193.4 665.7Q194.1 669.4 190.8 667.5L183.4 663.4Q180 661.5 176.6 663.4L169.2 667.5Q165.9 669.4 166.6 665.7L168.3 657.3Q169 653.6 166.2 651L160 645.2Q157.2 642.6 161 642.1L169.4 641.1Q173.2 640.7 174.8 637.2z" fill="#fff3c4" stroke-width="4"/>
+<path d="M560 520Q700 560 700 700" fill="none" stroke-width="5" stroke-dasharray="2 12"/>
+<path data-region="backpack" data-name="Backpack" d="M414 296H586A30 30 0 0 1 616 326V498A30 30 0 0 1 586 528H414A30 30 0 0 1 384 498V326A30 30 0 0 1 414 296z" fill="#d9cdf6" stroke-width="5"/>
+<path data-region="leg_left" data-name="Leg" d="M458 500H464A28 28 0 0 1 492 528V592A28 28 0 0 1 464 620H458A28 28 0 0 1 430 592V528A28 28 0 0 1 458 500z" fill="#ffffff" stroke-width="5" transform="rotate(10 461 500)"/>
+<path data-region="leg_right" data-name="Leg" d="M536 500H542A28 28 0 0 1 570 528V592A28 28 0 0 1 542 620H536A28 28 0 0 1 508 592V528A28 28 0 0 1 536 500z" fill="#ffffff" stroke-width="5" transform="rotate(-10 539 500)"/>
+<path data-region="boot_left" data-name="Boot" d="M424 596H466A20 20 0 0 1 486 616V622A20 20 0 0 1 466 642H424A20 20 0 0 1 404 622V616A20 20 0 0 1 424 596z" fill="#f6b8cf" stroke-width="5" transform="rotate(10 445 619)"/>
+<path data-region="boot_right" data-name="Boot" d="M534 596H576A20 20 0 0 1 596 616V622A20 20 0 0 1 576 642H534A20 20 0 0 1 514 622V616A20 20 0 0 1 534 596z" fill="#f6b8cf" stroke-width="5" transform="rotate(-10 555 619)"/>
+<path data-region="suit" data-name="Space suit" d="M458 326H542A44 44 0 0 1 586 370V482A44 44 0 0 1 542 526H458A44 44 0 0 1 414 482V370A44 44 0 0 1 458 326z" fill="#ffffff" stroke-width="5"/>
+<path data-region="arm_left" data-name="Arm" d="M357 352H421A27 27 0 0 1 448 379V379A27 27 0 0 1 421 406H357A27 27 0 0 1 330 379V379A27 27 0 0 1 357 352z" fill="#ffffff" stroke-width="5" transform="rotate(-28 390 380)"/>
+<path data-region="arm_right" data-name="Arm" d="M579 352H643A27 27 0 0 1 670 379V379A27 27 0 0 1 643 406H579A27 27 0 0 1 552 379V379A27 27 0 0 1 579 352z" fill="#ffffff" stroke-width="5" transform="rotate(28 610 380)"/>
+<path data-region="chest_panel" data-name="Chest panel" d="M474 392H526A12 12 0 0 1 538 404V432A12 12 0 0 1 526 444H474A12 12 0 0 1 462 432V404A12 12 0 0 1 474 392z" fill="#dff0fb" stroke-width="5"/>
+<path data-region="button_a" data-name="Button" d="M473 418a11 11 0 1 0 22 0a11 11 0 1 0 -22 0z" fill="#ffd3e2" stroke-width="4"/>
+<path data-region="button_b" data-name="Button" d="M505 418a11 11 0 1 0 22 0a11 11 0 1 0 -22 0z" fill="#fff2bd" stroke-width="4"/>
+<path data-region="helmet" data-name="Helmet" d="M382 244a118 118 0 1 0 236 0a118 118 0 1 0 -236 0z" fill="#ffffff" stroke-width="5"/>
+<path data-region="visor" data-name="Visor" d="M462 194H538A50 50 0 0 1 588 244V250A50 50 0 0 1 538 300H462A50 50 0 0 1 412 250V244A50 50 0 0 1 462 194z" fill="#a4d2f2" stroke-width="5"/>
+<circle cx="469.4" cy="250" r="6.8" fill="#6e6a8e" stroke="none"/>
+<circle cx="530.6" cy="250" r="6.8" fill="#6e6a8e" stroke="none"/>
+<path d="M486.5 266.2q13.5 15.3 27 0" fill="none" stroke-width="4.5"/>
+<path d="M436 218q10-14 30-14" fill="none" stroke-width="5"/>
+</g></svg>

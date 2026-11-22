@@ -1,0 +1,49 @@
+{
+  "id": "galaxy_pastel",
+  "name": "Galaxy Pastel",
+  "description": "Twilight indigos, nebula pinks and stardust.",
+  "colors": [
+    {
+      "id": "twilight_indigo",
+      "name": "Twilight Indigo",
+      "hex": "#9a9ad8"
+    },
+    {
+      "id": "nebula_lilac",
+      "name": "Nebula Lilac",
+      "hex": "#c6b0ec"
+    },
+    {
+      "id": "stardust_pink",
+      "name": "Stardust Pink",
+      "hex": "#f2b8da"
+    },
+    {
+      "id": "comet_blue",
+      "name": "Comet Blue",
+      "hex": "#a8c8f2"
+    },
+    {
+      "id": "moon_glow",
+      "name": "Moon Glow",
+      "hex": "#fff3c4"
+    },
+    {
+      "id": "aurora_mint",
+      "name": "Aurora Mint",
+      "hex": "#b8ead8"
+    },
+    {
+      "id": "cosmic_peach",
+      "name": "Cosmic Peach",
+      "hex": "#ffcfbe"
+    },
+    {
+      "id": "starlight",
+      "name": "Starlight",
+      "hex": "#f3eefc"
+    }
+  ],
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0"
+}

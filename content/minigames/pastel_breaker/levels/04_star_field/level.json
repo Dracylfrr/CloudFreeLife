@@ -1,0 +1,28 @@
+{
+  "id": "star_field",
+  "name": "Star Field",
+  "description": "Twinkling stars in soft pastel colors.",
+  "minigame": "pastel_breaker",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "objective": "Clear the star field. Golden stars take two hits.",
+  "grid": [
+    "l..b....b..l",
+    "..bbb..bbb..",
+    "l..b.yy.b..l",
+    "....yyyy....",
+    "..l.yyyy.l..",
+    ".lll..yy.lll",
+    "..l......l.."
+  ],
+  "legend": {
+    "b": "#fff2bd",
+    "y": "#ffe29a",
+    "l": "#e6d8f8",
+    "p": "#ffd3e2"
+  },
+  "tough": [
+    "y"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "id": "cloud_morning",
+  "name": "Cloud Morning",
+  "description": "Soft sky blues, warm cream and a hint of sunrise.",
+  "colors": [
+    {
+      "id": "cloud_blue",
+      "name": "Cloud Blue",
+      "hex": "#a9d4f5"
+    },
+    {
+      "id": "morning_mist",
+      "name": "Morning Mist",
+      "hex": "#d3e9f9"
+    },
+    {
+      "id": "sky_cream",
+      "name": "Sky Cream",
+      "hex": "#fff4de"
+    },
+    {
+      "id": "butter_glow",
+      "name": "Butter Glow",
+      "hex": "#fff0a8"
+    },
+    {
+      "id": "peach_cream",
+      "name": "Peach Cream",
+      "hex": "#ffd9c2"
+    },
+    {
+      "id": "rose_milk",
+      "name": "Rose Milk",
+      "hex": "#f9c6d8"
+    },
+    {
+      "id": "lilac_mist",
+      "name": "Lilac Mist",
+      "hex": "#d9c9f2"
+    },
+    {
+      "id": "mint_leaf",
+      "name": "Mint Leaf",
+      "hex": "#bfe8d2"
+    }
+  ],
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0"
+}

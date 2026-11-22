@@ -1,0 +1,22 @@
+{
+  "id": "free_splash",
+  "name": "Free Splash",
+  "description": "A blank wall with three panels. No goal, just splash.",
+  "minigame": "splash_wall",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "objective": "Splash however you like. There is nothing to win.",
+  "wall": "wall.svg",
+  "goal": {
+    "type": "free"
+  },
+  "colors": [
+    "#f6b8cf",
+    "#bfe4f7",
+    "#c6ecda",
+    "#fff2bd",
+    "#d9cdf6",
+    "#ffdcc8"
+  ]
+}

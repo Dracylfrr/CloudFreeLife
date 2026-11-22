@@ -1,0 +1,27 @@
+{
+  "id": "castle_blocks",
+  "name": "Castle Blocks",
+  "description": "A sleepy castle. The lavender towers take two hits.",
+  "minigame": "pastel_breaker",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "objective": "Tumble the castle. Lavender blocks need two hits.",
+  "grid": [
+    "..p..pp..p..",
+    ".ppp.pp.ppp.",
+    ".lll.ll.lll.",
+    ".lll.ll.lll.",
+    ".llllllllll.",
+    ".llllccllll.",
+    ".llllccllll."
+  ],
+  "legend": {
+    "p": "#ffd3e2",
+    "l": "#d9cdf6",
+    "c": "#ffdcc8"
+  },
+  "tough": [
+    "l"
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "space",
+      "name": "Night sky",
+      "suggested": "#aeb0e6"
+    },
+    {
+      "id": "planet",
+      "name": "Planet",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "planet_band_a",
+      "name": "Planet stripe",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "moon",
+      "name": "Moon",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star1",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star2",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star3",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star4",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star5",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "backpack",
+      "name": "Backpack",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "leg_left",
+      "name": "Leg",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "leg_right",
+      "name": "Leg",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "boot_left",
+      "name": "Boot",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "boot_right",
+      "name": "Boot",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "suit",
+      "name": "Space suit",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "arm_left",
+      "name": "Arm",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "arm_right",
+      "name": "Arm",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "chest_panel",
+      "name": "Chest panel",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "button_a",
+      "name": "Button",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "button_b",
+      "name": "Button",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "helmet",
+      "name": "Helmet",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "visor",
+      "name": "Visor",
+      "suggested": "#a4d2f2"
+    }
+  ]
+}

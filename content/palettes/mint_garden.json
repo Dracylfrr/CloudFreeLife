@@ -1,0 +1,49 @@
+{
+  "id": "mint_garden",
+  "name": "Mint Garden",
+  "description": "Fresh greens, aqua and a touch of blossom.",
+  "colors": [
+    {
+      "id": "mint_leaf",
+      "name": "Mint Leaf",
+      "hex": "#bfe8d2"
+    },
+    {
+      "id": "garden_sage",
+      "name": "Garden Sage",
+      "hex": "#a6d6b8"
+    },
+    {
+      "id": "fresh_aloe",
+      "name": "Fresh Aloe",
+      "hex": "#d3f0dd"
+    },
+    {
+      "id": "pale_turquoise",
+      "name": "Pale Turquoise",
+      "hex": "#bdeeea"
+    },
+    {
+      "id": "pistachio",
+      "name": "Pistachio",
+      "hex": "#d7efb6"
+    },
+    {
+      "id": "blossom_pink",
+      "name": "Blossom Pink",
+      "hex": "#f9cfdc"
+    },
+    {
+      "id": "daisy_yellow",
+      "name": "Daisy Yellow",
+      "hex": "#fff3b0"
+    },
+    {
+      "id": "morning_dew",
+      "name": "Morning Dew",
+      "hex": "#e3f6ef"
+    }
+  ],
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0"
+}

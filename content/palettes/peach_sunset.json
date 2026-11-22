@@ -1,0 +1,49 @@
+{
+  "id": "peach_sunset",
+  "name": "Peach Sunset",
+  "description": "Warm peaches, apricot and soft evening pinks.",
+  "colors": [
+    {
+      "id": "peach_cream",
+      "name": "Peach Cream",
+      "hex": "#ffd9c2"
+    },
+    {
+      "id": "apricot_glow",
+      "name": "Apricot Glow",
+      "hex": "#ffc7a6"
+    },
+    {
+      "id": "sunset_coral",
+      "name": "Sunset Coral",
+      "hex": "#ffb8a6"
+    },
+    {
+      "id": "rose_gold",
+      "name": "Rose Gold",
+      "hex": "#f6b8b8"
+    },
+    {
+      "id": "butter_glow",
+      "name": "Butter Glow",
+      "hex": "#fff0a8"
+    },
+    {
+      "id": "dusk_pink",
+      "name": "Dusk Pink",
+      "hex": "#f3c2d9"
+    },
+    {
+      "id": "evening_lilac",
+      "name": "Evening Lilac",
+      "hex": "#dcc6ec"
+    },
+    {
+      "id": "honey_cream",
+      "name": "Honey Cream",
+      "hex": "#ffe8c2"
+    }
+  ],
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0"
+}

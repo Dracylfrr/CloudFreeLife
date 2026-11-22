@@ -1,0 +1,11 @@
+{
+  "id": "moon_and_stars",
+  "name": "Moon and Stars",
+  "description": "A sleepy crescent moon and a sky full of stars.",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

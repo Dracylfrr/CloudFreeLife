@@ -1,0 +1,23 @@
+{
+  "id": "cloud_wall",
+  "name": "Cloud Wall",
+  "description": "A fluffy wall of clouds. A gentle first level.",
+  "minigame": "pastel_breaker",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "objective": "Pop every cloud block.",
+  "grid": [
+    "..ww....ww..",
+    ".wwwww.wwwww",
+    "wwwwwwwwwwww",
+    "ssssssssssss",
+    "dsdsdsdsdsds",
+    "ssssssssssss"
+  ],
+  "legend": {
+    "w": "#f4f9ff",
+    "s": "#bfe4f7",
+    "d": "#a4d2f2"
+  }
+}
