@@ -5,8 +5,8 @@
  * Change it here (and nowhere else) when you publish under a different account.
  * No access tokens are ever embedded: release data is read from public endpoints.
  */
-export const GITHUB_OWNER = 'cloud-freelife';
-export const GITHUB_REPO_NAME = 'Cloud-Freelife';
+export const GITHUB_OWNER = 'Dracylfrr';
+export const GITHUB_REPO_NAME = 'CloudFreeLife';
 export const GITHUB_REPO = `${GITHUB_OWNER}/${GITHUB_REPO_NAME}`;
 
 export const GITHUB_API_LATEST = `https://api.github.com/repos/${GITHUB_REPO}/releases/latest`;
