@@ -6,7 +6,8 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 - [ ] App opens quickly (< 2 s) with no console window, no white flash.
 - [ ] Home shows Continue Painting, Open Coloring Books, Start Free Draw, Mini-Games.
 - [ ] Every sidebar item opens its screen: Home, Coloring Books, Free Draw, Gallery, Mini-Games, Updates, Settings, About.
-- [ ] Window can be resized down to 980 × 660 without clipped controls.
+- [ ] Window can be resized down to 980 × 660 and up to a 4K screen without clipped or out-of-place controls on any screen (check Gallery cards, the painter top bar, every game bar, Settings).
+- [ ] Repeat at *Settings → Display → Interface size* 125 % and 140 %: the sidebar turns into icons and everything still fits.
 
 ## Coloring books (repeat for each of the 18 pages)
 - [ ] Cloud Dreams (6), Cosmic Colors (6), Peaceful Places (6): each page opens, line art is crisp.

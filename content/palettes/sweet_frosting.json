@@ -1,0 +1,49 @@
+{
+  "id": "sweet_frosting",
+  "name": "Sweet Frosting",
+  "description": "Buttercream pinks, vanilla and sprinkle colors.",
+  "colors": [
+    {
+      "id": "strawberry_cream",
+      "name": "Strawberry Cream",
+      "hex": "#ffc9d9"
+    },
+    {
+      "id": "vanilla_frosting",
+      "name": "Vanilla Frosting",
+      "hex": "#fff4d6"
+    },
+    {
+      "id": "mint_sprinkle",
+      "name": "Mint Sprinkle",
+      "hex": "#c8efd9"
+    },
+    {
+      "id": "blueberry_milk",
+      "name": "Blueberry Milk",
+      "hex": "#c4d8f5"
+    },
+    {
+      "id": "caramel_drizzle",
+      "name": "Caramel Drizzle",
+      "hex": "#f2d2a9"
+    },
+    {
+      "id": "lemon_drop",
+      "name": "Lemon Drop",
+      "hex": "#fff0a8"
+    },
+    {
+      "id": "lavender_icing",
+      "name": "Lavender Icing",
+      "hex": "#dccbf3"
+    },
+    {
+      "id": "cocoa_cloud",
+      "name": "Cocoa Cloud",
+      "hex": "#e4c9b4"
+    }
+  ],
+  "minAppVersion": "1.1.1",
+  "version": "1.0.0"
+}

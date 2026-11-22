@@ -9,6 +9,7 @@ import { getSettings, updateSettings } from '../../core/settings';
 import { getStorage, isTauri } from '../../core/storage';
 import { APP_VERSION } from '../../core/version';
 import { toast } from '../../core/feedback';
+import { navigate } from '../../core/router';
 import { sha256Hex } from './checksum';
 import { httpGet, NetworkError } from './http';
 import { installPack, listInstalledPacks, packAssetMatches, parsePack, verifyDownloadedAsset } from './packs';
@@ -37,9 +38,11 @@ export interface UpdateState {
   busy: string[];
   /** Updates the user chose "Later" on during this run (so the toast does not return). */
   hidden: string[];
+  /** Verified installers already saved to Downloads, by update key. */
+  installers: Record<string, string>;
 }
 
-export const updateState = writable<UpdateState>({ outcome: 'idle', available: [], lastChecked: 0, message: '', busy: [], hidden: [] });
+export const updateState = writable<UpdateState>({ outcome: 'idle', available: [], lastChecked: 0, message: '', busy: [], hidden: [], installers: {} });
 
 let checkedOnStartup = false;
 let inFlight: Promise<UpdateState> | null = null;
@@ -51,6 +54,7 @@ async function installedVersions(): Promise<InstalledVersions> {
   for (const l of getCatalog().breakerLevels) out[l.manifest.id] = l.manifest.version;
   for (const l of getCatalog().splashLevels) out[l.manifest.id] = l.manifest.version;
   for (const l of getCatalog().memoryLevels) out[l.manifest.id] = l.manifest.version;
+  for (const l of getCatalog().puzzleLevels) out[l.manifest.id] = l.manifest.version;
   for (const r of await listInstalledPacks()) out[r.id] = out[r.id] && out[r.id]! > r.version ? out[r.id] : r.version;
   return out;
 }
@@ -242,6 +246,33 @@ export async function revealPath(path: string) {
   if (!isTauri()) return;
   const { revealItemInDir } = await import('@tauri-apps/plugin-opener');
   await revealItemInDir(path);
+}
+
+/**
+ * Does whatever "Install" means for this update: content is downloaded, verified and installed;
+ * an app update is downloaded, verified and shown in Explorer (the user runs it, never the app).
+ */
+export async function installUpdate(item: UpdateItem): Promise<{ ok: boolean; message: string }> {
+  if (item.kind === 'content') return installContentUpdate(item);
+  const r = await downloadAppInstaller(item);
+  if (r.ok && r.path) {
+    updateState.update((s) => ({ ...s, installers: { ...s.installers, [updateKey(item)]: r.path! } }));
+    try {
+      await revealPath(r.path);
+    } catch {
+      /* showing the folder is a nicety */
+    }
+    return { ok: true, message: 'Installer downloaded and verified. Open it to finish updating.' };
+  }
+  return { ok: false, message: r.message };
+}
+
+/** The notice's "Install update" button: hide the notice, open the Update Center and start. */
+export async function startInstall(item: UpdateItem): Promise<void> {
+  hideForNow(item);
+  await navigate({ name: 'updates' });
+  const r = await installUpdate(item);
+  toast(r.message, r.ok ? 'success' : 'error', 5000);
 }
 
 export function notifyInstalled(message: string) {

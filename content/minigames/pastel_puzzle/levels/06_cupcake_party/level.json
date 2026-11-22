@@ -1,0 +1,13 @@
+{
+  "id": "cupcake_party",
+  "name": "Cupcake Party",
+  "description": "Three cupcakes and a lot of bunting.",
+  "minigame": "pastel_puzzle",
+  "thumbnail": "picture.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.1",
+  "objective": "The biggest puzzle: twenty-four pieces.",
+  "picture": "picture.svg",
+  "columns": 6,
+  "rows": 4
+}

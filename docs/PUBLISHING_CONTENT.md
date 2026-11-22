@@ -27,7 +27,7 @@ The app then shows *Update available — v1.1.0* or *New coloring book available
 3. On GitHub: **Releases → Draft a new release**, tag **`castle_dreams_v1.0.0`**, attach **both files**, publish. (Or commit the source under `content-packs/castle_dreams/{pack.json,content/}` and push the tag — `.github/workflows/content-release.yml` does steps 2–3.)
 4. Players: *Update available* appears on their next start → **Updates → Install**.
 
-The `id` in the pack, the `id` in `book_manifest.json`, the tag (`<id>_v<version>`) and the asset name must agree. A pack may contain books, palettes (`palettes/<id>.json`) and levels (`minigames/<game>/levels/<folder>/…`). Use `--kind palettes`, `breaker_levels`, `splash_levels` or `memory_levels` accordingly (it only changes the wording of the notification).
+The `id` in the pack, the `id` in `book_manifest.json`, the tag (`<id>_v<version>`) and the asset name must agree. A pack may contain books, palettes (`palettes/<id>.json`) and levels (`minigames/<game>/levels/<folder>/…`). Use `--kind palettes`, `breaker_levels`, `splash_levels`, `memory_levels` or `puzzle_levels` accordingly (it only changes the wording of the notification).
 
 To **update** a book later, bump `version` in its manifest and publish `castle_dreams_v1.1.0`. Newer versions replace older ones.
 
@@ -45,13 +45,17 @@ To **update** a book later, bump `version` in its manifest and publish `castle_d
 
 Players are notified; *Updates → Download* saves the installer to `Downloads\Cloud-Freelife`, verifies it, and shows it in Explorer. They run it when they like.
 
+### Friendly update notice
+
+The top-right notice reads **New content is ready** with a one-line summary and an **Install update** button. The summary comes from `docs/RELEASE_HEADLINE.txt`: edit that single line (for example `2 new books and a new mini-game`) before running `npm run package:win`; it is stored as `headline` in `cloud-freelife-release.json`. Without it the notice says "A new version is ready". Apps older than 1.1.1 still show their original "Update available" wording.
+
 ## What the app verifies
 
 Manifest schema, version formats, asset name pattern (including that it matches the declared id/version), content type, size, SHA-256, `minAppVersion` vs. the running app, that the download URL is HTTPS and belongs to this repository's release assets, and — for packs — path/extension restrictions and passive-only SVGs. Anything that fails is ignored or rejected and nothing is written. See [SECURITY.md](../SECURITY.md).
 
 ## Manifest reference
 
-See [templates/release-manifest.example.json](templates/release-manifest.example.json). Content `type` is one of `book`, `palettes`, `breaker_levels`, `splash_levels`, `memory_levels`, `minigame`.
+See [templates/release-manifest.example.json](templates/release-manifest.example.json). Content `type` is one of `book`, `palettes`, `breaker_levels`, `splash_levels`, `memory_levels`, `puzzle_levels`, `minigame`.
 
 ## Troubleshooting
 

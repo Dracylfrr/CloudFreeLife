@@ -1,0 +1,11 @@
+{
+  "id": "cupcake_tower",
+  "name": "Cupcake Tower",
+  "description": "Three fluffy cupcakes on a party stand.",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.1",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

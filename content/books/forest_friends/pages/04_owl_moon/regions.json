@@ -1,0 +1,143 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Night sky",
+      "suggested": "#aeb0e6"
+    },
+    {
+      "id": "moon",
+      "name": "Moon",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "moon_crater_a",
+      "name": "Crater",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "moon_crater_b",
+      "name": "Crater",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "star1",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star2",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star3",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star4",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star5",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star6",
+      "name": "Star",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "branch",
+      "name": "Branch",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "branch_leaf_a",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "branch_leaf_b",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "owl_tail",
+      "name": "Tail",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "owl_body",
+      "name": "Body",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "owl_belly",
+      "name": "Belly",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "owl_wing_left",
+      "name": "Wing",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "owl_wing_right",
+      "name": "Wing",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "owl_foot_left",
+      "name": "Foot",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "owl_foot_right",
+      "name": "Foot",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "owl_tuft_left",
+      "name": "Ear tuft",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "owl_tuft_right",
+      "name": "Ear tuft",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "owl_head",
+      "name": "Head",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "owl_eye_left",
+      "name": "Eye",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "owl_eye_right",
+      "name": "Eye",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "owl_beak",
+      "name": "Beak",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

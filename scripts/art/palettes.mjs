@@ -54,5 +54,13 @@ export const palettes = [
   { ...P('ocean_pearl', 'Ocean Pearl', 'Sea foam, pearl pinks and warm shell sand.', [
     ['Sea Foam', '#c4ece6'], ['Pearl Pink', '#fbd3df'], ['Tide Blue', '#aed6f1'], ['Shell Sand', '#f6e3c3'],
     ['Coral Blush', '#ffc4b4'], ['Kelp', '#b2dcb6'], ['Lagoon Lilac', '#d9cbf0'], ['Moon Pearl', '#f7f5fc']
-  ]), minAppVersion: '1.1.0' }
+  ]), minAppVersion: '1.1.0' },
+  { ...P('sweet_frosting', 'Sweet Frosting', 'Buttercream pinks, vanilla and sprinkle colors.', [
+    ['Strawberry Cream', '#ffc9d9'], ['Vanilla Frosting', '#fff4d6'], ['Mint Sprinkle', '#c8efd9'], ['Blueberry Milk', '#c4d8f5'],
+    ['Caramel Drizzle', '#f2d2a9'], ['Lemon Drop', '#fff0a8'], ['Lavender Icing', '#dccbf3'], ['Cocoa Cloud', '#e4c9b4']
+  ]), minAppVersion: '1.1.1' },
+  { ...P('forest_dawn', 'Forest Dawn', 'Mossy greens, acorn browns and soft sunrise peach.', [
+    ['Moss Green', '#b7dcaa'], ['Fern', '#9fd0a6'], ['Acorn Brown', '#e3c3a0'], ['Honey Glow', '#ffe9a6'],
+    ['Fox Orange', '#ffc7a6'], ['Dawn Peach', '#ffe0cc'], ['Mist Blue', '#c7dff0'], ['Berry Mauve', '#e2bcd2']
+  ]), minAppVersion: '1.1.1' }
 ];

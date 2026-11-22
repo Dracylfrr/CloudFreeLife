@@ -2,6 +2,23 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com), and the project uses [Semantic Versioning](https://semver.org).
 
+## [1.1.1]
+
+### Added
+- **Sweet Treats** coloring book — Cupcake Tower, Tea Party, Bakery Shop, Ice Cream Cart, Picnic Basket.
+- **Forest Friends** coloring book — Sleepy Bear, Fox in the Leaves, Bunny Garden, Owl and Moon, Hedgehog Meadow. The library now has 38 pages.
+- **Pastel Puzzle**, a fourth mini-game: a finished picture is scrambled into pieces and you swap them back, two at a time. Eight levels from 6 to 24 pieces, with Peek and soft Helpers, no timer.
+- Two new palettes: *Sweet Frosting* and *Forest Dawn*.
+
+### Changed
+- **Mini-Games** now shows each game as a card with a preview picture, like the coloring books. Pick a game to see its levels.
+- The top-right update notice now reads "New content is ready" with a one-line summary and an **Install update** button (it downloads and verifies the installer, then shows it so you can open it).
+- The Home card says "Pastel Breaker, Splash Wall and more".
+- Release manifests can carry a short `headline` for that notice.
+
+### Fixed
+- Gallery card buttons no longer spill outside the card, and nothing else overflows at small or large window sizes: bars wrap instead of clipping, the sidebar collapses to icons in narrow windows or at a large interface scale, Settings stacks, and game boards fit their space.
+
 ## [1.1.0]
 
 ### Added

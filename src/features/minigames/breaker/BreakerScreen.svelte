@@ -186,7 +186,7 @@
 
 <div class="screen">
   <header class="bar">
-    <Button variant="soft" size="sm" icon="chevronLeft" onclick={() => navigate({ name: 'minigames' })}>Mini-Games</Button>
+    <Button variant="soft" size="sm" icon="chevronLeft" onclick={() => navigate({ name: 'minigames', game: 'breaker' })}>Levels</Button>
     <h2>Pastel Breaker</h2>
     <div class="seg" role="group" aria-label="Mode">
       {#each ['relax', 'classic', 'endless'] as m}
@@ -366,7 +366,8 @@
     font-weight: 800;
     color: var(--ink-soft);
     pointer-events: none;
-    white-space: nowrap;
+    max-width: 88%;
+    text-align: center;
   }
   .overlay {
     position: absolute;

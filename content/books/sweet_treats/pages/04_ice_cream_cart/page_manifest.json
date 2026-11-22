@@ -1,0 +1,11 @@
+{
+  "id": "ice_cream_cart",
+  "name": "Ice Cream Cart",
+  "description": "A cheerful cart with a four-scoop treat.",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.1",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

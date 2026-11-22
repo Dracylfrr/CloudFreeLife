@@ -1,0 +1,11 @@
+{
+  "id": "fox_in_leaves",
+  "name": "Fox in the Leaves",
+  "description": "A clever little fox in a shower of autumn leaves.",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.1",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

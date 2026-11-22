@@ -9,6 +9,7 @@ import { NetworkError, setHttpGet, type HttpGet } from '../src/features/updates/
 import { installPack, listInstalledPacks, parsePack, svgIsPassive, uninstallPack, validatePackContents, verifyDownloadedAsset } from '../src/features/updates/packs';
 import {
   describeUpdate,
+  noticeText,
   isTrustedDownloadUrl,
   parseReleaseManifest,
   parseReleases,
@@ -143,9 +144,24 @@ describe('update parsing', () => {
     expect(releaseMayMatter(rel('castle_dreams_v1.0.0'), '1.0.0', { castle_dreams: '1.0.0' })).toBe(false);
   });
 
+  it('words the top-right notice around new content, with the headline from the release manifest', () => {
+    const withHeadline = parseReleaseManifest({ ...goodManifest, headline: '2 new books and a new mini-game' });
+    if (!withHeadline.ok) throw new Error('manifest');
+    expect(withHeadline.value.headline).toBe('2 new books and a new mini-game');
+    const rel: ReleaseInfo = parseReleases([releaseJson('v1.1.0', [{ name: RELEASE_MANIFEST_ASSET }, { name: 'Cloud-Freelife_1.1.0_x64-setup.exe' }, { name: 'castle_dreams_v1.0.0.cfpack' }])])[0];
+    const [app, book] = planFromManifest(withHeadline.value, rel, '1.0.0', {});
+    expect(noticeText(app)).toEqual({ title: 'New content is ready', detail: '2 new books and a new mini-game · v1.1.0' });
+    expect(noticeText(book)).toEqual({ title: 'New content is ready', detail: 'New coloring book available — Castle Dreams' });
+    const plain = parseReleaseManifest(goodManifest);
+    if (!plain.ok) throw new Error('manifest');
+    expect(noticeText(planFromManifest(plain.value, rel, '1.0.0', {})[0])).toEqual({ title: 'A new version is ready', detail: 'Cloud-Freelife v1.1.0' });
+    // the Update Center list keeps the plain wording
+    expect(describeUpdate(app)).toBe('Update available — v1.1.0');
+  });
+
   it('shows the update toast only for updates not dismissed', () => {
     const item = { kind: 'app', version: '1.1.0', notes: '', releaseUrl: '' } as const;
-    const state: UpdateState = { outcome: 'available', available: [item], lastChecked: 1, message: '', busy: [], hidden: [] };
+    const state: UpdateState = { outcome: 'available', available: [item], lastChecked: 1, message: '', busy: [], hidden: [], installers: {} };
     expect(toastCandidate(state, [])).toBe(item);
     expect(toastCandidate(state, ['app:1.1.0'])).toBeNull();
     expect(toastCandidate({ ...state, hidden: ['app:1.1.0'] }, [])).toBeNull();
@@ -154,7 +170,7 @@ describe('update parsing', () => {
   it('"Later" hides every currently available update so a second notice never pops up', () => {
     const app = { kind: 'app', version: '1.1.0', notes: '', releaseUrl: '' } as const;
     const book = { kind: 'content', contentKind: 'book', id: 'castle_dreams', name: 'Castle Dreams', description: '', version: '1.0.0', minAppVersion: '1.0.0', releaseUrl: '', downloadUrl: '', asset: { name: '', sha256: '', size: 1, contentType: '' } } as const;
-    updateState.set({ outcome: 'available', available: [app, book], lastChecked: 1, message: '', busy: [], hidden: [] });
+    updateState.set({ outcome: 'available', available: [app, book], lastChecked: 1, message: '', busy: [], hidden: [], installers: {} });
     hideForNow(app);
     expect(toastCandidate(get(updateState), [])).toBeNull();
     expect(get(updateState).available).toHaveLength(2); // still listed in the Update Center

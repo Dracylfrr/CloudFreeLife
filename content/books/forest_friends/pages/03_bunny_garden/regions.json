@@ -1,0 +1,153 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sun_rays",
+      "name": "Sun rays",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "hill",
+      "name": "Far hill",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "garden",
+      "name": "Garden",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "fence",
+      "name": "Fence",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "bunny_ear_left",
+      "name": "Ear",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "bunny_ear_right",
+      "name": "Ear",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "bunny_ear_inner_left",
+      "name": "Inner ear",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "bunny_ear_inner_right",
+      "name": "Inner ear",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "bunny_body",
+      "name": "Body",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "bunny_belly",
+      "name": "Belly",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "bunny_foot_left",
+      "name": "Foot",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "bunny_foot_right",
+      "name": "Foot",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "bunny_head",
+      "name": "Head",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "bunny_nose",
+      "name": "Nose",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "bunny_cheek_left",
+      "name": "Cheek",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "bunny_cheek_right",
+      "name": "Cheek",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "carrot_leaves_1",
+      "name": "Carrot leaves",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "carrot_1",
+      "name": "Carrot",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "carrot_leaves_2",
+      "name": "Carrot leaves",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "carrot_2",
+      "name": "Carrot",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "carrot_leaves_3",
+      "name": "Carrot leaves",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "carrot_3",
+      "name": "Carrot",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "flower_a_petals",
+      "name": "Flower petals",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "flower_a_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_b_petals",
+      "name": "Flower petals",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_b_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

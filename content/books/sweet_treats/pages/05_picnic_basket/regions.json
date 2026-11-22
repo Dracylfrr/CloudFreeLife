@@ -1,0 +1,108 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sun_rays",
+      "name": "Sun rays",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "hill",
+      "name": "Hill",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "tree_trunk",
+      "name": "Tree trunk",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "tree_leaves",
+      "name": "Tree leaves",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "meadow",
+      "name": "Meadow",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "blanket",
+      "name": "Blanket",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "basket_handle",
+      "name": "Handle",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "basket",
+      "name": "Basket",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "jug",
+      "name": "Lemonade",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "jug_cap",
+      "name": "Jug lid",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "apple",
+      "name": "Apple",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "apple_leaf",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "sandwich",
+      "name": "Sandwich",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "cookie",
+      "name": "Cookie",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "cherries",
+      "name": "Cherries",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "flower_a_petals",
+      "name": "Flower petals",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "flower_a_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

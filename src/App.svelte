@@ -16,7 +16,7 @@
   import Settings from './features/settings/Settings.svelte';
   import About from './features/about/About.svelte';
 
-  const immersive = $derived($route.name === 'paint' || $route.name === 'breaker' || $route.name === 'splash' || $route.name === 'memory');
+  const immersive = $derived($route.name === 'paint' || $route.name === 'breaker' || $route.name === 'splash' || $route.name === 'memory' || $route.name === 'puzzle');
 </script>
 
 <AmbientBackground calm={immersive} />
@@ -45,7 +45,7 @@
         {:else if $route.name === 'gallery'}
           <Gallery />
         {:else if $route.name === 'minigames'}
-          <MiniGames />
+          <MiniGames game={$route.game} />
         {:else if $route.name === 'breaker'}
           {#await import('./features/minigames/breaker/BreakerScreen.svelte') then m}
             <m.default levelId={$route.levelId} mode={$route.mode ?? 'relax'} />
@@ -56,6 +56,10 @@
           {/await}
         {:else if $route.name === 'memory'}
           {#await import('./features/minigames/memory/MemoryScreen.svelte') then m}
+            <m.default levelId={$route.levelId} />
+          {/await}
+        {:else if $route.name === 'puzzle'}
+          {#await import('./features/minigames/puzzle/PuzzleScreen.svelte') then m}
             <m.default levelId={$route.levelId} />
           {/await}
         {:else if $route.name === 'updates'}

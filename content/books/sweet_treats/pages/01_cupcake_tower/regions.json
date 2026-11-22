@@ -1,0 +1,148 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "wall",
+      "name": "Wall",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "bunting_1",
+      "name": "Flag",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "bunting_2",
+      "name": "Flag",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "bunting_3",
+      "name": "Flag",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "bunting_4",
+      "name": "Flag",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "bunting_5",
+      "name": "Flag",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "bunting_6",
+      "name": "Flag",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "bunting_7",
+      "name": "Flag",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "bunting_8",
+      "name": "Flag",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "table",
+      "name": "Table",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "stand_pole",
+      "name": "Cake stand",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "stand_base",
+      "name": "Stand base",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "stand_plate",
+      "name": "Cake plate",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cupcake_left_wrapper",
+      "name": "Wrapper",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "cupcake_left_frosting_low",
+      "name": "Frosting",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "cupcake_left_frosting_mid",
+      "name": "Frosting",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "cupcake_left_frosting_top",
+      "name": "Frosting",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "cupcake_left_cherry",
+      "name": "Cherry",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "cupcake_right_wrapper",
+      "name": "Wrapper",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "cupcake_right_frosting_low",
+      "name": "Frosting",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "cupcake_right_frosting_mid",
+      "name": "Frosting",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "cupcake_right_frosting_top",
+      "name": "Frosting",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "cupcake_right_cherry",
+      "name": "Cherry",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "cupcake_mid_wrapper",
+      "name": "Wrapper",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "cupcake_mid_frosting_low",
+      "name": "Frosting",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "cupcake_mid_frosting_mid",
+      "name": "Frosting",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "cupcake_mid_frosting_top",
+      "name": "Frosting",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "cupcake_mid_cherry",
+      "name": "Cherry",
+      "suggested": "#ffc3b0"
+    }
+  ]
+}

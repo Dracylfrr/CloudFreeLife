@@ -1,0 +1,143 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sun_rays",
+      "name": "Sun rays",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "grass",
+      "name": "Grass",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "umbrella_pole",
+      "name": "Pole",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "umbrella_1",
+      "name": "Umbrella stripe",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "umbrella_2",
+      "name": "Umbrella stripe",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "umbrella_3",
+      "name": "Umbrella stripe",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "umbrella_4",
+      "name": "Umbrella stripe",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "umbrella_5",
+      "name": "Umbrella stripe",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "cart_body",
+      "name": "Cart",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "cart_window",
+      "name": "Cart window",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "cart_stripe",
+      "name": "Cart stripe",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "wheel_left",
+      "name": "Wheel",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "wheel_right",
+      "name": "Wheel",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "hub_left",
+      "name": "Hub",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "hub_right",
+      "name": "Hub",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cone",
+      "name": "Cone",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "scoop_bottom",
+      "name": "Scoop",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "scoop_middle",
+      "name": "Scoop",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "scoop_top",
+      "name": "Scoop",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "cherry",
+      "name": "Cherry",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "flower_a_petals",
+      "name": "Flower petals",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "flower_a_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_b_petals",
+      "name": "Flower petals",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_b_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

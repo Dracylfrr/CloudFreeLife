@@ -1,0 +1,49 @@
+{
+  "id": "forest_dawn",
+  "name": "Forest Dawn",
+  "description": "Mossy greens, acorn browns and soft sunrise peach.",
+  "colors": [
+    {
+      "id": "moss_green",
+      "name": "Moss Green",
+      "hex": "#b7dcaa"
+    },
+    {
+      "id": "fern",
+      "name": "Fern",
+      "hex": "#9fd0a6"
+    },
+    {
+      "id": "acorn_brown",
+      "name": "Acorn Brown",
+      "hex": "#e3c3a0"
+    },
+    {
+      "id": "honey_glow",
+      "name": "Honey Glow",
+      "hex": "#ffe9a6"
+    },
+    {
+      "id": "fox_orange",
+      "name": "Fox Orange",
+      "hex": "#ffc7a6"
+    },
+    {
+      "id": "dawn_peach",
+      "name": "Dawn Peach",
+      "hex": "#ffe0cc"
+    },
+    {
+      "id": "mist_blue",
+      "name": "Mist Blue",
+      "hex": "#c7dff0"
+    },
+    {
+      "id": "berry_mauve",
+      "name": "Berry Mauve",
+      "hex": "#e2bcd2"
+    }
+  ],
+  "minAppVersion": "1.1.1",
+  "version": "1.0.0"
+}

@@ -1,6 +1,6 @@
 [package]
 name = "cloud-freelife"
-version = "1.1.0"
+version = "1.1.1"
 description = "Cloud-Freelife - a calm pastel coloring, drawing and mini-game app"
 authors = ["Cloud-Freelife contributors"]
 edition = "2021"

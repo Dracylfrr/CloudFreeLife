@@ -438,11 +438,11 @@
     gap: 8px;
     margin: 14px 14px 10px;
     padding: 8px 14px;
-    border-radius: 999px;
+    border-radius: 28px;
     background: var(--panel);
     box-shadow: var(--shadow-s);
-    flex-wrap: nowrap;
-    overflow: hidden;
+    flex-wrap: wrap;
+    row-gap: 6px;
   }
   .title {
     font-size: 1.05rem;

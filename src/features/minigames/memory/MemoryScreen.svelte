@@ -99,7 +99,7 @@
 
 <div class="screen">
   <header class="bar">
-    <Button variant="soft" size="sm" icon="chevronLeft" onclick={() => navigate({ name: 'minigames' })}>Mini-Games</Button>
+    <Button variant="soft" size="sm" icon="chevronLeft" onclick={() => navigate({ name: 'minigames', game: 'memory' })}>Levels</Button>
     <h2>Memory Meadow</h2>
     <label class="pick">
       <span class="sr-only">Level</span>
@@ -205,6 +205,7 @@
     gap: 10px;
     position: relative;
     overflow-y: auto;
+    container-type: inline-size;
   }
   .info {
     display: flex;
@@ -218,7 +219,7 @@
     font-size: 1.05rem;
   }
   .board {
-    --w: min(150px, calc((100vh - 270px) / var(--rows) / 1.2));
+    --w: min(150px, calc((100vh - 270px) / var(--rows) / 1.2), calc((100cqw - 14px * (var(--cols) - 1)) / var(--cols)));
     display: grid;
     grid-template-columns: repeat(var(--cols), var(--w));
     gap: 14px;

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+<rect width="1000" height="750" fill="#ffffff"/>
+<g stroke="#6e6a8e" stroke-linejoin="round" stroke-linecap="round">
+<path data-region="wall" data-name="Wall" d="M-6 -6h1012v762h-1012z" fill="#e6d8f8" stroke-width="5"/>
+<path data-region="window" data-name="Window" d="M70 380V175A95 95 0 0 1 260 175V380z" fill="#bfe4f7" stroke-width="5"/>
+<path d="M165 80v300M70 250h190" fill="none" stroke-width="4"/>
+<path data-region="curtain_left" data-name="Curtain" d="M40 70Q40 60 50 60L90 60Q100 60 100.3 70L109.7 390Q110 400 100 400L50 400Q40 400 40 390z" fill="#ffd3e2" stroke-width="5"/>
+<path data-region="curtain_right" data-name="Curtain" d="M229.7 70Q230 60 240 60L280 60Q290 60 290 70L290 390Q290 400 280 400L230 400Q220 400 220.3 390z" fill="#ffd3e2" stroke-width="5"/>
+<path data-region="tablecloth" data-name="Tablecloth" d="M-6 500h1012v260h-1012z" fill="#ffffff" stroke-width="5"/>
+<path d="M0 560H1000M0 620H1000M0 680H1000M100 500v260M300 500v260M500 500v260M700 500v260M900 500v260" fill="none" stroke-width="2.5"/>
+<path data-region="table_top" data-name="Table top" d="M-6 500h1012v40h-1012z" fill="#f6b8cf" stroke-width="5"/>
+<path data-region="teapot_spout" data-name="Spout" d="M617.2 453.6Q610 450 616 444.7L684 385.3Q690 380 695.7 385.7L700.3 390.3Q706 396 701.2 402.4L654.8 463.6Q650 470 642.8 466.4z" fill="#c6ecda" stroke-width="5"/>
+<path data-region="teapot_handle" data-name="Handle" d="M440 400q-80 0-70 60q8 40 70 40" fill="#c6ecda" stroke-width="6"/>
+<path data-region="teapot_body" data-name="Teapot" d="M418 440a112 82 0 1 0 224 0a112 82 0 1 0 -224 0z" fill="#c6ecda" stroke-width="5"/>
+<path data-region="teapot_lid" data-name="Lid" d="M468 372A62 34 0 0 1 592 372z" fill="#dff0fb" stroke-width="5"/>
+<path data-region="teapot_knob" data-name="Knob" d="M517 330a13 13 0 1 0 26 0a13 13 0 1 0 -26 0z" fill="#fff2bd" stroke-width="4"/>
+<path d="M470 430q60 30 120 0" fill="none" stroke-width="3.5" stroke-dasharray="2 8"/>
+<path data-region="saucer_left" data-name="Saucer" d="M126 540a94 22 0 1 0 188 0a94 22 0 1 0 -188 0z" fill="#ffffff" stroke-width="5"/>
+<path data-region="cup_left" data-name="Cup" d="M150 470h140q0 70-70 70t-70-70z" fill="#ffdcc8" stroke-width="5"/>
+<path data-region="saucer_right" data-name="Saucer" d="M736 540a94 22 0 1 0 188 0a94 22 0 1 0 -188 0z" fill="#ffffff" stroke-width="5"/>
+<path data-region="cup_right" data-name="Cup" d="M760 470h140q0 70-70 70t-70-70z" fill="#fff2bd" stroke-width="5"/>
+<path d="M290 490q36 0 32 24q-4 18-34 16M900 490q36 0 32 24q-4 18-34 16" fill="none" stroke-width="5"/>
+<path data-region="cake_plate" data-name="Plate" d="M370 640a150 30 0 1 0 300 0a150 30 0 1 0 -300 0z" fill="#e3e0f0" stroke-width="5"/>
+<path data-region="cake_slice" data-name="Cake slice" d="M434.5 608.9Q430 600 440 600.7L600 611.3Q610 612 600.1 613.7L459.9 638.3Q450 640 445.5 631.1z" fill="#ffd3e2" stroke-width="5"/>
+<path data-region="cake_top" data-name="Icing" d="M433.8 604.6Q430 600 436 600.4L604 611.6Q610 612 606.7 617L605.3 619Q602 624 596 623.6L446 612.4Q440 612 436.2 607.4z" fill="#ffffff" stroke-width="4"/>
+<path data-region="strawberry" data-name="Strawberry" d="M512 588a18 18 0 1 0 36 0a18 18 0 1 0 -36 0z" fill="#ffc3b0" stroke-width="4"/>
+<path data-region="cookie_a" data-name="Cookie" d="M216 650a34 34 0 1 0 68 0a34 34 0 1 0 -68 0z" fill="#f8e4c2" stroke-width="5"/>
+<path data-region="cookie_b" data-name="Cookie" d="M776 660a34 34 0 1 0 68 0a34 34 0 1 0 -68 0z" fill="#f8e4c2" stroke-width="5"/>
+<circle cx="240" cy="644" r="4" fill="#6e6a8e" stroke="none"/>
+<circle cx="262" cy="658" r="4" fill="#6e6a8e" stroke="none"/>
+<circle cx="802" cy="654" r="4" fill="#6e6a8e" stroke="none"/>
+<circle cx="822" cy="668" r="4" fill="#6e6a8e" stroke="none"/>
+</g></svg>

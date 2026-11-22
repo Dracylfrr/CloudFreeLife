@@ -199,6 +199,20 @@ img {
   white-space: nowrap;
 }
 
+/* ---------- Narrow windows / large interface scale ---------- */
+@media (max-width: 900px) {
+  .page {
+    padding: 22px 18px 34px;
+  }
+  .page-head {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  h1 {
+    font-size: 1.7rem;
+  }
+}
+
 /* ---------- Reduced motion & particles ---------- */
 :root[data-motion='reduced'] *,
 :root[data-motion='reduced'] *::before,

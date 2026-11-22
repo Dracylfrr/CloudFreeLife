@@ -1,0 +1,11 @@
+{
+  "id": "hedgehog_meadow",
+  "name": "Hedgehog Meadow",
+  "description": "A shy hedgehog strolling past the mushrooms.",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.1",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

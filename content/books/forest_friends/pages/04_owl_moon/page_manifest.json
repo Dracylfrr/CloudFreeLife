@@ -1,0 +1,11 @@
+{
+  "id": "owl_moon",
+  "name": "Owl and Moon",
+  "description": "A wide-eyed owl under a big round moon.",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.1",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

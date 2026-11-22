@@ -1,0 +1,11 @@
+{
+  "id": "bakery_shop",
+  "name": "Bakery Shop",
+  "description": "A striped awning and warm bread in the window.",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.1",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

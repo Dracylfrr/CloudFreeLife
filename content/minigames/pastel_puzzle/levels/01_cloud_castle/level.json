@@ -1,0 +1,13 @@
+{
+  "id": "cloud_castle",
+  "name": "Cloud Castle",
+  "description": "A castle in the clouds, in six pieces.",
+  "minigame": "pastel_puzzle",
+  "thumbnail": "picture.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.1",
+  "objective": "Swap the pieces until the castle is whole.",
+  "picture": "picture.svg",
+  "columns": 3,
+  "rows": 2
+}

@@ -19,7 +19,7 @@ Every level defines the same base fields:
 |---|---|
 | `id` | Lowercase id (letters, digits, `_`), unique within the game. |
 | `name`, `description`, `objective` | Shown in the level picker. |
-| `minigame` | `pastel_breaker`, `splash_wall` or `memory_meadow`. |
+| `minigame` | `pastel_breaker`, `splash_wall`, `memory_meadow` or `pastel_puzzle`. |
 | `thumbnail` | File name of the preview image (SVG or PNG, 4:3). |
 | `version`, `minAppVersion` | As for books. |
 
@@ -84,6 +84,25 @@ Every region id named in a goal must exist in `wall.svg` (tests enforce this for
 - `cardBack` (optional): `#rrggbb` for the back of the cards.
 - No timer and no lives; the Hint button is always available. A level needs `minAppVersion` of at least `1.1.0`.
 - Adding a *new picture* needs an app release (pictures are drawn in `src/features/minigames/memory/icons.ts`).
+
+## Pastel Puzzle
+
+```json
+{
+  "id": "rainbow_hills",
+  "name": "Rainbow Hills", "description": "...", "objective": "...",
+  "minigame": "pastel_puzzle", "thumbnail": "picture.svg",
+  "version": "1.0.0", "minAppVersion": "1.1.1",
+  "picture": "picture.svg",
+  "columns": 3,
+  "rows": 3
+}
+```
+
+- `picture`: an SVG or PNG in the level folder. 4:3 pictures (for example 1000 x 750) fit the board best. It is cut into `columns` x `rows` equal pieces, so use a finished, colored picture (a page's `thumbnail.svg` makes a nice one).
+- `columns` and `rows`: whole numbers from 2 to 8. 6 to 24 pieces feels calm; more is a challenge.
+- The thumbnail can simply be the picture file itself.
+- Pieces are never locked, there is no timer, and *Peek* shows the finished picture.
 
 ## Adding the level to the app
 

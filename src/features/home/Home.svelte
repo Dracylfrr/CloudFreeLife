@@ -82,7 +82,7 @@
       <div class="meta">
         <span class="tag lilac"><Icon name="gamepad" size={14} /> Mini-Games</span>
         <h3>Mini-Games</h3>
-        <p>Pastel Breaker and Splash Wall. Calm, quick and relaxing.</p>
+        <p>Pastel Breaker, Splash Wall and more. Calm, quick and relaxing.</p>
       </div>
     </button>
   </section>
@@ -113,6 +113,7 @@
     margin: 0 auto;
   }
   .hero {
+    flex-wrap: wrap;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -351,6 +352,14 @@
   @media (max-width: 1180px) {
     .actions {
       grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 900px) {
+    .hero-cloud {
+      display: none;
+    }
+    .hero h1 {
+      font-size: 2rem;
     }
   }
 </style>

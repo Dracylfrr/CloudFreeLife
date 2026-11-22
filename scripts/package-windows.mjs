@@ -44,6 +44,12 @@ await rm(resolve(out, 'portable'), { recursive: true, force: true });
 const bytes = await readFile(resolve(out, installerName));
 const manifest = await loadManifest(out, v);
 manifest.release = v;
+try {
+  const headline = (await readFile(resolve(root, 'docs/RELEASE_HEADLINE.txt'), 'utf8')).trim();
+  if (headline) manifest.headline = headline.slice(0, 90); // shown in the update notice
+} catch {
+  /* optional */
+}
 // Release notes shown in the Update Center: the CHANGELOG section for this version.
 try {
   const log = (await readFile(resolve(root, 'CHANGELOG.md'), 'utf8')).replace(/\r\n/g, '\n'); // Windows checkouts use CRLF

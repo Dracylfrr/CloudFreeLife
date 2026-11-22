@@ -1,0 +1,13 @@
+{
+  "id": "rainbow_hills",
+  "name": "Rainbow Hills",
+  "description": "A big rainbow over soft hills.",
+  "minigame": "pastel_puzzle",
+  "thumbnail": "picture.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.1",
+  "objective": "Put the rainbow back together.",
+  "picture": "picture.svg",
+  "columns": 3,
+  "rows": 3
+}

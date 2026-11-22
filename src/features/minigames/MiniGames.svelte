@@ -1,19 +1,21 @@
 <script lang="ts">
   import { navigate } from '../../core/router';
-  import { catalog, asset, type LoadedBreakerLevel, type LoadedMemoryLevel, type LoadedSplashLevel } from '../../core/content/registry';
+  import { catalog, asset } from '../../core/content/registry';
   import Icon from '../../ui/Icon.svelte';
   import Button from '../../ui/Button.svelte';
   import { sfx } from '../../core/audio';
+  import { GAMES, gameById, type GameLevel } from './games';
 
-  const breaker = $derived($catalog.breakerLevels);
-  const splash = $derived($catalog.splashLevels);
-  const memory = $derived($catalog.memoryLevels);
+  let { game: gameId }: { game?: string } = $props();
+
+  const game = $derived(gameById(gameId));
+  const levels = $derived(game ? game.levels($catalog) : []);
 
   let thumbs = $state<Record<string, string | null>>({});
   $effect(() => {
-    const all: (LoadedBreakerLevel | LoadedSplashLevel | LoadedMemoryLevel)[] = [...breaker, ...splash, ...memory];
+    const list: GameLevel[] = levels;
     let live = true;
-    Promise.all(all.map(async (l) => [l.manifest.id, await asset(l.tree, l.dir, l.manifest.thumbnail).url()] as const)).then((e) => {
+    Promise.all(list.map(async (l) => [l.manifest.id, await asset(l.tree, l.dir, l.manifest.thumbnail).url()] as const)).then((e) => {
       if (live) thumbs = Object.fromEntries(e);
     });
     return () => {
@@ -23,82 +25,78 @@
 </script>
 
 <div class="page">
-  <header class="page-head">
-    <div>
-      <p class="eyebrow">Take a little break</p>
-      <h1>Mini-Games</h1>
-      <p class="sub">Three calm games. Every level is open from the start — no locks, no pressure.</p>
-    </div>
-  </header>
-
-  <section class="game">
-    <div class="game-head">
-      <div class="gico breaker"><Icon name="grid" size={26} /></div>
+  {#if !game}
+    <header class="page-head">
       <div>
-        <h2>Pastel Breaker</h2>
-        <p class="muted">Bounce the ball and pop soft pastel blocks into bubbles and stars.</p>
+        <p class="eyebrow">Take a little break</p>
+        <h1>Mini-Games</h1>
+        <p class="sub">{GAMES.length} calm games. Every level is open from the start — no locks, no pressure.</p>
       </div>
-      <div class="modes">
-        <Button size="sm" variant="mint" onclick={() => navigate({ name: 'breaker', mode: 'relax', levelId: breaker[0]?.manifest.id })}>Relax</Button>
-        <Button size="sm" variant="soft" onclick={() => navigate({ name: 'breaker', mode: 'classic', levelId: breaker[0]?.manifest.id })}>Classic</Button>
-        <Button size="sm" variant="peach" onclick={() => navigate({ name: 'breaker', mode: 'endless' })}>Endless</Button>
-      </div>
-    </div>
-    <div class="levels">
-      {#each breaker as l (l.manifest.id)}
-        <button class="lv" onclick={() => { sfx.pop(); navigate({ name: 'breaker', levelId: l.manifest.id, mode: 'relax' }); }}>
-          <span class="th">{#if thumbs[l.manifest.id]}<img src={thumbs[l.manifest.id]} alt="" draggable="false" />{/if}</span>
-          <strong>{l.manifest.name}</strong>
-          <small>{l.manifest.objective}</small>
+    </header>
+
+    <div class="shelf">
+      {#each GAMES as g (g.id)}
+        {@const n = g.levels($catalog).length}
+        <button
+          class="gcard"
+          style="--accent:{g.accent}"
+          onclick={() => {
+            sfx.pageTurn();
+            navigate({ name: 'minigames', game: g.id });
+          }}
+        >
+          <div class="cover"><img src={g.cover} alt="" draggable="false" /></div>
+          <div class="info">
+            <h3>{g.title}</h3>
+            <p>{g.blurb}</p>
+            <span class="count"><Icon name={g.icon} size={14} /> {g.tagline} · {n} {n === 1 ? 'level' : 'levels'}</span>
+          </div>
         </button>
       {/each}
     </div>
-  </section>
-
-  <section class="game">
-    <div class="game-head">
-      <div class="gico splash"><Icon name="paintball" size={26} /></div>
+  {:else}
+    <header class="page-head">
       <div>
-        <h2>Splash Wall</h2>
-        <p class="muted">Aim, charge and throw cartoon water balloons to splash color across illustrated walls.</p>
+        <button class="back" onclick={() => navigate({ name: 'minigames' })}><Icon name="chevronLeft" size={18} /> Mini-Games</button>
+        <h1>{game.title}</h1>
+        <p class="sub">{game.blurb}</p>
       </div>
-      <div class="modes">
-        <Button size="sm" variant="primary" onclick={() => navigate({ name: 'splash', levelId: splash[0]?.manifest.id })}>Play</Button>
-      </div>
-    </div>
-    <div class="levels">
-      {#each splash as l (l.manifest.id)}
-        <button class="lv" onclick={() => { sfx.pop(); navigate({ name: 'splash', levelId: l.manifest.id }); }}>
-          <span class="th">{#if thumbs[l.manifest.id]}<img src={thumbs[l.manifest.id]} alt="" draggable="false" />{/if}</span>
-          <strong>{l.manifest.name}</strong>
-          <small>{l.manifest.objective}</small>
-        </button>
-      {/each}
-    </div>
-  </section>
-
-  {#if memory.length}
-    <section class="game">
-      <div class="game-head">
-        <div class="gico memory"><Icon name="heart" size={26} /></div>
-        <div>
-          <h2>Memory Meadow</h2>
-          <p class="muted">Flip soft pastel cards and find the pairs. No timer, no lives — and a hint whenever you like.</p>
-        </div>
+      {#if game.modes}
         <div class="modes">
-          <Button size="sm" variant="mint" onclick={() => navigate({ name: 'memory', levelId: memory[0]?.manifest.id })}>Play</Button>
+          {#each game.modes as m}
+            <Button size="sm" variant={m.variant} onclick={() => navigate(m.open($catalog))}>{m.label}</Button>
+          {/each}
         </div>
-      </div>
-      <div class="levels">
-        {#each memory as l (l.manifest.id)}
-          <button class="lv" onclick={() => { sfx.pop(); navigate({ name: 'memory', levelId: l.manifest.id }); }}>
-            <span class="th">{#if thumbs[l.manifest.id]}<img src={thumbs[l.manifest.id]} alt="" draggable="false" />{/if}</span>
-            <strong>{l.manifest.name}</strong>
-            <small>{l.manifest.objective}</small>
+      {:else if levels.length}
+        <Button variant="primary" icon="play" onclick={() => navigate(game.open(levels[0].manifest.id))}>Play</Button>
+      {/if}
+    </header>
+
+    <div class="pages">
+      {#each levels as l, i (l.manifest.id)}
+        <article class="pg" style="--accent:{game.accent}">
+          <button
+            class="thumb"
+            onclick={() => {
+              sfx.pop();
+              navigate(game.open(l.manifest.id));
+            }}
+          >
+            {#if thumbs[l.manifest.id]}<img src={thumbs[l.manifest.id]} alt="" draggable="false" />{/if}
           </button>
-        {/each}
-      </div>
-    </section>
+          <div class="cap">
+            <div>
+              <span class="num">{String(i + 1).padStart(2, '0')}</span>
+              <strong>{l.manifest.name}</strong>
+              <p>{l.manifest.objective}</p>
+            </div>
+            <div class="btns">
+              <Button size="sm" variant="primary" icon="play" onclick={() => navigate(game.open(l.manifest.id))}>Play</Button>
+            </div>
+          </div>
+        </article>
+      {/each}
+    </div>
   {/if}
 </div>
 
@@ -106,88 +104,121 @@
   .page {
     max-width: 1180px;
   }
-  .game {
-    margin-bottom: 38px;
-    padding: 22px 24px 26px;
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 800;
+    color: var(--lavender-deep);
+    margin-bottom: 8px;
+  }
+  .shelf {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(205px, 1fr));
+    gap: 20px;
+  }
+  .gcard {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
     border-radius: var(--radius-xl);
     background: var(--panel);
     box-shadow: var(--shadow-m);
     border: 1px solid rgba(255, 255, 255, 0.85);
-  }
-  .game-head {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    margin-bottom: 20px;
-  }
-  .game-head > div:nth-child(2) {
-    flex: 1;
-  }
-  .gico {
-    width: 58px;
-    height: 58px;
-    border-radius: 20px;
-    display: grid;
-    place-items: center;
-    flex: none;
-  }
-  .gico.breaker {
-    background: linear-gradient(135deg, #cdebf9, #e3d8f8);
-    color: #4c3f9c;
-  }
-  .gico.memory {
-    background: linear-gradient(135deg, #d4f1e3, #cdebf9);
-    color: #2e5a4b;
-  }
-  .gico.splash {
-    background: linear-gradient(135deg, #ffe0cf, #ffd3e2);
-    color: #8a3f5f;
-  }
-  .modes {
-    display: flex;
-    gap: 8px;
-  }
-  .levels {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-    gap: 16px;
-  }
-  .lv {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-    text-align: left;
-    padding: 10px 10px 12px;
-    border-radius: 22px;
-    background: rgba(255, 255, 255, 0.75);
-    box-shadow: var(--shadow-s);
-    transition: transform 0.2s var(--ease);
-  }
-  .lv:hover {
-    transform: translateY(-3px);
-    background: #fff;
-  }
-  .th {
-    aspect-ratio: 4/3;
-    border-radius: 16px;
     overflow: hidden;
-    background: #f4f0fb;
-    display: block;
-    margin-bottom: 6px;
+    transition:
+      transform 0.25s var(--ease),
+      box-shadow 0.25s var(--ease);
   }
-  .th img {
+  .gcard:hover {
+    transform: translateY(-5px) rotate(-0.4deg);
+    box-shadow: var(--shadow-l);
+  }
+  .cover {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-bottom: 5px solid var(--accent);
+  }
+  .cover img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
   }
-  .lv strong {
-    padding: 0 4px;
+  .info {
+    padding: 14px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
   }
-  .lv small {
-    padding: 0 4px;
+  .info p {
     color: var(--ink-soft);
-    font-weight: 600;
-    line-height: 1.3;
+    font-size: 0.88rem;
+    line-height: 1.35;
+    min-height: 4.1em;
+  }
+  .count {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+    font-weight: 800;
+    font-size: 0.85rem;
+    color: var(--accent);
+    filter: brightness(0.8);
+  }
+  .modes {
+    display: flex;
+    gap: 8px;
+    flex: none;
+  }
+  .pages {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+  }
+  .pg {
+    border-radius: var(--radius-xl);
+    background: var(--panel);
+    box-shadow: var(--shadow-m);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s var(--ease);
+  }
+  .pg:hover {
+    transform: translateY(-4px);
+  }
+  .thumb {
+    aspect-ratio: 4 / 3;
+    background: #f4f0fb;
+    display: block;
+    width: 100%;
+    border-bottom: 4px solid var(--accent);
+  }
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .cap {
+    padding: 14px 18px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+    justify-content: space-between;
+  }
+  .num {
+    color: var(--lavender-deep);
+    font-weight: 900;
+    margin-right: 6px;
+  }
+  .cap p {
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    margin-top: 2px;
   }
 </style>

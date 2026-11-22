@@ -175,7 +175,7 @@
 
 <div class="screen">
   <header class="bar">
-    <Button variant="soft" size="sm" icon="chevronLeft" onclick={() => navigate({ name: 'minigames' })}>Mini-Games</Button>
+    <Button variant="soft" size="sm" icon="chevronLeft" onclick={() => navigate({ name: 'minigames', game: 'splash' })}>Levels</Button>
     <h2>Splash Wall</h2>
     <label class="pick">
       <span class="sr-only">Level</span>
@@ -258,9 +258,10 @@
     gap: 10px;
     margin: 14px 18px 8px;
     padding: 8px 14px;
-    border-radius: 999px;
+    border-radius: 28px;
     background: var(--panel);
     box-shadow: var(--shadow-s);
+    flex-wrap: wrap;
   }
   .bar h2 {
     font-size: 1.1rem;

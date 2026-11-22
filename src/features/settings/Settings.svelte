@@ -227,4 +227,26 @@
     padding: 4px 10px;
     border-radius: 10px;
   }
+  .check,
+  .kv {
+    flex-wrap: wrap;
+  }
+  .kv code {
+    max-width: 100%;
+  }
+  @media (max-width: 900px) {
+    .layout {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 16px;
+    }
+    .tabs {
+      width: auto;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .panel {
+      padding: 20px 18px 24px;
+    }
+  }
 </style>

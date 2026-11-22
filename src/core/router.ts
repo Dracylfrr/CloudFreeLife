@@ -7,10 +7,11 @@ export type Route =
   | { name: 'draw' }
   | { name: 'paint'; artworkId: string }
   | { name: 'gallery' }
-  | { name: 'minigames' }
+  | { name: 'minigames'; game?: string }
   | { name: 'breaker'; levelId?: string; mode?: 'relax' | 'classic' | 'endless' }
   | { name: 'splash'; levelId?: string }
   | { name: 'memory'; levelId?: string }
+  | { name: 'puzzle'; levelId?: string }
   | { name: 'updates' }
   | { name: 'settings'; tab?: string }
   | { name: 'about' };
@@ -63,6 +64,7 @@ export function sectionOf(r: Route): NavSection {
     case 'breaker':
     case 'splash':
     case 'memory':
+    case 'puzzle':
     case 'minigames':
       return 'minigames';
     default:

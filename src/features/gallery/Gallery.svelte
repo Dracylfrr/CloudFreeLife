@@ -128,7 +128,7 @@
     box-shadow: var(--shadow-s);
   }
   .cards {
-    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr));
     max-width: 1280px;
   }
   .card {
@@ -140,6 +140,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    min-width: 0;
     transition: transform 0.25s var(--ease);
   }
   .card:hover {
@@ -173,9 +174,14 @@
   }
   .acts {
     display: flex;
-    gap: 2px;
+    flex-wrap: wrap;
+    gap: 4px 2px;
     align-items: center;
     padding: 0 4px 4px;
+    min-width: 0;
+  }
+  .acts :global(.btn.ghost.sm) {
+    padding: 7px 9px;
   }
   .acts :global(.btn.primary) {
     margin-right: auto;

@@ -1,0 +1,138 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "shop_wall",
+      "name": "Shop wall",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "shop_roof",
+      "name": "Roof",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "sign",
+      "name": "Sign",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "sign_cupcake",
+      "name": "Sign cupcake",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "awning_1",
+      "name": "Awning stripe",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "awning_2",
+      "name": "Awning stripe",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "awning_3",
+      "name": "Awning stripe",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "awning_4",
+      "name": "Awning stripe",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "awning_5",
+      "name": "Awning stripe",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "awning_6",
+      "name": "Awning stripe",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "window",
+      "name": "Window",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "bread_loaf",
+      "name": "Bread",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "bread_round",
+      "name": "Round bread",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "cake_display",
+      "name": "Cake",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "door",
+      "name": "Door",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "door_glass",
+      "name": "Door glass",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sidewalk",
+      "name": "Sidewalk",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "pot_left",
+      "name": "Flower pot",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "pot_flower_left_petals",
+      "name": "Flower petals",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "pot_flower_left_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "pot_right",
+      "name": "Flower pot",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "pot_flower_right_petals",
+      "name": "Flower petals",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "pot_flower_right_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

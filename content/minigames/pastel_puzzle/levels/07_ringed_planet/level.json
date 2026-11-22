@@ -1,0 +1,13 @@
+{
+  "id": "ringed_planet",
+  "name": "Ringed Planet",
+  "description": "A dreamy planet in a purple sky.",
+  "minigame": "pastel_puzzle",
+  "thumbnail": "picture.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.1",
+  "objective": "Put the planet back in its orbit.",
+  "picture": "picture.svg",
+  "columns": 5,
+  "rows": 4
+}

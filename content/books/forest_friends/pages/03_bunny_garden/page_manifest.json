@@ -1,0 +1,11 @@
+{
+  "id": "bunny_garden",
+  "name": "Bunny Garden",
+  "description": "A bunny guarding a patch of carrots.",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.1",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

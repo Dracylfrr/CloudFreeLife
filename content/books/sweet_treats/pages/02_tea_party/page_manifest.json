@@ -1,0 +1,11 @@
+{
+  "id": "tea_party",
+  "name": "Tea Party",
+  "description": "A teapot, tiny cups and a slice of cake.",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.1",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

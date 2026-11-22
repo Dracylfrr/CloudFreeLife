@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+<rect width="1000" height="750" fill="#ffffff"/>
+<g stroke="#6e6a8e" stroke-linejoin="round" stroke-linecap="round">
+<path data-region="wall" data-name="Wall" d="M-6 -6h1012v762h-1012z" fill="#ffd3e2" stroke-width="5"/>
+<path d="M0 140H1000" fill="none" stroke-width="2.5"/>
+<path d="M0 40Q500 100 1000 40" fill="none" stroke-width="4"/>
+<path data-region="bunting_1" data-name="Flag" d="M38.8 55.8Q36 50.5 42 50.5L98 50.5Q104 50.5 101.2 55.8L72.8 109.2Q70 114.5 67.2 109.2z" fill="#fff2bd" stroke-width="4"/>
+<path data-region="bunting_2" data-name="Flag" d="M148.8 65.4Q146 60.1 152 60.1L208 60.1Q214 60.1 211.2 65.4L182.8 118.8Q180 124.1 177.2 118.8z" fill="#c6ecda" stroke-width="4"/>
+<path data-region="bunting_3" data-name="Flag" d="M258.8 73Q256 67.7 262 67.7L318 67.7Q324 67.7 321.2 73L292.8 126.4Q290 131.7 287.2 126.4z" fill="#e6d8f8" stroke-width="4"/>
+<path data-region="bunting_4" data-name="Flag" d="M368.8 77.8Q366 72.5 372 72.5L428 72.5Q434 72.5 431.2 77.8L402.8 131.2Q400 136.5 397.2 131.2z" fill="#bfe4f7" stroke-width="4"/>
+<path data-region="bunting_5" data-name="Flag" d="M478.8 79.3Q476 74 482 74L538 74Q544 74 541.2 79.3L512.8 132.7Q510 138 507.2 132.7z" fill="#ffdcc8" stroke-width="4"/>
+<path data-region="bunting_6" data-name="Flag" d="M588.8 77.2Q586 71.9 592 71.9L648 71.9Q654 71.9 651.2 77.2L622.8 130.6Q620 135.9 617.2 130.6z" fill="#fff2bd" stroke-width="4"/>
+<path data-region="bunting_7" data-name="Flag" d="M698.8 71.8Q696 66.5 702 66.5L758 66.5Q764 66.5 761.2 71.8L732.8 125.2Q730 130.5 727.2 125.2z" fill="#c6ecda" stroke-width="4"/>
+<path data-region="bunting_8" data-name="Flag" d="M808.8 63.8Q806 58.5 812 58.5L868 58.5Q874 58.5 871.2 63.8L842.8 117.2Q840 122.5 837.2 117.2z" fill="#e6d8f8" stroke-width="4"/>
+<path data-region="table" data-name="Table" d="M-6 600h1012v160h-1012z" fill="#e9c7a3" stroke-width="5"/>
+<path d="M0 660H1000M0 720H1000" fill="none" stroke-width="3"/>
+<path data-region="stand_pole" data-name="Cake stand" d="M488 470H512A8 8 0 0 1 520 478V602A8 8 0 0 1 512 610H488A8 8 0 0 1 480 602V478A8 8 0 0 1 488 470z" fill="#e3e0f0" stroke-width="5"/>
+<path data-region="stand_base" data-name="Stand base" d="M380 610a120 26 0 1 0 240 0a120 26 0 1 0 -240 0z" fill="#e3e0f0" stroke-width="5"/>
+<path data-region="stand_plate" data-name="Cake plate" d="M170 470a330 46 0 1 0 660 0a330 46 0 1 0 -660 0z" fill="#ffffff" stroke-width="5"/>
+<path data-region="cupcake_left_wrapper" data-name="Wrapper" d="M235.6 371.2Q233.5 360 244.9 360L355.1 360Q366.5 360 364.4 371.2L351.5 440Q349.4 451.2 338 451.2L262 451.2Q250.6 451.2 248.5 440z" fill="#d9cdf6" stroke-width="5"/>
+<path d="M271.5 367.6l5.699999999999999 79.8M300 367.6v81.7M328.5 367.6l-5.699999999999999 79.8" fill="none" stroke-width="3.5"/>
+<path data-region="cupcake_left_frosting_low" data-name="Frosting" d="M222.1 352.4a77.9 32.3 0 1 0 155.8 0a77.9 32.3 0 1 0 -155.8 0z" fill="#dff0fb" stroke-width="5"/>
+<path data-region="cupcake_left_frosting_mid" data-name="Frosting" d="M243 318.2a57 26.6 0 1 0 114 0a57 26.6 0 1 0 -114 0z" fill="#dff0fb" stroke-width="5"/>
+<path data-region="cupcake_left_frosting_top" data-name="Frosting" d="M265.8 289.7a34.2 20.9 0 1 0 68.4 0a34.2 20.9 0 1 0 -68.4 0z" fill="#dff0fb" stroke-width="5"/>
+<path data-region="cupcake_left_cherry" data-name="Cherry" d="M284.8 265a15.2 15.2 0 1 0 30.4 0a15.2 15.2 0 1 0 -30.4 0z" fill="#f6b8cf" stroke-width="4"/>
+<path data-region="cupcake_right_wrapper" data-name="Wrapper" d="M635.6 371.2Q633.5 360 644.9 360L755.1 360Q766.5 360 764.4 371.2L751.5 440Q749.4 451.2 738 451.2L662 451.2Q650.6 451.2 648.5 440z" fill="#c6ecda" stroke-width="5"/>
+<path d="M671.5 367.6l5.699999999999999 79.8M700 367.6v81.7M728.5 367.6l-5.699999999999999 79.8" fill="none" stroke-width="3.5"/>
+<path data-region="cupcake_right_frosting_low" data-name="Frosting" d="M622.1 352.4a77.9 32.3 0 1 0 155.8 0a77.9 32.3 0 1 0 -155.8 0z" fill="#fff2bd" stroke-width="5"/>
+<path data-region="cupcake_right_frosting_mid" data-name="Frosting" d="M643 318.2a57 26.6 0 1 0 114 0a57 26.6 0 1 0 -114 0z" fill="#fff2bd" stroke-width="5"/>
+<path data-region="cupcake_right_frosting_top" data-name="Frosting" d="M665.8 289.7a34.2 20.9 0 1 0 68.4 0a34.2 20.9 0 1 0 -68.4 0z" fill="#fff2bd" stroke-width="5"/>
+<path data-region="cupcake_right_cherry" data-name="Cherry" d="M684.8 265a15.2 15.2 0 1 0 30.4 0a15.2 15.2 0 1 0 -30.4 0z" fill="#f6b8cf" stroke-width="4"/>
+<path data-region="cupcake_mid_wrapper" data-name="Wrapper" d="M424.1 343.2Q421.6 330 435 330L565 330Q578.4 330 575.9 343.2L560.7 424.3Q558.2 437.5 544.8 437.5L455.2 437.5Q441.8 437.5 439.3 424.3z" fill="#ffdcc8" stroke-width="5"/>
+<path d="M466.4 338.96l6.720000000000001 94.08000000000001M500 338.96v96.32000000000001M533.6 338.96l-6.720000000000001 94.08000000000001" fill="none" stroke-width="3.5"/>
+<path data-region="cupcake_mid_frosting_low" data-name="Frosting" d="M408.2 321a91.8 38.1 0 1 0 183.7 0a91.8 38.1 0 1 0 -183.7 0z" fill="#ffd3e2" stroke-width="5"/>
+<path data-region="cupcake_mid_frosting_mid" data-name="Frosting" d="M432.8 280.7a67.2 31.4 0 1 0 134.4 0a67.2 31.4 0 1 0 -134.4 0z" fill="#ffd3e2" stroke-width="5"/>
+<path data-region="cupcake_mid_frosting_top" data-name="Frosting" d="M459.7 247.1a40.3 24.6 0 1 0 80.6 0a40.3 24.6 0 1 0 -80.6 0z" fill="#ffd3e2" stroke-width="5"/>
+<path data-region="cupcake_mid_cherry" data-name="Cherry" d="M482.1 218a17.9 17.9 0 1 0 35.8 0a17.9 17.9 0 1 0 -35.8 0z" fill="#ffc3b0" stroke-width="4"/>
+<path d="M440 250q8-14 16 0M530 270q8-14 16 0M290 200q8-14 16 0M670 210q8-14 16 0" fill="none" stroke-width="3.5"/>
+</g></svg>

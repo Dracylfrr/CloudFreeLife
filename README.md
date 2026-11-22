@@ -2,11 +2,11 @@
 
 A calm, pastel place to **color, draw and play** — a lightweight Windows desktop app.
 
-- **Coloring Books** — 28 original cartoon pages across *Cloud Dreams*, *Cosmic Colors*, *Peaceful Places*, *Castle Dreams* and *Ocean Friends*
+- **Coloring Books** — 38 original cartoon pages across seven books: *Cloud Dreams*, *Cosmic Colors*, *Peaceful Places*, *Castle Dreams*, *Ocean Friends*, *Sweet Treats* and *Forest Friends*
 - **Free Draw** — eight soft backgrounds (white, warm cream, cloud blue, lavender, mint, pastel pink, starry sky, soft clouds)
 - **Painting tools** — Brush, Marker, Crayon, Airbrush, Fill Bucket, Eraser, Paintball, Color Picker, Clear Region, Undo/Redo, Zoom, Pan
 - **Autosave & Gallery** — your art saves itself (outside the install folder), with Open / Duplicate / Rename / Export PNG / Clear / Delete
-- **Mini-games** — *Pastel Breaker* (6 handcrafted levels + Relax / Classic / Endless), *Splash Wall* (10 walls) and *Memory Meadow* (6 pair-matching levels)
+- **Mini-games** — *Pastel Breaker* (6 handcrafted levels + Relax / Classic / Endless), *Splash Wall* (10 walls), *Memory Meadow* (6 pair-matching levels) and *Pastel Puzzle* (8 pictures)
 - **Updates** — a startup check against this repository's GitHub Releases, plus downloadable content packs (new books, palettes and levels) verified with SHA-256
 - **Private & offline** — no telemetry, no accounts, no ads. Everything except update checks works without Internet.
 

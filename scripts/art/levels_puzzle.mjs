@@ -1,0 +1,40 @@
+// Pastel Puzzle levels: a finished picture is cut into tiles and scrambled; swap two tiles at a time
+// until the picture is whole again. Each level folder carries its own picture (a colored scene).
+import { cloudCastle, rainbowMeadow } from './pages_cloud.mjs';
+import { sunnyBeach, cozyCottage } from './pages_peaceful.mjs';
+import { ringedPlanet } from './pages_cosmic.mjs';
+import { happyWhale } from './pages_ocean.mjs';
+import { sleepyBear } from './pages_forest.mjs';
+import { cupcakeTower } from './pages_treats.mjs';
+
+const levels = [
+  { folder: '01_cloud_castle', name: 'Cloud Castle', description: 'A castle in the clouds, in six pieces.', objective: 'Swap the pieces until the castle is whole.', columns: 3, rows: 2, scene: cloudCastle },
+  { folder: '02_rainbow_hills', name: 'Rainbow Hills', description: 'A big rainbow over soft hills.', objective: 'Put the rainbow back together.', columns: 3, rows: 3, scene: rainbowMeadow },
+  { folder: '03_sunny_beach', name: 'Sunny Beach', description: 'Sand, sea and a striped umbrella.', objective: 'Rebuild the beach, piece by piece.', columns: 4, rows: 3, scene: sunnyBeach },
+  { folder: '04_happy_whale', name: 'Happy Whale', description: 'A whale with a very big smile.', objective: 'Bring the whale back together.', columns: 4, rows: 3, scene: happyWhale },
+  { folder: '05_sleepy_bear', name: 'Sleepy Bear', description: 'A cuddly bear and his honey pot.', objective: 'Twenty pieces make one sleepy bear.', columns: 5, rows: 4, scene: sleepyBear },
+  { folder: '06_cupcake_party', name: 'Cupcake Party', description: 'Three cupcakes and a lot of bunting.', objective: 'The biggest puzzle: twenty-four pieces.', columns: 6, rows: 4, scene: cupcakeTower },
+  { folder: '07_ringed_planet', name: 'Ringed Planet', description: 'A dreamy planet in a purple sky.', objective: 'Put the planet back in its orbit.', columns: 5, rows: 4, scene: ringedPlanet },
+  { folder: '08_cozy_cottage', name: 'Cozy Cottage', description: 'A cottage with a smoking chimney.', objective: 'Rebuild the cottage, one swap at a time.', columns: 6, rows: 4, scene: cozyCottage }
+];
+
+export const puzzleLevels = levels.map((l) => {
+  const svg = l.scene().svg('color');
+  return {
+    folder: l.folder,
+    picture: svg,
+    manifest: (version) => ({
+      id: l.folder.replace(/^\d+_/, ''),
+      name: l.name,
+      description: l.description,
+      minigame: 'pastel_puzzle',
+      thumbnail: 'picture.svg',
+      version,
+      minAppVersion: '1.1.1',
+      objective: l.objective,
+      picture: 'picture.svg',
+      columns: l.columns,
+      rows: l.rows
+    })
+  };
+});

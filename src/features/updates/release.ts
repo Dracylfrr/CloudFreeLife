@@ -5,7 +5,7 @@
 import { ALLOWED_DOWNLOAD_HOSTS, GITHUB_REPO, RELEASE_MANIFEST_ASSET } from '../../core/config';
 import { APP_VERSION, compareVersions, isNewer, isValidVersion, meetsMinVersion, parseVersion } from '../../core/version';
 
-export type ContentKind = 'book' | 'palettes' | 'breaker_levels' | 'splash_levels' | 'memory_levels' | 'minigame';
+export type ContentKind = 'book' | 'palettes' | 'breaker_levels' | 'splash_levels' | 'memory_levels' | 'puzzle_levels' | 'minigame';
 
 export interface AssetSpec {
   name: string;
@@ -39,6 +39,8 @@ export interface AppUpdate {
   asset?: AssetSpec;
   downloadUrl?: string;
   minAppVersion?: string;
+  /** One friendly line about what is new, e.g. "2 new books and a new mini-game". */
+  headline?: string;
 }
 
 export interface ContentUpdate {
@@ -60,6 +62,7 @@ export interface ReleaseManifest {
   schema: 1;
   release: string;
   notes?: string;
+  headline?: string;
   app?: { version: string; minAppVersion?: string; asset: AssetSpec };
   content: {
     type: ContentKind;
@@ -81,7 +84,7 @@ export const ALLOWED_APP_TYPES = ['application/octet-stream', 'application/x-msd
 export const MAX_PACK_BYTES = 40 * 1024 * 1024;
 export const MAX_APP_BYTES = 400 * 1024 * 1024;
 
-const CONTENT_KINDS: ContentKind[] = ['book', 'palettes', 'breaker_levels', 'splash_levels', 'memory_levels', 'minigame'];
+const CONTENT_KINDS: ContentKind[] = ['book', 'palettes', 'breaker_levels', 'splash_levels', 'memory_levels', 'puzzle_levels', 'minigame'];
 
 const isObj = (v: unknown): v is Record<string, unknown> => !!v && typeof v === 'object' && !Array.isArray(v);
 
@@ -180,6 +183,7 @@ export function parseReleaseManifest(raw: unknown): ManifestResult {
     schema: 1,
     release: typeof raw.release === 'string' ? raw.release : '',
     notes: typeof raw.notes === 'string' ? raw.notes.slice(0, 4000) : undefined,
+    headline: typeof raw.headline === 'string' && raw.headline.trim() ? raw.headline.trim().slice(0, 90) : undefined,
     content: []
   };
   if (raw.app !== undefined) {
@@ -281,7 +285,8 @@ export function planFromManifest(
       releaseUrl: release.htmlUrl,
       asset: trusted ? manifest.app.asset : undefined,
       downloadUrl: trusted ? a!.downloadUrl : undefined,
-      minAppVersion: manifest.app.minAppVersion
+      minAppVersion: manifest.app.minAppVersion,
+      headline: manifest.headline
     });
   }
 
@@ -315,9 +320,20 @@ export function describeUpdate(u: UpdateItem): string {
     breaker_levels: 'New Pastel Breaker levels available',
     splash_levels: 'New Splash Wall levels available',
     memory_levels: 'New Memory Meadow levels available',
+    puzzle_levels: 'New Pastel Puzzle levels available',
     minigame: 'New mini-game available'
   };
   return `${label[u.contentKind]} — ${u.name}`;
+}
+
+/** Friendly wording for the top-right notice: a title and a softer second line. */
+export function noticeText(u: UpdateItem): { title: string; detail: string } {
+  if (u.kind === 'app') {
+    return u.headline
+      ? { title: 'New content is ready', detail: `${u.headline} · v${u.version}` }
+      : { title: 'A new version is ready', detail: `Cloud-Freelife v${u.version}` };
+  }
+  return { title: 'New content is ready', detail: describeUpdate(u) };
 }
 
 export function updateKey(u: UpdateItem): string {

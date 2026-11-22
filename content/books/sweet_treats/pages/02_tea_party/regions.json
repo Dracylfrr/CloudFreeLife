@@ -1,0 +1,113 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "wall",
+      "name": "Wall",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "window",
+      "name": "Window",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "curtain_left",
+      "name": "Curtain",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "curtain_right",
+      "name": "Curtain",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "tablecloth",
+      "name": "Tablecloth",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "table_top",
+      "name": "Table top",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "teapot_spout",
+      "name": "Spout",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "teapot_handle",
+      "name": "Handle",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "teapot_body",
+      "name": "Teapot",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "teapot_lid",
+      "name": "Lid",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "teapot_knob",
+      "name": "Knob",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "saucer_left",
+      "name": "Saucer",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cup_left",
+      "name": "Cup",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "saucer_right",
+      "name": "Saucer",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cup_right",
+      "name": "Cup",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "cake_plate",
+      "name": "Plate",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "cake_slice",
+      "name": "Cake slice",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "cake_top",
+      "name": "Icing",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "strawberry",
+      "name": "Strawberry",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "cookie_a",
+      "name": "Cookie",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "cookie_b",
+      "name": "Cookie",
+      "suggested": "#f8e4c2"
+    }
+  ]
+}

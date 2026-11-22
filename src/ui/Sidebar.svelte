@@ -27,7 +27,7 @@
   <ul>
     {#each items as it}
       <li>
-        <button class="item" class:on={active === it.id} aria-current={active === it.id ? 'page' : undefined} onclick={it.go}>
+        <button class="item" class:on={active === it.id} title={it.label} aria-label={it.label} aria-current={active === it.id ? 'page' : undefined} onclick={it.go}>
           <Icon name={it.icon} size={21} />
           <span>{it.label}</span>
           {#if it.id === 'updates' && hasUpdate}<i class="dot" title="Update available"></i>{/if}
@@ -120,5 +120,32 @@
     color: var(--ink-faint);
     font-size: 0.78rem;
     font-weight: 700;
+  }
+  /* Narrow window or large interface scale: icons only, so content keeps its room. */
+  @media (max-width: 900px) {
+    .side {
+      width: 74px;
+      padding: 16px 8px 12px;
+      margin: 12px 0 12px 12px;
+    }
+    .brand {
+      justify-content: center;
+      padding: 2px 0 8px;
+    }
+    .name,
+    .item span,
+    .foot {
+      display: none;
+    }
+    .item {
+      justify-content: center;
+      padding: 12px 0;
+    }
+    .dot {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      margin: 0;
+    }
   }
 </style>

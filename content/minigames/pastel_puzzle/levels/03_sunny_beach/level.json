@@ -1,0 +1,13 @@
+{
+  "id": "sunny_beach",
+  "name": "Sunny Beach",
+  "description": "Sand, sea and a striped umbrella.",
+  "minigame": "pastel_puzzle",
+  "thumbnail": "picture.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.1",
+  "objective": "Rebuild the beach, piece by piece.",
+  "picture": "picture.svg",
+  "columns": 4,
+  "rows": 3
+}

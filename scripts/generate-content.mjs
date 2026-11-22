@@ -17,6 +17,9 @@ import { splashLevels } from './art/levels_splash.mjs';
 import { castlePages } from './art/pages_castle.mjs';
 import { oceanPages } from './art/pages_ocean.mjs';
 import { memoryLevels } from './art/levels_memory.mjs';
+import { treatsPages } from './art/pages_treats.mjs';
+import { forestPages } from './art/pages_forest.mjs';
+import { puzzleLevels } from './art/levels_puzzle.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const content = resolve(root, 'content');
@@ -72,6 +75,24 @@ const books = [
     order: 5,
     minApp: '1.1.0',
     pages: oceanPages
+  },
+  {
+    id: 'sweet_treats',
+    name: 'Sweet Treats',
+    description: 'Cupcakes, tea parties, a bakery and an ice cream cart.',
+    accent: '#f49bbd',
+    order: 6,
+    minApp: '1.1.1',
+    pages: treatsPages
+  },
+  {
+    id: 'forest_friends',
+    name: 'Forest Friends',
+    description: 'A sleepy bear, a clever fox, a bunny, an owl and a hedgehog.',
+    accent: '#8ed2b2',
+    order: 7,
+    minApp: '1.1.1',
+    pages: forestPages
   }
 ];
 
@@ -178,4 +199,11 @@ for (const l of memoryLevels) {
   await put(`${dir}/level.json`, json(l.manifest(VERSION)));
 }
 
-console.log(`Generated ${books.length + 1} books, ${pageCount} coloring pages, ${palettes.length} palettes, ${breakerLevels.length} Pastel Breaker levels, ${splashLevels.length} Splash Wall levels, ${memoryLevels.length} Memory Meadow levels.`);
+// Pastel Puzzle levels
+for (const l of puzzleLevels) {
+  const dir = `minigames/pastel_puzzle/levels/${l.folder}`;
+  await put(`${dir}/picture.svg`, l.picture);
+  await put(`${dir}/level.json`, json(l.manifest(VERSION)));
+}
+
+console.log(`Generated ${books.length + 1} books, ${pageCount} coloring pages, ${palettes.length} palettes, ${breakerLevels.length} Pastel Breaker levels, ${splashLevels.length} Splash Wall levels, ${memoryLevels.length} Memory Meadow levels, ${puzzleLevels.length} Pastel Puzzle levels.`);

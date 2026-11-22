@@ -9,11 +9,10 @@
   import Button from '../../ui/Button.svelte';
   import Icon from '../../ui/Icon.svelte';
   import { listInstalledPacks, uninstallPack, type InstalledPackRecord } from './packs';
-  import { checkForUpdates, describeUpdate, downloadAppInstaller, installContentUpdate, openOfficialLink, revealPath, updateKey, updateState } from './updater';
+  import { checkForUpdates, describeUpdate, installUpdate, openOfficialLink, revealPath, updateKey, updateState } from './updater';
   import type { UpdateItem } from './release';
 
   let installed = $state<InstalledPackRecord[]>([]);
-  let downloaded = $state<Record<string, string>>({});
   const checking = $derived($updateState.outcome === 'checking');
 
   async function refreshInstalled() {
@@ -22,17 +21,9 @@
   onMount(refreshInstalled);
 
   async function install(u: UpdateItem) {
-    const r = await installContentUpdate(u);
-    toast(r.message, r.ok ? 'success' : 'error', 4200);
-    if (r.ok) await refreshInstalled();
-  }
-
-  async function getInstaller(u: UpdateItem) {
-    const r = await downloadAppInstaller(u);
-    if (r.ok && r.path) {
-      downloaded = { ...downloaded, [updateKey(u)]: r.path };
-      toast(r.message, 'success');
-    } else toast(r.message, 'error', 4500);
+    const r = await installUpdate(u);
+    toast(r.message, r.ok ? 'success' : 'error', 4500);
+    if (r.ok && u.kind === 'content') await refreshInstalled();
   }
 
   async function remove(p: InstalledPackRecord) {
@@ -83,9 +74,9 @@
           <div class="body">
             <h3>{describeUpdate(u)}</h3>
             {#if u.kind === 'app'}
-              <p class="muted">{u.notes ? u.notes.slice(0, 220) : 'A new version of Cloud-Freelife.'}</p>
+              <p class="muted">{u.headline ?? (u.notes ? u.notes.slice(0, 220) : 'A new version of Cloud-Freelife.')}</p>
               {#if u.asset}<p class="fine">Installer {formatBytes(u.asset.size)} · SHA-256 verified before use · you choose when to run it</p>{/if}
-              {#if downloaded[updateKey(u)]}<p class="fine ok">Saved to {downloaded[updateKey(u)]}</p>{/if}
+              {#if $updateState.installers[updateKey(u)]}<p class="fine ok">Saved to {$updateState.installers[updateKey(u)]}</p>{/if}
             {:else}
               <p class="muted">{u.description || 'New content for Cloud-Freelife.'}</p>
               <p class="fine">v{u.version} · {formatBytes(u.asset.size)} · checksum verified before installing</p>
@@ -93,10 +84,10 @@
           </div>
           <div class="btns">
             {#if u.kind === 'app'}
-              {#if downloaded[updateKey(u)]}
-                <Button size="sm" variant="mint" icon="folder" onclick={() => revealPath(downloaded[updateKey(u)])}>Show installer</Button>
+              {#if $updateState.installers[updateKey(u)]}
+                <Button size="sm" variant="mint" icon="folder" onclick={() => revealPath($updateState.installers[updateKey(u)])}>Show installer</Button>
               {:else if u.asset}
-                <Button size="sm" variant="primary" icon="download" disabled={busy} onclick={() => getInstaller(u)}>{busy ? 'Downloading…' : 'Download'}</Button>
+                <Button size="sm" variant="primary" icon="download" disabled={busy} onclick={() => install(u)}>{busy ? 'Downloading…' : 'Download'}</Button>
               {/if}
               <Button size="sm" variant="soft" icon="external" onclick={() => openOfficialLink(u.releaseUrl)}>Release notes</Button>
             {:else}

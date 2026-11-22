@@ -1,0 +1,11 @@
+{
+  "id": "picnic_basket",
+  "name": "Picnic Basket",
+  "description": "A sunny picnic on a pink blanket.",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.1",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

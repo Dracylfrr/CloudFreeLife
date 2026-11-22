@@ -40,6 +40,7 @@
     display: flex;
     flex-direction: column;
     gap: 2px;
+    min-width: 0;
   }
   .label {
     font-weight: 700;

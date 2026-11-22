@@ -12,14 +12,17 @@ Plans, not promises. Cloud-Freelife stays small, calm and offline-first.
 ## 1.1.0 — shipped
 Castle Dreams, Ocean Friends, Memory Meadow, *Castle Twilight* and *Ocean Pearl* palettes. See the changelog.
 
+## 1.1.1 — shipped
+Sweet Treats, Forest Friends, Pastel Puzzle, mini-game cards and the friendlier update notice.
+
 ## 1.2.0 — more content (as content packs where possible)
-- More books (a bakery, a mountain village, a night garden).
+- More books (a mountain village, a night garden, a farm).
 - New palettes: *Candle Glow*, *Blossom Rain*.
-- Six more Pastel Breaker levels, six more Splash Wall walls, six more Memory Meadow levels.
+- Six more Pastel Breaker levels, six more Splash Wall walls, six more Memory Meadow levels and more puzzle pictures.
 - Save a Splash Wall as a Gallery item.
 
 ## Later ideas
-- A fourth mini-game (calm bubble-pop).
+- A fifth mini-game (calm bubble-pop).
 - Layers for Free Draw.
 - Import your own line art (SVG or PNG) as a coloring page.
 - Timelapse export.

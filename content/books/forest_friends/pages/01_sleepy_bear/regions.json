@@ -1,0 +1,143 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "hill",
+      "name": "Hill",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "tree_trunk",
+      "name": "Tree trunk",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "tree_crown",
+      "name": "Tree leaves",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "grass",
+      "name": "Grass",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "ear_left",
+      "name": "Ear",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "ear_right",
+      "name": "Ear",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "ear_left_inner",
+      "name": "Inner ear",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "ear_right_inner",
+      "name": "Inner ear",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "bear_arm_left",
+      "name": "Arm",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "bear_arm_right",
+      "name": "Arm",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "bear_body",
+      "name": "Body",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "bear_belly",
+      "name": "Belly",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "bear_foot_left",
+      "name": "Foot",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "bear_foot_right",
+      "name": "Foot",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "bear_head",
+      "name": "Head",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "bear_snout",
+      "name": "Snout",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "bear_nose",
+      "name": "Nose",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "honey_pot",
+      "name": "Honey pot",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "honey_rim",
+      "name": "Honey rim",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "bee",
+      "name": "Bee",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_a_petals",
+      "name": "Flower petals",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "flower_a_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_b_petals",
+      "name": "Flower petals",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "flower_b_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

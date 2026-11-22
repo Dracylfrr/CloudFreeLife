@@ -1,0 +1,18 @@
+{
+  "id": "sweet_treats",
+  "name": "Sweet Treats",
+  "description": "Cupcakes, tea parties, a bakery and an ice cream cart.",
+  "cover": "cover.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.1",
+  "kind": "coloring",
+  "accent": "#f49bbd",
+  "order": 6,
+  "pages": [
+    "01_cupcake_tower",
+    "02_tea_party",
+    "03_bakery_shop",
+    "04_ice_cream_cart",
+    "05_picnic_basket"
+  ]
+}

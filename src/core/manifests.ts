@@ -71,7 +71,7 @@ export interface PaletteManifest {
   colors: PaletteColor[];
 }
 
-export type MiniGameId = 'pastel_breaker' | 'splash_wall' | 'memory_meadow' | (string & {});
+export type MiniGameId = 'pastel_breaker' | 'splash_wall' | 'memory_meadow' | 'pastel_puzzle' | (string & {});
 
 /** Card pictures Memory Meadow can draw. A level may only use these. */
 export const MEMORY_ICON_IDS = ['cloud', 'star', 'moon', 'sun', 'heart', 'drop', 'flower', 'leaf', 'balloon', 'shell', 'rainbow', 'mushroom', 'fish', 'butterfly', 'planet'] as const;
@@ -119,7 +119,15 @@ export interface MemoryLevel extends LevelBase {
   symbols: string[];
 }
 
-export type LevelManifest = BreakerLevel | SplashLevel | MemoryLevel | (LevelBase & Record<string, unknown>);
+export interface PuzzleLevel extends LevelBase {
+  minigame: 'pastel_puzzle';
+  /** Picture file in the level folder (SVG or PNG). It is cut into columns x rows tiles. */
+  picture: string;
+  columns: number;
+  rows: number;
+}
+
+export type LevelManifest = BreakerLevel | SplashLevel | MemoryLevel | PuzzleLevel | (LevelBase & Record<string, unknown>);
 
 // ---------------------------------------------------------------- helpers
 
@@ -424,11 +432,28 @@ export function validateMemoryLevel(raw: unknown, where = 'level.json'): Result<
   return done(e, { ...base, minigame: 'memory_meadow', columns, cardBack, symbols });
 }
 
+export function validatePuzzleLevel(raw: unknown, where = 'level.json'): Result<PuzzleLevel> {
+  const e = new Errs(where);
+  if (!isObj(raw)) {
+    e.add('must be a JSON object');
+    return done(e, null as never);
+  }
+  const base = validateLevelBase(raw, e);
+  if (base.minigame && base.minigame !== 'pastel_puzzle') e.add('"minigame" must be "pastel_puzzle"');
+  const picture = reqFile(raw, 'picture', e);
+  const columns = typeof raw.columns === 'number' && Number.isInteger(raw.columns) ? raw.columns : 0;
+  const rows = typeof raw.rows === 'number' && Number.isInteger(raw.rows) ? raw.rows : 0;
+  if (columns < 2 || columns > 8) e.add('"columns" must be a whole number from 2 to 8');
+  if (rows < 2 || rows > 8) e.add('"rows" must be a whole number from 2 to 8');
+  return done(e, { ...base, minigame: 'pastel_puzzle', picture, columns, rows });
+}
+
 /** Generic level validation (any mini-game): checks only the shared fields. */
 export function validateLevel(raw: unknown, where = 'level.json'): Result<LevelManifest> {
   if (isObj(raw) && raw.minigame === 'pastel_breaker') return validateBreakerLevel(raw, where);
   if (isObj(raw) && raw.minigame === 'splash_wall') return validateSplashLevel(raw, where);
   if (isObj(raw) && raw.minigame === 'memory_meadow') return validateMemoryLevel(raw, where);
+  if (isObj(raw) && raw.minigame === 'pastel_puzzle') return validatePuzzleLevel(raw, where);
   const e = new Errs(where);
   if (!isObj(raw)) {
     e.add('must be a JSON object');

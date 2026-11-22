@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { buildCatalog } from '../src/core/content/registry';
 import { MapTree } from '../src/core/content/tree';
 import { luminance, saturation } from '../src/core/util';
-import { validateBook, validateBreakerLevel, validateMemoryLevel, validatePage, validatePalette, validateRegions, validateSplashLevel } from '../src/core/manifests';
+import { validateBook, validateBreakerLevel, validateMemoryLevel, validatePuzzleLevel, validatePage, validatePalette, validateRegions, validateSplashLevel } from '../src/core/manifests';
 import { extractRegions } from '../src/features/painting/regionMap';
 import { DiskTree, readAllText } from './helpers/diskTree';
 
@@ -13,10 +13,10 @@ describe('bundled content', () => {
   it('loads with nothing skipped', async () => {
     const cat = await catalogP;
     expect(cat.skipped).toEqual([]);
-    expect(cat.books.map((b) => b.manifest.id).sort()).toEqual(['castle_dreams', 'cloud_dreams', 'cosmic_colors', 'free_canvas', 'ocean_friends', 'peaceful_places']);
+    expect(cat.books.map((b) => b.manifest.id).sort()).toEqual(['castle_dreams', 'cloud_dreams', 'cosmic_colors', 'forest_friends', 'free_canvas', 'ocean_friends', 'peaceful_places', 'sweet_treats']);
   });
 
-  it('ships at least 6 pages in each of the three original books (18) and 5 in each 1.1 book (28 total)', async () => {
+  it('ships at least 6 pages in each of the three original books (18) and 5 in each newer book (38 total)', async () => {
     const cat = await catalogP;
     for (const id of ['cloud_dreams', 'cosmic_colors', 'peaceful_places']) {
       expect(cat.books.find((b) => b.manifest.id === id)!.pages.length).toBeGreaterThanOrEqual(6);
@@ -26,7 +26,12 @@ describe('bundled content', () => {
       expect(b.pages.length).toBeGreaterThanOrEqual(5);
       expect(b.manifest.minAppVersion).toBe('1.1.0'); // new content says which app version it needs
     }
-    expect(cat.books.reduce((n, b) => n + b.pages.length, 0)).toBe(28);
+    for (const id of ['sweet_treats', 'forest_friends']) {
+      const b = cat.books.find((x) => x.manifest.id === id)!;
+      expect(b.pages.length).toBeGreaterThanOrEqual(5);
+      expect(b.manifest.minAppVersion).toBe('1.1.1');
+    }
+    expect(cat.books.reduce((n, b) => n + b.pages.length, 0)).toBe(38);
   });
 
   it('keeps human-readable folder names (no generated ids)', async () => {
@@ -73,7 +78,7 @@ describe('bundled content', () => {
 
   it('palettes: ten palettes with friendly names and soft colors', async () => {
     const cat = await catalogP;
-    expect(cat.palettes.length).toBeGreaterThanOrEqual(12);
+    expect(cat.palettes.length).toBeGreaterThanOrEqual(14);
     const required = ['Cloud Morning', 'Cotton Candy', 'Lavender Dream', 'Mint Garden', 'Peach Sunset', 'Soft Rainbow', 'Galaxy Pastel', 'Beach Breeze', 'Meadow Calm', 'Moonlight'];
     expect(cat.palettes.map((p) => p.manifest.name)).toEqual(expect.arrayContaining(required));
     const names = new Set(cat.palettes.flatMap((p) => p.manifest.colors.map((c) => c.name)));
@@ -113,6 +118,29 @@ describe('bundled content', () => {
       if (g.type === 'regions') for (const r of g.regions) expect(ids.has(r), `${l.dir}: ${r}`).toBe(true);
       if (g.type === 'color_match') for (const r of Object.keys(g.targets)) expect(ids.has(r), `${l.dir}: ${r}`).toBe(true);
     }
+  });
+});
+
+describe('Pastel Puzzle content', () => {
+  it('ships eight levels, each with its own picture file and a valid grid', async () => {
+    const cat = await catalogP;
+    expect(cat.puzzleLevels).toHaveLength(8);
+    const files = await readAllText();
+    for (const l of cat.puzzleLevels) {
+      expect(`${l.dir}/${l.manifest.picture}` in files, l.folder).toBe(true);
+      expect(l.manifest.columns * l.manifest.rows).toBeGreaterThanOrEqual(6);
+      expect(l.manifest.minAppVersion).toBe('1.1.1');
+      expect(files[`${l.dir}/${l.manifest.picture}`]).not.toMatch(/<script|href=/i);
+    }
+    expect(Math.max(...cat.puzzleLevels.map((l) => l.manifest.columns * l.manifest.rows))).toBe(24);
+  });
+
+  it('validates puzzle levels', () => {
+    const base = { id: 'p1', name: 'P', description: 'x', minigame: 'pastel_puzzle', thumbnail: 'picture.svg', version: '1.0.0', minAppVersion: '1.1.1', objective: 'o', picture: 'picture.svg', columns: 3, rows: 2 };
+    expect(validatePuzzleLevel(base).ok).toBe(true);
+    expect(validatePuzzleLevel({ ...base, columns: 1 }).ok).toBe(false);
+    expect(validatePuzzleLevel({ ...base, rows: 12 }).ok).toBe(false);
+    expect(validatePuzzleLevel({ ...base, picture: '../x.svg' }).ok).toBe(false);
   });
 });
 
