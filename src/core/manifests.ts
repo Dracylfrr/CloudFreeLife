@@ -31,6 +31,8 @@ export interface BookManifest {
   pages: string[];
   backgrounds?: BackgroundDef[];
   accent?: string;
+  /** Position on the shelf (lower first). Books without one are sorted by name after the ordered ones. */
+  order?: number;
 }
 
 export interface PageManifest {
@@ -171,7 +173,8 @@ export function validateBook(raw: unknown, where = 'book_manifest.json'): Result
     minAppVersion: reqVersion(raw, 'minAppVersion', e),
     kind,
     pages: [],
-    accent: typeof raw.accent === 'string' && HEX_RE.test(raw.accent) ? raw.accent : undefined
+    accent: typeof raw.accent === 'string' && HEX_RE.test(raw.accent) ? raw.accent : undefined,
+    order: typeof raw.order === 'number' && Number.isFinite(raw.order) ? raw.order : undefined
   };
   if (!Array.isArray(raw.pages)) {
     e.add('"pages" must be an array of page folder names');

@@ -7,6 +7,7 @@
   import { navigate, onBeforeLeave } from '../../core/router';
   import { brushSound, sfx } from '../../core/audio';
   import { settings, updateSettings } from '../../core/settings';
+  import { isAppHidden, onVisibilityChange } from '../../core/visibility';
   import { clamp } from '../../core/util';
   import Icon from '../../ui/Icon.svelte';
   import Button from '../../ui/Button.svelte';
@@ -98,14 +99,13 @@
     });
     if (viewEl) ro.observe(viewEl);
     void load();
-    const vis = () => {
-      if (document.hidden) void autosaver?.flush();
-    };
-    document.addEventListener('visibilitychange', vis);
+    const offVis = onVisibilityChange(() => {
+      if (isAppHidden()) void autosaver?.flush();
+    });
     const unguard = onBeforeLeave(() => autosaver?.flush());
     return () => {
       ro.disconnect();
-      document.removeEventListener('visibilitychange', vis);
+      offVis();
       unguard();
     };
   });

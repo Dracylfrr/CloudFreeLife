@@ -221,13 +221,9 @@ export async function buildCatalog(trees: ContentTree[], appVersion?: string): P
   };
 }
 
-/** Preferred book order on the shelf: bundled order first, then installed books alphabetically. */
-const SHELF_ORDER = ['cloud_dreams', 'cosmic_colors', 'peaceful_places', 'free_canvas'];
+/** Shelf order: each book's own `order` (default 1000), then alphabetically. */
 export function shelfSort(books: LoadedBook[]): LoadedBook[] {
-  const rank = (b: LoadedBook) => {
-    const i = SHELF_ORDER.indexOf(b.manifest.id);
-    return i < 0 ? 100 : i;
-  };
+  const rank = (b: LoadedBook) => b.manifest.order ?? 1000;
   return [...books].sort((a, b) => rank(a) - rank(b) || a.manifest.name.localeCompare(b.manifest.name));
 }
 

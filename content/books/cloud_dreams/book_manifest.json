@@ -7,6 +7,7 @@
   "minAppVersion": "1.0.0",
   "kind": "coloring",
   "accent": "#8fc7ec",
+  "order": 1,
   "pages": [
     "01_cloud_castle",
     "02_floating_islands",

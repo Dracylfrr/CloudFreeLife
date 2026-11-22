@@ -1,5 +1,6 @@
 import { get } from 'svelte/store';
 import { settings } from '../../core/settings';
+import { isAppHidden, onVisibilityChange } from '../../core/visibility';
 
 /**
  * requestAnimationFrame loop with an FPS cap. It stops completely while the
@@ -10,8 +11,9 @@ export class GameLoop {
   private last = 0;
   private acc = 0;
   private running = false;
+  private offVis: () => void;
   private onVis = () => {
-    if (document.hidden) this.halt();
+    if (isAppHidden()) this.halt();
     else if (this.running) this.kick();
   };
 
@@ -19,7 +21,7 @@ export class GameLoop {
     private tick: (dt: number) => void,
     private draw: () => void
   ) {
-    document.addEventListener('visibilitychange', this.onVis);
+    this.offVis = onVisibilityChange(this.onVis);
   }
 
   private targetInterval(): number {
@@ -43,7 +45,7 @@ export class GameLoop {
   }
 
   private kick() {
-    if (this.raf || document.hidden) return;
+    if (this.raf || isAppHidden()) return;
     this.last = performance.now();
     this.acc = 0;
     const frame = (now: number) => {
@@ -67,6 +69,6 @@ export class GameLoop {
 
   dispose() {
     this.stop();
-    document.removeEventListener('visibilitychange', this.onVis);
+    this.offVis();
   }
 }

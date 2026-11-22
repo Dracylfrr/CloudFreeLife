@@ -32,6 +32,7 @@ Template: [templates/book_manifest.json](templates/book_manifest.json)
 | `minAppVersion` | Oldest Cloud-Freelife that can use it. Newer-only content is hidden on older apps. |
 | `kind` | `"coloring"` (default) or `"free_canvas"`. |
 | `accent` | Optional `#rrggbb` used for the cover edge. |
+| `order` | Optional number: position on the shelf (lower first). Books without one come last, alphabetically. |
 | `pages` | Page **folder names**, in display order. Every entry must have a folder under `pages/`. |
 
 A **free canvas** book has `"kind": "free_canvas"`, `"pages": []` and a `backgrounds` list (see `content/books/free_canvas/book_manifest.json`). Background `type` is `solid`, `gradient`, `stars` or `clouds`.

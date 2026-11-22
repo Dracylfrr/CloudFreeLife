@@ -52,7 +52,7 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 
 ## Accessibility & performance
 - [ ] Everything reachable and visible with keyboard focus rings; text readable at 140 % UI scale; High contrast mode.
-- [ ] Idle RAM on Home < 150 MB; CPU ~0 % when idle or minimized.
+- [ ] Idle on Home: well under 350 MB private memory across all WebView2 processes and only a percent or two of one CPU core with the ambient scenery on; ~0 % with Reduced Motion, when minimized, or on the painting screen.
 
 ## Packaging
 - [ ] Installer installs per-user, creates a Start Menu entry, icon shows the cloud + brush.

@@ -18,4 +18,5 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 - Downloadable content packs (`.cfpack`) for books, palettes and levels, validated by manifest, version, asset name, size, content type and SHA-256 before installing.
 - Settings: General, Display (UI scale, Low Power, 30 FPS), Audio (Master / Music / Ambience / Effects / Painting), Accessibility (Reduced Motion, disable particles, higher contrast), Updates and Storage.
 - Gentle synthesized sounds (no audio files, nothing sharp or loud).
+- Light on resources: the ambient scenery runs from a single ~10 fps clock that stops completely for Reduced Motion, Low Power, a hidden window and the painting screen; games stop their loop when paused or hidden.
 - Automated tests for save/load, autosave, undo/redo, manifests, palettes, levels, versions, update parsing, checksums, content compatibility and settings persistence.

@@ -169,6 +169,16 @@
     else if (e.key === 'Escape') navigate({ name: 'minigames' });
   }
 
+  // A paused game does no work at all: stop the frame loop, restart it on resume.
+  $effect(() => {
+    if (paused) {
+      loop?.drawOnce();
+      loop?.stop();
+    } else if (loop && (status === 'ready' || status === 'playing')) {
+      loop.start();
+    }
+  });
+
   const hearts = $derived(lives === null ? 0 : lives);
 </script>
 

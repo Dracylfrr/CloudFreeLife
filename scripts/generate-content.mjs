@@ -33,6 +33,7 @@ const books = [
     name: 'Cloud Dreams',
     description: 'Clouds, castles in the sky, floating islands, balloons, rainbows and sunsets.',
     accent: '#8fc7ec',
+    order: 1,
     pages: cloudPages
   },
   {
@@ -40,6 +41,7 @@ const books = [
     name: 'Cosmic Colors',
     description: 'Gentle stars, planets, moons, galaxies, nebulae and comets.',
     accent: '#a698e0',
+    order: 2,
     pages: cosmicPages
   },
   {
@@ -47,6 +49,7 @@ const books = [
     name: 'Peaceful Places',
     description: 'Beaches, meadows, mountains, forests, lakes and cozy cottages.',
     accent: '#8ed2b2',
+    order: 3,
     pages: peacefulPages
   }
 ];
@@ -70,6 +73,7 @@ for (const b of books) {
       minAppVersion: MIN,
       kind: 'coloring',
       accent: b.accent,
+      order: b.order,
       pages: b.pages.map((p) => p.folder)
     })
   );
@@ -111,6 +115,7 @@ await put(
     minAppVersion: MIN,
     kind: 'free_canvas',
     accent: '#f49bbd',
+    order: 4,
     pages: [],
     backgrounds: [
       { id: 'white', name: 'Clean White', type: 'solid', colors: ['#ffffff'] },

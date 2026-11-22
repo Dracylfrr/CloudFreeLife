@@ -6,6 +6,7 @@
  * Buses: master -> music | ambience | effects | painting
  */
 import { settings, type Settings } from './settings';
+import { isAppHidden, onVisibilityChange } from './visibility';
 
 type Bus = 'music' | 'ambience' | 'effects' | 'painting';
 
@@ -221,7 +222,7 @@ let musicStep = 0;
 
 function scheduleMusic() {
   musicTimer = null;
-  if (!current?.musicOn || document.hidden) return;
+  if (!current?.musicOn || isAppHidden()) return;
   if (canPlay('music')) {
     const base = PENTATONIC[(musicStep * 2 + Math.floor(Math.random() * 3)) % PENTATONIC.length];
     tone({ freq: base, dur: 3.4, gain: 0.07, attack: 0.05, bus: 'music', type: 'sine', lp: 2600 });
@@ -269,13 +270,13 @@ function stopAmbience() {
 
 function syncLoops() {
   if (!current) return;
-  if (current.musicOn && !musicTimer && !document.hidden) {
+  if (current.musicOn && !musicTimer && !isAppHidden()) {
     if (canPlay('music')) musicTimer = setTimeout(scheduleMusic, 400);
   } else if (!current.musicOn && musicTimer) {
     clearTimeout(musicTimer);
     musicTimer = null;
   }
-  if (current.ambienceOn && !document.hidden) startAmbience();
+  if (current.ambienceOn && !isAppHidden()) startAmbience();
   else stopAmbience();
 }
 
@@ -301,9 +302,9 @@ export function initAudio() {
   window.addEventListener('pointerdown', unlock);
   window.addEventListener('keydown', unlock);
   // Pause all audio work when the window is hidden or minimised.
-  document.addEventListener('visibilitychange', () => {
+  onVisibilityChange(() => {
     if (!ctx) return;
-    if (document.hidden) {
+    if (isAppHidden()) {
       void ctx.suspend();
       if (musicTimer) {
         clearTimeout(musicTimer);

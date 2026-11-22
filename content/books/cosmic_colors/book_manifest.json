@@ -7,6 +7,7 @@
   "minAppVersion": "1.0.0",
   "kind": "coloring",
   "accent": "#a698e0",
+  "order": 2,
   "pages": [
     "01_ringed_planet",
     "02_rocket_ride",

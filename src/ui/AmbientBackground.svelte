@@ -1,32 +1,77 @@
 <script lang="ts">
-  // Pure-CSS ambient scenery: no JS timers, no per-frame work.
-  // It is removed entirely by Reduced Motion / Low Power, paused when the
-  // window is hidden, and fully hidden while painting.
+  import { onMount } from 'svelte';
+  import { onAmbientTick } from './ticker';
+
+  // Decorative scenery. Positions are updated by the shared ~10 fps ambient clock
+  // (see ticker.ts), not by 60 fps CSS animations: far cheaper, and identical to
+  // look at because everything here moves slowly. It is removed entirely by
+  // Reduced Motion / Low Power, stops while the window is hidden, and the
+  // painting screen shows only the static gradient (`calm`).
   interface Props {
-    calm?: boolean; // painting screen: static gradient only
+    calm?: boolean;
   }
   let { calm = false }: Props = $props();
 
   const clouds = [
-    { top: 6, scale: 1.1, dur: 150, delay: -20, op: 0.75 },
-    { top: 22, scale: 0.7, dur: 190, delay: -90, op: 0.6 },
-    { top: 48, scale: 1.35, dur: 230, delay: -150, op: 0.5 },
-    { top: 70, scale: 0.9, dur: 170, delay: -60, op: 0.55 },
-    { top: 84, scale: 0.6, dur: 210, delay: -120, op: 0.45 }
+    { top: 6, scale: 1.1, speed: 7, phase: 0.1, op: 0.75 },
+    { top: 22, scale: 0.7, speed: 5, phase: 0.45, op: 0.6 },
+    { top: 48, scale: 1.35, speed: 4.5, phase: 0.8, op: 0.5 },
+    { top: 70, scale: 0.9, speed: 6, phase: 0.3, op: 0.55 },
+    { top: 84, scale: 0.6, speed: 5.5, phase: 0.62, op: 0.45 }
   ];
   const bubbles = Array.from({ length: 9 }, (_, i) => ({
     left: 6 + ((i * 11.7) % 90),
     size: 10 + ((i * 7) % 22),
-    dur: 22 + ((i * 5) % 16),
-    delay: -((i * 6.3) % 30),
+    period: 24 + ((i * 5) % 16),
+    offset: (i * 6.3) % 30,
     tint: ['#bfe4f7', '#e6d8f8', '#c6ecda', '#ffd3e2', '#fff2bd'][i % 5]
   }));
   const sparkles = Array.from({ length: 6 }, (_, i) => ({
     left: 8 + ((i * 17.3) % 84),
     top: 10 + ((i * 23.1) % 72),
-    dur: 9 + (i % 3) * 3,
-    delay: -(i * 2.7)
+    period: 9 + (i % 3) * 3,
+    offset: i * 2.7
   }));
+
+  let cloudEls: SVGSVGElement[] = [];
+  let bubbleEls: HTMLSpanElement[] = [];
+  let sparkEls: SVGSVGElement[] = [];
+
+  onMount(() => {
+    if (calm) return;
+    return onAmbientTick((t) => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      const span = w + 560;
+      clouds.forEach((c, i) => {
+        const el = cloudEls[i];
+        if (!el) return;
+        const x = ((c.phase * span + t * c.speed) % span) - 260;
+        el.style.transform = `translate3d(${x.toFixed(1)}px,0,0) scale(${c.scale})`;
+      });
+      bubbles.forEach((b, i) => {
+        const el = bubbleEls[i];
+        if (!el) return;
+        const u = ((t + b.offset) / b.period) % 1;
+        const y = -u * (h + 120);
+        const x = Math.sin(u * 9.4 + i) * 14;
+        const o = u < 0.1 ? (u / 0.1) * 0.7 : u > 0.85 ? ((1 - u) / 0.15) * 0.5 : 0.6;
+        el.style.transform = `translate3d(${x.toFixed(1)}px,${y.toFixed(1)}px,0)`;
+        el.style.opacity = o.toFixed(2);
+      });
+      sparkles.forEach((s, i) => {
+        const el = sparkEls[i];
+        if (!el) return;
+        const u = ((t + s.offset) / s.period) % 1;
+        const v = (u - 0.7) / 0.25;
+        if (v < 0 || v > 1) {
+          el.style.opacity = '0';
+          return;
+        }
+        el.style.opacity = Math.sin(v * Math.PI).toFixed(2);
+      });
+    });
+  });
 </script>
 
 <div class="ambient" class:calm aria-hidden="true">
@@ -34,8 +79,8 @@
   {#if !calm}
     <span class="glow g1"></span>
     <span class="glow g2"></span>
-    {#each clouds as c}
-      <svg class="cloud" style="top:{c.top}%; --s:{c.scale}; --dur:{c.dur}s; --delay:{c.delay}s; opacity:{c.op}" viewBox="0 0 220 110" width="220" height="110">
+    {#each clouds as c, i}
+      <svg bind:this={cloudEls[i]} class="cloud" style="top:{c.top}%; opacity:{c.op}" viewBox="0 0 220 110" width="220" height="110">
         <g fill="#fff">
           <circle cx="62" cy="64" r="32" />
           <circle cx="104" cy="48" r="40" />
@@ -44,11 +89,11 @@
         </g>
       </svg>
     {/each}
-    {#each bubbles as b}
-      <span class="bubble" style="left:{b.left}%; width:{b.size}px; height:{b.size}px; --dur:{b.dur}s; --delay:{b.delay}s; --tint:{b.tint}"></span>
+    {#each bubbles as b, i}
+      <span bind:this={bubbleEls[i]} class="bubble" style="left:{b.left}%; width:{b.size}px; height:{b.size}px; --tint:{b.tint}"></span>
     {/each}
-    {#each sparkles as s}
-      <span class="sparkle" style="left:{s.left}%; top:{s.top}%; --dur:{s.dur}s; --delay:{s.delay}s"></span>
+    {#each sparkles as s, i}
+      <svg bind:this={sparkEls[i]} class="sparkle" style="left:{s.left}%; top:{s.top}%" viewBox="0 0 24 24" width="16" height="16"><path d="M12 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z" fill="#fffbe0" /></svg>
     {/each}
   {/if}
 </div>
@@ -63,7 +108,7 @@
   }
   .wash {
     position: absolute;
-    inset: -20%;
+    inset: 0;
     background:
       radial-gradient(60% 55% at 15% 10%, #d3ebfa 0, transparent 70%),
       radial-gradient(55% 50% at 90% 18%, #eadffb 0, transparent 70%),
@@ -71,16 +116,12 @@
       radial-gradient(50% 50% at 8% 90%, #dcf4e8 0, transparent 70%),
       linear-gradient(160deg, var(--bg-a), var(--bg-b) 55%, var(--bg-c));
   }
-  /* A full-screen layer that animates costs real GPU time every frame, so the wash stays still and two
-     small soft glows drift slowly over it instead ("gentle gradient movement" at a fraction of the cost). */
   .glow {
     position: absolute;
     width: 46vmax;
     height: 46vmax;
     border-radius: 50%;
     background: radial-gradient(circle, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0) 66%);
-    will-change: transform;
-    animation: glow-a 70s ease-in-out infinite alternate;
   }
   .g1 {
     left: -12vmax;
@@ -90,34 +131,12 @@
     right: -14vmax;
     bottom: -16vmax;
     background: radial-gradient(circle, rgba(255, 224, 238, 0.65), rgba(255, 224, 238, 0) 66%);
-    animation-name: glow-b;
-    animation-duration: 90s;
-  }
-  @keyframes glow-a {
-    to {
-      transform: translate3d(16vmax, 12vmax, 0);
-    }
-  }
-  @keyframes glow-b {
-    to {
-      transform: translate3d(-18vmax, -10vmax, 0);
-    }
   }
   .cloud {
     position: absolute;
-    left: -260px;
-    transform: scale(var(--s));
-    animation: float var(--dur) linear infinite;
-    animation-delay: var(--delay);
+    left: 0;
     will-change: transform;
-  }
-  @keyframes float {
-    from {
-      transform: translate3d(0, 0, 0) scale(var(--s));
-    }
-    to {
-      transform: translate3d(calc(100vw + 560px), 0, 0) scale(var(--s));
-    }
+    transform: translate3d(-300px, 0, 0);
   }
   .bubble {
     position: absolute;
@@ -126,53 +145,11 @@
     background: radial-gradient(circle at 32% 30%, rgba(255, 255, 255, 0.95), var(--tint) 55%, transparent 72%);
     border: 1px solid rgba(255, 255, 255, 0.8);
     opacity: 0;
-    animation: rise var(--dur) ease-in infinite;
-    animation-delay: var(--delay);
     will-change: transform, opacity;
-  }
-  @keyframes rise {
-    0% {
-      transform: translate3d(0, 0, 0);
-      opacity: 0;
-    }
-    10% {
-      opacity: 0.7;
-    }
-    85% {
-      opacity: 0.5;
-    }
-    100% {
-      transform: translate3d(24px, -110vh, 0);
-      opacity: 0;
-    }
   }
   .sparkle {
     position: absolute;
-    width: 14px;
-    height: 14px;
     opacity: 0;
-    background: #fffbe0;
-    clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
-    animation: twinkle var(--dur) ease-in-out infinite;
-    animation-delay: var(--delay);
-  }
-  @keyframes twinkle {
-    0%,
-    70%,
-    100% {
-      opacity: 0;
-      transform: scale(0.4) rotate(0deg);
-    }
-    80% {
-      opacity: 0.95;
-      transform: scale(1) rotate(45deg);
-    }
-    90% {
-      opacity: 0;
-      transform: scale(0.6) rotate(90deg);
-    }
-  }
-  :global(:root[data-paused='true']) .ambient * {
-    animation-play-state: paused !important;
+    will-change: opacity;
   }
 </style>

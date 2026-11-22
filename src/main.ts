@@ -5,6 +5,7 @@ import { initAudio } from './core/audio';
 import { loadCatalog } from './core/content/registry';
 import { runLeaveGuards } from './core/router';
 import { applyUiScale } from './core/display';
+import { isAppHidden, onVisibilityChange } from './core/visibility';
 import { applySettingsToDocument, getSettings, loadSettings, settings, updateSettings } from './core/settings';
 import { getStorage, isTauri } from './core/storage';
 import { refreshArtworks } from './features/gallery/artwork';
@@ -28,8 +29,8 @@ async function boot() {
   await Promise.all([loadCatalog(), refreshArtworks()]);
 
   // Pause decorative animation when the window is hidden or minimised.
-  const syncPaused = () => document.documentElement.setAttribute('data-paused', String(document.hidden));
-  document.addEventListener('visibilitychange', syncPaused);
+  const syncPaused = () => document.documentElement.setAttribute('data-paused', String(isAppHidden()));
+  onVisibilityChange(syncPaused);
   syncPaused();
 
   if (isTauri()) {

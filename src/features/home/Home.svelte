@@ -7,9 +7,14 @@
   import { openArtwork } from '../books/open';
   import CoverImg from '../books/CoverImg.svelte';
   import { sfx } from '../../core/audio';
+  import { onMount } from 'svelte';
+  import { onAmbientTick } from '../../ui/ticker';
 
   const hour = new Date().getHours();
   const greeting = hour < 5 ? 'Peaceful night' : hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
+
+  let heroEl: HTMLDivElement | undefined = $state();
+  onMount(() => onAmbientTick((t) => heroEl && (heroEl.style.transform = `translate3d(0,${(Math.sin(t * 0.9) * -6).toFixed(1)}px,0)`)));
 
   const latest = $derived($artworks[0]);
   const recent = $derived($artworks.slice(0, 4));
@@ -23,7 +28,7 @@
       <h1>Paint something peaceful.</h1>
       <p class="sub">Soft colors, slow clouds and nothing to win. Pick up a brush whenever you like — your art saves itself.</p>
     </div>
-    <div class="hero-cloud" aria-hidden="true">
+    <div class="hero-cloud" aria-hidden="true" bind:this={heroEl}>
       <svg viewBox="0 0 260 150" width="260" height="150"><g fill="#fff"><circle cx="78" cy="88" r="40"/><circle cx="128" cy="62" r="52"/><circle cx="184" cy="84" r="42"/><rect x="36" y="82" width="190" height="52" rx="26"/></g><circle cx="100" cy="98" r="5" fill="#7c77a1"/><circle cx="156" cy="98" r="5" fill="#7c77a1"/><path d="M118 110q10 11 20 0" stroke="#7c77a1" stroke-width="4" fill="none" stroke-linecap="round"/><ellipse cx="84" cy="112" rx="10" ry="6" fill="#ffc0d6" opacity=".8"/><ellipse cx="172" cy="112" rx="10" ry="6" fill="#ffc0d6" opacity=".8"/></svg>
     </div>
   </header>
@@ -130,12 +135,7 @@
   }
   .hero-cloud {
     flex: none;
-    animation: bob 7s ease-in-out infinite;
-  }
-  @keyframes bob {
-    50% {
-      transform: translateY(-8px);
-    }
+    will-change: transform;
   }
   .actions {
     display: grid;
