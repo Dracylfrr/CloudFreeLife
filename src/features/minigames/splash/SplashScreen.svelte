@@ -260,7 +260,6 @@
     padding: 8px 14px;
     border-radius: 999px;
     background: var(--panel);
-    backdrop-filter: blur(12px);
     box-shadow: var(--shadow-s);
   }
   .bar h2 {

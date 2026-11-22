@@ -208,6 +208,11 @@ img {
   transition-duration: 0.001ms !important;
   scroll-behavior: auto !important;
 }
-:root[data-motion='reduced'] .ambient {
+:root[data-motion='reduced'] .ambient .cloud,
+:root[data-motion='reduced'] .ambient .bubble,
+:root[data-motion='reduced'] .ambient .sparkle {
   display: none;
+}
+:root[data-motion='reduced'] .ambient .wash {
+  animation: none;
 }

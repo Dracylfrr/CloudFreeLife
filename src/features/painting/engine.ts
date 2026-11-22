@@ -741,5 +741,10 @@ export class PaintEngine {
     this.raf = 0;
     this.anims = [];
     this.history.clear();
+    // Release the canvas backing stores right away instead of waiting for garbage collection.
+    for (const c of [this.bg, this.paint, this.lines, this.fx, this.stroke, this.snap, this.tmp]) {
+      c.width = 0;
+      c.height = 0;
+    }
   }
 }

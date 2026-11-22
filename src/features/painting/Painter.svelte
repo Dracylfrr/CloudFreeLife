@@ -3,7 +3,7 @@
   import { CANVAS_H, CANVAS_W } from '../../core/config';
   import { Autosaver } from '../../core/autosave';
   import { asset, findBook, findPage } from '../../core/content/registry';
-  import { confirmDialog, toast } from '../../core/feedback';
+  import { confirmDialog, confirmRequest, toast } from '../../core/feedback';
   import { navigate, onBeforeLeave } from '../../core/router';
   import { brushSound, sfx } from '../../core/audio';
   import { settings, updateSettings } from '../../core/settings';
@@ -289,7 +289,7 @@
   // ------------------------------------------------------------- keyboard
 
   function key(e: KeyboardEvent) {
-    if (!ready || (e.target instanceof HTMLInputElement && e.target.type !== 'range')) return;
+    if (!ready || $confirmRequest || (e.target instanceof HTMLInputElement && e.target.type !== 'range')) return;
     const k = e.key.toLowerCase();
     if ((e.ctrlKey || e.metaKey) && k === 'z') {
       e.preventDefault();
@@ -440,7 +440,6 @@
     padding: 8px 14px;
     border-radius: 999px;
     background: var(--panel);
-    backdrop-filter: blur(12px);
     box-shadow: var(--shadow-s);
     flex-wrap: nowrap;
     overflow: hidden;
@@ -500,7 +499,6 @@
     padding: 10px 6px;
     border-radius: var(--radius-l);
     background: var(--panel);
-    backdrop-filter: blur(12px);
     box-shadow: var(--shadow-m);
     display: flex;
     flex-direction: column;

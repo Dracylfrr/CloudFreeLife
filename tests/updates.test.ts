@@ -17,7 +17,8 @@ import {
   releaseMayMatter,
   type ReleaseInfo
 } from '../src/features/updates/release';
-import { installContentUpdate, runUpdateCheck, toastCandidate, type UpdateState } from '../src/features/updates/updater';
+import { hideForNow, installContentUpdate, runUpdateCheck, toastCandidate, updateState, type UpdateState } from '../src/features/updates/updater';
+import { get } from 'svelte/store';
 import { readAllText } from './helpers/diskTree';
 
 const enc = (s: string) => new TextEncoder().encode(s);
@@ -148,6 +149,15 @@ describe('update parsing', () => {
     expect(toastCandidate(state, [])).toBe(item);
     expect(toastCandidate(state, ['app:1.1.0'])).toBeNull();
     expect(toastCandidate({ ...state, hidden: ['app:1.1.0'] }, [])).toBeNull();
+  });
+
+  it('"Later" hides every currently available update so a second notice never pops up', () => {
+    const app = { kind: 'app', version: '1.1.0', notes: '', releaseUrl: '' } as const;
+    const book = { kind: 'content', contentKind: 'book', id: 'castle_dreams', name: 'Castle Dreams', description: '', version: '1.0.0', minAppVersion: '1.0.0', releaseUrl: '', downloadUrl: '', asset: { name: '', sha256: '', size: 1, contentType: '' } } as const;
+    updateState.set({ outcome: 'available', available: [app, book], lastChecked: 1, message: '', busy: [], hidden: [] });
+    hideForNow(app);
+    expect(toastCandidate(get(updateState), [])).toBeNull();
+    expect(get(updateState).available).toHaveLength(2); // still listed in the Update Center
   });
 });
 

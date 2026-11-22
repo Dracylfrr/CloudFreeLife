@@ -120,7 +120,6 @@
     padding: 16px;
     border-radius: var(--radius-l);
     background: var(--panel);
-    backdrop-filter: blur(12px);
     box-shadow: var(--shadow-m);
     display: flex;
     flex-direction: column;

@@ -1,0 +1,11 @@
+{
+  "id": "castle_dreams",
+  "name": "Castle Dreams",
+  "description": "Towers, drawbridges and dragons that only want a hug.",
+  "cover": "cover.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "kind": "coloring",
+  "accent": "#a698e0",
+  "pages": ["01_gate_house", "02_dragon_tower"]
+}

@@ -175,3 +175,44 @@ describe('content compatibility', () => {
     expect(cat.books.find((b) => b.manifest.id === 'cloud_dreams')!.manifest.name).toBe('Cloud Dreams Deluxe');
   });
 });
+
+describe('documentation templates', () => {
+  const load = async (f: string) => JSON.parse(await (await import('node:fs/promises')).readFile(`docs/templates/${f}`, 'utf8'));
+
+  it('every template validates with the real validators', async () => {
+    expect(validateBook(await load('book_manifest.json')).ok).toBe(true);
+    expect(validatePage(await load('page_manifest.json')).ok).toBe(true);
+    expect(validateRegions(await load('regions.json')).ok).toBe(true);
+    expect(validatePalette(await load('palette.json')).ok).toBe(true);
+    expect(validateBreakerLevel(await load('breaker_level.json')).ok).toBe(true);
+    expect(validateSplashLevel(await load('splash_level.json')).ok).toBe(true);
+  });
+
+  it('the template line art lists exactly the regions in regions.json', async () => {
+    const fs = await import('node:fs/promises');
+    const svg = await fs.readFile('docs/templates/lineart.svg', 'utf8');
+    const regions = await load('regions.json');
+    expect(extractRegions(svg).map((r) => r.id)).toEqual(regions.regions.map((r: { id: string }) => r.id));
+  });
+
+  it('the release manifest example parses once placeholders are replaced', async () => {
+    const { parseReleaseManifest } = await import('../src/features/updates/release');
+    const text = (await (await import('node:fs/promises')).readFile('docs/templates/release-manifest.example.json', 'utf8')).replace(/<64 hex characters>/g, 'a'.repeat(64));
+    expect(parseReleaseManifest(JSON.parse(text)).ok).toBe(true);
+  });
+});
+
+describe('bundled asset loading', () => {
+  it('reads small assets that the bundler inlined as data: URLs without using fetch (CSP safe)', async () => {
+    const { BundledTree } = await import('../src/core/content/tree');
+    const tree = new BundledTree({}, { '/content/a/plain.svg': "data:image/svg+xml,%3Csvg%20a='1'/%3E", '/content/a/b64.svg': `data:image/svg+xml;base64,${btoa('<svg b="2"/>')}` });
+    expect(await tree.readText('a/plain.svg')).toBe("<svg a='1'/>");
+    expect(await tree.readText('a/b64.svg')).toBe('<svg b="2"/>');
+    expect(await tree.readText('a/missing.svg')).toBeNull();
+  });
+
+  it('keeps the production build from inlining art', async () => {
+    const cfg = (await import('node:fs/promises')).readFile('vite.config.ts', 'utf8');
+    expect(await cfg).toMatch(/assetsInlineLimit:\s*0/);
+  });
+});

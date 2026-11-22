@@ -1,0 +1,34 @@
+name: Content release
+
+# Push a tag such as castle_dreams_v1.0.0 to publish a downloadable content pack.
+# The pack source must be committed under content-packs/<id>/ (same layout as content/).
+# content-packs/<id>/pack.json holds the pack's name, description, kind and minAppVersion.
+on:
+  push:
+    tags: ['*_v[0-9]*.[0-9]*.[0-9]*']
+
+permissions:
+  contents: write
+
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Build the pack
+        shell: bash
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          ID="${TAG%_v*}"
+          VERSION="${TAG##*_v}"
+          NAME=$(node -e "const m=require('./content-packs/$ID/pack.json');console.log(m.name)")
+          DESC=$(node -e "const m=require('./content-packs/$ID/pack.json');console.log(m.description||'')")
+          MIN=$(node -e "const m=require('./content-packs/$ID/pack.json');console.log(m.minAppVersion||'1.0.0')")
+          KIND=$(node -e "const m=require('./content-packs/$ID/pack.json');console.log(m.kind||'book')")
+          node scripts/pack-content.mjs "content-packs/$ID/content" --id "$ID" --version "$VERSION" --name "$NAME" --description "$DESC" --min-app "$MIN" --kind "$KIND" --out release
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: release/*

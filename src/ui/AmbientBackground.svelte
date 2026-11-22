@@ -32,6 +32,8 @@
 <div class="ambient" class:calm aria-hidden="true">
   <div class="wash"></div>
   {#if !calm}
+    <span class="glow g1"></span>
+    <span class="glow g2"></span>
     {#each clouds as c}
       <svg class="cloud" style="top:{c.top}%; --s:{c.scale}; --dur:{c.dur}s; --delay:{c.delay}s; opacity:{c.op}" viewBox="0 0 220 110" width="220" height="110">
         <g fill="#fff">
@@ -68,17 +70,37 @@
       radial-gradient(60% 60% at 70% 95%, #fde3ee 0, transparent 70%),
       radial-gradient(50% 50% at 8% 90%, #dcf4e8 0, transparent 70%),
       linear-gradient(160deg, var(--bg-a), var(--bg-b) 55%, var(--bg-c));
-    animation: drift 60s ease-in-out infinite alternate;
   }
-  .calm .wash {
-    animation: none;
+  /* A full-screen layer that animates costs real GPU time every frame, so the wash stays still and two
+     small soft glows drift slowly over it instead ("gentle gradient movement" at a fraction of the cost). */
+  .glow {
+    position: absolute;
+    width: 46vmax;
+    height: 46vmax;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0) 66%);
+    will-change: transform;
+    animation: glow-a 70s ease-in-out infinite alternate;
   }
-  @keyframes drift {
-    from {
-      transform: translate3d(0, 0, 0) scale(1);
-    }
+  .g1 {
+    left: -12vmax;
+    top: -14vmax;
+  }
+  .g2 {
+    right: -14vmax;
+    bottom: -16vmax;
+    background: radial-gradient(circle, rgba(255, 224, 238, 0.65), rgba(255, 224, 238, 0) 66%);
+    animation-name: glow-b;
+    animation-duration: 90s;
+  }
+  @keyframes glow-a {
     to {
-      transform: translate3d(-3%, 2%, 0) scale(1.06);
+      transform: translate3d(16vmax, 12vmax, 0);
+    }
+  }
+  @keyframes glow-b {
+    to {
+      transform: translate3d(-18vmax, -10vmax, 0);
     }
   }
   .cloud {
@@ -88,7 +110,6 @@
     animation: float var(--dur) linear infinite;
     animation-delay: var(--delay);
     will-change: transform;
-    filter: drop-shadow(0 8px 14px rgba(150, 140, 210, 0.12));
   }
   @keyframes float {
     from {

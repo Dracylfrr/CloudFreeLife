@@ -4,6 +4,7 @@ import App from './App.svelte';
 import { initAudio } from './core/audio';
 import { loadCatalog } from './core/content/registry';
 import { runLeaveGuards } from './core/router';
+import { applyUiScale } from './core/display';
 import { applySettingsToDocument, getSettings, loadSettings, settings, updateSettings } from './core/settings';
 import { getStorage, isTauri } from './core/storage';
 import { refreshArtworks } from './features/gallery/artwork';
@@ -18,7 +19,10 @@ async function boot() {
   const firstRun = (await st.readText('settings.json')) === null;
   await loadSettings();
   if (firstRun && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) updateSettings({ reducedMotion: true });
-  settings.subscribe(applySettingsToDocument);
+  settings.subscribe((s) => {
+    applySettingsToDocument(s);
+    void applyUiScale(s.uiScale);
+  });
   initAudio();
 
   await Promise.all([loadCatalog(), refreshArtworks()]);

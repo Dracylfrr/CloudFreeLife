@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "release": "1.1.0",
+  "notes": "New: Castle Dreams coloring book.",
+  "app": {
+    "version": "1.1.0",
+    "asset": {
+      "name": "Cloud-Freelife_1.1.0_x64-setup.exe",
+      "sha256": "<64 hex characters>",
+      "size": 3500000,
+      "contentType": "application/octet-stream"
+    }
+  },
+  "content": [
+    {
+      "type": "book",
+      "id": "castle_dreams",
+      "name": "Castle Dreams",
+      "description": "A new coloring book of castles and gentle dragons.",
+      "version": "1.0.0",
+      "minAppVersion": "1.0.0",
+      "asset": {
+        "name": "castle_dreams_v1.0.0.cfpack",
+        "sha256": "<64 hex characters>",
+        "size": 120000,
+        "contentType": "application/octet-stream"
+      }
+    }
+  ]
+}

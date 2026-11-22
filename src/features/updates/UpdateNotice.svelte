@@ -31,7 +31,6 @@
     padding: 10px 12px 10px 16px;
     border-radius: 999px;
     background: var(--panel-strong);
-    backdrop-filter: blur(12px);
     box-shadow: var(--shadow-m);
     border: 1px solid rgba(255, 255, 255, 0.9);
     animation: slide 0.5s var(--ease);

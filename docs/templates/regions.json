@@ -1,0 +1,8 @@
+{
+  "viewBox": [1000, 750],
+  "regions": [
+    { "id": "sky", "name": "Sky", "suggested": "#dff0fb" },
+    { "id": "gate_wall", "name": "Gate wall", "suggested": "#e3e0f0" },
+    { "id": "door", "name": "Door", "suggested": "#e9c7a3" }
+  ]
+}

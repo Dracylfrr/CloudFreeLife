@@ -60,6 +60,12 @@ export class BundledTree implements ContentTree {
       const j = this.json['/content/' + path];
       return j === undefined ? null : JSON.stringify(j);
     }
+    if (u.startsWith('data:')) {
+      // small assets can be inlined by the bundler; decode without touching the network stack (CSP)
+      const comma = u.indexOf(',');
+      const body = u.slice(comma + 1);
+      return u.slice(5, comma).includes(';base64') ? atob(body) : decodeURIComponent(body);
+    }
     const res = await fetch(u);
     return res.ok ? await res.text() : null;
   }

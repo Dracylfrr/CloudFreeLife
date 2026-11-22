@@ -140,10 +140,12 @@ export function startupUpdateCheck(): void {
   setTimeout(run, 2500);
 }
 
-export function hideForNow(item: UpdateItem) {
-  updateState.update((s) => ({ ...s, hidden: [...s.hidden, updateKey(item)] }));
+/** "Later" / "View": hide the notification for everything currently available (they stay listed in the Update Center). */
+export function hideForNow(_item?: UpdateItem) {
+  const keys = get(updateState).available.map(updateKey);
+  updateState.update((s) => ({ ...s, hidden: [...new Set([...s.hidden, ...keys])] }));
   const dismissed = new Set(getSettings().dismissedUpdates);
-  dismissed.add(updateKey(item));
+  for (const k of keys) dismissed.add(k);
   updateSettings({ dismissedUpdates: [...dismissed] });
 }
 

@@ -46,7 +46,6 @@
     padding: 20px 14px 16px;
     border-radius: var(--radius-xl);
     background: var(--panel);
-    backdrop-filter: blur(14px);
     box-shadow: var(--shadow-m);
     border: 1px solid rgba(255, 255, 255, 0.8);
     display: flex;

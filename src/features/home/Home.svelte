@@ -131,7 +131,6 @@
   .hero-cloud {
     flex: none;
     animation: bob 7s ease-in-out infinite;
-    filter: drop-shadow(0 14px 18px rgba(130, 120, 200, 0.22));
   }
   @keyframes bob {
     50% {
@@ -150,7 +149,6 @@
     padding: 18px;
     border-radius: var(--radius-xl);
     background: var(--panel);
-    backdrop-filter: blur(10px);
     box-shadow: var(--shadow-m);
     border: 1px solid rgba(255, 255, 255, 0.85);
     text-align: left;

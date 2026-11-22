@@ -1,0 +1,19 @@
+{
+  "id": "moon_garden",
+  "name": "Moon Garden",
+  "description": "A quiet garden under the moon.",
+  "minigame": "pastel_breaker",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "objective": "Pop every block. Lilac blocks take two hits.",
+  "grid": [
+    "..bbbbbbbb..",
+    ".bllllllllb.",
+    "bllppppppllb",
+    ".bllllllllb.",
+    "..bbbbbbbb.."
+  ],
+  "legend": { "b": "#bfe4f7", "l": "#d9cdf6", "p": "#ffd3e2" },
+  "tough": ["l"]
+}

@@ -15,6 +15,8 @@ export default defineConfig({
   build: {
     target: 'es2022',
     sourcemap: false,
+    // Never inline art as data: URLs - the app's CSP only allows fetching same-origin files.
+    assetsInlineLimit: 0,
     chunkSizeWarningLimit: 800
   },
   test: {

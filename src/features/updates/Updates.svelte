@@ -66,7 +66,8 @@
         {:else}Couldn't check for updates{/if}
       </strong>
       <p class="muted">
-        {#if $updateState.message && $updateState.outcome !== 'idle'}{$updateState.message}
+        {#if $updateState.outcome === 'available'}Choose what to install below. Nothing changes until you say so.
+        {:else if $updateState.message && $updateState.outcome !== 'idle'}{$updateState.message}
         {:else}You're running v{APP_VERSION}. {$settings.lastUpdateCheck ? `Last checked ${formatDate($settings.lastUpdateCheck)}.` : 'Updates are checked once when the app starts.'}{/if}
       </p>
     </div>

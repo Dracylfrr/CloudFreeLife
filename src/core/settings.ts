@@ -168,7 +168,6 @@ export function motionReduced(s: Settings = get(store)): boolean {
 export function applySettingsToDocument(s: Settings) {
   if (typeof document === 'undefined') return;
   const root = document.documentElement;
-  root.style.fontSize = `${16 * s.uiScale}px`;
   root.dataset.motion = s.reducedMotion || s.lowPowerMode ? 'reduced' : 'full';
   root.dataset.contrast = s.highContrast ? 'high' : 'normal';
   root.dataset.particles = s.disableParticles || s.lowPowerMode ? 'off' : 'on';

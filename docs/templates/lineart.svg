@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+  <!-- Paper. Not colorable (no data-region). -->
+  <rect width="1000" height="750" fill="#ffffff"/>
+  <g stroke="#6e6a8e" stroke-linejoin="round" stroke-linecap="round">
+    <!-- Each colorable shape: data-region = id from regions.json, white fill, outline stroke.
+         Shapes are painted in order, so later shapes sit in front of earlier ones. -->
+    <path data-region="sky"       data-name="Sky"       d="M-6 -6h1012v762h-1012z" fill="#ffffff" stroke-width="5"/>
+    <path data-region="gate_wall" data-name="Gate wall" d="M250 300h500v350h-500z" fill="#ffffff" stroke-width="5"/>
+    <path data-region="door"      data-name="Door"      d="M420 650V520a80 80 0 0 1 160 0V650z" fill="#ffffff" stroke-width="5"/>
+    <!-- Detail lines and decoration: no data-region, fill="none". They stay visible on top of any color. -->
+    <path d="M250 400h500M250 500h500" fill="none" stroke-width="3.5"/>
+    <circle cx="560" cy="580" r="7" fill="#6e6a8e" stroke="none"/>
+  </g>
+</svg>

@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import { buildCatalog } from '../src/core/content/registry';
+import type { SplashObjective } from '../src/core/manifests';
 import { createRng } from '../src/core/rng';
 import { makeSplat } from '../src/core/splat';
 import { BreakerGame, FIELD_W, levelToBlocks, randomLevel } from '../src/features/minigames/breaker/logic';
@@ -179,7 +180,7 @@ describe('splatter and Splash Wall goals', () => {
   it('region goals need half of each region painted', () => {
     const s = wall();
     for (let i = 0; i < 50; i++) s.paint(i, 1, 1);
-    const g = { type: 'regions', regions: ['top', 'bottom'] } as const;
+    const g: SplashObjective = { type: 'regions', regions: ['top', 'bottom'] };
     expect(evaluateGoal(g, s).done).toBe(false);
     for (let i = 50; i < 80; i++) s.paint(i, 2, 2);
     const done = evaluateGoal(g, s);
@@ -189,7 +190,7 @@ describe('splatter and Splash Wall goals', () => {
 
   it('color-match goals check the color painted, and repainting changes the answer', () => {
     const s = wall();
-    const g = { type: 'color_match', targets: { top: '#ff0000', bottom: '#00ff00' } } as const;
+    const g: SplashObjective = { type: 'color_match', targets: { top: '#ff0000', bottom: '#00ff00' } };
     for (let i = 0; i < 50; i++) s.paint(i, 1, 1);
     for (let i = 50; i < 100; i++) s.paint(i, 2, 1); // wrong color on the bottom
     let r = evaluateGoal(g, s);
