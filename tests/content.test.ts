@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { buildCatalog } from '../src/core/content/registry';
 import { MapTree } from '../src/core/content/tree';
 import { luminance, saturation } from '../src/core/util';
-import { validateBook, validateBreakerLevel, validatePage, validatePalette, validateRegions, validateSplashLevel } from '../src/core/manifests';
+import { validateBook, validateBreakerLevel, validateMemoryLevel, validatePage, validatePalette, validateRegions, validateSplashLevel } from '../src/core/manifests';
 import { extractRegions } from '../src/features/painting/regionMap';
 import { DiskTree, readAllText } from './helpers/diskTree';
 
@@ -13,15 +13,20 @@ describe('bundled content', () => {
   it('loads with nothing skipped', async () => {
     const cat = await catalogP;
     expect(cat.skipped).toEqual([]);
-    expect(cat.books.map((b) => b.manifest.id).sort()).toEqual(['cloud_dreams', 'cosmic_colors', 'free_canvas', 'peaceful_places']);
+    expect(cat.books.map((b) => b.manifest.id).sort()).toEqual(['castle_dreams', 'cloud_dreams', 'cosmic_colors', 'free_canvas', 'ocean_friends', 'peaceful_places']);
   });
 
-  it('ships at least 6 pages in each of the three coloring books (18 total)', async () => {
+  it('ships at least 6 pages in each of the three original books (18) and 5 in each 1.1 book (28 total)', async () => {
     const cat = await catalogP;
     for (const id of ['cloud_dreams', 'cosmic_colors', 'peaceful_places']) {
       expect(cat.books.find((b) => b.manifest.id === id)!.pages.length).toBeGreaterThanOrEqual(6);
     }
-    expect(cat.books.reduce((n, b) => n + b.pages.length, 0)).toBeGreaterThanOrEqual(18);
+    for (const id of ['castle_dreams', 'ocean_friends']) {
+      const b = cat.books.find((x) => x.manifest.id === id)!;
+      expect(b.pages.length).toBeGreaterThanOrEqual(5);
+      expect(b.manifest.minAppVersion).toBe('1.1.0'); // new content says which app version it needs
+    }
+    expect(cat.books.reduce((n, b) => n + b.pages.length, 0)).toBe(28);
   });
 
   it('keeps human-readable folder names (no generated ids)', async () => {
@@ -68,7 +73,7 @@ describe('bundled content', () => {
 
   it('palettes: ten palettes with friendly names and soft colors', async () => {
     const cat = await catalogP;
-    expect(cat.palettes.length).toBeGreaterThanOrEqual(10);
+    expect(cat.palettes.length).toBeGreaterThanOrEqual(12);
     const required = ['Cloud Morning', 'Cotton Candy', 'Lavender Dream', 'Mint Garden', 'Peach Sunset', 'Soft Rainbow', 'Galaxy Pastel', 'Beach Breeze', 'Meadow Calm', 'Moonlight'];
     expect(cat.palettes.map((p) => p.manifest.name)).toEqual(expect.arrayContaining(required));
     const names = new Set(cat.palettes.flatMap((p) => p.manifest.colors.map((c) => c.name)));
@@ -108,6 +113,28 @@ describe('bundled content', () => {
       if (g.type === 'regions') for (const r of g.regions) expect(ids.has(r), `${l.dir}: ${r}`).toBe(true);
       if (g.type === 'color_match') for (const r of Object.keys(g.targets)) expect(ids.has(r), `${l.dir}: ${r}`).toBe(true);
     }
+  });
+});
+
+describe('Memory Meadow content', () => {
+  it('ships six levels whose cards fill complete rows', async () => {
+    const cat = await catalogP;
+    expect(cat.memoryLevels.map((l) => l.folder)).toEqual(['01_first_pairs', '02_sky_friends', '03_garden_pairs', '04_ocean_pairs', '05_cosmic_pairs', '06_big_meadow']);
+    const files = await readAllText();
+    for (const l of cat.memoryLevels) {
+      expect((l.manifest.symbols.length * 2) % l.manifest.columns, l.folder).toBe(0);
+      expect(`${l.dir}/${l.manifest.thumbnail}` in files).toBe(true);
+      expect(l.manifest.minAppVersion).toBe('1.1.0');
+    }
+  });
+
+  it('validates memory levels', () => {
+    const base = { id: 'm1', name: 'M', description: 'x', minigame: 'memory_meadow', thumbnail: 't.svg', version: '1.0.0', minAppVersion: '1.1.0', objective: 'o', columns: 4, symbols: ['cloud', 'star', 'moon', 'sun'] };
+    expect(validateMemoryLevel(base).ok).toBe(true);
+    expect(validateMemoryLevel({ ...base, columns: 3 }).ok).toBe(false); // 8 cards do not fill rows of 3
+    expect(validateMemoryLevel({ ...base, symbols: ['cloud', 'cloud'] }).ok).toBe(false);
+    expect(validateMemoryLevel({ ...base, symbols: ['cloud', 'dragon'] }).ok).toBe(false);
+    expect(validateMemoryLevel({ ...base, symbols: ['cloud'] }).ok).toBe(false);
   });
 });
 

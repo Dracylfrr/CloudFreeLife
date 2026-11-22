@@ -1,0 +1,11 @@
+{
+  "id": "fish_school",
+  "name": "Fish School",
+  "description": "Four colorful fish swimming through a sunbeam.",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

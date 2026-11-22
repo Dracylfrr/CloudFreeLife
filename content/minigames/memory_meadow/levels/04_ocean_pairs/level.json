@@ -1,0 +1,22 @@
+{
+  "id": "ocean_pairs",
+  "name": "Ocean Pairs",
+  "description": "Treasures from the shallows.",
+  "minigame": "memory_meadow",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.0",
+  "objective": "Match eight pairs from the sea.",
+  "columns": 4,
+  "cardBack": "#bdeeea",
+  "symbols": [
+    "fish",
+    "shell",
+    "drop",
+    "star",
+    "cloud",
+    "heart",
+    "moon",
+    "rainbow"
+  ]
+}

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+<rect width="1000" height="750" fill="#ffffff"/>
+<g stroke="#6e6a8e" stroke-linejoin="round" stroke-linecap="round">
+<path data-region="back_wall" data-name="Wall" d="M-6 -6h1012v600h-1012z" fill="#e6d8f8" stroke-width="5"/>
+<path d="M0 120H1000M0 240H1000M0 360H1000M0 480H1000" fill="none" stroke-width="2.5"/>
+<path data-region="floor" data-name="Floor" d="M-6 560h1012v200h-1012z" fill="#f8e4c2" stroke-width="5"/>
+<path d="M0 640H1000M0 700H1000M200 560l-60 190M400 560l-30 190M600 560l30 190M800 560l60 190" fill="none" stroke-width="3"/>
+<path data-region="window_left" data-name="Window glass" d="M90 400V210A60 60 0 0 1 210 210V400z" fill="#bfe4f7" stroke-width="5"/>
+<path data-region="window_right" data-name="Window glass" d="M790 400V210A60 60 0 0 1 910 210V400z" fill="#bfe4f7" stroke-width="5"/>
+<path d="M150 150v250M90 270h120M850 150v250M790 270h120" fill="none" stroke-width="4"/>
+<path data-region="banner_left" data-name="Banner" d="M260 96Q260 90 266 90L334 90Q340 90 340 96L340 324Q340 330 335.8 325.8L304.2 294.2Q300 290 295.8 294.2L264.2 325.8Q260 330 260 324z" fill="#ffd3e2" stroke-width="5"/>
+<path data-region="banner_right" data-name="Banner" d="M660 96Q660 90 666 90L734 90Q740 90 740 96L740 324Q740 330 735.8 325.8L704.2 294.2Q700 290 695.8 294.2L664.2 325.8Q660 330 660 324z" fill="#ffd3e2" stroke-width="5"/>
+<path data-region="banner_star_left" data-name="Banner star" d="M298.2 146.1Q300 142 301.8 146.1L305.8 155.4Q307.6 159.5 312.1 159.9L322.2 160.9Q326.6 161.3 323.3 164.3L315.7 171Q312.4 174 313.3 178.4L315.5 188.3Q316.5 192.7 312.6 190.4L303.9 185.3Q300 183 296.1 185.3L287.4 190.4Q283.5 192.7 284.5 188.3L286.7 178.4Q287.6 174 284.3 171L276.7 164.3Q273.4 161.3 277.8 160.9L287.9 159.9Q292.4 159.5 294.2 155.4z" fill="#fff2bd" stroke-width="5"/>
+<path data-region="banner_star_right" data-name="Banner star" d="M698.2 146.1Q700 142 701.8 146.1L705.8 155.4Q707.6 159.5 712.1 159.9L722.2 160.9Q726.6 161.3 723.3 164.3L715.7 171Q712.4 174 713.3 178.4L715.5 188.3Q716.5 192.7 712.6 190.4L703.9 185.3Q700 183 696.1 185.3L687.4 190.4Q683.5 192.7 684.5 188.3L686.7 178.4Q687.6 174 684.3 171L676.7 164.3Q673.4 161.3 677.8 160.9L687.9 159.9Q692.4 159.5 694.2 155.4z" fill="#fff2bd" stroke-width="5"/>
+<path data-region="carpet" data-name="Carpet" d="M415.9 566.9Q420 560 428 560L572 560Q580 560 584.1 566.9L695.9 753.1Q700 760 692 760L308 760Q300 760 304.1 753.1z" fill="#f6b8cf" stroke-width="5"/>
+<path d="M440 600l-70 160M560 600l70 160" fill="none" stroke-width="3.5" stroke-dasharray="2 9"/>
+<path data-region="throne_back" data-name="Throne back" d="M392 480V250q0-92 108-92t108 92v230z" fill="#fff2bd" stroke-width="5"/>
+<path data-region="throne_arm_left" data-name="Throne arm" d="M392 400H402A20 20 0 0 1 422 420V500A20 20 0 0 1 402 520H392A20 20 0 0 1 372 500V420A20 20 0 0 1 392 400z" fill="#e9c7a3" stroke-width="5"/>
+<path data-region="throne_arm_right" data-name="Throne arm" d="M598 400H608A20 20 0 0 1 628 420V500A20 20 0 0 1 608 520H598A20 20 0 0 1 578 500V420A20 20 0 0 1 598 400z" fill="#e9c7a3" stroke-width="5"/>
+<path data-region="throne_seat" data-name="Seat" d="M408 440H592A16 16 0 0 1 608 456V524A16 16 0 0 1 592 540H408A16 16 0 0 1 392 524V456A16 16 0 0 1 408 440z" fill="#ffc3b0" stroke-width="5"/>
+<path data-region="throne_cushion" data-name="Cushion" d="M438 424H562A18 18 0 0 1 580 442V446A18 18 0 0 1 562 464H438A18 18 0 0 1 420 446V442A18 18 0 0 1 438 424z" fill="#ffd3e2" stroke-width="5"/>
+<path data-region="throne_crown" data-name="Crown" d="M446 250Q440 250 441.1 244.1L448.9 201.9Q450 196 453.8 200.6L471.2 221.4Q475 226 478.2 220.9L496.8 191.1Q500 186 503.2 191.1L521.8 220.9Q525 226 528.8 221.4L546.2 200.6Q550 196 551.1 201.9L558.9 244.1Q560 250 554 250z" fill="#ffe9a8" stroke-width="5"/>
+<circle cx="500" cy="214" r="6" fill="#6e6a8e" stroke="none"/>
+<path data-region="torch_left" data-name="Torch" d="M56 420H60A8 8 0 0 1 68 428V502A8 8 0 0 1 60 510H56A8 8 0 0 1 48 502V428A8 8 0 0 1 56 420z" fill="#e9c7a3" stroke-width="5"/>
+<path data-region="flame_left" data-name="Flame" d="M58 340Q94 390 58 420Q22 390 58 340Z" fill="#ffc3b0" stroke-width="5"/>
+<path data-region="torch_right" data-name="Torch" d="M940 420H944A8 8 0 0 1 952 428V502A8 8 0 0 1 944 510H940A8 8 0 0 1 932 502V428A8 8 0 0 1 940 420z" fill="#e9c7a3" stroke-width="5"/>
+<path data-region="flame_right" data-name="Flame" d="M942 340Q978 390 942 420Q906 390 942 340Z" fill="#ffc3b0" stroke-width="5"/>
+<path d="M500 0V70" fill="none" stroke-width="4"/>
+<path data-region="lantern" data-name="Lantern" d="M484 70H516A14 14 0 0 1 530 84V120A14 14 0 0 1 516 134H484A14 14 0 0 1 470 120V84A14 14 0 0 1 484 70z" fill="#fff2bd" stroke-width="5"/>
+</g></svg>

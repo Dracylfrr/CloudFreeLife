@@ -1,0 +1,11 @@
+{
+  "id": "happy_whale",
+  "name": "Happy Whale",
+  "description": "A big, gentle whale blowing a water spout.",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

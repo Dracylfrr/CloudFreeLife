@@ -1,0 +1,17 @@
+{
+  "id": "first_pairs",
+  "name": "First Pairs",
+  "description": "Three pairs to get started.",
+  "minigame": "memory_meadow",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.0",
+  "objective": "Flip two cards at a time and find every pair.",
+  "columns": 3,
+  "cardBack": "#bfe4f7",
+  "symbols": [
+    "cloud",
+    "star",
+    "moon"
+  ]
+}

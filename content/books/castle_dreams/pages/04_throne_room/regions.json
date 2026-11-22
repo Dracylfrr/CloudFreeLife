@@ -1,0 +1,108 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "back_wall",
+      "name": "Wall",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "floor",
+      "name": "Floor",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "window_left",
+      "name": "Window glass",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "window_right",
+      "name": "Window glass",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "banner_left",
+      "name": "Banner",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "banner_right",
+      "name": "Banner",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "banner_star_left",
+      "name": "Banner star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "banner_star_right",
+      "name": "Banner star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "carpet",
+      "name": "Carpet",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "throne_back",
+      "name": "Throne back",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "throne_arm_left",
+      "name": "Throne arm",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "throne_arm_right",
+      "name": "Throne arm",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "throne_seat",
+      "name": "Seat",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "throne_cushion",
+      "name": "Cushion",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "throne_crown",
+      "name": "Crown",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "torch_left",
+      "name": "Torch",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "flame_left",
+      "name": "Flame",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "torch_right",
+      "name": "Torch",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "flame_right",
+      "name": "Flame",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "lantern",
+      "name": "Lantern",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

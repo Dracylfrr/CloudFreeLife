@@ -1,0 +1,49 @@
+{
+  "id": "ocean_pearl",
+  "name": "Ocean Pearl",
+  "description": "Sea foam, pearl pinks and warm shell sand.",
+  "colors": [
+    {
+      "id": "sea_foam",
+      "name": "Sea Foam",
+      "hex": "#c4ece6"
+    },
+    {
+      "id": "pearl_pink",
+      "name": "Pearl Pink",
+      "hex": "#fbd3df"
+    },
+    {
+      "id": "tide_blue",
+      "name": "Tide Blue",
+      "hex": "#aed6f1"
+    },
+    {
+      "id": "shell_sand",
+      "name": "Shell Sand",
+      "hex": "#f6e3c3"
+    },
+    {
+      "id": "coral_blush",
+      "name": "Coral Blush",
+      "hex": "#ffc4b4"
+    },
+    {
+      "id": "kelp",
+      "name": "Kelp",
+      "hex": "#b2dcb6"
+    },
+    {
+      "id": "lagoon_lilac",
+      "name": "Lagoon Lilac",
+      "hex": "#d9cbf0"
+    },
+    {
+      "id": "moon_pearl",
+      "name": "Moon Pearl",
+      "hex": "#f7f5fc"
+    }
+  ],
+  "minAppVersion": "1.1.0",
+  "version": "1.0.0"
+}

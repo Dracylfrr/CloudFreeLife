@@ -71,7 +71,10 @@ export interface PaletteManifest {
   colors: PaletteColor[];
 }
 
-export type MiniGameId = 'pastel_breaker' | 'splash_wall' | (string & {});
+export type MiniGameId = 'pastel_breaker' | 'splash_wall' | 'memory_meadow' | (string & {});
+
+/** Card pictures Memory Meadow can draw. A level may only use these. */
+export const MEMORY_ICON_IDS = ['cloud', 'star', 'moon', 'sun', 'heart', 'drop', 'flower', 'leaf', 'balloon', 'shell', 'rainbow', 'mushroom', 'fish', 'butterfly', 'planet'] as const;
 
 export interface LevelBase {
   id: string;
@@ -108,7 +111,15 @@ export interface SplashLevel extends LevelBase {
   colors?: string[];
 }
 
-export type LevelManifest = BreakerLevel | SplashLevel | (LevelBase & Record<string, unknown>);
+export interface MemoryLevel extends LevelBase {
+  minigame: 'memory_meadow';
+  /** Cards per row. Total cards = symbols x 2 and must divide evenly. */
+  columns: number;
+  cardBack: string;
+  symbols: string[];
+}
+
+export type LevelManifest = BreakerLevel | SplashLevel | MemoryLevel | (LevelBase & Record<string, unknown>);
 
 // ---------------------------------------------------------------- helpers
 
@@ -385,10 +396,39 @@ export function validateSplashLevel(raw: unknown, where = 'level.json'): Result<
   return done(e, { ...base, minigame: 'splash_wall', wall, goal, colors });
 }
 
+export function validateMemoryLevel(raw: unknown, where = 'level.json'): Result<MemoryLevel> {
+  const e = new Errs(where);
+  if (!isObj(raw)) {
+    e.add('must be a JSON object');
+    return done(e, null as never);
+  }
+  const base = validateLevelBase(raw, e);
+  if (base.minigame && base.minigame !== 'memory_meadow') e.add('"minigame" must be "memory_meadow"');
+  const symbols: string[] = [];
+  if (!Array.isArray(raw.symbols) || raw.symbols.length < 2 || raw.symbols.length > 12) e.add('"symbols" must list 2-12 card pictures');
+  else {
+    const seen = new Set<string>();
+    for (const s of raw.symbols) {
+      if (typeof s !== 'string' || !(MEMORY_ICON_IDS as readonly string[]).includes(s)) e.add(`unknown card picture ${JSON.stringify(s)}`);
+      else if (seen.has(s)) e.add(`duplicate card picture "${s}"`);
+      else {
+        seen.add(s);
+        symbols.push(s);
+      }
+    }
+  }
+  const columns = typeof raw.columns === 'number' && Number.isInteger(raw.columns) ? raw.columns : 0;
+  if (columns < 2 || columns > 6) e.add('"columns" must be a whole number from 2 to 6');
+  else if (symbols.length && (symbols.length * 2) % columns !== 0) e.add(`${symbols.length * 2} cards do not fill rows of ${columns}`);
+  const cardBack = typeof raw.cardBack === 'string' && HEX_RE.test(raw.cardBack) ? raw.cardBack : '#bfe4f7';
+  return done(e, { ...base, minigame: 'memory_meadow', columns, cardBack, symbols });
+}
+
 /** Generic level validation (any mini-game): checks only the shared fields. */
 export function validateLevel(raw: unknown, where = 'level.json'): Result<LevelManifest> {
   if (isObj(raw) && raw.minigame === 'pastel_breaker') return validateBreakerLevel(raw, where);
   if (isObj(raw) && raw.minigame === 'splash_wall') return validateSplashLevel(raw, where);
+  if (isObj(raw) && raw.minigame === 'memory_meadow') return validateMemoryLevel(raw, where);
   const e = new Errs(where);
   if (!isObj(raw)) {
     e.add('must be a JSON object');

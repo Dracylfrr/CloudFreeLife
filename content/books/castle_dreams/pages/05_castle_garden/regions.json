@@ -1,0 +1,143 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sun_rays",
+      "name": "Sun rays",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "hill",
+      "name": "Hill",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "far_wall",
+      "name": "Castle wall",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "far_tower_left",
+      "name": "Tower",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "far_tower_right",
+      "name": "Tower",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "far_roof_left",
+      "name": "Roof",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "far_roof_right",
+      "name": "Roof",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "far_door",
+      "name": "Door",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "lawn",
+      "name": "Lawn",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "garden_path",
+      "name": "Path",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "hedge_left",
+      "name": "Hedge",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "hedge_right",
+      "name": "Hedge",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "fountain_water",
+      "name": "Fountain water",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "fountain_pillar",
+      "name": "Fountain pillar",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "fountain_bowl",
+      "name": "Fountain bowl",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "fountain_basin",
+      "name": "Fountain basin",
+      "suggested": "#a4d2f2"
+    },
+    {
+      "id": "flower_a_petals",
+      "name": "Flower petals",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "flower_a_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_b_petals",
+      "name": "Flower petals",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_b_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_c_petals",
+      "name": "Flower petals",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "flower_c_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_d_petals",
+      "name": "Flower petals",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "flower_d_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

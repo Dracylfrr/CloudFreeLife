@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+<rect width="1000" height="750" fill="#ffffff"/>
+<g stroke="#6e6a8e" stroke-linejoin="round" stroke-linecap="round">
+<path data-region="sky" data-name="Sky" d="M-6 -6h1012v762h-1012z" fill="#dff0fb" stroke-width="5"/>
+<path data-region="sun_rays" data-name="Sun rays" d="M215.3 126.1Q215.3 120.1 221 122L240.3 128.2Q246 130 240.3 131.8L221 138Q215.3 139.9 215.3 133.9zM205.1 165.2Q208.6 160.4 212.1 165.2L224.1 181.6Q227.7 186.4 222 184.6L202.7 178.2Q197 176.3 200.5 171.5zM173.8 190.9Q179.5 189 179.6 195L179.6 215.3Q179.7 221.3 176.2 216.4L164.3 200Q160.8 195.1 166.5 193.3zM133.5 193.3Q139.2 195.1 135.7 200L123.8 216.4Q120.3 221.3 120.4 215.3L120.4 195Q120.5 189 126.2 190.9zM99.5 171.5Q103 176.3 97.3 178.2L78 184.6Q72.3 186.4 75.9 181.6L87.9 165.2Q91.4 160.4 94.9 165.2zM84.7 133.9Q84.7 139.9 79 138L59.7 131.8Q54 130 59.7 128.2L79 122Q84.7 120.1 84.7 126.1zM94.9 94.8Q91.4 99.6 87.9 94.8L75.9 78.4Q72.3 73.6 78 75.4L97.3 81.8Q103 83.7 99.5 88.5zM126.2 69.1Q120.5 71 120.4 65L120.4 44.7Q120.3 38.7 123.8 43.6L135.7 60Q139.2 64.9 133.5 66.7zM166.5 66.7Q160.8 64.9 164.3 60L176.2 43.6Q179.7 38.7 179.6 44.7L179.6 65Q179.5 71 173.8 69.1zM200.5 88.5Q197 83.7 202.7 81.8L222 75.4Q227.7 73.6 224.1 78.4L212.1 94.8Q208.6 99.6 205.1 94.8z" fill="#fff2bd" stroke-width="5"/>
+<path data-region="sun" data-name="Sun" d="M100 130a50 50 0 1 0 100 0a50 50 0 1 0 -100 0z" fill="#ffe9a8" stroke-width="5"/>
+<path data-region="cloud_a" data-name="Cloud" d="M551.6 132.8A19 19 0 1 1 554 94.9A32.3 32.3 0 0 1 593.8 69.2A41.8 41.8 0 0 1 666.7 72A30.4 30.4 0 0 1 697 95A19 19 0 0 1 694.1 132.8z" fill="#ffffff" stroke-width="5"/>
+<path data-region="cloud_b" data-name="Cloud" d="M830.5 248A19.5 19.5 0 1 1 836.1 209.8A30 30 0 0 1 888.3 199.1A27 27 0 0 1 930.4 215.1A16.5 16.5 0 1 1 932.5 248z" fill="#ffffff" stroke-width="5"/>
+<path data-region="hill_far" data-name="Far hill" d="M-10 440C33.3 433.3 155 400 250 400C345 400 465 440.7 560 440C655 439.3 745 396.7 820 396C895 395.3 978.3 429.3 1010 436L1010 436V750H-10V440L-10 440z" fill="#a9dcb4" stroke-width="5"/>
+<path data-region="grass" data-name="Grass" d="M-10 540C41.7 536.7 181.7 519 300 520C418.3 521 581.7 546 700 546C818.3 546 958.3 524.3 1010 520L1010 520V750H-10V540L-10 540z" fill="#c2e8c4" stroke-width="5"/>
+<path data-region="moat" data-name="Moat" d="M-10 606Q41 597 92 606Q143 615 194 606Q245 597 296 606Q347 615 398 606Q449 597 500 606Q551 615 602 606Q653 597 704 606Q755 615 806 606Q857 597 908 606Q959 615 1010 606V770H-10z" fill="#bfe4f7" stroke-width="5"/>
+<path d="M60 660h80M220 700h110M720 650h100M860 700h90" fill="none" stroke-width="4"/>
+<path data-region="tower_left" data-name="Left tower" d="M226 250H322A8 8 0 0 1 330 258V614A8 8 0 0 1 322 622H226A8 8 0 0 1 218 614V258A8 8 0 0 1 226 250z" fill="#d9cdf6" stroke-width="5"/>
+<path data-region="tower_right" data-name="Right tower" d="M678 250H774A8 8 0 0 1 782 258V614A8 8 0 0 1 774 622H678A8 8 0 0 1 670 614V258A8 8 0 0 1 678 250z" fill="#d9cdf6" stroke-width="5"/>
+<path data-region="gate_wall" data-name="Gate wall" d="M324 340H676A6 6 0 0 1 682 346V616A6 6 0 0 1 676 622H324A6 6 0 0 1 318 616V346A6 6 0 0 1 324 340z" fill="#e3e0f0" stroke-width="5"/>
+<path data-region="merlons" data-name="Battlements" d="M336 306H370A4 4 0 0 1 374 310V338A4 4 0 0 1 370 342H336A4 4 0 0 1 332 338V310A4 4 0 0 1 336 306zM406 306H440A4 4 0 0 1 444 310V338A4 4 0 0 1 440 342H406A4 4 0 0 1 402 338V310A4 4 0 0 1 406 306zM476 306H510A4 4 0 0 1 514 310V338A4 4 0 0 1 510 342H476A4 4 0 0 1 472 338V310A4 4 0 0 1 476 306zM546 306H580A4 4 0 0 1 584 310V338A4 4 0 0 1 580 342H546A4 4 0 0 1 542 338V310A4 4 0 0 1 546 306zM616 306H650A4 4 0 0 1 654 310V338A4 4 0 0 1 650 342H616A4 4 0 0 1 612 338V310A4 4 0 0 1 616 306z" fill="#e3e0f0" stroke-width="4"/>
+<path data-region="roof_left" data-name="Left roof" d="M218 262Q206 262 211.4 251.3L268.6 138.7Q274 128 279.4 138.7L336.6 251.3Q342 262 330 262z" fill="#ffd3e2" stroke-width="5"/>
+<path data-region="roof_right" data-name="Right roof" d="M670 262Q658 262 663.4 251.3L720.6 138.7Q726 128 731.4 138.7L788.6 251.3Q794 262 782 262z" fill="#ffd3e2" stroke-width="5"/>
+<path d="M274 128V72" fill="none" stroke-width="5"/>
+<path data-region="flag_left" data-name="Flag" d="M274 78Q274 72 279.7 73.8L320.3 86.2Q326 88 320.3 89.8L279.7 102.2Q274 104 274 98z" fill="#fff2bd" stroke-width="5"/>
+<path d="M726 128V72" fill="none" stroke-width="5"/>
+<path data-region="flag_right" data-name="Flag" d="M726 78Q726 72 731.7 73.8L772.3 86.2Q778 88 772.3 89.8L731.7 102.2Q726 104 726 98z" fill="#fff2bd" stroke-width="5"/>
+<path data-region="window_left" data-name="Window" d="M252 400V352A22 22 0 0 1 296 352V400z" fill="#a4d2f2" stroke-width="5"/>
+<path data-region="window_right" data-name="Window" d="M704 400V352A22 22 0 0 1 748 352V400z" fill="#a4d2f2" stroke-width="5"/>
+<path data-region="gate_door" data-name="Gate door" d="M430 622V490A70 70 0 0 1 570 490V622z" fill="#e9c7a3" stroke-width="5"/>
+<path d="M470 450V622M500 440V622M530 450V622M436 500h128M436 560h128" fill="none" stroke-width="3.5"/>
+<path data-region="drawbridge" data-name="Drawbridge" d="M438.7 627.9Q440 622 446 622L554 622Q560 622 561.3 627.9L588.7 754.1Q590 760 584 760L416 760Q410 760 411.3 754.1z" fill="#e9c7a3" stroke-width="5"/>
+<path d="M472 622l-14 138M500 622v138M528 622l14 138" fill="none" stroke-width="3.5"/>
+<path d="M436 430Q410 520 420 610M564 430Q590 520 580 610" fill="none" stroke-width="4" stroke-dasharray="2 9"/>
+<path d="M412.4 220q8.8 -12.8 17.6 1.6q8.8 -14.4 17.6 -1.6M466.8 190q6.6 -9.6 13.2 1.2q6.6 -10.8 13.2 -1.2" fill="none" stroke-width="4"/>
+</g></svg>

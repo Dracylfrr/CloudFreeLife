@@ -11,12 +11,14 @@ import {
   checkCompatibility,
   validateBook,
   validateBreakerLevel,
+  validateMemoryLevel,
   validatePage,
   validatePalette,
   validateRegions,
   validateSplashLevel,
   type BookManifest,
   type BreakerLevel,
+  type MemoryLevel,
   type PageManifest,
   type PaletteManifest,
   type RegionsFile,
@@ -57,6 +59,10 @@ export interface LoadedSplashLevel extends Located {
   folder: string;
   manifest: SplashLevel;
 }
+export interface LoadedMemoryLevel extends Located {
+  folder: string;
+  manifest: MemoryLevel;
+}
 
 export interface Skipped {
   where: string;
@@ -69,11 +75,12 @@ export interface Catalog {
   palettes: LoadedPalette[];
   breakerLevels: LoadedBreakerLevel[];
   splashLevels: LoadedSplashLevel[];
+  memoryLevels: LoadedMemoryLevel[];
   /** Content that exists but was not usable (invalid or needs a newer app). */
   skipped: Skipped[];
 }
 
-const empty = (): Catalog => ({ ready: false, books: [], palettes: [], breakerLevels: [], splashLevels: [], skipped: [] });
+const empty = (): Catalog => ({ ready: false, books: [], palettes: [], breakerLevels: [], splashLevels: [], memoryLevels: [], skipped: [] });
 
 const store = writable<Catalog>(empty());
 export const catalog = { subscribe: store.subscribe };
@@ -157,9 +164,9 @@ async function loadPalettes(tree: ContentTree, skipped: Skipped[], appVersion?: 
   return out;
 }
 
-async function loadLevels<T extends BreakerLevel | SplashLevel>(
+async function loadLevels<T extends BreakerLevel | SplashLevel | MemoryLevel>(
   tree: ContentTree,
-  game: 'pastel_breaker' | 'splash_wall',
+  game: 'pastel_breaker' | 'splash_wall' | 'memory_meadow',
   skipped: Skipped[],
   appVersion?: string
 ): Promise<(Located & { folder: string; manifest: T })[]> {
@@ -169,7 +176,7 @@ async function loadLevels<T extends BreakerLevel | SplashLevel>(
     const dir = `${base}/${folder}`;
     const raw = await tree.readJson(`${dir}/level.json`);
     if (raw === null) continue;
-    const v = game === 'pastel_breaker' ? validateBreakerLevel(raw, `${dir}/level.json`) : validateSplashLevel(raw, `${dir}/level.json`);
+    const v = game === 'pastel_breaker' ? validateBreakerLevel(raw, `${dir}/level.json`) : game === 'splash_wall' ? validateSplashLevel(raw, `${dir}/level.json`) : validateMemoryLevel(raw, `${dir}/level.json`);
     if (!v.ok) {
       skipped.push({ where: dir, reason: v.errors.join('; ') });
       continue;
@@ -200,12 +207,14 @@ export async function buildCatalog(trees: ContentTree[], appVersion?: string): P
   const palettes: LoadedPalette[] = [];
   const breaker: LoadedBreakerLevel[] = [];
   const splash: LoadedSplashLevel[] = [];
+  const memory: LoadedMemoryLevel[] = [];
   for (const tree of trees) {
     try {
       books.push(...(await loadBooks(tree, skipped, appVersion)));
       palettes.push(...(await loadPalettes(tree, skipped, appVersion)));
       breaker.push(...(await loadLevels<BreakerLevel>(tree, 'pastel_breaker', skipped, appVersion)));
       splash.push(...(await loadLevels<SplashLevel>(tree, 'splash_wall', skipped, appVersion)));
+      memory.push(...(await loadLevels<MemoryLevel>(tree, 'memory_meadow', skipped, appVersion)));
     } catch (err) {
       skipped.push({ where: `${tree.source} content`, reason: String(err) });
     }
@@ -217,6 +226,7 @@ export async function buildCatalog(trees: ContentTree[], appVersion?: string): P
     palettes: mergeById(palettes, (p) => p.manifest.id, (p) => p.manifest.version),
     breakerLevels: mergeById(breaker, (l) => l.manifest.id, (l) => l.manifest.version).sort(byFolder),
     splashLevels: mergeById(splash, (l) => l.manifest.id, (l) => l.manifest.version).sort(byFolder),
+    memoryLevels: mergeById(memory, (l) => l.manifest.id, (l) => l.manifest.version).sort(byFolder),
     skipped
   };
 }

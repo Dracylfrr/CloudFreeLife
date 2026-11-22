@@ -1,0 +1,11 @@
+{
+  "id": "dragon_tower",
+  "name": "Dragon Tower",
+  "description": "A gentle green dragon who only wants to say hello.",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

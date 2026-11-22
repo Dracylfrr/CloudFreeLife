@@ -14,6 +14,9 @@ import { covers } from './art/covers.mjs';
 import { palettes } from './art/palettes.mjs';
 import { breakerLevels } from './art/levels_breaker.mjs';
 import { splashLevels } from './art/levels_splash.mjs';
+import { castlePages } from './art/pages_castle.mjs';
+import { oceanPages } from './art/pages_ocean.mjs';
+import { memoryLevels } from './art/levels_memory.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const content = resolve(root, 'content');
@@ -51,6 +54,24 @@ const books = [
     accent: '#8ed2b2',
     order: 3,
     pages: peacefulPages
+  },
+  {
+    id: 'castle_dreams',
+    name: 'Castle Dreams',
+    description: 'Towers, drawbridges and a very gentle dragon.',
+    accent: '#c9a8e8',
+    order: 4,
+    minApp: '1.1.0',
+    pages: castlePages
+  },
+  {
+    id: 'ocean_friends',
+    name: 'Ocean Friends',
+    description: 'Whales, octopuses, turtles and fish in a calm blue sea.',
+    accent: '#7fcfe0',
+    order: 5,
+    minApp: '1.1.0',
+    pages: oceanPages
   }
 ];
 
@@ -70,7 +91,7 @@ for (const b of books) {
       description: b.description,
       cover: 'cover.svg',
       version: VERSION,
-      minAppVersion: MIN,
+      minAppVersion: b.minApp ?? MIN,
       kind: 'coloring',
       accent: b.accent,
       order: b.order,
@@ -91,7 +112,7 @@ for (const b of books) {
         name: p.name,
         description: p.description,
         version: VERSION,
-        minAppVersion: MIN,
+        minAppVersion: b.minApp ?? MIN,
         thumbnail: 'thumbnail.svg',
         lineArt: 'lineart.svg',
         regions: 'regions.json',
@@ -115,7 +136,7 @@ await put(
     minAppVersion: MIN,
     kind: 'free_canvas',
     accent: '#f49bbd',
-    order: 4,
+    order: 9,
     pages: [],
     backgrounds: [
       { id: 'white', name: 'Clean White', type: 'solid', colors: ['#ffffff'] },
@@ -132,7 +153,7 @@ await put(
 
 // Palettes
 for (const p of palettes) {
-  await put(`palettes/${p.id}.json`, json({ ...p, version: VERSION, minAppVersion: MIN }));
+  await put(`palettes/${p.id}.json`, json({ ...p, version: VERSION, minAppVersion: p.minAppVersion ?? MIN }));
 }
 
 // Pastel Breaker levels
@@ -150,4 +171,11 @@ for (const l of splashLevels) {
   await put(`${dir}/level.json`, json(l.manifest(VERSION, MIN)));
 }
 
-console.log(`Generated ${books.length + 1} books, ${pageCount} coloring pages, ${palettes.length} palettes, ${breakerLevels.length} Pastel Breaker levels, ${splashLevels.length} Splash Wall levels.`);
+// Memory Meadow levels
+for (const l of memoryLevels) {
+  const dir = `minigames/memory_meadow/levels/${l.folder}`;
+  await put(`${dir}/thumbnail.svg`, l.thumbnail);
+  await put(`${dir}/level.json`, json(l.manifest(VERSION)));
+}
+
+console.log(`Generated ${books.length + 1} books, ${pageCount} coloring pages, ${palettes.length} palettes, ${breakerLevels.length} Pastel Breaker levels, ${splashLevels.length} Splash Wall levels, ${memoryLevels.length} Memory Meadow levels.`);

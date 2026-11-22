@@ -1,0 +1,49 @@
+{
+  "id": "castle_twilight",
+  "name": "Castle Twilight",
+  "description": "Dusky stone, lantern gold and soft banner pinks.",
+  "colors": [
+    {
+      "id": "stone_mist",
+      "name": "Stone Mist",
+      "hex": "#dcd8ec"
+    },
+    {
+      "id": "lantern_gold",
+      "name": "Lantern Gold",
+      "hex": "#ffe8a8"
+    },
+    {
+      "id": "banner_pink",
+      "name": "Banner Pink",
+      "hex": "#f6b8cf"
+    },
+    {
+      "id": "moat_blue",
+      "name": "Moat Blue",
+      "hex": "#b4d8f2"
+    },
+    {
+      "id": "ivy_green",
+      "name": "Ivy Green",
+      "hex": "#b4e0b8"
+    },
+    {
+      "id": "torch_peach",
+      "name": "Torch Peach",
+      "hex": "#ffcfae"
+    },
+    {
+      "id": "dusk_lilac",
+      "name": "Dusk Lilac",
+      "hex": "#d4c6f3"
+    },
+    {
+      "id": "parchment",
+      "name": "Parchment",
+      "hex": "#fff4de"
+    }
+  ],
+  "minAppVersion": "1.1.0",
+  "version": "1.0.0"
+}

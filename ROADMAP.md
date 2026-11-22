@@ -9,15 +9,17 @@ Plans, not promises. Cloud-Freelife stays small, calm and offline-first.
 - Brush cursor preview that matches texture brushes more closely.
 - More automated UI tests (Playwright against the Tauri window).
 
-## 1.1.0 — new content (delivered as content packs where possible)
-- **Castle Dreams** coloring book (towers, drawbridges, gentle dragons).
-- **Ocean Friends** coloring book.
-- New palettes: *Candle Glow*, *Sea Glass*, *Blossom Rain*.
-- Six more Pastel Breaker levels and six more Splash Wall walls.
+## 1.1.0 — shipped
+Castle Dreams, Ocean Friends, Memory Meadow, *Castle Twilight* and *Ocean Pearl* palettes. See the changelog.
+
+## 1.2.0 — more content (as content packs where possible)
+- More books (a bakery, a mountain village, a night garden).
+- New palettes: *Candle Glow*, *Blossom Rain*.
+- Six more Pastel Breaker levels, six more Splash Wall walls, six more Memory Meadow levels.
 - Save a Splash Wall as a Gallery item.
 
 ## Later ideas
-- A third mini-game (calm bubble-pop or a pattern-matching garden).
+- A fourth mini-game (calm bubble-pop).
 - Layers for Free Draw.
 - Import your own line art (SVG or PNG) as a coloring page.
 - Timelapse export.

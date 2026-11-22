@@ -1,0 +1,11 @@
+{
+  "id": "seahorse_garden",
+  "name": "Seahorse Garden",
+  "description": "A little seahorse among shells and seaweed.",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

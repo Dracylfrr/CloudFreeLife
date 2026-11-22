@@ -1,0 +1,68 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sun_rays",
+      "name": "Sun rays",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cloud_b",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "sea",
+      "name": "Sea",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "whale_tail",
+      "name": "Tail",
+      "suggested": "#a4d2f2"
+    },
+    {
+      "id": "whale_body",
+      "name": "Whale",
+      "suggested": "#a4d2f2"
+    },
+    {
+      "id": "whale_belly",
+      "name": "Belly",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "whale_fin",
+      "name": "Fin",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "whale_spout",
+      "name": "Water spout",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "wave_front",
+      "name": "Front wave",
+      "suggested": "#bdeeea"
+    }
+  ]
+}

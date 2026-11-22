@@ -44,6 +44,19 @@ await rm(resolve(out, 'portable'), { recursive: true, force: true });
 const bytes = await readFile(resolve(out, installerName));
 const manifest = await loadManifest(out, v);
 manifest.release = v;
+// Release notes shown in the Update Center: the CHANGELOG section for this version.
+try {
+  const log = await readFile(resolve(root, 'CHANGELOG.md'), 'utf8');
+  const start = log.indexOf(`## [${v}]`);
+  if (start >= 0) {
+    const rest = log.slice(start + 1);
+    const next = rest.indexOf('\n## [');
+    const body = (next >= 0 ? rest.slice(0, next) : rest).replace(/^#.*\n/, '').replace(/^### .*$/gm, '').replace(/\n{2,}/g, '\n').trim();
+    manifest.notes = body.slice(0, 1500);
+  }
+} catch {
+  /* notes are optional */
+}
 manifest.app = {
   version: v,
   asset: { name: installerName, sha256: sha256(bytes), size: bytes.length, contentType: 'application/octet-stream' }

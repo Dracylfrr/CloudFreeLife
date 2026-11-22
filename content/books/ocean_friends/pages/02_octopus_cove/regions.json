@@ -1,0 +1,98 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "water",
+      "name": "Water",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sand",
+      "name": "Sand",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "tentacle_1",
+      "name": "Tentacle",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "tentacle_2",
+      "name": "Tentacle",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "tentacle_3",
+      "name": "Tentacle",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "tentacle_4",
+      "name": "Tentacle",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "octopus_head",
+      "name": "Head",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "head_spots",
+      "name": "Spots",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "eye_left",
+      "name": "Eye",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "eye_right",
+      "name": "Eye",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "seaweed_left",
+      "name": "Seaweed",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "seaweed_right",
+      "name": "Seaweed",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "rock",
+      "name": "Rock",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "shell",
+      "name": "Shell",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "bubble_1",
+      "name": "Bubble",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "bubble_2",
+      "name": "Bubble",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "bubble_3",
+      "name": "Bubble",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "bubble_4",
+      "name": "Bubble",
+      "suggested": "#ffffff"
+    }
+  ]
+}

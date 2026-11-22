@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+<rect width="1000" height="750" fill="#ffffff"/>
+<g stroke="#6e6a8e" stroke-linejoin="round" stroke-linecap="round">
+<path data-region="water" data-name="Water" d="M-6 -6h1012v762h-1012z" fill="#dff0fb" stroke-width="5"/>
+<path data-region="sand" data-name="Sand" d="M-10 660C41.7 656.7 181.7 638.3 300 640C418.3 641.7 581.7 670 700 670C818.3 670 958.3 645 1010 640L1010 640V750H-10V660L-10 660z" fill="#f8e4c2" stroke-width="5"/>
+<path data-region="seaweed_left" data-name="Seaweed" d="M120 680C107.9 658.2 85.2 604.6 90 561C94.8 517.4 141.2 482.5 146 442C150.8 401.5 113.4 333.8 116 340C118.6 346.2 157.4 433.6 160 476C162.6 518.4 130.7 533.8 130 571.2C129.3 608.6 157.8 660.1 156 680C154.2 699.9 132.1 701.8 120 680z" fill="#a9dcb4" stroke-width="4.5"/>
+<path data-region="seaweed_right" data-name="Seaweed" d="M880 680C867.9 660.8 845.2 613.5 850 575C854.8 536.5 901.2 505.8 906 470C910.8 434.3 873.4 374.5 876 380C878.6 385.5 917.4 462.6 920 500C922.6 537.4 890.7 551 890 584C889.3 617 917.8 662.4 916 680C914.2 697.6 892.1 699.3 880 680z" fill="#c2e8c4" stroke-width="4.5"/>
+<path data-region="seahorse_tail" data-name="Tail" d="M470 560C452 572 416 614 420 640C424 666 460 686 490 690C520 694 556 678 570 660C584 642 570 608 560 600C550 592 530 624 520 620C510 616 520 592 510 580C500 568 488 548 470 560z" fill="#ffdcc8" stroke-width="5"/>
+<path data-region="seahorse_body" data-name="Body" d="M430 330C400 350 382 394 380 440C378 486 392 536 420 560C448 584 492 582 520 560C548 538 558 494 560 450C562 406 556 364 530 340C504 316 460 310 430 330z" fill="#ffc3b0" stroke-width="5"/>
+<path data-region="seahorse_belly" data-name="Belly" d="M470 380C458 394 448 420 450 450C452 480 466 516 480 530C494 544 510 538 520 520C530 502 532 468 530 440C528 412 522 392 510 380C498 368 482 366 470 380z" fill="#fff2bd" stroke-width="5"/>
+<path data-region="seahorse_fin" data-name="Fin" d="M545 430C550.2 415.7 569.6 404.5 584.3 403.9C599 403.3 607.5 414.9 618.5 426.9C629.4 439 642.8 453.7 639 464.2C635.1 474.7 615.5 477.4 599.3 479.6C583.2 481.8 569.2 485.2 558.3 475.3C547.5 465.4 539.8 444.3 545 430z" fill="#ffd3e2" stroke-width="5"/>
+<path data-region="seahorse_crest" data-name="Crest" d="M425.8 258.4Q420 260 418.1 254.3L401.9 205.7Q400 200 405.1 203.1L444.9 226.9Q450 230 451.9 224.3L468.1 175.7Q470 170 471.6 175.8L488.4 234.2Q490 240 484.2 241.6z" fill="#ffd3e2" stroke-width="5"/>
+<path data-region="seahorse_head" data-name="Head" d="M400 290a80 66 0 1 0 160 0a80 66 0 1 0 -160 0z" fill="#ffc3b0" stroke-width="5"/>
+<path data-region="seahorse_snout" data-name="Snout" d="M516 330a54 22 0 1 0 108 0a54 22 0 1 0 -108 0z" fill="#ffc3b0" stroke-width="5"/>
+<circle cx="498" cy="272" r="8" fill="#6e6a8e" stroke="none"/>
+<path d="M440 320q16 14 34 0" fill="none" stroke-width="4.5"/>
+<path d="M400 380h110M396 420h110M410 460h100M432 500h80" fill="none" stroke-width="3" stroke-dasharray="1 9"/>
+<path data-region="shell_a" data-name="Shell" d="M202 680A58 50 0 0 1 318 680z" fill="#ffd3e2" stroke-width="5"/>
+<path d="M260 630v50M232 640l8 40M288 640l-8 40" fill="none" stroke-width="3.5"/>
+<path data-region="shell_b" data-name="Shell" d="M690 690A50 44 0 0 1 790 690z" fill="#d9cdf6" stroke-width="5"/>
+<path data-region="starfish" data-name="Starfish" d="M669.4 627.1Q673.7 622.4 674 628.8L674.6 643.5Q674.9 649.9 680.7 652.6L694.2 658.7Q700 661.4 694 663.6L680.2 668.8Q674.2 671.1 673.5 677.4L671.8 692.1Q671 698.5 667 693.4L657.8 681.9Q653.8 676.9 647.6 678.2L633.1 681.1Q626.8 682.4 630.4 677L638.5 664.7Q642 659.4 638.9 653.8L631.6 640.9Q628.5 635.4 634.6 637.1L648.9 641Q655 642.7 659.4 638z" fill="#fff2bd" stroke-width="5"/>
+<path data-region="coral" data-name="Coral" d="M800 690C788 679.5 794.5 638 790 620C785.5 602 767 574.5 770 570C773 565.5 801 594.5 810 590C819 585.5 822.5 538.5 830 540C837.5 541.5 852.5 591 860 600C867.5 609 878.5 586.5 880 600C881.5 613.5 882 676.5 870 690C858 703.5 812 700.5 800 690z" fill="#ffc3b0" stroke-width="5"/>
+<path data-region="bubble_1" data-name="Bubble" d="M274 200a26 26 0 1 0 52 0a26 26 0 1 0 -52 0z" fill="#ffffff" stroke-width="4"/>
+<path data-region="bubble_2" data-name="Bubble" d="M234 120a16 16 0 1 0 32 0a16 16 0 1 0 -32 0z" fill="#ffffff" stroke-width="4"/>
+<path data-region="bubble_3" data-name="Bubble" d="M678 180a22 22 0 1 0 44 0a22 22 0 1 0 -44 0z" fill="#ffffff" stroke-width="4"/>
+<path data-region="bubble_4" data-name="Bubble" d="M746 100a14 14 0 1 0 28 0a14 14 0 1 0 -28 0z" fill="#ffffff" stroke-width="4"/>
+<path data-region="bubble_5" data-name="Bubble" d="M638 280a12 12 0 1 0 24 0a12 12 0 1 0 -24 0z" fill="#ffffff" stroke-width="4"/>
+</g></svg>

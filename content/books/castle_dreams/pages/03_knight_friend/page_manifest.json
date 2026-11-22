@@ -1,0 +1,11 @@
+{
+  "id": "knight_friend",
+  "name": "Knight Friend",
+  "description": "A cheerful knight with a star-shaped shield.",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+<rect width="1000" height="750" fill="#ffffff"/>
+<g stroke="#6e6a8e" stroke-linejoin="round" stroke-linecap="round">
+<path data-region="water" data-name="Water" d="M-6 -6h1012v762h-1012z" fill="#bfe4f7" stroke-width="5"/>
+<path data-region="light_beam" data-name="Light beam" d="M298.2 13.9Q300 -6 320 -6L400 -6Q420 -6 424.8 13.4L555.2 540.6Q560 560 540 560L270 560Q250 560 251.8 540.1z" fill="#dff0fb" stroke-width="5"/>
+<path data-region="sand" data-name="Sand" d="M-10 650C41.7 646.7 181.7 628.3 300 630C418.3 631.7 581.7 660 700 660C818.3 660 958.3 635 1010 630L1010 630V750H-10V650L-10 650z" fill="#f8e4c2" stroke-width="5"/>
+<path data-region="seaweed_a" data-name="Seaweed" d="M90 670C77.9 653.3 55.2 612.4 60 579C64.8 545.6 111.2 519 116 488C120.8 457 83.4 405.2 86 410C88.6 414.8 127.4 481.6 130 514C132.6 546.4 100.7 558.2 100 586.8C99.3 615.4 127.8 654.7 126 670C124.2 685.3 102.1 686.7 90 670z" fill="#a9dcb4" stroke-width="4.5"/>
+<path data-region="seaweed_b" data-name="Seaweed" d="M930 670C917.9 649.5 895.2 599.1 900 558C904.8 516.9 951.2 484.1 956 446C960.8 407.9 923.4 344.1 926 350C928.6 355.9 967.4 438.1 970 478C972.6 517.9 940.7 532.4 940 567.6C939.3 602.8 967.8 651.2 966 670C964.2 688.8 942.1 690.5 930 670z" fill="#c2e8c4" stroke-width="4.5"/>
+<path data-region="coral" data-name="Coral" d="M400 670C383.5 659.5 394.5 619.5 390 600C385.5 580.5 367 546 370 540C373 534 401 566 410 560C419 554 421 498.5 430 500C439 501.5 459.5 564 470 570C480.5 576 497 534 500 540C503 546 490 590.5 490 610C490 629.5 513.5 661 500 670C486.5 679 416.5 680.5 400 670z" fill="#ffd3e2" stroke-width="5"/>
+<path data-region="rock" data-name="Rock" d="M664 691.1Q640 690 653.3 670L686.7 620Q700 600 723.5 604.7L776.5 615.3Q800 620 812.7 640.4L837.3 679.6Q850 700 826 698.9z" fill="#e3e0f0" stroke-width="5"/>
+<path data-region="fish_big_tail" data-name="Tail" d="M486.2 266.7Q495.6 260 486.2 253.3L440.6 220.7Q431.2 214 431.2 225.5L431.2 294.5Q431.2 306 440.6 299.3z" fill="#ffc3b0" stroke-width="5"/>
+<path data-region="fish_big_fin" data-name="Fin" d="M555.4 217.1Q546.2 216.3 552.7 209.8L576.5 186Q583 179.5 586.3 188.1L595.8 212.3Q599.1 220.9 589.9 220.1z" fill="#ffc3b0" stroke-width="5"/>
+<path data-region="fish_big_body" data-name="Fish" d="M477.2 260a82.8 50.6 0 1 0 165.6 0a82.8 50.6 0 1 0 -165.6 0z" fill="#ffdcc8" stroke-width="5"/>
+<path data-region="fish_big_stripe" data-name="Stripe" d="M538.2 260a15 46 0 1 0 29.9 0a15 46 0 1 0 -29.9 0z" fill="#ffc3b0" stroke-width="4"/>
+<circle cx="608.3" cy="250.8" r="6.9" fill="#6e6a8e" stroke="none"/>
+<path d="M606 276.1q13.799999999999999 11.5 27.599999999999998 0" fill="none" stroke-width="4"/>
+<path data-region="fish_mid_tail" data-name="Tail" d="M357.7 405.2Q350.4 400 357.7 394.8L393.5 369.2Q400.8 364 400.8 373L400.8 427Q400.8 436 393.5 430.8z" fill="#ffd3e2" stroke-width="5"/>
+<path data-region="fish_mid_fin" data-name="Fin" d="M303.6 366.4Q310.8 365.8 305.7 360.7L287.1 342.1Q282 337 279.4 343.7L272 362.7Q269.4 369.4 276.6 368.8z" fill="#ffd3e2" stroke-width="5"/>
+<path data-region="fish_mid_body" data-name="Fish" d="M235.2 400a64.8 39.6 0 1 0 129.6 0a64.8 39.6 0 1 0 -129.6 0z" fill="#d9cdf6" stroke-width="5"/>
+<path data-region="fish_mid_stripe" data-name="Stripe" d="M293.7 400a11.7 36 0 1 0 23.4 0a11.7 36 0 1 0 -23.4 0z" fill="#ffd3e2" stroke-width="4"/>
+<circle cx="262.2" cy="392.8" r="5.4" fill="#6e6a8e" stroke="none"/>
+<path d="M264 412.6q-10.8 9 -21.6 0" fill="none" stroke-width="4"/>
+<path data-region="fish_small_tail" data-name="Tail" d="M804.9 444.1Q799.2 440 804.9 435.9L832.7 416.1Q838.4 412 838.4 419L838.4 461Q838.4 468 832.7 463.9z" fill="#ffdcc8" stroke-width="5"/>
+<path data-region="fish_small_fin" data-name="Fin" d="M762.8 413.9Q768.4 413.4 764.4 409.4L750 395Q746 391 744 396.2L738.2 411Q736.2 416.2 741.8 415.7z" fill="#ffdcc8" stroke-width="5"/>
+<path data-region="fish_small_body" data-name="Fish" d="M709.6 440a50.4 30.8 0 1 0 100.8 0a50.4 30.8 0 1 0 -100.8 0z" fill="#fff2bd" stroke-width="5"/>
+<path data-region="fish_small_stripe" data-name="Stripe" d="M755.1 440a9.1 28 0 1 0 18.2 0a9.1 28 0 1 0 -18.2 0z" fill="#ffdcc8" stroke-width="4"/>
+<circle cx="730.6" cy="434.4" r="4.2" fill="#6e6a8e" stroke="none"/>
+<path d="M732 449.8q-8.399999999999999 7 -16.799999999999997 0" fill="none" stroke-width="4"/>
+<path data-region="fish_tiny_tail" data-name="Tail" d="M144.7 193.2Q149.2 190 144.7 186.8L122.9 171.2Q118.4 168 118.4 173.5L118.4 206.5Q118.4 212 122.9 208.8z" fill="#a9dcb4" stroke-width="5"/>
+<path data-region="fish_tiny_fin" data-name="Fin" d="M177.8 169.5Q173.4 169.1 176.5 166L187.9 154.6Q191 151.5 192.6 155.6L197.1 167.2Q198.7 171.3 194.3 170.9z" fill="#a9dcb4" stroke-width="5"/>
+<path data-region="fish_tiny_body" data-name="Fish" d="M140.4 190a39.6 24.2 0 1 0 79.2 0a39.6 24.2 0 1 0 -79.2 0z" fill="#c6ecda" stroke-width="5"/>
+<path data-region="fish_tiny_stripe" data-name="Stripe" d="M169.5 190a7.2 22 0 1 0 14.3 0a7.2 22 0 1 0 -14.3 0z" fill="#a9dcb4" stroke-width="4"/>
+<circle cx="203.1" cy="185.6" r="3.3" fill="#6e6a8e" stroke="none"/>
+<path d="M202 197.7q6.6000000000000005 5.5 13.200000000000001 0" fill="none" stroke-width="4"/>
+<path data-region="bubble_1" data-name="Bubble" d="M738 150a22 22 0 1 0 44 0a22 22 0 1 0 -44 0z" fill="#ffffff" stroke-width="4"/>
+<path data-region="bubble_2" data-name="Bubble" d="M806 90a14 14 0 1 0 28 0a14 14 0 1 0 -28 0z" fill="#ffffff" stroke-width="4"/>
+<path data-region="bubble_3" data-name="Bubble" d="M628 100a12 12 0 1 0 24 0a12 12 0 1 0 -24 0z" fill="#ffffff" stroke-width="4"/>
+<path data-region="bubble_4" data-name="Bubble" d="M432 120a18 18 0 1 0 36 0a18 18 0 1 0 -36 0z" fill="#ffffff" stroke-width="4"/>
+</g></svg>

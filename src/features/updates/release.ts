@@ -5,7 +5,7 @@
 import { ALLOWED_DOWNLOAD_HOSTS, GITHUB_REPO, RELEASE_MANIFEST_ASSET } from '../../core/config';
 import { APP_VERSION, compareVersions, isNewer, isValidVersion, meetsMinVersion, parseVersion } from '../../core/version';
 
-export type ContentKind = 'book' | 'palettes' | 'breaker_levels' | 'splash_levels' | 'minigame';
+export type ContentKind = 'book' | 'palettes' | 'breaker_levels' | 'splash_levels' | 'memory_levels' | 'minigame';
 
 export interface AssetSpec {
   name: string;
@@ -81,7 +81,7 @@ export const ALLOWED_APP_TYPES = ['application/octet-stream', 'application/x-msd
 export const MAX_PACK_BYTES = 40 * 1024 * 1024;
 export const MAX_APP_BYTES = 400 * 1024 * 1024;
 
-const CONTENT_KINDS: ContentKind[] = ['book', 'palettes', 'breaker_levels', 'splash_levels', 'minigame'];
+const CONTENT_KINDS: ContentKind[] = ['book', 'palettes', 'breaker_levels', 'splash_levels', 'memory_levels', 'minigame'];
 
 const isObj = (v: unknown): v is Record<string, unknown> => !!v && typeof v === 'object' && !Array.isArray(v);
 
@@ -314,6 +314,7 @@ export function describeUpdate(u: UpdateItem): string {
     palettes: 'New palettes available',
     breaker_levels: 'New Pastel Breaker levels available',
     splash_levels: 'New Splash Wall levels available',
+    memory_levels: 'New Memory Meadow levels available',
     minigame: 'New mini-game available'
   };
   return `${label[u.contentKind]} — ${u.name}`;

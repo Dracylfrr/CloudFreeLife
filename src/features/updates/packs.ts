@@ -39,7 +39,7 @@ const ALLOWED_EXT = ['.json', '.svg', '.png'];
 const PATH_PATTERNS = [
   /^books\/[a-z0-9_]+\/[A-Za-z0-9_./-]+$/,
   /^palettes\/[a-z0-9_]+\.json$/,
-  /^minigames\/(pastel_breaker|splash_wall)\/levels\/[a-z0-9_]+\/[A-Za-z0-9_.-]+$/
+  /^minigames\/(pastel_breaker|splash_wall|memory_meadow)\/levels\/[a-z0-9_]+\/[A-Za-z0-9_.-]+$/
 ];
 
 export function decodeBase64(b64: string): Uint8Array {
@@ -126,7 +126,7 @@ export async function validatePackContents(pack: ContentPack, appVersion: string
   if (cat.skipped.length) return { ok: false, error: `Pack content is invalid: ${cat.skipped[0].where} - ${cat.skipped[0].reason}` };
   const books = cat.books.length;
   const palettes = cat.palettes.length;
-  const levels = cat.breakerLevels.length + cat.splashLevels.length;
+  const levels = cat.breakerLevels.length + cat.splashLevels.length + cat.memoryLevels.length;
   if (books + palettes + levels === 0) return { ok: false, error: 'Pack contains no usable content' };
   // Every referenced art file must exist.
   for (const b of cat.books) {

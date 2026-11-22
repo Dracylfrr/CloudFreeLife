@@ -1,0 +1,108 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "water",
+      "name": "Water",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sand",
+      "name": "Sand",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "seaweed_left",
+      "name": "Seaweed",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "seaweed_right",
+      "name": "Seaweed",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "seahorse_tail",
+      "name": "Tail",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "seahorse_body",
+      "name": "Body",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "seahorse_belly",
+      "name": "Belly",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "seahorse_fin",
+      "name": "Fin",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "seahorse_crest",
+      "name": "Crest",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "seahorse_head",
+      "name": "Head",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "seahorse_snout",
+      "name": "Snout",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "shell_a",
+      "name": "Shell",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "shell_b",
+      "name": "Shell",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "starfish",
+      "name": "Starfish",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "coral",
+      "name": "Coral",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "bubble_1",
+      "name": "Bubble",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "bubble_2",
+      "name": "Bubble",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "bubble_3",
+      "name": "Bubble",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "bubble_4",
+      "name": "Bubble",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "bubble_5",
+      "name": "Bubble",
+      "suggested": "#ffffff"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "gate_house",
+  "name": "Gate House",
+  "description": "A friendly gate house with a drawbridge over the moat.",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

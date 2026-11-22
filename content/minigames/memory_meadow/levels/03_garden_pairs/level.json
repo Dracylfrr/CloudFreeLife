@@ -1,0 +1,20 @@
+{
+  "id": "garden_pairs",
+  "name": "Garden Pairs",
+  "description": "Flowers, leaves and little creatures.",
+  "minigame": "memory_meadow",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.0",
+  "objective": "Find all six pairs in the garden.",
+  "columns": 4,
+  "cardBack": "#c6ecda",
+  "symbols": [
+    "flower",
+    "leaf",
+    "mushroom",
+    "butterfly",
+    "drop",
+    "sun"
+  ]
+}

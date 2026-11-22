@@ -10,6 +10,7 @@ export type Route =
   | { name: 'minigames' }
   | { name: 'breaker'; levelId?: string; mode?: 'relax' | 'classic' | 'endless' }
   | { name: 'splash'; levelId?: string }
+  | { name: 'memory'; levelId?: string }
   | { name: 'updates' }
   | { name: 'settings'; tab?: string }
   | { name: 'about' };
@@ -61,6 +62,7 @@ export function sectionOf(r: Route): NavSection {
       return 'books';
     case 'breaker':
     case 'splash':
+    case 'memory':
     case 'minigames':
       return 'minigames';
     default:

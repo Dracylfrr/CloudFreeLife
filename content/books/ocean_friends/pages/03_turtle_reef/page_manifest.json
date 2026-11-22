@@ -1,0 +1,11 @@
+{
+  "id": "turtle_reef",
+  "name": "Turtle Reef",
+  "description": "A sea turtle gliding past the coral.",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

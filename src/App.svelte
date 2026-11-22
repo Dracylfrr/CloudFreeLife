@@ -16,7 +16,7 @@
   import Settings from './features/settings/Settings.svelte';
   import About from './features/about/About.svelte';
 
-  const immersive = $derived($route.name === 'paint' || $route.name === 'breaker' || $route.name === 'splash');
+  const immersive = $derived($route.name === 'paint' || $route.name === 'breaker' || $route.name === 'splash' || $route.name === 'memory');
 </script>
 
 <AmbientBackground calm={immersive} />
@@ -52,6 +52,10 @@
           {/await}
         {:else if $route.name === 'splash'}
           {#await import('./features/minigames/splash/SplashScreen.svelte') then m}
+            <m.default levelId={$route.levelId} />
+          {/await}
+        {:else if $route.name === 'memory'}
+          {#await import('./features/minigames/memory/MemoryScreen.svelte') then m}
             <m.default levelId={$route.levelId} />
           {/await}
         {:else if $route.name === 'updates'}

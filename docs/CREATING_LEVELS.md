@@ -19,7 +19,7 @@ Every level defines the same base fields:
 |---|---|
 | `id` | Lowercase id (letters, digits, `_`), unique within the game. |
 | `name`, `description`, `objective` | Shown in the level picker. |
-| `minigame` | `pastel_breaker` or `splash_wall`. |
+| `minigame` | `pastel_breaker`, `splash_wall` or `memory_meadow`. |
 | `thumbnail` | File name of the preview image (SVG or PNG, 4:3). |
 | `version`, `minAppVersion` | As for books. |
 
@@ -63,6 +63,27 @@ Template: [templates/splash_level.json](templates/splash_level.json)
 `colors` (optional) is the list of balloon colors for the level (up to 12). Target colors for `color_match` are added automatically.
 
 Every region id named in a goal must exist in `wall.svg` (tests enforce this for bundled levels).
+
+## Memory Meadow
+
+```json
+{
+  "id": "moon_garden_pairs",
+  "name": "Moon Garden Pairs",
+  "description": "...", "objective": "...",
+  "minigame": "memory_meadow", "thumbnail": "thumbnail.svg",
+  "version": "1.0.0", "minAppVersion": "1.1.0",
+  "columns": 4,
+  "cardBack": "#c6ecda",
+  "symbols": ["cloud", "star", "moon", "flower"]
+}
+```
+
+- `symbols`: 2-12 **different** pictures. Allowed: `cloud star moon sun heart drop flower leaf balloon shell rainbow mushroom fish butterfly planet`. Each becomes a pair (so 4 symbols = 8 cards).
+- `columns`: 2-6. The card count (symbols x 2) must fill complete rows, e.g. 8 cards with 4 columns.
+- `cardBack` (optional): `#rrggbb` for the back of the cards.
+- No timer and no lives; the Hint button is always available. A level needs `minAppVersion` of at least `1.1.0`.
+- Adding a *new picture* needs an app release (pictures are drawn in `src/features/minigames/memory/icons.ts`).
 
 ## Adding the level to the app
 

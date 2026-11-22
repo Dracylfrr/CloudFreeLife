@@ -7,6 +7,8 @@ const mods = {
   cloud: async () => (await import('./art/pages_cloud.mjs')).cloudPages.map((p) => p.scene()),
   cosmic: async () => (await import('./art/pages_cosmic.mjs')).cosmicPages.map((p) => p.scene()),
   peaceful: async () => (await import('./art/pages_peaceful.mjs')).peacefulPages.map((p) => p.scene()),
+  castle: async () => (await import('./art/pages_castle.mjs')).castlePages.map((p) => p.scene()),
+  ocean: async () => (await import('./art/pages_ocean.mjs')).oceanPages.map((p) => p.scene()),
   splash: async () => (await import('./art/levels_splash.mjs')).splashLevels.map((l) => l.scene)
 };
 const scenes = await mods[which]();

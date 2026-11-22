@@ -2,6 +2,20 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com), and the project uses [Semantic Versioning](https://semver.org).
 
+## [1.1.0]
+
+### Added
+- **Castle Dreams** coloring book — five new pages: Gate House, Dragon Tower, Knight Friend, Throne Room, Castle Garden.
+- **Ocean Friends** coloring book — five new pages: Happy Whale, Octopus Cove, Turtle Reef, Seahorse Garden, Fish School.
+- **Memory Meadow**, a third mini-game: flip soft pastel cards and find the pairs. Six handcrafted levels, no timer, no lives, and a Hint button that never spoils anything.
+- Two new palettes: *Castle Twilight* and *Ocean Pearl*.
+- Content can now say which app version it needs; the new books, palettes and levels require 1.1.0 and stay hidden on older apps.
+- Downloadable content packs can carry Memory Meadow levels.
+
+### Changed
+- Books are ordered by an optional `order` field in their manifest.
+- The window-minimised state now pauses animation and audio reliably in the desktop app.
+
 ## [1.0.0] — first release
 
 ### Added

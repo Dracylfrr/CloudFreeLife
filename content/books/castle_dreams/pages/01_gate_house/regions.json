@@ -1,0 +1,108 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sun_rays",
+      "name": "Sun rays",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cloud_b",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "hill_far",
+      "name": "Far hill",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "grass",
+      "name": "Grass",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "moat",
+      "name": "Moat",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "tower_left",
+      "name": "Left tower",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "tower_right",
+      "name": "Right tower",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "gate_wall",
+      "name": "Gate wall",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "merlons",
+      "name": "Battlements",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "roof_left",
+      "name": "Left roof",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "roof_right",
+      "name": "Right roof",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "flag_left",
+      "name": "Flag",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flag_right",
+      "name": "Flag",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "window_left",
+      "name": "Window",
+      "suggested": "#a4d2f2"
+    },
+    {
+      "id": "window_right",
+      "name": "Window",
+      "suggested": "#a4d2f2"
+    },
+    {
+      "id": "gate_door",
+      "name": "Gate door",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "drawbridge",
+      "name": "Drawbridge",
+      "suggested": "#e9c7a3"
+    }
+  ]
+}

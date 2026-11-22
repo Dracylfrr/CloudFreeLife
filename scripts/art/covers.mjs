@@ -50,5 +50,25 @@ ${cloud(250, 60, 0.5)}
 <g fill="none" stroke-linecap="round"><path d="M40 210C90 120 130 260 190 170S290 90 360 160" stroke="#b7a8ec" stroke-width="22"/><path d="M40 238C100 190 140 280 200 220S300 150 360 200" stroke="#ffb7d1" stroke-width="16"/><path d="M50 98C110 50 150 140 210 92S300 40 350 80" stroke="#8fd3b4" stroke-width="14"/><path d="M60 268C120 250 170 290 240 262" stroke="#fff2bd" stroke-width="12"/></g>
 <g transform="translate(262 40) rotate(38)" stroke="${LINE}" stroke-width="2.6" stroke-linejoin="round"><rect x="-9" y="0" width="18" height="86" rx="9" fill="#ffd3b8"/><rect x="-11" y="80" width="22" height="22" rx="4" fill="#dfe6f3"/><path d="M-10 102C-11 124 -2 136 0 146C2 136 11 124 10 102z" fill="#ffa6c9"/></g>
 <circle cx="76" cy="62" r="9" fill="#c6ecda" stroke="${LINE}" stroke-width="2"/><circle cx="112" cy="40" r="6" fill="#fff2bd" stroke="${LINE}" stroke-width="2"/>
+</svg>`,
+  castle_dreams:
+    head('cs', [[0, '#cfe8f8'], [1, '#f0dff7']]) +
+    `<rect width="400" height="300" fill="url(#cs)"/>
+<circle cx="338" cy="58" r="24" fill="#ffe9a8" stroke="${LINE}" stroke-width="2.6"/>
+${cloud(80, 70, 0.55)}${cloud(300, 140, 0.45)}
+<path d="M-10 230Q100 190 200 225T410 210V310H-10z" fill="#a9dcb4" stroke="${LINE}" stroke-width="2.6"/>
+<g stroke="${LINE}" stroke-width="2.6" stroke-linejoin="round"><rect x="120" y="120" width="160" height="110" rx="3" fill="#e3e0f0"/><rect x="92" y="96" width="50" height="134" rx="3" fill="#d9cdf6"/><rect x="258" y="96" width="50" height="134" rx="3" fill="#d9cdf6"/><path d="M84 102L117 44L150 102z" fill="#ffd3e2"/><path d="M250 102L283 44L316 102z" fill="#ffd3e2"/><path d="M117 44V22" fill="none"/><path d="M117 22l26 9l-26 9z" fill="#fff2bd"/><path d="M172 230V196a28 28 0 0 1 56 0V230z" fill="#e9c7a3"/></g>
+<path d="M-10 262Q120 236 240 266T410 250V310H-10z" fill="#bfe4f7" stroke="${LINE}" stroke-width="2.6"/>
+${star(40, 150, 8)}${star(360, 220, 7)}
+</svg>`,
+  ocean_friends:
+    head('of', [[0, '#bfe4f7'], [1, '#c6ecda']]) +
+    `<rect width="400" height="300" fill="url(#of)"/>
+<path d="M-10 270Q100 240 200 268T410 255V310H-10z" fill="#f8e4c2" stroke="${LINE}" stroke-width="2.6"/>
+<g stroke="${LINE}" stroke-width="2.6" stroke-linejoin="round"><path d="M92 170L40 138L44 202z" fill="#ffc3b0"/><ellipse cx="170" cy="168" rx="82" ry="52" fill="#ffdcc8"/><path d="M118 168a52 36 0 0 0 100 0z" fill="#fff8ec" stroke="none"/></g>
+<circle cx="214" cy="156" r="6" fill="${LINE}"/><path d="M204 184q16 10 34 0" fill="none" stroke="${LINE}" stroke-width="3" stroke-linecap="round"/>
+<g stroke="${LINE}" stroke-width="2.4"><circle cx="290" cy="90" r="16" fill="#fff"/><circle cx="324" cy="58" r="10" fill="#fff"/><circle cx="262" cy="52" r="8" fill="#fff"/></g>
+<g stroke="${LINE}" stroke-width="2.6" stroke-linejoin="round"><ellipse cx="330" cy="200" rx="34" ry="24" fill="#bdeeea"/><path d="M296 200l-28-18v36z" fill="#a9dcb4"/></g>
+<circle cx="344" cy="194" r="4" fill="${LINE}"/>
 </svg>`
 };

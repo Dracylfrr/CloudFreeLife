@@ -1,16 +1,17 @@
 <script lang="ts">
   import { navigate } from '../../core/router';
-  import { catalog, asset, type LoadedBreakerLevel, type LoadedSplashLevel } from '../../core/content/registry';
+  import { catalog, asset, type LoadedBreakerLevel, type LoadedMemoryLevel, type LoadedSplashLevel } from '../../core/content/registry';
   import Icon from '../../ui/Icon.svelte';
   import Button from '../../ui/Button.svelte';
   import { sfx } from '../../core/audio';
 
   const breaker = $derived($catalog.breakerLevels);
   const splash = $derived($catalog.splashLevels);
+  const memory = $derived($catalog.memoryLevels);
 
   let thumbs = $state<Record<string, string | null>>({});
   $effect(() => {
-    const all: (LoadedBreakerLevel | LoadedSplashLevel)[] = [...breaker, ...splash];
+    const all: (LoadedBreakerLevel | LoadedSplashLevel | LoadedMemoryLevel)[] = [...breaker, ...splash, ...memory];
     let live = true;
     Promise.all(all.map(async (l) => [l.manifest.id, await asset(l.tree, l.dir, l.manifest.thumbnail).url()] as const)).then((e) => {
       if (live) thumbs = Object.fromEntries(e);
@@ -26,7 +27,7 @@
     <div>
       <p class="eyebrow">Take a little break</p>
       <h1>Mini-Games</h1>
-      <p class="sub">Two calm games. Every level is open from the start — no locks, no pressure.</p>
+      <p class="sub">Three calm games. Every level is open from the start — no locks, no pressure.</p>
     </div>
   </header>
 
@@ -75,6 +76,30 @@
       {/each}
     </div>
   </section>
+
+  {#if memory.length}
+    <section class="game">
+      <div class="game-head">
+        <div class="gico memory"><Icon name="heart" size={26} /></div>
+        <div>
+          <h2>Memory Meadow</h2>
+          <p class="muted">Flip soft pastel cards and find the pairs. No timer, no lives — and a hint whenever you like.</p>
+        </div>
+        <div class="modes">
+          <Button size="sm" variant="mint" onclick={() => navigate({ name: 'memory', levelId: memory[0]?.manifest.id })}>Play</Button>
+        </div>
+      </div>
+      <div class="levels">
+        {#each memory as l (l.manifest.id)}
+          <button class="lv" onclick={() => { sfx.pop(); navigate({ name: 'memory', levelId: l.manifest.id }); }}>
+            <span class="th">{#if thumbs[l.manifest.id]}<img src={thumbs[l.manifest.id]} alt="" draggable="false" />{/if}</span>
+            <strong>{l.manifest.name}</strong>
+            <small>{l.manifest.objective}</small>
+          </button>
+        {/each}
+      </div>
+    </section>
+  {/if}
 </div>
 
 <style>
@@ -109,6 +134,10 @@
   .gico.breaker {
     background: linear-gradient(135deg, #cdebf9, #e3d8f8);
     color: #4c3f9c;
+  }
+  .gico.memory {
+    background: linear-gradient(135deg, #d4f1e3, #cdebf9);
+    color: #2e5a4b;
   }
   .gico.splash {
     background: linear-gradient(135deg, #ffe0cf, #ffd3e2);

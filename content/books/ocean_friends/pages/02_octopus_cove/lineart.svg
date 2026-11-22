@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+<rect width="1000" height="750" fill="#ffffff"/>
+<g stroke="#6e6a8e" stroke-linejoin="round" stroke-linecap="round">
+<path data-region="water" data-name="Water" d="M-6 -6h1012v762h-1012z" fill="#ffffff" stroke-width="5"/>
+<path data-region="sand" data-name="Sand" d="M-10 640C41.7 636.7 181.7 618.3 300 620C418.3 621.7 581.7 650 700 650C818.3 650 958.3 625 1010 620L1010 620V750H-10V640L-10 640z" fill="#ffffff" stroke-width="5"/>
+<path data-region="tentacle_1" data-name="Tentacle" d="M420 420C392 432 354 476 330 520C306 564 294 608 300 640C306 672 344 684 360 680C376 676 372 648 380 620C388 592 382 572 400 540C418 508 466 484 470 460C474 436 448 408 420 420z" fill="#ffffff" stroke-width="5"/>
+<path data-region="tentacle_2" data-name="Tentacle" d="M470 440C450 462 448 512 440 560C432 608 420 652 430 680C440 708 476 712 490 700C504 688 494 652 500 620C506 588 512 574 520 540C528 506 550 470 540 450C530 430 490 418 470 440z" fill="#ffffff" stroke-width="5"/>
+<path data-region="tentacle_3" data-name="Tentacle" d="M530 440C524 462 546 510 560 560C574 610 580 664 600 690C620 716 652 704 660 690C668 676 650 650 640 620C630 590 620 574 610 540C600 506 606 470 590 450C574 430 536 418 530 440z" fill="#ffffff" stroke-width="5"/>
+<path data-region="tentacle_4" data-name="Tentacle" d="M580 420C588 442 648 470 680 510C712 550 716 602 740 620C764 638 794 616 800 600C806 584 790 570 770 540C750 510 726 478 700 450C674 422 664 406 640 400C616 394 572 398 580 420z" fill="#ffffff" stroke-width="5"/>
+<path data-region="octopus_head" data-name="Head" d="M330 300a170 160 0 1 0 340 0a170 160 0 1 0 -340 0z" fill="#ffffff" stroke-width="5"/>
+<path data-region="head_spots" data-name="Spots" d="M412 220a18 18 0 1 0 36 0a18 18 0 1 0 -36 0zM538 200a22 22 0 1 0 44 0a22 22 0 1 0 -44 0zM486 160a14 14 0 1 0 28 0a14 14 0 1 0 -28 0z" fill="#ffffff" stroke-width="4"/>
+<path data-region="eye_left" data-name="Eye" d="M400 320a40 40 0 1 0 80 0a40 40 0 1 0 -80 0z" fill="#ffffff" stroke-width="5"/>
+<path data-region="eye_right" data-name="Eye" d="M520 320a40 40 0 1 0 80 0a40 40 0 1 0 -80 0z" fill="#ffffff" stroke-width="5"/>
+<circle cx="448" cy="324" r="15" fill="#6e6a8e" stroke="none"/>
+<circle cx="568" cy="324" r="15" fill="#6e6a8e" stroke="none"/>
+<path d="M470 392q30 24 60 0" fill="none" stroke-width="4.5"/>
+<path data-region="seaweed_left" data-name="Seaweed" d="M110 660C97.9 643.3 75.2 602.4 80 569C84.8 535.6 131.2 509 136 478C140.8 447 103.4 395.2 106 400C108.6 404.8 147.4 471.6 150 504C152.6 536.4 120.7 548.2 120 576.8C119.3 605.4 147.8 644.7 146 660C144.2 675.3 122.1 676.7 110 660z" fill="#ffffff" stroke-width="4.5"/>
+<path data-region="seaweed_right" data-name="Seaweed" d="M900 660C887.9 640.8 865.2 593.5 870 555C874.8 516.5 921.2 485.8 926 450C930.8 414.3 893.4 354.5 896 360C898.6 365.5 937.4 442.6 940 480C942.6 517.4 910.7 531 910 564C909.3 597 937.8 642.4 936 660C934.2 677.6 912.1 679.3 900 660z" fill="#ffffff" stroke-width="4.5"/>
+<path data-region="rock" data-name="Rock" d="M783.9 702.4Q760 700 775.8 681.9L814.2 638.1Q830 620 853.4 625.2L896.6 634.8Q920 640 930.7 661.5L949.3 698.5Q960 720 936.1 717.6z" fill="#ffffff" stroke-width="5"/>
+<path data-region="shell" data-name="Shell" d="M140 670A50 44 0 0 1 240 670z" fill="#ffffff" stroke-width="5"/>
+<path d="M190 626v44M164 636l8 34M216 636l-8 34" fill="none" stroke-width="3.5"/>
+<path data-region="bubble_1" data-name="Bubble" d="M232 180a28 28 0 1 0 56 0a28 28 0 1 0 -56 0z" fill="#ffffff" stroke-width="4"/>
+<path data-region="bubble_2" data-name="Bubble" d="M302 110a18 18 0 1 0 36 0a18 18 0 1 0 -36 0z" fill="#ffffff" stroke-width="4"/>
+<path data-region="bubble_3" data-name="Bubble" d="M676 150a24 24 0 1 0 48 0a24 24 0 1 0 -48 0z" fill="#ffffff" stroke-width="4"/>
+<path data-region="bubble_4" data-name="Bubble" d="M756 80a14 14 0 1 0 28 0a14 14 0 1 0 -28 0z" fill="#ffffff" stroke-width="4"/>
+</g></svg>

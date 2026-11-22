@@ -1,0 +1,18 @@
+{
+  "id": "ocean_friends",
+  "name": "Ocean Friends",
+  "description": "Whales, octopuses, turtles and fish in a calm blue sea.",
+  "cover": "cover.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.0",
+  "kind": "coloring",
+  "accent": "#7fcfe0",
+  "order": 5,
+  "pages": [
+    "01_happy_whale",
+    "02_octopus_cove",
+    "03_turtle_reef",
+    "04_seahorse_garden",
+    "05_fish_school"
+  ]
+}

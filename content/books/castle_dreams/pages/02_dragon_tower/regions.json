@@ -1,0 +1,143 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sun_rays",
+      "name": "Sun rays",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cloud_b",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "hill",
+      "name": "Hill",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "tower",
+      "name": "Tower",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "tower_roof",
+      "name": "Tower roof",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "tower_flag",
+      "name": "Flag",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "tower_window_top",
+      "name": "Window",
+      "suggested": "#a4d2f2"
+    },
+    {
+      "id": "tower_window_mid",
+      "name": "Window",
+      "suggested": "#a4d2f2"
+    },
+    {
+      "id": "tower_door",
+      "name": "Door",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "grass",
+      "name": "Grass",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "dragon_tail",
+      "name": "Tail",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "dragon_wing",
+      "name": "Wing",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "dragon_body",
+      "name": "Body",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "dragon_belly",
+      "name": "Belly",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "dragon_neck",
+      "name": "Neck",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "dragon_head",
+      "name": "Head",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "dragon_snout",
+      "name": "Snout",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "dragon_spikes",
+      "name": "Back spikes",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "dragon_foot_a",
+      "name": "Foot",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "dragon_foot_b",
+      "name": "Foot",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "flower_a_petals",
+      "name": "Flower petals",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "flower_a_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_b_petals",
+      "name": "Flower petals",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "flower_b_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

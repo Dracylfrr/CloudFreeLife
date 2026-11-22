@@ -1,0 +1,24 @@
+{
+  "id": "cosmic_pairs",
+  "name": "Cosmic Pairs",
+  "description": "Twenty cards under the stars.",
+  "minigame": "memory_meadow",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.0",
+  "objective": "Find ten pairs among the stars.",
+  "columns": 5,
+  "cardBack": "#e6d8f8",
+  "symbols": [
+    "star",
+    "moon",
+    "planet",
+    "sun",
+    "cloud",
+    "balloon",
+    "heart",
+    "rainbow",
+    "drop",
+    "shell"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "castle_dreams",
+  "name": "Castle Dreams",
+  "description": "Towers, drawbridges and a very gentle dragon.",
+  "cover": "cover.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.0",
+  "kind": "coloring",
+  "accent": "#c9a8e8",
+  "order": 4,
+  "pages": [
+    "01_gate_house",
+    "02_dragon_tower",
+    "03_knight_friend",
+    "04_throne_room",
+    "05_castle_garden"
+  ]
+}

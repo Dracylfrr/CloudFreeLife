@@ -1,0 +1,11 @@
+{
+  "id": "throne_room",
+  "name": "Throne Room",
+  "description": "A cozy throne room with banners and soft candlelight.",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

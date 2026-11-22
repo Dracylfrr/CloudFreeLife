@@ -1,0 +1,143 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "water",
+      "name": "Water",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "light_beam",
+      "name": "Light beam",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sand",
+      "name": "Sand",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "seaweed_a",
+      "name": "Seaweed",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "seaweed_b",
+      "name": "Seaweed",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "coral",
+      "name": "Coral",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "rock",
+      "name": "Rock",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "fish_big_tail",
+      "name": "Tail",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "fish_big_fin",
+      "name": "Fin",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "fish_big_body",
+      "name": "Fish",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "fish_big_stripe",
+      "name": "Stripe",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "fish_mid_tail",
+      "name": "Tail",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "fish_mid_fin",
+      "name": "Fin",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "fish_mid_body",
+      "name": "Fish",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "fish_mid_stripe",
+      "name": "Stripe",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "fish_small_tail",
+      "name": "Tail",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "fish_small_fin",
+      "name": "Fin",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "fish_small_body",
+      "name": "Fish",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "fish_small_stripe",
+      "name": "Stripe",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "fish_tiny_tail",
+      "name": "Tail",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "fish_tiny_fin",
+      "name": "Fin",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "fish_tiny_body",
+      "name": "Fish",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "fish_tiny_stripe",
+      "name": "Stripe",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "bubble_1",
+      "name": "Bubble",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "bubble_2",
+      "name": "Bubble",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "bubble_3",
+      "name": "Bubble",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "bubble_4",
+      "name": "Bubble",
+      "suggested": "#ffffff"
+    }
+  ]
+}

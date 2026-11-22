@@ -1,0 +1,143 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "hill",
+      "name": "Hill",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "far_wall",
+      "name": "Far castle wall",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "far_tower",
+      "name": "Far tower",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "far_roof",
+      "name": "Far roof",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "grass",
+      "name": "Grass",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "leg_left",
+      "name": "Leg",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "leg_right",
+      "name": "Leg",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "boot_left",
+      "name": "Boot",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "boot_right",
+      "name": "Boot",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "armor",
+      "name": "Armor",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "armor_belt",
+      "name": "Belt",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "arm_right",
+      "name": "Arm",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sword_blade",
+      "name": "Sword blade",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "sword_hilt",
+      "name": "Sword hilt",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "arm_left",
+      "name": "Arm",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "shield",
+      "name": "Shield",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "shield_star",
+      "name": "Shield star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "plume",
+      "name": "Plume",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "helmet",
+      "name": "Helmet",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "face_opening",
+      "name": "Face",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "flower_a_petals",
+      "name": "Flower petals",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "flower_a_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_b_petals",
+      "name": "Flower petals",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_b_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "big_meadow",
+  "name": "Big Meadow",
+  "description": "The biggest meadow: twenty-four cards.",
+  "minigame": "memory_meadow",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.0",
+  "objective": "Match twelve pairs. A hint is always one click away.",
+  "columns": 6,
+  "cardBack": "#ffd3e2",
+  "symbols": [
+    "flower",
+    "leaf",
+    "mushroom",
+    "butterfly",
+    "drop",
+    "sun",
+    "cloud",
+    "star",
+    "moon",
+    "heart",
+    "fish",
+    "planet"
+  ]
+}

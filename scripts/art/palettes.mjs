@@ -46,5 +46,13 @@ export const palettes = [
   P('moonlight', 'Moonlight', 'Silvery blues, pearl and a pale golden moon.', [
     ['Moon Silver', '#dfe6f5'], ['Night Pearl', '#c6cdea'], ['Midnight Haze', '#a2aadc'], ['Pale Moon', '#fff1bf'],
     ['Lunar Lilac', '#d4c8ee'], ['Mist Blue', '#b8d4ee'], ['Dream Rose', '#f0cbe0'], ['Cloud Veil', '#f4f6fc']
-  ])
+  ]),
+  { ...P('castle_twilight', 'Castle Twilight', 'Dusky stone, lantern gold and soft banner pinks.', [
+    ['Stone Mist', '#dcd8ec'], ['Lantern Gold', '#ffe8a8'], ['Banner Pink', '#f6b8cf'], ['Moat Blue', '#b4d8f2'],
+    ['Ivy Green', '#b4e0b8'], ['Torch Peach', '#ffcfae'], ['Dusk Lilac', '#d4c6f3'], ['Parchment', '#fff4de']
+  ]), minAppVersion: '1.1.0' },
+  { ...P('ocean_pearl', 'Ocean Pearl', 'Sea foam, pearl pinks and warm shell sand.', [
+    ['Sea Foam', '#c4ece6'], ['Pearl Pink', '#fbd3df'], ['Tide Blue', '#aed6f1'], ['Shell Sand', '#f6e3c3'],
+    ['Coral Blush', '#ffc4b4'], ['Kelp', '#b2dcb6'], ['Lagoon Lilac', '#d9cbf0'], ['Moon Pearl', '#f7f5fc']
+  ]), minAppVersion: '1.1.0' }
 ];

@@ -1,0 +1,11 @@
+{
+  "id": "castle_garden",
+  "name": "Castle Garden",
+  "description": "Hedges, flowers and a fountain beside the castle.",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

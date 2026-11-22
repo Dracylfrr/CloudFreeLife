@@ -1,0 +1,18 @@
+{
+  "id": "sky_friends",
+  "name": "Sky Friends",
+  "description": "Friends from the sky.",
+  "minigame": "memory_meadow",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.0",
+  "objective": "Match the sky friends. Take as long as you like.",
+  "columns": 4,
+  "cardBack": "#d9cdf6",
+  "symbols": [
+    "cloud",
+    "sun",
+    "rainbow",
+    "balloon"
+  ]
+}
