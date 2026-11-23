@@ -14,7 +14,7 @@
  */
 import { settings, type Settings } from './settings';
 import { effectiveMusic, moodProfile } from './moods';
-import { MUSIC, noteHz, type MusicDef } from './music';
+import { BUBBLE_RISE, MUSIC, noteHz, type MusicDef } from './music';
 import { isAppHidden, onVisibilityChange } from './visibility';
 
 type Bus = 'music' | 'ambience' | 'effects' | 'painting';
@@ -118,6 +118,8 @@ const mood = () => moodProfile(current?.mood ?? 'default');
 interface ToneOpts {
   freq: number;
   to?: number;
+  /** Seconds the glide to `to` takes (default: the whole note). */
+  glide?: number;
   dur: number;
   type?: OscillatorType;
   gain?: number;
@@ -143,7 +145,7 @@ function tone(o: ToneOpts) {
   const osc = c.createOscillator();
   osc.type = o.type ?? 'sine';
   osc.frequency.setValueAtTime(o.freq, t0);
-  if (o.to) osc.frequency.exponentialRampToValueAtTime(o.to, t0 + o.dur);
+  if (o.to) osc.frequency.exponentialRampToValueAtTime(o.to, t0 + (o.glide ?? o.dur));
   const g = c.createGain();
   const peak = (o.gain ?? 0.06) * soft;
   const attack = Math.max(0.008, o.attack ?? 0.015);
@@ -406,6 +408,11 @@ function padNote(c: AudioContext, freq: number, t0: number, seconds: number, def
   }
 }
 
+/** A soft bubble: a rounded sine that rises a little as it "blooms", then fades. */
+function bloop(freq: number, delay: number, level: number, out: AudioNode) {
+  tone({ freq, to: freq * BUBBLE_RISE, glide: 0.07, dur: 0.34, gain: level, attack: 0.006, lp: 1500, wet: 0.35, bus: 'music', out, delay });
+}
+
 function playChord(s: Session) {
   if (session !== s || !ctx) return;
   const c = ctx;
@@ -421,6 +428,21 @@ function playChord(s: Session) {
     const at = 1.5 + Math.random() * Math.max(1, def.chordSeconds - 4);
     const semi = Math.random() < 0.6 ? chord[Math.floor(Math.random() * chord.length)] + 12 * (1 + Math.floor(Math.random() * 2)) : def.scale[Math.floor(Math.random() * def.scale.length)];
     bell(noteHz(def.root, semi), { bus: 'music', out: s.out, delay: at, dur: 4.6, gain: def.bell, wet: def.wet, attack: 0.03 });
+  }
+  // little runs of soft bubbles, off the beat, wandering up and down the scale. They step far back
+  // while a meditation is running so a quiet session stays quiet.
+  const bubbleScale = sessionSound !== null ? 0.25 : 1;
+  let left = Math.round(def.bubbles * bubbleScale * (0.7 + Math.random() * 0.6));
+  while (left > 0) {
+    const run = Math.min(left, 2 + Math.floor(Math.random() * 3));
+    let at = 0.8 + Math.random() * Math.max(1, def.chordSeconds - 3.5);
+    let i = Math.floor(Math.random() * def.scale.length);
+    for (let k = 0; k < run; k++) {
+      bloop(noteHz(def.root, def.scale[i] + 12), at, def.bubble * (0.75 + Math.random() * 0.35), s.out);
+      at += 0.14 + Math.random() * 0.13;
+      i = Math.max(0, Math.min(def.scale.length - 1, i + (Math.random() < 0.6 ? 1 : -1) * (1 + (Math.random() < 0.3 ? 1 : 0))));
+    }
+    left -= run;
   }
   s.chord++;
   s.timer = setTimeout(() => playChord(s), def.chordSeconds * 1000 - 800);
@@ -484,7 +506,7 @@ export function wantedMusic(s: Settings | null = current): string | null {
   // During a meditation session the session picks the sound: the everyday music steps aside.
   if (sessionSound !== null) return sessionSound === 'garden' ? 'garden' : null;
   if (!s.musicOn) return null;
-  return effectiveMusic(s.mood, s.musicMood);
+  return effectiveMusic(s.mood, s.musicMood, s.musicFollowsMood);
 }
 
 /** What a meditation session plays under it. null = no session, normal music rules apply. */

@@ -28,7 +28,10 @@ export const MOOD_PROFILES: Record<Mood, MoodProfile> = {
 
 export const moodProfile = (m: Mood): MoodProfile => MOOD_PROFILES[m] ?? MOOD_PROFILES.default;
 
-/** Which music track plays: the mood's own, or the one picked in Settings. */
-export function effectiveMusic(mood: Mood, chosen: MusicMood): MusicMood {
-  return moodProfile(mood).music ?? chosen;
+/**
+ * Which music track plays. A track picked in Settings always wins (`followMood` false); otherwise
+ * the mood's own track plays, and with the Default mood the picked track is used.
+ */
+export function effectiveMusic(mood: Mood, chosen: MusicMood, followMood = true): MusicMood {
+  return followMood ? (moodProfile(mood).music ?? chosen) : chosen;
 }

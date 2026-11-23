@@ -43,6 +43,8 @@ export interface Settings {
   volumePainting: number;
   musicOn: boolean;
   musicMood: MusicMood;
+  /** true: a mood preset (Relaxed, Chill, ...) chooses the track; false: the track picked in Settings plays. */
+  musicFollowsMood: boolean;
   ambienceOn: boolean;
   // Updates
   checkUpdatesOnStartup: boolean;
@@ -77,6 +79,7 @@ export const DEFAULT_SETTINGS: Settings = {
   volumePainting: 0.4,
   musicOn: true,
   musicMood: 'morning',
+  musicFollowsMood: true,
   ambienceOn: false,
   checkUpdatesOnStartup: true,
   lastUpdateCheck: 0,
@@ -121,6 +124,7 @@ export function sanitizeSettings(raw: unknown): Settings {
     // upgraded; from then on the sidebar toggle (or Settings) is the user's choice and is kept.
     musicOn: typeof r.schema === 'number' && r.schema < 2 ? true : bool(r.musicOn, d.musicOn),
     musicMood: (MUSIC_MOODS as readonly string[]).includes(r.musicMood as string) ? (r.musicMood as MusicMood) : d.musicMood,
+    musicFollowsMood: bool(r.musicFollowsMood, d.musicFollowsMood),
     ambienceOn: bool(r.ambienceOn, d.ambienceOn),
     checkUpdatesOnStartup: bool(r.checkUpdatesOnStartup, d.checkUpdatesOnStartup),
     lastUpdateCheck: num(r.lastUpdateCheck, 0, 0, Number.MAX_SAFE_INTEGER),

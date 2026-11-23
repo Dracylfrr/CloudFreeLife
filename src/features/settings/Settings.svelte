@@ -122,13 +122,20 @@
         <Toggle label="Background music" description="Soft, gentle music that plays quietly behind the whole app. It is composed on your computer, so nothing is downloaded." checked={$settings.musicOn} onchange={(v) => updateSettings({ musicOn: v })} />
         <div class="tracks" role="radiogroup" aria-label="Music style">
           {#each TRACKS as t}
-            <button class="track" class:on={$settings.musicMood === t.id && $settings.mood === 'default'} disabled={$settings.mood !== 'default'} role="radio" aria-checked={$settings.musicMood === t.id} onclick={() => { updateSettings({ musicMood: t.id, musicOn: true }); }}>
+            {@const on = !($settings.mood !== 'default' && $settings.musicFollowsMood) && $settings.musicMood === t.id}
+            <button class="track" class:on role="radio" aria-checked={on} onclick={() => { updateSettings({ musicMood: t.id, musicFollowsMood: false, musicOn: true }); sfx.click(); }}>
               <strong>{t.label}</strong>
               <span>{t.blurb}</span>
             </button>
           {/each}
+          {#if $settings.mood !== 'default'}
+            <button class="track" class:on={$settings.musicFollowsMood} role="radio" aria-checked={$settings.musicFollowsMood} onclick={() => { updateSettings({ musicFollowsMood: true, musicOn: true }); sfx.click(); }}>
+              <strong>Match my mood</strong>
+              <span>Let your {MOOD_LABEL[$settings.mood]} mood choose the track.</span>
+            </button>
+          {/if}
         </div>
-        {#if $settings.mood !== 'default'}<p class="muted small">Your {MOOD_LABEL[$settings.mood]} mood is choosing the music. Set Mood to Default in Display to pick a track yourself.</p>{/if}
+        <p class="muted small">Pick a track and it starts playing right away. Tracks are made on your computer, so they never repeat exactly.</p>
         <Toggle label="Gentle ambience" description="A soft, airy background hush." checked={$settings.ambienceOn} onchange={(v) => updateSettings({ ambienceOn: v })} />
       {:else if tab === 'accessibility'}
         <h2>Accessibility</h2>

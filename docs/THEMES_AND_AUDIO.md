@@ -69,23 +69,24 @@ cozy: { id: 'cozy', label: 'Cozy', hint: 'Warm, rounded sounds and a quiet garde
 
 ## Music
 
-Music is composed on the computer from data, so it needs no audio files and adds nothing to the download. A track is a slow chord progression, a soft pad that glides between the chords and a few bell notes. In `src/core/music.ts`:
+Music is composed on the computer from data, so it needs no audio files and adds nothing to the download. A track is a gentle chord progression, a soft pad that glides between the chords, a few bell notes and little runs of soft "bloop" bubbles that rise a touch in pitch. In `src/core/music.ts`:
 
 ```ts
 garden: {
-  id: 'garden', label: 'Quiet Garden', blurb: 'Warm and rounded, like sun on leaves.',
+  id: 'garden', label: 'Quiet Garden', blurb: 'Warm and rounded, with a few little bubbles.',
   root: 146.83,                       // key (Hz): D3
   chords: [[0, 4, 7, 11], [-5, -1, 2, 6], [-3, 0, 4, 7], [2, 5, 9, 12]], // semitones from the root
-  chordSeconds: 13,                   // how long each chord lasts
+  chordSeconds: 11,                   // how long each chord lasts (at least 10)
   scale: [12, 14, 16, 19, 21, 24],    // notes the bells may play
-  bells: 2.6,                         // bells per chord, on average
+  bells: 2.2,                         // bells per chord, on average
+  bubbles: 6, bubble: 0.038,          // soft bubble notes per chord, and their level (keep at or below 0.045)
   padCutoff: 760,                     // softness of the pad (Hz): keep it at or below 1000
-  pad: 0.052, bell: 0.05, wet: 0.5,   // levels (keep pad and bell at or below 0.06)
+  pad: 0.052, bell: 0.046, wet: 0.5,   // levels (keep pad and bell at or below 0.06)
   // rain: true                       // adds a soft rain layer
 }
 ```
 
-Add the track id to `MUSIC_MOODS` in `src/core/settings.ts`. The tests check that every track stays gentle: slow chords, no pitch above about 1.7 kHz, and low levels.
+Add the track id to `MUSIC_MOODS` in `src/core/settings.ts`. The tests check that every track stays gentle: unhurried chords, no pitch above about 1.7 kHz (bubbles included), and low levels.
 
 ## Sound effects
 

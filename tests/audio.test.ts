@@ -261,6 +261,9 @@ describe('background music', () => {
     expect(log.oscillators.length).toBeGreaterThan(before);
     expect(effectiveMusic('cozy', 'morning')).toBe('garden');
     expect(effectiveMusic('default', 'night')).toBe('night');
+    // a track picked in Settings wins over the mood's own track
+    expect(effectiveMusic('cozy', 'night', false)).toBe('night');
+    expect(effectiveMusic('cozy', 'night', true)).toBe('garden');
   });
 
   it('the rain track adds a soft rain layer', () => {
@@ -282,10 +285,50 @@ describe('background music', () => {
       expect(def.bell, def.id).toBeLessThanOrEqual(0.06);
       expect(def.padCutoff, def.id).toBeLessThanOrEqual(1000);
       expect(def.chords.length, def.id).toBeGreaterThanOrEqual(4);
-      expect(def.chordSeconds, def.id).toBeGreaterThanOrEqual(10); // slow
+      expect(def.chordSeconds, def.id).toBeGreaterThanOrEqual(10); // unhurried
+      expect(def.bubble, def.id).toBeLessThanOrEqual(0.045); // bubbles stay soft
+      expect(def.bubbles, def.id).toBeGreaterThan(0);
     }
   });
 
+  it('the music is bubbly but stays soft: Soft Morning has the most bubbles, Starry Night the fewest', () => {
+    const counts = Object.values(MUSIC).map((d) => d.bubbles);
+    expect(MUSIC.morning.bubbles).toBe(Math.max(...counts));
+    expect(MUSIC.night.bubbles).toBe(Math.min(...counts));
+    expect(MUSIC.morning.bubble).toBeLessThan(MUSIC.morning.bell);
+    for (const d of Object.values(MUSIC)) expect(d.blurb.length).toBeGreaterThan(10);
+  });
+
+  it('a chord brings soft rising bubbles, never rising more than a gentle step', () => {
+    updateSettings({ musicOn: true, musicMood: 'morning' });
+    const bubbles = log.oscillators.filter((o) => o.frequency.targets.length > 0 && o.frequency.peaks.length > 0);
+    expect(bubbles.length).toBeGreaterThan(2);
+    for (const o of bubbles) {
+      const ratio = o.frequency.targets[0] / o.frequency.peaks[0];
+      expect(ratio).toBeGreaterThan(1);
+      expect(ratio).toBeLessThanOrEqual(1.2);
+    }
+  });
+
+});
+
+describe('choosing a music track', () => {
+  beforeEach(() => {
+    __resetSettingsForTests();
+  });
+  it('offers four tracks, and any of them can be picked whatever the mood', () => {
+    expect(Object.keys(MUSIC)).toHaveLength(4);
+    updateSettings({ musicOn: true, mood: 'cozy', musicMood: 'night', musicFollowsMood: false });
+    expect(wantedMusic()).toBe('night');
+    updateSettings({ musicFollowsMood: true });
+    expect(wantedMusic()).toBe('garden');
+  });
+  it('is saved in settings, defaults to following the mood, and rejects bad values', () => {
+    expect(DEFAULT_SETTINGS.musicFollowsMood).toBe(true);
+    expect(sanitizeSettings({ musicFollowsMood: false }).musicFollowsMood).toBe(false);
+    expect(sanitizeSettings({ musicFollowsMood: 'no' }).musicFollowsMood).toBe(true);
+    expect(sanitizeSettings({}).musicFollowsMood).toBe(true);
+  });
 });
 
 describe('mood presets and audio settings persistence', () => {

@@ -39,6 +39,7 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 - [ ] Pause with P; minimize the window and confirm CPU drops to ~0.
 
 ## 1.4 checks
+- [ ] Settings, Audio: each of the four tracks can be picked at any time (also with a mood on) and starts playing; *Match my mood* appears with a mood on and returns control to it; the choice survives a restart.
 - [ ] Sidebar: Home, then Explore (eight entries) and App controls (Updates, Settings, About); each heading folds and unfolds, the choice survives a restart, the group you are in stays open, and the Updates dot shows on the App controls heading while it is folded.
 - [ ] Sidebar and Home show Cozy Stories and Story Adventures as two separate places; each has its own tabs; the Home Continue card resumes the last painting, story, adventure, meditation or Zen garden.
 - [ ] Meditation: each of the six sessions starts, shows the cloud and cues, pauses and resumes (the clock stops while paused), finishes early without any "failed" wording, and rings the soft bowl; Silent Timer offers 1, 3, 5, 10, 15 and 20 minutes; leaving the screen mid-session stops all sound; favorites and "last time" survive a restart.

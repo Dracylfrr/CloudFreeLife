@@ -2,6 +2,12 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com), and the project uses [Semantic Versioning](https://semver.org).
 
+## [1.4.1]
+
+### Changed
+- **Pick your background music.** Settings, Audio now always lets you choose one of the four tracks (Soft Morning, Quiet Garden, Rain Pause, Starry Night), even when a mood preset is on, and the track starts playing right away. With a mood on, a *Match my mood* choice hands the decision back to the mood.
+- **Softer, bubblier background music.** Each track now has little runs of soft bubbles that rise a touch in pitch, on top of the pad and bells. Soft Morning has the most, Starry Night the fewest. Chords change a little sooner, the levels stay quiet, and during a meditation the bubbles step far back.
+
 ## [1.4.0]
 
 ### Added
