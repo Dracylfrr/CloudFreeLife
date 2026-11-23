@@ -464,13 +464,31 @@ export function validateLevel(raw: unknown, where = 'level.json'): Result<LevelM
 
 // ---------------------------------------------------------------- stories
 
-export interface StoryChapter {
+/** Optional picture shown with a story, chapter or scene. All three fields are optional. */
+export interface Illustration {
+  /** Plain file name next to story.json (.svg, .webp or .png). */
+  illustration: string;
+  /** Description for screen readers. */
+  illustrationAlt?: string;
+  /** Short caption shown under the picture. */
+  illustrationCaption?: string;
+}
+
+/** A picture placed between paragraphs of a long chapter. */
+export interface StoryScene extends Illustration {
+  /** Shown after this paragraph (1 = after the first paragraph). */
+  after: number;
+}
+
+export interface StoryChapter extends Partial<Illustration> {
   title: string;
   /** Paragraphs, in reading order. */
   text: string[];
+  /** Optional pictures between sections of a long chapter (3 at most). */
+  scenes?: StoryScene[];
 }
 
-export interface StoryManifest {
+export interface StoryManifest extends Partial<Illustration> {
   id: string;
   name: string;
   description: string;
@@ -525,6 +543,45 @@ export interface AdventureManifest {
 const NODE_ID_RE = /^[a-z0-9][a-z0-9_]{0,47}$/;
 export const MIN_ENDINGS = 3;
 
+export const ILLUSTRATION_EXTS = ['.svg', '.webp', '.png'];
+const ILLUSTRATION_RE = /^[A-Za-z0-9][A-Za-z0-9_.-]{0,80}\.(svg|webp|png)$/i;
+
+/**
+ * Reads the optional illustration fields. A malformed value is ignored rather than rejected:
+ * a story must always stay readable, with or without its pictures.
+ */
+export function readIllustration(o: Record<string, unknown>): Partial<Illustration> {
+  const file = o.illustration;
+  if (typeof file !== 'string' || !ILLUSTRATION_RE.test(file)) return {};
+  const out: Partial<Illustration> = { illustration: file };
+  if (typeof o.illustrationAlt === 'string' && o.illustrationAlt.trim()) out.illustrationAlt = o.illustrationAlt.trim().slice(0, 300);
+  if (typeof o.illustrationCaption === 'string' && o.illustrationCaption.trim()) out.illustrationCaption = o.illustrationCaption.trim().slice(0, 160);
+  return out;
+}
+
+/** Every picture file a story refers to (cover excluded). */
+export function storyIllustrationFiles(m: StoryManifest): string[] {
+  const out: string[] = [];
+  if (m.illustration) out.push(m.illustration);
+  for (const c of m.chapters) {
+    if (c.illustration) out.push(c.illustration);
+    for (const sc of c.scenes ?? []) out.push(sc.illustration);
+  }
+  return [...new Set(out)];
+}
+
+/** Whole words in a story's text, for a reading-time estimate. */
+export function storyWordCount(m: StoryManifest): number {
+  let n = 0;
+  for (const c of m.chapters) for (const p of c.text) n += p.split(/\s+/).filter(Boolean).length;
+  return n;
+}
+
+/** Minutes to read: the author's value, else about 190 words per minute. */
+export function storyMinutes(m: StoryManifest): number {
+  return m.minutes ?? Math.max(1, Math.round(storyWordCount(m) / 190));
+}
+
 function textList(v: unknown, e: Errs, label: string): string[] {
   if (!Array.isArray(v) || v.length === 0) {
     e.add(`${label}: "text" must be a list of paragraphs`);
@@ -556,10 +613,11 @@ export function validateStory(raw: unknown, where = 'story.json'): Result<StoryM
     mood: typeof raw.mood === 'string' && raw.mood.length <= 24 ? raw.mood : undefined,
     minutes: typeof raw.minutes === 'number' && raw.minutes > 0 && raw.minutes < 600 ? Math.round(raw.minutes) : undefined,
     order: typeof raw.order === 'number' && Number.isFinite(raw.order) ? raw.order : undefined,
+    ...readIllustration(raw),
     chapters: []
   };
   if (!Array.isArray(raw.chapters) || raw.chapters.length === 0) e.add('"chapters" must be a non-empty list');
-  else if (raw.chapters.length > 60) e.add('too many chapters (60 at most)');
+  else if (raw.chapters.length > 120) e.add('too many chapters (120 at most)');
   else {
     for (const [i, c] of raw.chapters.entries()) {
       if (!isObj(c)) {
@@ -568,7 +626,18 @@ export function validateStory(raw: unknown, where = 'story.json'): Result<StoryM
       }
       const title = reqString(c, 'title', e, 80);
       const text = textList(c.text, e, `chapter ${i + 1}`);
-      story.chapters.push({ title, text });
+      const chapter: StoryChapter = { title, text, ...readIllustration(c) };
+      if (Array.isArray(c.scenes)) {
+        const scenes: StoryScene[] = [];
+        for (const sc of c.scenes.slice(0, 3)) {
+          if (!isObj(sc)) continue;
+          const ill = readIllustration(sc);
+          const after = typeof sc.after === 'number' && Number.isInteger(sc.after) ? sc.after : 0;
+          if (ill.illustration && after >= 1 && after < text.length) scenes.push({ after, ...(ill as Illustration) });
+        }
+        if (scenes.length) chapter.scenes = scenes.sort((a, b) => a.after - b.after);
+      }
+      story.chapters.push(chapter);
     }
   }
   return done(e, story);

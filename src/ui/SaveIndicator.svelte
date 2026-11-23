@@ -25,15 +25,15 @@
     color: var(--ink-soft);
     padding: 5px 12px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgb(var(--w) / 0.7);
     transition: opacity 0.3s;
   }
   .saved {
-    color: #3f8a6a;
+    color: var(--c-green2);
   }
   .error {
-    color: #b0506d;
-    background: #ffe7ec;
+    color: var(--c-rose);
+    background: var(--c-rose-bg);
   }
   .spin {
     width: 10px;

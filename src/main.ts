@@ -25,6 +25,8 @@ async function boot() {
     applySettingsToDocument(s);
     void applyUiScale(s.uiScale);
   });
+  // Follow System: re-apply when the operating system flips between light and dark.
+  window.matchMedia?.('(prefers-color-scheme: dark)').addEventListener?.('change', () => applySettingsToDocument(getSettings()));
   initAudio();
 
   await Promise.all([loadCatalog(), refreshArtworks(), loadStoryProgress()]);

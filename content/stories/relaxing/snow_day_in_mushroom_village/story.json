@@ -2,7 +2,7 @@
   "id": "snow_day_in_mushroom_village",
   "name": "Snow Day in Mushroom Village",
   "description": "Snow settles on the toadstool roofs, and a whole village decides that today is for cocoa and doing very little.",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "minAppVersion": "1.2.0",
   "cover": "cover.svg",
   "accent": "#d9cdf6",
@@ -15,7 +15,10 @@
       "text": [
         "Pip woke up and knew at once that something was different. The light through the round window was white and soft, and the whole world sounded as though it were wearing earmuffs.",
         "She pushed open her little door. Snow! It lay over the toadstool roofs like icing on a row of cakes. It sat on every fence post in a tiny hat. Even the chimney smoke seemed to move more slowly."
-      ]
+      ],
+      "illustration": "ch1.svg",
+      "illustrationAlt": "Snow covers the toadstool roofs of a quiet village while Pip peeks out of a round door into the soft white morning.",
+      "illustrationCaption": "The whole world is wearing earmuffs"
     },
     {
       "title": "Cocoa for Everyone",
@@ -23,7 +26,10 @@
         "The village bell rang once, which meant only one thing: snow day. No shops would open. No letters would be delivered. The only thing anyone had to do was be warm.",
         "Pip carried a pot of cocoa down the lane, knocking on doors. The baker came out in two scarves. The beetle twins came out holding one sled. Old Mr. Bramble put his head out of his window and said, \"Is it cocoa? It is. How lovely,\" and lowered a basket on a string for his cup.",
         "They sat together on a log under a red-and-white mushroom, steam curling up from every mug, and nobody said much at all."
-      ]
+      ],
+      "illustration": "ch2.svg",
+      "illustrationAlt": "Pip and her neighbors sit on a log under a red mushroom, sharing steaming mugs of cocoa while snow drifts down.",
+      "illustrationCaption": "Cocoa for everyone"
     },
     {
       "title": "Blankets and Lanterns",
@@ -31,7 +37,10 @@
         "By afternoon the snow had stopped, and the sky turned the pale pink of a seashell. The beetle twins slid down the hill a dozen times. The baker built a very round snowman and gave him a crust of bread for a nose.",
         "When the evening came, the villagers hung little lanterns along the lane, and each one glowed like a warm yellow bead. Pip went home with pink cheeks, wet mittens and a heart that felt as full as a teapot.",
         "She hung her scarf by the fire, pulled the quilt up to her ears, and listened to the snow beginning again, so softly that she could not tell whether it was falling or whispering."
-      ]
+      ],
+      "illustration": "ch3.svg",
+      "illustrationAlt": "At dusk, little lanterns glow along the lane beside a round snowman, while the sky turns the pink of a seashell.",
+      "illustrationCaption": "Blankets and lanterns"
     }
   ]
 }

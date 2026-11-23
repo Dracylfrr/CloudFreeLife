@@ -1,0 +1,49 @@
+{
+  "id": "night_garden",
+  "name": "Night Garden",
+  "description": "Midnight petals, moon glow and firefly yellow.",
+  "colors": [
+    {
+      "id": "midnight_petal",
+      "name": "Midnight Petal",
+      "hex": "#b9a9e6"
+    },
+    {
+      "id": "moon_glow",
+      "name": "Moon Glow",
+      "hex": "#fff0b8"
+    },
+    {
+      "id": "firefly_yellow",
+      "name": "Firefly Yellow",
+      "hex": "#f9f08e"
+    },
+    {
+      "id": "dusk_violet",
+      "name": "Dusk Violet",
+      "hex": "#9a95d6"
+    },
+    {
+      "id": "fern_shadow",
+      "name": "Fern Shadow",
+      "hex": "#8fc4a8"
+    },
+    {
+      "id": "starlight",
+      "name": "Starlight",
+      "hex": "#e8eaff"
+    },
+    {
+      "id": "moth_pink",
+      "name": "Moth Pink",
+      "hex": "#eab6d2"
+    },
+    {
+      "id": "pond_blue",
+      "name": "Pond Blue",
+      "hex": "#9fb9e6"
+    }
+  ],
+  "minAppVersion": "1.3.0",
+  "version": "1.0.0"
+}

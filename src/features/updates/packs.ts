@@ -8,6 +8,7 @@
  * the manifests inside are run through the same validators as bundled content.
  */
 import { buildCatalog } from '../../core/content/registry';
+import { storyIllustrationFiles } from '../../core/manifests';
 import { MapTree, INSTALLED_ROOT } from '../../core/content/tree';
 import { getStorage, assertSafeRelativePath } from '../../core/storage';
 import { APP_VERSION, isValidVersion, meetsMinVersion } from '../../core/version';
@@ -34,7 +35,7 @@ export type PackResult<T> = { ok: true; value: T } | { ok: false; error: string 
 const MAX_FILES = 700;
 const MAX_FILE_BYTES = 6 * 1024 * 1024;
 const MAX_TOTAL_BYTES = 40 * 1024 * 1024;
-const ALLOWED_EXT = ['.json', '.svg', '.png'];
+const ALLOWED_EXT = ['.json', '.svg', '.png', '.webp'];
 
 const PATH_PATTERNS = [
   /^books\/[a-z0-9_]+\/[A-Za-z0-9_./-]+$/,
@@ -104,7 +105,7 @@ export function parsePack(bytes: Uint8Array): PackResult<ContentPack> {
       const text = encoding === 'utf8' ? data : new TextDecoder().decode(decodeBase64(data));
       if (!svgIsPassive(text)) return { ok: false, error: `SVG contains active or external content: ${path}` };
     }
-    if (path.endsWith('.png') && encoding !== 'base64') return { ok: false, error: `PNG must be base64: ${path}` };
+    if ((path.endsWith('.png') || path.endsWith('.webp')) && encoding !== 'base64') return { ok: false, error: `Images must be base64: ${path}` };
     files[path] = { encoding, data };
   }
   return {
@@ -140,6 +141,12 @@ export async function validatePackContents(pack: ContentPack, appVersion: string
   }
   for (const r of [...cat.stories, ...cat.adventures]) {
     if (!(`${r.dir}/${r.manifest.cover}` in text)) return { ok: false, error: `Missing cover for ${r.manifest.name}` };
+  }
+  // A pack should not ship a story that points at pictures it does not contain.
+  for (const st of cat.stories) {
+    for (const f of storyIllustrationFiles(st.manifest)) {
+      if (!(`${st.dir}/${f}` in text)) return { ok: false, error: `Missing illustration ${f} in ${st.dir}` };
+    }
   }
   return { ok: true, value: { books, palettes, levels } };
 }

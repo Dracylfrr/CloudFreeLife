@@ -1,0 +1,158 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Night sky",
+      "suggested": "#8d8ed0"
+    },
+    {
+      "id": "moon_glow",
+      "name": "Moon glow",
+      "suggested": "#aeb0e6"
+    },
+    {
+      "id": "moon",
+      "name": "Moon",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star1",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star2",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star3",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star4",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star5",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star6",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "hill",
+      "name": "Hill",
+      "suggested": "#7a7bbd"
+    },
+    {
+      "id": "trunk",
+      "name": "Tree trunk",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "hollow",
+      "name": "Tree hollow",
+      "suggested": "#7a7bbd"
+    },
+    {
+      "id": "branch_left",
+      "name": "Branch",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "branch_right",
+      "name": "Branch",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "leaves_a",
+      "name": "Leaves",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "leaves_b",
+      "name": "Leaves",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "leaves_c",
+      "name": "Leaves",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "owl_body",
+      "name": "Owl",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "owl_belly",
+      "name": "Owl belly",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "owl_ear_l",
+      "name": "Ear",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "owl_ear_r",
+      "name": "Ear",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "owl_eye_l",
+      "name": "Eye",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "owl_eye_r",
+      "name": "Eye",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "owl_beak",
+      "name": "Beak",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "owlet",
+      "name": "Owlet",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "owlet_eye_l",
+      "name": "Eye",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "owlet_eye_r",
+      "name": "Eye",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "mushroom_cap",
+      "name": "Mushroom cap",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "mushroom_stem",
+      "name": "Mushroom stem",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "fern",
+      "name": "Fern",
+      "suggested": "#c6ecda"
+    }
+  ]
+}

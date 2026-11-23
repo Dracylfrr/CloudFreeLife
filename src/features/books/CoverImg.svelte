@@ -32,6 +32,6 @@
     display: block;
   }
   .ph {
-    background: linear-gradient(135deg, #e3f1fb, #ece3fb);
+    background: linear-gradient(135deg, var(--nav-a), var(--nav-b));
   }
 </style>

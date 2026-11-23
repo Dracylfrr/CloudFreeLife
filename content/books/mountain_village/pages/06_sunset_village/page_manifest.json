@@ -1,0 +1,11 @@
+{
+  "id": "sunset_village",
+  "name": "Sunset Village",
+  "description": "The whole village glowing in the evening.",
+  "version": "1.0.0",
+  "minAppVersion": "1.3.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

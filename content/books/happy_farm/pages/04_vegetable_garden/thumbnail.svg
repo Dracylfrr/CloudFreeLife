@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+<rect width="1000" height="750" fill="#ffffff"/>
+<g stroke="#6e6a8e" stroke-linejoin="round" stroke-linecap="round">
+<path data-region="sky" data-name="Sky" d="M-6 -6h1012v762h-1012z" fill="#dff0fb" stroke-width="5"/>
+<path data-region="sun" data-name="Sun" d="M816 110a44 44 0 1 0 88 0a44 44 0 1 0 -88 0z" fill="#ffe9a8" stroke-width="5"/>
+<path data-region="cloud_a" data-name="Cloud" d="M151.6 122.8A19 19 0 1 1 154 84.9A32.3 32.3 0 0 1 193.8 59.2A41.8 41.8 0 0 1 266.7 62A30.4 30.4 0 0 1 297 85A19 19 0 0 1 294.1 122.8z" fill="#ffffff" stroke-width="5"/>
+<path data-region="hill" data-name="Hill" d="M-10 360C41.7 355 185 328.3 300 330C415 331.7 561.7 368.3 680 370C798.3 371.7 955 345 1010 340L1010 340V750H-10V360L-10 360z" fill="#a9dcb4" stroke-width="5"/>
+<path data-region="fence_posts" data-name="Fence posts" d="M35 370H45A6 6 0 0 1 51 376V438A6 6 0 0 1 45 444H35A6 6 0 0 1 29 438V376A6 6 0 0 1 35 370zM105 370H115A6 6 0 0 1 121 376V438A6 6 0 0 1 115 444H105A6 6 0 0 1 99 438V376A6 6 0 0 1 105 370zM175 370H185A6 6 0 0 1 191 376V438A6 6 0 0 1 185 444H175A6 6 0 0 1 169 438V376A6 6 0 0 1 175 370zM245 370H255A6 6 0 0 1 261 376V438A6 6 0 0 1 255 444H245A6 6 0 0 1 239 438V376A6 6 0 0 1 245 370zM315 370H325A6 6 0 0 1 331 376V438A6 6 0 0 1 325 444H315A6 6 0 0 1 309 438V376A6 6 0 0 1 315 370zM385 370H395A6 6 0 0 1 401 376V438A6 6 0 0 1 395 444H385A6 6 0 0 1 379 438V376A6 6 0 0 1 385 370zM455 370H465A6 6 0 0 1 471 376V438A6 6 0 0 1 465 444H455A6 6 0 0 1 449 438V376A6 6 0 0 1 455 370zM525 370H535A6 6 0 0 1 541 376V438A6 6 0 0 1 535 444H525A6 6 0 0 1 519 438V376A6 6 0 0 1 525 370zM595 370H605A6 6 0 0 1 611 376V438A6 6 0 0 1 605 444H595A6 6 0 0 1 589 438V376A6 6 0 0 1 595 370zM665 370H675A6 6 0 0 1 681 376V438A6 6 0 0 1 675 444H665A6 6 0 0 1 659 438V376A6 6 0 0 1 665 370zM735 370H745A6 6 0 0 1 751 376V438A6 6 0 0 1 745 444H735A6 6 0 0 1 729 438V376A6 6 0 0 1 735 370zM805 370H815A6 6 0 0 1 821 376V438A6 6 0 0 1 815 444H805A6 6 0 0 1 799 438V376A6 6 0 0 1 805 370zM875 370H885A6 6 0 0 1 891 376V438A6 6 0 0 1 885 444H875A6 6 0 0 1 869 438V376A6 6 0 0 1 875 370zM945 370H955A6 6 0 0 1 961 376V438A6 6 0 0 1 955 444H945A6 6 0 0 1 939 438V376A6 6 0 0 1 945 370z" fill="#fff8ec" stroke-width="4"/>
+<path data-region="fence_rail_top" data-name="Fence rail" d="M26 384H974A6 6 0 0 1 980 390V392A6 6 0 0 1 974 398H26A6 6 0 0 1 20 392V390A6 6 0 0 1 26 384z" fill="#fff8ec" stroke-width="4"/>
+<path data-region="fence_rail_low" data-name="Fence rail" d="M26 416H974A6 6 0 0 1 980 422V424A6 6 0 0 1 974 430H26A6 6 0 0 1 20 424V422A6 6 0 0 1 26 416z" fill="#fff8ec" stroke-width="4"/>
+<path data-region="lawn" data-name="Lawn" d="M-10 470C58.3 466.7 230 448.3 400 450C570 451.7 908.3 475 1010 480L1010 480V750H-10V470L-10 470z" fill="#c2e8c4" stroke-width="5"/>
+<path data-region="bed_a" data-name="Garden bed" d="M84 500H316A14 14 0 0 1 330 514V576A14 14 0 0 1 316 590H84A14 14 0 0 1 70 576V514A14 14 0 0 1 84 500z" fill="#e9c7a3" stroke-width="5"/>
+<path data-region="bed_b" data-name="Garden bed" d="M384 500H616A14 14 0 0 1 630 514V576A14 14 0 0 1 616 590H384A14 14 0 0 1 370 576V514A14 14 0 0 1 384 500z" fill="#e9c7a3" stroke-width="5"/>
+<path data-region="bed_c" data-name="Garden bed" d="M684 500H916A14 14 0 0 1 930 514V576A14 14 0 0 1 916 590H684A14 14 0 0 1 670 576V514A14 14 0 0 1 684 500z" fill="#e9c7a3" stroke-width="5"/>
+<path data-region="soil_a" data-name="Soil" d="M94 512H306A10 10 0 0 1 316 522V568A10 10 0 0 1 306 578H94A10 10 0 0 1 84 568V522A10 10 0 0 1 94 512z" fill="#f8e4c2" stroke-width="4"/>
+<path data-region="soil_b" data-name="Soil" d="M394 512H606A10 10 0 0 1 616 522V568A10 10 0 0 1 606 578H394A10 10 0 0 1 384 568V522A10 10 0 0 1 394 512z" fill="#f8e4c2" stroke-width="4"/>
+<path data-region="soil_c" data-name="Soil" d="M694 512H906A10 10 0 0 1 916 522V568A10 10 0 0 1 906 578H694A10 10 0 0 1 684 568V522A10 10 0 0 1 694 512z" fill="#f8e4c2" stroke-width="4"/>
+<path data-region="carrot_1" data-name="Carrot" d="M105.3 525.8Q104 520 110 520L130 520Q136 520 134.7 525.8L121.3 584.2Q120 590 118.7 584.2z" fill="#ffc3b0" stroke-width="4"/>
+<path data-region="carrot_top_1" data-name="Carrot leaves" d="M120 520C112.1 522.9 99.8 516.6 93.7 508.7C87.5 500.8 88.8 491.4 89.2 480.5C89.7 469.6 90.3 456.3 96.1 454.2C101.8 452.1 110.8 462 118.2 470C125.6 478 132.6 484.4 132.9 494.4C133.3 504.4 127.9 517.1 120 520zM120 520C112.1 517.1 106.7 504.4 107.1 494.4C107.4 484.4 114.4 478 121.8 470C129.2 462 138.2 452.1 143.9 454.2C149.7 456.3 150.3 469.6 150.8 480.5C151.2 491.4 152.5 500.8 146.3 508.7C140.2 516.6 127.9 522.9 120 520z" fill="#a9dcb4" stroke-width="4"/>
+<path data-region="carrot_2" data-name="Carrot" d="M175.3 525.8Q174 520 180 520L200 520Q206 520 204.7 525.8L191.3 584.2Q190 590 188.7 584.2z" fill="#ffc3b0" stroke-width="4"/>
+<path data-region="carrot_top_2" data-name="Carrot leaves" d="M190 520C182.1 522.9 169.8 516.6 163.7 508.7C157.5 500.8 158.8 491.4 159.2 480.5C159.7 469.6 160.3 456.3 166.1 454.2C171.8 452.1 180.8 462 188.2 470C195.6 478 202.6 484.4 202.9 494.4C203.3 504.4 197.9 517.1 190 520zM190 520C182.1 517.1 176.7 504.4 177.1 494.4C177.4 484.4 184.4 478 191.8 470C199.2 462 208.2 452.1 213.9 454.2C219.7 456.3 220.3 469.6 220.8 480.5C221.2 491.4 222.5 500.8 216.3 508.7C210.2 516.6 197.9 522.9 190 520z" fill="#a9dcb4" stroke-width="4"/>
+<path data-region="carrot_3" data-name="Carrot" d="M245.3 525.8Q244 520 250 520L270 520Q276 520 274.7 525.8L261.3 584.2Q260 590 258.7 584.2z" fill="#ffc3b0" stroke-width="4"/>
+<path data-region="carrot_top_3" data-name="Carrot leaves" d="M260 520C252.1 522.9 239.8 516.6 233.7 508.7C227.5 500.8 228.8 491.4 229.2 480.5C229.7 469.6 230.3 456.3 236.1 454.2C241.8 452.1 250.8 462 258.2 470C265.6 478 272.6 484.4 272.9 494.4C273.3 504.4 267.9 517.1 260 520zM260 520C252.1 517.1 246.7 504.4 247.1 494.4C247.4 484.4 254.4 478 261.8 470C269.2 462 278.2 452.1 283.9 454.2C289.7 456.3 290.3 469.6 290.8 480.5C291.2 491.4 292.5 500.8 286.3 508.7C280.2 516.6 267.9 522.9 260 520z" fill="#a9dcb4" stroke-width="4"/>
+<path data-region="cabbage_1" data-name="Cabbage" d="M396 540a34 34 0 1 0 68 0a34 34 0 1 0 -68 0z" fill="#c6ecda" stroke-width="5"/>
+<path d="M412 540q18 -22 36 0" fill="none" stroke-width="3.5"/>
+<path data-region="cabbage_2" data-name="Cabbage" d="M466 540a34 34 0 1 0 68 0a34 34 0 1 0 -68 0z" fill="#c6ecda" stroke-width="5"/>
+<path d="M482 540q18 -22 36 0" fill="none" stroke-width="3.5"/>
+<path data-region="cabbage_3" data-name="Cabbage" d="M536 540a34 34 0 1 0 68 0a34 34 0 1 0 -68 0z" fill="#c6ecda" stroke-width="5"/>
+<path d="M552 540q18 -22 36 0" fill="none" stroke-width="3.5"/>
+<path d="M760 590V400M860 590V420" fill="none" stroke-width="6"/>
+<path data-region="vine_a" data-name="Tomato leaves" d="M815.1 430C814.8 441.6 808.5 451.2 800.3 461.1C792.2 471.1 783.1 481.6 770.4 484.3C757.7 487 741.7 483 731.2 476C720.6 468.9 717.9 457.6 712.9 445.8C708 433.9 700.8 422.5 704.2 411.3C707.6 400.1 719.4 390.8 731.5 384.6C743.6 378.4 757.1 375.3 770 377.7C782.9 380.1 793.7 388 802 397.6C810.2 407.2 815.4 418.4 815.1 430z" fill="#a9dcb4" stroke-width="5"/>
+<path data-region="vine_b" data-name="Tomato leaves" d="M907.4 450C908.1 461.4 909.5 474.5 902.3 482.7C895.2 490.9 881.1 493 868.5 494.6C856 496.2 843.7 497 833.9 491.6C824.1 486.2 819.9 475.9 815.1 465C810.3 454.2 804.1 442.5 807.8 432.5C811.4 422.5 824 415.3 835.1 410.4C846.3 405.4 856.9 403.7 868.5 405.5C880.2 407.3 891.4 412.1 898.5 420.2C905.7 428.4 906.7 438.6 907.4 450z" fill="#a9dcb4" stroke-width="5"/>
+<path data-region="tomato_1" data-name="Tomato" d="M720 450a20 20 0 1 0 40 0a20 20 0 1 0 -40 0z" fill="#ffc3b0" stroke-width="4"/>
+<path data-region="tomato_2" data-name="Tomato" d="M760 470a20 20 0 1 0 40 0a20 20 0 1 0 -40 0z" fill="#ffc3b0" stroke-width="4"/>
+<path data-region="tomato_3" data-name="Tomato" d="M830 480a20 20 0 1 0 40 0a20 20 0 1 0 -40 0z" fill="#ffc3b0" stroke-width="4"/>
+<path data-region="tomato_4" data-name="Tomato" d="M860 450a20 20 0 1 0 40 0a20 20 0 1 0 -40 0z" fill="#ffc3b0" stroke-width="4"/>
+<path data-region="can_body" data-name="Watering can" d="M124 640H186A14 14 0 0 1 200 654V696A14 14 0 0 1 186 710H124A14 14 0 0 1 110 696V654A14 14 0 0 1 124 640z" fill="#bfe4f7" stroke-width="5"/>
+<path data-region="can_spout" data-name="Spout" d="M112 660.5Q110 664 107 661.4L63 622.6Q60 620 63.3 617.8L74.7 610.2Q78 608 80.8 610.9L115.2 647.1Q118 650 116 653.5z" fill="#bfe4f7" stroke-width="4"/>
+<path d="M200 660q36 -6 24 26" fill="none" stroke-width="5"/>
+<path data-region="bunny_body" data-name="Bunny" d="M506 680a54 44 0 1 0 108 0a54 44 0 1 0 -108 0z" fill="#fff8ec" stroke-width="5"/>
+<path data-region="bunny_head" data-name="Bunny head" d="M578 650a32 32 0 1 0 64 0a32 32 0 1 0 -64 0z" fill="#fff8ec" stroke-width="5"/>
+<path data-region="bunny_ear_a" data-name="Ear" d="M591 600a11 34 0 1 0 22 0a11 34 0 1 0 -22 0z" fill="#fff8ec" stroke-width="4"/>
+<path data-region="bunny_ear_b" data-name="Ear" d="M619 604a11 32 0 1 0 22 0a11 32 0 1 0 -22 0z" fill="#fff8ec" stroke-width="4"/>
+<circle cx="620" cy="648" r="4" fill="#6e6a8e" stroke="none"/>
+<path data-region="bunny_tail" data-name="Tail" d="M494 690a14 14 0 1 0 28 0a14 14 0 1 0 -28 0z" fill="#ffffff" stroke-width="4"/>
+<path data-region="carrot_snack" data-name="Carrot" d="M640 672Q640 668 643.9 668.6L686.1 675.4Q690 676 686.1 676.6L643.9 683.4Q640 684 640 680z" fill="#ffc3b0" stroke-width="4"/>
+<path data-region="bee" data-name="Bee" d="M282 440a18 12 0 1 0 36 0a18 12 0 1 0 -36 0z" fill="#fff2bd" stroke-width="4"/>
+<path d="M292 430v20M302 430v20" fill="none" stroke-width="3.5"/>
+</g></svg>

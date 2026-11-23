@@ -2,7 +2,7 @@
   "id": "tea_shop_at_the_rainbows_end",
   "name": "The Tea Shop at the Rainbow's End",
   "description": "A badger keeps a cozy little tea shop where the rainbow lands, and every guest arrives exactly when they should.",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "minAppVersion": "1.2.0",
   "cover": "cover.svg",
   "accent": "#f49bbd",
@@ -15,7 +15,10 @@
       "text": [
         "At the very end of the rainbow, where the colors melt into the grass like sherbet, there is a tiny tea shop with a round green door. It belongs to Mr. Hazel, a badger with spectacles and a very good apron.",
         "Every morning he wipes the teapots, plumps the cushions and sets out one small cake for each chair. He never knows who will come. That is the best part of the job."
-      ]
+      ],
+      "illustration": "ch1.svg",
+      "illustrationAlt": "A rainbow lands beside a tiny tea shop with a round green door. Mr. Hazel the badger stands in his apron.",
+      "illustrationCaption": "Opening time at the rainbow's end"
     },
     {
       "title": "The Guests",
@@ -23,7 +26,10 @@
         "The first guest was a sparrow who wanted something warm and plain. Mr. Hazel brought her chamomile and a crumpet, and she sat by the window for an hour without saying a word. She left looking lighter than she came.",
         "The second guest was a beetle in a hurry, who ordered a quick peppermint, stayed for three cups and told a story that made the teapots rattle with laughter. The third was a pair of young foxes, who shared one raspberry tart and a great many secrets.",
         "\"Everyone gets what they need,\" Mr. Hazel liked to say, \"if you leave a little room in the day for it.\""
-      ]
+      ],
+      "illustration": "ch2.svg",
+      "illustrationAlt": "Inside the tea shop, a sparrow sips from a cup by the window while teapots and cakes wait on a round table.",
+      "illustrationCaption": "Everyone gets what they need"
     },
     {
       "title": "The Last Cup",
@@ -31,7 +37,10 @@
         "Late in the afternoon, when the rainbow had begun to fade and the light turned honey-gold, the round green door creaked open one more time. A very old snail stood on the mat. He had been traveling since spring.",
         "\"Am I too late?\" he asked. Mr. Hazel looked at the clock, then at the snail, then at the one small cake he had left on the shelf. \"Not at all,\" he said. \"You are exactly on time.\"",
         "They drank their tea slowly, as is proper, while the last of the rainbow folded itself away into the evening. The snail fell asleep with a smile, and Mr. Hazel did not wake him. He simply turned the sign on the door to say \"Closed, but cozy,\" and tucked a blanket over the shell."
-      ]
+      ],
+      "illustration": "ch3.svg",
+      "illustrationAlt": "At golden hour, an old snail sits at a little table with a cup of tea while Mr. Hazel tucks a blanket over his shell.",
+      "illustrationCaption": "The last cup of the day"
     }
   ]
 }

@@ -62,5 +62,25 @@ export const palettes = [
   { ...P('forest_dawn', 'Forest Dawn', 'Mossy greens, acorn browns and soft sunrise peach.', [
     ['Moss Green', '#b7dcaa'], ['Fern', '#9fd0a6'], ['Acorn Brown', '#e3c3a0'], ['Honey Glow', '#ffe9a6'],
     ['Fox Orange', '#ffc7a6'], ['Dawn Peach', '#ffe0cc'], ['Mist Blue', '#c7dff0'], ['Berry Mauve', '#e2bcd2']
-  ]), minAppVersion: '1.1.1' }
+  ]), minAppVersion: '1.1.1' },
+  { ...P('candle_glow', 'Candle Glow', 'Warm cream, soft gold and peach, like a room lit by one small flame.', [
+    ['Candle Cream', '#fff1d0'], ['Soft Gold', '#f6d98a'], ['Amber Glow', '#f2b866'], ['Peach Flame', '#ffc9a0'],
+    ['Rose Wax', '#f2b9b0'], ['Honey Light', '#ffe3a3'], ['Warm Linen', '#f8e6cc'], ['Ember Blush', '#f0a89a']
+  ]), minAppVersion: '1.3.0' },
+  { ...P('blossom_rain', 'Blossom Rain', 'Petal pinks, rain lilac and cool drizzle blues.', [
+    ['Petal Pink', '#f9c9dc'], ['Rain Lilac', '#d8c8f0'], ['Cool Drizzle', '#bcd3f2'], ['Cherry Mist', '#f2a9c6'],
+    ['Silver Cloud', '#e4e8f4'], ['Puddle Blue', '#a9c8ee'], ['Fresh Leaf', '#c6e8cc'], ['Dew Pearl', '#f6f2fb']
+  ]), minAppVersion: '1.3.0' },
+  { ...P('mountain_morning', 'Mountain Morning', 'Alpine mist, snow caps, pine green and a sunrise rose.', [
+    ['Alpine Mist', '#d3e4f2'], ['Snow Cap', '#f4f8fc'], ['Pine Green', '#9fcfb0'], ['Sunrise Rose', '#f7c4c0'],
+    ['Granite Lilac', '#cbc3e6'], ['Cabin Wood', '#e5c7a6'], ['Sky Lake', '#a9d1ee'], ['Meadow Gold', '#f9e6a3']
+  ]), minAppVersion: '1.3.0' },
+  { ...P('night_garden', 'Night Garden', 'Midnight petals, moon glow and firefly yellow.', [
+    ['Midnight Petal', '#b9a9e6'], ['Moon Glow', '#fff0b8'], ['Firefly Yellow', '#f9f08e'], ['Dusk Violet', '#9a95d6'],
+    ['Fern Shadow', '#8fc4a8'], ['Starlight', '#e8eaff'], ['Moth Pink', '#eab6d2'], ['Pond Blue', '#9fb9e6']
+  ]), minAppVersion: '1.3.0' },
+  { ...P('farm_sunrise', 'Farm Sunrise', 'Barn red, hay gold, field green and a milky morning sky.', [
+    ['Barn Red', '#f2a9a0'], ['Hay Gold', '#f7dc92'], ['Field Green', '#b4de9c'], ['Morning Sky', '#c8e5f6'],
+    ['Cream Milk', '#fff5e0'], ['Apple Blush', '#f8b3a8'], ['Sunrise Peach', '#ffd1ad'], ['Soil Brown', '#dcbf9f']
+  ]), minAppVersion: '1.3.0' }
 ];

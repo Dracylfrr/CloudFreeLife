@@ -1,9 +1,9 @@
 /**
- * Update orchestration. Talks to the official GitHub Releases page, never
- * blocks the app, never polls, and treats everything it receives as untrusted.
+ * Update orchestration. Talks to the infrastructure that hosts the official
+ * Cloud-Freelife releases, never blocks the app, never polls, and treats everything it receives as untrusted.
  */
 import { get, writable } from 'svelte/store';
-import { GITHUB_API_RELEASES, GITHUB_RELEASES_PAGE } from '../../core/config';
+import { GITHUB_API_RELEASES } from '../../core/config';
 import { getCatalog, loadCatalog } from '../../core/content/registry';
 import { getSettings, updateSettings } from '../../core/settings';
 import { getStorage, isTauri } from '../../core/storage';
@@ -68,17 +68,17 @@ export async function runUpdateCheck(appVersion: string = APP_VERSION): Promise<
     res = await httpGet(GITHUB_API_RELEASES, { accept: 'application/vnd.github+json', maxBytes: 3 * 1024 * 1024 });
   } catch (err) {
     const offline = err instanceof NetworkError ? err.offline : true;
-    return { items: [], outcome: offline ? 'offline' : 'error', message: offline ? "Couldn't reach GitHub. You can keep using Cloud-Freelife offline." : (err as Error).message };
+    return { items: [], outcome: offline ? 'offline' : 'error', message: offline ? "Couldn't reach the update service. You can keep using Cloud-Freelife offline." : (err as Error).message };
   }
   if (res.status === 404) return { items: [], outcome: 'up_to_date', message: 'No releases have been published yet.' };
-  if (res.status === 403 || res.status === 429) return { items: [], outcome: 'error', message: 'GitHub is limiting requests right now. Please try again later.' };
-  if (res.status < 200 || res.status >= 300) return { items: [], outcome: 'error', message: `GitHub answered with status ${res.status}.` };
+  if (res.status === 403 || res.status === 429) return { items: [], outcome: 'error', message: 'The update service is busy right now. Please try again later.' };
+  if (res.status < 200 || res.status >= 300) return { items: [], outcome: 'error', message: `The update service answered with status ${res.status}.` };
 
   let json: unknown;
   try {
     json = JSON.parse(new TextDecoder().decode(res.bytes));
   } catch {
-    return { items: [], outcome: 'error', message: 'GitHub sent a response that could not be read.' };
+    return { items: [], outcome: 'error', message: 'The update service sent a response that could not be read.' };
   }
   const releases = parseReleases(json);
   const installed = await installedVersions();
@@ -120,7 +120,7 @@ export async function runUpdateCheck(appVersion: string = APP_VERSION): Promise<
 /** Manual or startup check; concurrent calls share one request. */
 export function checkForUpdates(): Promise<UpdateState> {
   if (inFlight) return inFlight;
-  updateState.update((s) => ({ ...s, outcome: 'checking', message: 'Checking GitHub…' }));
+  updateState.update((s) => ({ ...s, outcome: 'checking', message: 'Checking for updates…' }));
   inFlight = (async () => {
     try {
       const r = await runUpdateCheck();
@@ -231,16 +231,6 @@ export async function downloadAppInstaller(item: UpdateItem): Promise<Downloaded
     return { ok: true, message: 'Installer downloaded and verified.', path: `${dir}\\Cloud-Freelife\\${item.asset.name}` };
   } finally {
     setBusy(key, false);
-  }
-}
-
-export async function openOfficialLink(url: string) {
-  const target = url.startsWith('https://github.com/') ? url : GITHUB_RELEASES_PAGE;
-  if (isTauri()) {
-    const { openUrl } = await import('@tauri-apps/plugin-opener');
-    await openUrl(target);
-  } else {
-    window.open(target, '_blank', 'noopener');
   }
 }
 

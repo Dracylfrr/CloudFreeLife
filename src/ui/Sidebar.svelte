@@ -2,6 +2,7 @@
   import { navigate, route, sectionOf, type NavSection } from '../core/router';
   import { APP_VERSION } from '../core/version';
   import { updateState } from '../features/updates/updater';
+  import { settings, updateSettings } from '../core/settings';
   import Icon from './Icon.svelte';
   import Logo from './Logo.svelte';
 
@@ -10,8 +11,7 @@
     { id: 'books', label: 'Coloring Books', icon: 'book', go: () => navigate({ name: 'books' }) },
     { id: 'draw', label: 'Free Draw', icon: 'brush', go: () => navigate({ name: 'draw' }) },
     { id: 'gallery', label: 'Gallery', icon: 'image', go: () => navigate({ name: 'gallery' }) },
-    { id: 'stories', label: 'Cozy Stories', icon: 'bookOpen', go: () => navigate({ name: 'stories' }) },
-    { id: 'adventures', label: 'Story Adventures', icon: 'compass', go: () => navigate({ name: 'adventures' }) },
+    { id: 'stories', label: 'Stories', icon: 'bookOpen', go: () => navigate({ name: 'stories' }) },
     { id: 'minigames', label: 'Mini-Games', icon: 'gamepad', go: () => navigate({ name: 'minigames' }) },
     { id: 'updates', label: 'Updates', icon: 'cloudDown', go: () => navigate({ name: 'updates' }) },
     { id: 'settings', label: 'Settings', icon: 'sliders', go: () => navigate({ name: 'settings' }) },
@@ -37,6 +37,16 @@
       </li>
     {/each}
   </ul>
+  <button
+    class="quick"
+    aria-pressed={$settings.musicOn}
+    aria-label={$settings.musicOn ? 'Turn background music off' : 'Turn background music on'}
+    title={$settings.musicOn ? 'Background music is on' : 'Background music is off'}
+    onclick={() => updateSettings({ musicOn: !$settings.musicOn })}
+  >
+    <Icon name={$settings.musicOn && !$settings.muted ? 'volume' : 'mute'} size={19} />
+    <span>{$settings.musicOn ? 'Music on' : 'Music off'}</span>
+  </button>
   <div class="foot">v{APP_VERSION}</div>
 </nav>
 
@@ -49,7 +59,7 @@
     border-radius: var(--radius-xl);
     background: var(--panel);
     box-shadow: var(--shadow-m);
-    border: 1px solid rgba(255, 255, 255, 0.8);
+    border: 1px solid rgb(var(--w) / 0.8);
     display: flex;
     flex-direction: column;
     gap: 14px;
@@ -69,7 +79,7 @@
     font-size: 1.12rem;
     line-height: 1.1;
     letter-spacing: -0.01em;
-    background: linear-gradient(120deg, #6fb4e6, #9b86df);
+    background: linear-gradient(120deg, var(--brand-a), var(--brand-b));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -104,13 +114,13 @@
     position: relative;
   }
   .item:hover {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgb(var(--w) / 0.8);
     color: var(--ink);
     transform: translateX(2px);
   }
   .item.on {
-    background: linear-gradient(135deg, #d9eefb, #e6dcfa);
-    color: #4c3f9c;
+    background: linear-gradient(135deg, var(--nav-a), var(--nav-b));
+    color: var(--nav-ink);
     box-shadow: var(--shadow-s);
   }
   .dot {
@@ -120,6 +130,24 @@
     border-radius: 50%;
     background: var(--pink-deep);
     box-shadow: 0 0 0 4px rgba(244, 155, 189, 0.25);
+  }
+  .quick {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 16px;
+    border-radius: 16px;
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    background: rgb(var(--w) / 0.45);
+  }
+  .quick:hover {
+    color: var(--ink);
+    background: rgb(var(--w) / 0.8);
+  }
+  .quick[aria-pressed='true'] {
+    color: var(--c-violet);
   }
   .foot {
     text-align: center;
@@ -140,8 +168,13 @@
     }
     .name,
     .item span,
+    .quick span,
     .foot {
       display: none;
+    }
+    .quick {
+      justify-content: center;
+      padding: 10px 0;
     }
     .item {
       justify-content: center;

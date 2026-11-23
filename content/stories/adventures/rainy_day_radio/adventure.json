@@ -1,0 +1,369 @@
+{
+  "id": "rainy_day_radio",
+  "name": "Rainy Day Radio",
+  "description": "You run the smallest radio station in the world from a lighthouse-shaped shed. Today it will not stop raining, and everything that can go wrong is going wrong.",
+  "version": "1.3.0",
+  "minAppVersion": "1.3.0",
+  "cover": "cover.svg",
+  "accent": "#8fc7ec",
+  "genre": "Comedy",
+  "protagonist": "guy",
+  "hero": "Otis",
+  "minutes": 11,
+  "order": 8,
+  "start": "start",
+  "nodes": {
+    "start": {
+      "text": [
+        "My name is Otis, and I am the entire staff of Radio Puddle, the smallest radio station in the world. It lives in a shed behind the post office, and it broadcasts to forty-one listeners, three of whom are cows.",
+        "It has been raining since breakfast. The roof leaks in four places, the microphone is wearing a tiny raincoat, and in exactly five minutes I am supposed to go on air with the Big Rainy Day Special. I have no idea what the special is."
+      ],
+      "choices": [
+        {
+          "text": "Put the kettle on and think",
+          "to": "kettle"
+        },
+        {
+          "text": "Check the guest list",
+          "to": "guests"
+        },
+        {
+          "text": "Just flip the switch and see what happens",
+          "to": "live"
+        }
+      ]
+    },
+    "kettle": {
+      "text": [
+        "I fill the kettle and set it on the little stove. While it heats, I stare at the schedule. It says: \"12:00. Rainy Day Special. Surprise guest!\" in my own handwriting. I do not remember writing it. I have no idea who the surprise is.",
+        "A drip lands on my head from the ceiling. Then another. A leak has found the exact spot above my chair."
+      ],
+      "choices": [
+        {
+          "text": "Put a bucket under the leak",
+          "to": "bucket"
+        },
+        {
+          "text": "Move my chair and ignore it",
+          "to": "guests"
+        },
+        {
+          "text": "Make a song out of the drips",
+          "to": "drip_song"
+        }
+      ]
+    },
+    "bucket": {
+      "text": [
+        "I find a bucket. The drip hits it with a loud plink. Then I find a second bucket for a second leak, and a pot for a third, and a hat for a fourth. Soon the whole shed is plinking and plonking in a gentle rainy rhythm.",
+        "\"Oh,\" I say, listening. \"That is actually quite nice.\""
+      ],
+      "choices": [
+        {
+          "text": "Put a microphone near the buckets",
+          "to": "drip_song"
+        },
+        {
+          "text": "Go on air with a very wet shed",
+          "to": "live"
+        }
+      ]
+    },
+    "drip_song": {
+      "text": [
+        "I line up the buckets by size and tap each one with a spoon, and the leaks do the rest. Plink, plonk, ploop, a song. I record a minute of it and play it back, and it is lovely, like a very small orchestra made of weather.",
+        "The clock says one minute to noon."
+      ],
+      "choices": [
+        {
+          "text": "Go live with the Drip Orchestra",
+          "to": "live_drip"
+        },
+        {
+          "text": "Wait for the surprise guest",
+          "to": "guests"
+        }
+      ]
+    },
+    "guests": {
+      "text": [
+        "The guest list is on a sticky note on the microphone. It says: \"Mr. Pickle, 12:00.\" Mr. Pickle is not a person. Mr. Pickle is the postmaster's parrot, who lives next door and who has been trying to get on the radio for six years.",
+        "I peek out. Mr. Pickle is standing in the rain on the windowsill, glaring. He is soaked, and he is carrying a rolled-up piece of paper in his claw."
+      ],
+      "choices": [
+        {
+          "text": "Let Mr. Pickle in",
+          "to": "pickle_in"
+        },
+        {
+          "text": "Tell him he cannot come in until he dries off",
+          "to": "pickle_out"
+        },
+        {
+          "text": "Pretend I did not see him",
+          "to": "live"
+        }
+      ]
+    },
+    "pickle_out": {
+      "text": [
+        "I tell Mr. Pickle through the window that he must dry off first. He shakes himself like a dog, spraying me with a lot of rain, and says in a very clear voice, \"RUDE.\" Then he hops in anyway and lands on the microphone stand."
+      ],
+      "choices": [
+        {
+          "text": "Hand him a towel",
+          "to": "pickle_in"
+        },
+        {
+          "text": "Go on air immediately",
+          "to": "live_pickle"
+        }
+      ]
+    },
+    "pickle_in": {
+      "text": [
+        "Mr. Pickle steps onto the desk and shakes out his feathers, takes the scroll from his claw and unrolls it with great dignity. It is a list. It says: \"PIECES OF WISDOM, by Mr. Pickle.\" There are eleven items, and the first is \"Rain is wet.\"",
+        "\"On air in thirty seconds,\" I say. \"Are you ready?\" Mr. Pickle looks at the microphone with the expression of a bird who has been waiting for this moment his whole life."
+      ],
+      "choices": [
+        {
+          "text": "Let him read the wisdom",
+          "to": "live_pickle"
+        },
+        {
+          "text": "Ask him to say something nice about the rain",
+          "to": "live_pickle"
+        }
+      ]
+    },
+    "live": {
+      "text": [
+        "I flip the switch. The red light comes on. Somewhere in the village, forty-one people (and three cows) sit up and listen.",
+        "\"Good afternoon, Radio Puddle,\" I say, in my best radio voice, which is a little deeper than my regular one and ends up sounding like a frog. \"It is raining. It is, in fact, raining quite a lot. Here is... a very long pause.\""
+      ],
+      "choices": [
+        {
+          "text": "Fill the silence by telling a joke",
+          "to": "joke"
+        },
+        {
+          "text": "Fill it by playing a record",
+          "to": "record"
+        },
+        {
+          "text": "Fill it by reading the weather",
+          "to": "weather"
+        }
+      ]
+    },
+    "live_drip": {
+      "text": [
+        "I flip the switch and play the Drip Orchestra, a full minute of plinks and plonks and gentle puddle music. In the village, forty-one listeners stop what they are doing and just listen. Somebody's kettle whistles in the background, perfectly in tune.",
+        "When it ends, I say softly, \"That was the roof.\" The phone on my desk begins to ring and does not stop."
+      ],
+      "choices": [
+        {
+          "text": "Answer the phone",
+          "to": "phone"
+        }
+      ]
+    },
+    "live_pickle": {
+      "text": [
+        "The red light goes on. \"Good afternoon,\" I say. \"With me today is Mr. Pickle, the postmaster's parrot, who has some wisdom for you.\"",
+        "Mr. Pickle leans toward the microphone. He clears his throat. He says, in a voice like a cello, \"RAIN. IS. WET.\" And then, thrilled with himself, \"RAIN. IS. WET. ALSO. THERE. IS. A. BISCUIT.\""
+      ],
+      "choices": [
+        {
+          "text": "Let him go on",
+          "to": "phone"
+        },
+        {
+          "text": "Ask him what kind of biscuit",
+          "to": "biscuit"
+        }
+      ]
+    },
+    "biscuit": {
+      "text": [
+        "\"Ginger,\" says Mr. Pickle, with great feeling, \"in the postmaster's bag.\" The phone starts to ring. Then it rings again. By the time I look up, the shed is surrounded by neighbors in raincoats, all wanting to know whether there is a biscuit and, if so, how many."
+      ],
+      "choices": [
+        {
+          "text": "Share the biscuit story on air",
+          "to": "phone"
+        }
+      ]
+    },
+    "joke": {
+      "text": [
+        "\"Why did the cloud go to the party?\" I say. \"Because it heard it was going to be a... shower?\" A long silence follows. Then, faintly, from the other end of the village, a cow moos. It sounds like a very tired laugh.",
+        "The phone rings. It is my grandmother. \"That was terrible,\" she says. \"Do another.\""
+      ],
+      "choices": [
+        {
+          "text": "Do another joke",
+          "to": "phone"
+        },
+        {
+          "text": "Hang up and play a record",
+          "to": "record"
+        }
+      ]
+    },
+    "record": {
+      "text": [
+        "I reach for the record player and drop the needle on whatever is on top. It turns out to be a recording of someone gargling. I realize this about four seconds into it. It is called, according to the label, \"Morning Routines of the Cave Frog.\"",
+        "I cannot find the stop button. Somewhere out there, forty-one people are listening to frogs gargle."
+      ],
+      "choices": [
+        {
+          "text": "Pull the plug out of the wall",
+          "to": "plug"
+        },
+        {
+          "text": "Lean into it and call it avant-garde",
+          "to": "phone"
+        }
+      ]
+    },
+    "plug": {
+      "text": [
+        "I yank the plug, and the record player stops. Unfortunately, so does everything else in the shed: the lights, the microphone, the kettle. The only thing still working is the rain, which continues to leak onto my head with great enthusiasm."
+      ],
+      "choices": [
+        {
+          "text": "Light a candle and keep talking anyway",
+          "to": "end_candle"
+        },
+        {
+          "text": "Run to the fuse box in the rain",
+          "to": "end_fuse"
+        }
+      ]
+    },
+    "weather": {
+      "text": [
+        "\"Today's weather,\" I say, looking out of the window. \"It is raining. Tomorrow's weather: probably also raining. The day after that: the same, with a chance of... more rain.\" I look at the paper in my hand. \"I think I have been reading yesterday's forecast. Sorry.\"",
+        "The phone rings."
+      ],
+      "choices": [
+        {
+          "text": "Answer it",
+          "to": "phone"
+        }
+      ]
+    },
+    "phone": {
+      "text": [
+        "The phone has not stopped ringing since the show started. It is the whole village, calling in. They want requests, jokes, advice, biscuits. Mrs. Dumpling wants a song about her cabbage. Mr. Fenn wants to know if it is going to rain tomorrow, which is a strange question to ask a man in a leaky shed.",
+        "And on line three, a small voice says, \"Is this the radio? Can I say hello?\" It is a very small child, and she is whispering."
+      ],
+      "choices": [
+        {
+          "text": "Put her on the air",
+          "to": "child"
+        },
+        {
+          "text": "Take Mrs. Dumpling's cabbage song request",
+          "to": "cabbage"
+        },
+        {
+          "text": "Let the parrot answer",
+          "to": "end_parrot"
+        }
+      ]
+    },
+    "child": {
+      "text": [
+        "\"Hello, radio,\" says the small voice. \"I am four. It is raining. I am wearing my boots inside.\" There is a long pause, and I can hear her smiling. \"That is all. I just wanted to tell somebody.\"",
+        "It is the nicest thing anyone has said on Radio Puddle in six years."
+      ],
+      "choices": [
+        {
+          "text": "Tell her she is the best guest we have had",
+          "to": "end_boots"
+        },
+        {
+          "text": "Ask her to say hello to the cows",
+          "to": "end_cows"
+        }
+      ]
+    },
+    "cabbage": {
+      "text": [
+        "I have never written a song about a cabbage, but I try. \"Oh, the cabbage is round, and the cabbage is green, the roundest, the greenest cabbage I have seen.\" It goes on for three verses, and by the end Mrs. Dumpling is crying with joy and a dozen listeners have requested cabbage songs of their own."
+      ],
+      "choices": [
+        {
+          "text": "Take another request",
+          "to": "phone"
+        },
+        {
+          "text": "End the show on a high note",
+          "to": "end_cabbage"
+        }
+      ]
+    },
+    "end_candle": {
+      "text": [
+        "I light the stub of a candle and put it beside the microphone, which still works on a tiny battery. \"Radio Puddle,\" I say, softly, \"is now coming to you by candlelight.\" Without the machines humming, my voice sounds smaller and warmer.",
+        "I tell the story of the rainy day, the bucket orchestra, the biscuit and the frog record, to forty-one listeners who have all turned off their lights too. It is the cosiest show I have ever done."
+      ],
+      "ending": {
+        "title": "Radio by Candlelight",
+        "mood": "cozy"
+      }
+    },
+    "end_fuse": {
+      "text": [
+        "I run out into the rain in my slippers. The fuse box is in a bush behind the post office, and the bush, it turns out, has a family of ducks living in it. They quack in offense as I fumble through the leaves.",
+        "I fix the fuse. I also get completely soaked and make friends with seven ducks, who follow me back and sit under the desk for the rest of the show. They get the biggest laugh of the day, mostly by doing nothing at all."
+      ],
+      "ending": {
+        "title": "Seven Ducks and a Fuse",
+        "mood": "funny"
+      }
+    },
+    "end_parrot": {
+      "text": [
+        "I hold the phone to Mr. Pickle, who has been waiting for this his whole life. \"HELLO,\" he says to the caller, and then, \"THIS IS RADIO PUDDLE. I AM IN CHARGE.\" The caller laughs so hard that she drops the phone. So do the next six.",
+        "By the end of the afternoon, Mr. Pickle is the most popular voice in the village. The postmaster says he has never seen the bird so happy. Neither have I. I let him present the closing theme."
+      ],
+      "ending": {
+        "title": "Mr. Pickle Takes Over",
+        "mood": "funny"
+      }
+    },
+    "end_boots": {
+      "text": [
+        "\"You are the best guest we have had,\" I tell her, and I mean it. \"Thank you for telling us about your boots.\" She giggles and says goodbye in her tiny voice, and I play a soft, silly song for her, all about rain and boots and inside.",
+        "Afterward, forty-one listeners and a goose phone in to say how much it made their day. I sit back in my chair, with a bucket plinking beside me, and decide that it is the best radio show I have ever done."
+      ],
+      "ending": {
+        "title": "Boots Inside",
+        "mood": "sweet"
+      }
+    },
+    "end_cows": {
+      "text": [
+        "\"Say hello to the cows,\" I ask her, and she shouts \"HELLO COWS!\" into the phone, so loudly that I have to hold it away from my ear. And far across the fields, one at a time, the cows answer. Moo. Moo. Moooo.",
+        "It is the best radio moment of my career, and it is entirely thanks to a four-year-old in her boots. Radio Puddle has never been so loved. The ratings, if there were any, would be through the roof, though the roof, to be fair, is already leaking."
+      ],
+      "ending": {
+        "title": "The Cows Say Hello",
+        "mood": "happy"
+      }
+    },
+    "end_cabbage": {
+      "text": [
+        "I end the show with the cabbage song, one last time, with everybody who is listening joining in. Down the street, in kitchens and barns and living rooms, forty-one people and three cows hum the cabbage tune, a little off key and perfectly happy.",
+        "The rain keeps falling. The buckets keep plinking. And the smallest radio station in the world signs off, as it always does, with the same line. \"This has been Radio Puddle. Stay dry if you like. We will be here either way.\""
+      ],
+      "ending": {
+        "title": "The Cabbage Song",
+        "mood": "dreamy"
+      }
+    }
+  }
+}

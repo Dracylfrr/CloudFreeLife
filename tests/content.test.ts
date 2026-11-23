@@ -13,10 +13,10 @@ describe('bundled content', () => {
   it('loads with nothing skipped', async () => {
     const cat = await catalogP;
     expect(cat.skipped).toEqual([]);
-    expect(cat.books.map((b) => b.manifest.id).sort()).toEqual(['castle_dreams', 'cloud_dreams', 'cosmic_colors', 'forest_friends', 'free_canvas', 'ocean_friends', 'peaceful_places', 'sweet_treats']);
+    expect(cat.books.map((b) => b.manifest.id).sort()).toEqual(['castle_dreams', 'cloud_dreams', 'cosmic_colors', 'forest_friends', 'free_canvas', 'happy_farm', 'mountain_village', 'night_garden', 'ocean_friends', 'peaceful_places', 'sweet_treats']);
   });
 
-  it('ships at least 6 pages in each of the three original books (18) and 5 in each newer book (46 total after 1.2)', async () => {
+  it('ships at least 6 pages in each of the three original books (18) and 5 in each newer book (64 total after 1.3)', async () => {
     const cat = await catalogP;
     for (const id of ['cloud_dreams', 'cosmic_colors', 'peaceful_places']) {
       expect(cat.books.find((b) => b.manifest.id === id)!.pages.length).toBeGreaterThanOrEqual(6);
@@ -31,7 +31,13 @@ describe('bundled content', () => {
       expect(b.pages.length).toBeGreaterThanOrEqual(5);
       expect(b.manifest.minAppVersion).toBe('1.1.1');
     }
-    expect(cat.books.reduce((n, b) => n + b.pages.length, 0)).toBe(46);
+    for (const id of ['mountain_village', 'night_garden', 'happy_farm']) {
+      const b = cat.books.find((x) => x.manifest.id === id)!;
+      expect(b.pages.length, id).toBe(6);
+      expect(b.manifest.minAppVersion, id).toBe('1.3.0');
+      for (const p of b.pages) expect(p.manifest.minAppVersion).toBe('1.3.0');
+    }
+    expect(cat.books.reduce((n, b) => n + b.pages.length, 0)).toBe(64);
   });
 
   it('keeps human-readable folder names (no generated ids)', async () => {
@@ -78,7 +84,8 @@ describe('bundled content', () => {
 
   it('palettes: ten palettes with friendly names and soft colors', async () => {
     const cat = await catalogP;
-    expect(cat.palettes.length).toBeGreaterThanOrEqual(14);
+    expect(cat.palettes.length).toBeGreaterThanOrEqual(19);
+    for (const id of ['candle_glow', 'blossom_rain', 'mountain_morning', 'night_garden', 'farm_sunrise']) expect(cat.palettes.some((p) => p.manifest.id === id), id).toBe(true);
     const required = ['Cloud Morning', 'Cotton Candy', 'Lavender Dream', 'Mint Garden', 'Peach Sunset', 'Soft Rainbow', 'Galaxy Pastel', 'Beach Breeze', 'Meadow Calm', 'Moonlight'];
     expect(cat.palettes.map((p) => p.manifest.name)).toEqual(expect.arrayContaining(required));
     const names = new Set(cat.palettes.flatMap((p) => p.manifest.colors.map((c) => c.name)));

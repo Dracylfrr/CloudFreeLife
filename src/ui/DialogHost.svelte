@@ -87,12 +87,12 @@
     display: grid;
     place-items: center;
     background: var(--lavender);
-    color: #5d4fb0;
+    color: var(--c-violet);
     margin-bottom: 4px;
   }
   .badge.danger {
-    background: #ffe3e8;
-    color: #b0506d;
+    background: var(--c-rose-bg);
+    color: var(--c-rose);
   }
   .actions {
     display: flex;
@@ -105,7 +105,7 @@
     padding: 12px 16px;
     border-radius: 14px;
     border: 2px solid var(--line);
-    background: #fff;
+    background: var(--surface);
     user-select: text;
     font-weight: 600;
   }
@@ -134,12 +134,12 @@
     border: 1px solid var(--line);
   }
   .toast.success {
-    background: #e4f7ee;
-    color: #2e6b52;
+    background: var(--c-green-bg);
+    color: var(--c-green2);
   }
   .toast.error {
-    background: #ffe7ec;
-    color: #9a4560;
+    background: var(--c-rose-bg);
+    color: var(--c-rose);
   }
   @keyframes fade {
     from {

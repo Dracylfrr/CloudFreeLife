@@ -2,7 +2,7 @@
   "id": "the_whale_who_hummed",
   "name": "The Whale Who Hummed",
   "description": "A big, quiet whale hums a tune that travels across the sea and rocks everyone gently to sleep.",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "minAppVersion": "1.2.0",
   "cover": "cover.svg",
   "accent": "#7fcfe0",
@@ -15,7 +15,10 @@
       "text": [
         "Far out where the ocean turns a deep, kind blue, there lived a whale named Wren. She was the size of a small hill, and she was very, very gentle. Wren liked three things best: slow swimming, warm currents and humming.",
         "Her hum was low and round, like a cello played underwater. She hummed when she was happy, and she hummed when she was thinking, and sometimes she hummed just to keep the sea company."
-      ]
+      ],
+      "illustration": "ch1.svg",
+      "illustrationAlt": "Wren, a gentle whale the size of a small hill, hums softly in the deep blue sea as a few fish swim by.",
+      "illustrationCaption": "Wren, who hums when she is happy"
     },
     {
       "title": "A Song on the Tide",
@@ -23,7 +26,10 @@
         "One evening, as the sun slid into the water like a spoon into honey, Wren began to hum. The tune rolled out across the waves. A school of silver fish slowed down to listen. A sea turtle closed one eye. An octopus, who had been juggling shells all day, set them down in a neat little row.",
         "The hum traveled to the shore, where it wandered up the sand and through the windows of a fishing village. A baby who would not sleep stopped fussing. A fisherman put down his net. A cat on a roof turned around three times and settled.",
         "\"Who is singing?\" a child asked from her bed. \"Just the sea,\" said her mother, and tucked the blanket up to her chin."
-      ]
+      ],
+      "illustration": "ch2.svg",
+      "illustrationAlt": "At sunset the whale hums while the song drifts across the waves to a small fishing village on the shore.",
+      "illustrationCaption": "A song on the tide"
     },
     {
       "title": "Everyone Asleep",
@@ -31,7 +37,10 @@
         "Wren did not know how far her song had gone. She only knew that the water felt warm, the stars were coming out one by one, and the tide was rocking her as gently as a cradle.",
         "Her hum grew slower. And slower. Until it was just a breath, and then a bubble, and then a quiet little nothing. Above her, the whole sea was asleep. The fish, the turtle, the octopus, the village, the cat.",
         "And Wren, the whale who hummed, drifted slowly under the moon, dreaming of her next song."
-      ]
+      ],
+      "illustration": "ch3.svg",
+      "illustrationAlt": "Under a pale moon the whale drifts, asleep, above a quiet sea while the village and its lights dim to sleep.",
+      "illustrationCaption": "Everyone asleep"
     }
   ]
 }

@@ -124,7 +124,7 @@
     border-radius: var(--radius-xl);
     background: var(--panel);
     box-shadow: var(--shadow-m);
-    border: 1px solid rgba(255, 255, 255, 0.85);
+    border: 1px solid rgb(var(--w) / 0.85);
     overflow: hidden;
     transition:
       transform 0.25s var(--ease),
@@ -181,7 +181,7 @@
     border-radius: var(--radius-xl);
     background: var(--panel);
     box-shadow: var(--shadow-m);
-    border: 1px solid rgba(255, 255, 255, 0.85);
+    border: 1px solid rgb(var(--w) / 0.85);
     overflow: hidden;
     display: flex;
     flex-direction: column;

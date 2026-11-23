@@ -101,7 +101,7 @@
     border-radius: var(--radius-xl);
     background: var(--panel);
     box-shadow: var(--shadow-m);
-    border: 1px solid rgba(255, 255, 255, 0.85);
+    border: 1px solid rgb(var(--w) / 0.85);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -131,7 +131,7 @@
     align-items: center;
     gap: 4px;
     background: var(--mint);
-    color: #2e5a4b;
+    color: var(--c-green);
     padding: 4px 10px;
     border-radius: 999px;
     font-size: 0.75rem;

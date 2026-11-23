@@ -50,7 +50,7 @@
         sync();
       },
       onHit: () => sfx.thud(),
-      onPaddle: () => sfx.thud(),
+      onPaddle: () => sfx.balloon(),
       onWin: () => {
         sfx.chime();
         for (let i = 0; i < 14; i++) particles.burst(Math.random() * FIELD_W, FIELD_H * 0.5 + Math.random() * 100, PALETTE[i % PALETTE.length], 3);
@@ -280,7 +280,7 @@
   }
   .seg {
     display: flex;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgb(var(--w) / 0.7);
     border-radius: 999px;
     padding: 3px;
   }
@@ -293,7 +293,7 @@
   }
   .seg button.on {
     background: linear-gradient(135deg, #cfeaf9, #e6dcfa);
-    color: #4c3f9c;
+    color: var(--nav-ink);
   }
   .pick select {
     padding: 8px 14px;
@@ -314,7 +314,7 @@
     color: var(--pink-deep);
   }
   .calm {
-    color: #3f8a6a;
+    color: var(--c-green2);
   }
   .stage {
     flex: 1;
@@ -360,7 +360,7 @@
     bottom: 76px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.85);
+    background: rgb(var(--w) / 0.85);
     padding: 7px 18px;
     border-radius: 999px;
     font-weight: 800;

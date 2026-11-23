@@ -1,0 +1,158 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "hill",
+      "name": "Hill",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "field_a",
+      "name": "Field",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "field_b",
+      "name": "Field rows",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "field_c",
+      "name": "Field rows",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "scarecrow_pole",
+      "name": "Pole",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "scarecrow_arms",
+      "name": "Arms",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "scarecrow_shirt",
+      "name": "Shirt",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "scarecrow_head",
+      "name": "Head",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "scarecrow_hat",
+      "name": "Hat",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "tractor_wheel_big",
+      "name": "Big wheel",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "tractor_hub_big",
+      "name": "Hub",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "tractor_body",
+      "name": "Tractor",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "tractor_hood",
+      "name": "Hood",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "tractor_cab",
+      "name": "Cab",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "tractor_window",
+      "name": "Cab window",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "tractor_pipe",
+      "name": "Exhaust",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "tractor_wheel_small",
+      "name": "Small wheel",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "tractor_hub_small",
+      "name": "Hub",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "puff",
+      "name": "Puff of smoke",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "crow",
+      "name": "Little bird",
+      "suggested": "#aeb0e6"
+    },
+    {
+      "id": "crow_head",
+      "name": "Bird head",
+      "suggested": "#aeb0e6"
+    },
+    {
+      "id": "flower_1_petals",
+      "name": "Flower petals",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "flower_1_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_2_petals",
+      "name": "Flower petals",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "flower_2_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_3_petals",
+      "name": "Flower petals",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_3_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

@@ -60,7 +60,7 @@
     border-radius: var(--radius-xl);
     background: var(--panel);
     box-shadow: var(--shadow-m);
-    border: 1px solid rgba(255, 255, 255, 0.85);
+    border: 1px solid rgb(var(--w) / 0.85);
     overflow: hidden;
     transition:
       transform 0.25s var(--ease),
@@ -99,7 +99,7 @@
   .count em {
     font-style: normal;
     background: var(--mint);
-    color: #2e5a4b;
+    color: var(--c-green);
     padding: 2px 8px;
     border-radius: 999px;
     margin-left: 4px;

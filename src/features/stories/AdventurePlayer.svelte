@@ -68,7 +68,7 @@
     <Button onclick={() => navigate({ name: 'adventures' })}>Back to adventures</Button>
   {:else}
     <header class="bar">
-      <button class="back" onclick={() => navigate({ name: 'adventures' })}><Icon name="chevronLeft" size={18} /> Story Adventures</button>
+      <button class="back" onclick={() => navigate({ name: 'stories', tab: 'adventures' })}><Icon name="chevronLeft" size={18} /> Stories</button>
       <div class="tools">
         <div class="size" role="group" aria-label="Text size">
           <button onclick={smaller} aria-label="Smaller text" title="Smaller text" disabled={$settings.storyFontScale <= 0.91}>A<small>−</small></button>
@@ -188,7 +188,7 @@
     background: var(--panel-strong);
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-m);
-    border: 1px solid rgba(255, 255, 255, 0.9);
+    border: 1px solid rgb(var(--w) / 0.9);
     border-top: 6px solid var(--accent);
     padding: clamp(22px, 5vw, 48px) clamp(20px, 6vw, 60px) clamp(24px, 5vw, 44px);
   }
@@ -211,7 +211,7 @@
     padding: 3px 12px;
     border-radius: 999px;
     background: var(--lilac);
-    color: #5a4a98;
+    color: var(--c-violet);
   }
   .resume {
     color: var(--ink-soft);
@@ -247,7 +247,7 @@
     font-size: 2rem;
     margin: 2px 0 16px;
     padding: 6px 0;
-    background: linear-gradient(110deg, #5f8fd1, #9d84e0 60%, #e48fb4);
+    background: linear-gradient(110deg, var(--hero-a), var(--hero-b) 60%, var(--hero-c));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -281,7 +281,7 @@
     text-align: left;
     padding: 14px 18px;
     border-radius: 22px;
-    background: linear-gradient(135deg, #eaf5fc, #f1eafc);
+    background: linear-gradient(135deg, var(--nav-a), var(--nav-b));
     border: 1.5px solid rgba(150, 140, 200, 0.28);
     box-shadow: var(--shadow-s);
     font-weight: 700;
@@ -307,7 +307,7 @@
     border-radius: 50%;
     display: grid;
     place-items: center;
-    background: #fff;
+    background: var(--surface);
     color: var(--lavender-deep);
     font-weight: 900;
     box-shadow: var(--shadow-s);
@@ -346,7 +346,7 @@
   }
   .endings li.got {
     background: var(--mint);
-    color: #2e5a4b;
+    color: var(--c-green);
   }
   .endings li.here {
     outline: 2.5px solid var(--lavender-deep);

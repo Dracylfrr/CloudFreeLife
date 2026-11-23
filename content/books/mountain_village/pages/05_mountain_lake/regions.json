@@ -1,0 +1,173 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "mountain_left",
+      "name": "Mountain",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "mountain_right",
+      "name": "Mountain",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "snow_left",
+      "name": "Snow cap",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "snow_right",
+      "name": "Snow cap",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "shore",
+      "name": "Far shore",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "pine_a_trunk",
+      "name": "Tree trunk",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "pine_a_c",
+      "name": "Pine boughs",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "pine_a_b",
+      "name": "Pine boughs",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "pine_a_a",
+      "name": "Pine boughs",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "pine_b_trunk",
+      "name": "Tree trunk",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "pine_b_c",
+      "name": "Pine boughs",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "pine_b_b",
+      "name": "Pine boughs",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "pine_b_a",
+      "name": "Pine boughs",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "pine_c_trunk",
+      "name": "Tree trunk",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "pine_c_c",
+      "name": "Pine boughs",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "pine_c_b",
+      "name": "Pine boughs",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "pine_c_a",
+      "name": "Pine boughs",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "lake",
+      "name": "Lake",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "reflection",
+      "name": "Reflection",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "boat_hull",
+      "name": "Rowing boat",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "boat_stripe",
+      "name": "Boat stripe",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "boat_sail",
+      "name": "Sail",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "duck_a",
+      "name": "Duck",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "duck_a_head",
+      "name": "Duck head",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "duck_b",
+      "name": "Duckling",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "duck_b_head",
+      "name": "Duckling head",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "reeds_base",
+      "name": "Reeds",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "reeds_base_b",
+      "name": "Reeds",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "cattail_a",
+      "name": "Cattail",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "cattail_b",
+      "name": "Cattail",
+      "suggested": "#e9c7a3"
+    }
+  ]
+}

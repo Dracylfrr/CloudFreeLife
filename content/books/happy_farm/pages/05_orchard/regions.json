@@ -1,0 +1,188 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "hill",
+      "name": "Hill",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "lawn",
+      "name": "Lawn",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "tree_a_trunk",
+      "name": "Tree trunk",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "tree_a_leaves",
+      "name": "Tree leaves",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "apple_a_1",
+      "name": "Apple",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "apple_a_2",
+      "name": "Apple",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "apple_a_3",
+      "name": "Apple",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "apple_a_4",
+      "name": "Apple",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "apple_a_5",
+      "name": "Apple",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "tree_b_trunk",
+      "name": "Tree trunk",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "tree_b_leaves",
+      "name": "Tree leaves",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "apple_b_1",
+      "name": "Apple",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "apple_b_2",
+      "name": "Apple",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "apple_b_3",
+      "name": "Apple",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "apple_b_4",
+      "name": "Apple",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "apple_b_5",
+      "name": "Apple",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "tree_c_trunk",
+      "name": "Tree trunk",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "tree_c_leaves",
+      "name": "Tree leaves",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "apple_c_1",
+      "name": "Apple",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "apple_c_2",
+      "name": "Apple",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "apple_c_3",
+      "name": "Apple",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "apple_c_4",
+      "name": "Apple",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "apple_c_5",
+      "name": "Apple",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "picnic_blanket",
+      "name": "Picnic blanket",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "basket",
+      "name": "Basket",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "basket_apple_1",
+      "name": "Apple",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "basket_apple_2",
+      "name": "Apple",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "basket_apple_3",
+      "name": "Apple",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "ladder",
+      "name": "Ladder",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "ladder_b",
+      "name": "Ladder",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "bee_a",
+      "name": "Bee",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "bee_b",
+      "name": "Bee",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "fallen_apple",
+      "name": "Fallen apple",
+      "suggested": "#ffc3b0"
+    }
+  ]
+}

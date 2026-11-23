@@ -428,7 +428,7 @@
     gap: 4px;
     padding: 2px 9px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgb(var(--w) / 0.8);
     font-weight: 700;
     font-size: 0.74rem;
     color: var(--ink-soft);
@@ -441,7 +441,7 @@
   }
   .item.done {
     background: var(--mint);
-    color: #2e5a4b;
+    color: var(--c-green);
   }
   .bar-prog {
     height: 8px;
@@ -452,7 +452,7 @@
   .bar-prog i {
     display: block;
     height: 100%;
-    background: linear-gradient(90deg, #9fd3f2, #b7a8ec);
+    background: linear-gradient(90deg, var(--g1), var(--g2));
     transition: width 0.3s;
   }
   .how {

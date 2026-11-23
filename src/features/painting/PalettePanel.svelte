@@ -222,7 +222,7 @@
     align-items: center;
     gap: 12px;
     padding: 10px 12px;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgb(var(--w) / 0.7);
     border-radius: 16px;
   }
   .dot {
@@ -251,7 +251,7 @@
     font-weight: 800;
     font-size: 0.88rem;
     cursor: pointer;
-    color: #5d4fb0;
+    color: var(--c-violet);
   }
   .advbtn input {
     position: absolute;

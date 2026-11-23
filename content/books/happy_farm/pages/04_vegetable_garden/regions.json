@@ -1,0 +1,198 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "hill",
+      "name": "Hill",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "fence_posts",
+      "name": "Fence posts",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "fence_rail_top",
+      "name": "Fence rail",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "fence_rail_low",
+      "name": "Fence rail",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "lawn",
+      "name": "Lawn",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "bed_a",
+      "name": "Garden bed",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "bed_b",
+      "name": "Garden bed",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "bed_c",
+      "name": "Garden bed",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "soil_a",
+      "name": "Soil",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "soil_b",
+      "name": "Soil",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "soil_c",
+      "name": "Soil",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "carrot_1",
+      "name": "Carrot",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "carrot_top_1",
+      "name": "Carrot leaves",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "carrot_2",
+      "name": "Carrot",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "carrot_top_2",
+      "name": "Carrot leaves",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "carrot_3",
+      "name": "Carrot",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "carrot_top_3",
+      "name": "Carrot leaves",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "cabbage_1",
+      "name": "Cabbage",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "cabbage_2",
+      "name": "Cabbage",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "cabbage_3",
+      "name": "Cabbage",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "vine_a",
+      "name": "Tomato leaves",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "vine_b",
+      "name": "Tomato leaves",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "tomato_1",
+      "name": "Tomato",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "tomato_2",
+      "name": "Tomato",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "tomato_3",
+      "name": "Tomato",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "tomato_4",
+      "name": "Tomato",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "can_body",
+      "name": "Watering can",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "can_spout",
+      "name": "Spout",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "bunny_body",
+      "name": "Bunny",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "bunny_head",
+      "name": "Bunny head",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "bunny_ear_a",
+      "name": "Ear",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "bunny_ear_b",
+      "name": "Ear",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "bunny_tail",
+      "name": "Tail",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "carrot_snack",
+      "name": "Carrot",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "bee",
+      "name": "Bee",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

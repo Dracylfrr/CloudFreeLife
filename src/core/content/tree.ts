@@ -21,7 +21,7 @@ export interface ContentTree {
 // ------------------------------------------------------------- bundled
 
 const jsonModules = import.meta.glob('/content/**/*.json', { eager: true, import: 'default' }) as Record<string, unknown>;
-const urlModules = import.meta.glob('/content/**/*.{svg,png}', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
+const urlModules = import.meta.glob('/content/**/*.{svg,png,webp}', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
 
 export class BundledTree implements ContentTree {
   readonly source = 'bundled' as const;
@@ -81,6 +81,7 @@ export const INSTALLED_ROOT = 'content';
 function mimeFor(path: string): string {
   if (path.endsWith('.svg')) return 'image/svg+xml';
   if (path.endsWith('.png')) return 'image/png';
+  if (path.endsWith('.webp')) return 'image/webp';
   return 'application/octet-stream';
 }
 

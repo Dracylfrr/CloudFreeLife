@@ -1,7 +1,7 @@
 {
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "default",
-  "description": "Minimal permissions for Cloud-Freelife: its own data folder, save dialogs, GitHub links and GitHub HTTPS requests.",
+  "description": "Minimal permissions for Cloud-Freelife: its own data folder, save dialogs, and HTTPS requests to the official release host. The app never opens web pages.",
   "windows": ["main"],
   "permissions": [
     "core:default",
@@ -12,10 +12,6 @@
     "dialog:allow-save",
     "dialog:allow-message",
     "dialog:allow-ask",
-    {
-      "identifier": "opener:allow-open-url",
-      "allow": [{ "url": "https://github.com/*" }, { "url": "https://github.com/**" }]
-    },
     "opener:allow-reveal-item-in-dir",
     {
       "identifier": "opener:allow-open-path",

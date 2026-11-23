@@ -1,0 +1,11 @@
+{
+  "id": "farmhouse",
+  "name": "Farmhouse",
+  "description": "A cheerful farmhouse with a barn and a hen.",
+  "version": "1.0.0",
+  "minAppVersion": "1.3.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

@@ -1,0 +1,95 @@
+{
+  "id": "night_train_to_moonwater",
+  "name": "The Night Train to Moonwater",
+  "description": "A small hedgehog helps a sleepy night train make its slow way across the hills, and learns that arriving is only half of the ride.",
+  "version": "1.3.0",
+  "minAppVersion": "1.3.0",
+  "cover": "cover.svg",
+  "accent": "#9bb4f0",
+  "mood": "Lullaby",
+  "order": 7,
+  "chapters": [
+    {
+      "title": "The Last Ticket",
+      "illustration": "ch1.svg",
+      "illustrationAlt": "A small blue-and-pink steam train waits at a lamp-lit station under a purple evening sky.",
+      "illustrationCaption": "Hollow Station, 9:47 in the evening",
+      "text": [
+        "Every night at a quarter to ten, a small train named Marigold waited at Hollow Station. She was blue and pink, with a round green engine and a whistle that sounded more like a yawn than a whistle. She was bound for Moonwater, a town beside a lake, where the moon was said to rest when she was tired.",
+        "Tilly was the newest helper on the train. She was a hedgehog, which meant she was small, round and very good at being careful. Her job was to punch the tickets, one small hole in each, and to wish every passenger a good night.",
+        "\"Mind the step,\" said Tilly softly, as a bear in a nightcap climbed aboard with a pillow bigger than himself. \"Thank you, dear,\" said the bear. \"I do like a train that does not rush.\"",
+        "Next came two sleepy rabbits holding one umbrella, and an owl who carried a lantern and a very thick book. A mole in spectacles was last. He had a ticket but could not find it, and he searched his pockets one by one, gently, while the whole station waited and nobody minded at all.",
+        "At last the ticket turned up inside his hat. Tilly punched a small round hole in it. The station clock gave a soft bong. And Marigold let out her long, yawning whistle, and the night train began to move."
+      ]
+    },
+    {
+      "title": "Over the Hill of Lamps",
+      "text": [
+        "The first part of the journey was a climb. Marigold puffed slowly up the Hill of Lamps, where a hundred little lanterns hung from the trees, one for every window in the valley below.",
+        "\"Chuff, chuff, chuff,\" said Marigold, which is how a train says \"I am doing my best, and my best is slow.\" Tilly walked down the aisle with a tray of warm milk and honey biscuits. The bear took two biscuits and promised to save one for later, though he ate it before the end of the aisle.",
+        "The owl read quietly under her lantern. Now and then she whispered a good line out loud, and the rabbits, who were half asleep, whispered it back. \"A river is just the land telling a story to the sea.\" \"A river is just the land telling a story to the sea.\"",
+        "Outside the window, the lamps drifted past like slow yellow stars. Some swung a little in the wind. One had a moth sitting on it, very still, like a small gray hat. Tilly pressed her nose to the glass and counted them until she lost count, and then she began again from the beginning, because counting lamps is a lovely thing to do twice.",
+        "At the top of the hill, Marigold gave a small, satisfied sigh and began to roll down the other side, faster and then slower, the way a swing does when no one is pushing it anymore."
+      ]
+    },
+    {
+      "title": "The Bear's Lullaby",
+      "text": [
+        "Somewhere between the hill and the valley, the bear woke up. He had slept for an hour with his mouth slightly open, and he felt, he said, like a freshly fluffed pillow. \"I believe,\" he announced to the carriage, \"that I would like to sing.\"",
+        "Nobody objected. A bear singing on a night train is not something one objects to. He cleared his throat, which sounded like a barrel rolling gently down a short hill, and began a slow, low tune with no hurry in it at all.",
+        "It was about a lantern that wanted to be a star, and a star that wanted to be a lantern, and how they both settled, in the end, for being a very good window light. It had eleven verses, and nobody counted them, and by the fourth verse the rabbits had joined in on the chorus, which was only the word \"oh\" sung in three different ways.",
+        "Tilly leaned against the door frame with the tray and listened. She had heard many songs in her short life, but this was the first she had heard on a moving train, and she noticed that the wheels kept time. Tick, tick, tick, went the rails. Oh, oh, oh, went the rabbits. It all fit together so neatly that she wondered if the song had been waiting for the train.",
+        "When the last verse faded, the owl closed her book and said, \"Thank you.\" The bear nodded, rather pleased, and went back to sleep with the satisfied smile of someone who has done exactly what he meant to do."
+      ]
+    },
+    {
+      "title": "The Tunnel of Glowing Moss",
+      "text": [
+        "After the song came the tunnel. Marigold slowed to a crawl, as she always did, and her whistle gave a long, polite hoot, the kind you give when you are about to enter someone's quiet house.",
+        "\"Lanterns down, please,\" called Tilly, and the owl dimmed hers to a small spark. For a moment the carriage was completely dark. And then the walls began to glow. It was moss, soft green moss that grew along the whole length of the tunnel, and it shone a gentle blue-green, like the inside of a very calm sea.",
+        "Nobody spoke. The moss slid past the windows in long ribbons. Here and there a drop of water gleamed on it like a tiny bead. The mole took off his spectacles and cleaned them on his sleeve, and then put them back on, as if he wanted to be sure he was seeing it properly.",
+        "Tilly pushed the tea trolley slowly down the aisle. It rattled softly and smelled of chamomile and warm cups. She poured for the owl, and for the rabbits, and last of all for herself, and she sat on the little folding seat with her cup in both paws, watching the moss glow.",
+        "\"I think,\" she whispered to Marigold, \"that this might be my favorite part of the whole night.\" The train, who could hear everything, gave one very quiet chuff in agreement, and carried them all gently out the other side."
+      ]
+    },
+    {
+      "title": "The Ducks on the Tracks",
+      "illustration": "ch3.svg",
+      "illustrationAlt": "The little train has stopped on the tracks while a line of ducklings crosses in front of her under the stars.",
+      "illustrationCaption": "A very important crossing",
+      "text": [
+        "Halfway down the hill, Marigold stopped. Not with a screech or a jolt, but with a long, slow, polite hiss, as if she had remembered something important.",
+        "Tilly leaned out of the door with her lantern. There, in the middle of the tracks, was a mother duck and seven fluffy ducklings, walking in a line. The smallest one had lost a step somewhere and was hurrying to catch up, going peep, peep, peep.",
+        "\"We are going to be late,\" said the mole, looking at his pocket watch. \"Late for what?\" asked the bear, with his eyes closed. The mole thought about it. He was not sure. Nobody on the train had anywhere to be before the morning, and the lake would still be there when they arrived.",
+        "So they waited. The ducklings crossed. The little one caught up and took its place at the end of the line. The mother duck turned and gave Tilly a small, grateful nod. Then the whole family disappeared into the reeds beside the track, and a soft quacking drifted back, which sounded very much like \"good night.\"",
+        "While they waited, Tilly noticed something nobody had seen before. The sky had cleared, and the stars were out in great numbers, so close that it felt as if the train had stopped inside them. She called everybody to the windows. For a whole quiet minute, thirty passengers looked up together and did not say a word. Then Marigold gave her yawning whistle, and they set off again, a little happier than before."
+      ]
+    },
+    {
+      "title": "The Long Quiet Bridge",
+      "illustration": "ch4.svg",
+      "illustrationAlt": "The train crosses a long stone bridge over a silver river, with the full moon reflected in the water below.",
+      "illustrationCaption": "The Silver Bridge",
+      "text": [
+        "After the ducks came the bridge. The Silver Bridge was the longest in the country, and the oldest, and the only one where a train was allowed to go as slowly as it liked.",
+        "Marigold slowed right down. Her wheels went tick, tick, tick over the joints in the rails, and the sound was so steady and so soft that even the owl closed her book. The river lay far below, wide and dark and smooth, and the moon lay in it, whole and round, as if she had stepped out of the sky to take a bath.",
+        "\"Look,\" whispered one of the rabbits. \"There are two moons.\" \"There is only one,\" said the other rabbit, \"but she is very good at being in two places.\" This seemed so wise that nobody argued.",
+        "Tilly sat on the folding seat at the end of the carriage and let her feet swing. She thought about how the day had been. She had punched twenty-nine tickets, carried forty-one biscuits and waited for seven ducks. It was, she decided, the kind of day she would like to have again. She did not feel tired, exactly. She felt like a cup that had been filled right to the top, carefully, without spilling.",
+        "The bear began to snore, which on a train sounds like another, deeper engine. Marigold seemed to enjoy it. She hummed along, one soft note under the snore, all the way to the end of the bridge."
+      ]
+    },
+    {
+      "title": "Moonwater",
+      "illustration": "ch5.svg",
+      "illustrationAlt": "A quiet lakeside town with small glowing windows, and a big pale moon resting on the still water.",
+      "illustrationCaption": "Moonwater, where the moon rests",
+      "text": [
+        "Moonwater station was just a platform, a bench and one lamp. Beyond it, the lake lay perfectly still, and the moon had come down to rest on it, just as the stories said. She floated in the middle, round and pale, and she looked, Tilly thought, very much like someone who has had a long day and is glad of a cushion.",
+        "One by one the passengers stepped down. The bear shuffled off with his pillow, calling good night over his shoulder. The rabbits shared their umbrella, although it was not raining, because they had grown fond of it. The owl tucked her book under her wing and flew off over the water, leaving a small circle of lantern light behind her.",
+        "The mole was last. He stopped on the step and turned to Tilly. \"I found my ticket inside my hat,\" he said. \"I believe I have also found something else.\" \"What is that?\" asked Tilly. \"I am not sure,\" said the mole. \"But it is very comfortable.\" And he tipped his hat and wandered away into the dark.",
+        "Then the platform was empty, and the night was quiet, and there was nothing left to do but sleep. Tilly climbed up into the luggage rack, which Marigold had made soft with a folded blanket, and curled up into a round, prickly ball.",
+        "\"Good night, Marigold,\" she whispered. The train answered with a very small, very sleepy puff of steam, and the moon, floating on the lake, seemed to nod. Far away on the Silver Bridge, a few ducks went quack. And everything that needed to arrive had arrived, and everything that needed to rest was resting."
+      ]
+    }
+  ]
+}

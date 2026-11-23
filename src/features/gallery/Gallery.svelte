@@ -136,7 +136,7 @@
     border-radius: var(--radius-xl);
     padding: 12px;
     box-shadow: var(--shadow-m);
-    border: 1px solid rgba(255, 255, 255, 0.85);
+    border: 1px solid rgb(var(--w) / 0.85);
     display: flex;
     flex-direction: column;
     gap: 10px;

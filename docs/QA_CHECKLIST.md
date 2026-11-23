@@ -38,6 +38,17 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 - [ ] Splash Wall: all 10 levels open; aim, click-throw, hold-to-charge throw; splat stays in the region; goals count correctly; color match hints; Wash and Save PNG.
 - [ ] Pause with P; minimize the window and confirm CPU drops to ~0.
 
+## 1.3 checks
+- [ ] Themes: pick each of the eight and Follow System in Settings, Display. Everything stays readable, Higher Contrast still works, paintings never change color, the choice survives a restart.
+- [ ] Mood presets change the sound and the drift speed but not the colors.
+- [ ] Background music plays after the first click, fades when turned off, stops when the window is minimized, and goes quiet while a story is read aloud.
+- [ ] Volume sliders play a short preview when released; Mute silences previews too.
+- [ ] Read Aloud: Play, Pause, Resume, Stop, previous and next paragraph, each speed, a different voice and tone, the highlight, closing the story stops it, and with no voice installed a gentle message appears and reading still works.
+- [ ] Stories: Continue, Cozy Stories, Story Adventures, Not started, Finished and Favorites tabs; favorites persist; "Chapter N of M" and the progress bar update.
+- [ ] Every story picture loads; deleting one on disk does not stop the story from reading.
+- [ ] The Updates screen shows installed and available versions, a headline, notes, size and Install, and no website, repository name or link anywhere.
+- [ ] Offline: everything except update checks works with no Internet.
+
 ## Cozy Stories & Story Adventures
 - [ ] Home and the sidebar show **Cozy Stories** and **Story Adventures** above Mini-Games.
 - [ ] Open each of the six stories; the text size buttons (A-/A+) change the text, Next/Previous and the arrow keys move chapters, and "The End" appears after the last chapter.

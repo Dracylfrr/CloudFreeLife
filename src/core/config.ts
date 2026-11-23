@@ -11,7 +11,6 @@ export const GITHUB_REPO = `${GITHUB_OWNER}/${GITHUB_REPO_NAME}`;
 
 export const GITHUB_API_LATEST = `https://api.github.com/repos/${GITHUB_REPO}/releases/latest`;
 export const GITHUB_API_RELEASES = `https://api.github.com/repos/${GITHUB_REPO}/releases?per_page=20`;
-export const GITHUB_RELEASES_PAGE = `https://github.com/${GITHUB_REPO}/releases`;
 
 /** Hosts a release asset may be downloaded from. Everything else is refused. */
 export const ALLOWED_DOWNLOAD_HOSTS = [

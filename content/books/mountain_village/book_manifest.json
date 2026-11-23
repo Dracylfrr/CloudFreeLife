@@ -1,0 +1,19 @@
+{
+  "id": "mountain_village",
+  "name": "Mountain Village",
+  "description": "A cabin, a little train, a hilltop bakery, a snowy path, a quiet lake and a sunset village.",
+  "cover": "cover.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.3.0",
+  "kind": "coloring",
+  "accent": "#a9c8ee",
+  "order": 8,
+  "pages": [
+    "01_mountain_cottage",
+    "02_village_train",
+    "03_hilltop_bakery",
+    "04_snowy_path",
+    "05_mountain_lake",
+    "06_sunset_village"
+  ]
+}

@@ -63,7 +63,7 @@
     width: 50px;
     height: 29px;
     border-radius: 999px;
-    background: #dcd8ee;
+    background: var(--track);
     position: relative;
     transition: background 0.2s;
     box-shadow: inset 0 1px 3px rgba(80, 70, 140, 0.18);
@@ -80,7 +80,7 @@
     transition: transform 0.22s var(--ease);
   }
   input:checked ~ .track {
-    background: linear-gradient(135deg, #9fd3f2, #b7a8ec);
+    background: linear-gradient(135deg, var(--g1), var(--g2));
   }
   input:checked ~ .track .knob {
     transform: translateX(21px);

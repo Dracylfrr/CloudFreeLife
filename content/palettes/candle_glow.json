@@ -1,0 +1,49 @@
+{
+  "id": "candle_glow",
+  "name": "Candle Glow",
+  "description": "Warm cream, soft gold and peach, like a room lit by one small flame.",
+  "colors": [
+    {
+      "id": "candle_cream",
+      "name": "Candle Cream",
+      "hex": "#fff1d0"
+    },
+    {
+      "id": "soft_gold",
+      "name": "Soft Gold",
+      "hex": "#f6d98a"
+    },
+    {
+      "id": "amber_glow",
+      "name": "Amber Glow",
+      "hex": "#f2b866"
+    },
+    {
+      "id": "peach_flame",
+      "name": "Peach Flame",
+      "hex": "#ffc9a0"
+    },
+    {
+      "id": "rose_wax",
+      "name": "Rose Wax",
+      "hex": "#f2b9b0"
+    },
+    {
+      "id": "honey_light",
+      "name": "Honey Light",
+      "hex": "#ffe3a3"
+    },
+    {
+      "id": "warm_linen",
+      "name": "Warm Linen",
+      "hex": "#f8e6cc"
+    },
+    {
+      "id": "ember_blush",
+      "name": "Ember Blush",
+      "hex": "#f0a89a"
+    }
+  ],
+  "minAppVersion": "1.3.0",
+  "version": "1.0.0"
+}

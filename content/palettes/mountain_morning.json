@@ -1,0 +1,49 @@
+{
+  "id": "mountain_morning",
+  "name": "Mountain Morning",
+  "description": "Alpine mist, snow caps, pine green and a sunrise rose.",
+  "colors": [
+    {
+      "id": "alpine_mist",
+      "name": "Alpine Mist",
+      "hex": "#d3e4f2"
+    },
+    {
+      "id": "snow_cap",
+      "name": "Snow Cap",
+      "hex": "#f4f8fc"
+    },
+    {
+      "id": "pine_green",
+      "name": "Pine Green",
+      "hex": "#9fcfb0"
+    },
+    {
+      "id": "sunrise_rose",
+      "name": "Sunrise Rose",
+      "hex": "#f7c4c0"
+    },
+    {
+      "id": "granite_lilac",
+      "name": "Granite Lilac",
+      "hex": "#cbc3e6"
+    },
+    {
+      "id": "cabin_wood",
+      "name": "Cabin Wood",
+      "hex": "#e5c7a6"
+    },
+    {
+      "id": "sky_lake",
+      "name": "Sky Lake",
+      "hex": "#a9d1ee"
+    },
+    {
+      "id": "meadow_gold",
+      "name": "Meadow Gold",
+      "hex": "#f9e6a3"
+    }
+  ],
+  "minAppVersion": "1.3.0",
+  "version": "1.0.0"
+}

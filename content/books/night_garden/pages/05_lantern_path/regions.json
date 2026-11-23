@@ -1,0 +1,208 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Night sky",
+      "suggested": "#8d8ed0"
+    },
+    {
+      "id": "moon",
+      "name": "Moon",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star1",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star2",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star3",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star4",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star5",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star6",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "hill",
+      "name": "Hill",
+      "suggested": "#7a7bbd"
+    },
+    {
+      "id": "hedge_left",
+      "name": "Hedge",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "hedge_right",
+      "name": "Hedge",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "garden_gate_arch",
+      "name": "Garden arch",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "garden_gate_inner",
+      "name": "Through the arch",
+      "suggested": "#aeb0e6"
+    },
+    {
+      "id": "grass",
+      "name": "Grass",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "path",
+      "name": "Path",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "post_a",
+      "name": "Lantern post",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "lantern_a_cap",
+      "name": "Lantern cap",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "lantern_a_glass",
+      "name": "Lantern light",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "lantern_a_base",
+      "name": "Lantern base",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "post_b",
+      "name": "Lantern post",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "lantern_b_cap",
+      "name": "Lantern cap",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "lantern_b_glass",
+      "name": "Lantern light",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "lantern_b_base",
+      "name": "Lantern base",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "post_c",
+      "name": "Lantern post",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "lantern_c_cap",
+      "name": "Lantern cap",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "lantern_c_glass",
+      "name": "Lantern light",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "lantern_c_base",
+      "name": "Lantern base",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "post_d",
+      "name": "Lantern post",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "lantern_d_cap",
+      "name": "Lantern cap",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "lantern_d_glass",
+      "name": "Lantern light",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "lantern_d_base",
+      "name": "Lantern base",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "flower_a_petals",
+      "name": "Flower petals",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "flower_a_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_b_petals",
+      "name": "Flower petals",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "flower_b_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "cat_body",
+      "name": "Cat",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "cat_head",
+      "name": "Cat head",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "cat_ear_l",
+      "name": "Ear",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "cat_ear_r",
+      "name": "Ear",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "cat_tail",
+      "name": "Tail",
+      "suggested": "#fff8ec"
+    }
+  ]
+}

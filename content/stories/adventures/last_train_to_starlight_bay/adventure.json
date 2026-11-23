@@ -1,0 +1,370 @@
+{
+  "id": "last_train_to_starlight_bay",
+  "name": "The Last Train to Starlight Bay",
+  "description": "You have one ticket, one suitcase and one night to reach the sea. The seat across from you is taken by a girl with a lantern and a very good map.",
+  "version": "1.3.0",
+  "minAppVersion": "1.3.0",
+  "cover": "cover.svg",
+  "accent": "#7a7bd8",
+  "genre": "Romance",
+  "protagonist": "guy",
+  "interest": "Elsie",
+  "hero": "Jonah",
+  "minutes": 13,
+  "order": 10,
+  "start": "start",
+  "nodes": {
+    "start": {
+      "text": [
+        "I am Jonah, and I am running down the platform with a suitcase that is too big and a ticket that is, according to the conductor, \"technically valid.\" The last train to Starlight Bay is already moving. I leap, and the door closes behind me, and I land in the aisle with my suitcase on top of me.",
+        "It is very late. The carriage is quiet and gold-lit, with seats like little velvet boats. There is only one other passenger, a girl about my age, with a lantern at her feet and a map spread across her knees. She looks up. \"That was impressive,\" she says. \"Are you hurt?\""
+      ],
+      "choices": [
+        {
+          "text": "Say I am fine and sit across from her",
+          "to": "sit"
+        },
+        {
+          "text": "Say I am fine and find a seat far away",
+          "to": "far"
+        },
+        {
+          "text": "Make a joke about my entrance",
+          "to": "joke"
+        }
+      ]
+    },
+    "far": {
+      "text": [
+        "I find a seat three rows back and pretend to read the timetable. After a minute, I hear a soft click and look up. The girl has moved her lantern to the seat beside her and is holding up a flask. \"I am Elsie,\" she says. \"You look like someone who could use some cocoa. And I am quite bad at staying quiet.\""
+      ],
+      "choices": [
+        {
+          "text": "Move over and take the cocoa",
+          "to": "sit"
+        },
+        {
+          "text": "Say thank you but I want to be alone",
+          "to": "alone"
+        }
+      ]
+    },
+    "alone": {
+      "text": [
+        "I say thank you, but no. She nods, perfectly friendly, and goes back to her map. I watch the dark countryside slide past the window. After a while there is nothing to see but my own reflection and a few far lights. It is a very long way to Starlight Bay. I find that I am looking at her map more than at the window."
+      ],
+      "choices": [
+        {
+          "text": "Ask what she is looking for",
+          "to": "sit"
+        },
+        {
+          "text": "Close my eyes and sleep",
+          "to": "end_sleep"
+        }
+      ]
+    },
+    "joke": {
+      "text": [
+        "\"I wanted to arrive in style,\" I say, lifting my head from the carpet. She laughs, a short, surprised laugh, and I decide it is the best sound I have heard all week. \"You did,\" she says. \"Would you like some company? My name is Elsie.\""
+      ],
+      "choices": [
+        {
+          "text": "Sit across from her",
+          "to": "sit"
+        }
+      ]
+    },
+    "sit": {
+      "text": [
+        "\"Jonah,\" I say, shaking her hand, which is warm from the flask. She hands me a cup of cocoa and I realize I have not eaten anything since breakfast. \"Where are you going?\" I ask. \"Starlight Bay,\" she says, as if it were obvious. \"I am going to see the Star Tide.\"",
+        "I have never heard of the Star Tide. Elsie looks at me with delight. \"Oh, you will like this,\" she says, and turns the map around so I can see."
+      ],
+      "choices": [
+        {
+          "text": "Ask what the Star Tide is",
+          "to": "tide"
+        },
+        {
+          "text": "Ask why she is traveling alone",
+          "to": "alone_why"
+        },
+        {
+          "text": "Ask to look at the map",
+          "to": "map"
+        }
+      ]
+    },
+    "alone_why": {
+      "text": [
+        "\"My grandfather used to take me,\" Elsie says. She is quiet for a moment, and her thumb moves along the edge of the map. \"He passed on last winter. I promised I would go this year anyway.\" She looks up and smiles, a little wobbly. \"It is better with company, I think. He always said that.\""
+      ],
+      "choices": [
+        {
+          "text": "Say I would be glad to be her company",
+          "to": "tide"
+        },
+        {
+          "text": "Tell her about my own reasons for going",
+          "to": "mine"
+        }
+      ]
+    },
+    "mine": {
+      "text": [
+        "I did not plan to say it, but it comes out. I am going to Starlight Bay because I have a job at the lighthouse starting on Monday, and I have never lived anywhere but the city. I am scared that I will be bad at it, and scared that I will be lonely, and scared that the sea will be too big.",
+        "Elsie listens without interrupting, the way people do when they have been scared themselves. \"The sea is very big,\" she says. \"That is the best thing about it.\""
+      ],
+      "choices": [
+        {
+          "text": "Ask about the Star Tide",
+          "to": "tide"
+        }
+      ]
+    },
+    "map": {
+      "text": [
+        "The map is old and beautifully drawn, covered in tiny handwritten notes, a river here, a favorite bench there, a circle around a stretch of beach. In the margins are little stars. \"My grandfather drew it,\" says Elsie. \"Every year he added something.\""
+      ],
+      "choices": [
+        {
+          "text": "Ask what the circle is",
+          "to": "tide"
+        },
+        {
+          "text": "Ask what the stars mean",
+          "to": "stars_meaning"
+        }
+      ]
+    },
+    "stars_meaning": {
+      "text": [
+        "\"Each star is a night we saw something wonderful,\" Elsie says. \"There are thirty-one. Last year was the last.\" She lifts her chin. \"This year I am going to draw the thirty-second.\""
+      ],
+      "choices": [
+        {
+          "text": "Ask about the Star Tide",
+          "to": "tide"
+        }
+      ]
+    },
+    "tide": {
+      "text": [
+        "\"On one night a year,\" says Elsie, leaning forward, \"when the moon is new and the tide is at its lowest, a thin silver light shines up from the water. The old fishermen say the stars fall in. Nobody really knows. But the whole bay glows, from shore to horizon, for about an hour.\"",
+        "The train rocks gently. Outside, the dark countryside has given way to the first hints of the sea, a smell of salt, a long pale line that might be the horizon. \"Tonight is the night,\" she says."
+      ],
+      "choices": [
+        {
+          "text": "Offer to go with her to the beach",
+          "to": "beach"
+        },
+        {
+          "text": "Say I have to be at the lighthouse early",
+          "to": "lighthouse"
+        }
+      ]
+    },
+    "lighthouse": {
+      "text": [
+        "\"The lighthouse,\" says Elsie, and her eyes light up. \"That is the best place to watch the Star Tide. The top of the tower.\" She raises one eyebrow. \"If somebody could get us up there, we would not have to share the beach with anybody.\"",
+        "I have been the keeper of that lighthouse for approximately zero hours. But I have, in my suitcase, a key."
+      ],
+      "choices": [
+        {
+          "text": "Take her to the lighthouse",
+          "to": "tower"
+        },
+        {
+          "text": "Say we should wait for Monday and ask properly",
+          "to": "wait"
+        }
+      ]
+    },
+    "wait": {
+      "text": [
+        "\"Sensible,\" says Elsie, though she looks a little crestfallen. \"My grandfather would have said the same.\" I feel dreadful. We look at each other for a moment. And I find that I cannot, in the end, be sensible about a girl who has drawn thirty-one stars on a map."
+      ],
+      "choices": [
+        {
+          "text": "Change my mind and take her to the lighthouse",
+          "to": "tower"
+        },
+        {
+          "text": "Walk her to the beach instead",
+          "to": "beach"
+        },
+        {
+          "text": "Hold firm: we will ask the old keeper on Monday",
+          "to": "end_monday"
+        }
+      ]
+    },
+    "beach": {
+      "text": [
+        "Starlight Bay station is a single wooden platform with one lamp. The conductor tips his hat as we step off, and the train rolls away into the dark with a long, tired whistle. The beach is a five-minute walk down a path lined with sea grass.",
+        "We arrive just as the water begins to pull back. The sand is damp and silver under the sky, with a thousand stars overhead and no moon at all."
+      ],
+      "choices": [
+        {
+          "text": "Wait with her at the edge of the water",
+          "to": "edge"
+        },
+        {
+          "text": "Spread her map on the sand and add a star",
+          "to": "star"
+        }
+      ]
+    },
+    "tower": {
+      "text": [
+        "The lighthouse is tall and white and extremely cold. We climb a hundred and forty steps in the dark, with only her lantern for light, and she counts them out loud. At the top is a round room full of glass, with the great lamp sleeping in the middle and the whole bay spread out below.",
+        "The sea is dark, and perfectly still, and utterly enormous."
+      ],
+      "choices": [
+        {
+          "text": "Light the great lamp for her",
+          "to": "lamp"
+        },
+        {
+          "text": "Turn off the lantern and watch in the dark",
+          "to": "dark"
+        }
+      ]
+    },
+    "lamp": {
+      "text": [
+        "I know exactly one thing about the great lamp, because the old keeper showed me on a visit: how to wake it. I turn the brass key and the lens begins to slowly turn, and a long white beam sweeps out across the water, over and over, like a hand waving hello.",
+        "\"Oh,\" says Elsie softly. \"That is the loveliest thing I have ever seen.\" And then the sea begins to glow."
+      ],
+      "choices": [
+        {
+          "text": "Watch the Star Tide together",
+          "to": "glow"
+        }
+      ]
+    },
+    "dark": {
+      "text": [
+        "She blows out the lantern, and we stand in the dark, shoulder to shoulder, with the sea below. For a long moment there is nothing at all. Then, far out, a single pale gleam, like a coin dropped in the water. Then another. Then a hundred.",
+        "The whole bay is lighting up from the horizon toward the shore, a slow silver tide of tiny sparks."
+      ],
+      "choices": [
+        {
+          "text": "Watch the Star Tide together",
+          "to": "glow"
+        }
+      ]
+    },
+    "edge": {
+      "text": [
+        "We stand at the edge of the water and take off our shoes. The sea is bitterly cold on my toes, and Elsie laughs and shrieks and does not step back. We wait. The stars wheel overhead. At some point, her shoulder is against mine, and neither of us has noticed how."
+      ],
+      "choices": [
+        {
+          "text": "Ask if I can draw the first star on her map",
+          "to": "star"
+        },
+        {
+          "text": "Wait in silence for the tide",
+          "to": "glow"
+        },
+        {
+          "text": "Challenge her to a stone-skipping contest",
+          "to": "end_stones"
+        }
+      ]
+    },
+    "star": {
+      "text": [
+        "Elsie lays the map on the sand and hands me her grandfather's pencil, a stub no longer than my thumb. \"You can draw the star,\" she says, \"if you promise to make it a good one.\" I think for a long time. I draw it small and slightly wobbly, with a tiny face in the middle, looking up at the sky.",
+        "She laughs, delighted. And then the sea begins to glow."
+      ],
+      "choices": [
+        {
+          "text": "Watch the Star Tide together",
+          "to": "glow"
+        }
+      ]
+    },
+    "glow": {
+      "text": [
+        "It begins at the horizon: a thin silver line, as fine as a thread. Then it spreads, inch by inch, across the water, until the whole bay is shining like a field of tiny stars. Every wave, as it breaks, sends up a spray of sparks. The beach glows, the sky glows, and Elsie's face, turned upward, is silver and astonished.",
+        "\"Thirty-two,\" she whispers. For a while neither of us says anything at all."
+      ],
+      "choices": [
+        {
+          "text": "Tell her it is the most beautiful thing I have seen",
+          "to": "end_true"
+        },
+        {
+          "text": "Tell her I am glad I caught the train",
+          "to": "end_train"
+        },
+        {
+          "text": "Say nothing, and take her hand",
+          "to": "end_hand"
+        }
+      ]
+    },
+    "end_sleep": {
+      "text": [
+        "I close my eyes just for a moment. When I open them, the train has stopped, the carriage is empty, and a sleepy conductor is shaking my shoulder. \"Starlight Bay,\" he says. \"End of the line, son.\" The sky outside is pale gray. The Star Tide, whatever it was, is over.",
+        "On the seat across from me, there is a folded note: \"You looked tired. Good luck at the lighthouse. Elsie.\" Underneath is a small drawing of a star with a tiny face. I keep it for years, and I do, in the end, go back to see the tide."
+      ],
+      "ending": {
+        "title": "The Star I Missed",
+        "mood": "cozy"
+      }
+    },
+    "end_monday": {
+      "text": [
+        "We do the sensible thing, and it turns out to be a lovely one. We spend the night at the little inn, where the landlady gives us a very large breakfast, and on Monday morning I introduce myself to the old keeper and ask, properly, whether a guest might see the lamp.",
+        "He is delighted. He takes us to the top himself, and he tells Elsie that her grandfather once sat in the very same spot. She does not say anything. She just holds the rail very tightly and smiles. The Star Tide has gone for this year, but next year it will come again, and by then she already has a standing invitation."
+      ],
+      "ending": {
+        "title": "A Proper Invitation",
+        "mood": "cozy"
+      }
+    },
+    "end_stones": {
+      "text": [
+        "\"Stone-skipping,\" says Elsie slowly. \"You are on.\" We gather armfuls of flat pebbles and take turns at the water's edge. I manage three hops. She manages seven, and then eleven, and then a stone that seems to skip off the edge of the world. \"I was taught by an expert,\" she says, rather smug.",
+        "We are so busy competing, and laughing, and arguing about the rules, that we nearly miss the Star Tide. It sneaks up behind us, silver and silent, lapping at our ankles. We turn, and gasp, and forget the score entirely. It ends up as the second-best moment of the night, and the first, we agree, was the contest."
+      ],
+      "ending": {
+        "title": "Eleven Hops",
+        "mood": "funny"
+      }
+    },
+    "end_true": {
+      "text": [
+        "\"It is the most beautiful thing I have ever seen,\" I say, and I am not looking at the sea. Elsie turns, and for a second her face is perfectly serious. Then she smiles, slowly, and the light of the tide moves in her eyes. \"Me too,\" she says. \"Though I think you are looking at the wrong thing.\"",
+        "We stay until the glow fades and the first pink of the dawn arrives. On Monday I start at the lighthouse. On Tuesday, Elsie brings cocoa. By the end of the month she has stopped pretending she is only visiting."
+      ],
+      "ending": {
+        "title": "The Wrong Thing to Look At",
+        "mood": "sweet"
+      }
+    },
+    "end_train": {
+      "text": [
+        "\"I am so glad I caught that train,\" I tell her. \"I nearly did not. I was one second too late.\" Elsie laughs. \"You were not late,\" she says. \"You were exactly on time.\" She nudges my shoulder with hers, and we watch the sea spark and shimmer until the moon rises.",
+        "It is the best night of my whole life. At the lighthouse, on Monday, the old keeper looks at me and the sparkle still in my eyes and says, \"Ah. You have seen it, then.\" And he does not say another word, but gives me an extra biscuit."
+      ],
+      "ending": {
+        "title": "Exactly On Time",
+        "mood": "happy"
+      }
+    },
+    "end_hand": {
+      "text": [
+        "I do not say anything. I just find her hand in the dark, cold and sandy and warm underneath, and she holds mine as if she had been waiting to. The Star Tide pours across the bay in a river of light, and for the whole hour, we do not let go.",
+        "In the morning, Elsie unrolls the map and adds one small star to the corner, and next to it, in her grandfather's pencil, she draws a second figure beside the first. \"Thirty-two,\" she says. \"With company.\""
+      ],
+      "ending": {
+        "title": "Thirty-Two, With Company",
+        "mood": "dreamy"
+      }
+    }
+  }
+}

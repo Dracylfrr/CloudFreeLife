@@ -458,7 +458,7 @@
   .group {
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.6);
+    background: rgb(var(--w) / 0.6);
     border-radius: 999px;
     padding: 0 2px;
   }
@@ -477,13 +477,13 @@
     border-radius: 999px;
     font-weight: 800;
     font-size: 0.84rem;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgb(var(--w) / 0.7);
     color: var(--ink-soft);
     white-space: nowrap;
   }
   .chip.on {
     background: var(--mint);
-    color: #2e5a4b;
+    color: var(--c-green);
   }
   .work {
     flex: 1;
@@ -520,12 +520,12 @@
       transform 0.15s var(--ease);
   }
   .tool:hover {
-    background: rgba(255, 255, 255, 0.85);
+    background: rgb(var(--w) / 0.85);
     color: var(--ink);
   }
   .tool.on {
-    background: linear-gradient(135deg, #d9eefb, #e6dcfa);
-    color: #4c3f9c;
+    background: linear-gradient(135deg, var(--nav-a), var(--nav-b));
+    color: var(--nav-ink);
     box-shadow: var(--shadow-s);
   }
   .view {
@@ -533,8 +533,8 @@
     min-width: 0;
     margin-bottom: 14px;
     border-radius: var(--radius-l);
-    background: rgba(255, 255, 255, 0.35);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+    background: rgb(var(--w) / 0.35);
+    box-shadow: inset 0 0 0 1px rgb(var(--w) / 0.7);
     position: relative;
     overflow: hidden;
     touch-action: none;
@@ -607,7 +607,7 @@
     left: 50%;
     bottom: 12px;
     transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.82);
+    background: rgb(var(--w) / 0.82);
     padding: 5px 14px;
     border-radius: 999px;
     font-size: 0.78rem;

@@ -1,0 +1,11 @@
+{
+  "id": "owl_tree",
+  "name": "Owl Tree",
+  "description": "An owl and her owlet in a great old tree.",
+  "version": "1.0.0",
+  "minAppVersion": "1.3.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

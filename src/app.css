@@ -24,16 +24,56 @@
   --turquoise: #bdeeea;
 
   --ink: #4a4768;
-  --ink-soft: #7b7899;
+  --ink-soft: #6c6990;
   --ink-faint: #a8a6c1;
   --line: rgba(120, 110, 170, 0.16);
 
-  --panel: rgba(255, 255, 255, 0.74);
+  --panel: rgb(var(--w) / 0.74);
   --panel-solid: #fdfcff;
-  --panel-strong: rgba(255, 255, 255, 0.92);
+  --panel-strong: rgb(var(--w) / 0.92);
   --bg-a: #e4f2fc;
   --bg-b: #ece6fb;
   --bg-c: #fdeaf1;
+
+  /* theme tokens (Cloud Morning defaults; other themes override these, see core/themes.ts) */
+  --w: 255 255 255;
+  --surface: #fff;
+  --g1: #9fd3f2;
+  --g2: #b7a8ec;
+  --g-ink: #35316a;
+  --track: #e3dff3;
+  --nav-a: #d9eefb;
+  --nav-b: #e6dcfa;
+  --nav-ink: #4c3f9c;
+  --brand-a: #6fb4e6;
+  --brand-b: #9b86df;
+  --hero-a: #5f8fd1;
+  --hero-b: #9d84e0;
+  --hero-c: #e48fb4;
+  --amb1: #d3ebfa;
+  --amb2: #eadffb;
+  --amb3: #fde3ee;
+  --amb4: #dcf4e8;
+  --glow2: rgba(255, 224, 238, 0.65);
+  --cloud: #fff;
+  --spark: #fffbe0;
+  --bt0: #bfe4f7;
+  --bt1: #e6d8f8;
+  --bt2: #c6ecda;
+  --bt3: #ffd3e2;
+  --bt4: #fff2bd;
+  --c-green: #2e5a4b;
+  --c-green2: #3f8a6a;
+  --c-green-bg: #eaf7f0;
+  --c-blue: #2f5c80;
+  --c-peach: #8a4f3a;
+  --c-pink: #8a3f63;
+  --c-violet: #5a4a98;
+  --c-gold: #7a6420;
+  --c-gold-bg: #fff2bd;
+  --c-rose: #9a4560;
+  --c-rose-bg: #ffe3e8;
+  --scroll: rgba(150, 140, 200, 0.35);
 
   --accent: var(--lavender-deep);
   --accent-soft: var(--lavender);
@@ -52,12 +92,15 @@
 
   color-scheme: light;
 }
+:root[data-tone='dark'] {
+  color-scheme: dark;
+}
 
 :root[data-contrast='high'] {
   --ink: #2a2745;
   --ink-soft: #46436a;
   --line: rgba(60, 50, 110, 0.4);
-  --panel: rgba(255, 255, 255, 0.96);
+  --panel: rgb(var(--w) / 0.96);
   --focus: #4b38c4;
 }
 
@@ -140,14 +183,14 @@ textarea {
 /* Soft scrollbars */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(150, 140, 200, 0.35) transparent;
+  scrollbar-color: var(--scroll) transparent;
 }
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(150, 140, 200, 0.35);
+  background: var(--scroll);
   border-radius: 10px;
   border: 2px solid transparent;
   background-clip: padding-box;

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+<rect width="1000" height="750" fill="#ffffff"/>
+<g stroke="#6e6a8e" stroke-linejoin="round" stroke-linecap="round">
+<path data-region="sky" data-name="Sky" d="M-6 -6h1012v762h-1012z" fill="#ffffff" stroke-width="5"/>
+<path data-region="sun" data-name="Sun" d="M796 120a44 44 0 1 0 88 0a44 44 0 1 0 -88 0z" fill="#ffffff" stroke-width="5"/>
+<path data-region="cloud_a" data-name="Cloud" d="M131.6 132.8A19 19 0 1 1 134 94.9A32.3 32.3 0 0 1 173.8 69.2A41.8 41.8 0 0 1 246.7 72A30.4 30.4 0 0 1 277 95A19 19 0 0 1 274.1 132.8z" fill="#ffffff" stroke-width="5"/>
+<path data-region="mountain_left" data-name="Mountain" d="M-46 430Q-60 430 -49.6 420.7L219.6 179.3Q230 170 240.1 179.7L489.9 420.3Q500 430 486 430z" fill="#ffffff" stroke-width="5"/>
+<path data-region="mountain_right" data-name="Mountain" d="M374 430Q360 430 371.2 421.5L638.8 218.5Q650 210 661.4 218.1L948.6 421.9Q960 430 946 430z" fill="#ffffff" stroke-width="5"/>
+<path data-region="snow_left" data-name="Snow cap" d="M233.3 175Q230 170 226.8 175.1L187.2 238.9Q184 244 189 240.7L203 231.3Q208 228 211.7 232.7L228.3 253.3Q232 258 235.5 253.2L250.5 232.8Q254 228 259 231.3L273 240.7Q278 244 274.7 239z" fill="#ffffff" stroke-width="4"/>
+<path data-region="snow_right" data-name="Snow cap" d="M653.4 214.9Q650 210 646.7 215L609.3 271Q606 276 611.2 273L624.8 265Q630 262 633.7 266.7L648.3 285.3Q652 290 655.7 285.3L670.3 266.7Q674 262 679.1 265.2L690.9 272.8Q696 276 692.6 271.1z" fill="#ffffff" stroke-width="4"/>
+<path data-region="shore" data-name="Far shore" d="M-10 440C33.3 436.7 148.3 419 250 420C351.7 421 473.3 445.3 600 446C726.7 446.7 941.7 427.7 1010 424L1010 424V750H-10V440L-10 440z" fill="#ffffff" stroke-width="5"/>
+<path data-region="pine_a_trunk" data-name="Tree trunk" d="M96.8 446H103.2A4 4 0 0 1 107.2 450V467.6A4 4 0 0 1 103.2 471.6H96.8A4 4 0 0 1 92.8 467.6V450A4 4 0 0 1 96.8 446z" fill="#ffffff" stroke-width="5"/>
+<path data-region="pine_a_c" data-name="Pine boughs" d="M105.3 383.2Q100 377.2 94.7 383.2L38.1 446.4Q32.8 452.4 40.8 452.4L159.2 452.4Q167.2 452.4 161.9 446.4z" fill="#ffffff" stroke-width="5"/>
+<path data-region="pine_a_b" data-name="Pine boughs" d="M104.4 345.5Q100 338.8 95.6 345.5L50 413.7Q45.6 420.4 53.6 420.4L146.4 420.4Q154.4 420.4 150 413.7z" fill="#ffffff" stroke-width="5"/>
+<path data-region="pine_a_a" data-name="Pine boughs" d="M103.7 307.5Q100 300.4 96.3 307.5L62.1 373.3Q58.4 380.4 66.4 380.4L133.6 380.4Q141.6 380.4 137.9 373.3z" fill="#ffffff" stroke-width="5"/>
+<path data-region="pine_b_trunk" data-name="Tree trunk" d="M188.6 462H191.4A4 4 0 0 1 195.4 466V477.2A4 4 0 0 1 191.4 481.2H188.6A4 4 0 0 1 184.6 477.2V466A4 4 0 0 1 188.6 462z" fill="#ffffff" stroke-width="5"/>
+<path data-region="pine_b_c" data-name="Pine boughs" d="M195.3 416.4Q190 410.4 184.7 416.4L144.9 460.8Q139.6 466.8 147.6 466.8L232.4 466.8Q240.4 466.8 235.1 460.8z" fill="#ffffff" stroke-width="5"/>
+<path data-region="pine_b_b" data-name="Pine boughs" d="M194.4 388.3Q190 381.6 185.6 388.3L153.6 436.1Q149.2 442.8 157.2 442.8L222.8 442.8Q230.8 442.8 226.4 436.1z" fill="#ffffff" stroke-width="5"/>
+<path data-region="pine_b_a" data-name="Pine boughs" d="M193.7 359.9Q190 352.8 186.3 359.9L162.5 405.7Q158.8 412.8 166.8 412.8L213.2 412.8Q221.2 412.8 217.5 405.7z" fill="#ffffff" stroke-width="5"/>
+<path data-region="pine_c_trunk" data-name="Tree trunk" d="M905.9 443H914.1A4 4 0 0 1 918.1 447V467.8A4 4 0 0 1 914.1 471.8H905.9A4 4 0 0 1 901.9 467.8V447A4 4 0 0 1 905.9 443z" fill="#ffffff" stroke-width="5"/>
+<path data-region="pine_c_c" data-name="Pine boughs" d="M915.3 371.6Q910 365.6 904.7 371.6L839.7 444.2Q834.4 450.2 842.4 450.2L977.6 450.2Q985.6 450.2 980.3 444.2z" fill="#ffffff" stroke-width="5"/>
+<path data-region="pine_c_b" data-name="Pine boughs" d="M914.4 329.1Q910 322.4 905.6 329.1L853.2 407.5Q848.8 414.2 856.8 414.2L963.2 414.2Q971.2 414.2 966.8 407.5z" fill="#ffffff" stroke-width="5"/>
+<path data-region="pine_c_a" data-name="Pine boughs" d="M913.7 286.3Q910 279.2 906.3 286.3L866.9 362.1Q863.2 369.2 871.2 369.2L948.8 369.2Q956.8 369.2 953.1 362.1z" fill="#ffffff" stroke-width="5"/>
+<path data-region="lake" data-name="Lake" d="M-10 450h1020v300h-1020z" fill="#ffffff" stroke-width="5"/>
+<path data-region="reflection" data-name="Reflection" d="M500 560a160 26 0 1 0 320 0a160 26 0 1 0 -320 0z" fill="#ffffff" stroke-width="4"/>
+<path d="M210 520q40 -14 80 0M740 640q40 -14 80 0M420 600q30 -10 60 0" fill="none" stroke-width="4"/>
+<path data-region="boat_hull" data-name="Rowing boat" d="M337.8 601.6Q330 590 344 590L556 590Q570 590 562.2 601.6L537.8 638.4Q530 650 516 650L384 650Q370 650 362.2 638.4z" fill="#ffffff" stroke-width="5"/>
+<path data-region="boat_stripe" data-name="Boat stripe" d="M347 602H553A5 5 0 0 1 558 607V611A5 5 0 0 1 553 616H347A5 5 0 0 1 342 611V607A5 5 0 0 1 347 602z" fill="#ffffff" stroke-width="4"/>
+<path data-region="boat_sail" data-name="Sail" d="M453.6 407.2Q450 400 450 408L450 572Q450 580 458 580L532 580Q540 580 536.4 572.8z" fill="#ffffff" stroke-width="5"/>
+<path d="M450 380V590" fill="none" stroke-width="6"/>
+<path data-region="duck_a" data-name="Duck" d="M156 640a34 22 0 1 0 68 0a34 22 0 1 0 -68 0z" fill="#ffffff" stroke-width="4"/>
+<path data-region="duck_a_head" data-name="Duck head" d="M207 618a15 15 0 1 0 30 0a15 15 0 1 0 -30 0z" fill="#ffffff" stroke-width="4"/>
+<circle cx="228" cy="614" r="3.5" fill="#6e6a8e" stroke="none"/>
+<path data-region="duck_b" data-name="Duckling" d="M88 670a22 14 0 1 0 44 0a22 14 0 1 0 -44 0z" fill="#ffffff" stroke-width="4"/>
+<path data-region="duck_b_head" data-name="Duckling head" d="M120 656a10 10 0 1 0 20 0a10 10 0 1 0 -20 0z" fill="#ffffff" stroke-width="4"/>
+<path data-region="reeds_base" data-name="Reeds" d="M824 600H830A4 4 0 0 1 834 604V716A4 4 0 0 1 830 720H824A4 4 0 0 1 820 716V604A4 4 0 0 1 824 600z" fill="#ffffff" stroke-width="4"/>
+<path data-region="reeds_base_b" data-name="Reeds" d="M854 620H860A4 4 0 0 1 864 624V716A4 4 0 0 1 860 720H854A4 4 0 0 1 850 716V624A4 4 0 0 1 854 620z" fill="#ffffff" stroke-width="4"/>
+<path data-region="cattail_a" data-name="Cattail" d="M815 590a12 30 0 1 0 24 0a12 30 0 1 0 -24 0z" fill="#ffffff" stroke-width="4"/>
+<path data-region="cattail_b" data-name="Cattail" d="M845 610a12 28 0 1 0 24 0a12 28 0 1 0 -24 0z" fill="#ffffff" stroke-width="4"/>
+<path d="M542.4 110q8.8 -12.8 17.6 1.6q8.8 -14.4 17.6 -1.6M606.8 80q6.6 -9.6 13.2 1.2q6.6 -10.8 13.2 -1.2" fill="none" stroke-width="4"/>
+</g></svg>

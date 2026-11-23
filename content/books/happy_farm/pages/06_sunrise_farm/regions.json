@@ -1,0 +1,178 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sunrise sky",
+      "suggested": "#ffd0b5"
+    },
+    {
+      "id": "sun_glow",
+      "name": "Sun glow",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "cloud_b",
+      "name": "Cloud",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "hill_far",
+      "name": "Far hill",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "field_a",
+      "name": "Field",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "field_b",
+      "name": "Field stripes",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "barn_wall",
+      "name": "Barn",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "barn_roof",
+      "name": "Barn roof",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "barn_door",
+      "name": "Barn door",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "silo",
+      "name": "Silo",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "silo_top",
+      "name": "Silo top",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "windmill_tower",
+      "name": "Windmill",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "blade_1",
+      "name": "Windmill blade",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "blade_2",
+      "name": "Windmill blade",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "blade_3",
+      "name": "Windmill blade",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "blade_4",
+      "name": "Windmill blade",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "hub",
+      "name": "Windmill hub",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "fence_posts",
+      "name": "Fence posts",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "fence_rail_top",
+      "name": "Fence rail",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "fence_rail_low",
+      "name": "Fence rail",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "rooster_body",
+      "name": "Rooster",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "rooster_head",
+      "name": "Rooster head",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "rooster_comb",
+      "name": "Comb",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "rooster_beak",
+      "name": "Beak",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "rooster_tail",
+      "name": "Tail",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "cow_a",
+      "name": "Cow",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cow_a_head",
+      "name": "Cow head",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cow_a_spot",
+      "name": "Spot",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "flower_a_petals",
+      "name": "Flower petals",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "flower_a_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_b_petals",
+      "name": "Flower petals",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "flower_b_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "happy_farm",
+  "name": "Happy Farm",
+  "description": "A farmhouse, barn friends, a tractor, a vegetable garden, an orchard and a sunrise.",
+  "cover": "cover.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.3.0",
+  "kind": "coloring",
+  "accent": "#f7c78a",
+  "order": 10,
+  "pages": [
+    "01_farmhouse",
+    "02_barn_friends",
+    "03_tractor_field",
+    "04_vegetable_garden",
+    "05_orchard",
+    "06_sunrise_farm"
+  ]
+}

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+<rect width="1000" height="750" fill="#ffffff"/>
+<g stroke="#6e6a8e" stroke-linejoin="round" stroke-linecap="round">
+<path data-region="sky" data-name="Winter sky" d="M-6 -6h1012v762h-1012z" fill="#e6d8f8" stroke-width="5"/>
+<path data-region="cloud_a" data-name="Cloud" d="M654 124A26 26 0 1 1 661.5 73.1A40 40 0 0 1 731 58.7A36 36 0 0 1 787.1 80.2A22 22 0 1 1 790 124z" fill="#ffffff" stroke-width="5"/>
+<path data-region="mountain" data-name="Mountain" d="M-26 440Q-40 440 -29.2 431L249.2 199Q260 190 270.8 199L549.2 431Q560 440 546 440z" fill="#d9cdf6" stroke-width="5"/>
+<path data-region="snow_cap" data-name="Snow cap" d="M263.3 195Q260 190 256.8 195.1L217.2 256.9Q214 262 219.1 258.9L234.9 249.1Q240 246 243.7 250.7L258.3 269.3Q262 274 265.7 269.3L280.3 250.7Q284 246 289 249.3L303 258.7Q308 262 304.7 257z" fill="#ffffff" stroke-width="4"/>
+<path data-region="far_hill" data-name="Snowy hill" d="M-10 470C45 465 211.7 438.3 320 440C428.3 441.7 525 478.3 640 480C755 481.7 948.3 455 1010 450L1010 450V750H-10V470L-10 470z" fill="#ffffff" stroke-width="5"/>
+<path data-region="snow_field" data-name="Snow" d="M-10 560C61.7 555 250 528.3 420 530C590 531.7 911.7 563.3 1010 570L1010 570V750H-10V560L-10 560z" fill="#fff8ec" stroke-width="5"/>
+<path data-region="path" data-name="Path" d="M420 745C428.3 727.5 446.7 667.5 470 640C493.3 612.5 531.7 598.3 560 580C588.3 561.7 616.7 540 640 530C663.3 520 692.7 515.7 700 520C707.3 524.3 697.3 543.3 684 556C670.7 568.7 639 580.3 620 596C601 611.7 575 625.2 570 650C565 674.8 586.7 729.2 590 745" fill="#e3e0f0" stroke-width="5"/>
+<path data-region="pine_a_trunk" data-name="Tree trunk" d="M122.3 561H137.7A4 4 0 0 1 141.7 565V598.6A4 4 0 0 1 137.7 602.6H122.3A4 4 0 0 1 118.3 598.6V565A4 4 0 0 1 122.3 561z" fill="#e9c7a3" stroke-width="5"/>
+<path data-region="pine_a_c" data-name="Pine boughs" d="M135.3 455.2Q130 449.2 124.7 455.2L26.1 565.4Q20.8 571.4 28.8 571.4L231.2 571.4Q239.2 571.4 233.9 565.4z" fill="#a9dcb4" stroke-width="5"/>
+<path data-region="pine_a_b" data-name="Pine boughs" d="M134.4 393.5Q130 386.8 125.6 393.5L46 512.7Q41.6 519.4 49.6 519.4L210.4 519.4Q218.4 519.4 214 512.7z" fill="#a9dcb4" stroke-width="5"/>
+<path data-region="pine_a_a" data-name="Pine boughs" d="M133.7 331.5Q130 324.4 126.3 331.5L66.1 447.3Q62.4 454.4 70.4 454.4L189.6 454.4Q197.6 454.4 193.9 447.3z" fill="#a9dcb4" stroke-width="5"/>
+<path data-region="pine_a_snow" data-name="Snow on tree" d="M132.9 329.7Q130 324.4 127.1 329.7L99.1 381.5Q96.2 386.8 102.2 386.8L157.8 386.8Q163.8 386.8 160.9 381.5z" fill="#ffffff" stroke-width="4"/>
+<path data-region="pine_b_trunk" data-name="Tree trunk" d="M255.9 553H264.1A4 4 0 0 1 268.1 557V577.8A4 4 0 0 1 264.1 581.8H255.9A4 4 0 0 1 251.9 577.8V557A4 4 0 0 1 255.9 553z" fill="#e9c7a3" stroke-width="5"/>
+<path data-region="pine_b_c" data-name="Pine boughs" d="M265.3 481.6Q260 475.6 254.7 481.6L189.7 554.2Q184.4 560.2 192.4 560.2L327.6 560.2Q335.6 560.2 330.3 554.2z" fill="#c6ecda" stroke-width="5"/>
+<path data-region="pine_b_b" data-name="Pine boughs" d="M264.4 439.1Q260 432.4 255.6 439.1L203.2 517.5Q198.8 524.2 206.8 524.2L313.2 524.2Q321.2 524.2 316.8 517.5z" fill="#c6ecda" stroke-width="5"/>
+<path data-region="pine_b_a" data-name="Pine boughs" d="M263.7 396.3Q260 389.2 256.3 396.3L216.9 472.1Q213.2 479.2 221.2 479.2L298.8 479.2Q306.8 479.2 303.1 472.1z" fill="#c6ecda" stroke-width="5"/>
+<path data-region="pine_b_snow" data-name="Snow on tree" d="M262.9 394.5Q260 389.2 257.1 394.5L239.5 427.1Q236.6 432.4 242.6 432.4L277.4 432.4Q283.4 432.4 280.5 427.1z" fill="#ffffff" stroke-width="4"/>
+<path data-region="pine_c_trunk" data-name="Tree trunk" d="M873.2 544H886.8A4 4 0 0 1 890.8 548V578.4A4 4 0 0 1 886.8 582.4H873.2A4 4 0 0 1 869.2 578.4V548A4 4 0 0 1 873.2 544z" fill="#e9c7a3" stroke-width="5"/>
+<path data-region="pine_c_c" data-name="Pine boughs" d="M885.3 446.8Q880 440.8 874.7 446.8L784.5 547.6Q779.2 553.6 787.2 553.6L972.8 553.6Q980.8 553.6 975.5 547.6z" fill="#a9dcb4" stroke-width="5"/>
+<path data-region="pine_c_b" data-name="Pine boughs" d="M884.4 389.9Q880 383.2 875.6 389.9L802.8 498.9Q798.4 505.6 806.4 505.6L953.6 505.6Q961.6 505.6 957.2 498.9z" fill="#a9dcb4" stroke-width="5"/>
+<path data-region="pine_c_a" data-name="Pine boughs" d="M883.7 332.7Q880 325.6 876.3 332.7L821.3 438.5Q817.6 445.6 825.6 445.6L934.4 445.6Q942.4 445.6 938.7 438.5z" fill="#a9dcb4" stroke-width="5"/>
+<path data-region="pine_c_snow" data-name="Snow on tree" d="M882.9 330.9Q880 325.6 877.1 330.9L851.7 377.9Q848.8 383.2 854.8 383.2L905.2 383.2Q911.2 383.2 908.3 377.9z" fill="#ffffff" stroke-width="4"/>
+<path data-region="cabin_wall" data-name="Wall" d="M691 450H829A6 6 0 0 1 835 456V534A6 6 0 0 1 829 540H691A6 6 0 0 1 685 534V456A6 6 0 0 1 691 450z" fill="#f8e4c2" stroke-width="5"/>
+<path data-region="cabin_chimney" data-name="Chimney" d="M793 390H808A3 3 0 0 1 811 393V438A3 3 0 0 1 808 441H793A3 3 0 0 1 790 438V393A3 3 0 0 1 793 390z" fill="#e3e0f0" stroke-width="5"/>
+<path data-region="cabin_roof" data-name="Roof" d="M681 456Q671 456 678.8 449.7L752.2 390.3Q760 384 767.8 390.3L841.2 449.7Q849 456 839 456z" fill="#f6b8cf" stroke-width="5"/>
+<path data-region="cabin_door" data-name="Door" d="M746.5 540V504A13.5 13.5 0 0 1 773.5 504V540z" fill="#e9c7a3" stroke-width="5"/>
+<path data-region="cabin_window_right" data-name="Window" d="M790.5 475.2H810.5A5 5 0 0 1 815.5 480.2V500.2A5 5 0 0 1 810.5 505.2H790.5A5 5 0 0 1 785.5 500.2V480.2A5 5 0 0 1 790.5 475.2z" fill="#fff2bd" stroke-width="5"/>
+<path data-region="cabin_window_left" data-name="Window" d="M709.5 475.2H729.5A5 5 0 0 1 734.5 480.2V500.2A5 5 0 0 1 729.5 505.2H709.5A5 5 0 0 1 704.5 500.2V480.2A5 5 0 0 1 709.5 475.2z" fill="#fff2bd" stroke-width="5"/>
+<path data-region="lamp_post" data-name="Lamp post" d="M379 480H383A5 5 0 0 1 388 485V675A5 5 0 0 1 383 680H379A5 5 0 0 1 374 675V485A5 5 0 0 1 379 480z" fill="#e3e0f0" stroke-width="4"/>
+<path d="M381 430.4V452.4" fill="none" stroke-width="4"/>
+<path data-region="lamp_cap" data-name="Lantern cap" d="M365.2 448.8Q363.4 452.4 367.4 452.4L394.6 452.4Q398.6 452.4 396.8 448.8L393.8 442.8Q392 439.2 388 439.2L374 439.2Q370 439.2 368.2 442.8z" fill="#e6d8f8" stroke-width="4"/>
+<path data-region="lamp_glass" data-name="Lantern light" d="M374.4 452.4H387.6A8.8 8.8 0 0 1 396.4 461.2V485.4A8.8 8.8 0 0 1 387.6 494.2H374.4A8.8 8.8 0 0 1 365.6 485.4V461.2A8.8 8.8 0 0 1 374.4 452.4z" fill="#fff2bd" stroke-width="4"/>
+<path data-region="lamp_base" data-name="Lantern base" d="M367.5 494.2H394.5A3 3 0 0 1 397.5 497.2V500A3 3 0 0 1 394.5 503H367.5A3 3 0 0 1 364.5 500V497.2A3 3 0 0 1 367.5 494.2z" fill="#e6d8f8" stroke-width="4"/>
+<path data-region="snowman_body" data-name="Snowman" d="M848 690a52 52 0 1 0 104 0a52 52 0 1 0 -104 0z" fill="#ffffff" stroke-width="5"/>
+<path data-region="snowman_head" data-name="Snowman head" d="M864 614a36 36 0 1 0 72 0a36 36 0 1 0 -72 0z" fill="#ffffff" stroke-width="5"/>
+<path data-region="snowman_scarf" data-name="Scarf" d="M876 640H924A8 8 0 0 1 932 648V648A8 8 0 0 1 924 656H876A8 8 0 0 1 868 648V648A8 8 0 0 1 876 640z" fill="#ffc3b0" stroke-width="4"/>
+<circle cx="890" cy="608" r="4" fill="#6e6a8e" stroke="none"/>
+<circle cx="912" cy="608" r="4" fill="#6e6a8e" stroke="none"/>
+<path data-region="snowman_nose" data-name="Nose" d="M900 618L930 624L900 630z" fill="#ffdcc8" stroke-width="3"/>
+<path data-region="snow1" data-name="Snowflake" d="M72 120a8 8 0 1 0 16 0a8 8 0 1 0 -16 0z" fill="#ffffff" stroke-width="3"/>
+<path data-region="snow2" data-name="Snowflake" d="M183 60a7 7 0 1 0 14 0a7 7 0 1 0 -14 0z" fill="#ffffff" stroke-width="3"/>
+<path data-region="snow3" data-name="Snowflake" d="M341 150a9 9 0 1 0 18 0a9 9 0 1 0 -18 0z" fill="#ffffff" stroke-width="3"/>
+<path data-region="snow4" data-name="Snowflake" d="M453 90a7 7 0 1 0 14 0a7 7 0 1 0 -14 0z" fill="#ffffff" stroke-width="3"/>
+<path data-region="snow5" data-name="Snowflake" d="M592 190a8 8 0 1 0 16 0a8 8 0 1 0 -16 0z" fill="#ffffff" stroke-width="3"/>
+<path data-region="snow6" data-name="Snowflake" d="M813 180a7 7 0 1 0 14 0a7 7 0 1 0 -14 0z" fill="#ffffff" stroke-width="3"/>
+<path data-region="snow7" data-name="Snowflake" d="M931 90a9 9 0 1 0 18 0a9 9 0 1 0 -18 0z" fill="#ffffff" stroke-width="3"/>
+<path data-region="snow8" data-name="Snowflake" d="M63 300a7 7 0 1 0 14 0a7 7 0 1 0 -14 0z" fill="#ffffff" stroke-width="3"/>
+<path data-region="snow9" data-name="Snowflake" d="M512 300a8 8 0 1 0 16 0a8 8 0 1 0 -16 0z" fill="#ffffff" stroke-width="3"/>
+</g></svg>

@@ -1,0 +1,11 @@
+{
+  "id": "lantern_path",
+  "name": "Lantern Path",
+  "description": "A glowing path to the garden gate.",
+  "version": "1.0.0",
+  "minAppVersion": "1.3.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

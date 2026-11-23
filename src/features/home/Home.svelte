@@ -10,6 +10,8 @@
   import { sfx } from '../../core/audio';
   import { onMount } from 'svelte';
   import { onAmbientTick } from '../../ui/ticker';
+  import { storyProgress } from '../stories/progress';
+  import { buildReadingList, mostRecentUnfinished } from '../stories/readingList';
 
   const hour = new Date().getHours();
   const greeting = hour < 5 ? 'Peaceful night' : hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
@@ -20,6 +22,15 @@
   const latest = $derived($artworks[0]);
   const recent = $derived($artworks.slice(0, 4));
   const shelf = $derived(shelfSort($catalog.books));
+
+  // "Continue" resumes whichever was touched last: the latest painting, or a story / adventure in progress.
+  const reading = $derived(mostRecentUnfinished(buildReadingList($catalog.stories, $catalog.adventures, $storyProgress)));
+  const showReading = $derived(!!reading && (!latest || reading.opened > latest.updatedAt));
+  function resume() {
+    if (showReading && reading) navigate(reading.kind === 'story' ? { name: 'story', storyId: reading.id } : { name: 'adventure', adventureId: reading.id });
+    else if (latest) openArtwork(latest.id);
+    else navigate({ name: 'books' });
+  }
 </script>
 
 <div class="page home">
@@ -35,18 +46,25 @@
   </header>
 
   <section class="actions" aria-label="Start here">
-    <button class="card cont" onclick={() => (latest ? openArtwork(latest.id) : navigate({ name: 'books' }))}>
+    <button class="card cont" onclick={resume}>
       <div class="visual">
-        {#if latest}
+        {#if showReading && reading}
+          <div class="read-cover"><ReadingCover item={(reading.story ?? reading.adventure)!} /></div>
+        {:else if latest}
           <ArtThumb art={latest} />
         {:else}
           <div class="empty-thumb"><Icon name="brush" size={40} /></div>
         {/if}
       </div>
       <div class="meta">
-        <span class="tag peach"><Icon name="play" size={14} /> Continue Painting</span>
-        <h3>{latest ? latest.title : 'Your first picture'}</h3>
-        <p>{latest ? 'Pick up right where you left off.' : 'Nothing started yet — choose a page to begin.'}</p>
+        <span class="tag peach"><Icon name="play" size={14} /> Continue</span>
+        {#if showReading && reading}
+          <h3>{(reading.story ?? reading.adventure)!.manifest.name}</h3>
+          <p>{reading.label}. Pick up where you left off.</p>
+        {:else}
+          <h3>{latest ? latest.title : 'Your first picture'}</h3>
+          <p>{latest ? 'Pick up right where you left off.' : 'Nothing started yet — choose a page to begin.'}</p>
+        {/if}
       </div>
     </button>
 
@@ -65,27 +83,14 @@
 
     <button class="card stories" onclick={() => navigate({ name: 'stories' })}>
       <div class="visual stack warm">
-        {#each $catalog.stories.slice(0, 3) as s, i}
+        {#each [$catalog.stories[0], $catalog.adventures[0], $catalog.stories[3] ?? $catalog.stories[1]].filter(Boolean) as s, i}
           <div class="mini" style="--i:{i}"><ReadingCover item={s} /></div>
         {/each}
       </div>
       <div class="meta">
-        <span class="tag pink"><Icon name="bookOpen" size={14} /> Read a Story</span>
-        <h3>Cozy Stories</h3>
-        <p>{$catalog.stories.length} short, gentle stories to unwind with. We keep your place.</p>
-      </div>
-    </button>
-
-    <button class="card adventures" onclick={() => navigate({ name: 'adventures' })}>
-      <div class="visual stack cool">
-        {#each $catalog.adventures.slice(0, 3) as a, i}
-          <div class="mini" style="--i:{i}"><ReadingCover item={a} /></div>
-        {/each}
-      </div>
-      <div class="meta">
-        <span class="tag butter"><Icon name="compass" size={14} /> Choose Your Path</span>
-        <h3>Story Adventures</h3>
-        <p>Be the guy or the girl. Adventure, romance, comedy and many endings.</p>
+        <span class="tag pink"><Icon name="bookOpen" size={14} /> Read or Listen</span>
+        <h3>Stories</h3>
+        <p>{$catalog.stories.length} illustrated stories to read or hear aloud, and {$catalog.adventures.length} choose-your-path adventures.</p>
       </div>
     </button>
 
@@ -151,7 +156,7 @@
     font-size: 2.7rem;
     line-height: 1.08;
     margin: 6px 0 10px;
-    background: linear-gradient(110deg, #5f8fd1, #9d84e0 60%, #e48fb4);
+    background: linear-gradient(110deg, var(--hero-a), var(--hero-b) 60%, var(--hero-c));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -178,7 +183,7 @@
     border-radius: var(--radius-xl);
     background: var(--panel);
     box-shadow: var(--shadow-m);
-    border: 1px solid rgba(255, 255, 255, 0.85);
+    border: 1px solid rgb(var(--w) / 0.85);
     text-align: left;
     transition:
       transform 0.25s var(--ease),
@@ -242,36 +247,35 @@
   }
   .tag.peach {
     background: var(--peach);
-    color: #8a4f3a;
+    color: var(--c-peach);
   }
   .tag.sky {
     background: var(--sky);
-    color: #2f5c80;
+    color: var(--c-blue);
   }
   .tag.mint {
     background: var(--mint);
-    color: #2e5a4b;
+    color: var(--c-green);
   }
   .tag.lilac {
     background: var(--lilac);
-    color: #5a4a98;
+    color: var(--c-violet);
   }
   .tag.pink {
     background: var(--pink);
-    color: #8a3f63;
+    color: var(--c-pink);
   }
-  .tag.butter {
-    background: #fff2bd;
-    color: #7a6420;
+  .read-cover {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    overflow: hidden;
   }
   .stack {
     background: linear-gradient(135deg, #dff0fb, #ece3fb);
   }
   .stack.warm {
     background: linear-gradient(135deg, #fde6ef, #fff0d8);
-  }
-  .stack.cool {
-    background: linear-gradient(135deg, #e3f5ee, #e6dcfa);
   }
   .mini :global(img) {
     object-fit: cover;
@@ -345,7 +349,7 @@
     width: 44%;
     height: 10px;
     border-radius: 6px;
-    background: linear-gradient(90deg, #9fd3f2, #b7a8ec);
+    background: linear-gradient(90deg, var(--g1), var(--g2));
   }
   .recent {
     margin-top: 40px;

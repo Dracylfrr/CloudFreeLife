@@ -1,9 +1,15 @@
 import { get, writable, type Readable } from 'svelte/store';
 import { getStorage } from './storage';
 import { clamp, debounce } from './util';
+import { DEFAULT_THEME, applyTheme, isThemeChoice, systemPrefersDark, type ThemeChoice } from './themes';
 
 export const SETTINGS_PATH = 'settings.json';
-export const SETTINGS_SCHEMA = 1;
+export const SETTINGS_SCHEMA = 2;
+
+export const MOODS = ['default', 'relaxed', 'chill', 'cozy', 'dreamy'] as const;
+export type Mood = (typeof MOODS)[number];
+export const MUSIC_MOODS = ['morning', 'garden', 'rain', 'night'] as const;
+export type MusicMood = (typeof MUSIC_MOODS)[number];
 
 export interface Settings {
   schema: number;
@@ -17,6 +23,17 @@ export interface Settings {
   fps30: boolean;
   /** Reading size in Cozy Stories and Story Adventures (1 = normal). */
   storyFontScale: number; // 0.9 - 1.7
+  /** Visual theme (v1.3). 'system' follows the operating system light/dark setting. */
+  theme: ThemeChoice;
+  /** One-tap feeling preset (v1.3): shapes music, ambience, sound softness and ambient speed. */
+  mood: Mood;
+  // Read Aloud (v1.3)
+  ttsVoice: string;
+  ttsRate: number; // 0.75 - 1.5
+  ttsHighlight: boolean;
+  ttsTone: 'soft' | 'warm' | 'bright';
+  /** Keep narrating into the next chapter. */
+  ttsAutoNext: boolean;
   // Accessibility
   reducedMotion: boolean;
   disableParticles: boolean;
@@ -29,6 +46,7 @@ export interface Settings {
   volumeEffects: number;
   volumePainting: number;
   musicOn: boolean;
+  musicMood: MusicMood;
   ambienceOn: boolean;
   // Updates
   checkUpdatesOnStartup: boolean;
@@ -49,16 +67,24 @@ export const DEFAULT_SETTINGS: Settings = {
   lowPowerMode: false,
   fps30: false,
   storyFontScale: 1.1,
+  theme: DEFAULT_THEME,
+  mood: 'default',
+  ttsVoice: '',
+  ttsRate: 1,
+  ttsHighlight: true,
+  ttsTone: 'soft',
+  ttsAutoNext: true,
   reducedMotion: false,
   disableParticles: false,
   highContrast: false,
   muted: false,
   volumeMaster: 0.7,
-  volumeMusic: 0.35,
+  volumeMusic: 0.5,
   volumeAmbience: 0.3,
   volumeEffects: 0.6,
   volumePainting: 0.4,
-  musicOn: false,
+  musicOn: true,
+  musicMood: 'morning',
   ambienceOn: false,
   checkUpdatesOnStartup: true,
   lastUpdateCheck: 0,
@@ -86,6 +112,13 @@ export function sanitizeSettings(raw: unknown): Settings {
     lowPowerMode: bool(r.lowPowerMode, d.lowPowerMode),
     fps30: bool(r.fps30, d.fps30),
     storyFontScale: num(r.storyFontScale, d.storyFontScale, 0.9, 1.7),
+    theme: isThemeChoice(r.theme) ? r.theme : d.theme,
+    mood: (MOODS as readonly string[]).includes(r.mood as string) ? (r.mood as Mood) : d.mood,
+    ttsVoice: typeof r.ttsVoice === 'string' && r.ttsVoice.length < 300 ? r.ttsVoice : d.ttsVoice,
+    ttsRate: num(r.ttsRate, d.ttsRate, 0.75, 1.5),
+    ttsHighlight: bool(r.ttsHighlight, d.ttsHighlight),
+    ttsTone: r.ttsTone === 'warm' || r.ttsTone === 'bright' || r.ttsTone === 'soft' ? r.ttsTone : d.ttsTone,
+    ttsAutoNext: bool(r.ttsAutoNext, d.ttsAutoNext),
     reducedMotion: bool(r.reducedMotion, d.reducedMotion),
     disableParticles: bool(r.disableParticles, d.disableParticles),
     highContrast: bool(r.highContrast, d.highContrast),
@@ -95,7 +128,11 @@ export function sanitizeSettings(raw: unknown): Settings {
     volumeAmbience: num(r.volumeAmbience, d.volumeAmbience, 0, 1),
     volumeEffects: num(r.volumeEffects, d.volumeEffects, 0, 1),
     volumePainting: num(r.volumePainting, d.volumePainting, 0, 1),
-    musicOn: bool(r.musicOn, d.musicOn),
+    // Settings saved by 1.2 or older have music "off" only because it used to be off by default.
+    // Background music is a headline feature of 1.3, so it is switched on once, when the file is
+    // upgraded; from then on the sidebar toggle (or Settings) is the user's choice and is kept.
+    musicOn: typeof r.schema === 'number' && r.schema < 2 ? true : bool(r.musicOn, d.musicOn),
+    musicMood: (MUSIC_MOODS as readonly string[]).includes(r.musicMood as string) ? (r.musicMood as MusicMood) : d.musicMood,
     ambienceOn: bool(r.ambienceOn, d.ambienceOn),
     checkUpdatesOnStartup: bool(r.checkUpdatesOnStartup, d.checkUpdatesOnStartup),
     lastUpdateCheck: num(r.lastUpdateCheck, 0, 0, Number.MAX_SAFE_INTEGER),
@@ -175,4 +212,5 @@ export function applySettingsToDocument(s: Settings) {
   root.dataset.motion = s.reducedMotion || s.lowPowerMode ? 'reduced' : 'full';
   root.dataset.contrast = s.highContrast ? 'high' : 'normal';
   root.dataset.particles = s.disableParticles || s.lowPowerMode ? 'off' : 'on';
+  applyTheme(s.theme, s.highContrast, systemPrefersDark());
 }

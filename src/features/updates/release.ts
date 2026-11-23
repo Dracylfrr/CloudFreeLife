@@ -41,6 +41,8 @@ export interface AppUpdate {
   minAppVersion?: string;
   /** One friendly line about what is new, e.g. "2 new books and a new mini-game". */
   headline?: string;
+  /** Names of the content shipped with this release (shown in the Update Center). */
+  includes: string[];
 }
 
 export interface ContentUpdate {
@@ -281,7 +283,8 @@ export function planFromManifest(
     items.push({
       kind: 'app',
       version: manifest.app.version,
-      notes: manifest.notes ?? release.body,
+      notes: cleanNotes(manifest.notes ?? release.body),
+      includes: manifest.content.map((c) => c.name),
       releaseUrl: release.htmlUrl,
       asset: trusted ? manifest.app.asset : undefined,
       downloadUrl: trusted ? a!.downloadUrl : undefined,
@@ -312,6 +315,27 @@ export function planFromManifest(
   return items;
 }
 
+/**
+ * Release notes are shown inside the app, so they are reduced to plain, friendly text:
+ * links keep their words but lose their addresses, bare web addresses and
+ * "full changelog" lines are dropped, and markdown marks become simple bullets.
+ */
+export function cleanNotes(raw: string | undefined): string {
+  if (!raw) return '';
+  return raw
+    .replace(/\r\n/g, '\n')
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1') // [words](address) -> words
+    .replace(/^.*(?:full changelog|\/compare\/).*$/gim, '')
+    .replace(/https?:\/\/\S+/g, '')
+    .replace(/^#{1,6}\s*/gm, '')
+    .replace(/^\s*[-*]\s+/gm, '• ')
+    .replace(/[*_`]{1,3}/g, '')
+    .replace(/[ \t]+\n/g, '\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim()
+    .slice(0, 4000);
+}
+
 export function describeUpdate(u: UpdateItem): string {
   if (u.kind === 'app') return `Update available — v${u.version}`;
   const label: Record<ContentKind, string> = {
@@ -331,9 +355,7 @@ export function describeUpdate(u: UpdateItem): string {
 /** Friendly wording for the top-right notice: a title and a softer second line. */
 export function noticeText(u: UpdateItem): { title: string; detail: string } {
   if (u.kind === 'app') {
-    return u.headline
-      ? { title: 'New content is ready', detail: `${u.headline} · v${u.version}` }
-      : { title: 'A new version is ready', detail: `Cloud-Freelife v${u.version}` };
+    return { title: `Cloud-Freelife ${u.version} is available`, detail: u.headline ?? 'A new version is ready to install' };
   }
   return { title: 'New content is ready', detail: describeUpdate(u) };
 }

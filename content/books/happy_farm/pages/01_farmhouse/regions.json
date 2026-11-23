@@ -1,0 +1,168 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "hill",
+      "name": "Hill",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "field",
+      "name": "Field",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "silo",
+      "name": "Silo",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "silo_top",
+      "name": "Silo top",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "house_wall",
+      "name": "House",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "chimney",
+      "name": "Chimney",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "house_roof",
+      "name": "Roof",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "house_door",
+      "name": "Door",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "house_window_l",
+      "name": "Window",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "house_window_r",
+      "name": "Window",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "attic",
+      "name": "Attic window",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "porch",
+      "name": "Porch",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "barn_small",
+      "name": "Barn",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "barn_roof",
+      "name": "Barn roof",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "barn_door",
+      "name": "Barn door",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "fence_posts",
+      "name": "Fence posts",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "fence_rail_top",
+      "name": "Fence rail",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "fence_rail_low",
+      "name": "Fence rail",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "hen_body",
+      "name": "Hen",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "hen_head",
+      "name": "Hen head",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "hen_comb",
+      "name": "Comb",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "hen_beak",
+      "name": "Beak",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "hen_tail",
+      "name": "Tail",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "flower_a_petals",
+      "name": "Flower petals",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "flower_a_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_b_petals",
+      "name": "Flower petals",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_b_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_c_petals",
+      "name": "Flower petals",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "flower_c_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

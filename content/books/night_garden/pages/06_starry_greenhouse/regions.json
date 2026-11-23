@@ -1,0 +1,163 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Night sky",
+      "suggested": "#8d8ed0"
+    },
+    {
+      "id": "star1",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star2",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star3",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star4",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star5",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star6",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star7",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star8",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "moon",
+      "name": "Moon",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "ground",
+      "name": "Ground",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "greenhouse_base",
+      "name": "Greenhouse base",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "pane_left",
+      "name": "Glass",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "pane_mid",
+      "name": "Glass",
+      "suggested": "#aeb0e6"
+    },
+    {
+      "id": "pane_right",
+      "name": "Glass",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "roof_left",
+      "name": "Glass roof",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "roof_right",
+      "name": "Glass roof",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "roof_top",
+      "name": "Glass roof",
+      "suggested": "#aeb0e6"
+    },
+    {
+      "id": "pot_a",
+      "name": "Pot",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "plant_a",
+      "name": "Plant",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "pot_b",
+      "name": "Pot",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "fern_b",
+      "name": "Fern",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "pot_c",
+      "name": "Pot",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "bloom",
+      "name": "Flower",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "bloom_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "door",
+      "name": "Door",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "can_body",
+      "name": "Watering can",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "can_spout",
+      "name": "Spout",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "stool",
+      "name": "Stool",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "firefly_a",
+      "name": "Firefly",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "firefly_b",
+      "name": "Firefly",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

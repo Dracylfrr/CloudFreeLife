@@ -50,7 +50,7 @@
     width: 100%;
     height: 10px;
     border-radius: 999px;
-    background: linear-gradient(90deg, #9fd3f2 0, #b7a8ec var(--pct), #e3dff3 var(--pct));
+    background: linear-gradient(90deg, var(--g1) 0, var(--g2) var(--pct), var(--track) var(--pct));
     outline-offset: 6px;
     cursor: pointer;
   }
@@ -60,7 +60,7 @@
     height: 24px;
     border-radius: 50%;
     background: #fff;
-    border: 3px solid #b7a8ec;
+    border: 3px solid var(--g2);
     box-shadow: 0 3px 8px rgba(100, 85, 170, 0.3);
     transition: transform 0.15s;
   }

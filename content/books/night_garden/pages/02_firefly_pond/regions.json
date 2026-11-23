@@ -1,0 +1,173 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Night sky",
+      "suggested": "#8d8ed0"
+    },
+    {
+      "id": "moon",
+      "name": "Moon",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star1",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star2",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star3",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star4",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star5",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "bank",
+      "name": "Bank",
+      "suggested": "#7a7bbd"
+    },
+    {
+      "id": "pond",
+      "name": "Pond",
+      "suggested": "#aeb0e6"
+    },
+    {
+      "id": "moon_reflection",
+      "name": "Reflection",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "lily_a",
+      "name": "Lily pad",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "lily_b",
+      "name": "Lily pad",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "lily_c",
+      "name": "Lily pad",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "lotus_petals",
+      "name": "Lotus",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "lotus_center",
+      "name": "Lotus center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "frog_body",
+      "name": "Frog",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "frog_eye_l",
+      "name": "Frog eye",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "frog_eye_r",
+      "name": "Frog eye",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "reed_a",
+      "name": "Reed",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "cattail_a",
+      "name": "Cattail",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "reed_b",
+      "name": "Reed",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "cattail_b",
+      "name": "Cattail",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "reed_c",
+      "name": "Reed",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "cattail_c",
+      "name": "Cattail",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "reed_d",
+      "name": "Reed",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "cattail_d",
+      "name": "Cattail",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "firefly_1",
+      "name": "Firefly",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "firefly_2",
+      "name": "Firefly",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "firefly_3",
+      "name": "Firefly",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "firefly_4",
+      "name": "Firefly",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "firefly_5",
+      "name": "Firefly",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "firefly_6",
+      "name": "Firefly",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "firefly_7",
+      "name": "Firefly",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

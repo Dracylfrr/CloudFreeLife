@@ -1,0 +1,148 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Morning sky",
+      "suggested": "#ffd0b5"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "hill",
+      "name": "Hill",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "ground",
+      "name": "Ground",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "barn_wall",
+      "name": "Barn",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "barn_roof",
+      "name": "Barn roof",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "barn_loft",
+      "name": "Hayloft",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "barn_door_l",
+      "name": "Barn door",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "barn_door_r",
+      "name": "Barn door",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "cow_body",
+      "name": "Cow",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cow_spot_a",
+      "name": "Spot",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "cow_spot_b",
+      "name": "Spot",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "cow_head",
+      "name": "Cow head",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cow_snout",
+      "name": "Snout",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "cow_ear",
+      "name": "Ear",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "hay_a",
+      "name": "Hay bale",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "pig_body",
+      "name": "Pig",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "pig_head",
+      "name": "Pig head",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "pig_snout",
+      "name": "Snout",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "pig_ear",
+      "name": "Ear",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "pig_tail",
+      "name": "Tail",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "sheep_body",
+      "name": "Sheep",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "sheep_head",
+      "name": "Sheep head",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "fence_posts",
+      "name": "Fence posts",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "fence_rail_top",
+      "name": "Fence rail",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "fence_rail_low",
+      "name": "Fence rail",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "flower_a_petals",
+      "name": "Flower petals",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "flower_a_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

@@ -1,6 +1,9 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { get } from 'svelte/store';
   import { onAmbientTick } from './ticker';
+  import { settings } from '../core/settings';
+  import { moodProfile } from '../core/moods';
 
   // Decorative scenery. Positions are updated by the shared ~10 fps ambient clock
   // (see ticker.ts), not by 60 fps CSS animations: far cheaper, and identical to
@@ -24,7 +27,7 @@
     size: 10 + ((i * 7) % 22),
     period: 24 + ((i * 5) % 16),
     offset: (i * 6.3) % 30,
-    tint: ['#bfe4f7', '#e6d8f8', '#c6ecda', '#ffd3e2', '#fff2bd'][i % 5]
+    tint: `var(--bt${i % 5})`
   }));
   const sparkles = Array.from({ length: 6 }, (_, i) => ({
     left: 8 + ((i * 17.3) % 84),
@@ -39,7 +42,14 @@
 
   onMount(() => {
     if (calm) return;
-    return onAmbientTick((t) => {
+    // Mood presets slow the drifting down; the clock is integrated so changing mood never makes things jump.
+    let last = -1;
+    let acc = 0;
+    return onAmbientTick((rt) => {
+      const speed = moodProfile(get(settings).mood).ambientSpeed;
+      acc = last < 0 ? rt * speed : acc + (rt - last) * speed;
+      last = rt;
+      const t = acc;
       const w = window.innerWidth;
       const h = window.innerHeight;
       const span = w + 560;
@@ -81,7 +91,7 @@
     <span class="glow g2"></span>
     {#each clouds as c, i}
       <svg bind:this={cloudEls[i]} class="cloud" style="top:{c.top}%; opacity:{c.op}" viewBox="0 0 220 110" width="220" height="110">
-        <g fill="#fff">
+        <g style="fill: var(--cloud)">
           <circle cx="62" cy="64" r="32" />
           <circle cx="104" cy="48" r="40" />
           <circle cx="150" cy="62" r="34" />
@@ -93,7 +103,7 @@
       <span bind:this={bubbleEls[i]} class="bubble" style="left:{b.left}%; width:{b.size}px; height:{b.size}px; --tint:{b.tint}"></span>
     {/each}
     {#each sparkles as s, i}
-      <svg bind:this={sparkEls[i]} class="sparkle" style="left:{s.left}%; top:{s.top}%" viewBox="0 0 24 24" width="16" height="16"><path d="M12 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z" fill="#fffbe0" /></svg>
+      <svg bind:this={sparkEls[i]} class="sparkle" style="left:{s.left}%; top:{s.top}%" viewBox="0 0 24 24" width="16" height="16"><path d="M12 0l3 9 9 3-9 3-3 9-3-9-9-3 9-3z" style="fill: var(--spark)" /></svg>
     {/each}
   {/if}
 </div>
@@ -110,10 +120,10 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(60% 55% at 15% 10%, #d3ebfa 0, transparent 70%),
-      radial-gradient(55% 50% at 90% 18%, #eadffb 0, transparent 70%),
-      radial-gradient(60% 60% at 70% 95%, #fde3ee 0, transparent 70%),
-      radial-gradient(50% 50% at 8% 90%, #dcf4e8 0, transparent 70%),
+      radial-gradient(60% 55% at 15% 10%, var(--amb1) 0, transparent 70%),
+      radial-gradient(55% 50% at 90% 18%, var(--amb2) 0, transparent 70%),
+      radial-gradient(60% 60% at 70% 95%, var(--amb3) 0, transparent 70%),
+      radial-gradient(50% 50% at 8% 90%, var(--amb4) 0, transparent 70%),
       linear-gradient(160deg, var(--bg-a), var(--bg-b) 55%, var(--bg-c));
   }
   .glow {
@@ -121,7 +131,7 @@
     width: 46vmax;
     height: 46vmax;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0) 66%);
+    background: radial-gradient(circle, rgb(var(--w) / 0.6), rgb(var(--w) / 0) 66%);
   }
   .g1 {
     left: -12vmax;
@@ -130,7 +140,7 @@
   .g2 {
     right: -14vmax;
     bottom: -16vmax;
-    background: radial-gradient(circle, rgba(255, 224, 238, 0.65), rgba(255, 224, 238, 0) 66%);
+    background: radial-gradient(circle, var(--glow2), transparent 66%);
   }
   .cloud {
     position: absolute;
@@ -142,8 +152,8 @@
     position: absolute;
     bottom: -40px;
     border-radius: 50%;
-    background: radial-gradient(circle at 32% 30%, rgba(255, 255, 255, 0.95), var(--tint) 55%, transparent 72%);
-    border: 1px solid rgba(255, 255, 255, 0.8);
+    background: radial-gradient(circle at 32% 30%, rgb(var(--w) / 0.95), var(--tint) 55%, transparent 72%);
+    border: 1px solid rgb(var(--w) / 0.8);
     opacity: 0;
     will-change: transform, opacity;
   }

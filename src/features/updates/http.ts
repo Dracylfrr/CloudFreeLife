@@ -40,7 +40,7 @@ export const defaultHttpGet: HttpGet = async (url, opts = {}) => {
     return { status: res.status, contentType: (res.headers.get('content-type') ?? '').split(';')[0].trim().toLowerCase(), bytes: buf };
   } catch (err) {
     if (err instanceof NetworkError) throw err;
-    throw new NetworkError(ctrl.signal.aborted ? 'The request timed out' : 'Could not reach GitHub');
+    throw new NetworkError(ctrl.signal.aborted ? 'The request timed out' : 'Could not reach the update service');
   } finally {
     clearTimeout(timer);
   }

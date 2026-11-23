@@ -13,7 +13,6 @@
   import Gallery from './features/gallery/Gallery.svelte';
   import MiniGames from './features/minigames/MiniGames.svelte';
   import Stories from './features/stories/Stories.svelte';
-  import Adventures from './features/stories/Adventures.svelte';
   import Updates from './features/updates/Updates.svelte';
   import Settings from './features/settings/Settings.svelte';
   import About from './features/about/About.svelte';
@@ -47,13 +46,13 @@
         {:else if $route.name === 'gallery'}
           <Gallery />
         {:else if $route.name === 'stories'}
-          <Stories />
+          <Stories tab={$route.tab} />
         {:else if $route.name === 'story'}
           {#await import('./features/stories/StoryReader.svelte') then m}
             <m.default storyId={$route.storyId} />
           {/await}
         {:else if $route.name === 'adventures'}
-          <Adventures />
+          <Stories tab="adventures" />
         {:else if $route.name === 'adventure'}
           {#await import('./features/stories/AdventurePlayer.svelte') then m}
             <m.default adventureId={$route.adventureId} />

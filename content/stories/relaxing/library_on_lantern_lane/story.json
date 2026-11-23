@@ -1,0 +1,91 @@
+{
+  "id": "library_on_lantern_lane",
+  "name": "The Little Library on Lantern Lane",
+  "description": "On Lantern Lane there is a library that only opens when it rains, and a hedgehog librarian who always knows which book you need.",
+  "version": "1.3.0",
+  "minAppVersion": "1.3.0",
+  "cover": "cover.svg",
+  "accent": "#c7a8f0",
+  "mood": "Cozy",
+  "order": 8,
+  "chapters": [
+    {
+      "title": "The Library That Opens in the Rain",
+      "illustration": "ch1.svg",
+      "illustrationAlt": "A tiny crooked library with a glowing round door sits on a rainy lane, with a hanging lantern and puddles.",
+      "illustrationCaption": "The little library on Lantern Lane",
+      "text": [
+        "At the end of Lantern Lane stood a very small library, crooked in the nicest way, with a round door and a roof like a tilted hat. It had one rule that everyone in the town knew. It opened only when it rained.",
+        "On sunny days the door stayed closed, the shutters stayed shut, and the little brass lantern above the step was dark. People did not mind. Sunny days were for picnics and kites. But the moment the first drop landed on the cobblestones, the lantern glowed gold, the door gave a gentle creak, and a voice inside said, \"Come in, come in, mind the puddles.\"",
+        "The voice belonged to Hester Quill, the librarian. She was a hedgehog with half-moon spectacles, a cardigan the color of oatmeal, and a pencil tucked behind one ear. She had run the library for forty years, and in all that time she had never once lost a book, although she had occasionally misplaced a reader, who was usually found asleep in a corner with a story on their chest.",
+        "That afternoon the rain was soft and steady, the kind that tapped on windows as if asking to be let in. Hester put the kettle on, lit the lamps, and straightened a row of spines that did not need straightening. She liked to do it anyway. It felt like saying hello."
+      ]
+    },
+    {
+      "title": "Hester's Ladder",
+      "illustration": "ch2.svg",
+      "illustrationAlt": "Inside the library, tall shelves of colorful books, a rolling ladder, a round window with rain on it and a warm lamp.",
+      "illustrationCaption": "Shelves all the way up",
+      "text": [
+        "Inside, the library was bigger than it looked from the lane. The shelves climbed all the way to the ceiling, and a rolling ladder ran along them on a brass rail. Hester could scoot from one end of the room to the other with one foot on a rung and one hand on a book, and she did it so smoothly that it looked like dancing.",
+        "There were books about everything. There were books about the names of clouds, and books about how to bake a very tall cake. There were books of poems written by crickets, atlases of countries that only existed in dreams, and one very small book that could only be read by lamplight, and only by someone who was sitting down.",
+        "By the round window there was a big, squashy armchair with a quilt on it. The quilt had been stitched by every person who had ever borrowed a book. Each of them had added one square. Some were plain and some were patterned, and one, near the corner, was a perfect little square of gingham that nobody had ever owned up to.",
+        "Hester set a tray of tea and shortbread on the side table, and then she did what she always did before the first visitor arrived. She sat very still and listened to the rain. \"That is the sound,\" she said to nobody, \"of everything slowing down.\" And the library, which had been listening too, seemed to settle a little deeper into the lane."
+      ]
+    },
+    {
+      "title": "A Book for a Quiet Heart",
+      "text": [
+        "The first visitor was a tiny mouse called Pim. She had a scarf wound three times around her neck and a very serious face. She stood on the mat and dripped for a while before she spoke.",
+        "\"I would like a book,\" said Pim, \"about being brave.\" Hester put down her teacup. \"Is something coming up?\" she asked. Pim nodded. \"Tomorrow I am going to sing a song at the Lantern Fair. In front of everyone. I said yes before I thought about it.\" She looked at her feet. \"I do not think I am brave.\"",
+        "Hester did not hurry to the shelves. She never did. She took off her spectacles, polished them on her cardigan, and said, \"Brave is a funny word. Let us see what the library thinks.\" She climbed the ladder, ran her finger along a row of spines, and stopped at a thin green book that was tucked between a cookbook and an atlas.",
+        "It was called “The Small Voice”. It was not about knights or dragons. It was about a cricket who was afraid to chirp, and who discovered that being brave did not mean not being scared. It only meant doing the thing a little bit at a time, with someone kind listening nearby.",
+        "\"Read it in the armchair,\" said Hester. \"Take as long as you like.\" Pim curled up under the patchwork quilt with the green book, and Hester put a shortbread biscuit on the arm of the chair without saying a word. Outside, the rain kept tapping. Inside, a small mouse turned a page, and then another, and her shoulders slowly came down from around her ears."
+      ]
+    },
+    {
+      "title": "The Book That Was Forty Years Late",
+      "text": [
+        "Just as Pim settled into the armchair, the door creaked again, and in came a very old tortoise named Barnaby. He moved so slowly that the rain seemed to have time to fall twice between his steps. He carried a small brown book wrapped carefully in a handkerchief.",
+        "\"Good afternoon, Miss Quill,\" he said. \"I am sorry to say that I have come to return this.\" He set the book on the desk and sighed. \"It is a little late.\" Hester looked at the date stamped inside the cover, and her spectacles slid right down her nose. \"Barnaby,\" she said, \"this book was due forty years ago.\"",
+        "\"Yes,\" said Barnaby, with great dignity. \"I was on my way back with it, and I stopped to admire a daffodil.\" Hester opened her mouth, and then she closed it, and then the corner of it began to twitch. Pim, from the armchair, let out a very small squeak of a laugh, and then the rabbits began to laugh, and then Hester herself laughed until she had to take her spectacles off.",
+        "\"There is no fine,\" she said at last, wiping her eyes. \"There never was a fine for daffodils.\" She stamped the book with a very large, very satisfying stamp that said RETURNED, and Barnaby smiled the slow smile of a tortoise who has finally been forgiven for something he did not feel guilty about."
+      ]
+    },
+    {
+      "title": "Soup and Stories",
+      "text": [
+        "By then the library smelled wonderful. The two rabbits had borrowed their soup book and, without asking, begun to put it to use. They had found Hester's little kitchen behind the poetry shelf, commandeered a pot, and filled it with everything they could find, which was a carrot, two potatoes, a handful of barley and a very good bay leaf.",
+        "\"We are only borrowing the recipe,\" said one rabbit. \"And the kitchen,\" said the other. \"And the pot.\" Hester, who had spent forty years being rather strict about the correct treatment of books, discovered that she did not mind at all. There is a time to be strict, and a time to let the soup simmer.",
+        "They carried bowls around on a tray, and everyone sat on cushions with a book in one hand and a spoon in the other. Steam rose and mingled with the smell of old paper. The rain on the roof made a quiet drumming that went all the way through the building.",
+        "Pim ate slowly, with the green book open on her knee. Rowan read the map book aloud in a low murmur, tracing a trail with his finger, and the tortoise nodded off with his bowl balanced on his shell. Nobody wanted to be anywhere else."
+      ]
+    },
+    {
+      "title": "The Reading Circle",
+      "illustration": "ch4.svg",
+      "illustrationAlt": "A circle of friends in the library: a mouse, a fox, a rabbit and a hedgehog sit together on cushions around a lamp, listening to a book.",
+      "illustrationCaption": "Everyone takes a turn",
+      "text": [
+        "More visitors came in out of the rain. There was a fox called Rowan with muddy paws, who wanted a book about maps. There were two rabbits who wanted a book about soup, and an old tortoise who only wanted a warm seat and the sound of someone turning pages.",
+        "By four o'clock the whole library was full, and the rain was louder, and there were not enough chairs. So Hester pulled out a stack of round cushions, set the lamp in the middle of the rug, and said, \"Shall we read together?\" Nobody said no.",
+        "They read “The Small Voice” out loud, one page each, going around the circle. Rowan the fox read in a deep, careful voice and gave each character its own accent. The rabbits read together, which sounded like one voice that sometimes giggled. The tortoise read very slowly, and the pages he read seemed to last longer, in a pleasant way.",
+        "When it was Pim's turn, she hesitated. Then she looked at the faces in the lamplight, round and kind and in no hurry, and she read her page in a voice that was small but did not shake. Nobody clapped. Nobody had to. Rowan simply said, \"Thank you, Pim,\" in the way you thank someone for passing the salt, and the circle moved on.",
+        "It was only afterward that Pim realized she had been reading out loud in front of a whole room for almost a minute, and that her heart had been calm the whole time. She looked at Hester. Hester, who had been stirring her tea, did not look up. But the corner of her mouth did something very small and very proud."
+      ]
+    },
+    {
+      "title": "When the Rain Stops",
+      "illustration": "ch5.svg",
+      "illustrationAlt": "After the rain, a rainbow arches over Lantern Lane as the little mouse walks home with a book under her arm.",
+      "illustrationCaption": "A rainbow for the walk home",
+      "text": [
+        "Toward evening the rain grew thinner, and then it stopped. The lamps in the library flickered, as if they had noticed. The lantern above the door dimmed from gold to a soft glow, and Hester began, as she always did, to gather the cushions and set the shelves in order.",
+        "One by one the visitors went out into the shining lane. Rowan took his map book and tipped his hat. The rabbits carried off a soup book and a very serious look. The tortoise stayed until the last minute, and then he left with a very slow, very contented smile.",
+        "Pim was last. She had the green book under her arm and a library card in her paw, her very first. Hester had written her name on it in curly letters. \"Bring it back whenever it rains,\" said Hester. \"Or whenever you like. The library is a good listener.\"",
+        "\"Do you think I will be brave tomorrow?\" asked Pim at the door. Hester considered it. \"I think,\" she said, \"that you were brave this afternoon, and tomorrow will simply be more of the same, with songs.\" Pim nodded. It was not an answer exactly, but it was the right size for her.",
+        "She stepped out onto the lane. The cobblestones sparkled, the puddles held little pieces of sky, and there above the rooftops stretched a rainbow, soft and wide. Pim walked home under it, humming a few notes to herself, trying them out, one at a time. Behind her, the lantern went dark. And the little library, crooked and content, settled down to wait for the next rain."
+      ]
+    }
+  ]
+}

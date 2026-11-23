@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+<rect width="1000" height="750" fill="#ffffff"/>
+<g stroke="#6e6a8e" stroke-linejoin="round" stroke-linecap="round">
+<path data-region="sky" data-name="Sunset sky" d="M-6 -6h1012v762h-1012z" fill="#ffffff" stroke-width="5"/>
+<path data-region="sun_glow" data-name="Sun glow" d="M280 380a220 220 0 1 0 440 0a220 220 0 1 0 -440 0z" fill="#ffffff" stroke-width="3"/>
+<path data-region="sun" data-name="Sun" d="M380 380a120 120 0 1 0 240 0a120 120 0 1 0 -240 0z" fill="#ffffff" stroke-width="5"/>
+<path data-region="cloud_a" data-name="Cloud" d="M97.4 166.4A28.6 28.6 0 1 1 105.7 110.4A44 44 0 0 1 182.1 94.6A39.6 39.6 0 0 1 243.9 118.2A24.2 24.2 0 1 1 247 166.4z" fill="#ffffff" stroke-width="5"/>
+<path data-region="cloud_b" data-name="Cloud" d="M718 214A20 20 0 1 1 720.5 174.2A34 34 0 0 1 762.4 147.1A44 44 0 0 1 839.2 150A32 32 0 0 1 871 174.2A20 20 0 0 1 868 214z" fill="#ffffff" stroke-width="5"/>
+<path data-region="mountain_far" data-name="Far mountains" d="M-26 460Q-40 460 -30.4 449.8L130.4 280.2Q140 270 150.9 278.8L289.1 391.2Q300 400 311.4 391.9L428.6 308.1Q440 300 450.8 309L609.2 441Q620 450 630.2 440.4L789.8 289.6Q800 280 811.2 288.4L1028.8 451.6Q1040 460 1026 460z" fill="#ffffff" stroke-width="5"/>
+<path data-region="mountain_near" data-name="Mountains" d="M-26 520Q-40 520 -28.4 512.2L188.4 367.8Q200 360 211.8 367.5L408.2 492.5Q420 500 432.3 493.3L627.7 386.7Q640 380 653.2 384.6L1026.8 515.4Q1040 520 1026 520z" fill="#ffffff" stroke-width="5"/>
+<path data-region="hillside" data-name="Hillside" d="M-10 560C35 550 161.7 503.3 260 500C358.3 496.7 455 540 580 540C705 540 938.3 506.7 1010 500L1010 500V750H-10V560L-10 560z" fill="#ffffff" stroke-width="5"/>
+<path data-region="house_a_wall" data-name="Wall" d="M101 480H279A6 6 0 0 1 285 486V594A6 6 0 0 1 279 600H101A6 6 0 0 1 95 594V486A6 6 0 0 1 101 480z" fill="#ffffff" stroke-width="5"/>
+<path data-region="house_a_chimney" data-name="Chimney" d="M231 404H251.6A3 3 0 0 1 254.6 407V465.6A3 3 0 0 1 251.6 468.6H231A3 3 0 0 1 228 465.6V407A3 3 0 0 1 231 404z" fill="#ffffff" stroke-width="5"/>
+<path data-region="house_a_roof" data-name="Roof" d="M91 486Q81 486 88.7 479.6L182.3 402.8Q190 396.4 197.7 402.8L291.3 479.6Q299 486 289 486z" fill="#ffffff" stroke-width="5"/>
+<path data-region="house_a_door" data-name="Door" d="M172.9 600V551.1A17.1 17.1 0 0 1 207.1 551.1V600z" fill="#ffffff" stroke-width="5"/>
+<path data-region="house_a_window_right" data-name="Window" d="M227.3 513.6H255.3A5 5 0 0 1 260.3 518.6V546.6A5 5 0 0 1 255.3 551.6H227.3A5 5 0 0 1 222.3 546.6V518.6A5 5 0 0 1 227.3 513.6z" fill="#ffffff" stroke-width="5"/>
+<path data-region="house_a_window_left" data-name="Window" d="M124.7 513.6H152.7A5 5 0 0 1 157.7 518.6V546.6A5 5 0 0 1 152.7 551.6H124.7A5 5 0 0 1 119.7 546.6V518.6A5 5 0 0 1 124.7 513.6z" fill="#ffffff" stroke-width="5"/>
+<path data-region="house_b_wall" data-name="Wall" d="M371 470H509A6 6 0 0 1 515 476V564A6 6 0 0 1 509 570H371A6 6 0 0 1 365 564V476A6 6 0 0 1 371 470z" fill="#ffffff" stroke-width="5"/>
+<path data-region="house_b_chimney" data-name="Chimney" d="M473 410H488A3 3 0 0 1 491 413V458A3 3 0 0 1 488 461H473A3 3 0 0 1 470 458V413A3 3 0 0 1 473 410z" fill="#ffffff" stroke-width="5"/>
+<path data-region="house_b_roof" data-name="Roof" d="M361 476Q351 476 358.8 469.7L432.2 410.3Q440 404 447.8 410.3L521.2 469.7Q529 476 519 476z" fill="#ffffff" stroke-width="5"/>
+<path data-region="house_b_door" data-name="Door" d="M426.5 570V528.5A13.5 13.5 0 0 1 453.5 528.5V570z" fill="#ffffff" stroke-width="5"/>
+<path data-region="house_b_window_right" data-name="Window" d="M470.5 498H490.5A5 5 0 0 1 495.5 503V523A5 5 0 0 1 490.5 528H470.5A5 5 0 0 1 465.5 523V503A5 5 0 0 1 470.5 498z" fill="#ffffff" stroke-width="5"/>
+<path data-region="house_b_window_left" data-name="Window" d="M389.5 498H409.5A5 5 0 0 1 414.5 503V523A5 5 0 0 1 409.5 528H389.5A5 5 0 0 1 384.5 523V503A5 5 0 0 1 389.5 498z" fill="#ffffff" stroke-width="5"/>
+<path data-region="house_c_wall" data-name="Wall" d="M601 470H799A6 6 0 0 1 805 476V594A6 6 0 0 1 799 600H601A6 6 0 0 1 595 594V476A6 6 0 0 1 601 470z" fill="#ffffff" stroke-width="5"/>
+<path data-region="house_c_chimney" data-name="Chimney" d="M745 386H768.4A3 3 0 0 1 771.4 389V454.4A3 3 0 0 1 768.4 457.4H745A3 3 0 0 1 742 454.4V389A3 3 0 0 1 745 386z" fill="#ffffff" stroke-width="5"/>
+<path data-region="house_c_roof" data-name="Roof" d="M591 476Q581 476 588.7 469.6L692.3 384Q700 377.6 707.7 384L811.3 469.6Q819 476 809 476z" fill="#ffffff" stroke-width="5"/>
+<path data-region="house_c_door" data-name="Door" d="M681.1 600V547.4A18.9 18.9 0 0 1 718.9 547.4V600z" fill="#ffffff" stroke-width="5"/>
+<path data-region="house_c_window_right" data-name="Window" d="M740.7 506.4H772.7A5 5 0 0 1 777.7 511.4V543.4A5 5 0 0 1 772.7 548.4H740.7A5 5 0 0 1 735.7 543.4V511.4A5 5 0 0 1 740.7 506.4z" fill="#ffffff" stroke-width="5"/>
+<path data-region="house_c_window_left" data-name="Window" d="M627.3 506.4H659.3A5 5 0 0 1 664.3 511.4V543.4A5 5 0 0 1 659.3 548.4H627.3A5 5 0 0 1 622.3 543.4V511.4A5 5 0 0 1 627.3 506.4z" fill="#ffffff" stroke-width="5"/>
+<path data-region="tower" data-name="Clock tower" d="M866 360H934A6 6 0 0 1 940 366V594A6 6 0 0 1 934 600H866A6 6 0 0 1 860 594V366A6 6 0 0 1 866 360z" fill="#ffffff" stroke-width="5"/>
+<path data-region="tower_roof" data-name="Tower roof" d="M854 366Q846 366 849.9 359L896.1 277Q900 270 903.9 277L950.1 359Q954 366 946 366z" fill="#ffffff" stroke-width="5"/>
+<path data-region="clock" data-name="Clock" d="M874 420a26 26 0 1 0 52 0a26 26 0 1 0 -52 0z" fill="#ffffff" stroke-width="5"/>
+<path d="M900 420V404M900 420l12 8" fill="none" stroke-width="4"/>
+<path data-region="road" data-name="Village road" d="M-10 690C58.3 686.7 230 668.3 400 670C570 671.7 908.3 695 1010 700L1010 700V750H-10V690L-10 690z" fill="#ffffff" stroke-width="5"/>
+<path data-region="pine_a_trunk" data-name="Tree trunk" d="M56.8 616H63.2A4 4 0 0 1 67.2 620V637.6A4 4 0 0 1 63.2 641.6H56.8A4 4 0 0 1 52.8 637.6V620A4 4 0 0 1 56.8 616z" fill="#ffffff" stroke-width="5"/>
+<path data-region="pine_a_c" data-name="Pine boughs" d="M65.3 553.2Q60 547.2 54.7 553.2L-1.9 616.4Q-7.2 622.4 0.8 622.4L119.2 622.4Q127.2 622.4 121.9 616.4z" fill="#ffffff" stroke-width="5"/>
+<path data-region="pine_a_b" data-name="Pine boughs" d="M64.4 515.5Q60 508.8 55.6 515.5L10 583.7Q5.6 590.4 13.6 590.4L106.4 590.4Q114.4 590.4 110 583.7z" fill="#ffffff" stroke-width="5"/>
+<path data-region="pine_a_a" data-name="Pine boughs" d="M63.7 477.5Q60 470.4 56.3 477.5L22.1 543.3Q18.4 550.4 26.4 550.4L93.6 550.4Q101.6 550.4 97.9 543.3z" fill="#ffffff" stroke-width="5"/>
+<path d="M320 607.6V625.6" fill="none" stroke-width="4"/>
+<path data-region="lamp_cap" data-name="Lantern cap" d="M307.4 622Q305.6 625.6 309.6 625.6L330.4 625.6Q334.4 625.6 332.6 622L330.8 618.4Q329 614.8 325 614.8L315 614.8Q311 614.8 309.2 618.4z" fill="#ffffff" stroke-width="4"/>
+<path data-region="lamp_glass" data-name="Lantern light" d="M314.6 625.6H325.4A7.2 7.2 0 0 1 332.6 632.8V652.6A7.2 7.2 0 0 1 325.4 659.8H314.6A7.2 7.2 0 0 1 307.4 652.6V632.8A7.2 7.2 0 0 1 314.6 625.6z" fill="#ffffff" stroke-width="4"/>
+<path data-region="lamp_base" data-name="Lantern base" d="M309.5 659.8H330.5A3 3 0 0 1 333.5 662.8V664A3 3 0 0 1 330.5 667H309.5A3 3 0 0 1 306.5 664V662.8A3 3 0 0 1 309.5 659.8z" fill="#ffffff" stroke-width="4"/>
+<path d="M282.4 240q8.8 -12.8 17.6 1.6q8.8 -14.4 17.6 -1.6M346.8 200q6.6 -9.6 13.2 1.2q6.6 -10.8 13.2 -1.2M604.6 220q7.7 -11.2 15.4 1.4q7.7 -12.6 15.4 -1.4" fill="none" stroke-width="4"/>
+</g></svg>

@@ -5,8 +5,12 @@
   import { formatBytes, formatDate } from '../../core/util';
   import { confirmDialog, toast } from '../../core/feedback';
   import { APP_VERSION } from '../../core/version';
-  import { sfx } from '../../core/audio';
+  import { sfx, preview } from '../../core/audio';
+  import { MOOD_PROFILES } from '../../core/moods';
+  import { MUSIC } from '../../core/music';
   import Toggle from '../../ui/Toggle.svelte';
+  import ThemePicker from './ThemePicker.svelte';
+  import { MOODS, MUSIC_MOODS, type Mood } from '../../core/settings';
   import Slider from '../../ui/Slider.svelte';
   import Button from '../../ui/Button.svelte';
   import Icon from '../../ui/Icon.svelte';
@@ -23,6 +27,10 @@
     { id: 'about', label: 'About', icon: 'info' }
   ];
   let tab = $state(untrack(() => initial));
+
+  const MOOD_LABEL = Object.fromEntries(MOODS.map((m) => [m, MOOD_PROFILES[m].label])) as Record<Mood, string>;
+  const MOOD_HINT = Object.fromEntries(MOODS.map((m) => [m, MOOD_PROFILES[m].hint])) as Record<Mood, string>;
+  const TRACKS = MUSIC_MOODS.map((id) => MUSIC[id]);
 
   let root = $state('…');
   let usageArt = $state(0);
@@ -83,6 +91,17 @@
         <div class="foot"><Button variant="danger" icon="refresh" onclick={resetAll}>Reset all settings</Button></div>
       {:else if tab === 'display'}
         <h2>Display</h2>
+        <h3 class="sub">Theme</h3>
+        <ThemePicker />
+        <p class="note quiet"><Icon name="shield" size={16} /> Themes only change the app's colors. Your paintings are never affected.</p>
+        <h3 class="sub">Mood</h3>
+        <div class="moods" role="radiogroup" aria-label="Mood">
+          {#each MOODS as m}
+            <button class="chip" class:on={$settings.mood === m} role="radio" aria-checked={$settings.mood === m} onclick={() => { updateSettings({ mood: m }); sfx.click(); }}>{MOOD_LABEL[m]}</button>
+          {/each}
+        </div>
+        <p class="muted small">{MOOD_HINT[$settings.mood]}</p>
+        <h3 class="sub">Size</h3>
         <Slider label="Interface size" value={$settings.uiScale} min={0.85} max={1.4} step={0.05} format={(v) => `${Math.round(v * 100)}%`} onchange={(v) => updateSettings({ uiScale: v })} />
         <Slider label="Reading size" value={$settings.storyFontScale} min={0.9} max={1.7} step={0.1} format={(v) => `${Math.round(v * 100)}%`} onchange={(v) => updateSettings({ storyFontScale: v })} />
         <Toggle label="Low Power Mode" description="Turns off ambient animation and particles, and lowers game frame rate. Good for batteries and older laptops." checked={$settings.lowPowerMode} onchange={(v) => updateSettings({ lowPowerMode: v })} />
@@ -91,11 +110,21 @@
         <h2>Audio</h2>
         <Toggle label="Mute everything" checked={$settings.muted} onchange={(v) => updateSettings({ muted: v })} />
         <Slider label="Master" value={$settings.volumeMaster} onchange={(v) => updateSettings({ volumeMaster: v })} onrelease={() => sfx.pop()} />
-        <Slider label="Music" value={$settings.volumeMusic} onchange={(v) => updateSettings({ volumeMusic: v })} />
-        <Slider label="Ambience" value={$settings.volumeAmbience} onchange={(v) => updateSettings({ volumeAmbience: v })} />
-        <Slider label="Effects" value={$settings.volumeEffects} onchange={(v) => updateSettings({ volumeEffects: v })} onrelease={() => sfx.bubble()} />
-        <Slider label="Painting" value={$settings.volumePainting} onchange={(v) => updateSettings({ volumePainting: v })} />
-        <Toggle label="Calm music" description="Slow, soft bell tones." checked={$settings.musicOn} onchange={(v) => updateSettings({ musicOn: v })} />
+        <Slider label="Music" value={$settings.volumeMusic} onchange={(v) => updateSettings({ volumeMusic: v })} onrelease={() => preview.music()} />
+        <Slider label="Ambience" value={$settings.volumeAmbience} onchange={(v) => updateSettings({ volumeAmbience: v })} onrelease={() => preview.ambience()} />
+        <Slider label="Effects" value={$settings.volumeEffects} onchange={(v) => updateSettings({ volumeEffects: v })} onrelease={() => preview.effects()} />
+        <Slider label="Painting" value={$settings.volumePainting} onchange={(v) => updateSettings({ volumePainting: v })} onrelease={() => preview.painting()} />
+        <p class="muted small">Let go of a slider to hear a short preview. Mute above silences everything, including previews.</p>
+        <Toggle label="Background music" description="Soft, gentle music that plays quietly behind the whole app. It is composed on your computer, so nothing is downloaded." checked={$settings.musicOn} onchange={(v) => updateSettings({ musicOn: v })} />
+        <div class="tracks" role="radiogroup" aria-label="Music style">
+          {#each TRACKS as t}
+            <button class="track" class:on={$settings.musicMood === t.id && $settings.mood === 'default'} disabled={$settings.mood !== 'default'} role="radio" aria-checked={$settings.musicMood === t.id} onclick={() => { updateSettings({ musicMood: t.id, musicOn: true }); }}>
+              <strong>{t.label}</strong>
+              <span>{t.blurb}</span>
+            </button>
+          {/each}
+        </div>
+        {#if $settings.mood !== 'default'}<p class="muted small">Your {MOOD_LABEL[$settings.mood]} mood is choosing the music. Set Mood to Default in Display to pick a track yourself.</p>{/if}
         <Toggle label="Gentle ambience" description="A soft, airy background hush." checked={$settings.ambienceOn} onchange={(v) => updateSettings({ ambienceOn: v })} />
       {:else if tab === 'accessibility'}
         <h2>Accessibility</h2>
@@ -104,7 +133,7 @@
         <Toggle label="Higher contrast" description="Darker text and stronger outlines." checked={$settings.highContrast} onchange={(v) => updateSettings({ highContrast: v })} />
       {:else if tab === 'updates'}
         <h2>Updates</h2>
-        <Toggle label="Check for updates when the app starts" description="One quick check of the official GitHub Releases page. Never repeated in the background." checked={$settings.checkUpdatesOnStartup} onchange={(v) => updateSettings({ checkUpdatesOnStartup: v })} />
+        <Toggle label="Check for updates when the app starts" description="One quick check for a new version and new content. Never repeated in the background." checked={$settings.checkUpdatesOnStartup} onchange={(v) => updateSettings({ checkUpdatesOnStartup: v })} />
         <div class="check">
           <div>
             <strong>Cloud-Freelife v{APP_VERSION}</strong>
@@ -159,11 +188,11 @@
     text-align: left;
   }
   .tabs button:hover {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgb(var(--w) / 0.8);
   }
   .tabs button.on {
-    background: linear-gradient(135deg, #d9eefb, #e6dcfa);
-    color: #4c3f9c;
+    background: linear-gradient(135deg, var(--nav-a), var(--nav-b));
+    color: var(--nav-ink);
   }
   .panel {
     flex: 1;
@@ -172,7 +201,7 @@
     border-radius: var(--radius-xl);
     background: var(--panel);
     box-shadow: var(--shadow-m);
-    border: 1px solid rgba(255, 255, 255, 0.85);
+    border: 1px solid rgb(var(--w) / 0.85);
   }
   .panel h2 {
     margin-bottom: 8px;
@@ -188,13 +217,80 @@
     margin-top: 14px;
     padding: 12px 16px;
     border-radius: 16px;
-    background: #eaf7f0;
-    color: #2e5a4b;
+    background: var(--c-green-bg);
+    color: var(--c-green);
     font-weight: 700;
     font-size: 0.9rem;
   }
   .foot {
     margin-top: 20px;
+  }
+  .sub {
+    margin: 18px 0 2px;
+    font-size: 1rem;
+    color: var(--ink-soft);
+  }
+  .small {
+    font-size: 0.85rem;
+    margin: 6px 2px 0;
+  }
+  .note.quiet {
+    background: rgb(var(--w) / 0.5);
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+  .tracks {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 10px;
+    margin: 6px 0 4px;
+  }
+  .track {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-align: left;
+    padding: 12px 14px;
+    border-radius: 18px;
+    background: rgb(var(--w) / 0.55);
+    border: 2px solid transparent;
+    color: var(--ink);
+  }
+  .track span {
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+  }
+  .track:hover:not(:disabled) {
+    background: rgb(var(--w) / 0.9);
+  }
+  .track.on {
+    border-color: var(--lavender-deep);
+    background: rgb(var(--w) / 0.9);
+  }
+  .track:disabled {
+    opacity: 0.55;
+  }
+  .moods {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .chip {
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-weight: 700;
+    color: var(--ink-soft);
+    background: rgb(var(--w) / 0.6);
+    border: 2px solid transparent;
+  }
+  .chip:hover {
+    background: rgb(var(--w) / 0.9);
+  }
+  .chip.on {
+    border-color: var(--lavender-deep);
+    color: var(--ink);
+    background: rgb(var(--w) / 0.95);
   }
   .check {
     display: flex;
@@ -204,7 +300,7 @@
     margin-top: 12px;
     padding: 16px 20px;
     border-radius: 20px;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgb(var(--w) / 0.7);
   }
   .kv {
     display: flex;
@@ -224,7 +320,7 @@
     font-size: 0.85rem;
     word-break: break-all;
     text-align: right;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgb(var(--w) / 0.7);
     padding: 4px 10px;
     border-radius: 10px;
   }

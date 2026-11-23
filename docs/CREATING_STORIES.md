@@ -95,8 +95,61 @@ An adventure is rejected (and listed under *skipped* content) unless:
 node scripts/pack-content.mjs content --id my_stories --version 1.2.1 --name "My Stories" --kind stories --min-app 1.2.0
 ```
 
-Use `--kind stories` or `--kind adventures` (it only changes the wording of the notification). A pack may contain files under `stories/relaxing/<id>/` and `stories/adventures/<id>/`. See [PUBLISHING_CONTENT.md](PUBLISHING_CONTENT.md).
+Use `--kind stories` or `--kind adventures` (WebP and PNG pictures travel as base64 inside the pack, and the pack is refused if a story points at a picture it does not contain) (it only changes the wording of the notification). A pack may contain files under `stories/relaxing/<id>/` and `stories/adventures/<id>/`. See [PUBLISHING_CONTENT.md](PUBLISHING_CONTENT.md).
 
 ## Progress
 
 The app saves where each reader stopped, and which endings they have found, in `progress/stories.json` inside the data folder. Deleting that file only resets progress.
+
+## Illustrated stories (1.3)
+
+Any story, chapter or scene can carry one picture. Every field is optional, and a story without them (every 1.2 story) reads exactly as before.
+
+```json
+{
+  "id": "night_train_to_moonwater",
+  "name": "The Night Train to Moonwater",
+  "description": "...", "version": "1.3.0", "minAppVersion": "1.3.0", "cover": "cover.svg",
+  "illustration": "opening.svg",
+  "illustrationAlt": "A small train waits under a purple evening sky.",
+  "illustrationCaption": "Hollow Station",
+  "chapters": [
+    {
+      "title": "The Last Ticket",
+      "illustration": "ch1.svg",
+      "illustrationAlt": "A blue-and-pink train at a lamp-lit station.",
+      "illustrationCaption": "9:47 in the evening",
+      "text": ["First paragraph.", "Second paragraph.", "Third paragraph."],
+      "scenes": [
+        { "after": 2, "illustration": "scene1.svg", "illustrationAlt": "A moth on a lantern." }
+      ]
+    }
+  ]
+}
+```
+
+- **`illustration`** (story level) is shown once, at the top of the first chapter, when that chapter has no picture of its own.
+- **`illustration`** (chapter level) is shown under the chapter title.
+- **`scenes`** place a picture *between* paragraphs of a long chapter: `after: 2` means after the second paragraph. At most three per chapter. Use them sparingly: a picture every few pages, never after every paragraph.
+- Pictures are plain file names next to `story.json`, in `.svg`, `.webp` or `.png`. Prefer SVG (a few kilobytes) or WebP. Keep each file under about 40 KB; the tests fail on anything larger than that for the bundled stories.
+- **`illustrationAlt`** is read by screen readers. Describe what the picture shows in a sentence.
+- **`illustrationCaption`** is a short line under the picture.
+- A malformed picture field (a path with `..`, a wrong file type, a missing file) is ignored. The story still opens and reads; it simply shows no picture there. A *content pack* that points at a picture it does not contain is refused when you install it, so mistakes are caught before a reader ever sees them.
+- Pictures load only when their page is opened, never all at startup.
+
+### Style
+Soft, rounded and calm: pastel fills, one warm-grey outline (`#6e6a8e`, about 3 px), no sharp or scary shapes, original characters only. `scripts/stories/artlib.mjs` has the small building pieces used for the bundled pictures (clouds, hills, trees, houses, lanterns, an owl, a whale, a train...) if you would like to compose scenes in code; `scripts/stories/art_new.mjs` shows how.
+
+## Writing for Read Aloud (1.3)
+
+Read Aloud speaks each paragraph with a voice already on the reader's computer. A few habits make stories sound better:
+
+- Keep paragraphs to about 40 to 110 words. Each is spoken, and highlighted, as one block.
+- Write sentences you could say in one breath. Very long sentences are split at commas, but short ones sound calmer.
+- Use plain punctuation. Dashes become pauses; do not use markdown (`*stars*`) or emoji, which are removed or read oddly.
+- Abbreviations such as Mr., Mrs., Dr. and St. are handled; spell out others ("for example", not "e.g.").
+- Read it aloud yourself once. If you stumble, a voice will too.
+
+## Favorites, progress and the Reading List
+
+Nothing to author: the app saves the chapter and paragraph where each reader stopped, when it was last opened, favorites and found endings in `progress/stories.json`. A story shows under **Continue** once the reader is past its first chapter or paragraph, under **Finished** when they reach the end, and under **Not started** otherwise. Adventures are **Continue** while a run is in progress and **Finished** once any ending has been found.

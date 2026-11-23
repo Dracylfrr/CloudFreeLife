@@ -83,7 +83,7 @@
     border-radius: var(--radius-xl);
     background: var(--panel);
     box-shadow: var(--shadow-m);
-    border: 1px solid rgba(255, 255, 255, 0.85);
+    border: 1px solid rgb(var(--w) / 0.85);
     font-weight: 800;
     text-align: left;
     transition:
@@ -111,8 +111,8 @@
     display: grid;
     place-items: center;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.85);
-    color: #6a58c4;
+    background: rgb(var(--w) / 0.85);
+    color: var(--c-violet);
     box-shadow: var(--shadow-s);
   }
   .s {
@@ -121,17 +121,17 @@
     height: 6px;
     background: #fff;
     border-radius: 50%;
-    box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 6px 2px rgb(var(--w) / 0.6);
   }
   .c {
     position: absolute;
     width: 70px;
     height: 26px;
     border-radius: 20px;
-    background: rgba(255, 255, 255, 0.85);
+    background: rgb(var(--w) / 0.85);
     box-shadow:
-      18px -10px 0 4px rgba(255, 255, 255, 0.85),
-      40px -2px 0 0 rgba(255, 255, 255, 0.85);
+      18px -10px 0 4px rgb(var(--w) / 0.85),
+      40px -2px 0 0 rgb(var(--w) / 0.85);
   }
   .recent {
     margin-top: 42px;

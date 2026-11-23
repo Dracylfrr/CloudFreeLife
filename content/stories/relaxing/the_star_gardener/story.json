@@ -1,0 +1,91 @@
+{
+  "id": "the_star_gardener",
+  "name": "The Star Gardener",
+  "description": "When a very small star falls into a cabbage patch, an old tortoise and a young rabbit teach it how to grow.",
+  "version": "1.3.0",
+  "minAppVersion": "1.3.0",
+  "cover": "cover.svg",
+  "accent": "#f4d77a",
+  "mood": "Dreamy",
+  "order": 10,
+  "chapters": [
+    {
+      "title": "A Light in the Cabbages",
+      "illustration": "ch1.svg",
+      "illustrationAlt": "A small glowing star lies among round cabbages in a moonlit garden, while a young rabbit peers at it.",
+      "illustrationCaption": "A star in the cabbage patch",
+      "text": [
+        "Luma was a young rabbit who could not sleep. She lay in her burrow listening to the crickets, and the crickets listened to her, and neither of them could think of anything to say. So she got up, put on her slippers and went out to the garden.",
+        "The garden was silvery and quiet. The cabbages sat in neat rows like sleepy heads. The moon was a thin slice, no bigger than a fingernail. And in the middle of the third row, between a large cabbage and a slightly smaller cabbage, something was glowing.",
+        "Luma tiptoed closer. It was small, no bigger than a plum, and it was a star. It had five soft points and a warm yellow light, and it was blinking slowly, like someone who has just woken up in a strange place.",
+        "\"Oh,\" said the star, in a voice like a wind chime. \"Where am I?\" \"You are in the cabbages,\" said Luma. \"I think you fell.\" The star thought about this. \"I did,\" it admitted. \"I was leaning a little too far out of the sky, trying to see what was happening down here.\" It looked around at the sleeping rows. \"It is very green.\"",
+        "Luma sat down beside it. She did not know what to do with a fallen star. She did not think the rabbit book of manners covered it. But she was fairly sure that a star lying alone in a cold garden should not be left to blink by itself, so she took off her slippers and tucked one on each side, like little walls against the wind."
+      ]
+    },
+    {
+      "title": "Marlow the Tortoise",
+      "text": [
+        "In the morning, Luma took her question to the one person who always had slow, good answers. Marlow was an old tortoise who lived at the top of the garden, in a shed with a round window and a rocking chair. He had been tending the garden for longer than anyone could remember, and he had moss on his shell the way other people have hats.",
+        "\"A fallen star,\" said Marlow, after Luma had told him everything. He did not seem at all surprised. He put down his watering can, which he always carried, in case. \"It happens now and then, on very clear nights. They lean too far. It is not their fault. There is a lot to see.\"",
+        "\"Can we put it back?\" asked Luma. Marlow shook his head, slowly, with a creak. \"Not by lifting. A star cannot be carried up. It has to be grown up.\" Luma tilted her head. \"Grown?\" \"Like a bean,\" said Marlow, \"only with more patience and slightly better manners.\"",
+        "He led her down to the cabbage patch, where the star was still blinking weakly beside the slippers. It looked paler in the daylight, like a candle in a sunny window. \"Hello, little one,\" said Marlow, and the star gave a small, grateful twinkle. \"We are going to plant you. It will not hurt. It is mostly lying down and being looked after.\"",
+        "The star said that sounded very nice, actually. It had been up in the sky for as long as it could remember, and it had never once been looked after. It had only ever looked."
+      ]
+    },
+    {
+      "title": "How to Plant a Star",
+      "illustration": "ch3.svg",
+      "illustrationAlt": "At dusk, a tortoise and a rabbit tuck a little glowing star into a bed of dark soil and fluffy blankets under a violet sky.",
+      "illustrationCaption": "Planting at dusk",
+      "text": [
+        "Planting a star, Marlow explained, takes three things. The first is a warm bed. The second is a little company. The third is a song, and it does not need to be a good song, only a sincere one.",
+        "They chose a spot at the top of the garden, near the shed, where the sky was widest. Luma dug a round hollow in the soft dark soil. Marlow lined it with a folded flannel blanket and a handful of dried lavender. \"Stars are very sensitive to drafts,\" he said, in the tone of someone who had learned it the hard way.",
+        "At dusk, when the first real stars were just beginning to show, Luma carried the little star over in both paws and set it gently in the hollow. It gave a tiny sigh and glowed a little brighter, as if it had been given a cup of hot milk.",
+        "They covered it up to its points with soil, the way you tuck in a child, leaving just the glow showing. Then Marlow, who had a voice like a creaky door in a nice house, began to sing. It was a small tune about nothing in particular, about the evening and the lavender and the sound of a watering can. Luma joined in. She did not know the words, so she made them up.",
+        "The star listened. Above them, in the real sky, other stars appeared one by one, and a few of them, Luma could have sworn, leaned a very tiny bit closer to hear."
+      ]
+    },
+    {
+      "title": "The Waiting Days",
+      "text": [
+        "Growing a star is mostly waiting. Every evening, Luma and Marlow came to the top of the garden with a watering can that was filled not with water, but with moonlight. Marlow had a way of catching it in a bucket on clear nights. \"Use it quickly,\" he said, \"it spoils by morning.\"",
+        "Luma poured a thin silver stream over the glow in the soil. Every night it was a bit brighter, and every night it told them something. One night it said it had been dreaming of a great field of bells. Another night it asked, very politely, what a cabbage was for.",
+        "\"They are for soup,\" said Luma, and the star said that was a good use for a round green thing, and it hoped to be useful too, one day. \"You are already,\" said Marlow, \"if you are glowing, and somebody is happy to sit near you.\" He said it so simply that the star stayed quiet for a long time afterward.",
+        "By the end of the first week, a tiny stem had pushed up through the soil, thin as a thread and glowing at the tip. By the end of the second, the stem had two leaves. By the third, there was a bud as round as an acorn, and the whole top of the garden was bathed in a gentle golden light, so that the moths came out even in the day.",
+        "Luma began to sleep through the night. The crickets noticed. They were, in their quiet way, rather pleased."
+      ]
+    },
+    {
+      "title": "Visitors in the Night",
+      "text": [
+        "Word travels fast in a garden. It was a moth who told the beetle, and the beetle who told the toad, and by the end of the first week the whole neighborhood knew that there was a star growing at the top of the hill.",
+        "They came at night, one at a time and quietly, as you visit a friend who is not well. A hedgehog came with a basket of blackberries and put one next to the sprout, just in case. A family of field mice brought a tiny patchwork quilt, and tucked it around the soil. A very old badger, who rarely left his burrow, stood at the edge of the garden for an hour, without speaking, looking at the glow.",
+        "\"It makes me feel as if I am young,\" he said at last. \"I do not know why.\" Marlow, who was sitting in his rocking chair with a rug on his knees, nodded. \"It does that,\" he said. \"A little light does.\"",
+        "The star, listening from the soil, felt something stir in it that it had never felt before. It was not a point of light. It was a kind of warmth with no sharp edges, and it spread right out to the ends of its roots. \"I think,\" it told Luma, \"that I am happy.\" Luma, who had not been sure what to say to a star about its feelings, said, \"Me too.\""
+      ]
+    },
+    {
+      "title": "A Night of Rain",
+      "text": [
+        "One evening, clouds came over the hill. They were soft and gray and heavy, and the first drops pattered on the shed roof just as Luma arrived with the moonlight bucket. \"Oh,\" she said. \"It will put the star out.\"",
+        "\"Rain will not put out a star,\" said Marlow, \"but a star does not know that yet.\" They hurried to the hollow. The glow was trembling. It had gone small, as small as a candle in a draft, and it was whispering, \"What is happening? What is falling on me?\" in a thin voice that made Luma's heart drop.",
+        "So they did the only thing they could. Marlow fetched a big green cabbage leaf from the patch and held it over the hollow like an umbrella. Luma crouched down beside the star and, because she could not think of anything else, began to hum. It was the same tune they had sung on the first night, the one about the evening and the lavender and the watering can.",
+        "The rain fell. The hum went on. Bit by bit, the glow steadied and grew. \"It is only water,\" Luma murmured. \"It comes from the sky, just like you did.\" The star thought about this. \"Then it is a relative,\" it said, rather faintly. \"A cousin.\" And it drank the rain in slowly, one drop at a time, and was a little greener in the morning."
+      ]
+    },
+    {
+      "title": "Sky Gardens",
+      "illustration": "ch5.svg",
+      "illustrationAlt": "A great flower of light rises from the garden into a starry sky, with the rabbit and the tortoise watching from below.",
+      "illustrationCaption": "Rising",
+      "text": [
+        "One clear evening, when the sky was the deep blue of a ripe plum, the bud began to open. Its petals came apart one at a time, each shining a little, and in the middle sat the star, bigger now, round and bright, with its five soft points stretched wide.",
+        "\"I think,\" said the star, \"that I am ready.\" Luma felt a lump in her throat. She had known this moment was coming, but she had not expected it to feel so much like saying goodbye to a friend who was moving to a nice faraway town.",
+        "\"Will you be able to see us from up there?\" she asked. \"Always,\" said the star. \"I will be the one who is slightly too bright and always leaning a little to the left. Look for me over the cabbages.\" Marlow, beside her, wiped his eye with the corner of his shell. \"Tell the others the garden is open,\" he said. \"Any time.\"",
+        "Then the flower rose. It lifted off the soil slowly, as if it were being carried by a very gentle hand, trailing a thread of golden light. It rose over the shed and the cabbages and the sleepy trees. It rose past the moon, which dipped a polite corner. And it settled, at last, among the other stars, in a place that had been waiting for it all along.",
+        "Luma and Marlow sat in the garden a long time, looking up. Eventually Luma found it. There, a little to the left and a little too bright, was a small yellow star winking down at her. She winked back with both eyes, because she had not yet learned to do it with one.",
+        "Every clear night after that, a few stars leaned down to look at the garden. And every clear night, Luma sat out among the cabbages with a thermos of cocoa and a very old tortoise, waving at the sky."
+      ]
+    }
+  ]
+}

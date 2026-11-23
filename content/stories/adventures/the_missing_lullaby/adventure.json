@@ -1,0 +1,463 @@
+{
+  "id": "the_missing_lullaby",
+  "name": "The Case of the Missing Lullaby",
+  "description": "Every night the clock tower rings a lullaby. Tonight it is silent, and the whole village is wide awake. Can you find out why?",
+  "version": "1.3.0",
+  "minAppVersion": "1.3.0",
+  "cover": "cover.svg",
+  "accent": "#a698e0",
+  "genre": "Mystery",
+  "protagonist": "girl",
+  "hero": "Hana",
+  "minutes": 12,
+  "order": 7,
+  "start": "start",
+  "nodes": {
+    "start": {
+      "text": [
+        "I am Hana, and I am the bell-keeper's apprentice in the village of Dozing Hill. Every night at nine, the old clock tower plays a lullaby, and every night the whole village falls asleep.",
+        "Tonight nine o'clock came and went in perfect silence. Now the babies are fussing, the owls are yawning and refusing to sleep, and even the cows are standing in the road, looking worried. Somebody has to find out what happened to the lullaby."
+      ],
+      "choices": [
+        {
+          "text": "Climb the clock tower and look at the bell",
+          "to": "tower"
+        },
+        {
+          "text": "Ask the baker, who is always up late",
+          "to": "baker"
+        },
+        {
+          "text": "Follow a strange, low humming from the meadow",
+          "to": "meadow"
+        }
+      ]
+    },
+    "tower": {
+      "text": [
+        "The bell hangs where it always has, big and bronze and quiet. But when I look inside, the clapper is gone. That is the little iron tongue that makes the bell ring. There is only a scratch in the dust, a single gray feather and a few golden crumbs."
+      ],
+      "choices": [
+        {
+          "text": "Follow the feather",
+          "to": "owl"
+        },
+        {
+          "text": "Follow the crumbs",
+          "to": "baker"
+        },
+        {
+          "text": "Look out of the tower window for more clues",
+          "to": "window"
+        }
+      ]
+    },
+    "window": {
+      "text": [
+        "From the tower window I can see the whole village, and it is all awake. Lamps burn in every house. In the square, the animals have gathered in a big, tired circle, as if waiting for someone to tell them what to do.",
+        "And then I notice a thin silver line of moonlight shining on the weathervane, where something small and glittery is moving about."
+      ],
+      "choices": [
+        {
+          "text": "Climb out to the weathervane",
+          "to": "magpie_nest"
+        },
+        {
+          "text": "Go down and talk to the animals in the square",
+          "to": "square"
+        }
+      ]
+    },
+    "square": {
+      "text": [
+        "The cows, the sheep, two goats and an extremely sleepy goose are all standing in the square. \"We cannot sleep without the bell,\" says the goose. \"It is how we know the day is finished.\"",
+        "They are all looking at me. The bell-keeper is away at his sister's, which means that tonight I am the bell-keeper."
+      ],
+      "choices": [
+        {
+          "text": "Say I will sing them the lullaby myself",
+          "to": "end_sing"
+        },
+        {
+          "text": "Promise to find the missing clapper",
+          "to": "baker"
+        },
+        {
+          "text": "Ask if anyone has seen something shiny",
+          "to": "magpie_nest"
+        }
+      ]
+    },
+    "baker": {
+      "text": [
+        "The bakery is the only place with its lights on, and it smells like warm cinnamon. Mrs. Crumb is sitting up with her cat, Biscuit, a very round orange cat with a very loud purr.",
+        "\"Hana, dear!\" she says. \"Nobody can sleep, so I am baking. Want a bun? There was a trail of my crumbs all the way out the door this evening, which is odd. I never drop crumbs.\""
+      ],
+      "choices": [
+        {
+          "text": "Take a bun and ask about the crumbs",
+          "to": "bun"
+        },
+        {
+          "text": "Ask Biscuit if he has seen anything",
+          "to": "cat"
+        },
+        {
+          "text": "Follow the crumb trail outside",
+          "to": "crumbs"
+        }
+      ]
+    },
+    "bun": {
+      "text": [
+        "The bun is warm and sweet and I eat it in three bites. Mrs. Crumb thinks. \"A trail of crumbs, you say, and a bell that will not ring. Now that you mention it, there were bees at my window earlier, bees at night, humming a very deep note.\""
+      ],
+      "choices": [
+        {
+          "text": "Go and find the bees",
+          "to": "hive"
+        },
+        {
+          "text": "Ask her for a honey cake to take along",
+          "to": "cake"
+        }
+      ]
+    },
+    "cake": {
+      "text": [
+        "Mrs. Crumb wraps a honey cake in a napkin, still warm, and tucks it into my pocket. \"If you meet anyone grumpy,\" she says, \"feed them cake. It solves most things.\" She is right more often than you would think."
+      ],
+      "choices": [
+        {
+          "text": "Follow the crumb trail",
+          "to": "crumbs"
+        },
+        {
+          "text": "Head for the meadow and the humming",
+          "to": "meadow"
+        }
+      ]
+    },
+    "cat": {
+      "text": [
+        "Biscuit blinks very slowly, which is how cats say anything. Then he begins to purr. It is a low, round, rumbling purr that fills the whole bakery, and I realize my own eyes have gone heavy. Mrs. Crumb is already nodding in her chair."
+      ],
+      "choices": [
+        {
+          "text": "Carry Biscuit to the square and let him purr",
+          "to": "end_purr"
+        },
+        {
+          "text": "Shake myself awake and keep investigating",
+          "to": "crumbs"
+        }
+      ]
+    },
+    "crumbs": {
+      "text": [
+        "The golden crumbs lead down the lane, past the well and under a hedge, in a neat dotted line. At the end of it, among the tall grass, a low and steady humming hangs in the air. It sounds exactly like a bell, if a bell could buzz."
+      ],
+      "choices": [
+        {
+          "text": "Walk into the humming",
+          "to": "hive"
+        }
+      ]
+    },
+    "meadow": {
+      "text": [
+        "The meadow is silver under the moon. The humming gets louder as I walk, a deep, round note that I know very well. It is the note of the clock tower bell. But it is coming from somewhere low, near the ground, among the clover."
+      ],
+      "choices": [
+        {
+          "text": "Tiptoe toward the sound",
+          "to": "hive"
+        },
+        {
+          "text": "Whisper \"hello?\" first",
+          "to": "hive_hello"
+        }
+      ]
+    },
+    "hive_hello": {
+      "text": [
+        "A hundred tiny voices answer at once, a buzzing cloud of \"hello\". It turns out the bees are far more polite than they sound. A fat, fluffy bee hovers at my nose. \"Are you the bell girl?\" she asks. \"We have been hoping somebody would come.\""
+      ],
+      "choices": [
+        {
+          "text": "Ask them what they have done with the clapper",
+          "to": "hive"
+        }
+      ]
+    },
+    "hive": {
+      "text": [
+        "In the middle of the clover stands an old hollow log, and inside it hangs the bell clapper, as dark and heavy as a bunch of grapes. The bees have wrapped it in wax, and they take turns tapping it with their tiny wings. Bong. Bong. Bong. A bee-sized bell.",
+        "\"We borrowed it,\" says the fluffy bee, rather guiltily. \"We have never had a song of our own. We heard the tower every night and wanted to learn how.\""
+      ],
+      "choices": [
+        {
+          "text": "Ask them politely to give it back",
+          "to": "bees_ask"
+        },
+        {
+          "text": "Snatch it and run",
+          "to": "bees_grab"
+        },
+        {
+          "text": "Sit down and listen to what they play",
+          "to": "end_bees"
+        }
+      ]
+    },
+    "bees_ask": {
+      "text": [
+        "The bees go quiet. \"We would give it back,\" says the fluffy bee, \"but we would never hear our song again.\" She looks hopeful. \"Could you perhaps teach us the lullaby? Or bring us something sweet?\""
+      ],
+      "choices": [
+        {
+          "text": "Hum the lullaby for them to learn",
+          "to": "end_sing_bees"
+        },
+        {
+          "text": "Promise them a honey cake, a big one",
+          "to": "bees_deal"
+        }
+      ]
+    },
+    "bees_deal": {
+      "text": [
+        "I promise them the biggest, stickiest honey cake the village has ever baked, delivered tomorrow, with extra honey. They buzz a long, serious conference, and then the fluffy bee nods and the clapper rolls gently out of the log into my hands.",
+        "It is heavy and warm and smells of clover. I can finally hear the bell tower calling, as if it knew."
+      ],
+      "choices": [
+        {
+          "text": "Run back and fix the bell",
+          "to": "fix"
+        }
+      ]
+    },
+    "bees_grab": {
+      "text": [
+        "I snatch the clapper and sprint. Behind me rises a cloud of very offended bees, buzzing like a kettle that has been left on the fire. I run through the clover, over the stile and straight into the pond with a tremendous splash. The clapper sinks."
+      ],
+      "choices": [
+        {
+          "text": "Wade in and find it",
+          "to": "pond"
+        },
+        {
+          "text": "Give up and go home",
+          "to": "end_spoon"
+        }
+      ]
+    },
+    "pond": {
+      "text": [
+        "The pond is shallow and cold and full of frogs who find me very funny. I feel around in the mud until my fingers close on something iron. I rise up dripping, with a clapper, a lily pad on my head and a frog sitting on my shoulder who refuses to leave."
+      ],
+      "choices": [
+        {
+          "text": "March back to the tower, frog and all",
+          "to": "fix"
+        }
+      ]
+    },
+    "owl": {
+      "text": [
+        "The gray feather smells faintly of pine. I follow a hunch to the hollow oak by the church, where Mr. Hoot the owl is perched with his eyes wide open, which is not how owls normally look at this hour.",
+        "\"It is not my feather,\" he says at once, which is the sort of thing a person says when it is his feather. \"Possibly it is. But I did not take your clapper, and I do not know a thing about a magpie.\""
+      ],
+      "choices": [
+        {
+          "text": "Say \"I never said anything about a magpie\"",
+          "to": "owl_clue"
+        },
+        {
+          "text": "Offer him warm milk to calm him down",
+          "to": "owl_milk"
+        }
+      ]
+    },
+    "owl_clue": {
+      "text": [
+        "Mr. Hoot sags. \"All right. A magpie asked if she could borrow something shiny for her nest. I said she could have whatever she liked from the tower, as long as she was quiet. I thought she meant a spoon.\" He hangs his head. \"She is on the weathervane.\""
+      ],
+      "choices": [
+        {
+          "text": "Climb to the weathervane",
+          "to": "magpie_nest"
+        }
+      ]
+    },
+    "owl_milk": {
+      "text": [
+        "Mr. Hoot sips the milk, and with every sip his eyes get a little heavier. \"Magpie,\" he mumbles. \"Weathervane. Shiny. So sorry.\" And then he tips quietly sideways and starts to snore, which is the first snore I have heard all night."
+      ],
+      "choices": [
+        {
+          "text": "Tiptoe away to the weathervane",
+          "to": "magpie_nest"
+        }
+      ]
+    },
+    "magpie_nest": {
+      "text": [
+        "The weathervane is a long climb, but I am good at climbing. At the top is an enormous nest crammed with sparkles: spoons, buttons, a thimble, a tiny silver key. And right in the middle, gleaming like a star, is the bell clapper.",
+        "\"Mine,\" says the magpie, whose name is Pennywhistle. She is about the size of a teapot and twice as proud. \"A gift. I did ask.\""
+      ],
+      "choices": [
+        {
+          "text": "Trade her my shiniest button",
+          "to": "magpie_trade"
+        },
+        {
+          "text": "Offer to polish all her treasures",
+          "to": "magpie_polish"
+        },
+        {
+          "text": "Shoo her off and grab it",
+          "to": "magpie_shoo"
+        }
+      ]
+    },
+    "magpie_trade": {
+      "text": [
+        "I take off the brass button from my coat, the one my grandmother sewed on, which shines like a tiny sun. Pennywhistle gasps. She turns it over and over, and then she hops aside and nudges the clapper toward me with her beak. \"A fair trade,\" she says. \"But I will be visiting.\""
+      ],
+      "choices": [
+        {
+          "text": "Climb down and fix the bell",
+          "to": "fix"
+        }
+      ]
+    },
+    "magpie_polish": {
+      "text": [
+        "I borrow a handkerchief and rub every spoon and button until the whole nest sparkles like a chandelier. Pennywhistle is so delighted that she gives me the clapper at once, and also, for reasons she cannot explain, a thimble.",
+        "\"The tower is yours,\" she says. \"I prefer a nest that looks like this.\" She settles into it like a queen."
+      ],
+      "choices": [
+        {
+          "text": "Climb down and fix the bell",
+          "to": "fix"
+        }
+      ]
+    },
+    "magpie_shoo": {
+      "text": [
+        "I flap my arms and yell, and Pennywhistle takes off in a squawking fury. She snatches the clapper in her beak and carries it, with great dignity, three villages away. I stand on the weathervane in the moonlight, feeling much worse than a bell-keeper should."
+      ],
+      "choices": [
+        {
+          "text": "Go back and sing to the village instead",
+          "to": "end_sing"
+        },
+        {
+          "text": "Fetch a spoon and a teapot from the bakery",
+          "to": "end_spoon"
+        }
+      ]
+    },
+    "fix": {
+      "text": [
+        "I climb the tower, panting, and slot the clapper into the bell, where it settles with a small, satisfied click. The whole tower seems to sigh. The village below is quiet, waiting, with a thousand sleepy faces turned toward me.",
+        "It is already half past eleven. The bell needs to be rung, and I have never rung it by myself."
+      ],
+      "choices": [
+        {
+          "text": "Ring it as softly as I can",
+          "to": "end_bell"
+        },
+        {
+          "text": "Ring it with all my might",
+          "to": "end_loud"
+        },
+        {
+          "text": "Ring it once, then hum along",
+          "to": "end_hum"
+        }
+      ]
+    },
+    "end_bell": {
+      "text": [
+        "One gentle pull of the rope. The bell opens its bronze mouth and the lullaby floats out across the rooftops, slow and golden, exactly as it always has. By the third note, the cows are lying down in the square. By the fifth, the lights in the houses have gone out, one by one, like candles.",
+        "I sit in the tower, with the rope in my hands, and listen to the whole village falling asleep. It is the best sound I have ever made."
+      ],
+      "ending": {
+        "title": "The Bell-Keeper",
+        "mood": "happy"
+      }
+    },
+    "end_loud": {
+      "text": [
+        "I pull with all my might, and the bell does not play a lullaby. It plays a tremendous BONG that rattles every window in Dozing Hill and sends forty pigeons into the air. For one second everybody in the village sits straight up in bed.",
+        "Then, one by one, they start to laugh. It is the happiest, silliest midnight in the village's history, and nobody is the least bit sleepy until at least three o'clock."
+      ],
+      "ending": {
+        "title": "The Great Big BONG",
+        "mood": "funny"
+      }
+    },
+    "end_hum": {
+      "text": [
+        "I ring it once, softly, and then I do something I have never done. I hum along. My voice is small, but it fits in the gaps between the notes. The bell carries it out over the roofs, and soon I can hear other voices joining in from open windows, a baby's coo, a farmer's bass, the goose, trying her best.",
+        "By the end the whole village is humming together, in the dark, from their beds. Nobody sleeps right away. But everyone is smiling when they do."
+      ],
+      "ending": {
+        "title": "A Village Humming",
+        "mood": "dreamy"
+      }
+    },
+    "end_sing": {
+      "text": [
+        "I stand on the steps of the fountain, in front of all the tired animals and half the sleepy village, and I sing the lullaby. My voice wobbles on the first line and then settles, the way a boat does after the first wave.",
+        "The goose is the first to fall asleep, standing up. Then the sheep. Then the cows. By the end of the third verse, the only one awake is me, and I do not mind a bit. I am the bell-keeper tonight, with a song instead of a bell."
+      ],
+      "ending": {
+        "title": "Hana Sings",
+        "mood": "sweet"
+      }
+    },
+    "end_sing_bees": {
+      "text": [
+        "I hum the lullaby for the bees, very slowly, one note at a time. They echo each phrase in their deep, buzzing voices, getting it wrong in the sweetest way. By the fifth try it is almost right. By the tenth it is lovely.",
+        "The fluffy bee flies the clapper to the tower herself, a whole line of bees carrying it between them, and the lullaby that night is played by the bell and sung by a hundred tiny voices underneath it. It is the best the song has ever sounded."
+      ],
+      "ending": {
+        "title": "The Bees' Chorus",
+        "mood": "sweet"
+      }
+    },
+    "end_bees": {
+      "text": [
+        "I sit down in the clover and listen. The bees tap the clapper, bong, bong, bong, and add their own hum on top, and the sound is so peaceful that my eyes close before I know it. It is not the lullaby, exactly. It is a new one, made of clover and moonlight and bees.",
+        "I wake at sunrise with a bee asleep on my nose and the clapper still warm beside me. I carry it back to the tower with a honey cake in my pocket, and the village, which slept anyway, has never looked so rested."
+      ],
+      "ending": {
+        "title": "A New Lullaby",
+        "mood": "dreamy"
+      }
+    },
+    "end_purr": {
+      "text": [
+        "I carry Biscuit to the square and set him on the edge of the fountain. He looks around at all the tired faces, sighs like an old man, and begins to purr. It is the loudest purr in the history of purring, and it rolls over the square like a warm wave.",
+        "Within a minute the goose has collapsed in a heap. The cows go next, and then the sheep, and the babies in their windows, and finally me. We all sleep like stones. In the morning, the clapper turns up in the sewing basket of Mrs. Crumb, who does not remember putting it there."
+      ],
+      "ending": {
+        "title": "The Purr Heard Round the Village",
+        "mood": "cozy"
+      }
+    },
+    "end_spoon": {
+      "text": [
+        "I run to the bakery and borrow a big wooden spoon and a copper teapot from Mrs. Crumb. Back at the tower, I climb up to the dark bell and tap it with the spoon. It does not sound like a lullaby. It sounds like a very musical kitchen.",
+        "But the village hears the rhythm, soft and slow, ping, ping, pong. And by some magic of tiredness and good intentions, it works. They all fall asleep, one house at a time, to the sound of a teapot being played gently by a girl with a spoon."
+      ],
+      "ending": {
+        "title": "A Very Musical Kitchen",
+        "mood": "funny"
+      }
+    }
+  }
+}

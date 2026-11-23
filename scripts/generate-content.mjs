@@ -10,7 +10,9 @@ import { fileURLToPath } from 'node:url';
 import { cloudPages } from './art/pages_cloud.mjs';
 import { cosmicPages } from './art/pages_cosmic.mjs';
 import { peacefulPages } from './art/pages_peaceful.mjs';
-import { covers } from './art/covers.mjs';
+import { covers as baseCovers } from './art/covers.mjs';
+import { covers13 } from './art/covers_v13.mjs';
+import { mountainPages, nightPages, farmPages } from './art/pages_v13.mjs';
 import { palettes } from './art/palettes.mjs';
 import { breakerLevels } from './art/levels_breaker.mjs';
 import { splashLevels } from './art/levels_splash.mjs';
@@ -23,7 +25,15 @@ import { puzzleLevels } from './art/levels_puzzle.mjs';
 import { extraPages } from './art/pages_extra.mjs';
 import { relaxing } from './stories/relaxing.mjs';
 import { adventures } from './stories/adventures.mjs';
-import { storyCovers } from './stories/covers.mjs';
+import { adventuresNew } from './stories/adventures_new.mjs';
+import { storyCovers as oldCovers } from './stories/covers.mjs';
+import { relaxingNew } from './stories/relaxing_new.mjs';
+import { existing as existingArt } from './stories/art_existing.mjs';
+import { newCovers, newIllustrations } from './stories/art_new.mjs';
+
+const storyCovers = { ...oldCovers, ...newCovers };
+// 1.3: stories gained pictures; story and chapter pictures are plain SVG next to story.json.
+const NEW_VERSION = '1.3.0';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const content = resolve(root, 'content');
@@ -39,6 +49,8 @@ async function put(rel, text) {
 
 // 1.2 added more pages to four existing books; those pages need app 1.2.0.
 const withExtra = (id, pages) => [...pages, ...(extraPages[id] ?? []).map((p) => ({ ...p, minApp: '1.2.0' }))];
+
+const covers = { ...baseCovers, ...covers13 };
 
 const books = [
   {
@@ -100,6 +112,33 @@ const books = [
     order: 7,
     minApp: '1.1.1',
     pages: withExtra('forest_friends', forestPages)
+  },
+  {
+    id: 'mountain_village',
+    name: 'Mountain Village',
+    description: 'A cabin, a little train, a hilltop bakery, a snowy path, a quiet lake and a sunset village.',
+    accent: '#a9c8ee',
+    order: 8,
+    minApp: '1.3.0',
+    pages: mountainPages
+  },
+  {
+    id: 'night_garden',
+    name: 'Night Garden',
+    description: 'Moonflowers, fireflies, an owl tree, a lantern path and a starry greenhouse.',
+    accent: '#9a95d6',
+    order: 9,
+    minApp: '1.3.0',
+    pages: nightPages
+  },
+  {
+    id: 'happy_farm',
+    name: 'Happy Farm',
+    description: 'A farmhouse, barn friends, a tractor, a vegetable garden, an orchard and a sunrise.',
+    accent: '#f7c78a',
+    order: 10,
+    minApp: '1.3.0',
+    pages: farmPages
   }
 ];
 
@@ -165,7 +204,7 @@ await put(
     minAppVersion: MIN,
     kind: 'free_canvas',
     accent: '#f49bbd',
-    order: 9,
+    order: 11,
     pages: [],
     backgrounds: [
       { id: 'white', name: 'Clean White', type: 'solid', colors: ['#ffffff'] },
@@ -217,27 +256,40 @@ for (const l of puzzleLevels) {
 
 // Cozy Stories and Story Adventures (new in 1.2)
 const STORY_VERSION = '1.2.0';
-for (const [i, st] of relaxing.entries()) {
+const allStories = [...relaxing.map((st) => ({ ...st, isNew: false })), ...relaxingNew.map((st) => ({ ...st, isNew: true }))];
+for (const [i, st] of allStories.entries()) {
   const dir = `stories/relaxing/${st.id}`;
   await put(`${dir}/cover.svg`, storyCovers[st.cover]);
+  // Pictures: the original six get one per chapter (generated), new stories bring their own.
+  const art = st.isNew ? (newIllustrations[st.id] ?? {}) : Object.fromEntries((existingArt[st.id] ?? []).map((a, k) => [`ch${k + 1}.svg`, a.svg]));
+  const chapters = st.chapters.map((c, k) => {
+    if (st.isNew) {
+      if (c.illustration && !art[c.illustration]) throw new Error(`${st.id}: missing art ${c.illustration}`);
+      return c;
+    }
+    const a = (existingArt[st.id] ?? [])[k];
+    return a ? { ...c, illustration: `ch${k + 1}.svg`, illustrationAlt: a.alt, illustrationCaption: a.caption } : c;
+  });
+  for (const [file, svg] of Object.entries(art)) await put(`${dir}/${file}`, svg);
   await put(
     `${dir}/story.json`,
     json({
       id: st.id,
       name: st.name,
       description: st.description,
-      version: STORY_VERSION,
-      minAppVersion: STORY_VERSION,
+      version: NEW_VERSION,
+      minAppVersion: st.isNew ? NEW_VERSION : STORY_VERSION,
       cover: 'cover.svg',
       accent: st.accent,
       mood: st.mood,
-      minutes: st.minutes,
+      ...(st.minutes ? { minutes: st.minutes } : {}),
       order: i + 1,
-      chapters: st.chapters
+      chapters
     })
   );
 }
-for (const [i, ad] of adventures.entries()) {
+const allAdventures = [...adventures.map((a) => ({ ...a, isNew: false })), ...adventuresNew.map((a) => ({ ...a, isNew: true }))];
+for (const [i, ad] of allAdventures.entries()) {
   const dir = `stories/adventures/${ad.id}`;
   const nodes = {};
   for (const [nid, n] of Object.entries(ad.nodes)) {
@@ -250,8 +302,8 @@ for (const [i, ad] of adventures.entries()) {
       id: ad.id,
       name: ad.name,
       description: ad.description,
-      version: STORY_VERSION,
-      minAppVersion: STORY_VERSION,
+      version: ad.isNew ? NEW_VERSION : STORY_VERSION,
+      minAppVersion: ad.isNew ? NEW_VERSION : STORY_VERSION,
       cover: 'cover.svg',
       accent: ad.accent,
       genre: ad.genre,
@@ -266,4 +318,4 @@ for (const [i, ad] of adventures.entries()) {
   );
 }
 
-console.log(`Generated ${books.length + 1} books, ${pageCount} coloring pages, ${palettes.length} palettes, ${breakerLevels.length} Pastel Breaker levels, ${splashLevels.length} Splash Wall levels, ${memoryLevels.length} Memory Meadow levels, ${puzzleLevels.length} Pastel Puzzle levels, ${relaxing.length} cozy stories and ${adventures.length} story adventures.`);
+console.log(`Generated ${books.length + 1} books, ${pageCount} coloring pages, ${palettes.length} palettes, ${breakerLevels.length} Pastel Breaker levels, ${splashLevels.length} Splash Wall levels, ${memoryLevels.length} Memory Meadow levels, ${puzzleLevels.length} Pastel Puzzle levels, ${allStories.length} cozy stories and ${allAdventures.length} story adventures.`);

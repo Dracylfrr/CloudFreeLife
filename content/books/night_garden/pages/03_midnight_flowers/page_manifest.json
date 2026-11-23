@@ -1,0 +1,11 @@
+{
+  "id": "midnight_flowers",
+  "name": "Midnight Flowers",
+  "description": "A row of flowers that bloom after dark.",
+  "version": "1.0.0",
+  "minAppVersion": "1.3.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

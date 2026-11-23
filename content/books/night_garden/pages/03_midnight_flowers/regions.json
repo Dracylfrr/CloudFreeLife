@@ -1,0 +1,213 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Night sky",
+      "suggested": "#8d8ed0"
+    },
+    {
+      "id": "moon",
+      "name": "Moon",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "star1",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star2",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star3",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star4",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star5",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star6",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "hill",
+      "name": "Hill",
+      "suggested": "#7a7bbd"
+    },
+    {
+      "id": "ground",
+      "name": "Ground",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "leaf_1_a",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "leaf_1_b",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "flower_1_petals",
+      "name": "Petals",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "flower_1_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "leaf_2_a",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "leaf_2_b",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "flower_2_petals",
+      "name": "Petals",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "flower_2_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "leaf_3_a",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "leaf_3_b",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "flower_3_petals",
+      "name": "Petals",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_3_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "leaf_4_a",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "leaf_4_b",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "flower_4_petals",
+      "name": "Petals",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "flower_4_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "leaf_5_a",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "leaf_5_b",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "flower_5_petals",
+      "name": "Petals",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "flower_5_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "leaf_6_a",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "leaf_6_b",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "flower_6_petals",
+      "name": "Petals",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "flower_6_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "leaf_7_a",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "leaf_7_b",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "flower_7_petals",
+      "name": "Petals",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "flower_7_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "moth_a",
+      "name": "Moth",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "moth_b",
+      "name": "Moth",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "bee",
+      "name": "Bee",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "night_garden",
+  "name": "Night Garden",
+  "description": "Moonflowers, fireflies, an owl tree, a lantern path and a starry greenhouse.",
+  "cover": "cover.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.3.0",
+  "kind": "coloring",
+  "accent": "#9a95d6",
+  "order": 9,
+  "pages": [
+    "01_moon_garden",
+    "02_firefly_pond",
+    "03_midnight_flowers",
+    "04_owl_tree",
+    "05_lantern_path",
+    "06_starry_greenhouse"
+  ]
+}

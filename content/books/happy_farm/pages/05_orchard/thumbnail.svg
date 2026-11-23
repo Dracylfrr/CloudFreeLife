@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+<rect width="1000" height="750" fill="#ffffff"/>
+<g stroke="#6e6a8e" stroke-linejoin="round" stroke-linecap="round">
+<path data-region="sky" data-name="Sky" d="M-6 -6h1012v762h-1012z" fill="#dff0fb" stroke-width="5"/>
+<path data-region="sun" data-name="Sun" d="M818 100a42 42 0 1 0 84 0a42 42 0 1 0 -84 0z" fill="#ffe9a8" stroke-width="5"/>
+<path data-region="cloud_a" data-name="Cloud" d="M134 124A26 26 0 1 1 141.5 73.1A40 40 0 0 1 211 58.7A36 36 0 0 1 267.1 80.2A22 22 0 1 1 270 124z" fill="#ffffff" stroke-width="5"/>
+<path data-region="hill" data-name="Hill" d="M-10 440C41.7 435 188.3 408.3 300 410C411.7 411.7 541.7 448.3 660 450C778.3 451.7 951.7 425 1010 420L1010 420V750H-10V440L-10 440z" fill="#a9dcb4" stroke-width="5"/>
+<path data-region="lawn" data-name="Lawn" d="M-10 540C58.3 536.7 230 518.3 400 520C570 521.7 908.3 545 1010 550L1010 550V750H-10V540L-10 540z" fill="#c2e8c4" stroke-width="5"/>
+<path data-region="tree_a_trunk" data-name="Tree trunk" d="M204 600Q196 600 196.5 592L207.5 408Q208 400 216 400L224 400Q232 400 232.5 408L243.5 592Q244 600 236 600z" fill="#e9c7a3" stroke-width="5"/>
+<path data-region="tree_a_leaves" data-name="Tree leaves" d="M347.9 330C346.4 357.3 332.2 381.3 312.6 401.5C293.1 421.8 270.7 433.4 241.2 440.4C211.6 447.3 176.3 452.6 151.3 439.4C126.3 426.3 114.6 396.1 104.9 368.5C95.3 341 89.5 315.8 98.4 289.3C107.3 262.8 126.8 238.5 153.4 223.8C179.9 209.1 212.5 203.9 243.2 209.1C273.8 214.4 301.4 230.2 320.6 252.3C339.8 274.5 349.4 302.7 347.9 330z" fill="#a9dcb4" stroke-width="5"/>
+<path data-region="apple_a_1" data-name="Apple" d="M130 300a20 20 0 1 0 40 0a20 20 0 1 0 -40 0z" fill="#ffc3b0" stroke-width="4"/>
+<path data-region="apple_a_2" data-name="Apple" d="M230 270a20 20 0 1 0 40 0a20 20 0 1 0 -40 0z" fill="#ffc3b0" stroke-width="4"/>
+<path data-region="apple_a_3" data-name="Apple" d="M270 340a20 20 0 1 0 40 0a20 20 0 1 0 -40 0z" fill="#ffc3b0" stroke-width="4"/>
+<path data-region="apple_a_4" data-name="Apple" d="M180 350a20 20 0 1 0 40 0a20 20 0 1 0 -40 0z" fill="#ffc3b0" stroke-width="4"/>
+<path data-region="apple_a_5" data-name="Apple" d="M140 380a20 20 0 1 0 40 0a20 20 0 1 0 -40 0z" fill="#ffc3b0" stroke-width="4"/>
+<path data-region="tree_b_trunk" data-name="Tree trunk" d="M544 600Q536 600 536.5 592L547.5 408Q548 400 556 400L564 400Q572 400 572.5 408L583.5 592Q584 600 576 600z" fill="#e9c7a3" stroke-width="5"/>
+<path data-region="tree_b_leaves" data-name="Tree leaves" d="M675.6 330C677.3 357.9 680.7 389.8 663.3 409.7C645.9 429.7 611.5 434.8 580.9 438.8C550.2 442.8 520.2 444.8 496.3 431.6C472.4 418.3 462.1 393.1 450.4 366.7C438.8 340.2 423.6 311.8 432.6 287.3C441.5 262.9 472.1 245.4 499.3 233.3C526.5 221.2 552.5 216.9 580.8 221.4C609.2 225.8 636.7 237.5 654 257.4C671.4 277.3 673.9 302.1 675.6 330z" fill="#a9dcb4" stroke-width="5"/>
+<path data-region="apple_b_1" data-name="Apple" d="M470 300a20 20 0 1 0 40 0a20 20 0 1 0 -40 0z" fill="#ffc3b0" stroke-width="4"/>
+<path data-region="apple_b_2" data-name="Apple" d="M570 270a20 20 0 1 0 40 0a20 20 0 1 0 -40 0z" fill="#ffc3b0" stroke-width="4"/>
+<path data-region="apple_b_3" data-name="Apple" d="M610 340a20 20 0 1 0 40 0a20 20 0 1 0 -40 0z" fill="#ffc3b0" stroke-width="4"/>
+<path data-region="apple_b_4" data-name="Apple" d="M520 350a20 20 0 1 0 40 0a20 20 0 1 0 -40 0z" fill="#ffc3b0" stroke-width="4"/>
+<path data-region="apple_b_5" data-name="Apple" d="M480 380a20 20 0 1 0 40 0a20 20 0 1 0 -40 0z" fill="#ffc3b0" stroke-width="4"/>
+<path data-region="tree_c_trunk" data-name="Tree trunk" d="M834 600Q826 600 826.5 592L837.5 408Q838 400 846 400L854 400Q862 400 862.5 408L873.5 592Q874 600 866 600z" fill="#e9c7a3" stroke-width="5"/>
+<path data-region="tree_c_leaves" data-name="Tree leaves" d="M953.9 330C954.9 355.5 957.9 381.9 942.6 401.5C927.3 421 898.2 432.5 870.4 436.6C842.7 440.7 813.9 437 791.1 423.8C768.3 410.7 755.1 388.6 746.1 364.8C737.1 341 733 316.3 742 293.8C751 271.4 771.8 253.6 795 242.4C818.2 231.2 842.5 229.3 868.6 233C894.7 236.6 921.9 244.6 937.5 262.4C953.2 280.2 953 304.5 953.9 330z" fill="#a9dcb4" stroke-width="5"/>
+<path data-region="apple_c_1" data-name="Apple" d="M760 300a20 20 0 1 0 40 0a20 20 0 1 0 -40 0z" fill="#ffc3b0" stroke-width="4"/>
+<path data-region="apple_c_2" data-name="Apple" d="M860 270a20 20 0 1 0 40 0a20 20 0 1 0 -40 0z" fill="#ffc3b0" stroke-width="4"/>
+<path data-region="apple_c_3" data-name="Apple" d="M900 340a20 20 0 1 0 40 0a20 20 0 1 0 -40 0z" fill="#ffc3b0" stroke-width="4"/>
+<path data-region="apple_c_4" data-name="Apple" d="M810 350a20 20 0 1 0 40 0a20 20 0 1 0 -40 0z" fill="#ffc3b0" stroke-width="4"/>
+<path data-region="apple_c_5" data-name="Apple" d="M770 380a20 20 0 1 0 40 0a20 20 0 1 0 -40 0z" fill="#ffc3b0" stroke-width="4"/>
+<path data-region="picnic_blanket" data-name="Picnic blanket" d="M327.3 645.4Q330 640 336 640L494 640Q500 640 502.7 645.4L537.3 714.6Q540 720 534 720L296 720Q290 720 292.7 714.6z" fill="#ffd3e2" stroke-width="5"/>
+<path d="M360 640l-24 80M420 640l-8 80M470 640l14 80" fill="none" stroke-width="4"/>
+<path data-region="basket" data-name="Basket" d="M691.8 649.8Q690 640 700 640L780 640Q790 640 788.2 649.8L777.8 706.2Q776 716 766 716L714 716Q704 716 702.2 706.2z" fill="#e9c7a3" stroke-width="5"/>
+<path d="M700 640q40 -50 80 0" fill="none" stroke-width="6"/>
+<path data-region="basket_apple_1" data-name="Apple" d="M703 636a17 17 0 1 0 34 0a17 17 0 1 0 -34 0z" fill="#ffc3b0" stroke-width="4"/>
+<path data-region="basket_apple_2" data-name="Apple" d="M735 632a17 17 0 1 0 34 0a17 17 0 1 0 -34 0z" fill="#ffc3b0" stroke-width="4"/>
+<path data-region="basket_apple_3" data-name="Apple" d="M757 640a17 17 0 1 0 34 0a17 17 0 1 0 -34 0z" fill="#ffc3b0" stroke-width="4"/>
+<path data-region="ladder" data-name="Ladder" d="M104 380H114A4 4 0 0 1 118 384V656A4 4 0 0 1 114 660H104A4 4 0 0 1 100 656V384A4 4 0 0 1 104 380z" fill="#e9c7a3" stroke-width="4"/>
+<path data-region="ladder_b" data-name="Ladder" d="M154 380H164A4 4 0 0 1 168 384V656A4 4 0 0 1 164 660H154A4 4 0 0 1 150 656V384A4 4 0 0 1 154 380z" fill="#e9c7a3" stroke-width="4"/>
+<path d="M118 420h32M118 470h32M118 520h32M118 570h32M118 620h32" fill="none" stroke-width="6"/>
+<path data-region="bee_a" data-name="Bee" d="M402 250a18 12 0 1 0 36 0a18 12 0 1 0 -36 0z" fill="#fff2bd" stroke-width="4"/>
+<path d="M412 240v20M422 240v20" fill="none" stroke-width="3.5"/>
+<path data-region="bee_b" data-name="Bee" d="M682 300a18 12 0 1 0 36 0a18 12 0 1 0 -36 0z" fill="#fff2bd" stroke-width="4"/>
+<path d="M692 290v20M702 290v20" fill="none" stroke-width="3.5"/>
+<path data-region="fallen_apple" data-name="Fallen apple" d="M578 700a22 22 0 1 0 44 0a22 22 0 1 0 -44 0z" fill="#ffc3b0" stroke-width="4"/>
+</g></svg>

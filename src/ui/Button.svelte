@@ -66,8 +66,8 @@
     font-size: 1.05rem;
   }
   .primary {
-    background: linear-gradient(135deg, #9fd3f2, #b7a8ec);
-    color: #35316a;
+    background: linear-gradient(135deg, var(--g1), var(--g2));
+    color: var(--g-ink);
     box-shadow: 0 6px 16px rgba(150, 130, 220, 0.34);
   }
   .primary:not(:disabled):hover {
@@ -80,7 +80,7 @@
     border: 1px solid var(--line);
   }
   .soft:not(:disabled):hover {
-    background: #fff;
+    background: var(--surface);
   }
   .soft.active {
     background: var(--lavender);
@@ -91,17 +91,17 @@
     background: transparent;
   }
   .ghost:not(:disabled):hover {
-    background: rgba(255, 255, 255, 0.6);
+    background: rgb(var(--w) / 0.6);
     color: var(--ink);
   }
   .danger {
-    background: #ffe3e8;
-    color: #9a4560;
+    background: var(--c-rose-bg);
+    color: var(--c-rose);
     border: 1px solid #f8c5d0;
   }
   .mint {
     background: linear-gradient(135deg, #c6ecda, #bdeeea);
-    color: #2e5a4b;
+    color: var(--c-green);
     box-shadow: 0 6px 16px rgba(110, 200, 170, 0.3);
   }
   .peach {

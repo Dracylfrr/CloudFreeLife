@@ -17,7 +17,7 @@ Artwork, settings and downloaded content are stored **only on your computer**, i
 ```
 %APPDATA%\Cloud-Freelife\
   settings.json
-  progress\stories.json  (your reading place and the story endings you have found)
+  progress\stories.json  (your reading place, favorites and the story endings you have found)
   artworks\<name>\artwork.json, paint.png, thumb.png
   content\...            (downloaded books, palettes, levels, stories)
   installed_packs.json
@@ -26,15 +26,16 @@ Artwork, settings and downloaded content are stored **only on your computer**, i
 This is outside the install folder, so updating, repairing or uninstalling the app does not delete it. Exported PNGs go where you choose in the save dialog.
 
 ## When the app uses the network
-Only for these things, always over HTTPS to GitHub:
+Only for these two things, always over HTTPS:
 
-1. **Checking for updates** — one request to this project's GitHub Releases when the app starts (can be turned off in *Settings → Updates*), and whenever you press *Check for Updates*.
-2. **Downloading content or an installer you ask for** — from this project's GitHub release assets.
-3. **Opening a GitHub link** you click (it opens in your browser).
+1. **Checking for updates** — one request when the app starts (can be turned off in *Settings → Updates*), and whenever you press *Check for Updates*.
+2. **Downloading content or an installer you ask for.**
 
-These requests contain no identifiers beyond what any web request carries (your IP address and the standard HTTP headers). Cloud-Freelife does not add cookies, tokens, user IDs or device information. GitHub's own privacy policy applies to their servers.
+Cloud-Freelife does not send personal content or analytics. When checking for or downloading updates, standard network requests are made to the infrastructure that hosts the official Cloud-Freelife releases, so that service can see the usual details of any web request (such as your IP address and the standard HTTP headers). Cloud-Freelife does not add cookies, tokens, user IDs or device information. The app never opens a web page.
+
+**Read Aloud** uses the voices already installed on your computer and works offline. Online voices are never used, so the text of a story is never sent anywhere.
 
 Without Internet access everything else works normally: painting, the Gallery, mini-games, exports and settings.
 
 ## Permissions
-The desktop shell is limited to: reading/writing inside `%APPDATA%\Cloud-Freelife` (plus `Downloads\Cloud-Freelife` for update installers and any file you choose in a save dialog), opening GitHub links, and HTTPS requests to GitHub hosts. See `src-tauri/capabilities/default.json`.
+The desktop shell is limited to: reading/writing inside `%APPDATA%\Cloud-Freelife` (plus `Downloads\Cloud-Freelife` for update installers and any file you choose in a save dialog), and HTTPS requests to the official release host. It cannot open web pages. See `src-tauri/capabilities/default.json`.

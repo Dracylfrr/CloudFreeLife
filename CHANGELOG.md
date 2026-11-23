@@ -2,6 +2,33 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com), and the project uses [Semantic Versioning](https://semver.org).
 
+## [1.3.0]
+
+### Added
+- **Illustrated Cozy Stories.** Every story can now carry pictures: at the start of a story, at the start of a chapter, or between sections (never after every paragraph). The six original stories gained three pictures each, and the library has four new, longer stories: *The Night Train to Moonwater*, *The Little Library on Lantern Lane*, *Where the Rain Keeps Its Umbrellas* and *The Star Gardener* (seven to ten minutes each). Pictures are tiny SVG files loaded only when you open that page; if one is missing the story reads on without it.
+- **Read Aloud.** Listen to any story in a voice installed on your computer: play, pause, resume, stop, previous and next paragraph, five speeds from 0.75x to 1.5x, a choice of voice and tone, a soft highlight on the paragraph being read, and an option to keep going into the next chapter. The controls stay on screen while you read. It works offline; online voices are never used, so story text never leaves your computer. Background music steps back while a story is being read.
+- **Stories** is now one tidy place with **Continue**, **Cozy Stories**, **Story Adventures**, **Not started**, **Finished** and **Favorites**. Cards show *Chapter 3 of 7* with a progress bar, and a heart keeps favorites. A chapter list lets you jump around long stories. The Home *Continue* card resumes whichever you touched last: a painting, a story or an adventure.
+- Better reading progress: the chapter, the paragraph, when you last opened it and which endings you found are all saved. Everything saved by 1.2 keeps working.
+- **Four new Story Adventures**: *The Case of the Missing Lullaby* (girl, mystery), *Rainy Day Radio* (guy, comedy), *Letters Over the Garden Wall* (girl, romance with Felix) and *The Last Train to Starlight Bay* (guy, romance with Elsie). The library now has ten adventures with six to nine endings each.
+- **Eight color themes** in Settings, Display: Cloud Morning (the default, looks exactly as before), Lavender Dream, Peach Sunset, Mint Breeze, Blossom Rain, Candle Glow, Moonlight and Ocean Mist, plus *Follow System*. Themes change the app's colors only, never your paintings. Higher Contrast works with every theme.
+- **Mood presets** (Relaxed, Chill, Cozy, Dreamy): one tap changes how the app feels without changing how it looks. Sounds get softer, clouds drift more slowly and a matching music track plays.
+- **Background music** for the whole app: gentle, slow music composed on your computer in four styles (Soft Morning, Quiet Garden, Rain Pause, Starry Night). No audio files and no downloads. A music button in the sidebar turns it on or off, and each volume slider plays a short preview when you let go.
+- **Three new coloring books**: *Mountain Village*, *Night Garden* and *Happy Farm*, six pages each. The library now has 64 pages in 10 books.
+- Five new palettes: *Candle Glow*, *Blossom Rain*, *Mountain Morning*, *Night Garden* and *Farm Sunrise* (19 in all).
+- Story pictures can be SVG, WebP or PNG in content packs. See `docs/CREATING_STORIES.md`, `docs/THEMES_AND_AUDIO.md`.
+
+### Changed
+- **Redesigned sound effects.** Every sound now has a soft attack, a gentle decay and a shared warm room reverb. Repeated sounds (bubbles, bricks) walk up and down a pentatonic scale so a long run sounds like a little melody instead of a repeat. Nothing is shrill (no sound goes above about 2.6 kHz). New soft sounds for card flips, matches and balloon bounces.
+- The Updates screen is now fully inside the app: installed and available version, a headline, the release notes, the download size and the content included, with **Install**. The top-right notice reads "Cloud-Freelife 1.3.1 is available" or "New content is ready" with **Install**, **Details** and **Later**. The app no longer shows any website, repository name or link, and it can no longer open web pages at all. It still downloads from the official release hosting, and still verifies the expected file name, host, size and SHA-256 first.
+- Settings from 1.2 are upgraded once: background music is switched on the first time (it is new). After that your choice is kept.
+- A slightly darker secondary text color for easier reading in every theme.
+
+### Fixed
+- The Read Aloud speed buttons wrap instead of overflowing in narrow windows.
+
+### Not in this version
+Meditation, Gentle Movement, four new relaxing mini-games, more levels for the existing games and Splash Wall gallery saving are planned for 1.4.0, with very long stories and optional voice packs for 1.5.0. See the roadmap.
+
 ## [1.2.0]
 
 ### Added

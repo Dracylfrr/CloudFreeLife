@@ -1,0 +1,309 @@
+{
+  "id": "letters_over_the_garden_wall",
+  "name": "Letters Over the Garden Wall",
+  "description": "A moss-covered wall separates your garden from the one next door. One morning there is a note tucked between the stones, and it is addressed to you.",
+  "version": "1.3.0",
+  "minAppVersion": "1.3.0",
+  "cover": "cover.svg",
+  "accent": "#f49bbd",
+  "genre": "Romance",
+  "protagonist": "girl",
+  "interest": "Felix",
+  "hero": "Wren",
+  "minutes": 12,
+  "order": 9,
+  "start": "start",
+  "nodes": {
+    "start": {
+      "text": [
+        "My name is Wren, and I have spent the whole spring working on my garden. It is a small one, with a crooked apple tree, a bench, and a long old stone wall at the back, covered in moss and ivy.",
+        "On the other side of the wall is another garden, which has been empty for years. This morning, as I water the foxgloves, I notice something white tucked between two stones. It is a folded piece of paper. On the front, in careful handwriting, it says: \"To whoever is growing the sweet peas.\""
+      ],
+      "choices": [
+        {
+          "text": "Open the note",
+          "to": "note"
+        },
+        {
+          "text": "Put it back and pretend I did not see it",
+          "to": "back"
+        },
+        {
+          "text": "Peek over the wall first",
+          "to": "peek"
+        }
+      ]
+    },
+    "back": {
+      "text": [
+        "I push the paper back into the gap, brush the moss over it and go inside to make tea. I last about eleven minutes. When I come out again, the paper is gone, and in its place is a second, slightly larger note. This one says, \"I think you saw the first one.\""
+      ],
+      "choices": [
+        {
+          "text": "Laugh and open it",
+          "to": "note"
+        },
+        {
+          "text": "Write a reply instead",
+          "to": "reply_first"
+        },
+        {
+          "text": "Ignore the second note too",
+          "to": "end_shy"
+        }
+      ]
+    },
+    "peek": {
+      "text": [
+        "I drag the garden bench to the wall and stand on it. On the other side, a tall boy with ink on his fingers is on his knees in the dirt, planting something very carefully. He looks up, startled, and a trowel falls out of his hand.",
+        "\"Oh,\" he says. \"You are the sweet pea person.\""
+      ],
+      "choices": [
+        {
+          "text": "Say hello and ask his name",
+          "to": "meet"
+        },
+        {
+          "text": "Duck down out of sight",
+          "to": "back"
+        }
+      ]
+    },
+    "meet": {
+      "text": [
+        "\"Felix,\" he says, wiping his hands on his trousers, which only makes them worse. \"I just moved in. My grandmother left me the house, and the garden. I do not know anything about gardens.\" He waves vaguely at the weeds. \"I have been trying to grow tomatoes for two weeks, and nothing has happened.\"",
+        "\"Tomatoes?\" I say. \"In April?\" He looks at me with open and honest hope. \"Is that bad?\""
+      ],
+      "choices": [
+        {
+          "text": "Offer to help him with the garden",
+          "to": "help"
+        },
+        {
+          "text": "Tell him he needs sunshine and patience",
+          "to": "patience"
+        }
+      ]
+    },
+    "note": {
+      "text": [
+        "The note says: \"Dear neighbor, I am new here. I do not know the first thing about gardens, but I can see yours from my window, and I think it is the nicest one for miles. The sweet peas especially. Would you be willing to tell me what I am doing wrong? Yours, F.\"",
+        "There is a small, hasty drawing at the bottom: a tomato plant, rather sad and drooping, with a question mark above it."
+      ],
+      "choices": [
+        {
+          "text": "Write back with advice",
+          "to": "reply_first"
+        },
+        {
+          "text": "Climb the wall and talk to him",
+          "to": "meet"
+        }
+      ]
+    },
+    "reply_first": {
+      "text": [
+        "I tear a page from my gardening journal and write back: \"Dear F. Tomatoes need a lot of sun and not too much water. Do not plant them in April. Also, you are doing nothing wrong. You are just early.\" I fold it into a paper boat, for some reason, and tuck it into the wall.",
+        "The answer arrives by lunchtime. It is a paper airplane."
+      ],
+      "choices": [
+        {
+          "text": "Read the airplane",
+          "to": "airplane"
+        }
+      ]
+    },
+    "airplane": {
+      "text": [
+        "The airplane says: \"Thank you! I have moved the tomatoes to the window. I am told that is called hardening off. Is it going to be all right? Also, I have made too many scones, and it feels wrong to eat them alone. Are scones allowed over walls?\""
+      ],
+      "choices": [
+        {
+          "text": "Say scones are always allowed",
+          "to": "scones"
+        },
+        {
+          "text": "Say I will bring jam",
+          "to": "scones"
+        }
+      ]
+    },
+    "scones": {
+      "text": [
+        "We meet at the wall at four o'clock. I stand on my bench and he stands on a stack of two flowerpots, which makes us exactly the same height. The scones are slightly burned on the bottom. They are the best scones I have ever eaten, and I do not tell him why.",
+        "We talk for two hours. He is a bookbinder, which explains the ink. He likes the smell of old paper and the sound of rain on glass. By the end, I know the names of his grandmother's three cats."
+      ],
+      "choices": [
+        {
+          "text": "Invite him over to see the garden properly",
+          "to": "garden"
+        },
+        {
+          "text": "Ask what he is planting in the empty bed",
+          "to": "bed"
+        }
+      ]
+    },
+    "help": {
+      "text": [
+        "I fetch my gloves and a spare trowel and climb over the wall, which is rather dignified, until my skirt catches on the ivy. Felix catches my elbow, and we stand there for a second, blushing for no reason either of us can explain.",
+        "\"Right,\" I say, a bit too brightly. \"Let me show you what a garden is.\""
+      ],
+      "choices": [
+        {
+          "text": "Show him how to weed",
+          "to": "weeds"
+        },
+        {
+          "text": "Show him how to plant sweet peas",
+          "to": "bed"
+        }
+      ]
+    },
+    "patience": {
+      "text": [
+        "\"Sunshine and patience,\" Felix repeats solemnly, writing it on the back of his hand. \"Anything else?\" I think. \"Tea,\" I say. \"Gardens run on tea.\" He laughs, and he has the kind of laugh that makes you want to say something funnier just to hear it again."
+      ],
+      "choices": [
+        {
+          "text": "Invite him over for tea",
+          "to": "garden"
+        },
+        {
+          "text": "Offer to help him tomorrow",
+          "to": "help"
+        }
+      ]
+    },
+    "weeds": {
+      "text": [
+        "It takes us all afternoon to clear a single bed. Felix pulls up a dandelion and holds it like a trophy. \"Is this one weed?\" he asks. \"Two,\" I say. \"That is a weed and a flower.\" He thinks about this for a long time, and then he plants it back in the ground, very gently, and says, \"I am going to call it a flower.\""
+      ],
+      "choices": [
+        {
+          "text": "Ask him to dinner",
+          "to": "garden"
+        },
+        {
+          "text": "Plant something together",
+          "to": "bed"
+        },
+        {
+          "text": "Ask about his poor tomatoes",
+          "to": "end_tomatoes"
+        }
+      ]
+    },
+    "bed": {
+      "text": [
+        "We sow the sweet peas along the wall, side by side, one seed at a time. Felix measures the spaces with a ruler. I tell him it does not matter. He says it does, to him, and I find I do not mind at all. By sunset, our hands are both covered in soil.",
+        "\"Do you think they will grow?\" he asks. \"They always do,\" I say, \"when somebody is waiting for them.\""
+      ],
+      "choices": [
+        {
+          "text": "Say something about waiting",
+          "to": "wait"
+        },
+        {
+          "text": "Just smile and pass him the watering can",
+          "to": "garden"
+        }
+      ]
+    },
+    "wait": {
+      "text": [
+        "\"I have never been very good at waiting,\" Felix says, looking not at the seeds but at me. \"But this might be worth it.\" I hand him the watering can, mostly so my hands will stop shaking. He waters the sweet peas. The sun goes down. A blackbird starts to sing."
+      ],
+      "choices": [
+        {
+          "text": "Stay a little longer",
+          "to": "garden"
+        }
+      ]
+    },
+    "garden": {
+      "text": [
+        "That evening he comes round to my side, through the little gate I did not know was in the wall, hidden behind a bush. He sits on my bench and admires the crooked apple tree. I make tea. We share a blanket because the evening is cool, and neither of us mentions it.",
+        "The sky turns the color of apricots. Somewhere in the garden, the first of the sweet peas begins to unfurl."
+      ],
+      "choices": [
+        {
+          "text": "Tell him I hope he stays",
+          "to": "end_stay"
+        },
+        {
+          "text": "Ask if he will write to me, even when he lives next door",
+          "to": "end_letters"
+        },
+        {
+          "text": "Hold his hand",
+          "to": "end_hand"
+        },
+        {
+          "text": "Just sit quietly and watch the evening",
+          "to": "end_quiet"
+        }
+      ]
+    },
+    "end_shy": {
+      "text": [
+        "I do not answer the second note. Or the third, which appears on Thursday, or the fourth, which has a small drawing of a snail and the words \"No pressure.\" I keep the notes in my apron pocket and tell myself I am busy with the garden, which is true.",
+        "In December, when the garden is bare and the wall is frosted white, I finally take out a pencil. \"Dear F,\" I write. \"Sorry it took so long. Would you like some tea?\" The reply comes in under a minute. It says \"Yes. Always. Yes.\" And I discover that some of the best things are worth being a little late for."
+      ],
+      "ending": {
+        "title": "Late, But Not Too Late",
+        "mood": "dreamy"
+      }
+    },
+    "end_tomatoes": {
+      "text": [
+        "\"Ah,\" says Felix, brightening, \"about the tomatoes.\" We carry the pots out into the sun together, the sad little plants and all, and I show him how to water them, and how to talk to them, which he turns out to be very good at. He reads them poetry.",
+        "By August the tomatoes are so many and so enormous that we cannot eat them all. We leave baskets on the doorsteps of the whole street, with a note: \"From the garden wall.\" Every one of our neighbors guesses it is us. Nobody minds. Several leave jam."
+      ],
+      "ending": {
+        "title": "Too Many Tomatoes",
+        "mood": "funny"
+      }
+    },
+    "end_quiet": {
+      "text": [
+        "We do not say anything at all. It is the sort of evening that does not need it. The light slides down the wall, the blackbird finishes its song, and the sweet peas, in their new bed, curl slowly toward the dark. Felix sits beside me on the bench, quite still, as if he too were afraid of breaking something.",
+        "At some point I realize I am leaning against his shoulder. At some later point I realize he has not moved in an hour so as not to wake me. It is the most comfortable silence I have ever shared with anyone."
+      ],
+      "ending": {
+        "title": "A Quiet Evening",
+        "mood": "cozy"
+      }
+    },
+    "end_stay": {
+      "text": [
+        "\"I hope you stay,\" I say. It comes out much smaller than I meant it to. Felix is quiet for a long moment. Then he says, \"I have not been somewhere I wanted to stay in a long time.\" He turns toward me, and the light catches the soil on his cheek, and I decide not to mention it.",
+        "We sit on the bench until the stars come out. In the morning there are two sets of boots by the back door, and the tomatoes, in the window, have finally put out a single, brave green leaf."
+      ],
+      "ending": {
+        "title": "Two Pairs of Boots",
+        "mood": "sweet"
+      }
+    },
+    "end_letters": {
+      "text": [
+        "\"Will you write to me?\" I ask. \"Even though I live fifteen steps away?\" Felix grins. \"Especially,\" he says. \"Letters are better. You can keep them.\" He leaves that night through the little gate, and in the morning there is a paper boat in the wall.",
+        "It says, in his careful handwriting, \"Dear Wren. Good morning. I just wanted to say it properly.\" I keep every note, tied with string, in a tin under the bench. By autumn the tin is full."
+      ],
+      "ending": {
+        "title": "The Letter Tin",
+        "mood": "dreamy"
+      }
+    },
+    "end_hand": {
+      "text": [
+        "I do not say anything. I just put my hand on the bench between us, and after a moment, a very shy hand, with ink on its fingers, comes to rest on top of it. Neither of us looks at the other. We both look at the apple tree, very hard, as if it had said something fascinating.",
+        "The sweet peas climb the wall all summer, side by side, from both gardens. By August they have met at the top and tangled together so completely that nobody could tell which side they started on."
+      ],
+      "ending": {
+        "title": "Sweet Peas Meet at the Top",
+        "mood": "happy"
+      }
+    }
+  }
+}

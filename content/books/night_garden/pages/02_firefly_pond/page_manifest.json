@@ -1,0 +1,11 @@
+{
+  "id": "firefly_pond",
+  "name": "Firefly Pond",
+  "description": "A sleepy frog and drifting fireflies.",
+  "version": "1.0.0",
+  "minAppVersion": "1.3.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

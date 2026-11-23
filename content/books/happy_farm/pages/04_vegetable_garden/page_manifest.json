@@ -1,0 +1,11 @@
+{
+  "id": "vegetable_garden",
+  "name": "Vegetable Garden",
+  "description": "Carrots, cabbages and tomatoes, and a hungry bunny.",
+  "version": "1.0.0",
+  "minAppVersion": "1.3.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

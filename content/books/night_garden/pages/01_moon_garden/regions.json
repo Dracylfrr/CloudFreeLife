@@ -1,0 +1,198 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Night sky",
+      "suggested": "#8d8ed0"
+    },
+    {
+      "id": "moon_glow",
+      "name": "Moon glow",
+      "suggested": "#aeb0e6"
+    },
+    {
+      "id": "moon",
+      "name": "Moon",
+      "suggested": "#fff3c4"
+    },
+    {
+      "id": "moon_crater_a",
+      "name": "Crater",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "moon_crater_b",
+      "name": "Crater",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star1",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star2",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star3",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star4",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star5",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "star6",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "hill",
+      "name": "Hill",
+      "suggested": "#7a7bbd"
+    },
+    {
+      "id": "lawn",
+      "name": "Garden lawn",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "fence_posts",
+      "name": "Fence posts",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "fence_rail_top",
+      "name": "Fence rail",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "fence_rail_low",
+      "name": "Fence rail",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "fence_b_posts",
+      "name": "Fence posts",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "fence_b_rail_top",
+      "name": "Fence rail",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "fence_b_rail_low",
+      "name": "Fence rail",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "bloom_a_petals",
+      "name": "Moonflower",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "bloom_a_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "leaf_a_l",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "leaf_a_r",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "bloom_b_petals",
+      "name": "Moonflower",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "bloom_b_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "leaf_b_l",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "leaf_b_r",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "bloom_c_petals",
+      "name": "Moonflower",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "bloom_c_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "leaf_c_l",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "leaf_c_r",
+      "name": "Leaf",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "stone_1",
+      "name": "Stepping stone",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "stone_2",
+      "name": "Stepping stone",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "stone_3",
+      "name": "Stepping stone",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "stone_4",
+      "name": "Stepping stone",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "firefly_a",
+      "name": "Firefly",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "firefly_b",
+      "name": "Firefly",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "firefly_c",
+      "name": "Firefly",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

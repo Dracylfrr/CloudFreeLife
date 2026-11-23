@@ -7,7 +7,7 @@ export type Route =
   | { name: 'draw' }
   | { name: 'paint'; artworkId: string }
   | { name: 'gallery' }
-  | { name: 'stories' }
+  | { name: 'stories'; tab?: 'continue' | 'stories' | 'adventures' | 'notStarted' | 'finished' | 'favorites' }
   | { name: 'story'; storyId: string }
   | { name: 'adventures' }
   | { name: 'adventure'; adventureId: string }
@@ -66,7 +66,8 @@ export function sectionOf(r: Route): NavSection {
     case 'story':
       return 'stories';
     case 'adventure':
-      return 'adventures';
+    case 'adventures':
+      return 'stories';
     case 'paint':
       return 'books';
     case 'breaker':

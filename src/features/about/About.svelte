@@ -1,10 +1,7 @@
 <script lang="ts">
   import Logo from '../../ui/Logo.svelte';
   import Icon from '../../ui/Icon.svelte';
-  import Button from '../../ui/Button.svelte';
   import { APP_NAME, APP_VERSION } from '../../core/version';
-  import { GITHUB_RELEASES_PAGE } from '../../core/config';
-  import { openOfficialLink } from '../updates/updater';
   import { catalog } from '../../core/content/registry';
 
   const pages = $derived($catalog.books.reduce((n, b) => n + b.pages.length, 0));
@@ -26,14 +23,11 @@
     </div>
 
     <ul class="facts">
-      <li><Icon name="shield" size={20} /><div><strong>Private by design</strong><span>No telemetry, analytics, accounts or personal data. The only network use is checking GitHub for updates.</span></div></li>
+      <li><Icon name="shield" size={20} /><div><strong>Private by design</strong><span>No telemetry, analytics, accounts or personal data. The only network use is checking for updates and downloading new content.</span></div></li>
       <li><Icon name="cloud" size={20} /><div><strong>Works offline</strong><span>Painting, the Gallery, mini-games and settings never need the Internet.</span></div></li>
       <li><Icon name="folder" size={20} /><div><strong>Your art is yours</strong><span>Saved on your computer, outside the install folder. Updates never touch it.</span></div></li>
     </ul>
 
-    <div class="btns">
-      <Button variant="soft" icon="external" onclick={() => openOfficialLink(GITHUB_RELEASES_PAGE)}>Releases on GitHub</Button>
-    </div>
     <p class="fine">Made with soft colors. Fonts: Nunito (SIL Open Font License).</p>
   </div>
 </div>
@@ -79,7 +73,7 @@
   }
   .stats b {
     font-size: 1.6rem;
-    color: #6a58c4;
+    color: var(--c-violet);
   }
   .stats span {
     color: var(--ink-soft);
@@ -104,7 +98,7 @@
     border-radius: 20px;
     background: var(--panel);
     box-shadow: var(--shadow-s);
-    color: #6a58c4;
+    color: var(--c-violet);
   }
   .facts div {
     display: flex;

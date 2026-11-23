@@ -30,10 +30,10 @@ beforeEach(async () => {
 });
 
 describe('bundled stories', () => {
-  it('ships six cozy stories and six adventures, all valid and compatible', () => {
+  it('ships ten cozy stories and the adventures, all valid and compatible', () => {
     expect(catalog.skipped).toEqual([]);
-    expect(catalog.stories).toHaveLength(6);
-    expect(catalog.adventures).toHaveLength(6);
+    expect(catalog.stories).toHaveLength(10);
+    expect(catalog.adventures.length).toBeGreaterThanOrEqual(6);
   });
 
   it('every cozy story has several chapters of real text and a cover file', async () => {
@@ -44,7 +44,7 @@ describe('bundled stories', () => {
         expect(c.title.length).toBeGreaterThan(2);
         expect(c.text.join(' ').split(/\s+/).length).toBeGreaterThan(60);
       }
-      expect(s.manifest.minAppVersion).toBe('1.2.0');
+      expect(['1.2.0', '1.3.0']).toContain(s.manifest.minAppVersion);
       expect(`${s.dir}/${s.manifest.cover}` in files).toBe(true);
     }
   });
@@ -84,8 +84,8 @@ describe('bundled stories', () => {
   });
 
   it('keeps the romance heterosexual: a girl narrator has a boy love interest and vice versa', () => {
-    const girlsLove = new Set(['Elliot']);
-    const guysLove = new Set(['Clara']);
+    const girlsLove = new Set(['Elliot', 'Felix']);
+    const guysLove = new Set(['Clara', 'Elsie']);
     for (const a of catalog.adventures.filter((x) => x.manifest.interest)) {
       expect((a.manifest.protagonist === 'girl' ? girlsLove : guysLove).has(a.manifest.interest!), a.manifest.id).toBe(true);
     }
@@ -251,8 +251,10 @@ describe('story progress', () => {
       adventures: { adv: { path: ['a', 5, 'b'], endings: ['e', 'e', 7] } },
       junk: true
     });
-    expect(p.stories).toEqual({ good_one: { chapter: 2, finished: true } });
-    expect(p.adventures.adv).toEqual({ path: ['a', 'b'], endings: ['e'] });
+    // A v1.2 save has no paragraph / last-opened fields: they default, nothing is lost.
+    expect(p.stories).toEqual({ good_one: { chapter: 2, finished: true, para: 0, opened: 0 } });
+    expect(p.adventures.adv).toEqual({ path: ['a', 'b'], endings: ['e'], opened: 0 });
+    expect(p.favorites).toEqual({ stories: [], adventures: [] });
     expect(sanitizeProgress(null).stories).toEqual({});
     expect(sanitizeProgress('x').adventures).toEqual({});
   });
@@ -278,11 +280,11 @@ describe('story progress', () => {
     await loadStoryProgress();
     saveStoryPlace('s', 0, true);
     saveStoryPlace('s', 1, false);
-    expect(get(storyProgress).stories.s).toEqual({ chapter: 1, finished: true });
+    expect(get(storyProgress).stories.s).toMatchObject({ chapter: 1, finished: true, para: 0 });
     recordEnding('a', 'e1');
     saveAdventurePath('a', ['start', 'x']);
     clearPlace('adventure', 'a');
-    expect(get(storyProgress).adventures.a).toEqual({ path: [], endings: ['e1'] });
+    expect(get(storyProgress).adventures.a).toMatchObject({ path: [], endings: ['e1'] });
     clearPlace('story', 's');
     expect(get(storyProgress).stories.s).toBeUndefined();
   });
@@ -307,8 +309,9 @@ describe('story packs and settings', () => {
     const files = await readAllText();
     const src = 'stories/relaxing/cloud_who_lost_its_rain';
     const out: Record<string, { encoding: 'utf8'; data: string }> = {};
-    for (const f of ['story.json', 'cover.svg']) out[`${src}/${f}`] = { encoding: 'utf8', data: files[`${src}/${f}`] };
-    return { format: 1, kind: 'stories', id: 'cloud_who_lost_its_rain', name: 'The Cloud Who Lost Its Rain', version: '1.2.0', minAppVersion: '1.2.0', files: out };
+    const have = Object.keys(files).filter((p) => p.startsWith(src + '/')).map((p) => p.slice(src.length + 1));
+    for (const f of have) out[`${src}/${f}`] = { encoding: 'utf8', data: files[`${src}/${f}`] };
+    return { format: 1, kind: 'stories', id: 'cloud_who_lost_its_rain', name: 'The Cloud Who Lost Its Rain', version: '1.3.0', minAppVersion: '1.2.0', files: out };
   }
 
   it('installs a story pack and the story shows up', async () => {

@@ -63,13 +63,13 @@
     hinted = [];
     const r = game.flip(i);
     if (r === 'ignored') return;
-    sfx.pop(1 + (i % 4) * 0.08);
+    sfx.flip();
     sync();
     if (r === 'match') {
       const pair = game.cards.map((c, k) => (c.matched && c.symbol === game!.cards[i].symbol ? k : -1)).filter((k) => k >= 0);
       justMatched = pair;
       later(() => (justMatched = []), 700);
-      sfx.sparkle();
+      sfx.match();
       if (game.complete) later(() => sfx.chime(), 250);
     } else if (r === 'mismatch') {
       later(() => {

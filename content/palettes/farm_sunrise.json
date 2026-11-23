@@ -1,0 +1,49 @@
+{
+  "id": "farm_sunrise",
+  "name": "Farm Sunrise",
+  "description": "Barn red, hay gold, field green and a milky morning sky.",
+  "colors": [
+    {
+      "id": "barn_red",
+      "name": "Barn Red",
+      "hex": "#f2a9a0"
+    },
+    {
+      "id": "hay_gold",
+      "name": "Hay Gold",
+      "hex": "#f7dc92"
+    },
+    {
+      "id": "field_green",
+      "name": "Field Green",
+      "hex": "#b4de9c"
+    },
+    {
+      "id": "morning_sky",
+      "name": "Morning Sky",
+      "hex": "#c8e5f6"
+    },
+    {
+      "id": "cream_milk",
+      "name": "Cream Milk",
+      "hex": "#fff5e0"
+    },
+    {
+      "id": "apple_blush",
+      "name": "Apple Blush",
+      "hex": "#f8b3a8"
+    },
+    {
+      "id": "sunrise_peach",
+      "name": "Sunrise Peach",
+      "hex": "#ffd1ad"
+    },
+    {
+      "id": "soil_brown",
+      "name": "Soil Brown",
+      "hex": "#dcbf9f"
+    }
+  ],
+  "minAppVersion": "1.3.0",
+  "version": "1.0.0"
+}

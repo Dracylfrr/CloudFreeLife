@@ -1,0 +1,208 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "mountain",
+      "name": "Mountain",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "snow",
+      "name": "Snow cap",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "hill",
+      "name": "Hill",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "pine_a_trunk",
+      "name": "Tree trunk",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "pine_a_c",
+      "name": "Pine boughs",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "pine_a_b",
+      "name": "Pine boughs",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "pine_a_a",
+      "name": "Pine boughs",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "pine_b_trunk",
+      "name": "Tree trunk",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "pine_b_c",
+      "name": "Pine boughs",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "pine_b_b",
+      "name": "Pine boughs",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "pine_b_a",
+      "name": "Pine boughs",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "field",
+      "name": "Field",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "track_bed",
+      "name": "Track bed",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "car_a",
+      "name": "Train car",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "car_b",
+      "name": "Train car",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "car_a_win1",
+      "name": "Window",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "car_a_win2",
+      "name": "Window",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "car_b_win1",
+      "name": "Window",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "car_b_win2",
+      "name": "Window",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "smoke",
+      "name": "Smoke",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "chimney",
+      "name": "Chimney",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "engine_body",
+      "name": "Engine",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "engine_cab",
+      "name": "Cab",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "engine_cab_window",
+      "name": "Cab window",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "engine_front",
+      "name": "Engine front",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "wheel_1",
+      "name": "Wheel",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "wheel_2",
+      "name": "Wheel",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "wheel_3",
+      "name": "Wheel",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "wheel_4",
+      "name": "Wheel",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "wheel_5",
+      "name": "Wheel",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "wheel_6",
+      "name": "Wheel",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "wheel_7",
+      "name": "Wheel",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "hitch_a",
+      "name": "Hitch",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "hitch_b",
+      "name": "Hitch",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "flower_a_petals",
+      "name": "Flower petals",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "flower_a_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_b_petals",
+      "name": "Flower petals",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "flower_b_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

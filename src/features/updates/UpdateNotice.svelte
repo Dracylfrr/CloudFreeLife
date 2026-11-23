@@ -2,6 +2,7 @@
   import { settings } from '../../core/settings';
   import Icon from '../../ui/Icon.svelte';
   import Button from '../../ui/Button.svelte';
+  import { navigate } from '../../core/router';
   import { noticeText } from './release';
   import { hideForNow, startInstall, toastCandidate, updateState } from './updater';
 
@@ -17,7 +18,8 @@
       <small>{text.detail}</small>
     </span>
     <span class="btns">
-      <Button size="sm" variant="primary" icon="download" onclick={() => startInstall(candidate)}>Install update</Button>
+      <Button size="sm" variant="primary" icon="download" onclick={() => startInstall(candidate)}>Install</Button>
+      <Button size="sm" variant="soft" onclick={() => { hideForNow(candidate); navigate({ name: 'updates' }); }}>Details</Button>
       <Button size="sm" variant="ghost" onclick={() => hideForNow(candidate)}>Later</Button>
     </span>
   </aside>
@@ -34,9 +36,9 @@
     gap: 14px;
     padding: 12px 14px 12px 16px;
     border-radius: 28px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.97), rgba(246, 240, 255, 0.97));
+    background: linear-gradient(135deg, rgb(var(--w) / 0.97), rgba(246, 240, 255, 0.97));
     box-shadow: var(--shadow-m);
-    border: 1px solid rgba(255, 255, 255, 0.9);
+    border: 1px solid rgb(var(--w) / 0.9);
     animation: slide 0.5s var(--ease);
     max-width: min(620px, calc(100vw - 44px));
   }
@@ -46,8 +48,8 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #ffe6ef, #e6dcfa);
-    color: #7a52c8;
+    background: linear-gradient(135deg, var(--nav-a), var(--nav-b));
+    color: var(--c-violet);
     flex: none;
   }
   .msg {

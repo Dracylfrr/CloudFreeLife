@@ -1,0 +1,11 @@
+{
+  "id": "starry_greenhouse",
+  "name": "Starry Greenhouse",
+  "description": "A glass greenhouse full of sleeping plants.",
+  "version": "1.0.0",
+  "minAppVersion": "1.3.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

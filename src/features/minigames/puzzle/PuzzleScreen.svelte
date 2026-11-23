@@ -224,7 +224,7 @@
     border: none;
     padding: 0;
     background-repeat: no-repeat;
-    box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.85);
+    box-shadow: inset 0 0 0 1.5px rgb(var(--w) / 0.85);
     transition:
       box-shadow 0.2s,
       filter 0.2s;
@@ -239,7 +239,7 @@
   .tile.sel {
     box-shadow:
       inset 0 0 0 4px #a698e0,
-      inset 0 0 0 7px rgba(255, 255, 255, 0.7);
+      inset 0 0 0 7px rgb(var(--w) / 0.7);
     filter: brightness(1.06);
     z-index: 2;
   }

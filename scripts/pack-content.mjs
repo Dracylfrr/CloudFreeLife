@@ -38,7 +38,7 @@ if (!/^[a-z0-9][a-z0-9_]*$/.test(id)) throw new Error('--id must be lowercase le
 if (!/^\d+\.\d+\.\d+$/.test(version)) throw new Error('--version must look like 1.0.0');
 
 const allowed = [/^books\/[a-z0-9_]+\//, /^palettes\/[a-z0-9_]+\.json$/, /^minigames\/(pastel_breaker|splash_wall|memory_meadow|pastel_puzzle)\/levels\/[a-z0-9_]+\//, /^stories\/(relaxing|adventures)\/[a-z0-9_]+\//];
-const exts = ['.json', '.svg', '.png'];
+const exts = ['.json', '.svg', '.png', '.webp'];
 
 async function walk(dir) {
   const files = [];
@@ -55,12 +55,12 @@ const files = {};
 for (const file of await walk(root)) {
   const rel = relative(root, file).replace(/\\/g, '/');
   if (!exts.some((x) => rel.endsWith(x))) {
-    console.warn(`skipping ${rel} (only .json, .svg and .png are allowed)`);
+    console.warn(`skipping ${rel} (only .json, .svg, .png and .webp are allowed)`);
     continue;
   }
   if (!allowed.some((re) => re.test(rel))) throw new Error(`"${rel}" is outside the content folders a pack may contain`);
   const bytes = await readFile(file);
-  files[rel] = rel.endsWith('.png') ? { encoding: 'base64', data: bytes.toString('base64') } : { encoding: 'utf8', data: bytes.toString('utf8') };
+  files[rel] = (rel.endsWith('.png') || rel.endsWith('.webp')) ? { encoding: 'base64', data: bytes.toString('base64') } : { encoding: 'utf8', data: bytes.toString('utf8') };
 }
 if (!Object.keys(files).length) throw new Error('No files found to pack');
 

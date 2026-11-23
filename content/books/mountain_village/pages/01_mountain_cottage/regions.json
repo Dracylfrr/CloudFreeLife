@@ -1,0 +1,188 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "mountain_far",
+      "name": "Far mountain",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "mountain_near",
+      "name": "Mountain",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "snow_far",
+      "name": "Snow cap",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "snow_near",
+      "name": "Snow cap",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "slope",
+      "name": "Hillside",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "meadow",
+      "name": "Meadow",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "pine_a_trunk",
+      "name": "Tree trunk",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "pine_a_c",
+      "name": "Pine boughs",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "pine_a_b",
+      "name": "Pine boughs",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "pine_a_a",
+      "name": "Pine boughs",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "pine_b_trunk",
+      "name": "Tree trunk",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "pine_b_c",
+      "name": "Pine boughs",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "pine_b_b",
+      "name": "Pine boughs",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "pine_b_a",
+      "name": "Pine boughs",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "pine_c_trunk",
+      "name": "Tree trunk",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "pine_c_c",
+      "name": "Pine boughs",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "pine_c_b",
+      "name": "Pine boughs",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "pine_c_a",
+      "name": "Pine boughs",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "smoke",
+      "name": "Smoke",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cabin_wall",
+      "name": "Wall",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "cabin_chimney",
+      "name": "Chimney",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "cabin_roof",
+      "name": "Roof",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "cabin_door",
+      "name": "Door",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "cabin_window_right",
+      "name": "Window",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "cabin_window_left",
+      "name": "Window",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "path",
+      "name": "Path",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_bed",
+      "name": "Flower bed",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "flower_a_petals",
+      "name": "Flower petals",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "flower_a_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_b_petals",
+      "name": "Flower petals",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_b_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_c_petals",
+      "name": "Flower petals",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "flower_c_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

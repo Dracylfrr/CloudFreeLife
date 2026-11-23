@@ -1,0 +1,49 @@
+{
+  "id": "blossom_rain",
+  "name": "Blossom Rain",
+  "description": "Petal pinks, rain lilac and cool drizzle blues.",
+  "colors": [
+    {
+      "id": "petal_pink",
+      "name": "Petal Pink",
+      "hex": "#f9c9dc"
+    },
+    {
+      "id": "rain_lilac",
+      "name": "Rain Lilac",
+      "hex": "#d8c8f0"
+    },
+    {
+      "id": "cool_drizzle",
+      "name": "Cool Drizzle",
+      "hex": "#bcd3f2"
+    },
+    {
+      "id": "cherry_mist",
+      "name": "Cherry Mist",
+      "hex": "#f2a9c6"
+    },
+    {
+      "id": "silver_cloud",
+      "name": "Silver Cloud",
+      "hex": "#e4e8f4"
+    },
+    {
+      "id": "puddle_blue",
+      "name": "Puddle Blue",
+      "hex": "#a9c8ee"
+    },
+    {
+      "id": "fresh_leaf",
+      "name": "Fresh Leaf",
+      "hex": "#c6e8cc"
+    },
+    {
+      "id": "dew_pearl",
+      "name": "Dew Pearl",
+      "hex": "#f6f2fb"
+    }
+  ],
+  "minAppVersion": "1.3.0",
+  "version": "1.0.0"
+}
