@@ -1,0 +1,26 @@
+{
+  "id": "grand_tour",
+  "name": "Grand Tour",
+  "description": "A mixed bag of twelve pairs.",
+  "minigame": "memory_meadow",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.0",
+  "objective": "The biggest board. Take it one pair at a time.",
+  "columns": 6,
+  "cardBack": "#ffdcc8",
+  "symbols": [
+    "planet",
+    "shell",
+    "rainbow",
+    "balloon",
+    "fish",
+    "mushroom",
+    "moon",
+    "flower",
+    "leaf",
+    "heart",
+    "drop",
+    "star"
+  ]
+}

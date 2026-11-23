@@ -4,7 +4,7 @@ import { __resetSettingsForTests, sanitizeSettings, updateSettings, DEFAULT_SETT
 import { MOOD_PROFILES, effectiveMusic, moodProfile } from '../src/core/moods';
 import { MUSIC, allPitches } from '../src/core/music';
 import { __setMinimizedForTests } from '../src/core/visibility';
-import { __resetAudioForTests, initAudio, preview, setNarrating, sfx, wantedMusic } from '../src/core/audio';
+import { __resetAudioForTests, initAudio, preview, sfx, wantedMusic } from '../src/core/audio';
 
 // ---- a tiny fake Web Audio engine that records what would be played ----
 class Param {
@@ -286,15 +286,6 @@ describe('background music', () => {
     }
   });
 
-  it('narration lowers the music so the voice stays clear, and restores it afterwards', () => {
-    updateSettings({ musicOn: true });
-    const music = log.gains.find((g) => Math.abs(g.gain.value - DEFAULT_SETTINGS.volumeMusic) < 1e-6);
-    expect(music).toBeTruthy();
-    setNarrating(true);
-    expect(music!.gain.value).toBeCloseTo(DEFAULT_SETTINGS.volumeMusic * 0.3, 3);
-    setNarrating(false);
-    expect(music!.gain.value).toBeCloseTo(DEFAULT_SETTINGS.volumeMusic, 3);
-  });
 });
 
 describe('mood presets and audio settings persistence', () => {

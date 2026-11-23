@@ -776,3 +776,6 @@ export function checkCompatibility(item: { minAppVersion: string }, appVersion: 
   }
   return { ok: true };
 }
+
+// Shared helpers for the 1.4 manifests (see manifests14.ts).
+export { Errs, isObj, reqString, reqVersion, reqFile, reqId, done, validateLevelBase, HEX_RE, ID_RE };

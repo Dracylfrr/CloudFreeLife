@@ -1,0 +1,26 @@
+{
+  "id": "quiet_sky",
+  "name": "Quiet Sky",
+  "description": "A little sun above a long, calm cloud.",
+  "minigame": "pastel_breaker",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "objective": "Clear the sky, nice and slowly.",
+  "grid": [
+    ".....yy.....",
+    "....yyyy....",
+    "..wwwwwwww..",
+    ".wwwwwwwwww.",
+    "ssssssssssss",
+    "pspspspspsps",
+    "llllllllllll"
+  ],
+  "legend": {
+    "w": "#f4f9ff",
+    "s": "#bfe4f7",
+    "p": "#ffd3e2",
+    "y": "#fff2bd",
+    "l": "#e6d8f8"
+  }
+}

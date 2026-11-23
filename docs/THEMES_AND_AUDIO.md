@@ -90,3 +90,9 @@ Add the track id to `MUSIC_MOODS` in `src/core/settings.ts`. The tests check tha
 ## Sound effects
 
 Sound effects are in `src/core/audio.ts`. Each one is a few soft tones with a gentle attack and a long decay through a shared room reverb. Repeated sounds (bubbles, bricks) walk up and down a pentatonic scale, so a long run sounds like a little melody. The tests play every effect against a fake audio engine and check that none is loud, shrill (nothing above 2.6 kHz) or starts with a click.
+
+## App icon (1.4)
+
+Settings, Display, *App icon* offers five little cloud icons. They are defined in `src/core/appIcon.ts` as a short list of colors (three background stops, the cloud, the paint mark and the sparkles), and one function draws the same cloud with those colors, so adding a sixth icon is one more line in `APP_ICONS`.
+
+The choice is saved as `appIcon` in `settings.json`. It changes the corner logo straight away and, in the desktop app, the icon of the window and the taskbar (the app draws the icon to a small PNG and hands it to Windows). The installed shortcut and the `.exe` file keep the original icon because Windows reads those from the file. An unknown value falls back to *Morning Cloud*.

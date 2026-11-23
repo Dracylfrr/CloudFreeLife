@@ -140,15 +140,15 @@ Any story, chapter or scene can carry one picture. Every field is optional, and 
 ### Style
 Soft, rounded and calm: pastel fills, one warm-grey outline (`#6e6a8e`, about 3 px), no sharp or scary shapes, original characters only. `scripts/stories/artlib.mjs` has the small building pieces used for the bundled pictures (clouds, hills, trees, houses, lanterns, an owl, a whale, a train...) if you would like to compose scenes in code; `scripts/stories/art_new.mjs` shows how.
 
-## Writing for Read Aloud (1.3)
+## Writing for calm reading
 
-Read Aloud speaks each paragraph with a voice already on the reader's computer. A few habits make stories sound better:
+These habits make a story pleasant to read, and keep it ready for narration if that returns:
 
-- Keep paragraphs to about 40 to 110 words. Each is spoken, and highlighted, as one block.
-- Write sentences you could say in one breath. Very long sentences are split at commas, but short ones sound calmer.
-- Use plain punctuation. Dashes become pauses; do not use markdown (`*stars*`) or emoji, which are removed or read oddly.
-- Abbreviations such as Mr., Mrs., Dr. and St. are handled; spell out others ("for example", not "e.g.").
-- Read it aloud yourself once. If you stumble, a voice will too.
+- Keep paragraphs to about 40 to 110 words.
+- Write sentences you could say in one breath. Short sentences read more calmly.
+- Use plain punctuation. Do not use markdown (`*stars*`) or emoji.
+- Spell out abbreviations ("for example", not "e.g.").
+- Read it aloud yourself once. If you stumble, a reader will too.
 
 ## Favorites, progress and the Reading List
 

@@ -1,0 +1,23 @@
+{
+  "id": "silent_timer",
+  "name": "Silent Timer",
+  "description": "No guidance at all: just a soft bell, quiet, and a bell again. You choose how long.",
+  "accent": "#c9bdf0",
+  "kind": "timer",
+  "minutes": 5,
+  "durations": [
+    1,
+    3,
+    5,
+    10,
+    15,
+    20
+  ],
+  "ambience": "none",
+  "scene": "dots",
+  "cues": [],
+  "order": 6,
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "cover": "cover.svg"
+}

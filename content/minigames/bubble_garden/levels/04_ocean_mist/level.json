@@ -1,0 +1,29 @@
+{
+  "id": "bubbles_ocean_mist",
+  "name": "Ocean Mist",
+  "description": "Sea-glass bubbles rising through a misty blue sea.",
+  "minigame": "bubble_garden",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "objective": "A cool, slow one. Pop a few or merge them all.",
+  "palette": [
+    "#bdeeea",
+    "#a9d4f5",
+    "#d3e9f9",
+    "#c6ecda",
+    "#e6d8f8"
+  ],
+  "sky": [
+    "#bde7f3",
+    "#e3f5f1"
+  ],
+  "scenery": "ocean",
+  "spawn": 0.9,
+  "speed": 30,
+  "size": [
+    26,
+    52
+  ],
+  "rounds": 3
+}

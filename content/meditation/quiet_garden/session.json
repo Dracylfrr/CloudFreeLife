@@ -1,0 +1,40 @@
+{
+  "id": "quiet_garden",
+  "name": "Quiet Garden",
+  "description": "A gentle walk through an imaginary garden, with soft music. About five minutes.",
+  "accent": "#8ed2b2",
+  "kind": "stillness",
+  "minutes": 5,
+  "ambience": "garden",
+  "scene": "garden",
+  "cues": [
+    {
+      "at": 0,
+      "text": "Picture a quiet garden in the early light."
+    },
+    {
+      "at": 40,
+      "text": "Notice the colors: soft greens, a few pale flowers."
+    },
+    {
+      "at": 100,
+      "text": "Listen for small sounds. A bee. A leaf."
+    },
+    {
+      "at": 170,
+      "text": "Walk slowly along the path in your mind."
+    },
+    {
+      "at": 240,
+      "text": "Find a bench and sit for a while."
+    },
+    {
+      "at": 285,
+      "text": "When you are ready, let the garden fade gently."
+    }
+  ],
+  "order": 3,
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "cover": "cover.svg"
+}

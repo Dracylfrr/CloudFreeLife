@@ -1,0 +1,13 @@
+{
+  "id": "bunny_garden",
+  "name": "Bunny Garden",
+  "description": "A bunny among the carrots.",
+  "minigame": "pastel_puzzle",
+  "thumbnail": "picture.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.1",
+  "objective": "Hop the pieces back where they belong.",
+  "picture": "picture.svg",
+  "columns": 5,
+  "rows": 4
+}

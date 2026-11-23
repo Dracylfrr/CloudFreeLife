@@ -6,7 +6,8 @@
   import { sfx } from '../../../core/audio';
   import { canvasToPng } from '../../painting/raster';
   import { savePngFile } from '../../painting/export';
-  import { confirmDialog } from '../../../core/feedback';
+  import { confirmDialog, toast } from '../../../core/feedback';
+  import { saveWallToGallery } from './gallery';
   import Button from '../../../ui/Button.svelte';
   import Icon from '../../../ui/Icon.svelte';
   import { GameLoop } from '../loop';
@@ -159,6 +160,22 @@
     await savePngFile(await canvasToPng(await game.exportPng()), `${level?.manifest.name ?? 'splash wall'}`);
   }
 
+  let savingToGallery = $state(false);
+  async function saveToGallery() {
+    if (!game || savingToGallery) return;
+    savingToGallery = true;
+    try {
+      await saveWallToGallery(await game.exportPng(), level?.manifest.name);
+      sfx.chime();
+      toast('Saved to your Gallery ✨', 'success');
+    } catch (e) {
+      console.error(e);
+      toast("Couldn't save to the Gallery. Please try again.", 'error');
+    } finally {
+      savingToGallery = false;
+    }
+  }
+
   function key(e: KeyboardEvent) {
     const n = Number(e.key);
     if (n >= 1 && n <= palette.length) chooseColor(n);
@@ -184,7 +201,8 @@
       </select>
     </label>
     <span class="spacer"></span>
-    <Button variant="ghost" size="sm" icon="download" title="Save picture as PNG" onclick={save}>Save</Button>
+    <Button variant="ghost" size="sm" icon="image" title="Save this wall to your Gallery" disabled={savingToGallery || loading} onclick={saveToGallery}>Save to Gallery</Button>
+    <Button variant="ghost" size="sm" icon="download" title="Export the picture as a PNG file" onclick={save}>Export PNG</Button>
     <Button variant="ghost" size="sm" icon="refresh" title="Wash the wall" onclick={reset}>Wash</Button>
   </header>
 
@@ -208,6 +226,7 @@
           <p class="muted">It looks wonderful. Keep splashing, or move on whenever you like.</p>
           <div class="acts">
             <Button variant="primary" onclick={nextLevel}>Next wall</Button>
+            <Button variant="soft" icon="image" disabled={savingToGallery} onclick={saveToGallery}>Save to Gallery</Button>
             <Button variant="soft" onclick={() => (complete = false)}>Keep splashing</Button>
             <Button variant="ghost" onclick={() => navigate({ name: 'minigames' })}>All games</Button>
           </div>

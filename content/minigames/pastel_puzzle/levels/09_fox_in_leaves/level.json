@@ -1,0 +1,13 @@
+{
+  "id": "fox_in_leaves",
+  "name": "Fox in Leaves",
+  "description": "A fox curled up in autumn leaves.",
+  "minigame": "pastel_puzzle",
+  "thumbnail": "picture.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.1",
+  "objective": "Twelve pieces make one cozy fox.",
+  "picture": "picture.svg",
+  "columns": 4,
+  "rows": 3
+}

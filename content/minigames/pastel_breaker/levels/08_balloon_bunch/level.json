@@ -1,0 +1,25 @@
+{
+  "id": "balloon_bunch",
+  "name": "Balloon Bunch",
+  "description": "Three bunches of balloons drifting up.",
+  "minigame": "pastel_breaker",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "objective": "Pop all the balloons and let the strings drift away.",
+  "grid": [
+    ".bbb.ppp.ggg",
+    "bbbbpppppggg",
+    ".bbb.ppp.ggg",
+    "..b...p...g.",
+    "..b...p...g.",
+    "............",
+    ".l.l.l.l.l.l"
+  ],
+  "legend": {
+    "b": "#bfe4f7",
+    "p": "#ffd3e2",
+    "g": "#c6ecda",
+    "l": "#e6d8f8"
+  }
+}

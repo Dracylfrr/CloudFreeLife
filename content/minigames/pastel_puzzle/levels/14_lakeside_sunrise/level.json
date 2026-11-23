@@ -1,0 +1,13 @@
+{
+  "id": "lakeside_sunrise",
+  "name": "Lakeside Sunrise",
+  "description": "Morning light over a still lake.",
+  "minigame": "pastel_puzzle",
+  "thumbnail": "picture.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.1",
+  "objective": "The biggest picture: thirty pieces.",
+  "picture": "picture.svg",
+  "columns": 6,
+  "rows": 5
+}

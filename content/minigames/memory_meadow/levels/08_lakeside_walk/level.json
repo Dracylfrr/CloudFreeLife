@@ -1,0 +1,22 @@
+{
+  "id": "lakeside_walk",
+  "name": "Lakeside Walk",
+  "description": "Eight pairs by the water.",
+  "minigame": "memory_meadow",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.0",
+  "objective": "Match eight pairs from the lakeside.",
+  "columns": 4,
+  "cardBack": "#bdeeea",
+  "symbols": [
+    "fish",
+    "drop",
+    "leaf",
+    "butterfly",
+    "shell",
+    "rainbow",
+    "flower",
+    "sun"
+  ]
+}

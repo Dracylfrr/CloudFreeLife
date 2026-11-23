@@ -14,6 +14,13 @@ const levels = [
   { folder: '04_ocean_pairs', name: 'Ocean Pairs', description: 'Treasures from the shallows.', objective: 'Match eight pairs from the sea.', columns: 4, back: '#bdeeea', symbols: ['fish', 'shell', 'drop', 'star', 'cloud', 'heart', 'moon', 'rainbow'] },
   { folder: '05_cosmic_pairs', name: 'Cosmic Pairs', description: 'Twenty cards under the stars.', objective: 'Find ten pairs among the stars.', columns: 5, back: '#e6d8f8', symbols: ['star', 'moon', 'planet', 'sun', 'cloud', 'balloon', 'heart', 'rainbow', 'drop', 'shell'] },
   { folder: '06_big_meadow', name: 'Big Meadow', description: 'The biggest meadow: twenty-four cards.', objective: 'Match twelve pairs. A hint is always one click away.', columns: 6, back: '#ffd3e2', symbols: ['flower', 'leaf', 'mushroom', 'butterfly', 'drop', 'sun', 'cloud', 'star', 'moon', 'heart', 'fish', 'planet'] }
+  ,
+  { folder: '07_cozy_evening', name: 'Cozy Evening', description: 'Six pairs for a quiet evening.', objective: 'Find every pair. There is no clock.', columns: 4, back: '#d9cdf6', symbols: ['moon', 'star', 'heart', 'cloud', 'mushroom', 'balloon'] },
+  { folder: '08_lakeside_walk', name: 'Lakeside Walk', description: 'Eight pairs by the water.', objective: 'Match eight pairs from the lakeside.', columns: 4, back: '#bdeeea', symbols: ['fish', 'drop', 'leaf', 'butterfly', 'shell', 'rainbow', 'flower', 'sun'] },
+  { folder: '09_sweet_dreams', name: 'Sweet Dreams', description: 'Six sleepy pairs in a tall, narrow bed.', objective: 'Match the sleepy pictures, three to a row.', columns: 3, back: '#ffd3e2', symbols: ['moon', 'star', 'cloud', 'heart', 'balloon', 'planet'] },
+  { folder: '10_cloud_parade', name: 'Cloud Parade', description: 'Nine pairs marching by.', objective: 'Watch the parade and find the pairs.', columns: 6, back: '#bfe4f7', symbols: ['cloud', 'sun', 'rainbow', 'balloon', 'star', 'moon', 'drop', 'heart', 'butterfly'] },
+  { folder: '11_mushroom_forest', name: 'Mushroom Forest', description: 'Ten pairs among the ferns.', objective: 'Twenty cards, ten pairs, all the time you like.', columns: 5, back: '#c6ecda', symbols: ['mushroom', 'leaf', 'flower', 'butterfly', 'drop', 'fish', 'shell', 'sun', 'cloud', 'heart'] },
+  { folder: '12_grand_tour', name: 'Grand Tour', description: 'A mixed bag of twelve pairs.', objective: 'The biggest board. Take it one pair at a time.', columns: 6, back: '#ffdcc8', symbols: ['planet', 'shell', 'rainbow', 'balloon', 'fish', 'mushroom', 'moon', 'flower', 'leaf', 'heart', 'drop', 'star'] }
 ];
 
 function thumb(l) {

@@ -2,6 +2,9 @@
 import { Scene, C, rect, circle, ellipse, rpoly, star, cloud, ground, petals, leaf, blob, bird, addStars, dome } from './dsl.mjs';
 import { cloudCastle } from './pages_cloud.mjs';
 import { sunnyBeach, meadowFlowers } from './pages_peaceful.mjs';
+import { foxInLeaves, bunnyGarden, owlMoon } from './pages_forest.mjs';
+import { turtleReef } from './pages_ocean.mjs';
+import { birthdayCake } from './pages_extra.mjs';
 
 const PASTELS = ['#f6b8cf', '#bfe4f7', '#c6ecda', '#fff2bd', '#d9cdf6', '#ffdcc8'];
 
@@ -80,6 +83,17 @@ function colorMatch() {
   S.region('triangle_mint', 'Mint triangle', rpoly([[200, 640], [95, 460], [305, 460]], 26), '#c6ecda');
   S.region('cloud_lilac', 'Lilac cloud', cloud(500, 520, 250, 0), '#d9cdf6');
   S.region('drop_peach', 'Peach drop', 'M800 440Q890 560 800 650Q710 560 800 440Z', '#ffdcc8');
+  return S;
+}
+
+function balloonColors() {
+  const S = new Scene('balloon_colors', 'Balloon Colors');
+  S.region('back_wall', 'Sky', rect(-6, -6, 1012, 762), C.skyPale);
+  const list = [['pink', 150, 250, '#f6b8cf'], ['blue', 340, 190, '#bfe4f7'], ['yellow', 530, 270, '#fff2bd'], ['mint', 720, 200, '#c6ecda'], ['lilac', 880, 300, '#d9cdf6'], ['peach', 500, 520, '#ffdcc8']];
+  for (const [name, x, y, col] of list) {
+    S.line(`M${x} ${y + 100}q-16 90 0 170`, { w: 5 });
+    S.region(`balloon_${name}`, `${name[0].toUpperCase()}${name.slice(1)} balloon`, ellipse(x, y, 84, 104), col);
+  }
   return S;
 }
 
@@ -174,6 +188,55 @@ const wallLevels = [
     objective: 'Splash however you like. There is nothing to win.',
     scene: freeSplash(),
     goal: { type: 'free' }
+  },
+  {
+    folder: '11_fox_in_leaves',
+    name: 'Fox in Leaves',
+    description: 'A cozy fox and a bed of autumn leaves.',
+    objective: 'Cover the scene with warm color.',
+    scene: foxInLeaves(),
+    goal: { type: 'coverage', target: 0.6 }
+  },
+  {
+    folder: '12_bunny_garden',
+    name: 'Bunny Garden',
+    description: 'A bunny, a carrot patch and plenty of sunshine.',
+    objective: 'Splash the garden until it is mostly colored in.',
+    scene: bunnyGarden(),
+    goal: { type: 'coverage', target: 0.6 }
+  },
+  {
+    folder: '13_night_owl',
+    name: 'Night Owl',
+    description: 'An owl keeping watch beneath the moon.',
+    objective: 'Bring the night to life with soft color.',
+    scene: owlMoon(),
+    goal: { type: 'coverage', target: 0.55 }
+  },
+  {
+    folder: '14_turtle_reef',
+    name: 'Turtle Reef',
+    description: 'A turtle drifting over a bright reef.',
+    objective: 'Splash the reef with color.',
+    scene: turtleReef(),
+    goal: { type: 'coverage', target: 0.6 }
+  },
+  {
+    folder: '15_birthday_cake',
+    name: 'Birthday Cake',
+    description: 'A big cake that needs frosting.',
+    objective: 'Cover the cake and the table with color.',
+    scene: birthdayCake(),
+    goal: { type: 'coverage', target: 0.65 }
+  },
+  {
+    folder: '16_balloon_colors',
+    name: 'Balloon Colors',
+    description: 'Six balloons, each with a color to match.',
+    objective: 'Splash each balloon with the color it shows as a hint.',
+    scene: balloonColors(),
+    goal: { type: 'color_match', targets: { balloon_pink: '#f6b8cf', balloon_blue: '#bfe4f7', balloon_yellow: '#fff2bd', balloon_mint: '#c6ecda', balloon_lilac: '#d9cdf6', balloon_peach: '#ffdcc8' } },
+    colors: ['#f6b8cf', '#bfe4f7', '#fff2bd', '#c6ecda', '#d9cdf6', '#ffdcc8']
   }
 ];
 

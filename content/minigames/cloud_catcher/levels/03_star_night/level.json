@@ -1,0 +1,48 @@
+{
+  "id": "catcher_star_night",
+  "name": "Star Night",
+  "description": "Stars and moons drifting across a deep, calm night.",
+  "minigame": "cloud_catcher",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "objective": "Catch the stars and moons into their matching colors.",
+  "kinds": [
+    "star",
+    "moon"
+  ],
+  "colors": [
+    "#fff2bd",
+    "#d9cdf6",
+    "#bfe4f7"
+  ],
+  "zones": [
+    {
+      "id": "zone_1",
+      "label": "Gold",
+      "color": "#fff2bd"
+    },
+    {
+      "id": "zone_2",
+      "label": "Lilac",
+      "color": "#d9cdf6"
+    },
+    {
+      "id": "zone_3",
+      "label": "Moonblue",
+      "color": "#bfe4f7"
+    }
+  ],
+  "spawn": 0.6,
+  "speed": 24,
+  "sky": [
+    "#3a3f86",
+    "#8478bd"
+  ],
+  "scenery": "night",
+  "pattern": [
+    "star",
+    "moon",
+    "star"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "one_minute_reset",
+  "name": "One Minute Reset",
+  "description": "A single minute of slow breathing, for whenever you would like a small pause.",
+  "accent": "#8fc7ec",
+  "kind": "breathing",
+  "minutes": 1,
+  "breath": {
+    "inhale": 4,
+    "hold": 0,
+    "exhale": 6,
+    "rest": 0
+  },
+  "ambience": "none",
+  "scene": "cloud",
+  "cues": [
+    {
+      "at": 0,
+      "text": "Settle in. Let your shoulders soften."
+    },
+    {
+      "at": 18,
+      "text": "In through your nose, out through your mouth, whenever you like."
+    },
+    {
+      "at": 38,
+      "text": "There is nothing to fix right now."
+    },
+    {
+      "at": 52,
+      "text": "Nearly there. Notice how you feel, whatever it is."
+    }
+  ],
+  "order": 1,
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "cover": "cover.svg"
+}

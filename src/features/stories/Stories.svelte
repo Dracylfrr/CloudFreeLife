@@ -6,52 +6,47 @@
   import { buildReadingList, groupReadingList, type ReadingEntry } from './readingList';
   import ReadingCard from './ReadingCard.svelte';
 
-  type Tab = 'continue' | 'stories' | 'adventures' | 'notStarted' | 'finished' | 'favorites';
-  let { tab: initial }: { tab?: Tab } = $props();
+  // One screen, two places: "Cozy Stories" (books you read, with no choices) and
+  // "Story Adventures" (you choose what happens). They share the same simple list.
+  type Tab = 'continue' | 'all' | 'notStarted' | 'finished' | 'favorites';
+  let { kind, tab: initial }: { kind: 'story' | 'adventure'; tab?: Tab } = $props();
+  const isAdventure = $derived(kind === 'adventure');
 
-  const all = $derived(buildReadingList($catalog.stories, $catalog.adventures, $storyProgress));
-  const groups = $derived(groupReadingList(all));
+  const everything = $derived(buildReadingList($catalog.stories, $catalog.adventures, $storyProgress));
+  const mine = $derived(everything.filter((e) => e.kind === kind));
+  const groups = $derived(groupReadingList(mine));
 
-  // Open on "Continue" when something is in progress, otherwise on the stories themselves.
-  let tab = $state<Tab>(untrack(() => initial ?? (groupReadingList(buildReadingList($catalog.stories, $catalog.adventures, $storyProgress)).continue.length ? 'continue' : 'stories')));
+  let tab = $state<Tab>(
+    untrack(() => {
+      if (initial) return initial;
+      const list = buildReadingList($catalog.stories, $catalog.adventures, $storyProgress).filter((e) => e.kind === kind);
+      return groupReadingList(list).continue.length ? 'continue' : 'all';
+    })
+  );
   let who = $state<'all' | Protagonist>('all');
   let genre = $state<string>('all');
 
-  const stories = $derived(all.filter((e) => e.kind === 'story'));
-  const adventures = $derived(all.filter((e) => e.kind === 'adventure'));
   const genres = $derived([...new Set($catalog.adventures.map((a) => a.manifest.genre))].sort());
-  const shownAdventures = $derived(adventures.filter((e) => (who === 'all' || e.adventure?.manifest.protagonist === who) && (genre === 'all' || e.adventure?.manifest.genre === genre)));
 
   const tabs = $derived<{ id: Tab; label: string; count: number }[]>([
     { id: 'continue', label: 'Continue', count: groups.continue.length },
-    { id: 'stories', label: 'Cozy Stories', count: stories.length },
-    { id: 'adventures', label: 'Story Adventures', count: adventures.length },
+    { id: 'all', label: isAdventure ? 'All adventures' : 'All stories', count: mine.length },
     { id: 'notStarted', label: 'Not started', count: groups.notStarted.length },
     { id: 'finished', label: 'Finished', count: groups.finished.length },
     { id: 'favorites', label: 'Favorites', count: groups.favorites.length }
   ]);
 
-  const shown = $derived<ReadingEntry[]>(
-    tab === 'continue' ? groups.continue : tab === 'stories' ? stories : tab === 'adventures' ? shownAdventures : tab === 'notStarted' ? groups.notStarted : tab === 'finished' ? groups.finished : groups.favorites
-  );
+  const base = $derived<ReadingEntry[]>(tab === 'continue' ? groups.continue : tab === 'all' ? mine : tab === 'notStarted' ? groups.notStarted : tab === 'finished' ? groups.finished : groups.favorites);
+  const shown = $derived(isAdventure ? base.filter((e) => (who === 'all' || e.adventure?.manifest.protagonist === who) && (genre === 'all' || e.adventure?.manifest.genre === genre)) : base);
 
-  const EMPTY: Record<Tab, string> = {
-    continue: 'Nothing in progress right now. Pick a story and we will keep your place.',
-    stories: 'No stories are installed yet. New ones arrive through Updates.',
-    adventures: 'No adventures are installed yet. New ones arrive through Updates.',
+  const thing = $derived(isAdventure ? 'adventures' : 'stories');
+  const EMPTY = $derived<Record<Tab, string>>({
+    continue: `Nothing in progress right now. Pick ${isAdventure ? 'an adventure' : 'a story'} and we will keep your place.`,
+    all: `No ${thing} are installed yet. New ones arrive through Updates.`,
     notStarted: 'You have opened everything. Lovely!',
-    finished: 'Finished stories and adventures will gather here.',
-    favorites: 'Tap the heart on any story to keep it here.'
-  };
-
-  const SUB: Record<Tab, string> = {
-    continue: 'Pick up right where you left off.',
-    stories: 'Short and long stories to read slowly, or listen to with Read Aloud.',
-    adventures: 'Live a story from the inside. Make a choice at every turn and see how many endings you can find.',
-    notStarted: 'Fresh stories, waiting for you.',
-    finished: 'Stories you have read to the end, and adventures with endings found.',
-    favorites: 'Your hearted stories and adventures.'
-  };
+    finished: `Finished ${thing} will gather here.`,
+    favorites: `Tap the heart on any ${isAdventure ? 'adventure' : 'story'} to keep it here.`
+  });
 
   function onKey(e: KeyboardEvent, i: number) {
     let n = -1;
@@ -69,14 +64,18 @@
 <div class="page">
   <header class="page-head">
     <div>
-      <p class="eyebrow">Library</p>
-      <h1>Stories</h1>
-      <p class="sub">{SUB[tab]}</p>
+      <p class="eyebrow">{isAdventure ? 'Choose your path' : 'Library'}</p>
+      <h1>{isAdventure ? 'Story Adventures' : 'Cozy Stories'}</h1>
+      <p class="sub">
+        {isAdventure
+          ? 'Live a story from the inside. Make a choice at every turn and see how many endings you can find.'
+          : 'Gentle illustrated stories to read slowly. Nothing to do but enjoy them.'}
+      </p>
     </div>
-    <span class="pill">{stories.length} stories · {adventures.length} adventures</span>
+    <span class="pill">{mine.length} {isAdventure ? 'adventures' : 'stories'}</span>
   </header>
 
-  <div class="tabs" role="tablist" aria-label="Story sections">
+  <div class="tabs" role="tablist" aria-label={isAdventure ? 'Adventure sections' : 'Story sections'}>
     {#each tabs as t, i (t.id)}
       <button class="tab" class:on={tab === t.id} role="tab" aria-selected={tab === t.id} tabindex={tab === t.id ? 0 : -1} onclick={() => (tab = t.id)} onkeydown={(e) => onKey(e, i)}>
         {t.label}{#if t.count > 0}<span class="n">{t.count}</span>{/if}
@@ -84,7 +83,7 @@
     {/each}
   </div>
 
-  {#if tab === 'adventures'}
+  {#if isAdventure}
     <div class="filters" aria-label="Filter adventures">
       <div class="seg" role="group" aria-label="Play as">
         <button class:on={who === 'all'} onclick={() => (who = 'all')}>Everyone</button>
@@ -102,7 +101,7 @@
 
   <div role="tabpanel" aria-label={tabs.find((t) => t.id === tab)?.label}>
     {#if shown.length === 0}
-      <p class="empty">{tab === 'adventures' && adventures.length > 0 ? 'Nothing matches that filter. Try choosing everyone or all genres.' : EMPTY[tab]}</p>
+      <p class="empty">{isAdventure && base.length > 0 ? 'Nothing matches that filter. Try choosing everyone or all genres.' : EMPTY[tab]}</p>
     {:else}
       <div class="shelf">
         {#each shown as e (e.kind + e.id)}

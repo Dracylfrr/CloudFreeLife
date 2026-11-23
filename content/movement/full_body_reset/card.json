@@ -1,0 +1,34 @@
+{
+  "id": "full_body_reset",
+  "name": "Full Body Reset",
+  "description": "A calm, whole-body stretch break on your feet.",
+  "minutes": 5,
+  "position": "Standing",
+  "accent": "#f49bbd",
+  "steps": [
+    {
+      "title": "March gently",
+      "text": "Stand tall and march slowly on the spot for about half a minute, swinging your arms."
+    },
+    {
+      "title": "Reach up",
+      "text": "Raise your arms and stretch toward the ceiling, then lower them slowly."
+    },
+    {
+      "title": "Side reaches",
+      "text": "Reach one arm overhead and lean gently to the side, then switch. Keep your movements easy."
+    },
+    {
+      "title": "Soft forward bend",
+      "text": "With your knees a little bent, tip forward slightly from the hips only as far as feels comfortable, then slowly stand up."
+    },
+    {
+      "title": "Shake it out",
+      "text": "Let your arms and legs shake out loosely, then take three slow breaths. Move slowly and only as far as feels comfortable. Stop if anything hurts."
+    }
+  ],
+  "order": 10,
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "cover": "cover.svg"
+}

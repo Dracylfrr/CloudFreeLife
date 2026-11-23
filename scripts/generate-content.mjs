@@ -26,6 +26,9 @@ import { extraPages } from './art/pages_extra.mjs';
 import { relaxing } from './stories/relaxing.mjs';
 import { adventures } from './stories/adventures.mjs';
 import { adventuresNew } from './stories/adventures_new.mjs';
+import { meditationSessions } from './wellness/meditation.mjs';
+import { bubbleLevels, catcherLevels, zenLevels, flowLevels } from './games/relaxing.mjs';
+import { movementCards } from './wellness/movement.mjs';
 import { storyCovers as oldCovers } from './stories/covers.mjs';
 import { relaxingNew } from './stories/relaxing_new.mjs';
 import { existing as existingArt } from './stories/art_existing.mjs';
@@ -147,6 +150,8 @@ await rm(resolve(content, 'books'), { recursive: true, force: true });
 await rm(resolve(content, 'palettes'), { recursive: true, force: true });
 await rm(resolve(content, 'minigames'), { recursive: true, force: true });
 await rm(resolve(content, 'stories'), { recursive: true, force: true });
+await rm(resolve(content, 'meditation'), { recursive: true, force: true });
+await rm(resolve(content, 'movement'), { recursive: true, force: true });
 
 let pageCount = 0;
 for (const b of books) {
@@ -318,4 +323,30 @@ for (const [i, ad] of allAdventures.entries()) {
   );
 }
 
-console.log(`Generated ${books.length + 1} books, ${pageCount} coloring pages, ${palettes.length} palettes, ${breakerLevels.length} Pastel Breaker levels, ${splashLevels.length} Splash Wall levels, ${memoryLevels.length} Memory Meadow levels, ${puzzleLevels.length} Pastel Puzzle levels, ${allStories.length} cozy stories and ${allAdventures.length} story adventures.`);
+// The four relaxing mini-games (new in 1.4)
+const V14 = '1.4.0';
+const gameLevel = async (game, key, l, extra) => {
+  const dir = `minigames/${game}/levels/${l.folder}`;
+  await put(`${dir}/thumbnail.svg`, l.thumbnail);
+  await put(`${dir}/level.json`, json({ id: l.id, name: l.name, description: l.description, minigame: key, thumbnail: 'thumbnail.svg', version: V14, minAppVersion: V14, objective: l.objective, ...extra(l) }));
+};
+for (const l of bubbleLevels) await gameLevel('bubble_garden', 'bubble_garden', l, (x) => ({ palette: x.palette, sky: x.sky, scenery: x.scenery, spawn: x.spawn, speed: x.speed, size: x.size, rounds: x.rounds }));
+for (const l of catcherLevels) await gameLevel('cloud_catcher', 'cloud_catcher', l, (x) => ({ kinds: x.kinds, colors: x.colors, zones: x.zones, spawn: x.spawn, speed: x.speed, sky: x.sky, scenery: x.scenery, pattern: x.pattern }));
+for (const l of zenLevels) await gameLevel('zen_garden', 'zen_garden', l, (x) => ({ ground: x.ground, groove: x.groove, light: x.light, scenery: x.scenery }));
+for (const l of flowLevels) await gameLevel('paint_flow', 'paint_flow', l, (x) => ({ size: x.size, pairs: x.pairs, solution: x.solution }));
+
+// Meditation sessions and Gentle Movement cards (new in 1.4)
+for (const m of meditationSessions) {
+  const dir = `meditation/${m.id}`;
+  await put(`${dir}/cover.svg`, m.cover);
+  const { cover, ...rest } = m;
+  await put(`${dir}/session.json`, json({ ...rest, version: V14, minAppVersion: V14, cover: 'cover.svg' }));
+}
+for (const c of movementCards) {
+  const dir = `movement/${c.id}`;
+  await put(`${dir}/cover.svg`, c.cover);
+  const { cover, ...rest } = c;
+  await put(`${dir}/card.json`, json({ ...rest, version: V14, minAppVersion: V14, cover: 'cover.svg' }));
+}
+
+console.log(`Generated ${books.length + 1} books, ${pageCount} coloring pages, ${palettes.length} palettes, ${breakerLevels.length} Pastel Breaker levels, ${splashLevels.length} Splash Wall levels, ${memoryLevels.length} Memory Meadow levels, ${puzzleLevels.length} Pastel Puzzle levels, ${allStories.length} cozy stories and ${allAdventures.length} story adventures, ${meditationSessions.length} meditation sessions and ${movementCards.length} movement cards, plus ${bubbleLevels.length} Bubble Garden, ${catcherLevels.length} Cloud Catcher, ${zenLevels.length} Zen Garden and ${flowLevels.length} Paint Flow levels.`);

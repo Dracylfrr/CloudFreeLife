@@ -1,0 +1,29 @@
+{
+  "id": "bubbles_garden",
+  "name": "Garden Bubbles",
+  "description": "Soft greens and blossom pinks above a quiet garden.",
+  "minigame": "bubble_garden",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "objective": "Pop the colors you are asked for, as gently as you like.",
+  "palette": [
+    "#c6ecda",
+    "#ffd3e2",
+    "#fff2bd",
+    "#bfe4f7",
+    "#d7efb6"
+  ],
+  "sky": [
+    "#d8f0e0",
+    "#f7f6dc"
+  ],
+  "scenery": "garden",
+  "spawn": 1,
+  "speed": 28,
+  "size": [
+    24,
+    46
+  ],
+  "rounds": 4
+}

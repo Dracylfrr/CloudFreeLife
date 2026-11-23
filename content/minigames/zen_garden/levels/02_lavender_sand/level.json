@@ -1,0 +1,17 @@
+{
+  "id": "lavender_sand",
+  "name": "Lavender Sand",
+  "description": "Soft lavender sand with a dreamy glow.",
+  "minigame": "zen_garden",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "objective": "Rake, place, and relax.",
+  "ground": [
+    "#e8def6",
+    "#d7c9ee"
+  ],
+  "groove": "#b9a6d8",
+  "light": "#fbf7ff",
+  "scenery": "lavender"
+}

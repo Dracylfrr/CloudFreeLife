@@ -34,16 +34,31 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 - [ ] Artwork is in `%APPDATA%\Cloud-Freelife\artworks\…`; reinstalling/updating keeps it.
 
 ## Mini-games
-- [ ] Pastel Breaker: all 6 levels open; Relax / Classic / Endless; paddle follows the mouse; particles; level-complete screen; Classic game-over.
-- [ ] Splash Wall: all 10 levels open; aim, click-throw, hold-to-charge throw; splat stays in the region; goals count correctly; color match hints; Wash and Save PNG.
+- [ ] Pastel Breaker: all 12 levels open; Relax / Classic / Endless; paddle follows the mouse; particles; level-complete screen; Classic game-over.
+- [ ] Splash Wall: all 16 levels open; aim, click-throw, hold-to-charge throw; splat stays in the region; goals count correctly; color match hints; Wash and Save PNG.
 - [ ] Pause with P; minimize the window and confirm CPU drops to ~0.
+
+## 1.4 checks
+- [ ] Sidebar: Home, then Explore (eight entries) and App controls (Updates, Settings, About); each heading folds and unfolds, the choice survives a restart, the group you are in stays open, and the Updates dot shows on the App controls heading while it is folded.
+- [ ] Sidebar and Home show Cozy Stories and Story Adventures as two separate places; each has its own tabs; the Home Continue card resumes the last painting, story, adventure, meditation or Zen garden.
+- [ ] Meditation: each of the six sessions starts, shows the cloud and cues, pauses and resumes (the clock stops while paused), finishes early without any "failed" wording, and rings the soft bowl; Silent Timer offers 1, 3, 5, 10, 15 and 20 minutes; leaving the screen mid-session stops all sound; favorites and "last time" survive a restart.
+- [ ] Gentle Movement: all ten cards open with a picture, steps, Previous / Next (and arrow keys), an optional timer, a favorite heart and the "not medical advice" note.
+- [ ] Bubble Garden: pop by click, merge by dragging matching colors, Color Match requests complete, Relax / Color Match / Endless, all six levels; Space pops the lowest bubble.
+- [ ] Cloud Catcher: dragging into the right zone works in each mode (Relax, Color Match, Pattern, Endless); all six levels.
+- [ ] Zen Garden: rake, stones, plants, flowers, bushes, Move, Erase, Undo, Clear (asks first); each of the five backgrounds; leave and come back and the garden is still there; New, Duplicate and the Gardens list work; a corrupt file in `gardens\` is skipped, not fatal.
+- [ ] Paint Flow: all twelve boards are solvable (Hint solves them); Undo, Reset, Free Flow and Relax; keyboard cursor works.
+- [ ] Old games: the new levels (Pastel Breaker 7-12, Splash Wall 11-16, Memory Meadow 7-12, Pastel Puzzle 9-14) all open and none is locked.
+- [ ] Splash Wall: **Save to Gallery** adds an item that opens in the painter and exports as a PNG; **Export PNG** still opens the save dialog.
+- [ ] Settings, Display, App icon: each of the five icons changes the corner logo at once and the window / taskbar icon; the choice survives a restart.
+- [ ] Reduced Motion and Disable Particles calm every new screen; Higher Contrast stays readable; every new screen works with the keyboard alone.
+- [ ] Minimize the window during a meditation, a game and a Zen garden: CPU drops to near zero.
 
 ## 1.3 checks
 - [ ] Themes: pick each of the eight and Follow System in Settings, Display. Everything stays readable, Higher Contrast still works, paintings never change color, the choice survives a restart.
 - [ ] Mood presets change the sound and the drift speed but not the colors.
-- [ ] Background music plays after the first click, fades when turned off, stops when the window is minimized, and goes quiet while a story is read aloud.
+- [ ] Background music plays after the first click, fades when turned off, stops when the window is minimized,.
 - [ ] Volume sliders play a short preview when released; Mute silences previews too.
-- [ ] Read Aloud: Play, Pause, Resume, Stop, previous and next paragraph, each speed, a different voice and tone, the highlight, closing the story stops it, and with no voice installed a gentle message appears and reading still works.
+- [ ] There is no Read Aloud button in the story reader, and an old settings file that still has Read Aloud settings opens without any problem.
 - [ ] Stories: Continue, Cozy Stories, Story Adventures, Not started, Finished and Favorites tabs; favorites persist; "Chapter N of M" and the progress bar update.
 - [ ] Every story picture loads; deleting one on disk does not stop the story from reading.
 - [ ] The Updates screen shows installed and available versions, a headline, notes, size and Install, and no website, repository name or link anywhere.

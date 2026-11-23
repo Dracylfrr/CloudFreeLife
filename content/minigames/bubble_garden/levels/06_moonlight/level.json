@@ -1,0 +1,29 @@
+{
+  "id": "bubbles_moonlight",
+  "name": "Moonlight",
+  "description": "Silvery bubbles drifting under a quiet moon.",
+  "minigame": "bubble_garden",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "objective": "Slow and soft. Take all the time you like.",
+  "palette": [
+    "#c6cdea",
+    "#a2aadc",
+    "#fff1bf",
+    "#d4c8ee",
+    "#b8d4ee"
+  ],
+  "sky": [
+    "#3a3f86",
+    "#7a72b4"
+  ],
+  "scenery": "night",
+  "spawn": 0.6,
+  "speed": 20,
+  "size": [
+    30,
+    58
+  ],
+  "rounds": 3
+}

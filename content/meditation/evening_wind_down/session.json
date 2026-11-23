@@ -1,0 +1,50 @@
+{
+  "id": "evening_wind_down",
+  "name": "Evening Wind Down",
+  "description": "Long, slow breaths and quiet prompts to close the day. About eight minutes.",
+  "accent": "#8d8ed0",
+  "kind": "breathing",
+  "minutes": 8,
+  "breath": {
+    "inhale": 4,
+    "hold": 0,
+    "exhale": 8,
+    "rest": 0
+  },
+  "ambience": "hush",
+  "scene": "evening",
+  "cues": [
+    {
+      "at": 0,
+      "text": "The day is done. You can put it down for now."
+    },
+    {
+      "at": 40,
+      "text": "Let your jaw and your hands go soft."
+    },
+    {
+      "at": 120,
+      "text": "Each long breath out can be a little slower."
+    },
+    {
+      "at": 200,
+      "text": "Notice the weight of your body being held."
+    },
+    {
+      "at": 300,
+      "text": "Nothing needs your attention right now."
+    },
+    {
+      "at": 400,
+      "text": "Stay as long as you like."
+    },
+    {
+      "at": 460,
+      "text": "Take a last slow breath."
+    }
+  ],
+  "order": 4,
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "cover": "cover.svg"
+}

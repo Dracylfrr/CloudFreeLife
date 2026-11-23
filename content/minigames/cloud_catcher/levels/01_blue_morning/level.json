@@ -1,0 +1,48 @@
+{
+  "id": "catcher_blue_morning",
+  "name": "Blue Morning",
+  "description": "Soft clouds and raindrops drifting across a pale blue sky.",
+  "minigame": "cloud_catcher",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "objective": "Drag each one into the zone of its color.",
+  "kinds": [
+    "cloud",
+    "drop"
+  ],
+  "colors": [
+    "#bfe4f7",
+    "#ffd3e2",
+    "#fff2bd"
+  ],
+  "zones": [
+    {
+      "id": "zone_1",
+      "label": "Sky blue",
+      "color": "#bfe4f7"
+    },
+    {
+      "id": "zone_2",
+      "label": "Rose",
+      "color": "#ffd3e2"
+    },
+    {
+      "id": "zone_3",
+      "label": "Sunshine",
+      "color": "#fff2bd"
+    }
+  ],
+  "spawn": 0.7,
+  "speed": 28,
+  "sky": [
+    "#d6ecfb",
+    "#f2f9ff"
+  ],
+  "scenery": "morning",
+  "pattern": [
+    "cloud",
+    "drop",
+    "cloud"
+  ]
+}

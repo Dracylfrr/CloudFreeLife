@@ -1,0 +1,30 @@
+{
+  "id": "ankle_circles",
+  "name": "Ankle Circles",
+  "description": "Slow ankle circles to wake up tired feet.",
+  "minutes": 2,
+  "position": "Seated",
+  "accent": "#8ed2b2",
+  "steps": [
+    {
+      "title": "Lift one foot",
+      "text": "Sit tall and lift one foot a little off the floor."
+    },
+    {
+      "title": "Trace a circle",
+      "text": "Draw slow, smooth circles with your toes, five in each direction."
+    },
+    {
+      "title": "Switch feet",
+      "text": "Rest that foot and repeat with the other."
+    },
+    {
+      "title": "Rest",
+      "text": "Press both feet gently into the floor and notice how they feel. Move slowly and only as far as feels comfortable. Stop if anything hurts."
+    }
+  ],
+  "order": 8,
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "cover": "cover.svg"
+}

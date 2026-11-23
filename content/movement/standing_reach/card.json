@@ -1,0 +1,30 @@
+{
+  "id": "standing_reach",
+  "name": "Standing Reach",
+  "description": "Stand up, stretch tall and take a deep breath.",
+  "minutes": 2,
+  "position": "Standing",
+  "accent": "#f7c78a",
+  "steps": [
+    {
+      "title": "Stand comfortably",
+      "text": "Place your feet about hip-width apart and let your arms rest."
+    },
+    {
+      "title": "Reach up",
+      "text": "As you breathe in, slowly raise your arms and reach upward, lengthening through your whole body."
+    },
+    {
+      "title": "Lower slowly",
+      "text": "As you breathe out, bring your arms down in a wide, slow arc."
+    },
+    {
+      "title": "Repeat",
+      "text": "Do this a few more times at an easy pace. Move slowly and only as far as feels comfortable. Stop if anything hurts."
+    }
+  ],
+  "order": 6,
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "cover": "cover.svg"
+}

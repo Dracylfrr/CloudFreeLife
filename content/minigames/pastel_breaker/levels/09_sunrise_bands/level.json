@@ -1,0 +1,29 @@
+{
+  "id": "sunrise_bands",
+  "name": "Sunrise Bands",
+  "description": "Layers of color, like the sky before breakfast.",
+  "minigame": "pastel_breaker",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "objective": "Clear every band. The outer pink band takes two hits.",
+  "grid": [
+    "aaaaaaaaaaaa",
+    ".bbbbbbbbbb.",
+    "..cccccccc..",
+    "...dddddd...",
+    "....eeee....",
+    ".....ff....."
+  ],
+  "legend": {
+    "a": "#ffd3e2",
+    "b": "#ffdcc8",
+    "c": "#fff2bd",
+    "d": "#c6ecda",
+    "e": "#bfe4f7",
+    "f": "#d9cdf6"
+  },
+  "tough": [
+    "a"
+  ]
+}

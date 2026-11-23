@@ -1,0 +1,17 @@
+{
+  "id": "warm_sand",
+  "name": "Warm Sand",
+  "description": "Warm, golden sand for raking slow lines.",
+  "minigame": "zen_garden",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "objective": "Rake, place, and relax.",
+  "ground": [
+    "#f4e4c0",
+    "#e9d3a4"
+  ],
+  "groove": "#cdb07c",
+  "light": "#fff6df",
+  "scenery": "sand"
+}

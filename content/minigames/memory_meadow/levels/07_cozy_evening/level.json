@@ -1,0 +1,20 @@
+{
+  "id": "cozy_evening",
+  "name": "Cozy Evening",
+  "description": "Six pairs for a quiet evening.",
+  "minigame": "memory_meadow",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.0",
+  "objective": "Find every pair. There is no clock.",
+  "columns": 4,
+  "cardBack": "#d9cdf6",
+  "symbols": [
+    "moon",
+    "star",
+    "heart",
+    "cloud",
+    "mushroom",
+    "balloon"
+  ]
+}

@@ -40,8 +40,9 @@ const ALLOWED_EXT = ['.json', '.svg', '.png', '.webp'];
 const PATH_PATTERNS = [
   /^books\/[a-z0-9_]+\/[A-Za-z0-9_./-]+$/,
   /^palettes\/[a-z0-9_]+\.json$/,
-  /^minigames\/(pastel_breaker|splash_wall|memory_meadow|pastel_puzzle)\/levels\/[a-z0-9_]+\/[A-Za-z0-9_.-]+$/,
-  /^stories\/(relaxing|adventures)\/[a-z0-9_]+\/[A-Za-z0-9_.-]+$/
+  /^minigames\/(pastel_breaker|splash_wall|memory_meadow|pastel_puzzle|bubble_garden|cloud_catcher|zen_garden|paint_flow)\/levels\/[a-z0-9_]+\/[A-Za-z0-9_.-]+$/,
+  /^stories\/(relaxing|adventures)\/[a-z0-9_]+\/[A-Za-z0-9_.-]+$/,
+  /^(meditation|movement)\/[a-z0-9_]+\/[A-Za-z0-9_.-]+$/
 ];
 
 export function decodeBase64(b64: string): Uint8Array {
@@ -128,7 +129,7 @@ export async function validatePackContents(pack: ContentPack, appVersion: string
   if (cat.skipped.length) return { ok: false, error: `Pack content is invalid: ${cat.skipped[0].where} - ${cat.skipped[0].reason}` };
   const books = cat.books.length;
   const palettes = cat.palettes.length;
-  const levels = cat.breakerLevels.length + cat.splashLevels.length + cat.memoryLevels.length + cat.puzzleLevels.length + cat.stories.length + cat.adventures.length;
+  const levels = cat.breakerLevels.length + cat.splashLevels.length + cat.memoryLevels.length + cat.puzzleLevels.length + cat.bubbleLevels.length + cat.catcherLevels.length + cat.zenLevels.length + cat.flowLevels.length + cat.stories.length + cat.adventures.length + cat.meditations.length + cat.movements.length;
   if (books + palettes + levels === 0) return { ok: false, error: 'Pack contains no usable content' };
   // Every referenced art file must exist.
   for (const b of cat.books) {
@@ -139,7 +140,7 @@ export async function validatePackContents(pack: ContentPack, appVersion: string
       }
     }
   }
-  for (const r of [...cat.stories, ...cat.adventures]) {
+  for (const r of [...cat.stories, ...cat.adventures, ...cat.meditations, ...cat.movements]) {
     if (!(`${r.dir}/${r.manifest.cover}` in text)) return { ok: false, error: `Missing cover for ${r.manifest.name}` };
   }
   // A pack should not ship a story that points at pictures it does not contain.

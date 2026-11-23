@@ -1,0 +1,29 @@
+{
+  "id": "snowy_hills",
+  "name": "Snowy Hills",
+  "description": "Snowflakes drifting over quiet hills.",
+  "minigame": "pastel_breaker",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "objective": "Brush away the snow. The blue shadows take two hits.",
+  "grid": [
+    ".w..w..w..w.",
+    "..w..w..w..w",
+    "............",
+    ".....ss.....",
+    "...ssssss...",
+    "..ssssssss..",
+    ".bbbbbbbbbb.",
+    "tttttttttttt"
+  ],
+  "legend": {
+    "w": "#f4f9ff",
+    "s": "#d6ecfa",
+    "b": "#a4d2f2",
+    "t": "#c6ecda"
+  },
+  "tough": [
+    "b"
+  ]
+}

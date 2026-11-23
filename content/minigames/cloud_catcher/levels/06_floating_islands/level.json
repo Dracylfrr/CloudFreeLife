@@ -1,0 +1,49 @@
+{
+  "id": "catcher_floating_islands",
+  "name": "Floating Islands",
+  "description": "Clouds, petals and drops drifting between little islands.",
+  "minigame": "cloud_catcher",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "objective": "A busier sky, still with nothing to lose.",
+  "kinds": [
+    "cloud",
+    "petal",
+    "drop"
+  ],
+  "colors": [
+    "#c6ecda",
+    "#bfe4f7",
+    "#ffd3e2"
+  ],
+  "zones": [
+    {
+      "id": "zone_1",
+      "label": "Mint",
+      "color": "#c6ecda"
+    },
+    {
+      "id": "zone_2",
+      "label": "Sky",
+      "color": "#bfe4f7"
+    },
+    {
+      "id": "zone_3",
+      "label": "Rose",
+      "color": "#ffd3e2"
+    }
+  ],
+  "spawn": 1,
+  "speed": 30,
+  "sky": [
+    "#cfeaf6",
+    "#eef8e8"
+  ],
+  "scenery": "garden",
+  "pattern": [
+    "cloud",
+    "petal",
+    "drop"
+  ]
+}

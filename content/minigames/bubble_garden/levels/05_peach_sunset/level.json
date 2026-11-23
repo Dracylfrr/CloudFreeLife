@@ -1,0 +1,29 @@
+{
+  "id": "bubbles_peach_sunset",
+  "name": "Peach Sunset",
+  "description": "Warm peach and rose bubbles in the last of the sun.",
+  "minigame": "bubble_garden",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "objective": "Pop what is asked, or let them float by.",
+  "palette": [
+    "#ffdcc8",
+    "#ffb8a6",
+    "#ffd3e2",
+    "#fff0a8",
+    "#f3c2d9"
+  ],
+  "sky": [
+    "#ffd9bf",
+    "#ffeedd"
+  ],
+  "scenery": "sunset",
+  "spawn": 0.8,
+  "speed": 26,
+  "size": [
+    28,
+    56
+  ],
+  "rounds": 4
+}

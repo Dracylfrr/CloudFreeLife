@@ -90,8 +90,8 @@ describe('theme persistence and migration', () => {
     expect(s.volumeMaster).toBe(0.5);
     expect(s.paletteId).toBe('cosmic_colors');
     expect(s.storyFontScale).toBe(1.3);
-    expect(s.ttsRate).toBe(1);
-    expect(s.ttsHighlight).toBe(true);
+    // fields from earlier versions that no longer exist are simply dropped
+    expect((s as unknown as Record<string, unknown>).ttsRate).toBeUndefined();
   });
 
   it('saves and restores the selected theme, and rejects unknown ones', () => {
@@ -102,11 +102,11 @@ describe('theme persistence and migration', () => {
     expect(isThemeChoice(42)).toBe(false);
   });
 
-  it('clamps Read Aloud speed and keeps the voice id', () => {
-    expect(sanitizeSettings({ ttsRate: 9 }).ttsRate).toBe(1.5);
-    expect(sanitizeSettings({ ttsRate: 0.1 }).ttsRate).toBe(0.75);
-    expect(sanitizeSettings({ ttsVoice: 'Microsoft Aria' }).ttsVoice).toBe('Microsoft Aria');
-    expect(sanitizeSettings({ ttsVoice: 42 }).ttsVoice).toBe('');
+  it('drops the old Read Aloud settings from a 1.3 file without complaint', () => {
+    const s = sanitizeSettings({ ttsRate: 9, ttsVoice: 'Microsoft Aria', theme: 'moonlight' }) as unknown as Record<string, unknown>;
+    expect(s.ttsRate).toBeUndefined();
+    expect(s.ttsVoice).toBeUndefined();
+    expect(s.theme).toBe('moonlight');
   });
 
   it('applies tokens to the document and switches cleanly between themes', () => {

@@ -16,8 +16,10 @@
   import Updates from './features/updates/Updates.svelte';
   import Settings from './features/settings/Settings.svelte';
   import About from './features/about/About.svelte';
+  import Meditation from './features/meditation/Meditation.svelte';
+  import Movement from './features/movement/Movement.svelte';
 
-  const immersive = $derived($route.name === 'paint' || $route.name === 'breaker' || $route.name === 'splash' || $route.name === 'memory' || $route.name === 'puzzle');
+  const immersive = $derived($route.name === 'paint' || $route.name === 'breaker' || $route.name === 'splash' || $route.name === 'memory' || $route.name === 'puzzle' || $route.name === 'bubbles' || $route.name === 'catcher' || $route.name === 'zen' || $route.name === 'flow');
 </script>
 
 <AmbientBackground calm={immersive} />
@@ -30,7 +32,7 @@
       <Sidebar />
     {/if}
     <main class="content">
-      {#key $route.name + ($route.name === 'paint' ? $route.artworkId : $route.name === 'book' ? $route.bookId : $route.name === 'story' ? $route.storyId : $route.name === 'adventure' ? $route.adventureId : '')}
+      {#key $route.name + ($route.name === 'paint' ? $route.artworkId : $route.name === 'book' ? $route.bookId : $route.name === 'story' ? $route.storyId : $route.name === 'adventure' ? $route.adventureId : $route.name === 'meditate' ? $route.sessionId : $route.name === 'moves' ? $route.cardId : '')}
         {#if $route.name === 'home'}
           <Home />
         {:else if $route.name === 'books'}
@@ -46,13 +48,13 @@
         {:else if $route.name === 'gallery'}
           <Gallery />
         {:else if $route.name === 'stories'}
-          <Stories tab={$route.tab} />
+          <Stories kind="story" tab={$route.tab} />
         {:else if $route.name === 'story'}
           {#await import('./features/stories/StoryReader.svelte') then m}
             <m.default storyId={$route.storyId} />
           {/await}
         {:else if $route.name === 'adventures'}
-          <Stories tab="adventures" />
+          <Stories kind="adventure" tab={$route.tab} />
         {:else if $route.name === 'adventure'}
           {#await import('./features/stories/AdventurePlayer.svelte') then m}
             <m.default adventureId={$route.adventureId} />
@@ -74,6 +76,34 @@
         {:else if $route.name === 'puzzle'}
           {#await import('./features/minigames/puzzle/PuzzleScreen.svelte') then m}
             <m.default levelId={$route.levelId} />
+          {/await}
+        {:else if $route.name === 'bubbles'}
+          {#await import('./features/minigames/bubbles/BubbleScreen.svelte') then m}
+            <m.default levelId={$route.levelId} mode={$route.mode ?? 'relax'} />
+          {/await}
+        {:else if $route.name === 'catcher'}
+          {#await import('./features/minigames/catcher/CatcherScreen.svelte') then m}
+            <m.default levelId={$route.levelId} mode={$route.mode ?? 'relax'} />
+          {/await}
+        {:else if $route.name === 'zen'}
+          {#await import('./features/minigames/zen/ZenScreen.svelte') then m}
+            <m.default levelId={$route.levelId} gardenId={$route.gardenId} />
+          {/await}
+        {:else if $route.name === 'flow'}
+          {#await import('./features/minigames/flow/FlowScreen.svelte') then m}
+            <m.default levelId={$route.levelId} mode={$route.mode ?? 'puzzle'} />
+          {/await}
+        {:else if $route.name === 'meditation'}
+          <Meditation />
+        {:else if $route.name === 'meditate'}
+          {#await import('./features/meditation/Session.svelte') then m}
+            <m.default sessionId={$route.sessionId} />
+          {/await}
+        {:else if $route.name === 'movement'}
+          <Movement />
+        {:else if $route.name === 'moves'}
+          {#await import('./features/movement/MoveCard.svelte') then m}
+            <m.default cardId={$route.cardId} />
           {/await}
         {:else if $route.name === 'updates'}
           <Updates />

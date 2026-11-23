@@ -1,0 +1,26 @@
+{
+  "id": "heart_garden",
+  "name": "Heart Garden",
+  "description": "A soft pink heart with a deeper heart inside.",
+  "minigame": "pastel_breaker",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "objective": "Pop the whole heart. The deep rose center takes two hits.",
+  "grid": [
+    "..ppp..ppp..",
+    ".ppppppppppp",
+    ".pprrrrrrpp.",
+    "..pprrrrpp..",
+    "...pprrpp...",
+    "....pppp....",
+    ".....pp....."
+  ],
+  "legend": {
+    "p": "#ffd3e2",
+    "r": "#f6b8cf"
+  },
+  "tough": [
+    "r"
+  ]
+}

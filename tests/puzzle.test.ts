@@ -68,9 +68,9 @@ describe('Pastel Puzzle rules', () => {
 });
 
 describe('mini-games list', () => {
-  it('has four games with a preview image and a unique id each', () => {
-    expect(GAMES.map((g) => g.id)).toEqual(['breaker', 'splash', 'memory', 'puzzle']);
-    expect(new Set(GAMES.map((g) => g.id)).size).toBe(4);
+  it('has eight games with a preview image and a unique id each', () => {
+    expect(GAMES.map((g) => g.id)).toEqual(['breaker', 'splash', 'memory', 'puzzle', 'bubbles', 'catcher', 'zen', 'flow']);
+    expect(new Set(GAMES.map((g) => g.id)).size).toBe(8);
     for (const g of GAMES) {
       expect(g.cover).toBeTruthy();
       expect(g.title.length).toBeGreaterThan(3);

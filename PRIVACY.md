@@ -18,6 +18,10 @@ Artwork, settings and downloaded content are stored **only on your computer**, i
 %APPDATA%\Cloud-Freelife\
   settings.json
   progress\stories.json  (your reading place, favorites and the story endings you have found)
+  progress\meditation.json  (favorites, the last session, and how many times you finished each one)
+  progress\movement.json  (favorites and the last Gentle Movement card you opened)
+  progress\games.json  (Paint Flow boards you have connected, levels played and the last game)
+  gardens\<name>.json  (your Zen Garden layouts)
   artworks\<name>\artwork.json, paint.png, thumb.png
   content\...            (downloaded books, palettes, levels, stories)
   installed_packs.json
@@ -33,9 +37,9 @@ Only for these two things, always over HTTPS:
 
 Cloud-Freelife does not send personal content or analytics. When checking for or downloading updates, standard network requests are made to the infrastructure that hosts the official Cloud-Freelife releases, so that service can see the usual details of any web request (such as your IP address and the standard HTTP headers). Cloud-Freelife does not add cookies, tokens, user IDs or device information. The app never opens a web page.
 
-**Read Aloud** uses the voices already installed on your computer and works offline. Online voices are never used, so the text of a story is never sent anywhere.
+**Meditation, Gentle Movement and the games** keep a few small files on your computer (listed above) so they can show your favorites and the last thing you did. They have no streaks, scores or health information, and they are never uploaded.
 
 Without Internet access everything else works normally: painting, the Gallery, mini-games, exports and settings.
 
 ## Permissions
-The desktop shell is limited to: reading/writing inside `%APPDATA%\Cloud-Freelife` (plus `Downloads\Cloud-Freelife` for update installers and any file you choose in a save dialog), and HTTPS requests to the official release host. It cannot open web pages. See `src-tauri/capabilities/default.json`.
+The desktop shell is limited to: reading/writing inside `%APPDATA%\Cloud-Freelife` (plus `Downloads\Cloud-Freelife` for update installers and any file you choose in a save dialog), and HTTPS requests to the official release host. It can set the window's own icon (for the *App icon* setting) and it cannot open web pages. See `src-tauri/capabilities/default.json`.

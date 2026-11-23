@@ -1,0 +1,56 @@
+{
+  "id": "catcher_moon_garden",
+  "name": "Moon Garden",
+  "description": "Moons, stars and petals drifting over a night garden.",
+  "minigame": "cloud_catcher",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "objective": "Catch petals, moons and stars in the order shown (Pattern mode) or by color.",
+  "kinds": [
+    "moon",
+    "petal",
+    "star"
+  ],
+  "colors": [
+    "#fff2bd",
+    "#ffd3e2",
+    "#d9cdf6",
+    "#c6ecda"
+  ],
+  "zones": [
+    {
+      "id": "zone_1",
+      "label": "Gold",
+      "color": "#fff2bd"
+    },
+    {
+      "id": "zone_2",
+      "label": "Rose",
+      "color": "#ffd3e2"
+    },
+    {
+      "id": "zone_3",
+      "label": "Lilac",
+      "color": "#d9cdf6"
+    },
+    {
+      "id": "zone_4",
+      "label": "Mint",
+      "color": "#c6ecda"
+    }
+  ],
+  "spawn": 0.8,
+  "speed": 26,
+  "sky": [
+    "#4b4f94",
+    "#9a8fc8"
+  ],
+  "scenery": "night",
+  "pattern": [
+    "moon",
+    "petal",
+    "star",
+    "petal"
+  ]
+}

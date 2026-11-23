@@ -1,0 +1,30 @@
+{
+  "id": "balloon_colors",
+  "name": "Balloon Colors",
+  "description": "Six balloons, each with a color to match.",
+  "minigame": "splash_wall",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "objective": "Splash each balloon with the color it shows as a hint.",
+  "wall": "wall.svg",
+  "goal": {
+    "type": "color_match",
+    "targets": {
+      "balloon_pink": "#f6b8cf",
+      "balloon_blue": "#bfe4f7",
+      "balloon_yellow": "#fff2bd",
+      "balloon_mint": "#c6ecda",
+      "balloon_lilac": "#d9cdf6",
+      "balloon_peach": "#ffdcc8"
+    }
+  },
+  "colors": [
+    "#f6b8cf",
+    "#bfe4f7",
+    "#fff2bd",
+    "#c6ecda",
+    "#d9cdf6",
+    "#ffdcc8"
+  ]
+}

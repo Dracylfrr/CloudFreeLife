@@ -1,0 +1,30 @@
+{
+  "id": "wrist_break",
+  "name": "Wrist Break",
+  "description": "Easy wrist circles for hands that have been typing or drawing.",
+  "minutes": 1,
+  "position": "Seated or standing",
+  "accent": "#8ed2b2",
+  "steps": [
+    {
+      "title": "Arms out in front",
+      "text": "Hold your arms in front of you with your hands relaxed."
+    },
+    {
+      "title": "Circle gently",
+      "text": "Draw slow circles with your wrists, five one way and five the other."
+    },
+    {
+      "title": "Bend and stretch",
+      "text": "Gently bend your hands up, then down, without pushing at the end of the movement."
+    },
+    {
+      "title": "Shake it out",
+      "text": "Give your hands a loose, floppy little shake. Move slowly and only as far as feels comfortable. Stop if anything hurts."
+    }
+  ],
+  "order": 3,
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "cover": "cover.svg"
+}

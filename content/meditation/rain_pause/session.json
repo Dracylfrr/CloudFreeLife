@@ -1,0 +1,32 @@
+{
+  "id": "rain_pause",
+  "name": "Rain Pause",
+  "description": "Soft rain and a few quiet words. About four minutes.",
+  "accent": "#86a8d8",
+  "kind": "stillness",
+  "minutes": 4,
+  "ambience": "rain",
+  "scene": "rain",
+  "cues": [
+    {
+      "at": 0,
+      "text": "Listen to the rain, soft and steady."
+    },
+    {
+      "at": 60,
+      "text": "Let each sound come and go."
+    },
+    {
+      "at": 140,
+      "text": "Rain does not need to be anywhere. Neither do you."
+    },
+    {
+      "at": 220,
+      "text": "Take your time coming back."
+    }
+  ],
+  "order": 5,
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "cover": "cover.svg"
+}

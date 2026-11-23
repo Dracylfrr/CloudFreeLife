@@ -1,0 +1,17 @@
+{
+  "id": "moonlight_sand",
+  "name": "Moonlight",
+  "description": "Cool blue sand under a pale moon.",
+  "minigame": "zen_garden",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "objective": "A quiet one for the evening.",
+  "ground": [
+    "#5a5f9e",
+    "#454a85"
+  ],
+  "groove": "#363a70",
+  "light": "#9aa0d8",
+  "scenery": "moon"
+}

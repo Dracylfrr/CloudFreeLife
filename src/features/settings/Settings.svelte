@@ -10,6 +10,7 @@
   import { MUSIC } from '../../core/music';
   import Toggle from '../../ui/Toggle.svelte';
   import ThemePicker from './ThemePicker.svelte';
+  import AppIconPicker from './AppIconPicker.svelte';
   import { MOODS, MUSIC_MOODS, type Mood } from '../../core/settings';
   import Slider from '../../ui/Slider.svelte';
   import Button from '../../ui/Button.svelte';
@@ -94,6 +95,9 @@
         <h3 class="sub">Theme</h3>
         <ThemePicker />
         <p class="note quiet"><Icon name="shield" size={16} /> Themes only change the app's colors. Your paintings are never affected.</p>
+        <h3 class="sub">App icon</h3>
+        <AppIconPicker />
+        <p class="note quiet"><Icon name="shield" size={16} /> Changes the little logo in the corner and the icon in the window and taskbar. The shortcut and the installed file keep the original icon.</p>
         <h3 class="sub">Mood</h3>
         <div class="moods" role="radiogroup" aria-label="Mood">
           {#each MOODS as m}

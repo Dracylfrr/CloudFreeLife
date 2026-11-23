@@ -3,8 +3,12 @@ import './app.css';
 import App from './App.svelte';
 import { initAudio } from './core/audio';
 import { loadCatalog } from './core/content/registry';
-import { loadStoryProgress } from './features/stories/progress';
-import { runLeaveGuards } from './core/router';
+import { flushStoryProgress, loadStoryProgress } from './features/stories/progress';
+import { loadMeditationProgress, meditationProgress } from './features/meditation/progress';
+import { loadMovementProgress, movementProgress } from './features/movement/progress';
+import { gamesProgress, loadGamesProgress } from './features/minigames/progress';
+import { applyWindowIcon } from './core/appIcon';
+import { onBeforeLeave, runLeaveGuards } from './core/router';
 import { applyUiScale } from './core/display';
 import { isAppHidden, onVisibilityChange } from './core/visibility';
 import { applySettingsToDocument, getSettings, loadSettings, settings, updateSettings } from './core/settings';
@@ -24,12 +28,16 @@ async function boot() {
   settings.subscribe((s) => {
     applySettingsToDocument(s);
     void applyUiScale(s.uiScale);
+    void applyWindowIcon(s.appIcon);
   });
   // Follow System: re-apply when the operating system flips between light and dark.
   window.matchMedia?.('(prefers-color-scheme: dark)').addEventListener?.('change', () => applySettingsToDocument(getSettings()));
   initAudio();
 
-  await Promise.all([loadCatalog(), refreshArtworks(), loadStoryProgress()]);
+  await Promise.all([loadCatalog(), refreshArtworks(), loadStoryProgress(), loadMeditationProgress(), loadMovementProgress(), loadGamesProgress()]);
+  // Small local progress files are written shortly after a change; this makes sure they are
+  // also written when you move to another screen or close the window.
+  onBeforeLeave(() => Promise.all([flushStoryProgress(), meditationProgress.flush(), movementProgress.flush(), gamesProgress.flush()]).then(() => undefined));
 
   // Pause decorative animation when the window is hidden or minimised.
   const syncPaused = () => document.documentElement.setAttribute('data-paused', String(isAppHidden()));

@@ -1,0 +1,42 @@
+{
+  "id": "cloud_breathing",
+  "name": "Cloud Breathing",
+  "description": "Breathe along with a soft little cloud that grows and settles. About three minutes.",
+  "accent": "#a698e0",
+  "kind": "breathing",
+  "minutes": 3,
+  "breath": {
+    "inhale": 4,
+    "hold": 2,
+    "exhale": 6,
+    "rest": 1
+  },
+  "ambience": "hush",
+  "scene": "cloud",
+  "cues": [
+    {
+      "at": 0,
+      "text": "Imagine a small, soft cloud in front of you."
+    },
+    {
+      "at": 25,
+      "text": "As you breathe in, it grows. As you breathe out, it softens."
+    },
+    {
+      "at": 70,
+      "text": "You can follow the cloud, or simply rest your eyes."
+    },
+    {
+      "at": 120,
+      "text": "If your mind wanders, that is fine. Come back to the cloud."
+    },
+    {
+      "at": 165,
+      "text": "One more slow breath."
+    }
+  ],
+  "order": 2,
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "cover": "cover.svg"
+}

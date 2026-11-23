@@ -2,6 +2,36 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com), and the project uses [Semantic Versioning](https://semver.org).
 
+## [1.4.0]
+
+### Added
+- **Meditation.** Six optional quiet sessions: *One Minute Reset* (1 min), *Cloud Breathing* (3 min), *Quiet Garden* (5 min), *Evening Wind Down* (8 min), *Rain Pause* (4 min) and a *Silent Timer* you set to 1, 3, 5, 10, 15 or 20 minutes. A soft cloud grows and settles as you breathe, short gentle cues appear on screen, and a quiet bowl sounds at the start and the end. You can pause, finish early or leave at any time and it is always "lovely". There are no streaks, goals or scores. The app remembers only your favorites, the last session you took and how many times you finished each one, in one small file on your computer. These are relaxation exercises only, with no medical claims.
+- **Gentle Movement.** Ten stretch-and-break cards with a friendly picture, short step-by-step instructions, an approximate time, Previous / Next, favorites and an optional timer: *Shoulder Rolls*, *Neck Mobility*, *Wrist Break*, *Hand Stretch*, *Seated Side Stretch*, *Standing Reach*, *Gentle Back Stretch*, *Ankle Circles*, *Short Desk Break* and *Full Body Reset*. General movement ideas, not medical advice. No points, levels or rewards.
+- **Four new relaxing mini-games** (Mini-Games now has eight):
+  - **Bubble Garden**: tap to pop, or drag matching colors together to merge them. Modes *Relax*, *Color Match* and *Endless*, six levels.
+  - **Cloud Catcher**: drag drifting clouds, stars, moons, raindrops and petals into soft zones. Modes *Relax*, *Color Match*, *Pattern* and *Endless*, six levels.
+  - **Zen Garden**: rake lines in the sand and place stones, plants, flowers and bushes. Five backgrounds (warm sand, lavender sand, moonlight, garden, seaside), automatic saving, and *New*, *Duplicate*, *Clear* and a gallery of your saved gardens.
+  - **Paint Flow**: join the matching colors with a flowing line of paint, in *Puzzle*, *Relax* and *Free Flow* modes. Twelve handcrafted boards from 4 x 4 to 7 x 7, with Undo, Reset and Hint, and no timer.
+- **Six more levels in every older mini-game**, all unlocked from the start: Pastel Breaker (12), Splash Wall (16), Memory Meadow (12) and Pastel Puzzle (14, up to 30 pieces).
+- **Splash Wall: Save to Gallery.** Any wall, finished or not, can be saved to the Gallery, where it can be opened, painted on some more, renamed, duplicated or exported as a PNG. *Export PNG* is still there for saving a file directly.
+- **App icon.** Settings, Display now has five little cloud icons (*Morning Cloud*, *Lavender Dusk*, *Mint Meadow*, *Peach Sunrise*, *Moonlit Cloud*). The choice changes the app's corner logo and the icon in the window and taskbar. The installed shortcut and the .exe file keep the original icon (Windows reads those from the file).
+- **Home** has cards for Meditation and Gentle Movement, and the *Continue* card now also resumes your last meditation or Zen garden, whichever you touched most recently.
+- New content kinds for packs and a shared, tiny local save for progress. New guides: [docs/CREATING_WELLNESS.md](docs/CREATING_WELLNESS.md) and four new level sections in [docs/CREATING_LEVELS.md](docs/CREATING_LEVELS.md).
+
+### Changed
+- **A tidier sidebar.** Home stays on top, then an **Explore** group (Coloring Books, Free Draw, Gallery, Cozy Stories, Story Adventures, Mini-Games, Meditation, Gentle Movement) and an **App controls** group (Updates, Settings, About). Each group can be folded away with its heading, the choice is remembered, and the group you are in always stays open. In a narrow window the groups become icons with a thin line between them.
+- **Cozy Stories and Story Adventures are separate again**: two entries in the sidebar, two cards on Home and two screens, each with its own Continue / All / Not started / Finished / Favorites tabs. Books you simply read live in Cozy Stories; the stories where you choose live in Story Adventures. Nothing was removed and all your saved places are kept.
+
+### Removed
+- **Read Aloud** (added in 1.3.0) is gone for now. The player, its settings (voice, tone, speed, highlight, keep reading) and the music ducking that went with it are removed, so stories are for reading. A better narration may come back later. Your reading place is kept, and old Read Aloud settings in an existing settings file are ignored.
+
+### Fixed
+- Cloud Catcher draws each cloud with one clean outline.
+- Progress for the mini-games (solved Paint Flow boards and the last game played) is now loaded when the app starts and saved when you leave.
+
+### Not in this version
+Very long stories are planned for 1.5.0. See the roadmap.
+
 ## [1.3.0]
 
 ### Added

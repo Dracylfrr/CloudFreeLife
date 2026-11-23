@@ -1,0 +1,17 @@
+{
+  "id": "seaside_sand",
+  "name": "Seaside",
+  "description": "Pale beach sand with gentle waves at the top.",
+  "minigame": "zen_garden",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "objective": "Rake, place, and relax.",
+  "ground": [
+    "#f7e8cc",
+    "#ecd6ae"
+  ],
+  "groove": "#d2b88a",
+  "light": "#fffaf0",
+  "scenery": "sea"
+}

@@ -1,0 +1,26 @@
+{
+  "id": "seated_side_stretch",
+  "name": "Seated Side Stretch",
+  "description": "A long, easy reach to the side while you sit.",
+  "minutes": 2,
+  "position": "Seated",
+  "accent": "#86c3ea",
+  "steps": [
+    {
+      "title": "Sit tall",
+      "text": "Place both feet flat and rest one hand on your thigh."
+    },
+    {
+      "title": "Reach up and over",
+      "text": "Raise the other arm overhead and lean gently to the side, as if reaching toward a far wall. Breathe slowly."
+    },
+    {
+      "title": "Come back and switch",
+      "text": "Return to the middle and repeat on the other side. Move slowly and only as far as feels comfortable. Stop if anything hurts."
+    }
+  ],
+  "order": 5,
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "cover": "cover.svg"
+}

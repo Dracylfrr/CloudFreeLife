@@ -53,6 +53,58 @@ const levels = [
     legend: { t: '#bdeeea', s: '#bfe4f7', d: '#a4d2f2' },
     tough: ['d'],
     grid: ['.t....s...t.', 't.t..s.s.t.t', '.t....s...t.', '............', 'ssssssssssss', 'tttttttttttt', 'dtdtdtdtdtdt']
+  },
+  {
+    folder: '07_heart_garden',
+    name: 'Heart Garden',
+    description: 'A soft pink heart with a deeper heart inside.',
+    objective: 'Pop the whole heart. The deep rose center takes two hits.',
+    legend: { p: '#ffd3e2', r: '#f6b8cf' },
+    tough: ['r'],
+    grid: ['..ppp..ppp..', '.ppppppppppp', '.pprrrrrrpp.', '..pprrrrpp..', '...pprrpp...', '....pppp....', '.....pp.....']
+  },
+  {
+    folder: '08_balloon_bunch',
+    name: 'Balloon Bunch',
+    description: 'Three bunches of balloons drifting up.',
+    objective: 'Pop all the balloons and let the strings drift away.',
+    legend: { b: '#bfe4f7', p: '#ffd3e2', g: '#c6ecda', l: '#e6d8f8' },
+    grid: ['.bbb.ppp.ggg', 'bbbbpppppggg', '.bbb.ppp.ggg', '..b...p...g.', '..b...p...g.', '............', '.l.l.l.l.l.l']
+  },
+  {
+    folder: '09_sunrise_bands',
+    name: 'Sunrise Bands',
+    description: 'Layers of color, like the sky before breakfast.',
+    objective: 'Clear every band. The outer pink band takes two hits.',
+    legend: { a: '#ffd3e2', b: '#ffdcc8', c: '#fff2bd', d: '#c6ecda', e: '#bfe4f7', f: '#d9cdf6' },
+    tough: ['a'],
+    grid: ['aaaaaaaaaaaa', '.bbbbbbbbbb.', '..cccccccc..', '...dddddd...', '....eeee....', '.....ff.....']
+  },
+  {
+    folder: '10_snowy_hills',
+    name: 'Snowy Hills',
+    description: 'Snowflakes drifting over quiet hills.',
+    objective: 'Brush away the snow. The blue shadows take two hits.',
+    legend: { w: '#f4f9ff', s: '#d6ecfa', b: '#a4d2f2', t: '#c6ecda' },
+    tough: ['b'],
+    grid: ['.w..w..w..w.', '..w..w..w..w', '............', '.....ss.....', '...ssssss...', '..ssssssss..', '.bbbbbbbbbb.', 'tttttttttttt']
+  },
+  {
+    folder: '11_butterfly_wings',
+    name: 'Butterfly Wings',
+    description: 'A pastel butterfly, wings wide open.',
+    objective: 'Pop both wings. The little body takes two hits.',
+    legend: { p: '#ffd3e2', l: '#e6d8f8', y: '#fff2bd', k: '#b7a8ec' },
+    tough: ['k'],
+    grid: ['ppp......ppp', 'pllp.kk.pllp', 'plllpkkplllp', '.lllpkkplll.', '..yy.kk.yy..', '.yyy.kk.yyy.', '..y..kk..y..']
+  },
+  {
+    folder: '12_quiet_sky',
+    name: 'Quiet Sky',
+    description: 'A little sun above a long, calm cloud.',
+    objective: 'Clear the sky, nice and slowly.',
+    legend: { w: '#f4f9ff', s: '#bfe4f7', p: '#ffd3e2', y: '#fff2bd', l: '#e6d8f8' },
+    grid: ['.....yy.....', '....yyyy....', '..wwwwwwww..', '.wwwwwwwwww.', 'ssssssssssss', 'pspspspspsps', 'llllllllllll']
   }
 ];
 

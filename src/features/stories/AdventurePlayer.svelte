@@ -68,7 +68,7 @@
     <Button onclick={() => navigate({ name: 'adventures' })}>Back to adventures</Button>
   {:else}
     <header class="bar">
-      <button class="back" onclick={() => navigate({ name: 'stories', tab: 'adventures' })}><Icon name="chevronLeft" size={18} /> Stories</button>
+      <button class="back" onclick={() => navigate({ name: 'adventures' })}><Icon name="chevronLeft" size={18} /> Story Adventures</button>
       <div class="tools">
         <div class="size" role="group" aria-label="Text size">
           <button onclick={smaller} aria-label="Smaller text" title="Smaller text" disabled={$settings.storyFontScale <= 0.91}>A<small>−</small></button>

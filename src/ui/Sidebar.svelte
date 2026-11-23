@@ -6,19 +6,51 @@
   import Icon from './Icon.svelte';
   import Logo from './Logo.svelte';
 
-  const items: { id: NavSection; label: string; icon: string; go: () => void }[] = [
-    { id: 'home', label: 'Home', icon: 'home', go: () => navigate({ name: 'home' }) },
+  type Item = { id: NavSection; label: string; icon: string; go: () => void };
+  const home: Item = { id: 'home', label: 'Home', icon: 'home', go: () => navigate({ name: 'home' }) };
+  const explore: Item[] = [
     { id: 'books', label: 'Coloring Books', icon: 'book', go: () => navigate({ name: 'books' }) },
     { id: 'draw', label: 'Free Draw', icon: 'brush', go: () => navigate({ name: 'draw' }) },
     { id: 'gallery', label: 'Gallery', icon: 'image', go: () => navigate({ name: 'gallery' }) },
-    { id: 'stories', label: 'Stories', icon: 'bookOpen', go: () => navigate({ name: 'stories' }) },
+    { id: 'stories', label: 'Cozy Stories', icon: 'bookOpen', go: () => navigate({ name: 'stories' }) },
+    { id: 'adventures', label: 'Story Adventures', icon: 'compass', go: () => navigate({ name: 'adventures' }) },
     { id: 'minigames', label: 'Mini-Games', icon: 'gamepad', go: () => navigate({ name: 'minigames' }) },
+    { id: 'meditation', label: 'Meditation', icon: 'leaf', go: () => navigate({ name: 'meditation' }) },
+    { id: 'movement', label: 'Gentle Movement', icon: 'stretch', go: () => navigate({ name: 'movement' }) }
+  ];
+  const controls: Item[] = [
     { id: 'updates', label: 'Updates', icon: 'cloudDown', go: () => navigate({ name: 'updates' }) },
     { id: 'settings', label: 'Settings', icon: 'sliders', go: () => navigate({ name: 'settings' }) },
     { id: 'about', label: 'About', icon: 'info', go: () => navigate({ name: 'about' }) }
   ];
+  const groups = [
+    { id: 'explore', label: 'Explore', items: explore },
+    { id: 'controls', label: 'App controls', items: controls }
+  ];
   const active = $derived(sectionOf($route));
   const hasUpdate = $derived($updateState.available.length > 0);
+
+  // Each group can be folded away; the choice is remembered on this computer. The group that
+  // holds the page you are on always stays open.
+  const KEY = 'cloud-freelife-nav-folded';
+  function loadFolded(): string[] {
+    try {
+      const v = JSON.parse(localStorage.getItem(KEY) ?? '[]');
+      return Array.isArray(v) ? v.filter((x): x is string => typeof x === 'string') : [];
+    } catch {
+      return [];
+    }
+  }
+  let folded = $state<string[]>(loadFolded());
+  const isFolded = (g: { id: string; items: Item[] }) => folded.includes(g.id) && !g.items.some((i) => i.id === active);
+  function toggle(id: string) {
+    folded = folded.includes(id) ? folded.filter((x) => x !== id) : [...folded, id];
+    try {
+      localStorage.setItem(KEY, JSON.stringify(folded));
+    } catch {
+      /* remembering the fold is optional */
+    }
+  }
 </script>
 
 <nav class="side" aria-label="Main navigation">
@@ -26,17 +58,37 @@
     <Logo size={46} />
     <span class="name">Cloud-<br />Freelife</span>
   </button>
-  <ul>
-    {#each items as it}
+  <div class="list">
+    <ul class="top">
       <li>
-        <button class="item" class:on={active === it.id} title={it.label} aria-label={it.label} aria-current={active === it.id ? 'page' : undefined} onclick={it.go}>
-          <Icon name={it.icon} size={21} />
-          <span>{it.label}</span>
-          {#if it.id === 'updates' && hasUpdate}<i class="dot" title="Update available"></i>{/if}
+        <button class="item" class:on={active === home.id} title={home.label} aria-label={home.label} aria-current={active === home.id ? 'page' : undefined} onclick={home.go}>
+          <Icon name={home.icon} size={21} />
+          <span>{home.label}</span>
         </button>
       </li>
+    </ul>
+    {#each groups as g (g.id)}
+      {@const shut = isFolded(g)}
+      <section class="group" class:shut aria-label={g.label}>
+        <button class="head" aria-expanded={!shut} aria-controls="nav-{g.id}" onclick={() => toggle(g.id)}>
+          <span>{g.label}</span>
+          {#if g.id === 'controls' && hasUpdate && shut}<i class="dot small" title="Update available"></i>{/if}
+          <Icon name="chevronRight" size={15} />
+        </button>
+        <ul id="nav-{g.id}" hidden={shut}>
+          {#each g.items as it}
+            <li>
+              <button class="item" class:on={active === it.id} title={it.label} aria-label={it.label} aria-current={active === it.id ? 'page' : undefined} onclick={it.go}>
+                <Icon name={it.icon} size={21} />
+                <span>{it.label}</span>
+                {#if it.id === 'updates' && hasUpdate}<i class="dot" title="Update available"></i>{/if}
+              </button>
+            </li>
+          {/each}
+        </ul>
+      </section>
     {/each}
-  </ul>
+  </div>
   <button
     class="quick"
     aria-pressed={$settings.musicOn}
@@ -84,6 +136,16 @@
     background-clip: text;
     color: transparent;
   }
+  .list {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: thin;
+  }
   ul {
     list-style: none;
     margin: 0;
@@ -91,19 +153,55 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
+  }
+  ul[hidden] {
+    display: none;
+  }
+  .group {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-top: 4px;
+  }
+  .head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px 4px 16px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    text-align: left;
+    border-radius: 12px;
+  }
+  .head span {
     flex: 1;
-    min-height: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    scrollbar-width: thin;
+  }
+  .head:hover {
+    color: var(--ink-soft);
+  }
+  .head :global(svg) {
+    transition: transform 0.2s var(--ease);
+    transform: rotate(90deg);
+  }
+  .group.shut .head :global(svg) {
+    transform: none;
+  }
+  .dot.small {
+    margin-left: 0;
+    width: 8px;
+    height: 8px;
+    box-shadow: 0 0 0 3px rgba(244, 155, 189, 0.25);
   }
   .item {
     width: 100%;
     display: flex;
     align-items: center;
     gap: 13px;
-    padding: 12px 16px;
-    border-radius: 18px;
+    padding: 9px 16px;
+    border-radius: 16px;
     font-weight: 700;
     color: var(--ink-soft);
     transition:
@@ -169,8 +267,18 @@
     .name,
     .item span,
     .quick span,
-    .foot {
+    .foot,
+    .head {
       display: none;
+    }
+    /* Icons only: groups are separated by a thin line and can't be folded. */
+    ul[hidden] {
+      display: flex;
+    }
+    .group {
+      margin-top: 6px;
+      padding-top: 8px;
+      border-top: 1px solid rgb(var(--w) / 0.6);
     }
     .quick {
       justify-content: center;

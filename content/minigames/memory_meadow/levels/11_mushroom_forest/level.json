@@ -1,0 +1,24 @@
+{
+  "id": "mushroom_forest",
+  "name": "Mushroom Forest",
+  "description": "Ten pairs among the ferns.",
+  "minigame": "memory_meadow",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.0",
+  "objective": "Twenty cards, ten pairs, all the time you like.",
+  "columns": 5,
+  "cardBack": "#c6ecda",
+  "symbols": [
+    "mushroom",
+    "leaf",
+    "flower",
+    "butterfly",
+    "drop",
+    "fish",
+    "shell",
+    "sun",
+    "cloud",
+    "heart"
+  ]
+}

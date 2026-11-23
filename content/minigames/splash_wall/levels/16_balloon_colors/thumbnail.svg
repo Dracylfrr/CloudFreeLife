@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+<rect width="1000" height="750" fill="#ffffff"/>
+<g stroke="#6e6a8e" stroke-linejoin="round" stroke-linecap="round">
+<path data-region="back_wall" data-name="Sky" d="M-6 -6h1012v762h-1012z" fill="#dff0fb" stroke-width="5"/>
+<path d="M150 350q-16 90 0 170" fill="none" stroke-width="5"/>
+<path data-region="balloon_pink" data-name="Pink balloon" d="M66 250a84 104 0 1 0 168 0a84 104 0 1 0 -168 0z" fill="#f6b8cf" stroke-width="5"/>
+<path d="M340 290q-16 90 0 170" fill="none" stroke-width="5"/>
+<path data-region="balloon_blue" data-name="Blue balloon" d="M256 190a84 104 0 1 0 168 0a84 104 0 1 0 -168 0z" fill="#bfe4f7" stroke-width="5"/>
+<path d="M530 370q-16 90 0 170" fill="none" stroke-width="5"/>
+<path data-region="balloon_yellow" data-name="Yellow balloon" d="M446 270a84 104 0 1 0 168 0a84 104 0 1 0 -168 0z" fill="#fff2bd" stroke-width="5"/>
+<path d="M720 300q-16 90 0 170" fill="none" stroke-width="5"/>
+<path data-region="balloon_mint" data-name="Mint balloon" d="M636 200a84 104 0 1 0 168 0a84 104 0 1 0 -168 0z" fill="#c6ecda" stroke-width="5"/>
+<path d="M880 400q-16 90 0 170" fill="none" stroke-width="5"/>
+<path data-region="balloon_lilac" data-name="Lilac balloon" d="M796 300a84 104 0 1 0 168 0a84 104 0 1 0 -168 0z" fill="#d9cdf6" stroke-width="5"/>
+<path d="M500 620q-16 90 0 170" fill="none" stroke-width="5"/>
+<path data-region="balloon_peach" data-name="Peach balloon" d="M416 520a84 104 0 1 0 168 0a84 104 0 1 0 -168 0z" fill="#ffdcc8" stroke-width="5"/>
+</g></svg>

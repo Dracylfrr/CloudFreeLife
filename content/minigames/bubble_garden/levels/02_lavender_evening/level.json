@@ -1,0 +1,29 @@
+{
+  "id": "bubbles_lavender_evening",
+  "name": "Lavender Evening",
+  "description": "Dusky purples and pinks as the day settles down.",
+  "minigame": "bubble_garden",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "objective": "Merge two of the same color to make one big, glowing bubble.",
+  "palette": [
+    "#d9cdf6",
+    "#f6b8cf",
+    "#bfd0f5",
+    "#e6d8f8",
+    "#ffd3e2"
+  ],
+  "sky": [
+    "#b9a8e8",
+    "#f0d5ee"
+  ],
+  "scenery": "evening",
+  "spawn": 0.7,
+  "speed": 24,
+  "size": [
+    28,
+    54
+  ],
+  "rounds": 3
+}

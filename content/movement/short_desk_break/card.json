@@ -1,0 +1,34 @@
+{
+  "id": "short_desk_break",
+  "name": "Short Desk Break",
+  "description": "A quick mix of small moves for a break from your screen.",
+  "minutes": 3,
+  "position": "Seated",
+  "accent": "#86c3ea",
+  "steps": [
+    {
+      "title": "Look far away",
+      "text": "Rest your eyes on something far away, like a window or a tree, for a few slow breaths."
+    },
+    {
+      "title": "Roll your shoulders",
+      "text": "Roll your shoulders back a few times, slowly."
+    },
+    {
+      "title": "Reach up",
+      "text": "Raise both arms overhead and stretch tall, then lower them."
+    },
+    {
+      "title": "Shake out your hands",
+      "text": "Give your hands and wrists a loose little shake."
+    },
+    {
+      "title": "Take a sip of water",
+      "text": "Have a drink if you like, and breathe out slowly. Move slowly and only as far as feels comfortable. Stop if anything hurts."
+    }
+  ],
+  "order": 9,
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "cover": "cover.svg"
+}

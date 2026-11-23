@@ -16,7 +16,7 @@ export interface StoryPlace {
   chapter: number;
   /** True once the last chapter has been reached. */
   finished: boolean;
-  /** Paragraph within the chapter where reading (or Read Aloud) stopped. Added in 1.3; 0 for older saves. */
+  /** Paragraph within the chapter where reading stopped. Added in 1.3; 0 for older saves. */
   para: number;
   /** When the story was last opened (epoch ms). 0 for saves made before 1.3. */
   opened: number;

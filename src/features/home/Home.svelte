@@ -12,6 +12,10 @@
   import { onAmbientTick } from '../../ui/ticker';
   import { storyProgress } from '../stories/progress';
   import { buildReadingList, mostRecentUnfinished } from '../stories/readingList';
+  import { meditationProgress } from '../meditation/progress';
+  import { gamesProgress } from '../minigames/progress';
+  import { listGardens, type Garden } from '../minigames/zen/gardens';
+  import { pickContinue } from './continue';
 
   const hour = new Date().getHours();
   const greeting = hour < 5 ? 'Peaceful night' : hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
@@ -23,11 +27,28 @@
   const recent = $derived($artworks.slice(0, 4));
   const shelf = $derived(shelfSort($catalog.books));
 
-  // "Continue" resumes whichever was touched last: the latest painting, or a story / adventure in progress.
+  // "Continue" resumes whichever was touched last: the latest painting, a story / adventure in progress,
+  // the last meditation, or the last Zen garden.
   const reading = $derived(mostRecentUnfinished(buildReadingList($catalog.stories, $catalog.adventures, $storyProgress)));
-  const showReading = $derived(!!reading && (!latest || reading.opened > latest.updatedAt));
+  const meditation = $derived($meditationProgress.last ? ($catalog.meditations.find((m) => m.manifest.id === $meditationProgress.last!.id) ?? null) : null);
+  let garden = $state<Garden | null>(null);
+  onMount(() => {
+    if ($gamesProgress.last?.game === 'zen') listGardens().then((l) => (garden = l[0] ?? null)).catch(() => {});
+  });
+  const zenAt = $derived(garden && $gamesProgress.last?.game === 'zen' ? $gamesProgress.last.at : 0);
+  const pick = $derived(
+    pickContinue([
+      latest ? { kind: 'painting', at: latest.updatedAt } : null,
+      reading ? { kind: 'reading', at: reading.opened } : null,
+      meditation && $meditationProgress.last ? { kind: 'meditation', at: $meditationProgress.last.at } : null,
+      garden && zenAt ? { kind: 'zen', at: zenAt } : null
+    ])?.kind
+  );
+  const showReading = $derived(pick === 'reading' && !!reading);
   function resume() {
-    if (showReading && reading) navigate(reading.kind === 'story' ? { name: 'story', storyId: reading.id } : { name: 'adventure', adventureId: reading.id });
+    if (pick === 'reading' && reading) navigate(reading.kind === 'story' ? { name: 'story', storyId: reading.id } : { name: 'adventure', adventureId: reading.id });
+    else if (pick === 'meditation' && meditation) navigate({ name: 'meditate', sessionId: meditation.manifest.id });
+    else if (pick === 'zen' && garden) navigate({ name: 'zen', gardenId: garden.id });
     else if (latest) openArtwork(latest.id);
     else navigate({ name: 'books' });
   }
@@ -50,6 +71,10 @@
       <div class="visual">
         {#if showReading && reading}
           <div class="read-cover"><ReadingCover item={(reading.story ?? reading.adventure)!} /></div>
+        {:else if pick === 'meditation'}
+          <div class="soft-thumb med" aria-hidden="true"><Icon name="wind" size={44} /></div>
+        {:else if pick === 'zen'}
+          <div class="soft-thumb sand" aria-hidden="true"><Icon name="leaf" size={44} /></div>
         {:else if latest}
           <ArtThumb art={latest} />
         {:else}
@@ -61,6 +86,12 @@
         {#if showReading && reading}
           <h3>{(reading.story ?? reading.adventure)!.manifest.name}</h3>
           <p>{reading.label}. Pick up where you left off.</p>
+        {:else if pick === 'meditation' && meditation}
+          <h3>{meditation.manifest.name}</h3>
+          <p>Another quiet moment, whenever you like.</p>
+        {:else if pick === 'zen' && garden}
+          <h3>{garden.name}</h3>
+          <p>Back to your Zen garden.</p>
         {:else}
           <h3>{latest ? latest.title : 'Your first picture'}</h3>
           <p>{latest ? 'Pick up right where you left off.' : 'Nothing started yet — choose a page to begin.'}</p>
@@ -83,14 +114,27 @@
 
     <button class="card stories" onclick={() => navigate({ name: 'stories' })}>
       <div class="visual stack warm">
-        {#each [$catalog.stories[0], $catalog.adventures[0], $catalog.stories[3] ?? $catalog.stories[1]].filter(Boolean) as s, i}
+        {#each $catalog.stories.slice(0, 3) as s, i}
           <div class="mini" style="--i:{i}"><ReadingCover item={s} /></div>
         {/each}
       </div>
       <div class="meta">
-        <span class="tag pink"><Icon name="bookOpen" size={14} /> Read or Listen</span>
-        <h3>Stories</h3>
-        <p>{$catalog.stories.length} illustrated stories to read or hear aloud, and {$catalog.adventures.length} choose-your-path adventures.</p>
+        <span class="tag pink"><Icon name="bookOpen" size={14} /> Read Slowly</span>
+        <h3>Cozy Stories</h3>
+        <p>{$catalog.stories.length} illustrated stories to read slowly. No choices, just calm.</p>
+      </div>
+    </button>
+
+    <button class="card adventures" onclick={() => navigate({ name: 'adventures' })}>
+      <div class="visual stack cool">
+        {#each $catalog.adventures.slice(0, 3) as a, i}
+          <div class="mini" style="--i:{i}"><ReadingCover item={a} /></div>
+        {/each}
+      </div>
+      <div class="meta">
+        <span class="tag butter"><Icon name="compass" size={14} /> Choose Your Path</span>
+        <h3>Story Adventures</h3>
+        <p>{$catalog.adventures.length} stories where you decide. Be the guy or the girl, and find every ending.</p>
       </div>
     </button>
 
@@ -115,6 +159,28 @@
         <span class="tag lilac"><Icon name="gamepad" size={14} /> Mini-Games</span>
         <h3>Mini-Games</h3>
         <p>Pastel Breaker, Splash Wall and more. Calm, quick and relaxing.</p>
+      </div>
+    </button>
+
+    <button class="card meditate" onclick={() => navigate({ name: 'meditation' })}>
+      <div class="visual calm" aria-hidden="true">
+        <svg viewBox="0 0 200 130" width="100%" height="100%" preserveAspectRatio="xMidYMid meet"><g fill="#fff"><circle cx="78" cy="70" r="26"/><circle cx="108" cy="54" r="34"/><circle cx="138" cy="70" r="27"/><rect x="52" y="66" width="112" height="32" rx="16"/></g><circle cx="94" cy="76" r="3" fill="#7c77a1"/><circle cx="124" cy="76" r="3" fill="#7c77a1"/><path d="M104 83q5 5 10 0" stroke="#7c77a1" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
+      </div>
+      <div class="meta">
+        <span class="tag mint"><Icon name="wind" size={14} /> A quiet moment</span>
+        <h3>Meditation</h3>
+        <p>{$catalog.meditations.length} gentle sessions, from one minute to twenty. No streaks, no pressure.</p>
+      </div>
+    </button>
+
+    <button class="card movement" onclick={() => navigate({ name: 'movement' })}>
+      <div class="visual stretchy" aria-hidden="true">
+        <svg viewBox="0 0 200 130" width="100%" height="100%" preserveAspectRatio="xMidYMid meet"><ellipse cx="100" cy="116" rx="46" ry="6" fill="#fff" opacity=".6"/><rect x="82" y="64" width="36" height="46" rx="18" fill="#ffd3e2"/><circle cx="100" cy="44" r="22" fill="#ffd3e2"/><path d="M84 70 Q60 52 56 30" stroke="#ffd3e2" stroke-width="10" fill="none" stroke-linecap="round"/><path d="M116 70 Q140 52 144 30" stroke="#ffd3e2" stroke-width="10" fill="none" stroke-linecap="round"/><circle cx="92" cy="44" r="2.6" fill="#7c77a1"/><circle cx="108" cy="44" r="2.6" fill="#7c77a1"/><path d="M95 52q5 5 10 0" stroke="#7c77a1" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>
+      </div>
+      <div class="meta">
+        <span class="tag sky"><Icon name="stretch" size={14} /> Stretch a little</span>
+        <h3>Gentle Movement</h3>
+        <p>{$catalog.movements.length} easy stretches for a short break. General ideas, go at your own pace.</p>
       </div>
     </button>
   </section>
@@ -270,6 +336,41 @@
     height: 100%;
     border-radius: inherit;
     overflow: hidden;
+  }
+  .tag.butter {
+    background: var(--c-gold-bg);
+    color: var(--c-gold);
+  }
+  .soft-thumb {
+    width: 100%;
+    aspect-ratio: 4/3;
+    display: grid;
+    place-items: center;
+    border-radius: 18px;
+    color: #8d84c9;
+  }
+  .soft-thumb.med {
+    background: linear-gradient(135deg, #e3f1fb, #ece3fb);
+  }
+  .soft-thumb.sand {
+    background: linear-gradient(135deg, #f8ecd7, #f3e3d0);
+    color: #b49266;
+  }
+  .calm {
+    background: linear-gradient(135deg, #dff0fb, #e9e0fa);
+    min-height: 140px;
+  }
+  .stretchy {
+    background: linear-gradient(135deg, #e3f5ee, #fde6ef);
+    min-height: 140px;
+  }
+  .calm svg,
+  .stretchy svg {
+    position: absolute;
+    inset: 0;
+  }
+  .stack.cool {
+    background: linear-gradient(135deg, #e3f5ee, #e6dcfa);
   }
   .stack {
     background: linear-gradient(135deg, #dff0fb, #ece3fb);

@@ -1,0 +1,28 @@
+{
+  "id": "butterfly_wings",
+  "name": "Butterfly Wings",
+  "description": "A pastel butterfly, wings wide open.",
+  "minigame": "pastel_breaker",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "objective": "Pop both wings. The little body takes two hits.",
+  "grid": [
+    "ppp......ppp",
+    "pllp.kk.pllp",
+    "plllpkkplllp",
+    ".lllpkkplll.",
+    "..yy.kk.yy..",
+    ".yyy.kk.yyy.",
+    "..y..kk..y.."
+  ],
+  "legend": {
+    "p": "#ffd3e2",
+    "l": "#e6d8f8",
+    "y": "#fff2bd",
+    "k": "#b7a8ec"
+  },
+  "tough": [
+    "k"
+  ]
+}

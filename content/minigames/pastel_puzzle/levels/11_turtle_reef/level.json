@@ -1,0 +1,13 @@
+{
+  "id": "turtle_reef",
+  "name": "Turtle Reef",
+  "description": "A slow, friendly turtle on the reef.",
+  "minigame": "pastel_puzzle",
+  "thumbnail": "picture.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.1",
+  "objective": "Take it slowly, like the turtle does.",
+  "picture": "picture.svg",
+  "columns": 5,
+  "rows": 4
+}

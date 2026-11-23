@@ -1,0 +1,26 @@
+{
+  "id": "hand_stretch",
+  "name": "Hand Stretch",
+  "description": "Open, close and soften your hands.",
+  "minutes": 1,
+  "position": "Seated or standing",
+  "accent": "#f49bbd",
+  "steps": [
+    {
+      "title": "Open wide",
+      "text": "Spread your fingers as comfortably wide as you can, like a star."
+    },
+    {
+      "title": "Soft fist",
+      "text": "Gently curl your fingers into a loose fist. Open and close slowly five times."
+    },
+    {
+      "title": "Press and release",
+      "text": "Press your palms together in front of your chest for a few breaths, then let go and shake your hands loose. Move slowly and only as far as feels comfortable. Stop if anything hurts."
+    }
+  ],
+  "order": 4,
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "cover": "cover.svg"
+}

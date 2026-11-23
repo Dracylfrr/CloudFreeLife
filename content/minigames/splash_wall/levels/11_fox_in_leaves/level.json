@@ -1,0 +1,23 @@
+{
+  "id": "fox_in_leaves",
+  "name": "Fox in Leaves",
+  "description": "A cozy fox and a bed of autumn leaves.",
+  "minigame": "splash_wall",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "objective": "Cover the scene with warm color.",
+  "wall": "wall.svg",
+  "goal": {
+    "type": "coverage",
+    "target": 0.6
+  },
+  "colors": [
+    "#f6b8cf",
+    "#bfe4f7",
+    "#c6ecda",
+    "#fff2bd",
+    "#d9cdf6",
+    "#ffdcc8"
+  ]
+}

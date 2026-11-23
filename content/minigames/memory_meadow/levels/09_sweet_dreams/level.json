@@ -1,0 +1,20 @@
+{
+  "id": "sweet_dreams",
+  "name": "Sweet Dreams",
+  "description": "Six sleepy pairs in a tall, narrow bed.",
+  "minigame": "memory_meadow",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.0",
+  "objective": "Match the sleepy pictures, three to a row.",
+  "columns": 3,
+  "cardBack": "#ffd3e2",
+  "symbols": [
+    "moon",
+    "star",
+    "cloud",
+    "heart",
+    "balloon",
+    "planet"
+  ]
+}

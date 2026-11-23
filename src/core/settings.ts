@@ -2,6 +2,7 @@ import { get, writable, type Readable } from 'svelte/store';
 import { getStorage } from './storage';
 import { clamp, debounce } from './util';
 import { DEFAULT_THEME, applyTheme, isThemeChoice, systemPrefersDark, type ThemeChoice } from './themes';
+import { DEFAULT_APP_ICON, isAppIcon, type AppIconId } from './appIcon';
 
 export const SETTINGS_PATH = 'settings.json';
 export const SETTINGS_SCHEMA = 2;
@@ -25,15 +26,10 @@ export interface Settings {
   storyFontScale: number; // 0.9 - 1.7
   /** Visual theme (v1.3). 'system' follows the operating system light/dark setting. */
   theme: ThemeChoice;
+  /** Which little cloud icon to show in the window, taskbar and the app's corner logo (v1.4). */
+  appIcon: AppIconId;
   /** One-tap feeling preset (v1.3): shapes music, ambience, sound softness and ambient speed. */
   mood: Mood;
-  // Read Aloud (v1.3)
-  ttsVoice: string;
-  ttsRate: number; // 0.75 - 1.5
-  ttsHighlight: boolean;
-  ttsTone: 'soft' | 'warm' | 'bright';
-  /** Keep narrating into the next chapter. */
-  ttsAutoNext: boolean;
   // Accessibility
   reducedMotion: boolean;
   disableParticles: boolean;
@@ -68,12 +64,8 @@ export const DEFAULT_SETTINGS: Settings = {
   fps30: false,
   storyFontScale: 1.1,
   theme: DEFAULT_THEME,
+  appIcon: DEFAULT_APP_ICON,
   mood: 'default',
-  ttsVoice: '',
-  ttsRate: 1,
-  ttsHighlight: true,
-  ttsTone: 'soft',
-  ttsAutoNext: true,
   reducedMotion: false,
   disableParticles: false,
   highContrast: false,
@@ -113,12 +105,8 @@ export function sanitizeSettings(raw: unknown): Settings {
     fps30: bool(r.fps30, d.fps30),
     storyFontScale: num(r.storyFontScale, d.storyFontScale, 0.9, 1.7),
     theme: isThemeChoice(r.theme) ? r.theme : d.theme,
+    appIcon: isAppIcon(r.appIcon) ? r.appIcon : d.appIcon,
     mood: (MOODS as readonly string[]).includes(r.mood as string) ? (r.mood as Mood) : d.mood,
-    ttsVoice: typeof r.ttsVoice === 'string' && r.ttsVoice.length < 300 ? r.ttsVoice : d.ttsVoice,
-    ttsRate: num(r.ttsRate, d.ttsRate, 0.75, 1.5),
-    ttsHighlight: bool(r.ttsHighlight, d.ttsHighlight),
-    ttsTone: r.ttsTone === 'warm' || r.ttsTone === 'bright' || r.ttsTone === 'soft' ? r.ttsTone : d.ttsTone,
-    ttsAutoNext: bool(r.ttsAutoNext, d.ttsAutoNext),
     reducedMotion: bool(r.reducedMotion, d.reducedMotion),
     disableParticles: bool(r.disableParticles, d.disableParticles),
     highContrast: bool(r.highContrast, d.highContrast),

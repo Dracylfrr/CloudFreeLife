@@ -1,0 +1,46 @@
+{
+  "id": "catcher_sunset_clouds",
+  "name": "Sunset Clouds",
+  "description": "Peach and rose clouds melting into the evening.",
+  "minigame": "cloud_catcher",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "objective": "Guide each cloud into the zone that matches its glow.",
+  "kinds": [
+    "cloud"
+  ],
+  "colors": [
+    "#ffdcc8",
+    "#ffb8a6",
+    "#f3c2d9"
+  ],
+  "zones": [
+    {
+      "id": "zone_1",
+      "label": "Peach",
+      "color": "#ffdcc8"
+    },
+    {
+      "id": "zone_2",
+      "label": "Coral",
+      "color": "#ffb8a6"
+    },
+    {
+      "id": "zone_3",
+      "label": "Blush",
+      "color": "#f3c2d9"
+    }
+  ],
+  "spawn": 0.7,
+  "speed": 26,
+  "sky": [
+    "#ffd1b3",
+    "#ffeedd"
+  ],
+  "scenery": "sunset",
+  "pattern": [
+    "cloud",
+    "cloud"
+  ]
+}

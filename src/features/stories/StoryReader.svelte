@@ -3,16 +3,12 @@
   import { get } from 'svelte/store';
   import { navigate, onBeforeLeave } from '../../core/router';
   import { findStory } from '../../core/content/registry';
-  import { settings, updateSettings, motionReduced } from '../../core/settings';
+  import { settings, updateSettings } from '../../core/settings';
   import { storyProgress, saveStoryPlace, saveStoryParagraph, setFavorite, isFavorite, flushStoryProgress } from './progress';
-  import { ReadAloud, TONES, type Tone } from './readAloud';
   import StoryArt from './StoryArt.svelte';
   import Button from '../../ui/Button.svelte';
   import Icon from '../../ui/Icon.svelte';
-  import Select from '../../ui/Select.svelte';
-  import Slider from '../../ui/Slider.svelte';
-  import Toggle from '../../ui/Toggle.svelte';
-  import { sfx, setNarrating } from '../../core/audio';
+  import { sfx } from '../../core/audio';
 
   let { storyId }: { storyId: string } = $props();
   const sid = untrack(() => storyId);
@@ -26,9 +22,6 @@
   let scroller: HTMLDivElement | undefined = $state();
   let textEl: HTMLDivElement | undefined = $state();
   let tocOpen = $state(false);
-  let listenOpen = $state(false);
-  let speaking = $state(-1); // paragraph being spoken, -1 when none
-  let pendingPlay = false;
   let restorePara = untrack(() => (saved && !saved.finished ? saved.para : 0));
 
   const atEnd = $derived(page >= total);
@@ -36,73 +29,11 @@
   const favorite = $derived(isFavorite($storyProgress, 'story', sid));
   const percent = $derived(total ? Math.round((Math.min(page, total) / total) * 100) : 0);
 
-  // ---- Read Aloud ------------------------------------------------------
-  const ra = new ReadAloud({
-    onParagraph: (i) => {
-      speaking = i;
-      saveStoryParagraph(sid, i);
-      void tick().then(() => keepInView(i));
-    },
-    onFinish: () => {
-      speaking = -1;
-      if (get(settings).ttsAutoNext && page < total - 1) go(page + 1, true);
-    }
-  });
-  const rs = ra.state;
-  const playing = $derived($rs.status === 'playing');
-  const paused = $derived($rs.status === 'paused');
-
-  // Background music and ambience step back while a story is being narrated.
-  $effect(() => {
-    setNarrating(playing);
-    return () => setNarrating(false);
-  });
-
-  $effect(() => {
-    ra.setRate($settings.ttsRate);
-    ra.setVoice($settings.ttsVoice);
-    ra.setTone($settings.ttsTone);
-  });
-
-  // A new chapter hands its paragraphs to the narrator (this also stops the old narration).
-  $effect(() => {
-    const paras = chapter?.text ?? [];
-    const start = untrack(() => restorePara);
-    ra.setText(paras, start);
-    speaking = -1;
-    if (pendingPlay && paras.length) {
-      pendingPlay = false;
-      ra.play(0);
-    }
-  });
-
-  /** Scrolls a paragraph into view only when it has left the comfortable middle of the page. */
-  function keepInView(i: number) {
-    const el = textEl?.querySelectorAll<HTMLElement>('p[data-p]')[i];
-    if (!el || !scroller) return;
-    const box = scroller.getBoundingClientRect();
-    const r = el.getBoundingClientRect();
-    const margin = Math.min(120, box.height * 0.2);
-    if (r.top >= box.top + margin && r.bottom <= box.bottom - margin) return;
-    el.scrollIntoView({ block: 'center', behavior: motionReduced() ? 'auto' : 'smooth' });
-  }
-
-  function listenFrom(i: number) {
-    if (!listenOpen) return;
-    ra.play(i);
-  }
-
-  function changeVoice(uri: string) {
-    updateSettings({ ttsVoice: uri });
-  }
-
   // ---- Navigation --------------------------------------------------------
-  function go(next: number, keepListening = false) {
+  function go(next: number) {
     if (!story) return;
-    const wasPlaying = keepListening || get(ra.state).status === 'playing';
     page = Math.max(0, Math.min(total, next));
     restorePara = 0;
-    pendingPlay = wasPlaying && page < total;
     if (page >= total) saveStoryPlace(sid, 0, true);
     else saveStoryPlace(sid, page, false);
     tocOpen = false;
@@ -116,18 +47,8 @@
       tocOpen = false;
       return;
     }
-    if (e.shiftKey && listenOpen && e.key === 'ArrowRight') {
-      e.preventDefault();
-      ra.next();
-    } else if (e.shiftKey && listenOpen && e.key === 'ArrowLeft') {
-      e.preventDefault();
-      ra.prev();
-    } else if (e.key === 'ArrowRight' || e.key === 'PageDown') go(page + 1);
+    if (e.key === 'ArrowRight' || e.key === 'PageDown') go(page + 1);
     else if (e.key === 'ArrowLeft' || e.key === 'PageUp') go(page - 1);
-    else if (e.key === ' ' && listenOpen && !(e.target instanceof HTMLButtonElement)) {
-      e.preventDefault();
-      ra.toggle();
-    }
   }
 
   const bigger = () => updateSettings({ storyFontScale: Math.min(1.7, +($settings.storyFontScale + 0.1).toFixed(2)) });
@@ -146,7 +67,7 @@
       ps.forEach((p, i) => {
         if (p.getBoundingClientRect().bottom < top) idx = Math.min(i + 1, ps.length - 1);
       });
-      if (get(ra.state).status === 'idle') saveStoryParagraph(sid, idx);
+      saveStoryParagraph(sid, idx);
     }, 400);
   }
 
@@ -160,25 +81,13 @@
         el?.scrollIntoView({ block: 'start' });
       });
     }
-    const stop = () => ra.destroy();
-    window.addEventListener('pagehide', stop);
-    const off = onBeforeLeave(() => {
-      ra.destroy();
-      return flushStoryProgress();
-    });
-    return () => {
-      window.removeEventListener('pagehide', stop);
-      off();
-    };
+    const off = onBeforeLeave(() => flushStoryProgress());
+    return () => off();
   });
   onDestroy(() => {
-    ra.destroy();
     if (scrollTimer) clearTimeout(scrollTimer);
   });
 
-  const speeds = [0.75, 1, 1.25, 1.5];
-  const toneOptions = TONES.map((t) => ({ value: t.id, label: t.label }));
-  const voiceOptions = $derived([{ value: '', label: 'System default' }, ...$rs.voices.map((v) => ({ value: v.uri, label: v.name }))]);
   const intro = $derived(story && page === 0 && !!story.manifest.illustration && !story.manifest.chapters[0]?.illustration);
 </script>
 
@@ -190,13 +99,10 @@
     <Button onclick={() => navigate({ name: 'stories' })}>Back to stories</Button>
   {:else}
     <header class="bar">
-      <button class="back" onclick={() => navigate({ name: 'stories' })}><Icon name="chevronLeft" size={18} /> Stories</button>
+      <button class="back" onclick={() => navigate({ name: 'stories' })}><Icon name="chevronLeft" size={18} /> Cozy Stories</button>
       <div class="tools">
         <button class="tool" class:on={favorite} aria-pressed={favorite} aria-label={favorite ? 'Remove from favorites' : 'Add to favorites'} title={favorite ? 'Favorite' : 'Add to favorites'} onclick={() => setFavorite('story', sid, !favorite)}>
           <Icon name="heart" size={18} />
-        </button>
-        <button class="tool wide" class:on={listenOpen} aria-pressed={listenOpen} onclick={() => { listenOpen = !listenOpen; if (!listenOpen) ra.stop(); }}>
-          <Icon name="headphones" size={18} /> <span>Read Aloud</span>
         </button>
         <button class="tool wide" class:on={tocOpen} aria-expanded={tocOpen} onclick={() => (tocOpen = !tocOpen)}>
           <Icon name="list" size={18} /> <span>Chapters</span>
@@ -220,51 +126,6 @@
       </nav>
     {/if}
 
-    {#if listenOpen && $rs.supported}
-      <!-- The playback controls stay on screen while you read, so Pause is always one click away. -->
-      <div class="dock">
-        <div class="transport" role="group" aria-label="Read Aloud controls">
-          <button class="t" aria-label="Previous paragraph" title="Previous paragraph (Shift+Left)" onclick={() => ra.prev()}><Icon name="skipBack" size={18} /></button>
-          {#if playing}
-            <button class="t main" aria-label="Pause" title="Pause (Space)" onclick={() => ra.pause()}><Icon name="pause" size={22} /><span>Pause</span></button>
-          {:else if paused}
-            <button class="t main" aria-label="Resume" title="Resume (Space)" onclick={() => ra.resume()}><Icon name="play" size={22} /><span>Resume</span></button>
-          {:else}
-            <button class="t main" aria-label="Play" title="Play (Space)" disabled={atEnd} onclick={() => ra.play()}><Icon name="play" size={22} /><span>Play</span></button>
-          {/if}
-          <button class="t" aria-label="Stop" title="Stop" disabled={!playing && !paused} onclick={() => { ra.stop(); speaking = -1; }}><Icon name="stop" size={18} /></button>
-          <button class="t" aria-label="Next paragraph" title="Next paragraph (Shift+Right)" onclick={() => ra.next()}><Icon name="skipForward" size={18} /></button>
-          <span class="state" aria-live="polite">{playing ? 'Reading…' : paused ? 'Paused' : 'Ready'}</span>
-        </div>
-      </div>
-    {/if}
-
-    {#if listenOpen}
-      <section class="listen" aria-label="Read Aloud">
-        {#if !$rs.supported}
-          <p class="nospeech"><Icon name="info" size={18} /> Read Aloud isn't available with the current system voice configuration. You can keep reading as normal.</p>
-        {:else}
-          <div class="opts">
-            <Select label="Voice" value={$settings.ttsVoice} options={voiceOptions} onchange={changeVoice} />
-            <Select label="Tone" value={$settings.ttsTone} options={toneOptions} onchange={(v) => updateSettings({ ttsTone: v as Tone })} />
-            <div class="speed">
-              <span class="lab">Speed</span>
-              <div class="chips" role="radiogroup" aria-label="Reading speed">
-                {#each speeds as sp}
-                  <button class="chip" class:on={Math.abs($settings.ttsRate - sp) < 0.01} role="radio" aria-checked={Math.abs($settings.ttsRate - sp) < 0.01} onclick={() => updateSettings({ ttsRate: sp })}>{sp}×</button>
-                {/each}
-              </div>
-            </div>
-          </div>
-          <Slider label="Fine speed" value={$settings.ttsRate} min={0.75} max={1.5} step={0.05} format={(v) => `${v.toFixed(2)}×`} onchange={(v) => updateSettings({ ttsRate: v })} />
-          <div class="toggles">
-            <Toggle label="Highlight the paragraph being read" checked={$settings.ttsHighlight} onchange={(v) => updateSettings({ ttsHighlight: v })} />
-            <Toggle label="Keep reading into the next chapter" checked={$settings.ttsAutoNext} onchange={(v) => updateSettings({ ttsAutoNext: v })} />
-          </div>
-          {#if $rs.error}<p class="nospeech"><Icon name="info" size={18} /> {$rs.error}</p>{/if}
-        {/if}
-      </section>
-    {/if}
 
     <article class="paper" style="--fs:{$settings.storyFontScale}; --accent:{story.manifest.accent ?? '#b7a8ec'}">
       {#if intro && story.manifest.illustration}
@@ -281,12 +142,7 @@
             {/if}
             <div class="text" bind:this={textEl}>
               {#each chapter.text as para, i}
-                {#if listenOpen && $rs.supported}
-                  <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_noninteractive_element_interactions -->
-                  <p data-p={i} class:speaking={$settings.ttsHighlight && speaking === i} class:seekable={true} onclick={() => listenFrom(i)} title="Read from here">{para}</p>
-                {:else}
-                  <p data-p={i} class:speaking={$settings.ttsHighlight && speaking === i}>{para}</p>
-                {/if}
+                <p data-p={i}>{para}</p>
                 {#each (chapter.scenes ?? []).filter((sc) => sc.after === i + 1) as sc (sc.illustration)}
                   <StoryArt {story} file={sc.illustration} alt={sc.illustrationAlt ?? ''} caption={sc.illustrationCaption ?? ''} />
                 {/each}
@@ -442,120 +298,6 @@
     flex: 1;
     min-width: 0;
   }
-  .listen {
-    width: 100%;
-    max-width: 780px;
-    margin-bottom: 16px;
-    padding: 16px 20px 12px;
-    border-radius: var(--radius-l);
-    background: var(--panel-strong);
-    box-shadow: var(--shadow-m);
-    border: 1px solid rgb(var(--w) / 0.9);
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .dock {
-    position: sticky;
-    top: 0;
-    z-index: 6;
-    width: 100%;
-    max-width: 780px;
-    margin: 0 0 12px;
-    padding: 8px 12px;
-    border-radius: 999px;
-    background: var(--panel-strong);
-    box-shadow: var(--shadow-m);
-    border: 1px solid rgb(var(--w) / 0.9);
-  }
-  .transport {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .t {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    color: var(--ink);
-    background: rgb(var(--w) / 0.7);
-    box-shadow: var(--shadow-s);
-  }
-  .t:hover:not(:disabled) {
-    background: var(--lilac);
-  }
-  .t:disabled {
-    opacity: 0.4;
-  }
-  .t.main {
-    width: auto;
-    min-width: 52px;
-    height: 44px;
-    padding: 0 18px 0 14px;
-    border-radius: 999px;
-    grid-auto-flow: column;
-    gap: 8px;
-    font-weight: 800;
-    color: var(--g-ink);
-    background: linear-gradient(135deg, var(--g1), var(--g2));
-  }
-  .state {
-    margin-left: 8px;
-    color: var(--ink-soft);
-    font-weight: 700;
-    font-size: 0.9rem;
-  }
-  .opts {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 12px;
-    align-items: end;
-  }
-  .lab {
-    display: block;
-    font-size: 0.74rem;
-    font-weight: 800;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    margin-bottom: 4px;
-  }
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  .speed {
-    min-width: 0;
-  }
-  .chip {
-    padding: 8px 11px;
-    border-radius: 12px;
-    font-weight: 800;
-    color: var(--ink-soft);
-    background: rgb(var(--w) / 0.6);
-    border: 2px solid transparent;
-  }
-  .chip.on {
-    color: var(--ink);
-    border-color: var(--lavender-deep);
-  }
-  .toggles {
-    display: flex;
-    flex-direction: column;
-  }
-  .nospeech {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-    padding: 12px 14px;
-    border-radius: 16px;
-    background: rgb(var(--w) / 0.6);
-    color: var(--ink-soft);
-    font-weight: 700;
-  }
   .paper {
     width: 100%;
     max-width: 780px;
@@ -604,16 +346,6 @@
     transition:
       background 0.5s var(--ease),
       box-shadow 0.5s var(--ease);
-  }
-  .text p.seekable {
-    cursor: pointer;
-  }
-  .text p.seekable:hover {
-    background: rgb(var(--w) / 0.35);
-  }
-  .text p.speaking {
-    background: color-mix(in srgb, var(--lavender-deep) 16%, transparent);
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--lavender-deep) 10%, transparent);
   }
   .text p:first-of-type::first-letter {
     font-size: 1.9em;

@@ -1,0 +1,23 @@
+{
+  "id": "night_owl",
+  "name": "Night Owl",
+  "description": "An owl keeping watch beneath the moon.",
+  "minigame": "splash_wall",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "objective": "Bring the night to life with soft color.",
+  "wall": "wall.svg",
+  "goal": {
+    "type": "coverage",
+    "target": 0.55
+  },
+  "colors": [
+    "#f6b8cf",
+    "#bfe4f7",
+    "#c6ecda",
+    "#fff2bd",
+    "#d9cdf6",
+    "#ffdcc8"
+  ]
+}

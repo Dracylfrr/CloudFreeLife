@@ -8,6 +8,10 @@ import breakerCover from './covers/breaker.svg';
 import memoryCover from './covers/memory.svg';
 import puzzleCover from './covers/puzzle.svg';
 import splashCover from './covers/splash.svg';
+import bubblesCover from './covers/bubbles.svg';
+import catcherCover from './covers/catcher.svg';
+import zenCover from './covers/zen.svg';
+import flowCover from './covers/flow.svg';
 
 export interface GameLevel extends Located {
   manifest: { id: string; name: string; description: string; objective: string; thumbnail: string };
@@ -77,6 +81,67 @@ export const GAMES: GameDef[] = [
     accent: '#86c3ea',
     levels: (c) => c.puzzleLevels,
     open: (levelId) => ({ name: 'puzzle', levelId })
+  },
+  {
+    id: 'bubbles',
+    title: 'Bubble Garden',
+    blurb: 'Soft bubbles float by. Pop them, merge matching colors, or just watch. No timer, no score to reach.',
+    tagline: 'Pop and drift',
+    icon: 'sparkle',
+    cover: bubblesCover,
+    accent: '#7fcfe0',
+    levels: (c) => c.bubbleLevels,
+    open: (levelId) => ({ name: 'bubbles', levelId, mode: 'relax' }),
+    modes: [
+      { label: 'Relax', variant: 'mint', open: (c) => ({ name: 'bubbles', mode: 'relax', levelId: c.bubbleLevels[0]?.manifest.id }) },
+      { label: 'Color Match', variant: 'soft', open: (c) => ({ name: 'bubbles', mode: 'match', levelId: c.bubbleLevels[0]?.manifest.id }) },
+      { label: 'Endless', variant: 'peach', open: (c) => ({ name: 'bubbles', mode: 'endless', levelId: c.bubbleLevels[0]?.manifest.id }) }
+    ]
+  },
+  {
+    id: 'catcher',
+    title: 'Cloud Catcher',
+    blurb: 'Clouds, stars and moons drift across the sky. Guide them gently into their matching zones.',
+    tagline: 'Catch the sky',
+    icon: 'cloud',
+    cover: catcherCover,
+    accent: '#a9c8f0',
+    levels: (c) => c.catcherLevels,
+    open: (levelId) => ({ name: 'catcher', levelId, mode: 'relax' }),
+    modes: [
+      { label: 'Relax', variant: 'mint', open: (c) => ({ name: 'catcher', mode: 'relax', levelId: c.catcherLevels[0]?.manifest.id }) },
+      { label: 'Color Match', variant: 'soft', open: (c) => ({ name: 'catcher', mode: 'match', levelId: c.catcherLevels[0]?.manifest.id }) },
+      { label: 'Pattern', variant: 'soft', open: (c) => ({ name: 'catcher', mode: 'pattern', levelId: c.catcherLevels[0]?.manifest.id }) },
+      { label: 'Endless', variant: 'peach', open: (c) => ({ name: 'catcher', mode: 'endless', levelId: c.catcherLevels[0]?.manifest.id }) }
+    ]
+  },
+  {
+    id: 'zen',
+    title: 'Zen Garden',
+    blurb: 'Rake patterns in the sand, place stones, plants and flowers, and relax. It saves itself.',
+    tagline: 'Rake and place',
+    icon: 'flower',
+    cover: zenCover,
+    accent: '#e0c48a',
+    levels: (c) => c.zenLevels,
+    open: (levelId) => ({ name: 'zen', levelId }),
+    modes: [{ label: 'My gardens', variant: 'mint', open: () => ({ name: 'zen' }) }]
+  },
+  {
+    id: 'flow',
+    title: 'Paint Flow',
+    blurb: 'Join matching dots with smooth paths of color. Gentle boards, free hints and unlimited undo.',
+    tagline: 'Connect the colors',
+    icon: 'brush',
+    cover: flowCover,
+    accent: '#f49bbd',
+    levels: (c) => c.flowLevels,
+    open: (levelId) => ({ name: 'flow', levelId, mode: 'puzzle' }),
+    modes: [
+      { label: 'Puzzle', variant: 'mint', open: (c) => ({ name: 'flow', mode: 'puzzle', levelId: c.flowLevels[0]?.manifest.id }) },
+      { label: 'Relax', variant: 'soft', open: (c) => ({ name: 'flow', mode: 'relax', levelId: c.flowLevels[0]?.manifest.id }) },
+      { label: 'Free Flow', variant: 'peach', open: (c) => ({ name: 'flow', mode: 'free', levelId: c.flowLevels[0]?.manifest.id }) }
+    ]
   }
 ];
 

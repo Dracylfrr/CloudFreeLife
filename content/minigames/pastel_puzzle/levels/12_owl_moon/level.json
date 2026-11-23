@@ -1,0 +1,13 @@
+{
+  "id": "owl_moon",
+  "name": "Owl and Moon",
+  "description": "A sleepy owl under a big moon.",
+  "minigame": "pastel_puzzle",
+  "thumbnail": "picture.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.1",
+  "objective": "Sixteen pieces for one night owl.",
+  "picture": "picture.svg",
+  "columns": 4,
+  "rows": 4
+}

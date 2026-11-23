@@ -1,0 +1,17 @@
+{
+  "id": "garden_sand",
+  "name": "Garden",
+  "description": "Mossy green ground with a soft grassy border.",
+  "minigame": "zen_garden",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "objective": "Rake, place, and relax.",
+  "ground": [
+    "#cfe6c4",
+    "#b9d8ad"
+  ],
+  "groove": "#9fc294",
+  "light": "#f2fbe9",
+  "scenery": "garden"
+}

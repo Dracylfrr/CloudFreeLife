@@ -7,20 +7,28 @@ export type Route =
   | { name: 'draw' }
   | { name: 'paint'; artworkId: string }
   | { name: 'gallery' }
-  | { name: 'stories'; tab?: 'continue' | 'stories' | 'adventures' | 'notStarted' | 'finished' | 'favorites' }
+  | { name: 'stories'; tab?: 'continue' | 'all' | 'notStarted' | 'finished' | 'favorites' }
   | { name: 'story'; storyId: string }
-  | { name: 'adventures' }
+  | { name: 'adventures'; tab?: 'continue' | 'all' | 'notStarted' | 'finished' | 'favorites' }
   | { name: 'adventure'; adventureId: string }
   | { name: 'minigames'; game?: string }
   | { name: 'breaker'; levelId?: string; mode?: 'relax' | 'classic' | 'endless' }
   | { name: 'splash'; levelId?: string }
   | { name: 'memory'; levelId?: string }
   | { name: 'puzzle'; levelId?: string }
+  | { name: 'bubbles'; levelId?: string; mode?: 'relax' | 'match' | 'endless' }
+  | { name: 'catcher'; levelId?: string; mode?: 'relax' | 'match' | 'pattern' | 'endless' }
+  | { name: 'zen'; levelId?: string; gardenId?: string }
+  | { name: 'flow'; levelId?: string; mode?: 'puzzle' | 'relax' | 'free' }
+  | { name: 'meditation' }
+  | { name: 'meditate'; sessionId: string }
+  | { name: 'movement' }
+  | { name: 'moves'; cardId: string }
   | { name: 'updates' }
   | { name: 'settings'; tab?: string }
   | { name: 'about' };
 
-export type NavSection = 'home' | 'books' | 'draw' | 'gallery' | 'stories' | 'adventures' | 'minigames' | 'updates' | 'settings' | 'about';
+export type NavSection = 'home' | 'books' | 'draw' | 'gallery' | 'stories' | 'adventures' | 'minigames' | 'meditation' | 'movement' | 'updates' | 'settings' | 'about';
 
 const store = writable<Route>({ name: 'home' });
 export const route = { subscribe: store.subscribe };
@@ -67,15 +75,23 @@ export function sectionOf(r: Route): NavSection {
       return 'stories';
     case 'adventure':
     case 'adventures':
-      return 'stories';
+      return 'adventures';
     case 'paint':
       return 'books';
     case 'breaker':
     case 'splash':
     case 'memory':
     case 'puzzle':
+    case 'bubbles':
+    case 'catcher':
+    case 'zen':
+    case 'flow':
     case 'minigames':
       return 'minigames';
+    case 'meditate':
+      return 'meditation';
+    case 'moves':
+      return 'movement';
     default:
       return r.name as NavSection;
   }

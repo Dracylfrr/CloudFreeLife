@@ -1,0 +1,29 @@
+{
+  "id": "bubbles_morning_sky",
+  "name": "Morning Sky",
+  "description": "Pastel bubbles drifting through a clear blue morning.",
+  "minigame": "bubble_garden",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "objective": "Pop them, merge matching colors, or simply watch.",
+  "palette": [
+    "#bfe4f7",
+    "#ffd3e2",
+    "#c6ecda",
+    "#fff2bd",
+    "#e6d8f8"
+  ],
+  "sky": [
+    "#d6ecfb",
+    "#f2f9ff"
+  ],
+  "scenery": "morning",
+  "spawn": 0.8,
+  "speed": 26,
+  "size": [
+    26,
+    50
+  ],
+  "rounds": 3
+}

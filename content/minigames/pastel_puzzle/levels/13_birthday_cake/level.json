@@ -1,0 +1,13 @@
+{
+  "id": "birthday_cake",
+  "name": "Birthday Cake",
+  "description": "A cake with candles and sprinkles.",
+  "minigame": "pastel_puzzle",
+  "thumbnail": "picture.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.1",
+  "objective": "A small, sweet puzzle: nine pieces.",
+  "picture": "picture.svg",
+  "columns": 3,
+  "rows": 3
+}

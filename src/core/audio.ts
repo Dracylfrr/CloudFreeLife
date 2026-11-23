@@ -26,7 +26,7 @@ const buses: Partial<Record<Bus, GainNode>> = {};
 let noiseBuf: AudioBuffer | null = null;
 let rainBuf: AudioBuffer | null = null;
 let current: Settings | null = null;
-/** 1 normally; lowered while a story is being read aloud so the voice stays clear. */
+/** 1 normally; a spare multiplier on music and ambience volume (kept at 1). */
 let duck = 1;
 
 function ensure(): AudioContext | null {
@@ -101,12 +101,6 @@ function applyVolumes() {
   buses.ambience?.gain.setTargetAtTime(s.volumeAmbience * duck, t, 0.25);
   buses.effects?.gain.setTargetAtTime(s.volumeEffects, t, 0.05);
   buses.painting?.gain.setTargetAtTime(s.volumePainting, t, 0.05);
-}
-
-/** Lowers the music and ambience while a story is narrated (and restores them after). */
-export function setNarrating(on: boolean) {
-  duck = on ? 0.3 : 1;
-  applyVolumes();
 }
 
 function canPlay(bus: Bus): AudioContext | null {
@@ -486,8 +480,49 @@ function stopMusic(fadeSeconds = 1.8) {
 
 /** The track currently chosen (by mood or by the Audio setting), or null when music is off. */
 export function wantedMusic(s: Settings | null = current): string | null {
-  if (!s || !s.musicOn || s.muted) return null;
+  if (!s || s.muted) return null;
+  // During a meditation session the session picks the sound: the everyday music steps aside.
+  if (sessionSound !== null) return sessionSound === 'garden' ? 'garden' : null;
+  if (!s.musicOn) return null;
   return effectiveMusic(s.mood, s.musicMood);
+}
+
+/** What a meditation session plays under it. null = no session, normal music rules apply. */
+export type SessionSound = 'none' | 'rain' | 'hush' | 'garden';
+let sessionSound: SessionSound | null = null;
+let rainSrc: AudioBufferSourceNode | null = null;
+
+/** Starts (or, with null, ends) the sound of a meditation session. */
+export function setSessionSound(kind: SessionSound | null) {
+  sessionSound = kind;
+  syncLoops();
+}
+
+function startRain() {
+  const c = canPlay('ambience');
+  if (!c || !rainBuf || rainSrc || !buses.ambience) return;
+  rainSrc = c.createBufferSource();
+  rainSrc.buffer = rainBuf;
+  rainSrc.loop = true;
+  const hp = c.createBiquadFilter();
+  hp.type = 'highpass';
+  hp.frequency.value = 900;
+  const lp = c.createBiquadFilter();
+  lp.type = 'lowpass';
+  lp.frequency.value = 6000;
+  const g = c.createGain();
+  g.gain.value = 0.5;
+  rainSrc.connect(hp).connect(lp).connect(g).connect(buses.ambience);
+  rainSrc.start(0, Math.random());
+}
+
+function stopRain() {
+  try {
+    rainSrc?.stop();
+  } catch {
+    /* already stopped */
+  }
+  rainSrc = null;
 }
 
 /* ---------------------------- ambience (hush) ---------------------------- */
@@ -537,8 +572,11 @@ function syncLoops() {
       startMusic(MUSIC[want as keyof typeof MUSIC]);
     }
   }
-  if (current.ambienceOn && !isAppHidden()) startAmbience();
+  const hush = (current.ambienceOn || sessionSound === 'hush') && !isAppHidden() && !current.muted;
+  if (hush) startAmbience();
   else stopAmbience();
+  if (sessionSound === 'rain' && !isAppHidden() && !current.muted) startRain();
+  else stopRain();
 }
 
 let initialised = false;
@@ -591,5 +629,7 @@ export function __resetAudioForTests() {
   sessionKey = '';
   ambSrc = null;
   ambLfo = null;
+  sessionSound = null;
+  rainSrc = null;
   for (const k of Object.keys(buses) as Bus[]) delete buses[k];
 }

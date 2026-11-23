@@ -1,0 +1,30 @@
+{
+  "id": "shoulder_rolls",
+  "name": "Shoulder Rolls",
+  "description": "Slow circles to loosen up tight shoulders.",
+  "minutes": 1,
+  "position": "Seated or standing",
+  "accent": "#8fc7ec",
+  "steps": [
+    {
+      "title": "Sit or stand tall",
+      "text": "Let your arms hang loosely by your sides and take an easy breath."
+    },
+    {
+      "title": "Roll back",
+      "text": "Lift your shoulders up toward your ears, then roll them back and down. Do this five times, slowly."
+    },
+    {
+      "title": "Roll forward",
+      "text": "Now roll them forward in the opposite direction, five slow times."
+    },
+    {
+      "title": "Let them drop",
+      "text": "Let your shoulders rest and notice how they feel. Move slowly and only as far as feels comfortable. Stop if anything hurts."
+    }
+  ],
+  "order": 1,
+  "version": "1.4.0",
+  "minAppVersion": "1.4.0",
+  "cover": "cover.svg"
+}

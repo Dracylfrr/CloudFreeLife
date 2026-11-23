@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+<rect width="1000" height="750" fill="#ffffff"/>
+<g stroke="#6e6a8e" stroke-linejoin="round" stroke-linecap="round">
+<path data-region="wall" data-name="Wall" d="M-6 -6h1012v640h-1012z" fill="#ffffff" stroke-width="5"/>
+<path data-region="bunting_1" data-name="Flag" d="M38.8 45.3Q36 40 42 40L98 40Q104 40 101.2 45.3L72.8 98.7Q70 104 67.2 98.7z" fill="#ffffff" stroke-width="4"/>
+<path data-region="bunting_2" data-name="Flag" d="M158.8 55.7Q156 50.4 162 50.4L218 50.4Q224 50.4 221.2 55.7L192.8 109.1Q190 114.4 187.2 109.1z" fill="#ffffff" stroke-width="4"/>
+<path data-region="bunting_3" data-name="Flag" d="M278.8 64.1Q276 58.8 282 58.8L338 58.8Q344 58.8 341.2 64.1L312.8 117.5Q310 122.8 307.2 117.5z" fill="#ffffff" stroke-width="4"/>
+<path data-region="bunting_4" data-name="Flag" d="M398.8 68.7Q396 63.4 402 63.4L458 63.4Q464 63.4 461.2 68.7L432.8 122.1Q430 127.4 427.2 122.1z" fill="#ffffff" stroke-width="4"/>
+<path data-region="bunting_5" data-name="Flag" d="M518.8 68.7Q516 63.4 522 63.4L578 63.4Q584 63.4 581.2 68.7L552.8 122.1Q550 127.4 547.2 122.1z" fill="#ffffff" stroke-width="4"/>
+<path data-region="bunting_6" data-name="Flag" d="M638.8 64.1Q636 58.8 642 58.8L698 58.8Q704 58.8 701.2 64.1L672.8 117.5Q670 122.8 667.2 117.5z" fill="#ffffff" stroke-width="4"/>
+<path data-region="bunting_7" data-name="Flag" d="M758.8 55.7Q756 50.4 762 50.4L818 50.4Q824 50.4 821.2 55.7L792.8 109.1Q790 114.4 787.2 109.1z" fill="#ffffff" stroke-width="4"/>
+<path data-region="bunting_8" data-name="Flag" d="M878.8 45.3Q876 40 882 40L938 40Q944 40 941.2 45.3L912.8 98.7Q910 104 907.2 98.7z" fill="#ffffff" stroke-width="4"/>
+<path d="M0 40Q500 70 1000 40" fill="none" stroke-width="4"/>
+<path data-region="table" data-name="Table" d="M-6 600h1012v160h-1012z" fill="#ffffff" stroke-width="5"/>
+<path d="M0 660H1000M0 720H1000" fill="none" stroke-width="3"/>
+<path data-region="plate" data-name="Plate" d="M170 604a330 40 0 1 0 660 0a330 40 0 1 0 -660 0z" fill="#ffffff" stroke-width="5"/>
+<path data-region="tier_bottom" data-name="Bottom tier" d="M248 460H752A18 18 0 0 1 770 478V592A18 18 0 0 1 752 610H248A18 18 0 0 1 230 592V478A18 18 0 0 1 248 460z" fill="#ffffff" stroke-width="5"/>
+<path data-region="tier_middle" data-name="Middle tier" d="M318 340H682A18 18 0 0 1 700 358V452A18 18 0 0 1 682 470H318A18 18 0 0 1 300 452V358A18 18 0 0 1 318 340z" fill="#ffffff" stroke-width="5"/>
+<path data-region="tier_top" data-name="Top tier" d="M388 230H612A18 18 0 0 1 630 248V332A18 18 0 0 1 612 350H388A18 18 0 0 1 370 332V248A18 18 0 0 1 388 230z" fill="#ffffff" stroke-width="5"/>
+<path data-region="icing_bottom" data-name="Icing" d="M230 478q20 28 45 0q22 36 50 0q22 30 48 0q24 40 52 0q22 30 46 0q22 36 50 0q24 30 46 0q22 36 50 0v-26a18 18 0 0 0-18-18H248a18 18 0 0 0-18 18z" fill="#ffffff" stroke-width="4"/>
+<path data-region="icing_top" data-name="Icing" d="M370 248q16 24 36 0q20 30 42 0q18 28 38 0q20 30 40 0q18 26 36 0v-6a18 18 0 0 0-18-18H388a18 18 0 0 0-18 18z" fill="#ffffff" stroke-width="4"/>
+<path data-region="candle_a" data-name="Candle" d="M426 160H436A6 6 0 0 1 442 166V218A6 6 0 0 1 436 224H426A6 6 0 0 1 420 218V166A6 6 0 0 1 426 160z" fill="#ffffff" stroke-width="5"/>
+<path data-region="candle_b" data-name="Candle" d="M495 150H505A6 6 0 0 1 511 156V218A6 6 0 0 1 505 224H495A6 6 0 0 1 489 218V156A6 6 0 0 1 495 150z" fill="#ffffff" stroke-width="5"/>
+<path data-region="candle_c" data-name="Candle" d="M564 160H574A6 6 0 0 1 580 166V218A6 6 0 0 1 574 224H564A6 6 0 0 1 558 218V166A6 6 0 0 1 564 160z" fill="#ffffff" stroke-width="5"/>
+<path data-region="flame_1" data-name="Flame" d="M431 108Q451 140 431 156Q411 140 431 108z" fill="#ffffff" stroke-width="4"/>
+<path data-region="flame_2" data-name="Flame" d="M500 98Q520 130 500 146Q480 130 500 98z" fill="#ffffff" stroke-width="4"/>
+<path data-region="flame_3" data-name="Flame" d="M569 108Q589 140 569 156Q549 140 569 108z" fill="#ffffff" stroke-width="4"/>
+<path data-region="cherry_a" data-name="Cherry" d="M314 440a16 16 0 1 0 32 0a16 16 0 1 0 -32 0z" fill="#ffffff" stroke-width="4"/>
+<path data-region="cherry_b" data-name="Cherry" d="M484 330a16 16 0 1 0 32 0a16 16 0 1 0 -32 0z" fill="#ffffff" stroke-width="4"/>
+<path data-region="cherry_c" data-name="Cherry" d="M654 440a16 16 0 1 0 32 0a16 16 0 1 0 -32 0z" fill="#ffffff" stroke-width="4"/>
+<path data-region="balloon_left" data-name="Balloon" d="M66 330a54 68 0 1 0 108 0a54 68 0 1 0 -108 0z" fill="#ffffff" stroke-width="5"/>
+<path d="M120 398q10 40-6 80" fill="none" stroke-width="3.5"/>
+<path data-region="balloon_right" data-name="Balloon" d="M826 320a54 68 0 1 0 108 0a54 68 0 1 0 -108 0z" fill="#ffffff" stroke-width="5"/>
+<path d="M880 388q-10 40 6 80" fill="none" stroke-width="3.5"/>
+<path data-region="balloon_far" data-name="Balloon" d="M920 480a40 52 0 1 0 80 0a40 52 0 1 0 -80 0z" fill="#ffffff" stroke-width="5"/>
+<path d="M960 532q-8 30 4 60" fill="none" stroke-width="3.5"/>
+</g></svg>

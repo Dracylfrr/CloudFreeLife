@@ -31,6 +31,20 @@ import {
   type SplashLevel
 } from '../manifests';
 import { compareVersions } from '../version';
+import {
+  validateBubbleLevel,
+  validateCatcherLevel,
+  validateFlowLevel,
+  validateMeditation,
+  validateMovement,
+  validateZenLevel,
+  type BubbleLevel,
+  type CatcherLevel,
+  type FlowLevel,
+  type MeditationManifest,
+  type MovementManifest,
+  type ZenLevel
+} from '../manifests14';
 import { BundledTree, InstalledTree, type ContentTree } from './tree';
 
 export interface Located {
@@ -74,6 +88,31 @@ export interface LoadedPuzzleLevel extends Located {
   manifest: PuzzleLevel;
 }
 
+export interface LoadedBubbleLevel extends Located {
+  folder: string;
+  manifest: BubbleLevel;
+}
+export interface LoadedCatcherLevel extends Located {
+  folder: string;
+  manifest: CatcherLevel;
+}
+export interface LoadedZenLevel extends Located {
+  folder: string;
+  manifest: ZenLevel;
+}
+export interface LoadedFlowLevel extends Located {
+  folder: string;
+  manifest: FlowLevel;
+}
+export interface LoadedMeditation extends Located {
+  folder: string;
+  manifest: MeditationManifest;
+}
+export interface LoadedMovement extends Located {
+  folder: string;
+  manifest: MovementManifest;
+}
+
 export interface LoadedStory extends Located {
   folder: string;
   manifest: StoryManifest;
@@ -96,13 +135,19 @@ export interface Catalog {
   splashLevels: LoadedSplashLevel[];
   memoryLevels: LoadedMemoryLevel[];
   puzzleLevels: LoadedPuzzleLevel[];
+  bubbleLevels: LoadedBubbleLevel[];
+  catcherLevels: LoadedCatcherLevel[];
+  zenLevels: LoadedZenLevel[];
+  flowLevels: LoadedFlowLevel[];
+  meditations: LoadedMeditation[];
+  movements: LoadedMovement[];
   stories: LoadedStory[];
   adventures: LoadedAdventure[];
   /** Content that exists but was not usable (invalid or needs a newer app). */
   skipped: Skipped[];
 }
 
-const empty = (): Catalog => ({ ready: false, books: [], palettes: [], breakerLevels: [], splashLevels: [], memoryLevels: [], puzzleLevels: [], stories: [], adventures: [], skipped: [] });
+const empty = (): Catalog => ({ ready: false, books: [], palettes: [], breakerLevels: [], splashLevels: [], memoryLevels: [], puzzleLevels: [], bubbleLevels: [], catcherLevels: [], zenLevels: [], flowLevels: [], meditations: [], movements: [], stories: [], adventures: [], skipped: [] });
 
 const store = writable<Catalog>(empty());
 export const catalog = { subscribe: store.subscribe };
@@ -186,9 +231,11 @@ async function loadPalettes(tree: ContentTree, skipped: Skipped[], appVersion?: 
   return out;
 }
 
-async function loadLevels<T extends BreakerLevel | SplashLevel | MemoryLevel | PuzzleLevel>(
+type GameFolder = 'pastel_breaker' | 'splash_wall' | 'memory_meadow' | 'pastel_puzzle' | 'bubble_garden' | 'cloud_catcher' | 'zen_garden' | 'paint_flow';
+
+async function loadLevels<T extends BreakerLevel | SplashLevel | MemoryLevel | PuzzleLevel | BubbleLevel | CatcherLevel | ZenLevel | FlowLevel>(
   tree: ContentTree,
-  game: 'pastel_breaker' | 'splash_wall' | 'memory_meadow' | 'pastel_puzzle',
+  game: GameFolder,
   skipped: Skipped[],
   appVersion?: string
 ): Promise<(Located & { folder: string; manifest: T })[]> {
@@ -198,7 +245,16 @@ async function loadLevels<T extends BreakerLevel | SplashLevel | MemoryLevel | P
     const dir = `${base}/${folder}`;
     const raw = await tree.readJson(`${dir}/level.json`);
     if (raw === null) continue;
-    const v = game === 'pastel_breaker' ? validateBreakerLevel(raw, `${dir}/level.json`) : game === 'splash_wall' ? validateSplashLevel(raw, `${dir}/level.json`) : game === 'memory_meadow' ? validateMemoryLevel(raw, `${dir}/level.json`) : validatePuzzleLevel(raw, `${dir}/level.json`);
+    const where = `${dir}/level.json`;
+    const v =
+      game === 'pastel_breaker' ? validateBreakerLevel(raw, where)
+      : game === 'splash_wall' ? validateSplashLevel(raw, where)
+      : game === 'memory_meadow' ? validateMemoryLevel(raw, where)
+      : game === 'bubble_garden' ? validateBubbleLevel(raw, where)
+      : game === 'cloud_catcher' ? validateCatcherLevel(raw, where)
+      : game === 'zen_garden' ? validateZenLevel(raw, where)
+      : game === 'paint_flow' ? validateFlowLevel(raw, where)
+      : validatePuzzleLevel(raw, where);
     if (!v.ok) {
       skipped.push({ where: dir, reason: v.errors.join('; ') });
       continue;
@@ -212,7 +268,7 @@ async function loadLevels<T extends BreakerLevel | SplashLevel | MemoryLevel | P
   return out;
 }
 
-async function loadReadings<T extends StoryManifest | AdventureManifest>(
+async function loadReadings<T extends { version: string; minAppVersion: string }>(
   tree: ContentTree,
   base: string,
   file: string,
@@ -258,6 +314,12 @@ export async function buildCatalog(trees: ContentTree[], appVersion?: string): P
   const splash: LoadedSplashLevel[] = [];
   const memory: LoadedMemoryLevel[] = [];
   const puzzle: LoadedPuzzleLevel[] = [];
+  const bubble: LoadedBubbleLevel[] = [];
+  const catcher: LoadedCatcherLevel[] = [];
+  const zen: LoadedZenLevel[] = [];
+  const flow: LoadedFlowLevel[] = [];
+  const meditations: LoadedMeditation[] = [];
+  const movements: LoadedMovement[] = [];
   const stories: LoadedStory[] = [];
   const adventures: LoadedAdventure[] = [];
   for (const tree of trees) {
@@ -268,6 +330,12 @@ export async function buildCatalog(trees: ContentTree[], appVersion?: string): P
       splash.push(...(await loadLevels<SplashLevel>(tree, 'splash_wall', skipped, appVersion)));
       memory.push(...(await loadLevels<MemoryLevel>(tree, 'memory_meadow', skipped, appVersion)));
       puzzle.push(...(await loadLevels<PuzzleLevel>(tree, 'pastel_puzzle', skipped, appVersion)));
+      bubble.push(...(await loadLevels<BubbleLevel>(tree, 'bubble_garden', skipped, appVersion)));
+      catcher.push(...(await loadLevels<CatcherLevel>(tree, 'cloud_catcher', skipped, appVersion)));
+      zen.push(...(await loadLevels<ZenLevel>(tree, 'zen_garden', skipped, appVersion)));
+      flow.push(...(await loadLevels<FlowLevel>(tree, 'paint_flow', skipped, appVersion)));
+      meditations.push(...(await loadReadings<MeditationManifest>(tree, 'meditation', 'session.json', validateMeditation, skipped, appVersion)));
+      movements.push(...(await loadReadings<MovementManifest>(tree, 'movement', 'card.json', validateMovement, skipped, appVersion)));
       stories.push(...(await loadReadings<StoryManifest>(tree, 'stories/relaxing', 'story.json', validateStory, skipped, appVersion)));
       adventures.push(...(await loadReadings<AdventureManifest>(tree, 'stories/adventures', 'adventure.json', validateAdventure, skipped, appVersion)));
     } catch (err) {
@@ -284,6 +352,12 @@ export async function buildCatalog(trees: ContentTree[], appVersion?: string): P
     splashLevels: mergeById(splash, (l) => l.manifest.id, (l) => l.manifest.version).sort(byFolder),
     memoryLevels: mergeById(memory, (l) => l.manifest.id, (l) => l.manifest.version).sort(byFolder),
     puzzleLevels: mergeById(puzzle, (l) => l.manifest.id, (l) => l.manifest.version).sort(byFolder),
+    bubbleLevels: mergeById(bubble, (l) => l.manifest.id, (l) => l.manifest.version).sort(byFolder),
+    catcherLevels: mergeById(catcher, (l) => l.manifest.id, (l) => l.manifest.version).sort(byFolder),
+    zenLevels: mergeById(zen, (l) => l.manifest.id, (l) => l.manifest.version).sort(byFolder),
+    flowLevels: mergeById(flow, (l) => l.manifest.id, (l) => l.manifest.version).sort(byFolder),
+    meditations: mergeById(meditations, (l) => l.manifest.id, (l) => l.manifest.version).sort(byOrder),
+    movements: mergeById(movements, (l) => l.manifest.id, (l) => l.manifest.version).sort(byOrder),
     stories: mergeById(stories, (l) => l.manifest.id, (l) => l.manifest.version).sort(byOrder),
     adventures: mergeById(adventures, (l) => l.manifest.id, (l) => l.manifest.version).sort(byOrder),
     skipped
@@ -318,4 +392,11 @@ export function findAdventure(id: string): LoadedAdventure | undefined {
 }
 export function findPalette(id: string): LoadedPalette | undefined {
   return get(store).palettes.find((p) => p.manifest.id === id);
+}
+
+export function findMeditation(id: string): LoadedMeditation | undefined {
+  return get(store).meditations.find((s) => s.manifest.id === id);
+}
+export function findMovement(id: string): LoadedMovement | undefined {
+  return get(store).movements.find((s) => s.manifest.id === id);
 }

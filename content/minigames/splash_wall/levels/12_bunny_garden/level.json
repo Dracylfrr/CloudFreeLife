@@ -1,0 +1,23 @@
+{
+  "id": "bunny_garden",
+  "name": "Bunny Garden",
+  "description": "A bunny, a carrot patch and plenty of sunshine.",
+  "minigame": "splash_wall",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "objective": "Splash the garden until it is mostly colored in.",
+  "wall": "wall.svg",
+  "goal": {
+    "type": "coverage",
+    "target": 0.6
+  },
+  "colors": [
+    "#f6b8cf",
+    "#bfe4f7",
+    "#c6ecda",
+    "#fff2bd",
+    "#d9cdf6",
+    "#ffdcc8"
+  ]
+}

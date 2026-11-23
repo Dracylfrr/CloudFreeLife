@@ -1,0 +1,23 @@
+{
+  "id": "cloud_parade",
+  "name": "Cloud Parade",
+  "description": "Nine pairs marching by.",
+  "minigame": "memory_meadow",
+  "thumbnail": "thumbnail.svg",
+  "version": "1.0.0",
+  "minAppVersion": "1.1.0",
+  "objective": "Watch the parade and find the pairs.",
+  "columns": 6,
+  "cardBack": "#bfe4f7",
+  "symbols": [
+    "cloud",
+    "sun",
+    "rainbow",
+    "balloon",
+    "star",
+    "moon",
+    "drop",
+    "heart",
+    "butterfly"
+  ]
+}

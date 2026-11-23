@@ -100,20 +100,24 @@ describe('bundled content', () => {
     }
   });
 
-  it('Pastel Breaker has six handcrafted levels with the required folder names', async () => {
+  it('Pastel Breaker has twelve handcrafted levels (the original six plus six more in 1.4)', async () => {
     const cat = await catalogP;
-    expect(cat.breakerLevels.map((l) => l.folder)).toEqual(['01_cloud_wall', '02_rainbow_arch', '03_castle_blocks', '04_star_field', '05_garden_blocks', '06_ocean_bubbles']);
+    expect(cat.breakerLevels.map((l) => l.folder)).toEqual([
+      '01_cloud_wall', '02_rainbow_arch', '03_castle_blocks', '04_star_field', '05_garden_blocks', '06_ocean_bubbles',
+      '07_heart_garden', '08_balloon_bunch', '09_sunrise_bands', '10_snowy_hills', '11_butterfly_wings', '12_quiet_sky'
+    ]);
     for (const l of cat.breakerLevels) {
       expect(l.manifest.grid.join('').replace(/[. ]/g, '').length).toBeGreaterThan(20);
       expect(l.manifest.minigame).toBe('pastel_breaker');
     }
   });
 
-  it('Splash Wall has the ten required levels and valid goals', async () => {
+  it('Splash Wall has sixteen levels (the original ten plus six more in 1.4) and valid goals', async () => {
     const cat = await catalogP;
     expect(cat.splashLevels.map((l) => l.folder)).toEqual([
       '01_blank_car', '02_cloud_castle_wall', '03_rainbow_target', '04_beach_mural', '05_star_constellation',
-      '06_flower_wall', '07_space_planets', '08_grassland_scene', '09_color_match', '10_free_splash'
+      '06_flower_wall', '07_space_planets', '08_grassland_scene', '09_color_match', '10_free_splash',
+      '11_fox_in_leaves', '12_bunny_garden', '13_night_owl', '14_turtle_reef', '15_birthday_cake', '16_balloon_colors'
     ]);
     const files = await readAllText();
     for (const l of cat.splashLevels) {
@@ -129,9 +133,9 @@ describe('bundled content', () => {
 });
 
 describe('Pastel Puzzle content', () => {
-  it('ships eight levels, each with its own picture file and a valid grid', async () => {
+  it('ships fourteen levels (eight plus six more in 1.4), each with its own picture file and a valid grid', async () => {
     const cat = await catalogP;
-    expect(cat.puzzleLevels).toHaveLength(8);
+    expect(cat.puzzleLevels).toHaveLength(14);
     const files = await readAllText();
     for (const l of cat.puzzleLevels) {
       expect(`${l.dir}/${l.manifest.picture}` in files, l.folder).toBe(true);
@@ -139,7 +143,7 @@ describe('Pastel Puzzle content', () => {
       expect(l.manifest.minAppVersion).toBe('1.1.1');
       expect(files[`${l.dir}/${l.manifest.picture}`]).not.toMatch(/<script|href=/i);
     }
-    expect(Math.max(...cat.puzzleLevels.map((l) => l.manifest.columns * l.manifest.rows))).toBe(24);
+    expect(Math.max(...cat.puzzleLevels.map((l) => l.manifest.columns * l.manifest.rows))).toBe(30);
   });
 
   it('validates puzzle levels', () => {
@@ -152,9 +156,12 @@ describe('Pastel Puzzle content', () => {
 });
 
 describe('Memory Meadow content', () => {
-  it('ships six levels whose cards fill complete rows', async () => {
+  it('ships twelve levels (six plus six more in 1.4) whose cards fill complete rows', async () => {
     const cat = await catalogP;
-    expect(cat.memoryLevels.map((l) => l.folder)).toEqual(['01_first_pairs', '02_sky_friends', '03_garden_pairs', '04_ocean_pairs', '05_cosmic_pairs', '06_big_meadow']);
+    expect(cat.memoryLevels.map((l) => l.folder)).toEqual([
+      '01_first_pairs', '02_sky_friends', '03_garden_pairs', '04_ocean_pairs', '05_cosmic_pairs', '06_big_meadow',
+      '07_cozy_evening', '08_lakeside_walk', '09_sweet_dreams', '10_cloud_parade', '11_mushroom_forest', '12_grand_tour'
+    ]);
     const files = await readAllText();
     for (const l of cat.memoryLevels) {
       expect((l.manifest.symbols.length * 2) % l.manifest.columns, l.folder).toBe(0);

@@ -5,7 +5,7 @@
 import { ALLOWED_DOWNLOAD_HOSTS, GITHUB_REPO, RELEASE_MANIFEST_ASSET } from '../../core/config';
 import { APP_VERSION, compareVersions, isNewer, isValidVersion, meetsMinVersion, parseVersion } from '../../core/version';
 
-export type ContentKind = 'book' | 'palettes' | 'breaker_levels' | 'splash_levels' | 'memory_levels' | 'puzzle_levels' | 'stories' | 'adventures' | 'minigame';
+export type ContentKind = 'book' | 'palettes' | 'breaker_levels' | 'splash_levels' | 'memory_levels' | 'puzzle_levels' | 'bubble_levels' | 'catcher_levels' | 'zen_levels' | 'flow_levels' | 'stories' | 'adventures' | 'meditation' | 'movement' | 'minigame';
 
 export interface AssetSpec {
   name: string;
@@ -86,7 +86,7 @@ export const ALLOWED_APP_TYPES = ['application/octet-stream', 'application/x-msd
 export const MAX_PACK_BYTES = 40 * 1024 * 1024;
 export const MAX_APP_BYTES = 400 * 1024 * 1024;
 
-const CONTENT_KINDS: ContentKind[] = ['book', 'palettes', 'breaker_levels', 'splash_levels', 'memory_levels', 'puzzle_levels', 'stories', 'adventures', 'minigame'];
+const CONTENT_KINDS: ContentKind[] = ['book', 'palettes', 'breaker_levels', 'splash_levels', 'memory_levels', 'puzzle_levels', 'bubble_levels', 'catcher_levels', 'zen_levels', 'flow_levels', 'stories', 'adventures', 'meditation', 'movement', 'minigame'];
 
 const isObj = (v: unknown): v is Record<string, unknown> => !!v && typeof v === 'object' && !Array.isArray(v);
 
@@ -345,6 +345,12 @@ export function describeUpdate(u: UpdateItem): string {
     splash_levels: 'New Splash Wall levels available',
     memory_levels: 'New Memory Meadow levels available',
     puzzle_levels: 'New Pastel Puzzle levels available',
+    bubble_levels: 'New Bubble Garden levels available',
+    catcher_levels: 'New Cloud Catcher levels available',
+    zen_levels: 'New Zen Garden backgrounds available',
+    flow_levels: 'New Paint Flow boards available',
+    meditation: 'New meditation sessions available',
+    movement: 'New movement cards available',
     stories: 'New cozy stories available',
     adventures: 'New story adventures available',
     minigame: 'New mini-game available'
