@@ -4,6 +4,10 @@
   import CoverImg from './CoverImg.svelte';
   import Icon from '../../ui/Icon.svelte';
   import { sfx } from '../../core/audio';
+  import Button from '../../ui/Button.svelte';
+  import ImportPanel from '../import/ImportPanel.svelte';
+
+  let importing = $state(false);
 
   const books = $derived(shelfSort($catalog.books));
 </script>
@@ -15,7 +19,10 @@
       <h1>Coloring Books</h1>
       <p class="sub">Choose a book, flip to a page and fill it with soft color.</p>
     </div>
+    <Button variant="soft" icon="plus" onclick={() => (importing = !importing)}>Import line art</Button>
   </header>
+
+  {#if importing}<ImportPanel onclose={() => (importing = false)} />{/if}
 
   <div class="shelf">
     {#each books as b (b.manifest.id)}

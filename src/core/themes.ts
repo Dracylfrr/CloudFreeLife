@@ -2,6 +2,7 @@
 // document root. Components only ever use the tokens (see app.css), so a new theme needs no
 // component changes. A user's paintings are never affected: artwork is drawn on its own
 // paper, not with these tokens.
+import { get, writable } from 'svelte/store';
 
 export type ThemeId =
   | 'cloud_morning'
@@ -14,10 +15,10 @@ export type ThemeId =
   | 'ocean_mist';
 
 /** Stored in settings: a theme id, or 'system' to follow the operating system's light/dark choice. */
-export type ThemeChoice = ThemeId | 'system';
+export type ThemeChoice = string;
 
 export interface Theme {
-  id: ThemeId;
+  id: string;
   name: string;
   blurb: string;
   dark: boolean;
@@ -26,8 +27,8 @@ export interface Theme {
   vars: Record<string, string>;
 }
 
-type Spec = {
-  id: ThemeId;
+export type Spec = {
+  id: string;
   name: string;
   blurb: string;
   dark?: boolean;
@@ -93,7 +94,7 @@ const DARK_TAGS = {
   '--c-rose-bg': 'rgba(240, 130, 160, 0.18)'
 };
 
-function make(s: Spec): Theme {
+export function makeTheme(s: Spec): Theme {
   const dark = !!s.dark;
   const vars: Record<string, string> = {
     '--bg-a': s.bg[0],
@@ -147,6 +148,8 @@ function make(s: Spec): Theme {
   };
   return { id: s.id, name: s.name, blurb: s.blurb, dark, swatch: [s.bg[0], s.panelSolid, s.accent, s.g[0]], vars };
 }
+
+const make = makeTheme;
 
 export const THEMES: Theme[] = [
   make({
@@ -371,14 +374,33 @@ export const THEMES: Theme[] = [
 ];
 
 export const DEFAULT_THEME: ThemeId = 'cloud_morning';
-export const THEME_IDS: ThemeId[] = THEMES.map((t) => t.id);
+export const THEME_IDS: string[] = THEMES.map((t) => t.id);
 
+/** Themes installed from packs, after the built-in ones. */
+export const installedThemes = writable<Theme[]>([]);
+
+/** Called when the content catalog is (re)loaded. Forces the theme to be applied again. */
+export function registerThemes(list: Theme[]) {
+  installedThemes.set(list.filter((t) => !THEME_IDS.includes(t.id)));
+  applied = null;
+}
+
+/** Every theme in the order the picker shows them. */
+export const allThemes = (): Theme[] => [...THEMES, ...get(installedThemes)];
+
+const THEME_ID_SHAPE = /^[a-z0-9_]{1,40}$/;
+
+/**
+ * A theme setting is "system", a built-in theme, or a well-formed id. The last case is an
+ * installed theme: packs load after settings, so it can't be checked yet. If it turns out not to
+ * exist, the default theme is shown and the choice is kept for when the pack is back.
+ */
 export function isThemeChoice(v: unknown): v is ThemeChoice {
-  return v === 'system' || (typeof v === 'string' && (THEME_IDS as string[]).includes(v));
+  return v === 'system' || (typeof v === 'string' && THEME_ID_SHAPE.test(v));
 }
 
 export function themeById(id: string): Theme {
-  return THEMES.find((t) => t.id === id) ?? THEMES[0];
+  return THEMES.find((t) => t.id === id) ?? get(installedThemes).find((t) => t.id === id) ?? THEMES[0];
 }
 
 /** Which theme "Follow System" resolves to. */

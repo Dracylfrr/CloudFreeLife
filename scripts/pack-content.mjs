@@ -19,7 +19,7 @@ const opt = (name, fallback) => {
   return i >= 0 ? args[i + 1] : fallback;
 };
 if (!src || args.includes('--help')) {
-  console.log('Usage: node scripts/pack-content.mjs <sourceDir> --id <id> --version <x.y.z> --name "<Name>" --kind <book|palettes|breaker_levels|splash_levels|memory_levels|puzzle_levels|bubble_levels|catcher_levels|zen_levels|flow_levels|stories|adventures|meditation|movement> [--description "..."] [--min-app 1.0.0] [--out release]');
+  console.log('Usage: node scripts/pack-content.mjs <sourceDir> --id <id> --version <x.y.z> --name "<Name>" --kind <book|palettes|themes|breaker_levels|splash_levels|memory_levels|puzzle_levels|bubble_levels|catcher_levels|zen_levels|flow_levels|stories|adventures|meditation|movement> [--description "..."] [--min-app 1.0.0] [--out release]');
   process.exit(src ? 0 : 1);
 }
 
@@ -37,7 +37,7 @@ if (!id || !version || !name) {
 if (!/^[a-z0-9][a-z0-9_]*$/.test(id)) throw new Error('--id must be lowercase letters, digits and underscores');
 if (!/^\d+\.\d+\.\d+$/.test(version)) throw new Error('--version must look like 1.0.0');
 
-const allowed = [/^books\/[a-z0-9_]+\//, /^palettes\/[a-z0-9_]+\.json$/, /^minigames\/(pastel_breaker|splash_wall|memory_meadow|pastel_puzzle|bubble_garden|cloud_catcher|zen_garden|paint_flow)\/levels\/[a-z0-9_]+\//, /^stories\/(relaxing|adventures)\/[a-z0-9_]+\//, /^(meditation|movement)\/[a-z0-9_]+\//];
+const allowed = [/^books\/[a-z0-9_]+\//, /^palettes\/[a-z0-9_]+\.json$/, /^themes\/[a-z0-9_]+\.json$/, /^minigames\/(pastel_breaker|splash_wall|memory_meadow|pastel_puzzle|bubble_garden|cloud_catcher|zen_garden|paint_flow)\/levels\/[a-z0-9_]+\//, /^stories\/(relaxing|adventures)\/[a-z0-9_]+\//, /^(meditation|movement)\/[a-z0-9_]+\//];
 const exts = ['.json', '.svg', '.png', '.webp'];
 
 async function walk(dir) {

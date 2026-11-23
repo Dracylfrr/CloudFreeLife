@@ -1,0 +1,18 @@
+{
+  "id": "rose_tea",
+  "name": "Rose Tea",
+  "description": "Warm rose, cream and a little honey.",
+  "version": "1.0.0",
+  "minAppVersion": "1.5.0",
+  "dark": false,
+  "bg": ["#fdeee9", "#fbe8ee", "#fff3e0"],
+  "panelSolid": "#fffafa",
+  "ink": "#4a2f3a",
+  "inkSoft": "#74505f",
+  "inkFaint": "#c4a4ae",
+  "accent": "#d9738f",
+  "accentSoft": "#f9d8e1",
+  "g": ["#f7c6d3", "#f9d9b0"],
+  "gInk": "#4a2434",
+  "nav": ["#f9d8e1", "#fbe3c6", "#7a3149"]
+}

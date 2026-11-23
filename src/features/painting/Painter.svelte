@@ -15,7 +15,9 @@
   import { loadArtwork, saveArtwork, type ArtworkMeta } from '../gallery/artwork';
   import PalettePanel from './PalettePanel.svelte';
   import { PaintEngine } from './engine';
-  import { savePngFile } from './export';
+  import { savePngFile, saveVideoFile } from './export';
+  import { Recorder, recordingSupported, renderTimelapse, sanitizeLog } from './timelapse';
+  import { getStorage } from '../../core/storage';
   import { isBrushTool, TOOLS, type ToolId } from './tools';
   import type { PaintballSize } from '../../core/splat';
 
@@ -26,6 +28,14 @@
   let ready = $state(false);
   let failed = $state(false);
   let autosaver: Autosaver | null = null;
+
+  // Timelapse: a light log of what is painted, kept beside the artwork (only for pictures that start empty).
+  let recorder = $state.raw<Recorder | null>(null);
+  let logged = $state(0);
+  let making = $state(false);
+  let makeProgress = $state(0);
+  let makeCancelled = false;
+  const timelapsePath = (id: string) => `artworks/${id}/timelapse.json`;
 
   // ui state
   let tool = $state<ToolId>('brush');
@@ -136,6 +146,17 @@
         backTo = 'draw';
       }
       await e.loadPaint(data.paint);
+      // Pick up an existing timelapse log, or start one when the picture is still empty.
+      try {
+        const st = await getStorage();
+        const text = await st.readText(timelapsePath(data.meta.id));
+        const log = text ? sanitizeLog(JSON.parse(text)) : null;
+        if (log && log.w === CANVAS_W && log.h === CANVAS_H) recorder = Recorder.from(log);
+        else if (!data.meta.hasPaint && !data.paint) recorder = new Recorder(CANVAS_W, CANVAS_H);
+      } catch {
+        recorder = null;
+      }
+      logged = recorder?.count ?? 0;
       e.onHistory = () => {
         canUndo = e.history.canUndo;
         canRedo = e.history.canRedo;
@@ -163,6 +184,50 @@
     const png = engine.blank && !meta.hasPaint ? null : await engine.exportPaintPng();
     const thumb = png ? await engine.thumbnailPng(360) : null;
     meta = await saveArtwork(meta, png, thumb);
+    if (recorder?.dirty && recorder.count > 0) {
+      try {
+        const st = await getStorage();
+        await st.writeText(timelapsePath(meta.id), JSON.stringify(recorder.toLog()));
+        recorder.dirty = false;
+      } catch (err) {
+        console.warn('Could not save the timelapse', err);
+      }
+    }
+  }
+
+  async function makeTimelapse() {
+    if (!engine || !meta || !recorder || making) return;
+    if (!recordingSupported()) {
+      toast('Making a video is not available on this computer.', 'error');
+      return;
+    }
+    await autosaver?.flush();
+    making = true;
+    makeProgress = 0;
+    makeCancelled = false;
+    const shown = meta;
+    const replay = new PaintEngine(CANVAS_W, CANVAS_H);
+    replay.state = { ...replay.state, reduceMotion: true, particles: false };
+    try {
+      if (shown.pageId) {
+        const page = findPage(shown.bookId, shown.pageId);
+        const svg = page ? await asset(page.tree, page.dir, page.manifest.lineArt).text() : null;
+        if (!page || !svg) throw new Error('page missing');
+        await replay.setLineArt(svg, page.regions);
+      } else {
+        const book = findBook('free_canvas');
+        const def = book?.manifest.backgrounds?.find((b) => b.id === shown.background) ?? book?.manifest.backgrounds?.[0] ?? null;
+        replay.setBackground(def);
+      }
+      const blob = await renderTimelapse({ engine: replay, log: recorder.toLog(), onProgress: (p) => (makeProgress = p), cancelled: () => makeCancelled });
+      if (blob) await saveVideoFile(blob, title || 'cloud-freelife');
+    } catch (err) {
+      console.error(err);
+      toast("Couldn't make the timelapse. Please try again.", 'error');
+    } finally {
+      replay.dispose();
+      making = false;
+    }
   }
 
   onDestroy(() => {
@@ -228,17 +293,28 @@
     const t = effectiveTool;
     if (isBrushTool(t)) {
       if (engine.beginStroke(p.x, p.y)) {
+        recorder?.begin(p.x, p.y, engine.state);
         brushSound.begin(t === 'crayon' ? 'grainy' : 'soft');
         lastPt = { ...p, t: performance.now() };
       }
     } else if (t === 'fill') {
-      if (engine.fillAt(p.x, p.y)) sfx.fill();
+      if (engine.fillAt(p.x, p.y)) {
+        recorder?.fill(p.x, p.y, engine.state.color, engine.state.stayInside);
+        logged = recorder?.count ?? 0;
+        sfx.fill();
+      }
     } else if (t === 'clearRegion') {
-      if (engine.clearRegionAt(p.x, p.y)) sfx.pop(0.8);
+      if (engine.clearRegionAt(p.x, p.y)) {
+        recorder?.clear(p.x, p.y);
+        logged = recorder?.count ?? 0;
+        sfx.pop(0.8);
+      }
       else toast('Nothing to clear there.', 'info', 1600);
     } else if (t === 'paintball') {
       sfx.throw();
       engine.paintball(p.x, p.y);
+      recorder?.paintball(p.x, p.y, engine.state.color, engine.state.paintballSize, engine.state.stayInside);
+      logged = recorder?.count ?? 0;
       setTimeout(() => sfx.splash(), 230);
     } else if (t === 'picker') {
       const hex = engine.sampleColor(p.x, p.y);
@@ -262,6 +338,7 @@
     const list = evs.length ? evs : [e];
     const pts = list.map((ev) => toCanvas(ev));
     engine.moveStroke(pts);
+    recorder?.move(pts);
     const last = pts[pts.length - 1];
     const now = performance.now();
     const dt = Math.max(1, now - lastPt.t);
@@ -275,6 +352,8 @@
     }
     if (engine?.isDrawing) {
       engine.endStroke();
+      recorder?.end();
+      logged = recorder?.count ?? 0;
       brushSound.end();
     }
     if (viewEl?.hasPointerCapture(e.pointerId)) viewEl.releasePointerCapture(e.pointerId);
@@ -318,10 +397,16 @@
   }
 
   function undo() {
-    if (engine?.undo()) sfx.thud();
+    if (engine?.undo()) {
+      recorder?.undo();
+      sfx.thud();
+    }
   }
   function redo() {
-    if (engine?.redo()) sfx.thud();
+    if (engine?.redo()) {
+      recorder?.redo();
+      sfx.thud();
+    }
   }
 
   async function resetPage() {
@@ -334,6 +419,8 @@
     });
     if (ok) {
       engine.resetAll();
+      recorder?.reset();
+      logged = recorder?.count ?? 0;
       toast('Page reset', 'info', 1800);
     }
   }
@@ -351,6 +438,16 @@
 <svelte:window onkeydown={key} onkeyup={keyUp} />
 
 <div class="painter">
+  {#if making}
+    <div class="making" role="status" aria-live="polite">
+      <div class="card">
+        <strong>Making your timelapse…</strong>
+        <div class="bar"><i style="width:{Math.round(makeProgress * 100)}%"></i></div>
+        <p class="muted small">It plays your painting back in real time, so it takes about as long as the video. Then you choose where to save it.</p>
+        <Button variant="soft" onclick={() => (makeCancelled = true)}>Cancel</Button>
+      </div>
+    </div>
+  {/if}
   <header class="top">
     <Button variant="soft" size="sm" icon="chevronLeft" onclick={goBack}>{backTo === 'books' ? 'Book' : 'Free Draw'}</Button>
     <Button variant="ghost" size="sm" icon="home" title="Home" onclick={() => navigate({ name: 'home' })} />
@@ -372,6 +469,9 @@
       <Button variant="ghost" size="sm" icon="zoomIn" title="Zoom in (+)" onclick={() => zoomAt(1.25)} />
     </div>
     <Button variant="soft" size="sm" icon="download" onclick={exportPng}>Export PNG</Button>
+    {#if logged > 2 && recorder && recordingSupported()}
+      <Button variant="soft" size="sm" icon="play" title="Replay how you painted this as a short video" disabled={making} onclick={makeTimelapse}>Timelapse</Button>
+    {/if}
     <Button variant="danger" size="sm" icon="refresh" onclick={resetPage}>{hasRegions ? 'Reset page' : 'Clear canvas'}</Button>
   </header>
 
@@ -425,6 +525,39 @@
 </div>
 
 <style>
+  .making {
+    position: absolute;
+    inset: 0;
+    z-index: 30;
+    display: grid;
+    place-items: center;
+    background: rgb(var(--w) / 0.55);
+    backdrop-filter: blur(3px);
+  }
+  .making .card {
+    width: min(420px, 90%);
+    padding: 22px 26px;
+    border-radius: var(--radius-xl);
+    background: var(--panel-strong);
+    box-shadow: var(--shadow-l);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .making .bar {
+    width: 100%;
+    height: 10px;
+    border-radius: 999px;
+    background: var(--track);
+    overflow: hidden;
+  }
+  .making .bar i {
+    display: block;
+    height: 100%;
+    background: var(--lavender-deep);
+    transition: width 0.2s linear;
+  }
   .painter {
     height: 100%;
     display: flex;

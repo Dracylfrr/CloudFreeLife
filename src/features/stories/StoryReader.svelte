@@ -4,11 +4,13 @@
   import { navigate, onBeforeLeave } from '../../core/router';
   import { findStory } from '../../core/content/registry';
   import { settings, updateSettings } from '../../core/settings';
-  import { storyProgress, saveStoryPlace, saveStoryParagraph, setFavorite, isFavorite, flushStoryProgress } from './progress';
+  import { storyProgress, saveStoryPlace, saveStoryParagraph, setFavorite, isFavorite, flushStoryProgress, addBookmark, removeBookmark, bookmarksOf, MAX_BOOKMARKS, MAX_NOTE } from './progress';
+  import { chapterParts, formatLeft, readingWpm, timeLeft } from './longread';
+  import { toast } from '../../core/feedback';
   import StoryArt from './StoryArt.svelte';
   import Button from '../../ui/Button.svelte';
   import Icon from '../../ui/Icon.svelte';
-  import { sfx } from '../../core/audio';
+  import { sfx, fadeMusic } from '../../core/audio';
 
   let { storyId }: { storyId: string } = $props();
   const sid = untrack(() => storyId);
@@ -23,28 +25,71 @@
   let textEl: HTMLDivElement | undefined = $state();
   let tocOpen = $state(false);
   let restorePara = untrack(() => (saved && !saved.finished ? saved.para : 0));
+  let curPara = $state(untrack(() => restorePara));
+  let markOpen = $state(false);
+  let sleepOpen = $state(false);
+  let note = $state('');
+  let sleepEnds = $state(0); // epoch ms when sleep mode will have faded the music out; 0 = off
+  let sleepTimer: ReturnType<typeof setTimeout> | null = null;
 
   const atEnd = $derived(page >= total);
   const chapter = $derived(story && !atEnd ? story.manifest.chapters[page] : null);
   const favorite = $derived(isFavorite($storyProgress, 'story', sid));
   const percent = $derived(total ? Math.round((Math.min(page, total) / total) * 100) : 0);
+  const marks = $derived(bookmarksOf($storyProgress, sid));
+  const left = $derived(story && !atEnd ? timeLeft(story.manifest, page, curPara, readingWpm($settings.storyFontScale)) : null);
+  const sleeping = $derived(sleepEnds > 0);
+  const fontScale = $derived(sleeping ? Math.min(1.9, $settings.storyFontScale + 0.25) : $settings.storyFontScale);
+
+  // ---- Bookmarks -----------------------------------------------------------
+  function bookmarkHere() {
+    if (!story || atEnd) return;
+    if (!addBookmark(sid, page, curPara, note)) toast(`A story can hold ${MAX_BOOKMARKS} bookmarks. Remove one to make room.`, 'info');
+    else {
+      toast('Bookmark added', 'success');
+      note = '';
+    }
+  }
+  function goMark(b: { chapter: number; para: number }) {
+    markOpen = false;
+    if (b.chapter !== page) go(b.chapter);
+    restorePara = b.para;
+    curPara = b.para;
+    void tick().then(() => textEl?.querySelectorAll<HTMLElement>('p[data-p]')[b.para]?.scrollIntoView({ block: 'start' }));
+  }
+
+  // ---- Sleep mode: dimmer, bigger text, no motion; the music fades out at the end ----
+  function startSleep(minutes: number) {
+    stopSleep(false);
+    sleepEnds = Date.now() + minutes * 60_000;
+    sleepOpen = false;
+    sleepTimer = setTimeout(() => fadeMusic(0, 45), Math.max(0, minutes * 60_000 - 45_000));
+  }
+  function stopSleep(restore = true) {
+    if (sleepTimer) clearTimeout(sleepTimer);
+    sleepTimer = null;
+    sleepEnds = 0;
+    if (restore) fadeMusic(1, 2);
+  }
 
   // ---- Navigation --------------------------------------------------------
   function go(next: number) {
     if (!story) return;
     page = Math.max(0, Math.min(total, next));
     restorePara = 0;
+    curPara = 0;
     if (page >= total) saveStoryPlace(sid, 0, true);
     else saveStoryPlace(sid, page, false);
     tocOpen = false;
+    markOpen = false;
     scroller?.scrollTo({ top: 0 });
     sfx.pageTurn();
   }
 
   function key(e: KeyboardEvent) {
     if (e.target instanceof HTMLElement && /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
-    if (e.key === 'Escape' && tocOpen) {
-      tocOpen = false;
+    if (e.key === 'Escape' && (tocOpen || markOpen || sleepOpen)) {
+      tocOpen = markOpen = sleepOpen = false;
       return;
     }
     if (e.key === 'ArrowRight' || e.key === 'PageDown') go(page + 1);
@@ -67,6 +112,7 @@
       ps.forEach((p, i) => {
         if (p.getBoundingClientRect().bottom < top) idx = Math.min(i + 1, ps.length - 1);
       });
+      curPara = idx;
       saveStoryParagraph(sid, idx);
     }, 400);
   }
@@ -86,6 +132,8 @@
   });
   onDestroy(() => {
     if (scrollTimer) clearTimeout(scrollTimer);
+    if (sleepEnds > 0) stopSleep(true);
+    else if (sleepTimer) clearTimeout(sleepTimer);
   });
 
   const intro = $derived(story && page === 0 && !!story.manifest.illustration && !story.manifest.chapters[0]?.illustration);
@@ -93,7 +141,7 @@
 
 <svelte:window onkeydown={key} />
 
-<div class="page reader" bind:this={scroller} onscroll={onScroll}>
+<div class="page reader" class:sleep={sleeping} bind:this={scroller} onscroll={onScroll}>
   {#if !story}
     <p>This story isn't available.</p>
     <Button onclick={() => navigate({ name: 'stories' })}>Back to stories</Button>
@@ -104,8 +152,14 @@
         <button class="tool" class:on={favorite} aria-pressed={favorite} aria-label={favorite ? 'Remove from favorites' : 'Add to favorites'} title={favorite ? 'Favorite' : 'Add to favorites'} onclick={() => setFavorite('story', sid, !favorite)}>
           <Icon name="heart" size={18} />
         </button>
-        <button class="tool wide" class:on={tocOpen} aria-expanded={tocOpen} onclick={() => (tocOpen = !tocOpen)}>
+        <button class="tool wide" class:on={markOpen} aria-expanded={markOpen} onclick={() => { markOpen = !markOpen; tocOpen = sleepOpen = false; }}>
+          <Icon name="bookmark" size={18} /> <span>Bookmarks{marks.length ? ` (${marks.length})` : ''}</span>
+        </button>
+        <button class="tool wide" class:on={tocOpen} aria-expanded={tocOpen} onclick={() => { tocOpen = !tocOpen; markOpen = sleepOpen = false; }}>
           <Icon name="list" size={18} /> <span>Chapters</span>
+        </button>
+        <button class="tool wide" class:on={sleeping || sleepOpen} aria-expanded={sleepOpen} aria-pressed={sleeping} onclick={() => { if (sleeping) stopSleep(); else { sleepOpen = !sleepOpen; tocOpen = markOpen = false; } }}>
+          <Icon name="moon" size={18} /> <span>{sleeping ? 'Sleep mode on' : 'Sleep mode'}</span>
         </button>
         <div class="size" role="group" aria-label="Text size">
           <button onclick={smaller} aria-label="Smaller text" title="Smaller text" disabled={$settings.storyFontScale <= 0.91}>A<small>−</small></button>
@@ -116,18 +170,58 @@
 
     {#if tocOpen}
       <nav class="toc" aria-label="Chapters">
-        {#each story.manifest.chapters as c, i}
-          <button class:cur={i === page} onclick={() => go(i)}>
-            <span class="n">{i + 1}</span>
-            <span class="t">{c.title}</span>
-            {#if saved?.finished || i < page}<Icon name="check" size={15} />{/if}
-          </button>
+        {#each chapterParts(story.manifest.chapters) as grp}
+          {#if grp.part}<p class="part">{grp.part}</p>{/if}
+          {#each grp.indexes as i}
+            <button class:cur={i === page} onclick={() => go(i)}>
+              <span class="n">{i + 1}</span>
+              <span class="t">{story.manifest.chapters[i].title}</span>
+              {#if saved?.finished || i < page}<Icon name="check" size={15} />{/if}
+            </button>
+          {/each}
         {/each}
       </nav>
     {/if}
 
+    {#if markOpen}
+      <section class="panel" aria-label="Bookmarks">
+        {#if !atEnd}
+          <div class="add">
+            <input type="text" bind:value={note} maxlength={MAX_NOTE} placeholder="A short note (optional)" aria-label="Bookmark note" onkeydown={(e) => { if (e.key === 'Enter') bookmarkHere(); }} />
+            <Button variant="soft" icon="bookmark" onclick={bookmarkHere}>Bookmark this spot</Button>
+          </div>
+        {/if}
+        {#if marks.length === 0}
+          <p class="muted small">No bookmarks yet. Scroll to a place you would like to keep and press the button. Your reading place is always saved for you anyway.</p>
+        {:else}
+          <ul class="marks">
+            {#each marks as b (b.chapter + ':' + b.para)}
+              <li>
+                <button class="go" onclick={() => goMark(b)}>
+                  <strong>Chapter {b.chapter + 1}: {story.manifest.chapters[b.chapter]?.title ?? ''}</strong>
+                  <span>{b.note || 'Paragraph ' + (b.para + 1)}</span>
+                </button>
+                <button class="rm" aria-label="Remove this bookmark" title="Remove" onclick={() => removeBookmark(sid, b.chapter, b.para)}><Icon name="x" size={16} /></button>
+              </li>
+            {/each}
+          </ul>
+        {/if}
+      </section>
+    {/if}
 
-    <article class="paper" style="--fs:{$settings.storyFontScale}; --accent:{story.manifest.accent ?? '#b7a8ec'}">
+    {#if sleepOpen}
+      <section class="panel" aria-label="Sleep mode">
+        <p class="small">A quieter way to read in bed: the page dims, the text gets a little larger, nothing moves, and the music fades away at the end of the time you choose.</p>
+        <div class="durations" role="group" aria-label="Fade the music out after">
+          {#each [15, 30, 60] as m}
+            <Button variant="soft" onclick={() => startSleep(m)}>{m} minutes</Button>
+          {/each}
+        </div>
+      </section>
+    {/if}
+
+
+    <article class="paper" style="--fs:{fontScale}; --accent:{story.manifest.accent ?? '#b7a8ec'}">
       {#if intro && story.manifest.illustration}
         <StoryArt {story} file={story.manifest.illustration} alt={story.manifest.illustrationAlt ?? ''} caption={story.manifest.illustrationCaption ?? ''} wide />
       {/if}
@@ -136,6 +230,7 @@
         <div class="turn">
           {#if chapter}
             <p class="eyebrow">Chapter {page + 1} of {total} · {percent}%</p>
+            {#if left}<p class="left" aria-live="off">{formatLeft(left.chapter)} left in this chapter{total > 1 ? ` · ${formatLeft(left.story).toLowerCase()} in the story` : ''}</p>{/if}
             <h2>{chapter.title}</h2>
             {#if chapter.illustration}
               <StoryArt {story} file={chapter.illustration} alt={chapter.illustrationAlt ?? ''} caption={chapter.illustrationCaption ?? ''} />
@@ -148,6 +243,7 @@
                 {/each}
               {/each}
             </div>
+            {#if chapter.rest}<p class="rest"><Icon name="moon" size={16} /> A good place to rest. Your place is saved.</p>{/if}
           {:else}
             <div class="end">
               <p class="eyebrow">The End</p>
@@ -286,6 +382,118 @@
   .toc button.cur {
     background: linear-gradient(135deg, var(--nav-a), var(--nav-b));
     color: var(--nav-ink);
+  }
+  .toc .part {
+    margin: 8px 14px 2px;
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .panel {
+    width: 100%;
+    max-width: 780px;
+    margin-bottom: 14px;
+    padding: 14px 16px;
+    border-radius: var(--radius-l);
+    background: var(--panel-strong);
+    box-shadow: var(--shadow-m);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .add {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .add input {
+    flex: 1;
+    min-width: 180px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: rgb(var(--w) / 0.8);
+    color: var(--ink);
+    font: inherit;
+  }
+  .marks {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-height: 260px;
+    overflow-y: auto;
+  }
+  .marks li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .marks .go {
+    flex: 1;
+    min-width: 0;
+    text-align: left;
+    padding: 8px 14px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    color: var(--ink);
+  }
+  .marks .go:hover {
+    background: rgb(var(--w) / 0.7);
+  }
+  .marks .go span {
+    color: var(--ink-soft);
+    font-size: 0.88rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .marks .rm {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: var(--ink-soft);
+  }
+  .marks .rm:hover {
+    background: rgb(var(--w) / 0.8);
+    color: var(--ink);
+  }
+  .durations {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .left {
+    margin: -4px 0 10px;
+    color: var(--ink-soft);
+    font-size: 0.88rem;
+    font-weight: 700;
+  }
+  .rest {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 22px 0 4px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: rgb(var(--w) / 0.55);
+    color: var(--ink-soft);
+    font-weight: 700;
+  }
+  /* Sleep mode: dimmer page, no page-turn motion. */
+  .reader.sleep {
+    filter: brightness(0.74) saturate(0.85);
+  }
+  .reader.sleep .turn {
+    animation: none;
   }
   .toc .n {
     width: 26px;

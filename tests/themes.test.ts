@@ -97,7 +97,10 @@ describe('theme persistence and migration', () => {
   it('saves and restores the selected theme, and rejects unknown ones', () => {
     for (const t of THEMES) expect(sanitizeSettings({ theme: t.id }).theme).toBe(t.id);
     expect(sanitizeSettings({ theme: 'system' }).theme).toBe('system');
-    expect(sanitizeSettings({ theme: 'neon_arcade' }).theme).toBe(DEFAULT_SETTINGS.theme);
+    // an id nobody has installed is kept (its pack may load later) but shows the default theme
+    expect(sanitizeSettings({ theme: 'neon_arcade' }).theme).toBe('neon_arcade');
+    expect(resolveTheme('neon_arcade', false).id).toBe(DEFAULT_SETTINGS.theme);
+    expect(sanitizeSettings({ theme: 'Not A Theme!' }).theme).toBe(DEFAULT_SETTINGS.theme);
     expect(isThemeChoice('moonlight')).toBe(true);
     expect(isThemeChoice(42)).toBe(false);
   });

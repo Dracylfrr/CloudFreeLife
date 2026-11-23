@@ -1,6 +1,6 @@
 <script lang="ts">
   import { settings, updateSettings } from '../../core/settings';
-  import { THEMES, systemPrefersDark, themeById, type ThemeChoice } from '../../core/themes';
+  import { THEMES, installedThemes, systemPrefersDark, themeById, type ThemeChoice } from '../../core/themes';
   import { sfx } from '../../core/audio';
 
   // Radio group: arrow keys move between themes, Space/Enter picks. A click applies at once;
@@ -25,11 +25,13 @@
     (e.currentTarget as HTMLElement).parentElement?.querySelectorAll<HTMLElement>('[role=radio]')[n]?.focus();
   }
 
-  const all: ThemeChoice[] = [...THEMES.map((t) => t.id), 'system'];
+  // Built-in themes first, then any installed from packs, then Follow System.
+  const list = $derived([...THEMES, ...$installedThemes]);
+  const all = $derived<ThemeChoice[]>([...list.map((t) => t.id), 'system']);
 </script>
 
 <div class="themes" role="radiogroup" aria-label="Theme">
-  {#each THEMES as t, i (t.id)}
+  {#each list as t, i (t.id)}
     <button
       class="theme"
       class:on={$settings.theme === t.id}
@@ -55,7 +57,7 @@
     aria-checked={$settings.theme === 'system'}
     tabindex={$settings.theme === 'system' ? 0 : -1}
     onclick={() => pick('system')}
-    onkeydown={(e) => onKey(e, THEMES.length, all)}
+    onkeydown={(e) => onKey(e, list.length, all)}
   >
     <span class="mini half" style="background: linear-gradient(100deg, {THEMES[0].swatch[0]} 50%, {themeById('moonlight').swatch[0]} 50%)">
       <i class="side" style="background: {THEMES[0].vars['--panel-solid']}"></i>

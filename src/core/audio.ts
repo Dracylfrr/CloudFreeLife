@@ -91,16 +91,25 @@ function ensure(): AudioContext | null {
   return ctx;
 }
 
-function applyVolumes() {
+function applyVolumes(slow = 0.25) {
   if (!ctx || !master || !current) return;
   const s = current;
   const t = ctx.currentTime;
   const m = s.muted ? 0 : s.volumeMaster;
   master.gain.setTargetAtTime(m * 0.9, t, 0.05);
-  buses.music?.gain.setTargetAtTime(s.volumeMusic * duck, t, 0.25);
-  buses.ambience?.gain.setTargetAtTime(s.volumeAmbience * duck, t, 0.25);
+  buses.music?.gain.setTargetAtTime(s.volumeMusic * duck, t, slow);
+  buses.ambience?.gain.setTargetAtTime(s.volumeAmbience * duck, t, slow);
   buses.effects?.gain.setTargetAtTime(s.volumeEffects, t, 0.05);
   buses.painting?.gain.setTargetAtTime(s.volumePainting, t, 0.05);
+}
+
+/**
+ * Fades the music and ambience to a fraction of their set volume over about `seconds` (sleep mode
+ * fades them to nothing; 1 brings them back). It never changes the saved settings.
+ */
+export function fadeMusic(level: number, seconds = 2) {
+  duck = Math.max(0, Math.min(1, level));
+  applyVolumes(Math.max(0.05, seconds / 4));
 }
 
 function canPlay(bus: Bus): AudioContext | null {

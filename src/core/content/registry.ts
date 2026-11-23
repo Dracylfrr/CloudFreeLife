@@ -6,6 +6,8 @@
  * Nothing in the UI hard-codes a book or a level: if a valid manifest exists
  * in the right folder, it shows up in the right section.
  */
+import { themeFromPack, validateThemePack, type ThemePackManifest } from '../themePack';
+import { registerThemes } from '../themes';
 import { get, writable } from 'svelte/store';
 import {
   checkCompatibility,
@@ -104,6 +106,9 @@ export interface LoadedFlowLevel extends Located {
   folder: string;
   manifest: FlowLevel;
 }
+export interface LoadedThemePack extends Located {
+  manifest: ThemePackManifest;
+}
 export interface LoadedMeditation extends Located {
   folder: string;
   manifest: MeditationManifest;
@@ -141,13 +146,14 @@ export interface Catalog {
   flowLevels: LoadedFlowLevel[];
   meditations: LoadedMeditation[];
   movements: LoadedMovement[];
+  themes: LoadedThemePack[];
   stories: LoadedStory[];
   adventures: LoadedAdventure[];
   /** Content that exists but was not usable (invalid or needs a newer app). */
   skipped: Skipped[];
 }
 
-const empty = (): Catalog => ({ ready: false, books: [], palettes: [], breakerLevels: [], splashLevels: [], memoryLevels: [], puzzleLevels: [], bubbleLevels: [], catcherLevels: [], zenLevels: [], flowLevels: [], meditations: [], movements: [], stories: [], adventures: [], skipped: [] });
+const empty = (): Catalog => ({ ready: false, books: [], palettes: [], breakerLevels: [], splashLevels: [], memoryLevels: [], puzzleLevels: [], bubbleLevels: [], catcherLevels: [], zenLevels: [], flowLevels: [], meditations: [], movements: [], themes: [], stories: [], adventures: [], skipped: [] });
 
 const store = writable<Catalog>(empty());
 export const catalog = { subscribe: store.subscribe };
@@ -227,6 +233,25 @@ async function loadPalettes(tree: ContentTree, skipped: Skipped[], appVersion?: 
       continue;
     }
     out.push({ source: tree.source, tree, dir: 'palettes', manifest: v.value });
+  }
+  return out;
+}
+
+async function loadThemePacks(tree: ContentTree, skipped: Skipped[], appVersion?: string): Promise<LoadedThemePack[]> {
+  const out: LoadedThemePack[] = [];
+  for (const file of await tree.listFiles('themes')) {
+    if (!file.endsWith('.json')) continue;
+    const raw = await tree.readJson(`themes/${file}`);
+    const v = validateThemePack(raw, `themes/${file}`);
+    if (!v.ok) {
+      skipped.push({ where: `themes/${file}`, reason: v.errors.join('; ') });
+      continue;
+    }
+    if (!checkCompatibility(v.value, appVersion).ok) {
+      skipped.push({ where: `themes/${file}`, reason: `Requires Cloud-Freelife ${v.value.minAppVersion}` });
+      continue;
+    }
+    out.push({ source: tree.source, tree, dir: 'themes', manifest: v.value });
   }
   return out;
 }
@@ -320,12 +345,14 @@ export async function buildCatalog(trees: ContentTree[], appVersion?: string): P
   const flow: LoadedFlowLevel[] = [];
   const meditations: LoadedMeditation[] = [];
   const movements: LoadedMovement[] = [];
+  const themes: LoadedThemePack[] = [];
   const stories: LoadedStory[] = [];
   const adventures: LoadedAdventure[] = [];
   for (const tree of trees) {
     try {
       books.push(...(await loadBooks(tree, skipped, appVersion)));
       palettes.push(...(await loadPalettes(tree, skipped, appVersion)));
+      themes.push(...(await loadThemePacks(tree, skipped, appVersion)));
       breaker.push(...(await loadLevels<BreakerLevel>(tree, 'pastel_breaker', skipped, appVersion)));
       splash.push(...(await loadLevels<SplashLevel>(tree, 'splash_wall', skipped, appVersion)));
       memory.push(...(await loadLevels<MemoryLevel>(tree, 'memory_meadow', skipped, appVersion)));
@@ -358,6 +385,7 @@ export async function buildCatalog(trees: ContentTree[], appVersion?: string): P
     flowLevels: mergeById(flow, (l) => l.manifest.id, (l) => l.manifest.version).sort(byFolder),
     meditations: mergeById(meditations, (l) => l.manifest.id, (l) => l.manifest.version).sort(byOrder),
     movements: mergeById(movements, (l) => l.manifest.id, (l) => l.manifest.version).sort(byOrder),
+    themes: mergeById(themes, (l) => l.manifest.id, (l) => l.manifest.version).sort((a, b) => a.manifest.name.localeCompare(b.manifest.name)),
     stories: mergeById(stories, (l) => l.manifest.id, (l) => l.manifest.version).sort(byOrder),
     adventures: mergeById(adventures, (l) => l.manifest.id, (l) => l.manifest.version).sort(byOrder),
     skipped
@@ -373,6 +401,7 @@ export function shelfSort(books: LoadedBook[]): LoadedBook[] {
 export async function loadCatalog(): Promise<Catalog> {
   const cat = await buildCatalog([new BundledTree(), new InstalledTree()]);
   store.set(cat);
+  registerThemes(cat.themes.map((t) => themeFromPack(t.manifest)));
   return cat;
 }
 

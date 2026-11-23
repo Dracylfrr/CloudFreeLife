@@ -6,6 +6,8 @@ A calm, pastel place to **color, draw and play** — a lightweight Windows deskt
 - **Illustrated Cozy Stories** — ten gentle stories with soft pictures, adjustable text size, a chapter list, favorites and a progress bar; it remembers your chapter and paragraph
 - **Story Adventures** — ten choose-your-path stories told as a guy or a girl (adventure, romance, comedy and mystery), each with five or more endings to find; it remembers your place and the endings you have found
 - **Themes, moods and music** — eight color themes (plus Follow System), four mood presets and gentle generated background music, with redesigned soft sound effects
+- **Long reads** — bookmarks, "time left", a dimmer **Sleep mode** with music that fades out, and series. Two half-hour stories (*The Tea Boat on Willow River*, *The Cartographer of Small Things*) and a long mystery adventure (*The Night Market at Lamplight Quay*) are downloadable from Updates
+- **Import line art** — turn a clean outline drawing into a coloring page, and replay any new painting as a **Timelapse** video
 - **Free Draw** — eight soft backgrounds (white, warm cream, cloud blue, lavender, mint, pastel pink, starry sky, soft clouds)
 - **Painting tools** — Brush, Marker, Crayon, Airbrush, Fill Bucket, Eraser, Paintball, Color Picker, Clear Region, Undo/Redo, Zoom, Pan
 - **Autosave & Gallery** — your art saves itself (outside the install folder), with Open / Duplicate / Rename / Export PNG / Clear / Delete
@@ -57,12 +59,14 @@ src/features/minigames   the eight mini-games (Pastel Breaker, Splash Wall, Memo
 src/features/meditation  Meditation sessions and the breathing timer
 src/features/movement    Gentle Movement cards
 src/features/stories     Stories hub, reader, adventures, reading list and progress
+src/features/import      import line art as coloring pages (My Pages)
 src/features/updates     update check, release manifests, content packs, Update Center
 src/features/settings    Settings
 content/books            bundled coloring books (manifests + SVG art)
 content/palettes         bundled palettes
 content/minigames        bundled mini-game levels
 content/stories         bundled cozy stories and story adventures
+content-packs            sources of downloadable packs (long stories, adventures, themes)
 content/meditation      bundled meditation sessions
 content/movement        bundled Gentle Movement cards
 src-tauri                the thin native shell (Rust)

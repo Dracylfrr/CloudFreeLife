@@ -2,6 +2,27 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com), and the project uses [Semantic Versioning](https://semver.org).
 
+## [1.5.0]
+
+### Added
+- **Two long cozy stories and a long adventure, as downloadable packs** (open Updates to install them; the installer stays small):
+  - *Tales of the Slow Country* (one pack, two stories that sit together on the shelf as a series): *The Tea Boat on Willow River* (10 chapters, about 27 minutes), a slow day of delivering tea and small kindnesses down a river, and *The Cartographer of Small Things* (12 chapters, about 31 minutes), a young badger who learns to look closely and discovers a whole country under the hedge. Both have a picture at the start of every chapter, part headings and "good place to rest" markers.
+  - *The Night Market at Lamplight Quay* (a mystery adventure with 33 passages, about 5,700 words and 7 endings): the first flame of the night market has gone missing and the tide turns at nine.
+- **Bookmarks** in Cozy Stories: leave a bookmark (with a short note) at any place, see them in a list and jump back. Up to 20 per story.
+- **Time left** while reading: "About 12 minutes left in this chapter, about 41 in the story", scaled by your text size.
+- **Sleep mode** for reading in bed: dimmer page, larger text, no motion, and the music fades out after 15, 30 or 60 minutes.
+- Long-story structure for authors: **series** (parts shelved together, "part 2 of 3"), **parts** headings in the chapter list and **good place to rest** markers. See docs/CREATING_STORIES.md.
+- **Installable themes**: a theme can be shipped as a content pack and appears in Settings, Display. Colors are checked for readability first.
+- **Import your own line art**: Coloring Books, Import line art turns a clean outline picture (PNG, JPG, WebP or SVG) into a page in the new My Pages book. Closed shapes become areas you can color, and the page paints, saves and exports like any other.
+- **Timelapse**: pictures you start from now on keep a light log of your strokes, and a **Timelapse** button replays it as a short .webm video you can save. (Free Draw layers are planned for 1.6.0.)
+
+### Changed
+- Story cards show longer lengths properly ("2 h 10 min").
+- Settings from 1.4 and older keep working: an unknown or installed theme in the settings file is kept, and shows the default theme until it is available.
+
+### Not in this version
+Free Draw layers are planned for 1.6.0, in a release of their own. See the roadmap.
+
 ## [1.4.1]
 
 ### Changed

@@ -59,6 +59,7 @@ async function installedVersions(): Promise<InstalledVersions> {
   for (const l of getCatalog().catcherLevels) out[l.manifest.id] = l.manifest.version;
   for (const l of getCatalog().zenLevels) out[l.manifest.id] = l.manifest.version;
   for (const l of getCatalog().flowLevels) out[l.manifest.id] = l.manifest.version;
+  for (const l of getCatalog().themes) out[l.manifest.id] = l.manifest.version;
   for (const l of getCatalog().meditations) out[l.manifest.id] = l.manifest.version;
   for (const l of getCatalog().movements) out[l.manifest.id] = l.manifest.version;
   for (const l of getCatalog().stories) out[l.manifest.id] = l.manifest.version;

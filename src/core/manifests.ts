@@ -480,8 +480,30 @@ export interface StoryScene extends Illustration {
   after: number;
 }
 
+/** Several stories that belong together ("The Lantern Lane books, part 2"). */
+export interface SeriesInfo {
+  id: string;
+  name: string;
+  /** Position in the series, 1 first. */
+  order: number;
+}
+
+/** Reads the optional "series" field; anything malformed is ignored so the story still loads. */
+export function readSeries(raw: Record<string, unknown>): SeriesInfo | undefined {
+  const s = raw.series;
+  if (!isObj(s)) return undefined;
+  const id = typeof s.id === 'string' && ID_RE.test(s.id) ? s.id : '';
+  const name = typeof s.name === 'string' ? s.name.trim().slice(0, 60) : '';
+  const order = typeof s.order === 'number' && Number.isInteger(s.order) && s.order >= 1 && s.order <= 99 ? s.order : 0;
+  return id && name && order ? { id, name, order } : undefined;
+}
+
 export interface StoryChapter extends Partial<Illustration> {
   title: string;
+  /** Optional heading this chapter belongs to ("Part Two: The Lake"), shown in the chapter list. */
+  part?: string;
+  /** A good place to stop: a soft marker at the end of this chapter. */
+  rest?: boolean;
   /** Paragraphs, in reading order. */
   text: string[];
   /** Optional pictures between sections of a long chapter (3 at most). */
@@ -501,6 +523,7 @@ export interface StoryManifest extends Partial<Illustration> {
   /** Rough reading time. */
   minutes?: number;
   order?: number;
+  series?: SeriesInfo;
   chapters: StoryChapter[];
 }
 
@@ -536,6 +559,7 @@ export interface AdventureManifest {
   hero?: string;
   minutes?: number;
   order?: number;
+  series?: SeriesInfo;
   start: string;
   nodes: Record<string, AdventureNode>;
 }
@@ -614,6 +638,7 @@ export function validateStory(raw: unknown, where = 'story.json'): Result<StoryM
     minutes: typeof raw.minutes === 'number' && raw.minutes > 0 && raw.minutes < 600 ? Math.round(raw.minutes) : undefined,
     order: typeof raw.order === 'number' && Number.isFinite(raw.order) ? raw.order : undefined,
     ...readIllustration(raw),
+    ...(readSeries(raw) ? { series: readSeries(raw) } : {}),
     chapters: []
   };
   if (!Array.isArray(raw.chapters) || raw.chapters.length === 0) e.add('"chapters" must be a non-empty list');
@@ -627,6 +652,8 @@ export function validateStory(raw: unknown, where = 'story.json'): Result<StoryM
       const title = reqString(c, 'title', e, 80);
       const text = textList(c.text, e, `chapter ${i + 1}`);
       const chapter: StoryChapter = { title, text, ...readIllustration(c) };
+      if (typeof c.part === 'string' && c.part.trim()) chapter.part = c.part.trim().slice(0, 60);
+      if (c.rest === true) chapter.rest = true;
       if (Array.isArray(c.scenes)) {
         const scenes: StoryScene[] = [];
         for (const sc of c.scenes.slice(0, 3)) {
@@ -664,6 +691,7 @@ export function validateAdventure(raw: unknown, where = 'adventure.json'): Resul
     hero: typeof raw.hero === 'string' && raw.hero.length <= 40 ? raw.hero : undefined,
     minutes: typeof raw.minutes === 'number' && raw.minutes > 0 && raw.minutes < 600 ? Math.round(raw.minutes) : undefined,
     order: typeof raw.order === 'number' && Number.isFinite(raw.order) ? raw.order : undefined,
+    ...(readSeries(raw) ? { series: readSeries(raw) } : {}),
     start: reqString(raw, 'start', e, 48),
     nodes: {}
   };

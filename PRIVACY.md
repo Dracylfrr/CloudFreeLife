@@ -22,6 +22,8 @@ Artwork, settings and downloaded content are stored **only on your computer**, i
   progress\movement.json  (favorites and the last Gentle Movement card you opened)
   progress\games.json  (Paint Flow boards you have connected, levels played and the last game)
   gardens\<name>.json  (your Zen Garden layouts)
+  artworks\<name>\timelapse.json  (a list of your strokes, for the Timelapse button; no pictures)
+  content\books\my_pages\...  (line art you imported)
   artworks\<name>\artwork.json, paint.png, thumb.png
   content\...            (downloaded books, palettes, levels, stories)
   installed_packs.json

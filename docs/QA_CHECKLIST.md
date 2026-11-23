@@ -38,6 +38,15 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 - [ ] Splash Wall: all 16 levels open; aim, click-throw, hold-to-charge throw; splat stays in the region; goals count correctly; color match hints; Wash and Save PNG.
 - [ ] Pause with P; minimize the window and confirm CPU drops to ~0.
 
+## 1.5 checks
+- [ ] Reader: bookmark a spot with a note, leave, come back and jump to it; remove it; the list is limited to 20; "time left" falls as you read and grows with bigger text.
+- [ ] Reader: Sleep mode dims the page, enlarges the text, stops the page-turn motion and fades the music out after 15, 30 or 60 minutes; turning it off (or leaving the story) brings the music back.
+- [ ] Chapters with a `part` show headings in the chapter list; a chapter with `rest` shows the rest note.
+- [ ] Stories with the same `series` sit together under one heading, in order, with "part N of M" on each card.
+- [ ] Themes: a theme pack installs and appears after the built-in themes; picking it works; Higher Contrast still works; a pack with unreadable colors is refused with a clear reason.
+- [ ] Coloring Books, Import line art: a clean outline drawing becomes a page in My Pages, fills stay inside the lines, a photo or a blank picture is refused with a plain message, Remove deletes only that page.
+- [ ] Timelapse: after painting a new picture, the Timelapse button appears; the video plays your painting back and saves as a .webm in the packaged app; Cancel stops it cleanly; an older picture that had paint before 1.5 has no Timelapse button.
+
 ## 1.4 checks
 - [ ] Settings, Audio: each of the four tracks can be picked at any time (also with a mood on) and starts playing; *Match my mood* appears with a mood on and returns control to it; the choice survives a restart.
 - [ ] Sidebar: Home, then Explore (eight entries) and App controls (Updates, Settings, About); each heading folds and unfolds, the choice survives a restart, the group you are in stays open, and the Updates dot shows on the App controls heading while it is folded.

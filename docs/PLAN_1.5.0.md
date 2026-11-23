@@ -97,3 +97,12 @@ All of this in one release is a lot. A sensible order, with a cut line:
 - Titles, genres and settings for the two long stories and the adventure (for example one cozy slice-of-life, one gentle fantasy, one mystery adventure).
 - Whether "My Pages" imported art should also be exportable and shareable as a pack.
 - Whether timelapse should be WebM only or worth adding a small MP4 path.
+
+## Build status (working notes)
+Built and tested in the browser pane and by unit tests (not yet in a packaged build):
+- Reader: bookmarks, time left, sleep mode, rest markers, chapter parts, series shelves.
+- Installable themes (pack kind `themes`).
+- Import your own line art (Coloring Books, Import line art, My Pages).
+- Timelapse (stroke log plus WebM export).
+
+Written since: *Tales of the Slow Country* (*The Tea Boat on Willow River*, about 5,100 words, and *The Cartographer of Small Things*, about 5,800 words) and the adventure *The Night Market at Lamplight Quay* (33 passages, about 5,700 words, 7 endings). They are shorter than the 6,000 to 12,000 word target: about half an hour each rather than up to an hour. No separate starter story was written; the first long story can serve that purpose once installed.

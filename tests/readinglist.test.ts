@@ -66,7 +66,7 @@ describe('reading progress', () => {
     expect(place.opened).toBeGreaterThanOrEqual(before);
     await flushStoryProgress();
     const saved = JSON.parse((await mem.readText(PROGRESS_PATH))!);
-    expect(saved.schema).toBe(2);
+    expect(saved.schema).toBe(3);
     expect(saved.stories.the_star_gardener).toMatchObject({ chapter: 2, para: 5 });
     __resetStoryProgressForTests();
     await loadStoryProgress();

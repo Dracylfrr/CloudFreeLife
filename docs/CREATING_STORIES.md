@@ -140,6 +140,27 @@ Any story, chapter or scene can carry one picture. Every field is optional, and 
 ### Style
 Soft, rounded and calm: pastel fills, one warm-grey outline (`#6e6a8e`, about 3 px), no sharp or scary shapes, original characters only. `scripts/stories/artlib.mjs` has the small building pieces used for the bundled pictures (clouds, hills, trees, houses, lanterns, an owl, a whale, a train...) if you would like to compose scenes in code; `scripts/stories/art_new.mjs` shows how.
 
+## Long stories (1.5)
+
+Long reads (30 minutes to several hours) use the same `story.json`, with a few optional extras:
+
+```json
+{
+  "series": { "id": "lantern_lane", "name": "The Lantern Lane Books", "order": 2 },
+  "minutes": 45,
+  "chapters": [
+    { "title": "The Lake at Dawn", "part": "Part One: Arrivals", "text": ["..."] },
+    { "title": "A Quiet Supper", "rest": true, "text": ["..."] }
+  ]
+}
+```
+
+- `series` groups stories on the shelf ("part 2 of 3"). `id` is lowercase letters, digits and underscores; `order` is 1 to 99. Adventures can have a `series` too. A series with only one story showing is shown as that story. A malformed `series` is ignored and the story still loads.
+- `part` on a chapter puts a heading above it in the chapter list; the heading carries on to the chapters after it until the next one.
+- `rest: true` marks a good place to stop. The reader shows a soft "A good place to rest" note under that chapter, and nothing pushes the reader on.
+- A story can have up to 120 chapters. The reader works out "about N minutes left" from the words and the text size, so `minutes` is only the label on the card.
+- Readers can leave bookmarks (with a short note) anywhere in a story and use Sleep mode (dimmer, larger text, no motion, music fades out). You do not need to do anything for either.
+
 ## Writing for calm reading
 
 These habits make a story pleasant to read, and keep it ready for narration if that returns:

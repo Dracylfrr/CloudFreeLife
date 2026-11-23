@@ -92,6 +92,31 @@ Add the track id to `MUSIC_MOODS` in `src/core/settings.ts`. The tests check tha
 
 Sound effects are in `src/core/audio.ts`. Each one is a few soft tones with a gentle attack and a long decay through a shared room reverb. Repeated sounds (bubbles, bricks) walk up and down a pentatonic scale, so a long run sounds like a little melody. The tests play every effect against a fake audio engine and check that none is loud, shrill (nothing above 2.6 kHz) or starts with a click.
 
+## Installable themes (1.5)
+
+A theme can be shipped as a content pack (kind `themes`, file `themes/<id>.json`). You only give the main colors; the rest is worked out. Start from [templates/theme.json](templates/theme.json):
+
+```json
+{
+  "id": "rose_tea", "name": "Rose Tea", "description": "Warm rose, cream and a little honey.",
+  "version": "1.0.0", "minAppVersion": "1.5.0", "dark": false,
+  "bg": ["#fdeee9", "#fbe8ee", "#fff3e0"],
+  "panelSolid": "#fffafa",
+  "ink": "#4a2f3a", "inkSoft": "#74505f", "inkFaint": "#c4a4ae",
+  "accent": "#d9738f", "accentSoft": "#f9d8e1",
+  "g": ["#f7c6d3", "#f9d9b0"], "gInk": "#4a2434",
+  "nav": ["#f9d8e1", "#fbe3c6", "#7a3149"]
+}
+```
+
+The app checks a theme before using it, and skips it (without any harm) if it fails:
+- every color is a real `#rrggbb` color;
+- text is easy to read: `ink` on `panelSolid` (contrast 7 or more) and on `bg[0]` (4.5), `inkSoft` on `panelSolid` (4.5), `gInk` on both `g` colors (4.5) and `nav[2]` on both `nav` colors (4.5);
+- `dark` is true only when the panels really are dark;
+- the id is not a built-in theme and not "system".
+
+Installed themes appear after the built-in ones in Settings, Display. If a chosen theme is removed, the default theme shows and the choice is remembered in case the pack comes back.
+
 ## App icon (1.4)
 
 Settings, Display, *App icon* offers five little cloud icons. They are defined in `src/core/appIcon.ts` as a short list of colors (three background stops, the cloud, the paint mark and the sparkles), and one function draws the same cloud with those colors, so adding a sixth icon is one more line in `APP_ICONS`.

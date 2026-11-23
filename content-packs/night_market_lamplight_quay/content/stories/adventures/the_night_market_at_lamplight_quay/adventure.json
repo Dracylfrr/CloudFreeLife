@@ -1,0 +1,389 @@
+{
+  "id": "the_night_market_at_lamplight_quay",
+  "name": "The Night Market at Lamplight Quay",
+  "description": "Every night the quay market opens when the Great Lantern is lit. Tonight the lantern is dark, the flame is missing and the whole harbour is waiting. Can you find it before the tide turns?",
+  "version": "1.0.0",
+  "minAppVersion": "1.5.0",
+  "cover": "cover.svg",
+  "accent": "#e8b86a",
+  "genre": "Mystery",
+  "protagonist": "guy",
+  "hero": "Jonah",
+  "minutes": 24,
+  "order": 22,
+  "start": "start",
+  "nodes": {
+    "start": {
+      "text": [
+        "I am Jonah, and I am the apprentice lamplighter of Lamplight Quay. Every evening, when the harbour bells ring seven, I climb the iron stairs of the Great Lantern with a taper in my hand, and I light the first flame of the night market. After that, one by one, every stall on the quay lights its own little lamp from that flame, and the whole harbour glows like a basket of fireflies.",
+        "Tonight the bells rang seven, and I climbed the stairs, and the Great Lantern was dark. The big glass room at the top of the tower was cold and empty. The basin where the first flame lives had nothing in it but a thin curl of smoke. Down on the quay, a hundred stallholders and a thousand visitors were looking up at me with their lamps unlit, and nobody was saying a word.",
+        "The market cannot open without the first flame. It is the oldest rule on the quay. Somebody has to find it, and since I am the one who is supposed to be carrying it, I suppose that somebody is me. The tide turns at nine. I have two hours."
+      ],
+      "choices": [
+        { "text": "Look closely at the Great Lantern itself", "to": "lantern" },
+        { "text": "Visit Marguerite's glass workshop, where the lantern was made", "to": "glass_shop" },
+        { "text": "Ask old Tobias at the ferry steps, who sees everything on the quay", "to": "ferry" },
+        { "text": "Try Mrs. Poppet's tea stall, where everyone ends up when they are worried", "to": "tea_stall" }
+      ]
+    },
+    "lantern": {
+      "text": [
+        "The Great Lantern stands at the very end of the quay, a tall iron tower with a round glass room at its top, like a bubble balanced on a pencil. By day it is only a handsome lighthouse of a thing. At night it is the heart of the harbour. I walk all the way around its base, slowly, looking.",
+        "The tower is quite sound. The stairs are rusty in the usual places. But as I come round to the seaward side, I notice that one pane of the great glass room catches the last of the daylight in a funny way, as though there is a thin, bright thread running across it. It might be nothing. It might be everything."
+      ],
+      "choices": [
+        { "text": "Look at the thread in the glass more carefully", "to": "crack_clue" },
+        { "text": "Climb up to the lamp room and see the basin for myself", "to": "lamp_room" },
+        { "text": "Go back to the crowd and listen to what people are saying", "to": "crowd" }
+      ]
+    },
+    "crack_clue": {
+      "text": [
+        "I fetch the long ladder from the lamplighters' shed and climb until I am level with the pane. The thread is a crack. It is hair-thin, and it runs from corner to corner, so fine that you would never see it unless the light fell just right. Around it, caught in the putty, there is a faint glitter of glass dust, and, snagged on a rivet, a single strand of dark blue wool.",
+        "A cracked pane means a draught. A draught means a flame that flickers. And a flame that flickers is a flame that might, on a windy evening, go out. I am quite sure that is important. I just do not yet know how.",
+        "I tuck the blue wool into my pocket, as carefully as if it were a letter."
+      ],
+      "choices": [
+        { "text": "Take the wool and the news to Marguerite, the glassblower", "to": "glass_shop" },
+        { "text": "Climb down and ask the crowd whose coat is blue", "to": "crowd" },
+        { "text": "Go up the stairs and look in the lamp room", "to": "lamp_room" }
+      ]
+    },
+    "crowd": {
+      "text": [
+        "The quay is packed. Everyone is standing about in the blue dusk with their unlit lamps in their hands, murmuring, the way people do when something has gone gently wrong and nobody wants to be the one to say so. I wade in among them, and I listen.",
+        "“It is the cat,” says a woman with a basket of eels. “Biscuit. She is always carrying off shiny things.” “It is the cold,” says a man in a cap. “The flame has simply gone to sleep.” “Somebody has taken it,” whispers a boy. “A collector. There is a gentleman in a very large coat, who has been asking about our lantern all week.”",
+        "From the fireworks stall at the end of the quay, a round little man in a spangled apron is shouting that he has a perfectly good sparkler if the lamplighter would like a proper bit of light. And, further off, I hear somebody say, rather thoughtfully, that nobody has ever tried lighting their own lamp without waiting for the first one."
+      ],
+      "choices": [
+        { "text": "Follow up the gentleman in the large coat, starting at the tea stall", "to": "tea_stall" },
+        { "text": "Ask about the cat Biscuit", "to": "cat_rumor" },
+        { "text": "Think about that last idea, about lighting your own lamp", "to": "thousand_idea" },
+        { "text": "Go and talk to the man with the sparkler", "to": "fireworks_stall" }
+      ]
+    },
+    "cat_rumor": {
+      "text": [
+        "Biscuit is a grey-and-white cat who lives on the quay and answers to nobody. She has a way of looking at you as if she knows something about you that you have not decided to tell. The woman with the eels says she was seen at the foot of the Great Lantern at sunset, carrying something small and glowing in her mouth, and disappearing round the corner of the old boathouse.",
+        "“A cat with a coal,” says the eel-woman. “I have never seen the like. It was glowing like a tiny sunset.”",
+        "That is the best clue I have had so far. I thank her and set off for the boathouse."
+      ],
+      "choices": [
+        { "text": "Go straight to the old boathouse", "to": "boathouse" },
+        { "text": "Stop by the ferry steps first, in case Tobias saw her too", "to": "ferry" }
+      ]
+    },
+    "lamp_room": {
+      "text": [
+        "The iron stairs ring under my boots. At the top, the lamp room is a round glass bubble, and it is colder than it should be. The great lens is polished and ready. The bronze basin in the middle of the floor, where the first flame has burned for as long as the quay has existed, is empty.",
+        "But it has not been empty long. The basin is still faintly warm. The air smells of cedar smoke, and of something sweeter that I cannot name. And on the dusty floor, leading from the basin to the top of the stairs, there is a line of tiny paw prints, neat as a row of stitches."
+      ],
+      "choices": [
+        { "text": "Look more closely inside the basin", "to": "basin" },
+        { "text": "Follow the paw prints", "to": "paws" },
+        { "text": "Go back down to the foot of the tower", "to": "lantern" }
+      ]
+    },
+    "basin": {
+      "text": [
+        "I kneel and look into the basin. Under a thin layer of ash, I find a scrap of paper that has been tucked into the rim and carefully folded. I unfold it. The writing is tiny and neat, in dark blue ink.",
+        "It says: Mind the draught. A crack in the west pane. I have taken care of it. V.",
+        "I read it three times. Taken care of what? The crack, or the flame? And who is V? I fold the note and put it with the wool. The two things belong together. I can feel it. A gentleman in a blue coat, with neat handwriting and a great deal of care, who wrote a note and did not stay to explain."
+      ],
+      "choices": [
+        { "text": "Ask around for anyone whose name begins with V", "to": "crowd" },
+        { "text": "Follow the paw prints down the stairs", "to": "paws" }
+      ]
+    },
+    "paws": {
+      "text": [
+        "The paw prints go down the iron stairs, one soft print on each step, and out across the cobbles of the quay. In the damp dusk they are easy to follow, little dark dabs on pale stone, going past the fish stalls and the rope-sellers and the shuttered chandlery. They go all the way to the far end of the quay, where the old boathouse sits half-sunk in the shadows, its doors ajar.",
+        "A little gold light is flickering inside."
+      ],
+      "choices": [
+        { "text": "Slip quietly into the boathouse", "to": "boathouse" },
+        { "text": "Ask Tobias at the ferry steps whether he has seen anything", "to": "ferry" }
+      ]
+    },
+    "boathouse": {
+      "text": [
+        "The boathouse smells of tar and old rope and river. In the far corner, behind a stack of lobster pots, someone has made a nest out of a coil of ship’s rope, lined with a wool blanket. In the nest, curled up together in a heap of fur, are four tiny kittens, fast asleep.",
+        "And in the middle of them, in a little clay pot that I recognise as one of the stove-pots from Mrs. Poppet’s stall, glows a small, steady ember. It is the first flame. It is not the vast, golden fire of the Great Lantern, but a coal the size of a plum, warm and orange and quietly alive. Beside it sits Biscuit, the cat, with her paws tucked under her. She is watching me.",
+        "I realise at once what has happened. It was a cold evening. The kittens needed warmth. And Biscuit, who is not a fool, knew exactly where the warmest thing in the harbour was kept."
+      ],
+      "choices": [
+        { "text": "Ask Biscuit, politely, if the ember might come with me", "to": "ask_cat" },
+        { "text": "Sit down quietly next to the kittens for a moment", "to": "sit_kittens" }
+      ]
+    },
+    "ask_cat": {
+      "text": [
+        "I crouch down, a good distance away, and I say: “Biscuit. I am sorry to bother you. I think you have something that the whole quay is waiting for.”",
+        "Biscuit looks at me for a long time. Her eyes are green and perfectly steady. She does not hiss. She does not move. She only looks, the way a very old judge looks at a very small case.",
+        "Then I understand. She is not being stubborn. She is being fair. The ember is warm, and the kittens need it. If I take it, they will be cold. She will not give it up for nothing, but she might be willing to trade."
+      ],
+      "choices": [
+        { "text": "Offer her the little silver spoon from my pocket, which she has been eyeing", "to": "offer_spoon" },
+        { "text": "Sit with the kittens and think of another way", "to": "sit_kittens" }
+      ]
+    },
+    "sit_kittens": {
+      "text": [
+        "I sit down on an upturned bucket. The kittens breathe in the dark, small and round, like four furry loaves. One of them opens an eye, looks at me, and goes back to sleep. Biscuit does not move, but her ears turn towards me, and I feel I have been very slightly approved of.",
+        "It is very peaceful in the boathouse. The river laps at the planks below. The ember ticks as it cools. For a minute, I forget about the market, and the crowd, and the tide.",
+        "If I took the ember, the kittens would be cold. But if I did not, the quay would stay dark. I wonder whether there is a third way."
+      ],
+      "choices": [
+        { "text": "Gently lift the ember from its pot", "to": "take_ember" },
+        { "text": "Stay a little longer and simply watch the night come in", "to": "ending_quiet" }
+      ]
+    },
+    "take_ember": {
+      "text": [
+        "I reach for the pot. Biscuit does not hiss, but every one of her whiskers goes stiff. The kittens stir at once, their small noses twitching, and one of them lets out a thin, shivering mew. It is the saddest sound I have ever heard.",
+        "I take my hand away. It is no good. I cannot do this to them, whatever the rules of the quay say.",
+        "I sit back. Biscuit blinks at me slowly, which is, I believe, the cat way of saying: that was the right answer. I will have to think of something better."
+      ],
+      "choices": [
+        { "text": "Ask Biscuit if there is anything I can trade for it", "to": "ask_cat" },
+        { "text": "Go back to the quay and look for another way", "to": "ferry" }
+      ]
+    },
+    "offer_spoon": {
+      "ending": { "title": "The Kittens' Ember", "mood": "sweet" },
+      "text": [
+        "I take the little silver spoon out of my pocket. It was a present from my grandmother, and it is the shiniest thing I own. I lay it in front of Biscuit on the floorboards, where it catches the light of the ember and winks.",
+        "She sniffs it. She taps it once with her paw. And then, with the grave, unhurried air of a cat closing a deal, she pushes the spoon under her chin and nudges the clay pot towards me, very slightly.",
+        "I do not take the pot. That would leave the kittens cold. Instead, I take a spark from it, only a spark, in my little brass lamp. And before I go, I pull off my scarf, the long, soft one that my grandmother knitted, and I tuck it around the nest, so thickly that the kittens vanish into it like a heap of snow.",
+        "Biscuit watches me do it. Then she curls herself round the pot, and the kittens, and the scarf, and shuts her eyes.",
+        "I carry my spark up the long iron stairs of the Great Lantern, and I light the basin, and the first flame wakes, small at first, then wide and golden. Below me, one by one, a hundred lamps catch fire along the quay. The market is open. And whenever I pass the boathouse, for the rest of that winter, there is a tiny red glow in the window, and four small cats asleep in a scarf, and a silver spoon on the sill."
+      ]
+    },
+    "ferry": {
+      "text": [
+        "The ferry steps are at the quiet end of the quay, where the stone goes down into the water in long wet stairs. At the bottom, in a small boat painted green and gold, sits old Tobias, with a lantern on a pole at the stern and a pipe that he never lights. He has been the ferryman for fifty years. He has never ferried anyone, as far as I know. The river is too narrow to need it. But he sits there every evening, anyway, and watches.",
+        "“Jonah,” he says, without looking round. “The flame.”",
+        "“You heard.”",
+        "“Everyone has heard. It has been the only topic on the quay for an hour. Come down and sit, boy. You look like a man who has been running about in circles.”"
+      ],
+      "choices": [
+        { "text": "Sit and ask him about the first flame", "to": "flame_story" },
+        { "text": "Ask whether he saw a gentleman in a blue coat", "to": "ferry_vesper" },
+        { "text": "Sit with him and watch the water for a while", "to": "ending_quiet" }
+      ]
+    },
+    "flame_story": {
+      "text": [
+        "Tobias takes his time. He puts the pipe in the other corner of his mouth. “The first flame,” he says. “It is older than the lantern. Older than the quay, some say. They say a lamplighter lit it from a falling star, long ago, and carried it home in his coat, and it has been kept in that basin ever since.”",
+        "“Do you believe that?”",
+        "“I believe in it,” says Tobias, “which is different. A flame like that is not really a thing, Jonah. It is a promise. It says: somebody is home. Somebody has lit the lamp, and kept it, and you are expected. That is all it has ever been.”",
+        "He is quiet for a moment, looking at the river. “It will not be gone,” he says. “A promise cannot be stolen. It can only be mislaid. Go and look in the places where people go to be warm.”"
+      ],
+      "choices": [
+        { "text": "Try the tea stall, where everyone goes to be warm", "to": "tea_stall" },
+        { "text": "Try the boathouse, where something small might be warm", "to": "boathouse" }
+      ]
+    },
+    "ferry_vesper": {
+      "text": [
+        "“Blue coat,” says Tobias slowly, and a smile moves under his moustache. “With a great many pockets? I have seen him. He came off the evening boat at six, with a case of tools and a face like a man who has not slept since Tuesday. He asked me the way to Poppet’s.”",
+        "“Poppet’s tea stall?”",
+        "“He said he had a long night ahead and needed a very hot cup of something.” Tobias taps the pipe on his boot. “He had a smell of cedar on him, and a clinking in his pockets, like a man who carries small bits of glass. I took him for a tinker. But I am not sure he is a thief. Thieves do not usually ask the way to tea.”"
+      ],
+      "choices": [
+        { "text": "Thank him and hurry to Mrs. Poppet's tea stall", "to": "tea_stall" }
+      ]
+    },
+    "glass_shop": {
+      "text": [
+        "Marguerite's glass workshop is a long, low building behind the chandlery, with a furnace in the middle that glows like a sleeping dragon. The air is warm and dry and smells of hot sand. All around, on shelves and hooks and long wooden tables, are the small bright things she has made: bottles and beads and lamp-chimneys and a hundred glass fish hanging from the rafters, turning slowly in the heat.",
+        "Marguerite herself is sitting on a stool with her face in her hands. She is a tall woman with burn-scars on her wrists and a tangle of grey hair held up with a pencil, and she does not look up when I come in.",
+        "“Jonah,” she says. “I am so sorry. I know why you are here.”"
+      ],
+      "choices": [
+        { "text": "Ask her what she is sorry about", "to": "crack_confess" },
+        { "text": "Look around the workshop first", "to": "workshop" }
+      ]
+    },
+    "workshop": {
+      "text": [
+        "I wander slowly between the tables, trying not to knock anything over. There are racks of lantern-glass, curved and clear. There are tools laid out in tidy rows: pincers, blowpipes, a wooden paddle worn smooth by thirty years of her hands. And on the end of the longest table, wrapped in a clean cloth, there is a large curved pane of new glass, cut and ground and ready, in exactly the shape of the west window of the Great Lantern.",
+        "It has been prepared. Somebody has already started to mend it. Beside it, a pot of fresh putty. And a note, in a neat dark-blue hand, which says: For tonight, if she will have it. V.",
+        "I turn round. Marguerite is watching me with wet, tired eyes. “You found the glass,” she says. “That is what I wanted to tell you.”"
+      ],
+      "choices": [
+        { "text": "Ask her to tell the whole story", "to": "crack_confess" },
+        { "text": "Go back to the lantern with what you know", "to": "lantern" }
+      ]
+    },
+    "crack_confess": {
+      "text": [
+        "Marguerite takes a long breath. “It was me,” she says. “Last week, when I was polishing the west pane. I was in a hurry. I leaned too hard on the rim with the cloth, and I heard it. A tiny sound, like a bird’s foot on ice. I told myself it was nothing. I told myself nobody would ever notice.”",
+        "“It is only a hairline,” I say.",
+        "“It is enough,” she says. “A draught can get through a crack that thin. And a draught can put out a flame, on the wrong sort of night. I knew it. I have known it for a week. And I said nothing, because I was ashamed.”",
+        "She looks very small on her stool. Behind her, the glass fish turn slowly in the furnace-light, throwing small shifting patterns across the wall.",
+        "“Yesterday a stranger came to the workshop,” she goes on. “A lantern-mender, travelling through. He saw the pane in my cart and asked what it was for. I told him everything. He said he would see what he could do. I did not think he meant tonight.”"
+      ],
+      "choices": [
+        { "text": "Tell her you will help her mend the lantern, together, tonight", "to": "repair_plan" },
+        { "text": "Ask where the stranger went", "to": "tea_stall" }
+      ]
+    },
+    "repair_plan": {
+      "text": [
+        "“Marguerite,” I say, “everybody makes a mistake once. You were hurrying. It is hardly the end of the world. But it will be if we do not get the flame back, so I need your help, and I think the lantern needs it too.”",
+        "She looks up. Slowly, as if remembering how, she smiles. “You are very kind for a lamplighter.”",
+        "“It is a kind trade,” I say. “So, which first? Shall we go and mend the pane, so the flame has somewhere safe to come home to? Or find the flame, and bring it back to a cracked lantern?”"
+      ],
+      "choices": [
+        { "text": "Mend the pane first, and find the flame afterwards", "to": "mend_lantern" },
+        { "text": "Find the stranger and the flame first, and ask the glassblower to come when she is needed", "to": "tea_stall" }
+      ]
+    },
+    "mend_lantern": {
+      "text": [
+        "We climb the Great Lantern together, with the new pane wrapped in blankets between us, and a basket of putty and tools on Marguerite’s back. It takes a long time. She works the way some people sing, with her whole body, humming under her breath, holding the glass in the lamplight to check the curve of it.",
+        "I hold the lantern, and pass her things, and keep the draught off with my coat. The old pane comes out with a soft, sticky sigh. The new one goes in. It fits so perfectly that I can hardly see the join. It catches the moonlight, which has come up over the harbour, and turns it into a long pale beam that sweeps across the sea.",
+        "“There,” says Marguerite, wiping her hands. “It is mended. All it needs now is a flame.”",
+        "She is right. The lantern is whole again, and quite dark. The harbour below us is still waiting. And the tide, I notice, has begun to turn."
+      ],
+      "choices": [
+        { "text": "Go and find the stranger at Mrs. Poppet's tea stall", "to": "tea_stall" },
+        { "text": "Follow up the cat's paw prints you saw earlier", "to": "boathouse" }
+      ]
+    },
+    "tea_stall": {
+      "text": [
+        "Mrs. Poppet’s tea stall is the warmest place on the quay. It is a cheerful, lopsided, striped thing, with a big copper urn on a stove and a dozen mismatched cups on hooks, and Mrs. Poppet herself, who is round and rosy and has never been in a hurry in her life. The stall is nearly empty tonight. Everyone is standing in the dark, waiting. But Mrs. Poppet is calmly polishing a cup.",
+        "“Jonah, love,” she says. “Sit. You look as if you have not had a minute’s peace since seven. There is a gentleman in the corner, if you are looking for him. He has been here two hours. He asked for a very hot cup of tea, and he was asleep before it cooled.”",
+        "In the corner, under the awning, a thin man in a very large blue coat is slumped on a stool, with his chin on his chest, snoring softly. The coat has an enormous number of pockets. And one of them, over his heart, is glowing faintly orange, like a banked fire."
+      ],
+      "choices": [
+        { "text": "Wake him gently", "to": "vesper_wakes" },
+        { "text": "Peek into the glowing pocket", "to": "pockets" },
+        { "text": "Make him a fresh cup of tea and let him wake in his own time", "to": "vesper_tea" }
+      ]
+    },
+    "pockets": {
+      "text": [
+        "I tiptoe over. I am only going to look. But the pocket is open a crack, and as I lean in, a warm wave of cedar smoke rolls out, and inside I can see a small round jar with a cork in the top. Inside the jar, glowing sweetly, is a flame.",
+        "I reach in, as gently as I can. The man in the coat gives a great, snuffling snore, and rolls over, and I freeze. His arm falls out across the table and knocks over a teaspoon, which falls on the floor with a very loud clink.",
+        "He opens one eye. He sees me, with my hand deep in his pocket. He does not seem surprised. “Ah,” he says, in a rusty, sleepy voice. “You must be the lamplighter. I am so sorry. I only sat down for one cup.”"
+      ],
+      "choices": [
+        { "text": "Take your hand out and ask him to explain", "to": "vesper_wakes" }
+      ]
+    },
+    "vesper_tea": {
+      "text": [
+        "I ask Mrs. Poppet for the biggest, fattest cup she has, and she fills it from the copper urn with a long, delicious pour. The steam curls up into the awning. I set it on the table in front of the sleeping man, and I wait.",
+        "It takes a few minutes. The tea’s smell, warm and malty and full of honey, drifts across the stall. The man’s nose twitches. His eyelids flutter. Without opening his eyes at all, he reaches out one hand and gropes for the cup, and finds it, and sips.",
+        "“Ah,” he says. “That is the best thing that has ever happened to me.” And then, quite suddenly, his eyes snap open, and he sits bolt upright, and a look of the most tremendous alarm crosses his thin face. “The lantern,” he says. “What time is it?”"
+      ],
+      "choices": [
+        { "text": "Tell him it is nearly nine, and ask him to explain", "to": "vesper_wakes" },
+        { "text": "Tell him, gently, that tonight a cup of tea is the most important thing in the world", "to": "ending_tea" }
+      ]
+    },
+    "vesper_wakes": {
+      "text": [
+        "His name is Vesper. He is a travelling lantern-mender, he says, and he is the clumsiest man in the harbour, and he is very, very sorry. He tells it in a rush, turning his empty cup round and round in his hands.",
+        "He had come on the evening boat, because Marguerite had written to him about the cracked pane. He had climbed the lantern at dusk to look at it, and found, to his horror, that the crack was letting in a wind. The first flame was guttering, low and blue, in the basin. He was afraid it would go out. So he did the only thing he could think of. He took the flame, jar and all, and tucked it into his coat, close to his heart, to keep it safe while he fetched the new glass from the workshop.",
+        "“And then,” says Vesper, with a despairing look, “I sat down for one cup of tea. I have not slept in three days. I fell asleep before I could drink it. I am so sorry. It has been in my pocket the whole time. It is quite safe.”",
+        "He unbuttons his coat, with great care, and takes out the jar. Inside it, small and bright and perfectly content, burns the first flame of the Great Lantern."
+      ],
+      "choices": [
+        { "text": "Fetch Marguerite and mend the pane before the flame goes back", "to": "ending_mended" },
+        { "text": "Carry the flame up the tower right away, crack and all", "to": "ending_flicker" }
+      ]
+    },
+    "fireworks_stall": {
+      "text": [
+        "The fireworks stall is a riot of colour: rockets in paper tubes, wheels that spin, fountains in pots, strings of crackers coiled like sleeping snakes. Behind the counter stands Signor Fizz, a round, red-faced man in a spangled apron, who has never in his life made a quiet noise.",
+        "“Lamplighter!” he booms. “A dreadful night! No flame, no market! But I have a perfectly good rocket here that will light the entire harbour in one go! Why wait for the old lantern? We shall do it with a bang!”",
+        "He is holding a very large rocket. It is nearly as tall as I am, and painted bright red, with a little yellow star on the fin. He is wearing the expression of a man who has been waiting years for an occasion."
+      ],
+      "choices": [
+        { "text": "Say yes. It does seem the quickest way", "to": "ending_fireworks" },
+        { "text": "Thank him warmly and say you will try something quieter first", "to": "crowd" }
+      ]
+    },
+    "thousand_idea": {
+      "text": [
+        "I stand on an upturned crate, and I look at all the faces in the dusk, the eel-sellers and the sailors and the children on their fathers’ shoulders, each one holding a small dark lamp. And I think: why do they all have to wait for me?",
+        "It is the oldest rule on the quay, that the market opens from the first flame. But a rule is only a way of remembering why. The flame has always said: somebody is home. Somebody is here. You are expected. And all those people on the quay are somebody. Every one of them is perfectly capable of saying it.",
+        "I clear my throat. The crowd turns to look. And I have the sudden, slightly frightening feeling of being about to propose something that the whole harbour might love, or might think very silly."
+      ],
+      "choices": [
+        { "text": "Ask Mrs. Poppet to light the first lamp from her stove, and pass it on", "to": "ending_thousand" },
+        { "text": "Not yet. First, find out what happened to the real flame", "to": "tea_stall" }
+      ]
+    },
+    "ending_mended": {
+      "ending": { "title": "The Lantern, Mended", "mood": "happy" },
+      "text": [
+        "We find Marguerite in her workshop, and she does not even ask a question. She takes one look at Vesper’s jar, and she gathers up the new pane, and her tools, and a flask of hot tea, and the three of us climb the Great Lantern together, with the flame glowing between us like a small, patient moon.",
+        "The mending takes an hour. Vesper holds the lamp. Marguerite fits the glass. I keep the flame in its jar on my knee, humming to it, the way you hum to a baby. The old pane comes out. The new one goes in. And when the last of the putty is smoothed, Marguerite sits back on her heels, and the whole lantern room is quiet.",
+        "“Now,” she says.",
+        "I take the cork from the jar. I tip the flame into the great bronze basin, the way I have done every evening of my life, and it settles there, trembling, and then rises, and then fills the whole tower with gold. The glass rings. The beam sweeps out over the harbour. And down on the quay, a hundred lamps catch, one from another, like a long breath going round a room.",
+        "The market opens. People cheer. Snatches of music start up from somewhere. Mrs. Poppet’s stall is wreathed in steam, and Signor Fizz lets off a very small, very tasteful rocket. Marguerite, standing beside me in the glow of her own mended glass, looks down at the harbour, and does not say anything. She does not need to. Vesper has fallen asleep again, on the top step, with a smile, and I take off my coat and put it over him.",
+        "It was an odd little adventure. But I think it is the best night of the market I have ever had."
+      ]
+    },
+    "ending_flicker": {
+      "ending": { "title": "The Flickering Night", "mood": "dreamy" },
+      "text": [
+        "There is no time to wait. The tide is nearly at the turn, and the whole harbour is dark. So Vesper and I run up the iron stairs, two at a time, with the jar held between us, and I pour the flame into the basin and step back.",
+        "It rises. And it flickers. The crack in the west pane lets in a thin, cold thread of wind, and the flame bends towards it, and swings, and shivers, and sends long dancing shadows across the walls of the lamp room. It is not steady. It is not the great golden calm of every other night. But it burns.",
+        "Below, the market sees it. A cheer goes up, a ragged, delighted cheer, and the stalls light their lamps one by one, and the quay fills with a trembling, living, restless light. All the lanterns wobble. All the shadows dance. Instead of the usual still, glowing harbour, we have a harbour that shimmers, like a lake in a breeze.",
+        "People say, afterwards, that it was the loveliest night the market ever had. The children chased the shadows. The fiddler played faster. Marguerite, who had come panting up the quay, stood at the foot of the tower with her hand to her mouth, looking up at the wavering light through the crack she had made, and began, for the first time in a week, to laugh.",
+        "She mended the pane the next morning. But the crack, she said, would never quite leave her. She kept the old glass, and hung it in her workshop window, where it catches the evening sun, and throws on the wall a single, trembling line of light."
+      ]
+    },
+    "ending_tea": {
+      "ending": { "title": "A Lantern in Every Cup", "mood": "cozy" },
+      "text": [
+        "“Mr. Vesper,” I say, “it is very nearly nine, and you have not slept in three days. Finish your tea.”",
+        "He stares at me. “But the flame,” he says. “The market.”",
+        "“The flame is perfectly safe,” I say. “I can see it glowing in your pocket, and it looks very comfortable. I think it would be a great shame to hurry it. Mrs. Poppet, have you a spare stove?”",
+        "“I always have a spare stove, love,” says Mrs. Poppet, with great calm. She has been listening to the whole thing with her arms folded. “Put it in the urn.”",
+        "So we do. Vesper pours the first flame, very carefully, into the firebox of the copper urn, and the urn gives a great, contented hiss, and a steady glow spreads out beneath the striped awning like a warm hand.",
+        "And from the urn, Mrs. Poppet fills the cups. She fills a hundred cups. And in each one, very faintly, there is a small round glow, from the fire beneath it, and the people of the quay hold their cups in their hands, and lift them like little lanterns, and they sip, and the tea is the best that anyone remembers.",
+        "The market opens around the tea stall that night, in a great warm ring. The Great Lantern is left until morning, when Marguerite and Vesper climb up, humming, to mend it in the daylight. Nobody minds. They said afterwards that it was the cosiest night in the history of the quay, and people still raise their cups to it, on the evening of the first frost, and call it, with great affection, the Night of the Tea."
+      ]
+    },
+    "ending_quiet": {
+      "ending": { "title": "A Night for Stars", "mood": "dreamy" },
+      "text": [
+        "I sit down, and I stay. I do not know exactly when I decide it. I only know that after a while I am not hurrying any more, and the knot between my shoulders has let go, and the river is the loveliest thing in the world.",
+        "The tide turns. Out on the water, the lights of the far shore come out, one by one. The moon climbs over the harbour wall. And above it all, without any lantern to compete, the stars come down low and thick, so many of them, so bright, that the whole sky looks as if someone has spilled a jar of sugar across it.",
+        "On the quay, the crowd has stopped murmuring. People have started to look up. A child asks what the bright one is. Somebody answers. A grandmother begins to name the constellations, softly, and a circle of people gathers round her to listen, with their dark little lamps in their laps.",
+        "The market does not open that night. For the first time in a hundred years, nobody sells anything, and nobody buys. They only sit on the stones of the quay and look at the sky, and share what they have in their pockets: bread, and apples, and one very good cheese.",
+        "In the morning, the flame turns up in the oddest possible place, and everybody says they always knew it would. But the people of Lamplight Quay still talk about the night the lantern went dark, and the stars came out. And I, who was supposed to be the lamplighter, think it may have been the best light I ever gave them."
+      ]
+    },
+    "ending_fireworks": {
+      "ending": { "title": "The Night the Market Went Pop", "mood": "funny" },
+      "text": [
+        "“Yes,” I say. It seems the quickest way. I will regret it for the rest of my life, and I will also be extremely proud.",
+        "Signor Fizz lets out a roar of joy and sets the rocket on the end of the quay. The crowd shuffles back. A small boy covers his ears. Signor Fizz holds a taper to the fuse, and steps away with a flourish, and for one long second nothing happens at all.",
+        "Then the rocket goes up with a scream, and a bang, and a fountain of gold and green and violent pink that lights up the entire harbour like noon. Every lamp on the quay catches at once, from the sparks. Every awning flares. The fish stalls light, the rope stall lights, the entire stack of Mrs. Poppet’s teacups lights, and Mrs. Poppet, without a moment’s hesitation, throws a bucket of water over the lot.",
+        "A great cloud of steam rolls across the quay. Out of it come the sounds of a hundred people coughing, and laughing, and shrieking, and clapping, and a single astonished goose. When it clears, the whole harbour is blinking, damp and smoky, lit by a hundred small fires that are fast being put out by a hundred cheerful hands.",
+        "The market opens. It is not at all the proper way to open a market. It is loud, and wet, and slightly scorched. But it is the most talked-about opening in the history of the quay, and Signor Fizz, who is covered in soot and has lost his eyebrows, is carried on the shoulders of the crowd to the tea stall, where he is given a cup, and a medal made of a biscuit, and a very firm talking-to.",
+        "As for the first flame, it is found the next morning, asleep in a jar in a stranger’s coat, entirely unbothered. It has been said that it slept through the whole thing, and that it was, on the whole, rather relieved to have missed it."
+      ]
+    },
+    "ending_thousand": {
+      "ending": { "title": "The Market of a Thousand Candles", "mood": "happy" },
+      "text": [
+        "I call across the crowd, as loudly as I can, which is not very loudly. “Mrs. Poppet! Would you light a lamp from your stove?”",
+        "She looks up from her cups. She considers it for exactly as long as it takes to wipe her hands on her apron. “Of course I would, love,” she says. “It is only a lamp.”",
+        "She lights a spill from the fire under her urn, and she touches it to the wick of her little stall lantern, and it catches. A small yellow flame, in a small tin lantern, under a striped awning, in the dark. The whole quay is watching her, and for a moment no one breathes.",
+        "Then she turns to the man at the next stall, and holds out the spill. He lights his. He turns, and lights the next. And I watch it go, a thread of fire passing from hand to hand to hand, along the whole length of the quay, a hundred stallholders and a thousand visitors, each of them lighting a candle from a neighbour’s flame and passing it on.",
+        "It is not like the old way, where a great gold light floods the harbour all at once. It is slower. It is a hundred small lights, one after another, each one a person saying: I am here. I am lighting this for you. And by the time the last candle is lit, the whole of Lamplight Quay is glowing from end to end, thousands of tiny flames, from every hand.",
+        "The Great Lantern stays dark that night. But nobody notices. They say afterwards that it was the most beautiful opening they have ever seen, and the following year, and every year after, the market still opens that way, from hand to hand, without any need for a first flame at all. The old flame turns up in the morning, perfectly well, in a tea-stall urn, and is returned to its basin with a small ceremony. But it is never again the only light on the quay.",
+        "It is just one among a thousand. And I think, somehow, that it prefers it that way."
+      ]
+    }
+  }
+}

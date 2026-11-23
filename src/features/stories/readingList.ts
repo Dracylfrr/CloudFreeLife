@@ -7,7 +7,7 @@
  *   Finished     read to the end (story) / reached an ending (adventure) and not mid-replay
  *   Favorites    hearted, whatever state they are in
  */
-import { analyzeAdventure, storyMinutes } from '../../core/manifests';
+import { analyzeAdventure, storyMinutes, type SeriesInfo } from '../../core/manifests';
 import type { LoadedAdventure, LoadedStory } from '../../core/content/registry';
 import { isFavorite, storyPercent, type StoryProgress } from './progress';
 
@@ -26,6 +26,7 @@ export interface ReadingEntry {
   /** Last opened (epoch ms), 0 if never or from an older save. */
   opened: number;
   minutes: number;
+  series?: SeriesInfo;
   story?: LoadedStory;
   adventure?: LoadedAdventure;
 }
@@ -52,6 +53,7 @@ export function storyEntry(s: LoadedStory, p: StoryProgress): ReadingEntry {
     label,
     opened: place?.opened ?? 0,
     minutes: storyMinutes(s.manifest),
+    series: s.manifest.series,
     story: s
   };
 }
@@ -81,6 +83,7 @@ export function adventureEntry(a: LoadedAdventure, p: StoryProgress): ReadingEnt
     label,
     opened: place?.opened ?? 0,
     minutes: a.manifest.minutes ?? 10,
+    series: a.manifest.series,
     adventure: a
   };
 }

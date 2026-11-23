@@ -1,0 +1,215 @@
+{
+  "id": "the_tea_boat_on_willow_river",
+  "name": "The Tea Boat on Willow River",
+  "description": "One small boat, one big kettle and a whole slow day of delivering tea, and a little kindness, to everyone along the river.",
+  "version": "1.0.0",
+  "minAppVersion": "1.5.0",
+  "cover": "cover.svg",
+  "accent": "#f0c987",
+  "mood": "Cozy",
+  "minutes": 27,
+  "order": 20,
+  "series": { "id": "slow_country", "name": "Tales of the Slow Country", "order": 1 },
+  "chapters": [
+    {
+      "title": "The Sleepy Kettle",
+      "part": "Part One: Morning",
+      "illustration": "ch1.svg",
+      "illustrationAlt": "A little round boat with a tall kettle on its deck, floating on a pale river at sunrise.",
+      "illustrationCaption": "The Sleepy Kettle at dawn",
+      "text": [
+        "On Willow River, the day began when the Sleepy Kettle began to whistle. It was not a loud whistle. It started as a thin, hopeful sound, like someone humming in the next room, and it grew until it was a long, round note that drifted over the water and woke the frogs, one by one.",
+        "The kettle lived on a boat, and the boat belonged to Pim. Pim was an otter with a striped scarf and very good balance, and she had run the tea boat for as long as anyone along the river could remember. Which, to be fair, was not very long. The river was a place where people mostly remembered the weather.",
+        "This morning the weather was soft. A pale mist lay on the water like a folded blanket, and the willows leaned over it with their long green hair, trying to look at their own reflections. The sun had not quite decided to come up. It was thinking about it.",
+        "Pim stretched, yawned so wide that her whiskers shivered, and climbed out of her hammock. The boat rocked to say good morning. It was a round little boat, painted the yellow of butter, with a deck just big enough for a stove, a shelf of tea tins and a single wicker chair that had never once been sat in, because Pim preferred to stand and watch.",
+        "“Good morning, Kettle,” she said, and patted the big copper belly of it. The kettle answered with a happy gurgle. “Today is a delivery day. A very long one. We are going all the way down the river, from the Old Mill to the Lantern Landing, and we are going to stop at every single house.”",
+        "She counted the stops on her paws, and then she counted them again, because there were more than ten and she only had ten paws, which is to say fingers. Eleven stops. Twelve if you counted Mr. Dorrel's heron post, which she always did, because he would be offended if she did not.",
+        "That evening was the Lantern Festival, the one night of the year when the whole river floated candles down to the sea. Everyone would be there. And Pim had made a promise, the kind of promise that is easy to make in winter and surprisingly large in summer: she had promised that everyone on the river would have a cup of tea ready before the first lantern was lit.",
+        "She filled the kettle from the river, because the river water was sweet in the morning. She lit the little stove. She chose three tins from the shelf: one of mint, for the sleepy; one of honeybush, for the sad; one of plain black tea, for people who said they did not need anything and then looked pleased when you gave them something anyway.",
+        "The mist began to lift. The sun finally decided, with a small yellow flourish, to come up. And Pim untied the rope from the mooring post, pushed off with her long pole, and let the slow current take the Sleepy Kettle down the river."
+      ]
+    },
+    {
+      "title": "Two Cups for Mr. Dorrel",
+      "illustration": "ch2.svg",
+      "illustrationAlt": "A tall grey heron standing on a wooden post by the water, holding a tiny cup in his long beak.",
+      "illustrationCaption": "Mr. Dorrel and his post",
+      "text": [
+        "The first stop was the heron post, a tall wooden pole at the first bend of the river with a small round platform on top, no bigger than a dinner plate. On it stood Mr. Dorrel, who was a grey heron, and who had stood there every morning since the post was built.",
+        "He was the river's ferry keeper, although there was no ferry. There had been one once, a long time ago, but it had sprung a leak and gone to live at the bottom of the lake, where Mr. Dorrel said it was very happy. He kept the post anyway. Someone, he said, had to stand in a place where the river changed direction, and notice.",
+        "“Morning, Pim,” he said, without turning his head. A heron rarely turns his head. He turns his whole self, slowly, like a lighthouse. “I see the kettle is early.”",
+        "“The kettle is always on time,” said Pim. “It is the sun that is late.”",
+        "“Hm,” said Mr. Dorrel, which was the sound he made when he agreed with something but did not want to say so. “Two cups, please. One for me and one for the other fellow.”",
+        "Pim looked around. There was no other fellow. There was only the mist, and the reeds, and the water making its small talk against the pole. But Pim had learned, over many mornings, that Mr. Dorrel never asked for two cups by accident.",
+        "She poured two cups of the plain black tea, because Mr. Dorrel said he did not need anything, and she set one on the little platform beside his feet. It steamed upward in a thin silver thread. The other she held out to him, and he took it with the very tips of his beak, as carefully as a person holding a sleeping bird.",
+        "They stood together for a while, the heron and the otter, with the river going by. A dragonfly landed on the empty cup, tasted the steam, and flew away looking surprised.",
+        "“That was him,” said Mr. Dorrel. “The other fellow. Every morning a dragonfly comes and sits by my cup. I have never learned its name. I think it is only polite to give it tea.”",
+        "Pim thought this was the most sensible thing she had heard all week. She left a small tin of black tea on the post, tied with string, in case the dragonfly ever wished to host a party. And then she pushed off again, with the heron’s slow “Hm” following her down the river like a kind of blessing."
+      ]
+    },
+    {
+      "title": "The Bakery on the Bank",
+      "illustration": "ch3.svg",
+      "illustrationAlt": "A small cottage on the riverbank with a smoking chimney, a wooden jetty and two round hedgehogs waving.",
+      "illustrationCaption": "Nettle and Thistle's bakery",
+      "text": [
+        "Around the second bend, the air began to smell of cinnamon. Pim breathed it in with her whole face. It was the smell of the Bank Bakery, which sat in a crooked cottage right at the water’s edge with its own little wooden jetty, and it meant that Nettle and Thistle had been up since three.",
+        "Nettle and Thistle were hedgehog sisters, and they baked the way other people breathe: constantly, and without noticing. They had been arguing about the correct amount of nutmeg for eleven years, and neither of them had ever won, and both of them were perfectly happy about it.",
+        "“Pim!” called Nettle from the window. She had flour on her nose and in both ears. “Come and taste! Thistle says it needs more ginger!”",
+        "“It needs less ginger,” said Thistle, from somewhere behind a stack of trays. “Nettle always says more. Nettle has never once said less.”",
+        "Pim tied the boat to the jetty and went up the steps. The kitchen was warm as a pocket. Everywhere there were loaves cooling on racks, and buns the size of fists, and a tall cake with a sugar moon on top that was waiting for the evening. A big copper pot of something was bubbling on the stove, and a cat who did not belong to anyone was asleep inside the bread bin.",
+        "She tasted the spiced bun. It was, she decided, exactly right. This was a problem, because both sisters were looking at her, and whichever way she answered would be a vote. So she did what a wise tea-boat otter does. She chewed slowly, looked at the ceiling, and said: “I think it is the best bun I have ever had, and I think that is because you both made it.”",
+        "The sisters looked at each other. Then they both nodded, and went back to their trays, and the argument was quietly put away for another day, like a favourite coat.",
+        "Pim made them honeybush tea, because bakers work so hard at being cheerful that they sometimes forget to be tired. She set two cups on the flour-dusted table. The sisters sat down for the first time since three o’clock, and Pim saw them both lean, very slightly, on each other’s shoulders.",
+        "When she left, the sisters pressed a paper bag into her paws. Inside were six small buns, still warm. “For the river,” said Nettle. “For whoever needs one,” said Thistle. And for once they said it at exactly the same time.",
+        "Pim carried the bag back to the boat as carefully as if it were full of sunlight. Ahead, the river widened, and the willows opened out, and a long green meadow began to slide past. It was still morning. There was so much of the day left."
+      ]
+    },
+    {
+      "title": "The Quiet Between Two Locks",
+      "rest": true,
+      "illustration": "ch4.svg",
+      "illustrationAlt": "A stone lock on a river with a round wooden door and a small mole peeking from the lock-keeper's window.",
+      "illustrationCaption": "Bramble's lock",
+      "text": [
+        "At noon the river came to the Narrow Lock, which was the only place on Willow River where the water had to be asked politely to go down a step. The lock was kept by Bramble, a mole in round spectacles who wore a waistcoat with eleven pockets and used all of them.",
+        "Bramble did not see very well, so he listened. He listened to the river the way some people listen to music, and he could tell by the sound of it whether the water wanted to go up or down, whether a boat was coming, and whether it was a boat with a kettle on it. He always knew. Pim had never once managed to surprise him.",
+        "“Pim,” he said, before she had even tied up. “Lovely. A slow current today. There is a feeling of rain, but it is only a feeling. It will not come to anything.”",
+        "“It is the best kind of rain,” said Pim.",
+        "“It is,” said Bramble. “All of the comfort and none of the wet.”",
+        "Locking the boat down took a long time, as it always did. The water had to leave the lock one careful cupful at a time, and the Sleepy Kettle sank slowly between the stone walls until the sky was a thin blue ribbon above them. It was very quiet down there. The walls were cool and green and smelled of old rain.",
+        "Pim sat on the deck with her feet over the edge. She poured a cup of mint tea for herself, which she hardly ever did, and held it in both paws. A drip fell from the lock gate, far above, and made a small round sound on the water. Then another one, a little later. It sounded like a clock that had decided to take things slowly.",
+        "She found she was not thinking about the eleven stops, or the lanterns, or the promise. She was only sitting in the quiet between two locks, between one part of the day and the next, with a warm cup and a boat that rocked her gently as if to say: there is time. There is plenty of time. Time is the thing there is most of.",
+        "Bramble hummed from his window. He hummed in a very low voice, nearly below hearing, and the kettle hummed along with him, and for a minute or two it seemed that the whole lock was one big instrument being played very softly.",
+        "Then the lower gate swung open with a slow, wooden sigh, and light poured in. The river was waiting on the other side, wide and bright, with the afternoon on it. Pim finished her tea. She thanked Bramble, who had already gone back to listening, and the Sleepy Kettle slid out into the day."
+      ]
+    },
+    {
+      "title": "The Book Barge",
+      "part": "Part Two: Afternoon",
+      "illustration": "ch5.svg",
+      "illustrationAlt": "A long flat barge stacked with books and a duck in a knitted shawl reading in a deck chair.",
+      "illustrationCaption": "Mrs. Quill's floating library",
+      "text": [
+        "In the afternoon the river grew lazy. It spread out into a long, shallow stretch where the water was the colour of weak tea and the light came down through the willows in coins. Bees hung in the air above the clover. Everything seemed to be moving at exactly the speed of a thought you are not quite having.",
+        "In the middle of this slowness, tied to a single bending reed, floated a long flat barge piled with books. They were stacked in leaning towers and tucked into crates and spread open on the deck to dry. It was the Floating Library, and it belonged to Mrs. Quill.",
+        "Mrs. Quill was a duck in a knitted shawl, and she was so deeply in the middle of a book that she did not look up when the Sleepy Kettle bumped gently against her barge. She turned a page. A small beetle that had been reading over her shoulder turned the next one for her.",
+        "“Mrs. Quill?” said Pim. “Tea?”",
+        "“Mm,” said Mrs. Quill. “Chapter nine. In a moment. The heroine has just found a door in a hill, and I will not be able to think about anything else until I know whether it opens.”",
+        "Pim sat down on a stack of atlases and waited. She was good at waiting. It was one of the things an otter learned on a river. The hours did not pass, exactly; they simply took turns being there. She ate one of the warm buns while she waited, and a crumb fell, and the beetle on Mrs. Quill’s shoulder looked at it with great interest.",
+        "At last Mrs. Quill read the last line of the page and let out a long breath. “It opened,” she said. “Behind it was a kitchen. Somebody was baking. Isn’t that wonderful? You think a door in a hill will lead to danger, and it leads to a kitchen.”",
+        "“That is my favourite kind of door,” said Pim.",
+        "“And mine,” said Mrs. Quill. She looked up at last, and her eyes were very bright behind her small round glasses. “Tea, did you say? Yes. Something with a book in it. Not a sad one. I have had enough sad books this week.”",
+        "Pim thought for a moment. Then she mixed a little mint with a little honeybush, which is a thing she had never done, and which turned out to taste like reading in a window while it rains. Mrs. Quill drank it with her eyes closed. She said it was the first time she had ever tasted a chapter.",
+        "Before Pim left, Mrs. Quill pressed a thin green book into her paws. “Lend it to whoever looks as if they need it,” she said. “The river is full of people who look as if they need it. They will not say so. That is why it is a book and not a speech.”",
+        "Pim tucked the book into the pocket of her scarf, next to the paper bag of buns. Her pockets, she noticed, were filling up with other people’s kindness, and the day was only half over."
+      ]
+    },
+    {
+      "title": "A Very Small Lost Firefly",
+      "illustration": "ch6.svg",
+      "illustrationAlt": "A tiny glowing firefly sitting on the rim of a teacup, with a little round boat drifting under a green willow.",
+      "illustrationCaption": "Wick, on the rim of a cup",
+      "text": [
+        "The sound that Pim heard next was so small that for a moment she thought it was the kettle. It was a thin little glimmer of a sound, like a bell the size of a seed. It came from the edge of the boat, near the tea tins, and when Pim leaned over and looked, she saw that one of the tins had a tiny light inside it.",
+        "She lifted the lid. A firefly was sitting on top of the black tea, glowing the soft yellow of a candle behind a curtain. It was the smallest firefly Pim had ever seen, and it looked entirely out of breath.",
+        "“Hello,” said Pim, very quietly, because it did not seem like a creature to be loud at. “Are you lost?”",
+        "“A little,” said the firefly. “My name is Wick. I was on my way to the Lantern Festival. I am meant to be a lantern. I fell asleep on a leaf this morning, and the leaf floated away, and then I climbed into your tin because it smelled so warm.”",
+        "“Why would you be a lantern?” asked Pim.",
+        "Wick explained, with a great deal of glowing, that every year the fireflies of the river went to the festival to light the paper lanterns. Each firefly sat inside one lantern and shone, and the lanterns floated down to the sea together, and it was the loveliest thing in the world. But Wick was the youngest firefly of his family, and his light was the smallest. Nobody had ever asked him to be a lantern. He had only decided to go and hope.",
+        "“I am afraid I will not be bright enough,” he said, in a voice so small it was more of a flicker. “The others glow like candles. I glow like the last sparkle on a spoon.”",
+        "Pim put her chin on her paw and considered this. Then she poured a very small cup of honeybush, no bigger than a thimble, and set it down on the deck where Wick could reach it. “Tell me something,” she said. “When you glow, does it feel warm?”",
+        "Wick thought. “Yes,” he said. “Like a small hearth, inside my chest.”",
+        "“Then you are bright enough,” said Pim. “A lantern does not have to be loud. It has to be warm.”",
+        "Wick did not say anything. He drank his thimble of tea. And Pim saw that his light, which had been a flicker, had settled into a steady, rounded glow, as if somebody had turned up a wick that was already there.",
+        "“Would you like a ride?” she asked. “The kettle is going to the Lantern Landing. We have six more stops, and I think you would be good company. You can sit on the rim of the cup. You will be the best tea-light that ever floated.”",
+        "So Wick sat on the rim of a teacup on the shelf by the stove, glowing gently, and the Sleepy Kettle slipped on down the river with one more passenger than before. And Pim, who had not expected any of this, found that she was smiling at nothing, in the way you do when the day has quietly begun to give you presents."
+      ]
+    },
+    {
+      "title": "The Fog on the Long Meadow",
+      "illustration": "ch7.svg",
+      "illustrationAlt": "A little boat in a soft white fog, with only a lamp-glow showing and the tops of reeds poking out.",
+      "illustrationCaption": "A lamp in the fog",
+      "text": [
+        "It happened in the late afternoon. A mist rose up from the long meadow, quietly, the way a thought rises, and before the Sleepy Kettle had gone another hundred paces the whole river had disappeared. There was no bank. There was no sky. There was a soft white room in all directions, and in the middle of it, one small yellow boat.",
+        "Pim was not frightened. An otter is rarely frightened by water, and she had lived on this river all her life. But she could not see the reeds, and the current had slowed to nothing, and it was suddenly very hard to know which way was down the river and which was only down.",
+        "“I do not know where we are,” she said.",
+        "“Neither do I,” said Wick, from the rim of the cup. “But I know a thing about fog. It is only a cloud that has come to see what it is like to be near the ground. It will not stay.”",
+        "“That is a very comforting thing to know,” said Pim. “Where did you learn it?”",
+        "“From my grandmother,” said Wick. “She said that if you cannot see, the thing to do is to make a little light, and wait. You do not need to see the whole way. You only need to see the next foot.”",
+        "So Pim lit the stern lamp, and Wick glowed as brightly as he could, and the two lights together made a small gold circle on the water, about as big as a tablecloth. Within that circle everything was clear. The planks of the deck. The ring of the kettle. The curl of Pim’s scarf. The next stroke of the pole, and the one after that.",
+        "She poled slowly, one stroke at a time, and each time the gold circle moved along with her, and each time it showed just enough. A reed. A ripple. A willow branch bending down to touch the water, like a hand testing the temperature of a bath. She did not need to know the whole river. She only needed the next foot of it.",
+        "Somewhere in the fog, a deep, patient voice called out: “Hm.”",
+        "“Mr. Dorrel?” said Pim.",
+        "“Hm,” said the voice again, and now it was nearer, and a little to the left. It was not the heron’s post, which was far behind them. It was the heron himself, wading in the shallows, leading the way with his slow, certain “Hm,” as steady as a bell buoy. He had come all this way to stand in the place where the river changed, and notice.",
+        "“I saw the fog come in,” said Mr. Dorrel, appearing at last like a grey figure out of a dream. “I thought you might want some company.”",
+        "He did not take her pole, and he did not tell her where to steer. He only walked beside the boat through the shallow water, calling out his low “Hm” every few steps, and that was enough. It is sometimes all a person needs: not to be rescued, only to hear that someone else is out there, in the same fog, and not worried.",
+        "After a long time the white began to thin. First it was grey, and then it was silver, and then there was a glint of blue above them, and the whole meadow came back, wet and sparkling, with every blade of grass wearing a bead of light."
+      ]
+    },
+    {
+      "title": "Supper at the Landing Stairs",
+      "rest": true,
+      "illustration": "ch8.svg",
+      "illustrationAlt": "A wooden landing with lanterns strung overhead and a long table of food by the water at dusk.",
+      "illustrationCaption": "The Lantern Landing, at dusk",
+      "text": [
+        "By the time the Sleepy Kettle reached the Lantern Landing, the sky had turned the colour of a ripe peach. The landing was a wide set of wooden stairs going down into the water, and at the top of the stairs stood a long table with a white cloth, and all along the table were people.",
+        "There was Nettle, with her tall cake and its sugar moon, and Thistle, who was still telling anyone who would listen that it needed less ginger. There was Bramble, who had locked the lock for the night and come down the bank by feel, and was now sitting very contentedly with his eleven pockets full of crackers. Mrs. Quill had floated her barge in and was reading aloud to a row of young frogs, all lined up on a log.",
+        "The paper lanterns had been laid out in a great shining pile at the water’s edge. They were round and pale as moons, and each one had a small open door at the top, waiting for someone to come and live inside it.",
+        "“Pim!” cried the whole table. “You’re here!”",
+        "She was. She had been to every single stop, all eleven of them, and the twelfth that was Mr. Dorrel’s. She climbed up the stairs with the kettle in her arms, and the warm buns in their paper bag, and Mrs. Quill’s green book in her scarf, and everyone made room for her on the bench.",
+        "She poured tea. She poured it for everyone, in all the odd cups they had brought, a chipped blue mug, a thimble, a teacup with a bird on it, a boot that someone swore was perfectly clean. She poured mint for the sleepy, and honeybush for the sad, and plain black tea for the people who said they did not need anything. And every one of them took it, and looked pleased.",
+        "“You have kept your promise,” said Mr. Dorrel quietly, at her elbow. He had walked all the way from the fog. He was standing on one leg, in the shallows beside the stairs, with a cup balanced on the stone. “Everyone has tea before the first lantern.”",
+        "“I did not keep it by myself,” said Pim. “The river did. The river and the whole day, and all of you.”",
+        "“Hm,” said Mr. Dorrel, which meant that he agreed.",
+        "They ate. The sugar moon was cut into thin slices, and nobody could decide which was the best one, and so they each had two. Nettle and Thistle fed each other cake from the same fork. A frog fell asleep with its head in a bowl of berries. The light went from peach to rose to a deep, tender blue, and the first star came out above the willows, small and bright and surprised, like a lantern someone had lit a little early.",
+        "It was a lovely supper. It was the kind of supper that people remember for years, and cannot quite say why. Nothing happened at it. That was the best part."
+      ]
+    },
+    {
+      "title": "The Smallest Lantern",
+      "part": "Part Three: Evening",
+      "illustration": "ch9.svg",
+      "illustrationAlt": "Rows of glowing paper lanterns on dark water, and one very small lantern at the end with a tiny golden light.",
+      "illustrationCaption": "Wick's lantern",
+      "text": [
+        "When it was dark enough, the fireflies came. They drifted down from the willows in slow golden threads, hundreds of them, and settled into the lanterns one by one. Each lantern took a firefly and began to glow, and soon the whole pile at the water’s edge was a hill of soft light.",
+        "Wick sat on the rim of his teacup and watched. He was very quiet. His glow had gone small again, and Pim could see him fold his wings down tight against his back, the way a person folds their hands when they are trying not to hope.",
+        "The lanterns were being carried to the water now, one by one, by the young frogs and the hedgehog sisters and Bramble, who held his by feel. There were so many fireflies, and each lantern had one. Soon, Pim saw, there would be none left.",
+        "“There is a lantern for everybody,” said Wick, in his small voice. “But I think they have all been given out.”",
+        "Pim looked at the pile. She counted lanterns, which is a hard thing to do when they are all glowing, and she counted fireflies, which is harder. She did not know whether it was true. But as she looked, she noticed something at the very end of the row, a little apart from the others, sitting on the stone step by itself.",
+        "It was a lantern much smaller than the rest. It was no bigger than an apple, with a paper skin as thin as a petal, and it had a small open door at the top. Nobody had picked it up. It was too small for the big fireflies, and too plain for the shiny ones, and it had been sitting there all evening, waiting for exactly the right guest.",
+        "“Wick,” she said. “Look.”",
+        "Wick looked. His wings came slowly up, and his light flickered, and then it rose. He flew up from the cup, in a small, shaky spiral, and he landed on the edge of the little lantern. He peered in. He turned around once, as a cat does before sleeping, and then he stepped inside.",
+        "And the lantern glowed. It did not glow like the others. It did not blaze or shimmer. It glowed the way a window glows when there is someone at home, a warm, rounded, steady gold, and the thin paper turned the colour of honey. It was the smallest lantern on the river and perhaps the most welcoming.",
+        "Pim carried it down to the water herself. She walked right to the edge of the stairs, with the lantern held out in both paws, and she crouched, and she set it very gently on the surface. It floated. It turned in a slow circle, the way a leaf does when it is deciding where to go, and then it slid out beside the great lanterns and joined the line.",
+        "“Goodbye, Pim,” called Wick, from inside it, in a voice that was not a flicker any more. “Thank you for the tea.”",
+        "“Thank you for the light,” said Pim, and found, to her surprise, that her whiskers were wet."
+      ]
+    },
+    {
+      "title": "All the Way to the Sea",
+      "illustration": "ch10.svg",
+      "illustrationAlt": "A long line of glowing lanterns floating down a dark river under a sky of stars, with a small boat at the shore.",
+      "illustrationCaption": "The lanterns go down to the sea",
+      "text": [
+        "Then the lanterns floated. They floated away from the stairs in a great shining river-inside-a-river, gold on black, drifting slowly out between the willows. They did not hurry. They had all night to get to the sea, and the sea had always been patient.",
+        "Everyone stood along the bank and watched them go. Nobody spoke. Nettle and Thistle held paws. Bramble took off his spectacles, which he did not need, and polished them anyway. Mrs. Quill closed her book, which was something she very rarely did. A frog sighed in its sleep.",
+        "The lanterns passed under the last willow, and the whole river shone. The water was full of stars, the real ones and the reflected ones and the lanterns, and it was impossible to say where the sky stopped and the river began. It was one wide dark bowl, with a thousand soft lights floating in it.",
+        "“Is it always this beautiful?” asked a young frog.",
+        "“Every year,” said Mrs. Quill. “And every year, it feels like the first time.”",
+        "Pim stood at the very end of the stairs, with her paws on the rail, and watched the smallest lantern go. It was easy to find, at the end of the line, a little warm gold dot that did not shout. It bobbed a little as it went, as if it were nodding to the river. She watched it until it was only a spark, and then until it was only the idea of a spark, and then she still watched it a while longer.",
+        "Behind her, someone tapped the side of a cup. It was Mr. Dorrel. “Hm,” he said. “A good day for a kettle.”",
+        "“A good day,” said Pim.",
+        "“Will you go back tomorrow?”",
+        "She thought about it. She thought about the river going up and the river going down, and about all the people along the bank who looked as if they did not need anything. She thought about the thin green book in her scarf, which she had not yet lent to anyone, and which she suspected would find its person on its own.",
+        "“Yes,” she said. “Tomorrow, and the day after. There is always someone who needs a cup.”",
+        "The party went on, quietly, on the stairs, for a long time. Eventually the frogs were carried home, asleep, in a wheelbarrow. Eventually Nettle and Thistle packed up the last of the cake and went back to the bakery, arguing amiably about nutmeg. Eventually Bramble felt his way up the bank. And eventually, when the river was dark and the stars had come down low, Pim climbed back aboard the Sleepy Kettle, and lay in her hammock, and listened.",
+        "The kettle was still warm. It gave one last, very small gurgle, the sound of a kettle saying goodnight. Outside, the water talked to the hull, and a long way down the river a thousand lanterns were drifting to the sea, and one of them, the smallest, was glowing the way a home glows.",
+        "Pim closed her eyes. She was very tired in the best possible way. It had been a long, slow, gentle day, and she had helped it be so. And somewhere between the water and the dark she fell asleep, with a smile on her face and the smell of mint on her paws, and the river carried her through the night as it always did, quietly, and without hurry, all the way to morning."
+      ]
+    }
+  ]
+}

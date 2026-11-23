@@ -35,6 +35,8 @@ async function boot() {
   initAudio();
 
   await Promise.all([loadCatalog(), refreshArtworks(), loadStoryProgress(), loadMeditationProgress(), loadMovementProgress(), loadGamesProgress()]);
+  // Installed themes arrive with the content; show the chosen one now that it can be found.
+  applySettingsToDocument(getSettings());
   // Small local progress files are written shortly after a change; this makes sure they are
   // also written when you move to another screen or close the window.
   onBeforeLeave(() => Promise.all([flushStoryProgress(), meditationProgress.flush(), movementProgress.flush(), gamesProgress.flush()]).then(() => undefined));

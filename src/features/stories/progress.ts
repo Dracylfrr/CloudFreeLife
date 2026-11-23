@@ -8,8 +8,10 @@ import { Autosaver } from '../../core/autosave';
 import { getStorage } from '../../core/storage';
 
 export const PROGRESS_PATH = 'progress/stories.json';
-const SCHEMA = 2;
+const SCHEMA = 3;
 const MAX_PATH = 400;
+export const MAX_BOOKMARKS = 20;
+export const MAX_NOTE = 80;
 
 export interface StoryPlace {
   /** Chapter index being read. */
@@ -29,6 +31,16 @@ export interface AdventurePlace {
   /** When the adventure was last played (epoch ms). 0 for saves made before 1.3. */
   opened: number;
 }
+/** A place in a story the reader wanted to keep (added in 1.5). */
+export interface Bookmark {
+  chapter: number;
+  /** Paragraph within the chapter. */
+  para: number;
+  /** Optional short note. */
+  note: string;
+  /** When it was made (epoch ms). */
+  at: number;
+}
 export interface Favorites {
   stories: string[];
   adventures: string[];
@@ -38,9 +50,27 @@ export interface StoryProgress {
   stories: Record<string, StoryPlace>;
   adventures: Record<string, AdventurePlace>;
   favorites: Favorites;
+  /** Bookmarks by story id. They stay when a story's place is cleared. */
+  bookmarks: Record<string, Bookmark[]>;
 }
 
-const empty = (): StoryProgress => ({ schema: SCHEMA, stories: {}, adventures: {}, favorites: { stories: [], adventures: [] } });
+const empty = (): StoryProgress => ({ schema: SCHEMA, stories: {}, adventures: {}, favorites: { stories: [], adventures: [] }, bookmarks: {} });
+
+function cleanBookmarks(v: unknown): Bookmark[] {
+  if (!Array.isArray(v)) return [];
+  const out: Bookmark[] = [];
+  for (const b of v) {
+    if (!b || typeof b !== 'object') continue;
+    const o = b as Record<string, unknown>;
+    const num = (x: unknown, hi: number) => (typeof x === 'number' && Number.isFinite(x) ? Math.max(0, Math.min(hi, Math.floor(x))) : -1);
+    const chapter = num(o.chapter, 200);
+    const para = num(o.para, 2000);
+    if (chapter < 0 || para < 0) continue;
+    out.push({ chapter, para, note: typeof o.note === 'string' ? o.note.trim().slice(0, MAX_NOTE) : '', at: stamp(o.at) });
+    if (out.length >= MAX_BOOKMARKS) break;
+  }
+  return out;
+}
 const stamp = (v: unknown) => (typeof v === 'number' && Number.isFinite(v) && v > 0 ? Math.floor(v) : 0);
 const idList = (v: unknown) => (Array.isArray(v) ? [...new Set(v.filter((x): x is string => typeof x === 'string' && idKey(x)))].slice(0, 500) : []);
 
@@ -72,6 +102,13 @@ export function sanitizeProgress(raw: unknown): StoryProgress {
     const f = r.favorites as Record<string, unknown>;
     out.favorites = { stories: idList(f.stories), adventures: idList(f.adventures) };
   }
+  if (r.bookmarks && typeof r.bookmarks === 'object') {
+    for (const [id, v] of Object.entries(r.bookmarks as Record<string, unknown>)) {
+      if (!idKey(id)) continue;
+      const list = cleanBookmarks(v);
+      if (list.length) out.bookmarks[id] = list;
+    }
+  }
   return out;
 }
 
@@ -102,7 +139,7 @@ export async function loadStoryProgress(): Promise<StoryProgress> {
 
 function change(fn: (p: StoryProgress) => void) {
   store.update((p) => {
-    const next: StoryProgress = { schema: SCHEMA, stories: { ...p.stories }, adventures: { ...p.adventures }, favorites: { stories: [...p.favorites.stories], adventures: [...p.favorites.adventures] } };
+    const next: StoryProgress = { schema: SCHEMA, stories: { ...p.stories }, adventures: { ...p.adventures }, favorites: { stories: [...p.favorites.stories], adventures: [...p.favorites.adventures] }, bookmarks: { ...p.bookmarks } };
     fn(next);
     return next;
   });
@@ -131,6 +168,34 @@ export function setFavorite(kind: 'story' | 'adventure', id: string, on: boolean
     const list = p.favorites[key].filter((x) => x !== id);
     p.favorites[key] = on ? [...list, id] : list;
   });
+}
+
+/** Adds a bookmark (or updates the note of one already at that spot). Returns false when the story is full. */
+export function addBookmark(id: string, chapter: number, para: number, note = ''): boolean {
+  let ok = true;
+  change((p) => {
+    const list = [...(p.bookmarks[id] ?? [])];
+    const at = list.findIndex((b) => b.chapter === chapter && b.para === para);
+    const mark: Bookmark = { chapter, para, note: note.trim().slice(0, MAX_NOTE), at: Date.now() };
+    if (at >= 0) list[at] = mark;
+    else if (list.length >= MAX_BOOKMARKS) ok = false;
+    else list.push(mark);
+    if (ok) p.bookmarks[id] = list;
+  });
+  return ok;
+}
+
+export function removeBookmark(id: string, chapter: number, para: number) {
+  change((p) => {
+    const list = (p.bookmarks[id] ?? []).filter((b) => !(b.chapter === chapter && b.para === para));
+    if (list.length) p.bookmarks[id] = list;
+    else delete p.bookmarks[id];
+  });
+}
+
+/** Bookmarks in reading order (chapter, then paragraph). */
+export function bookmarksOf(p: StoryProgress, id: string): Bookmark[] {
+  return [...(p.bookmarks[id] ?? [])].sort((a, b) => a.chapter - b.chapter || a.para - b.para);
 }
 
 export function isFavorite(p: StoryProgress, kind: 'story' | 'adventure', id: string): boolean {

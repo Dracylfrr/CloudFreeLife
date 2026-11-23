@@ -5,7 +5,7 @@
 import { ALLOWED_DOWNLOAD_HOSTS, GITHUB_REPO, RELEASE_MANIFEST_ASSET } from '../../core/config';
 import { APP_VERSION, compareVersions, isNewer, isValidVersion, meetsMinVersion, parseVersion } from '../../core/version';
 
-export type ContentKind = 'book' | 'palettes' | 'breaker_levels' | 'splash_levels' | 'memory_levels' | 'puzzle_levels' | 'bubble_levels' | 'catcher_levels' | 'zen_levels' | 'flow_levels' | 'stories' | 'adventures' | 'meditation' | 'movement' | 'minigame';
+export type ContentKind = 'book' | 'palettes' | 'themes' | 'breaker_levels' | 'splash_levels' | 'memory_levels' | 'puzzle_levels' | 'bubble_levels' | 'catcher_levels' | 'zen_levels' | 'flow_levels' | 'stories' | 'adventures' | 'meditation' | 'movement' | 'minigame';
 
 export interface AssetSpec {
   name: string;
@@ -86,7 +86,7 @@ export const ALLOWED_APP_TYPES = ['application/octet-stream', 'application/x-msd
 export const MAX_PACK_BYTES = 40 * 1024 * 1024;
 export const MAX_APP_BYTES = 400 * 1024 * 1024;
 
-const CONTENT_KINDS: ContentKind[] = ['book', 'palettes', 'breaker_levels', 'splash_levels', 'memory_levels', 'puzzle_levels', 'bubble_levels', 'catcher_levels', 'zen_levels', 'flow_levels', 'stories', 'adventures', 'meditation', 'movement', 'minigame'];
+const CONTENT_KINDS: ContentKind[] = ['book', 'palettes', 'themes', 'breaker_levels', 'splash_levels', 'memory_levels', 'puzzle_levels', 'bubble_levels', 'catcher_levels', 'zen_levels', 'flow_levels', 'stories', 'adventures', 'meditation', 'movement', 'minigame'];
 
 const isObj = (v: unknown): v is Record<string, unknown> => !!v && typeof v === 'object' && !Array.isArray(v);
 
@@ -349,6 +349,7 @@ export function describeUpdate(u: UpdateItem): string {
     catcher_levels: 'New Cloud Catcher levels available',
     zen_levels: 'New Zen Garden backgrounds available',
     flow_levels: 'New Paint Flow boards available',
+    themes: 'New themes available',
     meditation: 'New meditation sessions available',
     movement: 'New movement cards available',
     stories: 'New cozy stories available',

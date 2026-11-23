@@ -5,8 +5,9 @@
   import { setFavorite } from './progress';
   import type { ReadingEntry } from './readingList';
   import { sfx } from '../../core/audio';
+  import { formatLength } from './longread';
 
-  let { entry }: { entry: ReadingEntry } = $props();
+  let { entry, part = '' }: { entry: ReadingEntry; part?: string } = $props();
   const item = $derived((entry.story ?? entry.adventure)!);
   const m = $derived(item.manifest);
   const hue = (g: string) => (g === 'Romance' ? 'pink' : g === 'Comedy' ? 'butter' : g === 'Mystery' ? 'lilac' : g === 'Adventure' ? 'mint' : 'sky');
@@ -29,6 +30,7 @@
         {:else if entry.story?.manifest.mood}
           <span class="chip">{entry.story.manifest.mood}</span>
         {/if}
+        {#if part}<span class="chip">{part}</span>{/if}
         {#if item.source === 'installed'}<span class="chip new">Downloaded</span>{/if}
       </div>
       <h3>{m.name}</h3>
@@ -36,7 +38,7 @@
       <span class="count">
         <Icon name={entry.kind === 'story' ? 'bookOpen' : 'compass'} size={14} />
         {#if entry.kind === 'story' && entry.story}{entry.story.manifest.chapters.length} chapters{:else}Choose your path{/if}
-        · about {entry.minutes < 60 ? `${entry.minutes} min` : `${Math.round((entry.minutes / 60) * 10) / 10} h`}
+        · about {formatLength(entry.minutes)}
       </span>
       {#if entry.group !== 'notStarted'}
         <div class="progress" role="img" aria-label={entry.label}>

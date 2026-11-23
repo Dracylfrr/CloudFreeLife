@@ -5,6 +5,7 @@
   import { storyProgress } from './progress';
   import { buildReadingList, groupReadingList, type ReadingEntry } from './readingList';
   import ReadingCard from './ReadingCard.svelte';
+  import { groupSeries, partLabel } from './longread';
 
   // One screen, two places: "Cozy Stories" (books you read, with no choices) and
   // "Story Adventures" (you choose what happens). They share the same simple list.
@@ -38,6 +39,9 @@
 
   const base = $derived<ReadingEntry[]>(tab === 'continue' ? groups.continue : tab === 'all' ? mine : tab === 'notStarted' ? groups.notStarted : tab === 'finished' ? groups.finished : groups.favorites);
   const shown = $derived(isAdventure ? base.filter((e) => (who === 'all' || e.adventure?.manifest.protagonist === who) && (genre === 'all' || e.adventure?.manifest.genre === genre)) : base);
+
+  // Parts of one series sit together on the shelf, in order.
+  const items = $derived(groupSeries(shown));
 
   const thing = $derived(isAdventure ? 'adventures' : 'stories');
   const EMPTY = $derived<Record<Tab, string>>({
@@ -104,8 +108,19 @@
       <p class="empty">{isAdventure && base.length > 0 ? 'Nothing matches that filter. Try choosing everyone or all genres.' : EMPTY[tab]}</p>
     {:else}
       <div class="shelf">
-        {#each shown as e (e.kind + e.id)}
-          <ReadingCard entry={e} />
+        {#each items as it (it.kind === 'single' ? it.entry.kind + it.entry.id : 'series:' + it.series.id)}
+          {#if it.kind === 'single'}
+            <ReadingCard entry={it.entry} />
+          {:else}
+            <section class="series" aria-label="{it.series.name}, a series of {it.parts.length}">
+              <h2 class="series-name">{it.series.name}<span>{it.parts.length} parts</span></h2>
+              <div class="shelf inner">
+                {#each it.parts as e (e.kind + e.id)}
+                  <ReadingCard entry={e} part={partLabel(e, mine)} />
+                {/each}
+              </div>
+            </section>
+          {/if}
         {/each}
       </div>
     {/if}
@@ -207,6 +222,28 @@
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 26px;
     max-width: 1180px;
+  }
+  .series {
+    grid-column: 1 / -1;
+    padding: 16px 18px 22px;
+    border-radius: var(--radius-xl);
+    background: rgb(var(--w) / 0.35);
+    border: 1px dashed rgb(var(--w) / 0.9);
+  }
+  .series-name {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin: 0 0 14px;
+    font-size: 1.15rem;
+  }
+  .series-name span {
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: var(--ink-soft);
+  }
+  .shelf.inner {
+    max-width: none;
   }
   .empty {
     color: var(--ink-soft);

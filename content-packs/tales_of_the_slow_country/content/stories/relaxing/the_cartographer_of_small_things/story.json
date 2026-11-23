@@ -1,0 +1,258 @@
+{
+  "id": "the_cartographer_of_small_things",
+  "name": "The Cartographer of Small Things",
+  "description": "A young badger who draws maps of oceans and mountains learns to look much closer, and discovers a whole country under the hedge.",
+  "version": "1.0.0",
+  "minAppVersion": "1.5.0",
+  "cover": "cover.svg",
+  "accent": "#a9d4a0",
+  "mood": "Dreamy",
+  "minutes": 31,
+  "order": 21,
+  "series": {
+    "id": "slow_country",
+    "name": "Tales of the Slow Country",
+    "order": 2
+  },
+  "chapters": [
+    {
+      "title": "The Map Room",
+      "part": "Part One: The Magnifying Glass",
+      "illustration": "ch1.svg",
+      "illustrationAlt": "A cosy round room full of rolled maps, with a young badger at a big desk and an old tortoise in an armchair.",
+      "illustrationCaption": "The Map Room at Fennimore House",
+      "text": [
+        "At the top of a tall, crooked house at the edge of the village, there was a round room with a hundred windows, and every window was full of maps. They were pinned to the glass, so that the sunlight came through them in coloured patches: the blue of oceans, the green of valleys, the brown of mountains drawn with tiny careful hatching. In the afternoons the whole room glowed like the inside of a jewel.",
+        "This was the Map Room of Fennimore House, and in it lived Professor Fennimore, who was a very old tortoise, and his apprentice Odile, who was a young badger with ink on her whiskers and a pencil permanently behind one ear.",
+        "The Professor had drawn the maps of half the world. He had drawn the Long Sea and the Salt Coast and the Mountains That Argue With the Clouds. He had drawn them from a great distance, slowly, on a very large desk, with a very fine pen. Now he was so old that he mostly sat in his armchair by the stove with a rug over his shell, and told Odile where to put the rivers.",
+        "“Rivers,” he would say, “are the hardest part. They want to wander, and a map wants them to stay still. You must respect both.”",
+        "Odile loved the maps. She loved the smell of the paper and the cold, clean line of a new coast. She was good at it. But lately, in the evenings, when the lamps were lit and the room went quiet, she had begun to feel something she did not have a name for. It was a small, tight, itchy feeling, like a word on the tip of the tongue.",
+        "Tonight the Professor had gone to sleep in his chair, with his chin on his chest and one hand resting on an unfinished map of the Southern Plains. Odile sat at the big desk and looked at it. She was meant to be adding the grass. There were a great many grasses on the Southern Plains, and they were all the same.",
+        "She put down her pencil. “I have drawn the whole world,” she whispered, “and I have never once looked at it.”",
+        "It was true. She had drawn mountains she had never climbed and seas she had never sailed. She had learned to see things from very far above, the way a bird does, or a god. And all that time, outside the windows, in the garden and under the hedge and between the paving stones, there was a world she walked over every day without ever looking at all.",
+        "She looked at the Professor, and the Professor snored gently, and the stove ticked. And she decided, quite suddenly, that tomorrow she would draw something small."
+      ]
+    },
+    {
+      "title": "A Very Old Glass",
+      "illustration": "ch2.svg",
+      "illustrationAlt": "An old brass magnifying glass on a velvet cloth in an open drawer, with a handwritten label.",
+      "illustrationCaption": "The Professor's magnifying glass",
+      "text": [
+        "In the morning Odile asked the Professor how a person might see a thing that was very close.",
+        "He opened one eye. It took a while. When a tortoise opens an eye, it is like watching a door open in a very old house: you can feel the history of every hinge. “Close,” he said. “Hm. You are asking about glass.”",
+        "“Glass?”",
+        "“There is a drawer in the third desk,” said the Professor. “The one that sticks. Wiggle it. There is a magnifying glass in it that belonged to my teacher, who was a mole, and who drew the finest maps of nothing at all that I have ever seen. I have not touched it in forty years. It is a great deal of trouble.”",
+        "“Why?”",
+        "“Because once you look through it,” said the Professor, “you will never be able to stop.”",
+        "Odile found the drawer and wiggled it. It stuck, and groaned, and finally gave a small, reluctant slide, and there in the dust, on a square of faded green velvet, lay the glass. It was round and thick and set in a handle of old brass, worn smooth in the places where paws had held it. A tag was tied to the handle with a thread. On the tag, in tiny handwriting, someone had written: Look slowly.",
+        "She picked it up. It was heavier than it looked, and it was warm, as if it had been sitting in the sun, although the drawer had been closed for forty years. She held it up to the window. The world behind it swam and swelled. A fly on the glass became a creature with a thousand eyes and a hundred silver hairs. The edge of a map became a landscape of paper fibres, long and tangled and golden.",
+        "“Oh,” said Odile.",
+        "“Yes,” said the Professor, from his chair, without opening his eyes again. “That is what I was afraid of.”",
+        "She packed a satchel. Into it went a roll of the thin, creamy paper used for field notes, two pencils, a little tin of ink and a small round flask of tea. She put the glass in her pocket, where it knocked comfortably against her knee. She tied her scarf. She went down the stairs, which creaked in all the right places, and out of the front door, and into the garden.",
+        "“Odile,” called the Professor from the window above her. He had pushed it open with a great effort, and he was leaning out, a small, round, wrinkled head in a tall square window. “One more thing. When you draw a small thing, you must draw it the size it feels, not the size it is. That is the first rule of the small maps.”",
+        "“Yes, Professor,” said Odile, without understanding at all.",
+        "She stood at the edge of the garden, in the long wet grass, with the glass in her pocket and the morning on her shoulders. And she knelt down, very slowly, and she looked."
+      ]
+    },
+    {
+      "title": "The Country Under the Hedge",
+      "illustration": "ch3.svg",
+      "illustrationAlt": "A tall green hedge seen from the ground, with tiny paths and bridges among the roots, and a ladybird guide waiting.",
+      "illustrationCaption": "The edge of the small country",
+      "text": [
+        "For a long while Odile saw nothing but grass. She knelt and she stared, and the grass was grass, and the hedge was a hedge, and the morning was damp and a little cold. She felt foolish. She was about to stand up and go back inside when a small voice said, from just beside her left paw: “You are looking too hard.”",
+        "She looked down. On the stem of a clover leaf, no longer than a button, sat a ladybird in a red coat with seven black spots. The ladybird was holding a very small clipboard.",
+        "“I am Tam,” said the ladybird. “I am a guide. I have been waiting for someone to come down here and see us for a very long time. Most people stand, you see. It is difficult to see anything from standing.”",
+        "“I am Odile,” said Odile. “I am a mapmaker. I think. I have drawn a great many maps, but only of large things.”",
+        "“Oh, large things,” said Tam, with a small shudder, as if she had been offered a cold porridge. “Yes, I have heard of those. Come along. Put the glass up to your eye, slowly. Not too close. Let the world arrive.”",
+        "Odile did as she was told. She lifted the glass, and she waited, and the grass leaned in towards her. And then the hedge was not a hedge any more, but a vast dark forest of trunks with leaves like green rooftops. There were paths among its roots, narrow dusty paths worn smooth by countless feet. A tiny bridge made of a bent twig crossed a trickle of water. And on the far side, the roots opened out into a wide, bright clearing full of small round houses, each with a door the size of a pea.",
+        "“That,” said Tam, “is Rootbridge. It is the first town in the Small Country. You are welcome to put it on your map. Nobody ever has.”",
+        "Odile’s paws were shaking. She unrolled the field paper on her knee, and she took up her pencil, and she began to draw. The pencil moved before she told it to. It drew the twisting roots, and the twig bridge, and the little circular houses. She drew the dust on the paths. She drew the way the light fell through the leaves in green coins.",
+        "She remembered the Professor’s rule, and she drew the houses the size they felt. They felt enormous. They felt like cathedrals, warm and full of people, and so she drew them tall and glowing, with their small round doors in the centre of each one like a promise.",
+        "“That is it,” said Tam softly, at her shoulder. “That is exactly how it feels. Nobody has ever got it right before.”",
+        "A breeze stirred the hedge. The leaves above them turned over, flashing silver, and a hundred tiny shadows fled across the clearing like startled fish. Odile did not look up. She was already at work on the next line, and the next, and the day was only beginning."
+      ]
+    },
+    {
+      "title": "The Postmaster",
+      "rest": true,
+      "illustration": "ch4.svg",
+      "illustrationAlt": "A large snail with a postbag and a tiny hat, sitting at a doorway made of a curled leaf.",
+      "illustrationCaption": "Mabry, the postmaster of Rootbridge",
+      "text": [
+        "In the middle of Rootbridge, beneath a leaf that curled like a doorway, there was a post office. It was run by Mabry, a very large and very slow snail who wore a tiny postman’s cap on the front of his shell, and who had never been late in his life, because he did not believe in the idea of it.",
+        "“Letters,” said Mabry, when Odile asked what he did, “are the way small people tell each other that they are thinking of them. I carry them. I carry a great many. It takes a long time. But a letter is never meant to hurry. It is meant to arrive.”",
+        "He showed her the post office. There were pigeonholes made of acorn cups, and a scale made from a sliver of eggshell, and a great, soft sack of mail that Mabry carried on his back and which, Odile noticed, was almost entirely full of notes that said very small things. Thank you for the crumb. I hope your cold is better. The moss is lovely this year. Come for tea when the rain stops.",
+        "“That is all of them?” she asked.",
+        "“Nearly all,” said Mabry. “People think a letter has to say something grand. It does not. It only has to say: I noticed you.”",
+        "Odile sat on an acorn cup and drank a thimbleful of her tea, and Mabry told her about the Small Country as slowly as a river tells a story. He told her that Rootbridge was only the first of the towns. Beyond it was the Dewdrop Lake, which formed each morning and was gone by noon. Beyond that was the Mushroom Forest, where a spider wove the streetlamps. And beyond that, at the very edge of the hedge, was the Little Grey Sea, which was really a puddle, though nobody was rude enough to say so.",
+        "“It would take a very long time to map it all,” he said. “It would take, I think, about a year.”",
+        "“I have a day,” said Odile.",
+        "“Oh,” said Mabry, with great kindness. “Then you will have to draw only the true things.”",
+        "He gave her a stamp. It was a small round stamp the colour of a peach, with a picture of a leaf on it. “For your map,” he said. “It is an official stamp. It means that somebody has been here, and read the post, and loved it.”",
+        "Odile pressed it to the corner of her paper, and it left a pale-pink leaf, perfect and small. She looked at it for a long time. She had stamped a hundred maps in her life, with the great gold seal of Fennimore House, and she had never once felt what she felt now, which was something like being very quietly thanked.",
+        "She rolled up her paper. She finished her tea. And she stood, in the small warm hush of the post office, and understood that she had stopped being in a hurry, and that she had not noticed when."
+      ]
+    },
+    {
+      "title": "Dewdrop Lake",
+      "part": "Part Two: The Small Country",
+      "illustration": "ch5.svg",
+      "illustrationAlt": "A shining round lake of dew on a large green leaf, with tiny pale boats and a sunrise sparkle.",
+      "illustrationCaption": "Dewdrop Lake, which will be gone by noon",
+      "text": [
+        "Tam took her to Dewdrop Lake. They had to hurry, for once, because the lake would not be there much longer. It lay on a broad green leaf at the edge of the hedge, a perfectly round sheet of silver, the size of a dinner plate, trembling very slightly in the light.",
+        "“Every morning,” said Tam, “the night leaves us a lake. It is the only lake we have. We love it more because it goes.”",
+        "Around its shore stood a tiny crowd of small creatures, each of them gazing at the water with great attention: a pair of ants in waistcoats, a family of springtails, a long, thin, patient water-strider who skated across the surface with her feet making rings. A very old beetle had set up a folding chair, and was holding a cup of something steaming. They were not doing anything. They were simply being present at a lake, and it was, Odile realised, a skill.",
+        "She sat down on a stone, which was a pebble the size of a loaf, and she raised the glass. And now the lake was not a lake but a world turned upside down. The whole sky lay in it. The leaves above, the clouds passing slowly, a bird crossing like a little dark comma. She could see the sun in it, small and round and bright as a coin at the bottom of a well.",
+        "“This is impossible to draw,” she whispered. “It is a picture of a picture.”",
+        "“That is the point,” said Tam. “Try anyway.”",
+        "So Odile drew the lake. She drew its edge, which was a thin, bright thread. She drew the little reflection of the sky, and the bird, and the light. She drew the way the water-strider made its soft rings, and as she drew the rings spread across her paper, one circle in another in another, until the page looked like the moment after a pebble has fallen.",
+        "She was surprised to find she was crying a little. It was not sad crying. It was the crying you do when something is so exactly itself that there is no room left in you for anything else.",
+        "The old beetle in the folding chair turned his head. “First time?” he said kindly.",
+        "“Yes,” said Odile.",
+        "“Ah,” said the beetle. “It always gets one the first time. Have some tea.”",
+        "She did, and she watched the lake shrink. By ten o’clock it was the size of a saucer, and by eleven it was a bright small coin, and by noon it was only a damp patch on the leaf, and a cluster of creatures sitting contentedly around it as if it were still there. Which, in a way, it was. She had drawn it.",
+        "“Now it will always be there,” said Tam, tucking her clipboard under her wing. “On the map. That is what a map is for. It is not to say where things are. It is to say that they were, and that they mattered.”"
+      ]
+    },
+    {
+      "title": "The Weaver of the Mushroom Forest",
+      "illustration": "ch6.svg",
+      "illustrationAlt": "A forest of tall pale mushrooms with a spider in a cardigan stringing glowing threads between them.",
+      "illustrationCaption": "Lantern-threads in the mushroom wood",
+      "text": [
+        "In the afternoon they came to the Mushroom Forest, and Odile gasped aloud. It was a vast cathedral of caps, red and cream and soft brown and freckled, arching overhead like the vaults of a hundred small churches. The light came through them in warm coloured pools. The air was cool and smelled of earth and rain and secrets.",
+        "Between the stalks, so fine that she did not see them at first, hung a web of shining threads. They crossed and joined and looped from cap to cap, and at every crossing hung a tiny bead of light that glowed faintly gold, like a streetlamp seen from very far away.",
+        "“Those are the lamps,” said Tam. “And that is the lamplighter.”",
+        "A spider was coming down one of the threads, slowly, on a line no thicker than a hair. She wore a long grey cardigan with several buttons and a pair of tiny reading glasses, and she carried a spool of silver thread in one of her eight hands, and a small jar of something luminous in another.",
+        "“Good afternoon,” said the spider. Her voice was dry and gentle, like someone turning the pages of a very old book. “I am Sable. You must be the cartographer. Mabry sent word that you were coming. He was not specific about the time, but he was specific about the tea.”",
+        "Odile laughed. She could not help it. “I seem to have been expected by everyone.”",
+        "“Of course,” said Sable. “You are the first to look at us in a long while. We have been, how shall I put it, politely visible, for years.”",
+        "She showed Odile how the lamps were made. A bead of dew, caught in a web at the right moment of the morning, held the light of the sun inside it for a whole day, and gave it back gently at dusk. All Sable had to do was find the right dewdrops, and hang them at the right height, and say a short kind word to each. “That is the secret,” she said. “They glow brighter if you speak to them.”",
+        "“What do you say?” asked Odile.",
+        "“Oh, different things,” said Sable. “Tonight is nothing special. Good evening. I am glad you are here. That kind of thing. It does not matter what you say, so long as you mean it.”",
+        "Odile took out the glass and drew the forest. She drew the great caps with their gills like pages, and the thread-lamps running across them, and the spider on her silver line. She drew each lamp as a small round sun, though she knew it was only a dewdrop. It felt like a sun. That was the rule.",
+        "When she was done, Sable studied the paper through her tiny glasses for a very long time. “You have drawn the lamps the way I always wished somebody would,” she said. “Not as dewdrops. As what they do.” She pressed a thread into Odile’s paw. It was fine and strong and faintly warm. “Keep this. When you want to see something very clearly, tie it round your finger.”"
+      ]
+    },
+    {
+      "title": "The Little Grey Sea",
+      "illustration": "ch7.svg",
+      "illustrationAlt": "A wide puddle under a grey sky with a tiny paper boat, and a crowd of small creatures on the shore looking out.",
+      "illustrationCaption": "The Little Grey Sea",
+      "text": [
+        "The Little Grey Sea lay at the very end of the hedge, where the earth sloped down to a hollow in the garden path. It was, in the large world, a puddle. In the small world, it was an ocean.",
+        "From the shore it seemed to go on for ever. Its far edge was lost in grey mist, and a long, low wind came across it, making ripples that looked like waves. A fleet of seed-pod boats lay moored along the bank, and out beyond them a single sail, no bigger than a thumbnail, was tacking slowly across the open water.",
+        "“It is not a very friendly sea,” said Tam. “It is moody. It is often calm, and then, without warning, it is not. We have had a great many shipwrecks.”",
+        "“Of seed-pods?”",
+        "“Of seed-pods with people in them,” said Tam, very seriously, and Odile took out her pencil and did not say another word about the size of anything.",
+        "She sat on the shore of the Little Grey Sea with the glass in one paw and the pencil in the other, and she tried to draw it. And she found, to her great dismay, that she could not. All afternoon, at the Lake, and in the Forest, the lines had come easily. Now they would not. She drew the shore and it was only a shore. She drew the waves and they were only scribbles. The sea lay in front of her, large and grey and silent, and refused to be a picture.",
+        "“I cannot do it,” she said at last. “It is the one that matters most, and I cannot draw it.”",
+        "“Why does it matter most?” asked a thin voice.",
+        "She turned. On a flat stone near the shore sat a small old mouse in a long dark coat, with a bundle of reeds beside him. He was holding a net with a hole in it, and mending the hole with the patience of a person who has mended it before.",
+        "“It is where they all come,” said Odile. “Everyone. You can see how the whole country comes down to it, the paths and the streams and the post road. It is the end of the map. And I cannot draw the end.”",
+        "The mouse regarded her for a moment with eyes the colour of old tea. “Then you are looking at it as an end,” he said. “It is not. It is only where the land lets go.”",
+        "He went back to his net. Odile looked at the grey water, and she thought about those words, and she let the pencil rest. And then, slowly, she tied Sable’s thread round her finger, and she looked again."
+      ]
+    },
+    {
+      "title": "Where the Land Lets Go",
+      "illustration": "ch8.svg",
+      "illustrationAlt": "The edge of a puddle at evening, with the sky reflected in it and a thread of pink light across the water.",
+      "illustrationCaption": "Evening on the Little Grey Sea",
+      "text": [
+        "It was a slow thing, looking. It was like waiting for a kettle: if you watched it, it did not happen. So Odile did not watch. She let her eyes go soft, the way you do when you are nearly asleep, and she let the Little Grey Sea come to her in its own time.",
+        "And it came. First she noticed the sound, a very small slapping against the stones, regular as a breath. Then she noticed the light. It was not grey at all. It was pearl and lilac and the faintest peach, all blended so softly that her eye had called it grey for lack of a better word. Then she noticed the sky, lying in the water, and the long soft hills of cloud, and a little white bird flying across them in the wrong direction, upside down.",
+        "She noticed that the Sea was not an end. It was a door. It was the place where the Small Country opened out into the sky, where the ground gave way to the whole bright upside-down world of reflection, and you could walk right out into it, if you were small enough, and be part of everything.",
+        "“Ah,” said Odile, softly.",
+        "She drew it. She did not draw the shore. She drew the light. She drew the sky inside the water, and the bird, and the long thread of pink where the evening touched the surface. She drew the little sail going out into it, and the creatures on the bank watching it go. She drew the way the land let go, gently, as a hand does when it is sure.",
+        "When she looked up, the old mouse was gone, but his net lay on the stone, mended. Beside it were three small round shells, polished by the water. They had been left, she thought, for her.",
+        "The sun was low now. Around her, the creatures of the shore were beginning to light their lamps. A string of glow-worms went up one side of the hedge like a staircase of stars. Sable’s threads shone in the dark of the mushroom wood. The post office windows showed warm and yellow. Everything was getting ready to be night, quietly, without fuss, the way it always had.",
+        "“It is finished,” said Tam. “The map. Is it?”",
+        "Odile looked at the sheet in her lap. It was covered from edge to edge with towns and lakes and a forest and a sea, all drawn in her small careful hand. She had put the leaf stamp in one corner and Sable’s thread in another. It was the most complete thing she had ever made. And she knew, with a fierce, quiet certainty, that it was not finished at all.",
+        "“No,” she said. “There is something missing. There is a part that I can’t find.”",
+        "“Which part?” asked Tam.",
+        "“I don’t know,” said Odile. “But I think it is the part that I came for.”"
+      ]
+    },
+    {
+      "title": "The Hum",
+      "rest": true,
+      "part": "Part Three: The Map",
+      "illustration": "ch9.svg",
+      "illustrationAlt": "A garden at night with glowing glow-worms and a faint ripple of light in the air, and a badger lying in the grass.",
+      "illustrationCaption": "Listening in the dark",
+      "text": [
+        "It grew dark. Odile lay in the grass at the foot of the hedge, with her satchel for a pillow and the glass resting on her chest. She was too tired to walk home. Tam had gone to her own small bed, in a curled rose-leaf, and the others had settled one by one into the great hush of the night. There was no sound at all, or so it seemed.",
+        "But as she lay there, and her breathing slowed, she began to notice something under the silence. It was very faint. It was so faint that she could only hear it by not trying to. It was a low, steady, endless note, like a hand drawn over the rim of a glass, or the sound of a very large and distant bee.",
+        "It came from everywhere. It came from the soil and the hedge and the sleeping grass. It came from the small bodies breathing in their burrows, and the slow turning of the roots, and the thousand tiny hearts beating in the dark. It was the sound of a whole living country being quietly alive.",
+        "“The Hum,” said a voice beside her. It was Tam, who had come out again in her nightgown, with a candle-end the size of a rice grain. “You can only hear it at night, and only when you are quite still. Mabry says it is the sound of everyone minding their own small business, all at once.”",
+        "“It is beautiful,” said Odile.",
+        "“It is,” said Tam. “Nobody has ever drawn it.”",
+        "Odile lay very still. The Hum went on, low and rich and kind. It did not rise or fall. It simply was, like the air, like the dark. And she thought about her great maps, her seas and her mountains and her plains, and she understood at last what was missing from every one of them.",
+        "They were all silent. They were all of places where nobody was listening.",
+        "She sat up. She took out a clean sheet of paper. And she did a thing that she had never done before, and which the Professor had never taught her, and which no cartographer in all the history of Fennimore House had ever tried. She did not draw a place. She drew a feeling.",
+        "She drew it in long, soft, overlapping lines, in the blue-black of the night ink. She drew it as a ripple, or a warmth, or a slow wave that began at the roots of the hedge and spread out through the whole Small Country, touching every house and every lake and every lamp. She did not try to make it look like anything. She only tried to make it as true as it felt.",
+        "When she finished, the page was almost completely dark, with here and there a soft, glowing rim of paler ink, like the edge of a cloud with the moon behind it. It was a very strange map. It showed no roads and no names. But anyone who looked at it, she was certain, would hear a low, golden hum, somewhere at the back of the mind.",
+        "“That is the missing part,” said Tam, in a whisper.",
+        "“Yes,” said Odile. And she lay back down in the grass, and the Hum took her, and she slept, and all the small country slept with her, under a roof of stars."
+      ]
+    },
+    {
+      "title": "Morning at Fennimore House",
+      "illustration": "ch10.svg",
+      "illustrationAlt": "The round Map Room in morning light, a badger laying a new map on the big desk while an old tortoise watches.",
+      "illustrationCaption": "The new map, on the big desk",
+      "text": [
+        "When Odile climbed the stairs of Fennimore House the next morning, her paws were stained with ink and dew and a little earth, and her satchel was full. She felt as if she had been away for a year. The stairs creaked in all the right places, and she greeted each one as an old friend.",
+        "The Professor was in his chair by the stove, awake, with a cup of tea at his elbow and the unfinished map of the Southern Plains still lying on the desk. He had not touched it. He looked at her with his slow, ancient eyes. They went from her face to her paws to her satchel, and then back to her face.",
+        "“You found the drawer,” he said.",
+        "“Yes.”",
+        "“And you looked.”",
+        "“Yes,” said Odile. “Slowly.”",
+        "“Hm,” said the Professor. He seemed to be trying not to smile, which on a tortoise is a very fine and gradual thing, like a sunrise happening around the edges of a stone. “Well. Let us see what it was that you saw.”",
+        "She unrolled the maps across the big desk, one by one. The country under the hedge. Rootbridge and its pea-door houses. The post office with its peach-coloured stamp. Dewdrop Lake, round and shining. The Mushroom Forest and its lamps. The Little Grey Sea, with the sky inside it. And last of all, in the very centre, the dark map, the one with no roads, the one that was only the Hum.",
+        "The Professor looked at them for a very long time. He did not say anything. He took out his reading glass and he held it up to one corner of the Dewdrop Lake, and then to another, and then to the little pink leaf in the margin. The stove ticked. Somewhere below them, in the garden, a blackbird began its morning song.",
+        "At last he put the glass down. His eyes were very bright, and a little wet. “Forty years ago,” he said, “my teacher, the mole, gave me that glass, and I looked through it for exactly one day. And then I was afraid. I thought, if I look at small things, I will never finish the large ones. There are so many large things. So I put it away, and I drew the world from very far above, and I told myself that was the same as knowing it.”",
+        "“It is not,” said Odile gently.",
+        "“No,” said the Professor. “It is not. It is only the outline.” He put out one old, wrinkled hand and rested it flat on the dark map, on the Hum, and was quiet. “I think,” he said, “that I have been missing a very great deal.”"
+      ]
+    },
+    {
+      "title": "A Map of Everything That Matters",
+      "illustration": "ch11.svg",
+      "illustrationAlt": "A wall of maps in the round room, all small and bright, and a young badger and an old tortoise sitting side by side.",
+      "illustrationCaption": "The small maps on the Map Room wall",
+      "text": [
+        "They hung the new maps in the Map Room that same afternoon. The Professor insisted on doing it himself. It took him an hour to cross the room, and another hour to climb on a stool, and Odile held the stool steady and handed up the pins one by one, and neither of them minded how long it took, because for once there was no reason to hurry.",
+        "They pinned the Small Country in the great round window facing the garden. The sun came through it in warm patches, and the whole room glowed in a different way: not with the cool blue of the seas, but with the soft greens and golds of leaf-light and lamp-light and dew. It looked as though the garden had come indoors to visit.",
+        "The Professor sat back in his chair. “It is a strange thing,” he said, “to find that the biggest map you have ever seen is the smallest.”",
+        "“It is not smaller,” said Odile. “It is only closer.”",
+        "“Yes,” said the Professor. “That is the trouble with closeness. There is so much more of it.”",
+        "That evening the two of them sat together by the stove, as they had every evening for years, but it was different now. The Professor had put aside the Southern Plains. He had taken out a new sheet, and a pen, and he had asked Odile to lend him the glass. He was drawing, very slowly, a single snail shell: one he had picked up that morning from the doorstep, with its spiral winding inward and inward like a long, kind thought.",
+        "“I do not know if I shall finish it,” he said. “I am very slow.”",
+        "“That is all right,” said Odile. “It is a very slow shell.”",
+        "They laughed, softly, together. The stove ticked. Outside the window, the dusk came down over the garden, and in the hedge, if you knew how to look, the first small lamps were being lit, one by one, by a spider in a grey cardigan who told each of them it was glad it was there.",
+        "Odile took her own paper, and her pencil, and a clean new page. She had a great many maps still to draw. There was the whole country she had not yet visited: the Moss Highlands and the Ant Parade and the Slow Stream that ran under the stones. There was the Hum, which she would listen to again tomorrow night, and the night after, because no one hears the whole of it at once.",
+        "She did not feel the tight, itchy feeling any more. She had found its name. It was the wish to look, and now she was looking, and it was not a thing that needed to end."
+      ]
+    },
+    {
+      "title": "The Smallest Map",
+      "illustration": "ch12.svg",
+      "illustrationAlt": "A single tiny map the size of a stamp, pinned alone in the middle of a big window, with sunlight shining through it.",
+      "illustrationCaption": "The smallest map of all",
+      "text": [
+        "There is one more map that belongs in this story, though it is not in the Map Room, and it was not drawn by Odile. It was drawn by the Professor, on the last night of that long summer, on a piece of paper no bigger than a stamp.",
+        "He had worked on it for weeks. It was so small that Odile could not see it without the glass, and he would not let her see it at all until it was finished. When it was, he rolled it very carefully into a little tube no thicker than a straw, and he put it in the pocket of her scarf one morning while she was still half asleep.",
+        "She did not find it until the afternoon. She was sitting on the front step of Fennimore House with her tea, in the late sun, and she felt something small and papery against her side. She drew it out. She held it up. She fitted the old brass glass to her eye, and she unrolled it, very slowly, on her knee.",
+        "It was a map of the Map Room. It showed the round room with its hundred windows, and the big desk, and the stove, and the armchair, and in the armchair a small, round, ancient figure with a rug over his shell. And at the desk, bent over her work, with a pencil behind one ear, a badger. He had drawn her rather large. He had drawn her the size she felt.",
+        "In the corner, in handwriting so tiny that it was nearly only a texture, there was a label. It said: Here is where I learned to look. And under that, in smaller writing still, as though it was meant to be read only by someone who was patient: Thank you.",
+        "Odile sat on the step for a long time. The garden stood around her in the amber light, full of its small lives. In the hedge a lamp was being lit. Somewhere, a very large snail was carrying a letter that said nothing in particular, and everything that mattered. And under all of it, so faint that she had to hold her breath to hear it, the Hum went on, low and golden and kind.",
+        "She rolled the little map up again, carefully, and slipped it back into her scarf, close to her heart. Then she took out her pencil. She turned to a clean page. And she began, as she would begin every morning for the rest of her long and well-looked-at life, to draw whatever was in front of her, in whatever size it felt."
+      ]
+    }
+  ]
+}
