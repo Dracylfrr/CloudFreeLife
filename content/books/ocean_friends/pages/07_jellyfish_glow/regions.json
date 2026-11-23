@@ -1,0 +1,138 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "water",
+      "name": "Water",
+      "suggested": "#a4d2f2"
+    },
+    {
+      "id": "glow",
+      "name": "Deep glow",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "sand",
+      "name": "Sand",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "big_tentacle_1",
+      "name": "Tentacle",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "big_tentacle_2",
+      "name": "Tentacle",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "big_tentacle_3",
+      "name": "Tentacle",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "big_tentacle_4",
+      "name": "Tentacle",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "big_bell",
+      "name": "Jellyfish bell",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "big_frill",
+      "name": "Frill",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "big_spots",
+      "name": "Spots",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "small_tentacle_1",
+      "name": "Tentacle",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "small_tentacle_2",
+      "name": "Tentacle",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "small_tentacle_3",
+      "name": "Tentacle",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "small_tentacle_4",
+      "name": "Tentacle",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "small_bell",
+      "name": "Jellyfish bell",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "small_frill",
+      "name": "Frill",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "small_spots",
+      "name": "Spots",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "bubble_1",
+      "name": "Bubble",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "bubble_2",
+      "name": "Bubble",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "bubble_3",
+      "name": "Bubble",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "bubble_4",
+      "name": "Bubble",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "bubble_5",
+      "name": "Bubble",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "bubble_6",
+      "name": "Bubble",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "seaweed_a",
+      "name": "Seaweed",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "seaweed_b",
+      "name": "Seaweed",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "shell",
+      "name": "Shell",
+      "suggested": "#ffdcc8"
+    }
+  ]
+}

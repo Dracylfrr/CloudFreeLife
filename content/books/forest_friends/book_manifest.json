@@ -1,7 +1,7 @@
 {
   "id": "forest_friends",
   "name": "Forest Friends",
-  "description": "A sleepy bear, a clever fox, a bunny, an owl and a hedgehog.",
+  "description": "A sleepy bear, a clever fox, a bunny, an owl, a hedgehog, a deer and a squirrel.",
   "cover": "cover.svg",
   "version": "1.0.0",
   "minAppVersion": "1.1.1",
@@ -13,6 +13,8 @@
     "02_fox_in_leaves",
     "03_bunny_garden",
     "04_owl_moon",
-    "05_hedgehog_meadow"
+    "05_hedgehog_meadow",
+    "06_deer_glade",
+    "07_squirrel_acorns"
   ]
 }

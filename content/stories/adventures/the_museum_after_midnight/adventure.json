@@ -1,0 +1,221 @@
+{
+  "id": "the_museum_after_midnight",
+  "name": "The Museum After Midnight",
+  "description": "You are Juniper, the night-shift apprentice. Every midnight, something in the museum moves. Tonight you intend to find out what.",
+  "version": "1.2.0",
+  "minAppVersion": "1.2.0",
+  "cover": "cover.svg",
+  "accent": "#d9cdf6",
+  "genre": "Mystery",
+  "protagonist": "girl",
+  "hero": "Juniper",
+  "minutes": 8,
+  "order": 6,
+  "start": "start",
+  "nodes": {
+    "start": {
+      "text": [
+        "I am Juniper, and I have been the night-shift apprentice at the Little Lantern Museum for exactly one week. In that week, five things have moved by themselves: a teacup, two statues, a very large rug, and tonight, the skull of the dinosaur skeleton.",
+        "It is just past midnight. The skull is on the floor, six feet from where it belongs, and the hall is as quiet as a held breath. I have a flashlight, a notebook and a snack."
+      ],
+      "choices": [
+        {
+          "text": "Check the clock room",
+          "to": "clock"
+        },
+        {
+          "text": "Follow the muddy little footprints",
+          "to": "prints"
+        },
+        {
+          "text": "Hide behind the mummy case and watch",
+          "to": "watch"
+        }
+      ]
+    },
+    "clock": {
+      "text": [
+        "The clock room is silent. The great brass clock stands frozen at twelve, and on its glass face a note has been taped: \"Back by one. Please do not wind me. Signed, The Curator.\" Which is odd, because the Curator went home at six."
+      ],
+      "choices": [
+        {
+          "text": "Wind the clock anyway",
+          "to": "wind"
+        },
+        {
+          "text": "Look for footprints near the clock",
+          "to": "prints"
+        }
+      ]
+    },
+    "prints": {
+      "text": [
+        "A trail of tiny muddy prints runs across the marble floor, toward the portrait gallery. They are no bigger than a thumbnail, and each one has five very small toes. Someone small, and extremely busy, has been walking here."
+      ],
+      "choices": [
+        {
+          "text": "Follow the prints to the gallery",
+          "to": "gallery"
+        },
+        {
+          "text": "Measure the prints with my ruler",
+          "to": "ruler"
+        }
+      ]
+    },
+    "watch": {
+      "text": [
+        "I crouch behind the mummy case, with my snack. A long time passes. My foot goes to sleep. Then, at last, a faint rustling comes from the dark. A tiny shape in a paper crown scurries out, and then another, and another, whispering with excitement."
+      ],
+      "choices": [
+        {
+          "text": "Jump out and shout \"Aha!\"",
+          "to": "end_scare"
+        },
+        {
+          "text": "Keep watching quietly",
+          "to": "party"
+        }
+      ]
+    },
+    "wind": {
+      "text": [
+        "I turn the great brass key, one, two, three times. The clock gives a deep, grateful chime. All around the museum, softly, things start to stir: the stuffed owl blinks, a suit of armor lifts a gauntlet, and a faint tune drifts from somewhere down the hall."
+      ],
+      "choices": [
+        {
+          "text": "Follow the music",
+          "to": "party"
+        },
+        {
+          "text": "Hide and see what wakes up",
+          "to": "watch"
+        }
+      ]
+    },
+    "gallery": {
+      "text": [
+        "The portraits in the gallery watch me pass. One of them, a grand lady in a ruffled collar, clears her throat. \"If you are looking for the culprit, dear,\" she says, \"you will want to ask the mice. And please, stand up straighter.\""
+      ],
+      "choices": [
+        {
+          "text": "Go and ask the mice",
+          "to": "party"
+        },
+        {
+          "text": "Argue with the portrait",
+          "to": "end_portrait"
+        }
+      ]
+    },
+    "ruler": {
+      "text": [
+        "I lay my ruler beside a print. It is exactly two centimeters long. It is a mouse. A very busy mouse, with very clean footprints, and, judging by the trail, a great sense of direction. The tracks lead toward the tea room."
+      ],
+      "choices": [
+        {
+          "text": "Follow the tracks to the tea room",
+          "to": "party"
+        },
+        {
+          "text": "Take my findings to the portrait lady",
+          "to": "gallery"
+        }
+      ]
+    },
+    "party": {
+      "text": [
+        "In the tea room, hundreds of mice are having a ball. A tiny orchestra plays on thimbles and teaspoons. The dinosaur's skull is the drum. A mouse in a golden crown, clearly the queen, spots me and stops the music. The whole room freezes."
+      ],
+      "choices": [
+        {
+          "text": "Ask if I can join the dance",
+          "to": "end_dance"
+        },
+        {
+          "text": "Explain that the museum opens in the morning",
+          "to": "tidy"
+        },
+        {
+          "text": "Take a photo for evidence",
+          "to": "end_photo"
+        }
+      ]
+    },
+    "tidy": {
+      "text": [
+        "The queen listens carefully, nodding. \"We never meant to cause trouble,\" she squeaks. \"We only move things to find a better dancing floor.\" She looks hopeful. The orchestra holds its breath. I think I can make a deal."
+      ],
+      "choices": [
+        {
+          "text": "Offer them a weekly party night",
+          "to": "end_deal"
+        },
+        {
+          "text": "Offer to become their official guardian",
+          "to": "end_guardian"
+        }
+      ]
+    },
+    "end_scare": {
+      "text": [
+        "\"AHA!\" I shout. Four hundred mice shriek. Four hundred mice scatter. The orchestra drops its teaspoons, the dinosaur skull rolls across the floor, and a whole tray of crumbs flies into the air like confetti.",
+        "When the dust settles, I am alone in an empty tea room, covered in crumbs. A tiny sign has been left on the floor: \"Rude.\" I feel terrible. I leave a small piece of cheese out as an apology."
+      ],
+      "ending": {
+        "title": "Aha!",
+        "mood": "funny"
+      }
+    },
+    "end_portrait": {
+      "text": [
+        "\"I will not be told how to stand by a painting,\" I say. \"I will be told whatever I like,\" says the portrait. Two hours later we are still arguing. By dawn, the whole gallery has joined in, and the guard finds me shouting at a wall.",
+        "I win the argument. The portrait lady, to my surprise, is thrilled. \"Nobody has talked to me in forty years,\" she says. She promises to tell me everything, every midnight. The mice, however, remain a mystery."
+      ],
+      "ending": {
+        "title": "A Very Long Argument",
+        "mood": "funny"
+      }
+    },
+    "end_dance": {
+      "text": [
+        "\"May I?\" I ask, and the queen nods grandly. A teacup is pushed forward for me to stand on. The orchestra strikes up a waltz, and I dance, very carefully, with a very small partner in a very tiny hat.",
+        "We twirl until the sun comes up. When I leave, I carry the skull back to the dinosaur, and I do not tell a soul. Some secrets are too lovely to report."
+      ],
+      "ending": {
+        "title": "The Midnight Waltz",
+        "mood": "dreamy"
+      }
+    },
+    "end_photo": {
+      "text": [
+        "I raise my camera, and the flash goes off. Four hundred mice blink. The queen blinks. And then, one by one, they all pose, paws on hips, whiskers up, for the best group photo I have ever taken.",
+        "In the morning, the Curator studies the picture for a very long time. \"Well,\" he says at last. \"That explains the rug.\" He hangs it in the hall, between two paintings, with the title: \"Staff Party.\""
+      ],
+      "ending": {
+        "title": "Staff Photo",
+        "mood": "happy"
+      }
+    },
+    "end_deal": {
+      "text": [
+        "\"Every Friday,\" I say, \"from midnight until two. You may use the tea room, and the dinosaur's skull, but please put everything back.\" The queen thinks about it, and then solemnly shakes my finger.",
+        "From then on, the museum is spotless on Saturday mornings. Nothing is ever out of place again. Except, once a week, a single tiny paper crown, left on my desk with a thank-you note."
+      ],
+      "ending": {
+        "title": "Friday Night Deal",
+        "mood": "happy"
+      }
+    },
+    "end_guardian": {
+      "text": [
+        "\"I'll protect your party,\" I say, \"and I'll keep your secret.\" The queen takes off her crown and sets it, gently, on my notebook. A hundred tiny voices cheer. I am officially the Guardian of the Little Lantern Museum, by night as well as by day.",
+        "Every midnight, I lock the doors, light a candle in the tea room, and sit quietly with a crumb of cake. It is, without question, the best job in the world."
+      ],
+      "ending": {
+        "title": "The Guardian",
+        "mood": "sweet"
+      }
+    }
+  }
+}

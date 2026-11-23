@@ -84,6 +84,7 @@
       {:else if tab === 'display'}
         <h2>Display</h2>
         <Slider label="Interface size" value={$settings.uiScale} min={0.85} max={1.4} step={0.05} format={(v) => `${Math.round(v * 100)}%`} onchange={(v) => updateSettings({ uiScale: v })} />
+        <Slider label="Reading size" value={$settings.storyFontScale} min={0.9} max={1.7} step={0.1} format={(v) => `${Math.round(v * 100)}%`} onchange={(v) => updateSettings({ storyFontScale: v })} />
         <Toggle label="Low Power Mode" description="Turns off ambient animation and particles, and lowers game frame rate. Good for batteries and older laptops." checked={$settings.lowPowerMode} onchange={(v) => updateSettings({ lowPowerMode: v })} />
         <Toggle label="30 FPS mode" description="Mini-games render at 30 frames per second to use less CPU and battery." checked={$settings.fps30} onchange={(v) => updateSettings({ fps30: v })} />
       {:else if tab === 'audio'}

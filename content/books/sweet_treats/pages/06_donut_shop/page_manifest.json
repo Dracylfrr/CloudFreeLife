@@ -1,0 +1,11 @@
+{
+  "id": "donut_shop",
+  "name": "Donut Shop",
+  "description": "A giant frosted donut with a sprinkle on every wish.",
+  "version": "1.0.0",
+  "minAppVersion": "1.2.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

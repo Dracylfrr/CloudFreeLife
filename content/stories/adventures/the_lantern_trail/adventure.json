@@ -1,0 +1,266 @@
+{
+  "id": "the_lantern_trail",
+  "name": "The Lantern Trail",
+  "description": "On Lantern Night the great Moon Lantern will not light. Follow the trail into the Whispering Wood to find out why.",
+  "version": "1.2.0",
+  "minAppVersion": "1.2.0",
+  "cover": "cover.svg",
+  "accent": "#f6b36f",
+  "genre": "Adventure",
+  "protagonist": "girl",
+  "hero": "Mira",
+  "minutes": 9,
+  "order": 1,
+  "start": "start",
+  "nodes": {
+    "start": {
+      "text": [
+        "I am Mira, and tonight is Lantern Night. Every house in Hollowbrook has a paper lantern glowing in the window, every house except the big one in the square. The Moon Lantern is dark and cold.",
+        "Grandpa says its flame grows from a seed that only blooms in the Whispering Wood. If I leave now, I can be back before the moon is high. Two paths lead away from the village edge."
+      ],
+      "choices": [
+        {
+          "text": "Take the river path",
+          "to": "river"
+        },
+        {
+          "text": "Climb the old stone steps",
+          "to": "steps"
+        }
+      ]
+    },
+    "river": {
+      "text": [
+        "The river is loud and silver in the dusk. Flat stones cross it in a crooked line, and a tall grey heron stands on the far bank, watching me with one patient eye."
+      ],
+      "choices": [
+        {
+          "text": "Hop across the stones myself",
+          "to": "stones"
+        },
+        {
+          "text": "Ask the heron for help",
+          "to": "heron"
+        }
+      ]
+    },
+    "steps": {
+      "text": [
+        "The steps are green with moss and leaning like tired friends. Halfway up, a small red fox is sitting in the middle of the path, looking at my pocket. My pocket has a bread roll in it."
+      ],
+      "choices": [
+        {
+          "text": "Share my bread with the fox",
+          "to": "fox"
+        },
+        {
+          "text": "Tiptoe around the fox",
+          "to": "sneak"
+        }
+      ]
+    },
+    "stones": {
+      "text": [
+        "One hop, two hops, three. On the fourth stone my boot slips and I sit down in the river with a splash that startles every frog for a mile. I am wet to the knees and very cold."
+      ],
+      "choices": [
+        {
+          "text": "Go home and dry off by the fire",
+          "to": "end_home"
+        },
+        {
+          "text": "Squelch onward to the wood",
+          "to": "wood"
+        }
+      ]
+    },
+    "heron": {
+      "text": [
+        "The heron bows its long neck, steps close and lets me climb onto its back like a feathered boat. It crosses the river in three silent strides. \"The wood is that way,\" it says in a voice like reeds. \"Look for the glow.\""
+      ],
+      "choices": [
+        {
+          "text": "Thank the heron and enter the wood",
+          "to": "wood"
+        }
+      ]
+    },
+    "fox": {
+      "text": [
+        "The fox takes the roll as if it were made of gold and gobbles it in two bites. Then it yips once and trots ahead, glancing back to check that I am following. It knows a shortcut, one with no steps at all."
+      ],
+      "choices": [
+        {
+          "text": "Follow the fox into the trees",
+          "to": "wood"
+        }
+      ]
+    },
+    "sneak": {
+      "text": [
+        "I tiptoe around the fox, but my cloak catches on a bramble. The more I tug, the more the bramble hugs me back. The fox sits and watches, ears tilted, as if I were the evening show."
+      ],
+      "choices": [
+        {
+          "text": "Free myself carefully, one thorn at a time",
+          "to": "wood"
+        },
+        {
+          "text": "Call out for help",
+          "to": "end_help"
+        }
+      ]
+    },
+    "wood": {
+      "text": [
+        "The Whispering Wood is full of soft voices. The branches murmur, the leaves hush each other, and somewhere ahead a faint gold light flickers between the trunks.",
+        "A cloud of glowing moths swirls past my head. Beside me is a hollow tree big enough to walk into. The trees themselves seem to be waiting for me to speak."
+      ],
+      "choices": [
+        {
+          "text": "Listen to what the trees are whispering",
+          "to": "whispers"
+        },
+        {
+          "text": "Follow the glowing moths",
+          "to": "moths"
+        },
+        {
+          "text": "Duck inside the hollow tree",
+          "to": "hollow"
+        }
+      ]
+    },
+    "whispers": {
+      "text": [
+        "I hold my breath and listen. Slowly the whispers sort themselves into words. \"Light is not taken,\" they say. \"Light is given. Light is given. Light is given.\" The glow ahead pulses, once, like a heartbeat."
+      ],
+      "choices": [
+        {
+          "text": "Hum a soft song to the glow",
+          "to": "seed_sing"
+        },
+        {
+          "text": "Ask the glow politely for its seed",
+          "to": "seed_ask"
+        }
+      ]
+    },
+    "moths": {
+      "text": [
+        "The moths dance in a long spiral and lead me to a still black pond. In the middle, the flame-seed shines, perfectly round and golden, so close I could almost touch it."
+      ],
+      "choices": [
+        {
+          "text": "Reach down to grab it",
+          "to": "end_reflect"
+        },
+        {
+          "text": "Look up instead, at the sky",
+          "to": "seed_sing"
+        }
+      ]
+    },
+    "hollow": {
+      "text": [
+        "Inside the tree it is warm and smells of toast. A very large badger in a nightcap is asleep on a cushion, snoring in time with the crickets. Behind him, on a shelf, sits a small glowing seed in a teacup."
+      ],
+      "choices": [
+        {
+          "text": "Tiptoe past and borrow the seed",
+          "to": "end_badger"
+        },
+        {
+          "text": "Wake the badger and ask him politely",
+          "to": "seed_ask"
+        }
+      ]
+    },
+    "seed_sing": {
+      "text": [
+        "I hum the lullaby Grandpa taught me, the one about the lanterns coming home. The glow rises out of the dark, settles into my cupped hands and warms me from my fingers to my nose. It is the flame-seed, and it likes the song."
+      ],
+      "choices": [
+        {
+          "text": "Carry it home through the wood",
+          "to": "end_lantern"
+        }
+      ]
+    },
+    "seed_ask": {
+      "text": [
+        "\"Please,\" I say, \"our lantern has gone dark and the whole village is waiting.\" The seed brightens and floats to my hands. It does not feel like taking. It feels like being trusted."
+      ],
+      "choices": [
+        {
+          "text": "Carry the seed straight home",
+          "to": "end_lantern"
+        },
+        {
+          "text": "Invite the whole wood to the festival",
+          "to": "end_together"
+        }
+      ]
+    },
+    "end_home": {
+      "text": [
+        "I get home dripping, and Grandpa wraps me in three blankets without a single question. We sit by the fire with cocoa, and through the window we watch every other lantern glow in the dark.",
+        "No Moon Lantern this year. But I have never felt so warm, and there is always next Lantern Night."
+      ],
+      "ending": {
+        "title": "Wet but Warm",
+        "mood": "cozy"
+      }
+    },
+    "end_help": {
+      "text": [
+        "My shout carries all the way down the hill. In minutes the whole village arrives with torches, blankets and Mrs. Alder's famous soup. They cut me free, and the fox gets more bread than he can carry.",
+        "We never reach the Whispering Wood, but we spend Lantern Night together on the hillside, singing. The Moon Lantern stays dark. Nobody seems to mind."
+      ],
+      "ending": {
+        "title": "Everyone Came",
+        "mood": "sweet"
+      }
+    },
+    "end_reflect": {
+      "text": [
+        "My fingers break the surface and the golden seed shivers into a hundred ripples. It was only the moon's reflection. When the water settles, I look up, and there is the real moon, big and round, smiling at me over the trees.",
+        "I carry a jar of moonlit pond water home. When I pour it into the Moon Lantern, it glows as bright as the sky. I think that was always the plan."
+      ],
+      "ending": {
+        "title": "Moonlit Water",
+        "mood": "dreamy"
+      }
+    },
+    "end_badger": {
+      "text": [
+        "I take exactly one step before the badger opens one eye and says, \"Oh good, breakfast.\" He thinks I am the delivery girl. By the time I have explained, we are three cups of tea in, and he insists on giving me the seed \"for the bother.\"",
+        "I carry it home in a teacup. The Moon Lantern lights up like a small sunrise, and the badger is the guest of honor, asleep in the front row."
+      ],
+      "ending": {
+        "title": "Tea with a Badger",
+        "mood": "funny"
+      }
+    },
+    "end_lantern": {
+      "text": [
+        "When I step into the square, the whole village gasps. I lift the seed into the great lantern and it blooms, warm and round and golden, spilling light over every roof and face.",
+        "Grandpa squeezes my shoulder. \"Light is given,\" he says, and I realize he knew all along what the trees would say. The Moon Lantern glows till dawn, and I do not sleep once."
+      ],
+      "ending": {
+        "title": "The Moon Lantern",
+        "mood": "happy"
+      }
+    },
+    "end_together": {
+      "text": [
+        "I tell the wood about Hollowbrook, the songs, the cocoa, the paper stars. And the wood, to my astonishment, decides to come. Moths lead the way, the heron takes the river path, the fox brings a very proud badger, and the trees whisper their way down the hill.",
+        "We light the Moon Lantern together, villagers and wildlings side by side. It is the brightest Lantern Night anyone remembers, and the first one that is never quite over."
+      ],
+      "ending": {
+        "title": "Light for Everyone",
+        "mood": "happy"
+      }
+    }
+  }
+}

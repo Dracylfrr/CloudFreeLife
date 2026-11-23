@@ -2,6 +2,19 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com), and the project uses [Semantic Versioning](https://semver.org).
 
+## [1.2.0]
+
+### Added
+- **Cozy Stories**: six short, gentle stories to read slowly (*The Cloud Who Lost Its Rain*, *A Lantern for the Little Owl*, *The Tea Shop at the Rainbow's End*, *Moss and the Midnight Garden*, *The Whale Who Hummed*, *Snow Day in Mushroom Village*). A comfortable reader with adjustable text size; it remembers which chapter you were on.
+- **Story Adventures**: six choose-your-path stories told in the first person as a guy or a girl, with five to nine endings each: *The Lantern Trail* and *The Museum After Midnight* (girl), *Skyship Summer* and *The Great Pie Disaster* (guy), plus the romances *The Bakery on Maple Lane* (a girl and the flour boy) and *Letters at the Lighthouse* (a guy and the lighthouse keeper's daughter). Filter by who you play as or by genre, step back to change a choice, and track which endings you have found. It saves your place.
+- Both sit on Home and in the sidebar above Mini-Games.
+- Eight new coloring pages, two each for Castle Dreams (*Unicorn Meadow*, *Swans on the Moat*), Ocean Friends (*Dolphin Jump*, *Glowing Jellyfish*), Sweet Treats (*Donut Shop*, *Birthday Cake*) and Forest Friends (*Deer in the Glade*, *Squirrel and Acorns*). The library now has 46 pages.
+- A *Reading size* setting (Settings, Display).
+- Story and adventure content can be shipped as content packs (`stories` and `adventures` kinds). See `docs/CREATING_STORIES.md`.
+
+### Changed
+- Forest Friends: the Sleepy Bear's head now sits down on its shoulders so it looks like one connected bear.
+
 ## [1.1.1]
 
 ### Added

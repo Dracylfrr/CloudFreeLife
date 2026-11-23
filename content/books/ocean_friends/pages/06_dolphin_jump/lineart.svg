@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+<rect width="1000" height="750" fill="#ffffff"/>
+<g stroke="#6e6a8e" stroke-linejoin="round" stroke-linecap="round">
+<path data-region="sky" data-name="Sky" d="M-6 -6h1012v480h-1012z" fill="#ffffff" stroke-width="5"/>
+<path data-region="sun_rays" data-name="Sun rays" d="M217.2 115.8Q217.2 109.8 222.9 111.7L242.3 118.1Q248 120 242.3 121.9L222.9 128.3Q217.2 130.2 217.2 124.2zM206.8 156.2Q210.4 151.3 213.9 156.2L225.8 172.7Q229.3 177.6 223.6 175.8L204.1 169.6Q198.4 167.7 201.9 162.9zM174.7 182.7Q180.4 180.8 180.4 186.8L180.3 207.2Q180.3 213.2 176.7 208.4L164.7 191.9Q161.1 187.1 166.8 185.2zM133.2 185.2Q138.9 187.1 135.3 191.9L123.3 208.4Q119.7 213.2 119.7 207.2L119.6 186.8Q119.6 180.8 125.3 182.7zM98.1 162.9Q101.6 167.7 95.9 169.6L76.4 175.8Q70.7 177.6 74.2 172.7L86.1 156.2Q89.6 151.3 93.2 156.2zM82.8 124.2Q82.8 130.2 77.1 128.3L57.7 121.9Q52 120 57.7 118.1L77.1 111.7Q82.8 109.8 82.8 115.8zM93.2 83.8Q89.6 88.7 86.1 83.8L74.2 67.3Q70.7 62.4 76.4 64.2L95.9 70.4Q101.6 72.3 98.1 77.1zM125.3 57.3Q119.6 59.2 119.6 53.2L119.7 32.8Q119.7 26.8 123.3 31.6L135.3 48.1Q138.9 52.9 133.2 54.8zM166.8 54.8Q161.1 52.9 164.7 48.1L176.7 31.6Q180.3 26.8 180.3 32.8L180.4 53.2Q180.4 59.2 174.7 57.3zM201.9 77.1Q198.4 72.3 204.1 70.4L223.6 64.2Q229.3 62.4 225.8 67.3L213.9 83.8Q210.4 88.7 206.8 83.8z" fill="#ffffff" stroke-width="5"/>
+<path data-region="sun" data-name="Sun" d="M98 120a52 52 0 1 0 104 0a52 52 0 1 0 -104 0z" fill="#ffffff" stroke-width="5"/>
+<path data-region="cloud_a" data-name="Cloud" d="M495.4 132.8A22.8 22.8 0 1 1 502.1 88.2A36.1 36.1 0 0 1 541.8 60.9A45.6 45.6 0 0 1 624.5 84.6A24.7 24.7 0 0 1 617 132.8z" fill="#ffffff" stroke-width="5"/>
+<path data-region="cloud_b" data-name="Cloud" d="M806 238A15 15 0 1 1 807.9 208.1A25.5 25.5 0 0 1 839.3 187.8A33 33 0 0 1 896.9 190A24 24 0 0 1 920.8 208.2A15 15 0 0 1 918.5 238z" fill="#ffffff" stroke-width="5"/>
+<path data-region="sea_far" data-name="Far sea" d="M-10 400Q32.5 393 75 400Q117.5 407 160 400Q202.5 393 245 400Q287.5 407 330 400Q372.5 393 415 400Q457.5 407 500 400Q542.5 393 585 400Q627.5 407 670 400Q712.5 393 755 400Q797.5 407 840 400Q882.5 393 925 400Q967.5 407 1010 400V770H-10z" fill="#ffffff" stroke-width="5"/>
+<path data-region="dolphin_tail" data-name="Tail" d="M300 520C280 510 246.7 490 230 470C213.3 450 193.3 408.3 200 400C206.7 391.7 253.3 408.3 270 420C286.7 431.7 290 470 300 470C310 470 313.3 430 330 420C346.7 410 393.3 400 400 410C406.7 420 378.3 460 370 480C361.7 500 361.7 523.3 350 530C338.3 536.7 320 530 300 520z" fill="#ffffff" stroke-width="5"/>
+<path data-region="dolphin_body" data-name="Dolphin" d="M330 500C306 472 324 424 350 380C376 336 410 306 460 280C510 254 552 246 600 250C648 254 682 274 700 300C718 326 710 352 690 380C670 408 644 412 600 440C556 468 524 508 470 520C416 532 354 528 330 500z" fill="#ffffff" stroke-width="5"/>
+<path data-region="dolphin_belly" data-name="Belly" d="M470 470C480 449 516 418 550 400C584 382 614 390 640 380C666 370 674 346 680 350C686 354 688 380 670 400C652 420 624 429 590 450C556 471 524 501 500 505C476 509 460 491 470 470z" fill="#ffffff" stroke-width="5"/>
+<path data-region="dolphin_snout" data-name="Snout" d="M688.6 303.9Q690 290 702.5 296.3L760.9 325.5Q770 330 765.5 339.1L764.5 340.9Q760 350 749.8 350L698 350Q684 350 685.4 336.1z" fill="#ffffff" stroke-width="5"/>
+<path data-region="dolphin_fin_top" data-name="Fin" d="M529.7 277.5Q520 280 522.4 270.3L537.6 209.7Q540 200 546.3 207.8L583.7 254.2Q590 262 580.3 264.5z" fill="#ffffff" stroke-width="5"/>
+<path data-region="dolphin_fin_side" data-name="Fin" d="M540 410C549.9 404.3 568.2 410.3 578.7 420C589.1 429.7 589.9 443.1 592.2 458.4C594.5 473.7 597.3 492.4 590 496.6C582.7 500.8 567.9 489 555.8 479.4C543.7 469.8 532.5 462.4 529.3 448.5C526.2 434.6 530.1 415.7 540 410z" fill="#ffffff" stroke-width="5"/>
+<circle cx="668" cy="322" r="7" fill="#6e6a8e" stroke="none"/>
+<path d="M700 342q26 10 50 0" fill="none" stroke-width="4.5"/>
+<path data-region="wave_front" data-name="Front wave" d="M-10 560Q41 546 92 560Q143 574 194 560Q245 546 296 560Q347 574 398 560Q449 546 500 560Q551 574 602 560Q653 546 704 560Q755 574 806 560Q857 546 908 560Q959 574 1010 560V770H-10z" fill="#ffffff" stroke-width="5"/>
+<path data-region="splash_1" data-name="Splash" d="M212 560a18 18 0 1 0 36 0a18 18 0 1 0 -36 0z" fill="#ffffff" stroke-width="4"/>
+<path data-region="splash_2" data-name="Splash" d="M386 540a14 14 0 1 0 28 0a14 14 0 1 0 -28 0z" fill="#ffffff" stroke-width="4"/>
+<path data-region="splash_3" data-name="Splash" d="M744 510a16 16 0 1 0 32 0a16 16 0 1 0 -32 0z" fill="#ffffff" stroke-width="4"/>
+<path data-region="splash_4" data-name="Splash" d="M848 560a12 12 0 1 0 24 0a12 12 0 1 0 -24 0z" fill="#ffffff" stroke-width="4"/>
+<path d="M60 650q40-14 80 0M300 700q40-14 80 0M640 660q40-14 80 0M860 710q40-14 80 0" fill="none" stroke-width="3.5"/>
+<path d="M362.4 170q8.8 -12.8 17.6 1.6q8.8 -14.4 17.6 -1.6M416.8 140q6.6 -9.6 13.2 1.2q6.6 -10.8 13.2 -1.2" fill="none" stroke-width="4"/>
+</g></svg>

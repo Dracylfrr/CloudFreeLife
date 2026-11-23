@@ -1,0 +1,11 @@
+{
+  "id": "squirrel_acorns",
+  "name": "Squirrel and Acorns",
+  "description": "A busy squirrel collecting autumn acorns.",
+  "version": "1.0.0",
+  "minAppVersion": "1.2.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

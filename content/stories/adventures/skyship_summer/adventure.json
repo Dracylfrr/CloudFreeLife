@@ -1,0 +1,214 @@
+{
+  "id": "skyship_summer",
+  "name": "Skyship Summer",
+  "description": "You have inherited a tiny sky-ship and one very important bag of mail. Can you reach the cloud island of Lull by sunset?",
+  "version": "1.2.0",
+  "minAppVersion": "1.2.0",
+  "cover": "cover.svg",
+  "accent": "#8fc7ec",
+  "genre": "Adventure",
+  "protagonist": "guy",
+  "hero": "Theo",
+  "minutes": 8,
+  "order": 2,
+  "start": "start",
+  "nodes": {
+    "start": {
+      "text": [
+        "My name is Theo, and my aunt left me two things: a tiny sky-ship called the Dandelion, and a canvas bag of letters addressed to the island of Lull. The bag is tied with a red ribbon. There is a note on it that says, \"Deliver by sunset.\"",
+        "The Dandelion bobs at the end of the dock like a bath toy. The sky is clear, but the weathervane is squeaking in a way I do not like."
+      ],
+      "choices": [
+        {
+          "text": "Check the weather first",
+          "to": "weather"
+        },
+        {
+          "text": "Cast off right away",
+          "to": "liftoff"
+        }
+      ]
+    },
+    "weather": {
+      "text": [
+        "I tap the barometer. It hums and points at \"Possibly Breezy.\" The old harbor cat looks at me as if to say that is what it always says. I could wait for the wind to settle, or I could trust the cat and go."
+      ],
+      "choices": [
+        {
+          "text": "Wait for the wind to settle",
+          "to": "end_nap"
+        },
+        {
+          "text": "Go anyway",
+          "to": "liftoff"
+        }
+      ]
+    },
+    "liftoff": {
+      "text": [
+        "The ropes drop away and the Dandelion lifts off the dock as lightly as a seed. The whole harbor shrinks into a toy town below me. The wind smells of warm bread and faraway rain.",
+        "Ahead I see two routes. To the east, a bright trail of sun-lit sky. To the south, the Cotton Bank, a huge white cloud with a bell ringing somewhere inside it."
+      ],
+      "choices": [
+        {
+          "text": "Follow the sun trail",
+          "to": "sunroute"
+        },
+        {
+          "text": "Cut through the Cotton Bank",
+          "to": "cotton"
+        }
+      ]
+    },
+    "sunroute": {
+      "text": [
+        "A friendly gull glides alongside and tips her postman's cap. \"Captain Gull, sky mail. You're headed for Lull? I know a shortcut. Fifteen minutes faster, if you don't mind a little rumble.\""
+      ],
+      "choices": [
+        {
+          "text": "Take the gull's shortcut",
+          "to": "shortcut"
+        },
+        {
+          "text": "Stick to my own chart",
+          "to": "lull_approach"
+        }
+      ]
+    },
+    "cotton": {
+      "text": [
+        "Inside the Cotton Bank everything is white and soft and hushed. I can't see the nose of my own ship. The bell rings again, closer now, with a sad little wobble in it."
+      ],
+      "choices": [
+        {
+          "text": "Follow the bell",
+          "to": "bell"
+        },
+        {
+          "text": "Climb above the fog",
+          "to": "lull_approach"
+        }
+      ]
+    },
+    "bell": {
+      "text": [
+        "The bell hangs around the neck of a baby cloud-lamb, no bigger than a pillow, who has wandered away from the herd and cannot find the way back. He bleats at me hopefully. I think I know what my aunt would do."
+      ],
+      "choices": [
+        {
+          "text": "Take him back to his herd",
+          "to": "end_herd"
+        },
+        {
+          "text": "Bring him with me to Lull",
+          "to": "lull_approach"
+        }
+      ]
+    },
+    "shortcut": {
+      "text": [
+        "The shortcut runs through a fat grey cloud that grumbles and flickers. The Dandelion shakes like a leaf. Raindrops the size of marbles start to bounce off the deck. Captain Gull calls, \"Almost through!\""
+      ],
+      "choices": [
+        {
+          "text": "Fly through fast",
+          "to": "end_storm"
+        },
+        {
+          "text": "Turn back and take the long way",
+          "to": "lull_approach"
+        }
+      ]
+    },
+    "lull_approach": {
+      "text": [
+        "At last, Lull appears: a green island floating on a pillow of cloud, with a candy-colored harbor and a tiny post office that looks exactly like a mailbox. The sun is touching the horizon. I have just enough time."
+      ],
+      "choices": [
+        {
+          "text": "Land on the main pier",
+          "to": "pier"
+        },
+        {
+          "text": "Land on the meadow, it looks softer",
+          "to": "end_picnic"
+        }
+      ]
+    },
+    "pier": {
+      "text": [
+        "A small crowd has gathered. A postmistress with a sleepy smile takes the bag and counts the letters. When she gets to the last one she stops. It has no stamp and no address, only my name in my aunt's handwriting."
+      ],
+      "choices": [
+        {
+          "text": "Deliver the rest of the mail",
+          "to": "end_mail"
+        },
+        {
+          "text": "Open the letter with my name on it",
+          "to": "end_aunt"
+        }
+      ]
+    },
+    "end_nap": {
+      "text": [
+        "I wait for the wind to settle, and, being comfortable, I fall asleep in the cockpit. When I wake up it is the middle of the night, the stars are out, and the harbor cat is asleep on my chest.",
+        "I deliver the mail first thing in the morning. Lull forgives me, as it turns out, for it is an island that does not believe in hurry."
+      ],
+      "ending": {
+        "title": "Slow and Steady",
+        "mood": "cozy"
+      }
+    },
+    "end_herd": {
+      "text": [
+        "The herd is waiting in a pasture of cloud-grass, and the mother lamb nearly knocks me out of the ship with joy. They give me a wool scarf that is soft as a sigh.",
+        "I miss the sunset, and the letters arrive a day late. But Lull holds a celebration anyway, because a lost lamb is more important than any letter."
+      ],
+      "ending": {
+        "title": "The Lamb Comes Home",
+        "mood": "sweet"
+      }
+    },
+    "end_storm": {
+      "text": [
+        "We burst out the far side with a bang and a rainbow. The Dandelion, the mailbag and I are completely soaked. Lull has not had rain in weeks, and the entire island runs out into the street with umbrellas turned upside down to catch the drops.",
+        "I am declared the First Official Rain Delivery. The mail is a little damp, but nobody complains."
+      ],
+      "ending": {
+        "title": "Rain Delivery",
+        "mood": "funny"
+      }
+    },
+    "end_picnic": {
+      "text": [
+        "The meadow is soft, golden and covered in blankets. Apparently I have landed in the middle of the Lull Sunset Picnic. Someone hands me a sandwich. Someone else hands me a lemonade. A very old gentleman asks me to sit.",
+        "I deliver the mail later, after dessert, and nobody is cross. We watch the sun melt into the sea, and I decide this is the best landing I have ever made."
+      ],
+      "ending": {
+        "title": "Sunset Picnic",
+        "mood": "happy"
+      }
+    },
+    "end_mail": {
+      "text": [
+        "One by one, the letters find their owners: a birthday card, a seed catalog, a postcard from a cousin in the clouds. The postmistress stamps the final one and hands me a medal made of a button.",
+        "As the sun slips out of sight, the Dandelion and I rise into the dark and fly home through the stars. It is, I think, the beginning of a very good summer."
+      ],
+      "ending": {
+        "title": "Special Delivery",
+        "mood": "happy"
+      }
+    },
+    "end_aunt": {
+      "text": [
+        "The letter is short. \"Dear Theo, if you are reading this, you made it. The sky was always yours. The Dandelion knows the way home. Love, Aunt Vi.\"",
+        "The wind picks up, warm and kind, and the postmistress says nothing. I fold the letter into my pocket, climb back into the ship, and fly into the sunset, not at all alone."
+      ],
+      "ending": {
+        "title": "The Sky Is Yours",
+        "mood": "dreamy"
+      }
+    }
+  }
+}

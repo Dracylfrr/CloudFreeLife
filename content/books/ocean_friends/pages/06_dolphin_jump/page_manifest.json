@@ -1,0 +1,11 @@
+{
+  "id": "dolphin_jump",
+  "name": "Dolphin Jump",
+  "description": "A happy dolphin leaping over the waves.",
+  "version": "1.0.0",
+  "minAppVersion": "1.2.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

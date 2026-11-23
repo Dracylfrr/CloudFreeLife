@@ -27,7 +27,7 @@ The app then shows *Update available — v1.1.0* or *New coloring book available
 3. On GitHub: **Releases → Draft a new release**, tag **`castle_dreams_v1.0.0`**, attach **both files**, publish. (Or commit the source under `content-packs/castle_dreams/{pack.json,content/}` and push the tag — `.github/workflows/content-release.yml` does steps 2–3.)
 4. Players: *Update available* appears on their next start → **Updates → Install**.
 
-The `id` in the pack, the `id` in `book_manifest.json`, the tag (`<id>_v<version>`) and the asset name must agree. A pack may contain books, palettes (`palettes/<id>.json`) and levels (`minigames/<game>/levels/<folder>/…`). Use `--kind palettes`, `breaker_levels`, `splash_levels`, `memory_levels` or `puzzle_levels` accordingly (it only changes the wording of the notification).
+The `id` in the pack, the `id` in `book_manifest.json`, the tag (`<id>_v<version>`) and the asset name must agree. A pack may contain books, palettes (`palettes/<id>.json`) and levels (`minigames/<game>/levels/<folder>/…`). Cozy Stories and Story Adventures live under `stories/relaxing/<id>/` and `stories/adventures/<id>/` (see [CREATING_STORIES.md](CREATING_STORIES.md)). Use `--kind palettes`, `breaker_levels`, `splash_levels`, `memory_levels`, `puzzle_levels`, `stories` or `adventures` accordingly (it only changes the wording of the notification).
 
 To **update** a book later, bump `version` in its manifest and publish `castle_dreams_v1.1.0`. Newer versions replace older ones.
 
@@ -55,7 +55,7 @@ Manifest schema, version formats, asset name pattern (including that it matches 
 
 ## Manifest reference
 
-See [templates/release-manifest.example.json](templates/release-manifest.example.json). Content `type` is one of `book`, `palettes`, `breaker_levels`, `splash_levels`, `memory_levels`, `puzzle_levels`, `minigame`.
+See [templates/release-manifest.example.json](templates/release-manifest.example.json). Content `type` is one of `book`, `palettes`, `breaker_levels`, `splash_levels`, `memory_levels`, `puzzle_levels`, `stories`, `adventures`, `minigame`.
 
 ## Troubleshooting
 

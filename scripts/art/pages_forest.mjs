@@ -22,21 +22,21 @@ export function sleepyBear() {
   S.region('hill', 'Hill', ground([[-10, 480], [260, 440], [560, 490], [820, 450], [1010, 486]]), C.leaf);
   treeBg(S, 'tree', 800, 600, 1.2, 4);
   S.region('grass', 'Grass', ground([[-10, 600], [300, 580], [700, 606], [1010, 580]]), C.grass);
-  // bear
-  S.region('ear_left', 'Ear', circle(380, 220, 44), C.wood);
-  S.region('ear_right', 'Ear', circle(560, 220, 44), C.wood);
-  S.region('ear_left_inner', 'Inner ear', circle(380, 224, 22), C.peach, { w: 4 });
-  S.region('ear_right_inner', 'Inner ear', circle(560, 224, 22), C.peach, { w: 4 });
-  S.region('bear_arm_left', 'Arm', ellipse(350, 470, 46, 80), C.wood, { transform: 'rotate(18 350 470)' });
-  S.region('bear_arm_right', 'Arm', ellipse(590, 470, 46, 80), C.wood, { transform: 'rotate(-18 590 470)' });
-  S.region('bear_body', 'Body', ellipse(470, 480, 130, 130), C.wood);
-  S.region('bear_belly', 'Belly', ellipse(470, 500, 84, 90), C.sand);
-  S.region('bear_foot_left', 'Foot', ellipse(390, 600, 54, 32), C.wood);
-  S.region('bear_foot_right', 'Foot', ellipse(550, 600, 54, 32), C.wood);
-  S.region('bear_head', 'Head', circle(470, 280, 108), C.wood);
-  S.region('bear_snout', 'Snout', ellipse(470, 316, 52, 40), C.sand);
-  S.region('bear_nose', 'Nose', ellipse(470, 300, 18, 12), C.coral, { w: 4 });
-  S.line('M416 276q14 10 28 0M496 276q14 10 28 0M470 312v14q-14 14-28 4M470 326q14 14 28 4', { w: 4.5 });
+  // bear (head sits low on the shoulders so it reads as one connected animal)
+  S.region('ear_left', 'Ear', circle(386, 252, 44), C.wood);
+  S.region('ear_right', 'Ear', circle(554, 252, 44), C.wood);
+  S.region('ear_left_inner', 'Inner ear', circle(386, 256, 22), C.peach, { w: 4 });
+  S.region('ear_right_inner', 'Inner ear', circle(554, 256, 22), C.peach, { w: 4 });
+  S.region('bear_arm_left', 'Arm', ellipse(340, 490, 46, 80), C.wood, { transform: 'rotate(18 340 490)' });
+  S.region('bear_arm_right', 'Arm', ellipse(600, 490, 46, 80), C.wood, { transform: 'rotate(-18 600 490)' });
+  S.region('bear_body', 'Body', ellipse(470, 490, 145, 140), C.wood);
+  S.region('bear_belly', 'Belly', ellipse(470, 520, 88, 92), C.sand);
+  S.region('bear_foot_left', 'Foot', ellipse(390, 612, 54, 32), C.wood);
+  S.region('bear_foot_right', 'Foot', ellipse(550, 612, 54, 32), C.wood);
+  S.region('bear_head', 'Head', circle(470, 318, 108), C.wood);
+  S.region('bear_snout', 'Snout', ellipse(470, 354, 52, 40), C.sand);
+  S.region('bear_nose', 'Nose', ellipse(470, 338, 18, 12), C.coral, { w: 4 });
+  S.line('M416 314q14 10 28 0M496 314q14 10 28 0M470 350v14q-14 14-28 4M470 364q14 14 28 4', { w: 4.5 });
   S.region('honey_pot', 'Honey pot', ellipse(700, 590, 62, 52), C.butter);
   S.region('honey_rim', 'Honey rim', rect(650, 536, 100, 26, 12), C.sand);
   S.line('M676 570q12 24 24 0', { w: 4 });

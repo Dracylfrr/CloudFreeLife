@@ -1,0 +1,238 @@
+{
+  "id": "bakery_on_maple_lane",
+  "name": "The Bakery on Maple Lane",
+  "description": "You are Nora, you have just opened your very own bakery, and the quiet flour delivery boy never says more than \"Morning.\"",
+  "version": "1.2.0",
+  "minAppVersion": "1.2.0",
+  "cover": "cover.svg",
+  "accent": "#f49bbd",
+  "genre": "Romance",
+  "protagonist": "girl",
+  "interest": "Elliot",
+  "hero": "Nora",
+  "minutes": 9,
+  "order": 3,
+  "start": "start",
+  "nodes": {
+    "start": {
+      "text": [
+        "I am Nora, and my bakery has been open for exactly eight days. It smells like cinnamon, the sign is a little crooked, and every Tuesday at six o'clock, a boy in a flour-dusted cap delivers twenty sacks and says one word: \"Morning.\"",
+        "His name is Elliot. It is stitched on his jacket. I would very much like to hear him say a second word."
+      ],
+      "choices": [
+        {
+          "text": "Offer him a fresh cinnamon roll",
+          "to": "roll"
+        },
+        {
+          "text": "Ask him his name, pretending not to know",
+          "to": "name"
+        },
+        {
+          "text": "Pretend to be very busy",
+          "to": "busy"
+        }
+      ]
+    },
+    "roll": {
+      "text": [
+        "He looks at the roll as though it might be a trick. \"I've never had one,\" he admits. \"Cinnamon makes me sneeze when I smell it, so I always hold my breath.\" I did not know that. I have been baking in front of him for eight days."
+      ],
+      "choices": [
+        {
+          "text": "Watch him take the first bite",
+          "to": "tasted"
+        },
+        {
+          "text": "Ask him how he would draw it",
+          "to": "sketches"
+        }
+      ]
+    },
+    "name": {
+      "text": [
+        "\"Elliot,\" he says, a little pink in the ears. Then, miraculously, he keeps going. \"I'm new to the route. I like the bread smell. I draw it, sometimes, in a notebook.\" He turns even pinker. I try not to look as delighted as I am."
+      ],
+      "choices": [
+        {
+          "text": "Ask to see the notebook",
+          "to": "sketches"
+        },
+        {
+          "text": "Invite him to the Saturday market",
+          "to": "market"
+        }
+      ]
+    },
+    "busy": {
+      "text": [
+        "I grab a tray of cookies and spin around to look occupied. The tray, unfortunately, keeps spinning after I stop. A cloud of powdered sugar rises into the air. Elliot, who is directly in its path, looks like a very surprised snowman."
+      ],
+      "choices": [
+        {
+          "text": "Burst out laughing",
+          "to": "bake"
+        },
+        {
+          "text": "Apologize at top speed and flee to the back room",
+          "to": "end_flee"
+        }
+      ]
+    },
+    "tasted": {
+      "text": [
+        "Elliot closes his eyes. He takes one slow bite, then another. He does not sneeze. His whole face softens. \"Oh,\" he says, as if someone has told him a lovely secret. \"That's what the smell was for.\""
+      ],
+      "choices": [
+        {
+          "text": "Ask what he is smiling about",
+          "to": "sketches"
+        },
+        {
+          "text": "Ask if he would like to try something else, at the market on Saturday",
+          "to": "market"
+        }
+      ]
+    },
+    "sketches": {
+      "text": [
+        "He pulls out a notebook with a rubber band around it. Page after page is filled with soft pencil drawings: loaves, baguettes, a tiny rolling pin. And then, I realize, pages and pages of my bakery. The crooked sign. The steamy window. Me, tying my apron."
+      ],
+      "choices": [
+        {
+          "text": "Tell him they are lovely, and I'd like to keep drawing together",
+          "to": "evening"
+        },
+        {
+          "text": "Ask if he would draw me a new shop sign",
+          "to": "end_sign"
+        }
+      ]
+    },
+    "market": {
+      "text": [
+        "Saturday is the busiest day of the week, and the market is already full of striped awnings and the sound of someone playing a fiddle badly. Elliot shows up, hands in his pockets, with a basket of daisies, \"for the table.\""
+      ],
+      "choices": [
+        {
+          "text": "Ask him to help at the stall",
+          "to": "end_sellout"
+        },
+        {
+          "text": "Say I am too busy and ask for a rain check",
+          "to": "end_raincheck"
+        }
+      ]
+    },
+    "bake": {
+      "text": [
+        "I laugh so hard I have to hold the counter. Elliot starts laughing too, a surprisingly big laugh for such a quiet person. We are still laughing when the next batch of rolls begins to rise, and he says, shyly, \"Can I help?\""
+      ],
+      "choices": [
+        {
+          "text": "Toss a little flour at him",
+          "to": "end_flour"
+        },
+        {
+          "text": "Hand him an apron",
+          "to": "end_apron"
+        }
+      ]
+    },
+    "evening": {
+      "text": [
+        "The sun slips low, painting the shop windows gold. Elliot walks the last of the sacks to the back and comes out with his cap in his hands. \"Can I walk you home?\" he asks. \"If you'd like. Or you could teach me how to make the cinnamon rolls. Either one.\""
+      ],
+      "choices": [
+        {
+          "text": "Say yes, walk home together",
+          "to": "end_walk"
+        },
+        {
+          "text": "Say I'd rather teach him tonight",
+          "to": "end_midnight"
+        }
+      ]
+    },
+    "end_flee": {
+      "text": [
+        "I hide in the back room for a full minute, cheeks burning. When I peek out, the van is gone. But on the order slip, in tidy pencil, is a tiny drawing of a flour-dusted snowman waving. Underneath it says, \"See you next Tuesday.\"",
+        "I pin the slip above the oven. Tuesday cannot come fast enough."
+      ],
+      "ending": {
+        "title": "See You Next Tuesday",
+        "mood": "funny"
+      }
+    },
+    "end_raincheck": {
+      "text": [
+        "\"Of course,\" says Elliot, with a smile that holds no disappointment, only patience. He sets the daisies on my table and tips his cap. All through the busy day, they smile at me from their little jar.",
+        "Next Tuesday, he is back. So am I. Some things are worth waiting for, and so are some people."
+      ],
+      "ending": {
+        "title": "Worth Waiting For",
+        "mood": "sweet"
+      }
+    },
+    "end_walk": {
+      "text": [
+        "We walk down Maple Lane as the streetlamps wink on. He carries the last bag of flour, even though it is mine. We do not say much. We do not need to. At my door, he gives me a small drawing he has torn from his notebook: the two of us, hand in hand, outside a crooked-signed shop.",
+        "\"Just in case,\" he says, and I decide that crooked signs are the best kind."
+      ],
+      "ending": {
+        "title": "A Walk Down Maple Lane",
+        "mood": "happy"
+      }
+    },
+    "end_midnight": {
+      "text": [
+        "That night, with the shop lights low, I show Elliot how to roll the dough, spread the butter and sprinkle the cinnamon, which he does, holding his breath and then, quite suddenly, not. He sneezes into his sleeve, and we both lose it.",
+        "By midnight we have forty rolls, flour on every surface, and a plan to do this every Tuesday. The bakery has never smelled so good."
+      ],
+      "ending": {
+        "title": "Midnight Rolls",
+        "mood": "cozy"
+      }
+    },
+    "end_sign": {
+      "text": [
+        "A week later, my crooked sign is gone, and in its place hangs a beautiful new one: a loaf with a heart-shaped crack, and curly letters. Underneath, in smaller writing, are two names: \"Nora\" and, right beside it, \"Elliot.\"",
+        "He blushes when I point it out. \"I was hoping that was okay,\" he says. It is more than okay."
+      ],
+      "ending": {
+        "title": "Two Names on the Sign",
+        "mood": "happy"
+      }
+    },
+    "end_sellout": {
+      "text": [
+        "Elliot turns out to be a natural. He wraps bread with the care of a person tying ribbons on gifts, and everyone who buys from him walks away smiling. By two o'clock the stall is empty, and the daisies are the only thing left.",
+        "He tucks one behind my ear without a word. \"For the best bakery on Maple Lane,\" he says. I think I might be the one who is speechless this time."
+      ],
+      "ending": {
+        "title": "Sold Out",
+        "mood": "happy"
+      }
+    },
+    "end_flour": {
+      "text": [
+        "I flick a pinch of flour at him. He stares at me in shock, and then retaliates with a handful twice as large. Within seconds the kitchen is a snowstorm, and we are both gasping with laughter.",
+        "When the dust settles, he looks at me, white from hair to boots, and says, \"Would you like to have dinner sometime? Somewhere without flour?\" I tell him I will think about it. I have, for about two seconds."
+      ],
+      "ending": {
+        "title": "Snowstorm in the Kitchen",
+        "mood": "funny"
+      }
+    },
+    "end_apron": {
+      "text": [
+        "I tie the apron strings behind him, and he stands very still, as if he were being measured for a crown. We roll, fold, glaze and bake, shoulder to shoulder, until the shop smells like a warm hug.",
+        "When we sit down to taste the first batch, he says, \"I think I'd like to deliver flour to you for a very long time.\" I think I would, too."
+      ],
+      "ending": {
+        "title": "The Apron",
+        "mood": "sweet"
+      }
+    }
+  }
+}

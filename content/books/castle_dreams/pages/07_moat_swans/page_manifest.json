@@ -1,0 +1,11 @@
+{
+  "id": "moat_swans",
+  "name": "Swans on the Moat",
+  "description": "Two graceful swans gliding past the castle gate.",
+  "version": "1.0.0",
+  "minAppVersion": "1.2.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

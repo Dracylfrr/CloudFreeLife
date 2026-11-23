@@ -12,6 +12,8 @@
   import FreeDraw from './features/painting/FreeDraw.svelte';
   import Gallery from './features/gallery/Gallery.svelte';
   import MiniGames from './features/minigames/MiniGames.svelte';
+  import Stories from './features/stories/Stories.svelte';
+  import Adventures from './features/stories/Adventures.svelte';
   import Updates from './features/updates/Updates.svelte';
   import Settings from './features/settings/Settings.svelte';
   import About from './features/about/About.svelte';
@@ -29,7 +31,7 @@
       <Sidebar />
     {/if}
     <main class="content">
-      {#key $route.name + ($route.name === 'paint' ? $route.artworkId : $route.name === 'book' ? $route.bookId : '')}
+      {#key $route.name + ($route.name === 'paint' ? $route.artworkId : $route.name === 'book' ? $route.bookId : $route.name === 'story' ? $route.storyId : $route.name === 'adventure' ? $route.adventureId : '')}
         {#if $route.name === 'home'}
           <Home />
         {:else if $route.name === 'books'}
@@ -44,6 +46,18 @@
           {/await}
         {:else if $route.name === 'gallery'}
           <Gallery />
+        {:else if $route.name === 'stories'}
+          <Stories />
+        {:else if $route.name === 'story'}
+          {#await import('./features/stories/StoryReader.svelte') then m}
+            <m.default storyId={$route.storyId} />
+          {/await}
+        {:else if $route.name === 'adventures'}
+          <Adventures />
+        {:else if $route.name === 'adventure'}
+          {#await import('./features/stories/AdventurePlayer.svelte') then m}
+            <m.default adventureId={$route.adventureId} />
+          {/await}
         {:else if $route.name === 'minigames'}
           <MiniGames game={$route.game} />
         {:else if $route.name === 'breaker'}

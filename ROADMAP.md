@@ -15,7 +15,11 @@ Castle Dreams, Ocean Friends, Memory Meadow, *Castle Twilight* and *Ocean Pearl*
 ## 1.1.1 — shipped
 Sweet Treats, Forest Friends, Pastel Puzzle, mini-game cards and the friendlier update notice.
 
-## 1.2.0 — more content (as content packs where possible)
+## 1.2.0 — shipped
+Cozy Stories, Story Adventures, eight new coloring pages and the Sleepy Bear fix.
+
+## 1.3.0 — more content (as content packs where possible)
+- More stories and adventures (including more romance and comedy), and a reading list that tracks what you have finished.
 - More books (a mountain village, a night garden, a farm).
 - New palettes: *Candle Glow*, *Blossom Rain*.
 - Six more Pastel Breaker levels, six more Splash Wall walls, six more Memory Meadow levels and more puzzle pictures.

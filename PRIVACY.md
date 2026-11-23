@@ -17,8 +17,9 @@ Artwork, settings and downloaded content are stored **only on your computer**, i
 ```
 %APPDATA%\Cloud-Freelife\
   settings.json
+  progress\stories.json  (your reading place and the story endings you have found)
   artworks\<name>\artwork.json, paint.png, thumb.png
-  content\...            (downloaded books, palettes and levels)
+  content\...            (downloaded books, palettes, levels, stories)
   installed_packs.json
 ```
 

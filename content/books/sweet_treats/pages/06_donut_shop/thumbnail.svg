@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" width="1000" height="750">
+<rect width="1000" height="750" fill="#ffffff"/>
+<g stroke="#6e6a8e" stroke-linejoin="round" stroke-linecap="round">
+<path data-region="wall" data-name="Wall" d="M-6 -6h1012v600h-1012z" fill="#ffdcc8" stroke-width="5"/>
+<path d="M0 110H1000" fill="none" stroke-width="2.5"/>
+<path data-region="banner" data-name="Shop sign" d="M284 30H716A24 24 0 0 1 740 54V96A24 24 0 0 1 716 120H284A24 24 0 0 1 260 96V54A24 24 0 0 1 284 30z" fill="#fff2bd" stroke-width="5"/>
+<path d="M300 80h400" fill="none" stroke-width="3.5" stroke-dasharray="2 10"/>
+<path data-region="counter" data-name="Counter" d="M-6 560h1012v200h-1012z" fill="#e9c7a3" stroke-width="5"/>
+<path d="M0 620H1000M0 690H1000" fill="none" stroke-width="3"/>
+<path data-region="plate" data-name="Plate" d="M200 560a300 56 0 1 0 600 0a300 56 0 1 0 -600 0z" fill="#ffffff" stroke-width="5"/>
+<path data-region="donut_dough" data-name="Donut" d="M320 380a180 150 0 1 0 360 0a180 150 0 1 0 -360 0zM438 380a62 50 0 1 1 124 0a62 50 0 1 1 -124 0z" fill="#f8e4c2" stroke-width="5"/>
+<path data-region="donut_frosting" data-name="Frosting" d="M332 380a168 132 0 1 0 336 0a168 132 0 1 0 -336 0zM426 380a74 60 0 1 1 148 0a74 60 0 1 1 -148 0z" fill="#ffd3e2" stroke-width="5"/>
+<path data-region="sprinkle_a" data-name="Sprinkle" d="M396 330H424A6 6 0 0 1 430 336V336A6 6 0 0 1 424 342H396A6 6 0 0 1 390 336V336A6 6 0 0 1 396 330z" fill="#fff2bd" stroke-width="3.5" transform="rotate(-30 410 336)"/>
+<path data-region="sprinkle_b" data-name="Sprinkle" d="M566 300H594A6 6 0 0 1 600 306V306A6 6 0 0 1 594 312H566A6 6 0 0 1 560 306V306A6 6 0 0 1 566 300z" fill="#c6ecda" stroke-width="3.5" transform="rotate(20 580 306)"/>
+<path data-region="sprinkle_c" data-name="Sprinkle" d="M626 400H654A6 6 0 0 1 660 406V406A6 6 0 0 1 654 412H626A6 6 0 0 1 620 406V406A6 6 0 0 1 626 400z" fill="#bfe4f7" stroke-width="3.5" transform="rotate(-60 640 406)"/>
+<path data-region="sprinkle_d" data-name="Sprinkle" d="M366 420H394A6 6 0 0 1 400 426V426A6 6 0 0 1 394 432H366A6 6 0 0 1 360 426V426A6 6 0 0 1 366 420z" fill="#d9cdf6" stroke-width="3.5" transform="rotate(50 380 426)"/>
+<path data-region="sprinkle_e" data-name="Sprinkle" d="M476 480H504A6 6 0 0 1 510 486V486A6 6 0 0 1 504 492H476A6 6 0 0 1 470 486V486A6 6 0 0 1 476 480z" fill="#fff2bd" stroke-width="3.5" transform="rotate(10 490 486)"/>
+<path data-region="sprinkle_f" data-name="Sprinkle" d="M476 250H504A6 6 0 0 1 510 256V256A6 6 0 0 1 504 262H476A6 6 0 0 1 470 256V256A6 6 0 0 1 476 250z" fill="#ffc3b0" stroke-width="3.5" transform="rotate(-10 490 256)"/>
+<path data-region="mini_left_dough" data-name="Mini donut" d="M80 520a80 58 0 1 0 160 0a80 58 0 1 0 -160 0zM134 520a26 20 0 1 1 52 0a26 20 0 1 1 -52 0z" fill="#f8e4c2" stroke-width="5"/>
+<path data-region="mini_left_frosting" data-name="Mini frosting" d="M88 520a72 54 0 1 0 144 0a72 54 0 1 0 -144 0zM126 520a34 26 0 1 1 68 0a34 26 0 1 1 -68 0z" fill="#d9cdf6" stroke-width="5"/>
+<path data-region="mini_right_dough" data-name="Mini donut" d="M760 520a80 58 0 1 0 160 0a80 58 0 1 0 -160 0zM814 520a26 20 0 1 1 52 0a26 20 0 1 1 -52 0z" fill="#f8e4c2" stroke-width="5"/>
+<path data-region="mini_right_frosting" data-name="Mini frosting" d="M768 520a72 54 0 1 0 144 0a72 54 0 1 0 -144 0zM806 520a34 26 0 1 1 68 0a34 26 0 1 1 -68 0z" fill="#c6ecda" stroke-width="5"/>
+<path data-region="shelf" data-name="Shelf" d="M658 240H872A8 8 0 0 1 880 248V250A8 8 0 0 1 872 258H658A8 8 0 0 1 650 250V248A8 8 0 0 1 658 240z" fill="#e9c7a3" stroke-width="5"/>
+<path data-region="cup" data-name="Milk" d="M690 160h110q0 80-55 80t-55-80z" fill="#ffffff" stroke-width="5"/>
+<path data-region="cup_milk" data-name="Milk top" d="M698 160H792A8 8 0 0 1 800 168V176A8 8 0 0 1 792 184H698A8 8 0 0 1 690 176V168A8 8 0 0 1 698 160z" fill="#fff8ec" stroke-width="4"/>
+<path d="M800 176q40 0 36 30q-4 24-36 24" fill="none" stroke-width="5"/>
+</g></svg>

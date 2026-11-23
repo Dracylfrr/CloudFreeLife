@@ -1,0 +1,269 @@
+{
+  "id": "the_great_pie_disaster",
+  "name": "The Great Pie Disaster",
+  "description": "Gran has trusted you with the prize blueberry pie. All you have to do is carry it across town. What could possibly go wrong?",
+  "version": "1.2.0",
+  "minAppVersion": "1.2.0",
+  "cover": "cover.svg",
+  "accent": "#ffc3b0",
+  "genre": "Comedy",
+  "protagonist": "guy",
+  "hero": "Benji",
+  "minutes": 8,
+  "order": 5,
+  "start": "start",
+  "nodes": {
+    "start": {
+      "text": [
+        "My name is Benji, and I am carrying the most important pie in the history of Bumbleford. It is Gran's blueberry masterpiece, and the Pie Fair judging starts in twenty minutes.",
+        "\"Three rules,\" says Gran, holding my shoulders. \"Don't tip it. Don't drop it. And do not, under any circumstances, let Mr. Pennywhistle's goat see it.\" I nod bravely. There are three ways to the fair."
+      ],
+      "choices": [
+        {
+          "text": "Take the main road",
+          "to": "main"
+        },
+        {
+          "text": "Take the back alley",
+          "to": "alley"
+        },
+        {
+          "text": "Ride in Pip's wagon",
+          "to": "wagon"
+        }
+      ]
+    },
+    "main": {
+      "text": [
+        "The main road is packed. A juggler is tossing flaming torches, a marching band is warming up, and two ladies are having a loud argument about hats. There is barely room to hold a pie, never mind walk."
+      ],
+      "choices": [
+        {
+          "text": "Squeeze through the crowd",
+          "to": "squeeze"
+        },
+        {
+          "text": "Wait for the crowd to thin out",
+          "to": "wait"
+        }
+      ]
+    },
+    "alley": {
+      "text": [
+        "The alley is quiet and shady and smells of cabbages. Halfway down, standing in the middle of the path, chewing slowly, is a very large goat in a bow tie. It is Mr. Pennywhistle's goat. It looks at the pie. The pie looks at me."
+      ],
+      "choices": [
+        {
+          "text": "Distract the goat with a cabbage",
+          "to": "cabbage"
+        },
+        {
+          "text": "Run for it",
+          "to": "run"
+        }
+      ]
+    },
+    "wagon": {
+      "text": [
+        "Pip, the neighborhood kid, has a wagon and a great deal of confidence. \"I'll have you there in two minutes,\" she says. She does not mention that the road is a very steep hill, and that her brakes are, as she puts it, \"more of a suggestion.\""
+      ],
+      "choices": [
+        {
+          "text": "Hold on tight and trust Pip",
+          "to": "hill"
+        },
+        {
+          "text": "Ask Pip to slow down",
+          "to": "slow"
+        }
+      ]
+    },
+    "squeeze": {
+      "text": [
+        "I hold the pie high and sidestep between two tubas. A baker's elbow catches my arm, and the pie leaps out of my hands, turning slowly in the air, a perfect purple moon, while the whole crowd gasps."
+      ],
+      "choices": [
+        {
+          "text": "Catch it with my hat",
+          "to": "end_hat"
+        },
+        {
+          "text": "Catch it with my face",
+          "to": "end_face"
+        }
+      ]
+    },
+    "wait": {
+      "text": [
+        "I wait. And wait. The crowd does not thin. The marching band starts a second song. By the time the street clears, I can hear the Fair bell ringing, and I have exactly three minutes to cross the whole town."
+      ],
+      "choices": [
+        {
+          "text": "Sprint to the fair",
+          "to": "fair"
+        }
+      ]
+    },
+    "cabbage": {
+      "text": [
+        "I hold out a cabbage like a peace offering. The goat takes it gently and begins to munch. Then, to my surprise, he kneels down, and I realize he is offering me a ride. He is wearing a saddle, which I somehow had not noticed."
+      ],
+      "choices": [
+        {
+          "text": "Ride the goat to the fair",
+          "to": "end_goat"
+        },
+        {
+          "text": "Politely walk past and head for the fair",
+          "to": "fair"
+        }
+      ]
+    },
+    "run": {
+      "text": [
+        "I run. The goat runs after me. We pass the bakery, the post office and a very startled man holding a ladder. The goat's bow tie flutters in the wind behind him. Ahead of me, bright and splashy, is the town fountain."
+      ],
+      "choices": [
+        {
+          "text": "Jump into the fountain",
+          "to": "end_fountain"
+        }
+      ]
+    },
+    "hill": {
+      "text": [
+        "The wagon begins to roll. Then to rumble. Then to scream. We are hurtling down the hill at a speed no pie was meant to travel, with Pip shouting \"Whee!\" and my hair standing straight up. The fair is at the bottom, and so is a very large haystack."
+      ],
+      "choices": [
+        {
+          "text": "Scream and hold the pie to my chest",
+          "to": "end_hill"
+        },
+        {
+          "text": "Leap into the hay cart as we pass",
+          "to": "end_hay"
+        }
+      ]
+    },
+    "slow": {
+      "text": [
+        "\"Fine,\" says Pip, with a sigh, and drags her heels until the wagon rolls along at the pace of a thoughtful snail. We trundle into the town square, pie perfectly intact. Pip looks at it, then at me, with a hungry eye."
+      ],
+      "choices": [
+        {
+          "text": "Give Pip a slice for her trouble",
+          "to": "end_share"
+        },
+        {
+          "text": "Politely say no and carry on to the fair",
+          "to": "fair"
+        }
+      ]
+    },
+    "fair": {
+      "text": [
+        "I arrive at the judges' table out of breath, sweaty and, miraculously, holding a flawless pie. Three judges in tall hats peer down at it. The head judge raises one eyebrow. \"Well, young man?\" she says. \"Is this a perfect pie?\""
+      ],
+      "choices": [
+        {
+          "text": "Say yes, proudly",
+          "to": "end_win"
+        },
+        {
+          "text": "Admit it has a little dent",
+          "to": "end_honest"
+        }
+      ]
+    },
+    "end_hat": {
+      "text": [
+        "The pie lands, with a splat, right in my hat. It is a perfect catch, if you ignore the purple dripping down my forehead. The crowd erupts in applause, and the baker who bumped me gives a standing ovation.",
+        "I win Best Dressed Hat at the Fair. Gran is delighted. The pie, sadly, is now mostly hat. We eat it anyway."
+      ],
+      "ending": {
+        "title": "Best Dressed Hat",
+        "mood": "funny"
+      }
+    },
+    "end_face": {
+      "text": [
+        "The pie lands face first. My face, that is. Everything goes dark, sweet and blueberry. When I lift my head, the whole crowd is silent. Then someone starts laughing, and then everyone is.",
+        "Gran wipes my face with her apron. \"Well,\" she says, \"that's the first time anyone has tasted the pie from the inside.\" She enters me in the Funniest Face category instead. I win by a mile."
+      ],
+      "ending": {
+        "title": "Blueberry Face",
+        "mood": "funny"
+      }
+    },
+    "end_goat": {
+      "text": [
+        "The goat trots into the fair as though he owns it. The crowd parts like water. I sit on his back holding the pie like a crown, with the bow tie flapping. Mr. Pennywhistle takes off his hat and bows.",
+        "The judges award us first prize for Most Dramatic Entrance. The goat eats the winning ribbon. We both consider this a fair trade."
+      ],
+      "ending": {
+        "title": "The Goat Express",
+        "mood": "funny"
+      }
+    },
+    "end_fountain": {
+      "text": [
+        "I leap into the fountain, holding the pie high above my head like a trophy. The goat skids to a stop at the edge, glares, and politely lowers his head to drink. The pie, I notice, is entirely dry.",
+        "Somehow, I am the only wet thing. The judges applaud, the goat sulks, and Gran says, \"At least you kept the pie dry.\" I think that is the highest compliment I have ever received."
+      ],
+      "ending": {
+        "title": "Fountain Hero",
+        "mood": "funny"
+      }
+    },
+    "end_hill": {
+      "text": [
+        "We hit the haystack at the bottom with a great, soft WHUMP. Hay flies everywhere. Pip is sitting on my shoulders, and I am sitting on the wagon, and the pie is sitting, perfectly unharmed, on top of Pip's head.",
+        "\"Told you,\" she says. \"Two minutes.\" The crowd cheers. Gran fans herself with her apron. The pie wins a ribbon, and Pip wins a lifetime ban from the hill."
+      ],
+      "ending": {
+        "title": "Two Minutes Flat",
+        "mood": "happy"
+      }
+    },
+    "end_hay": {
+      "text": [
+        "I leap. The hay cart catches me with a puff, and the pie lands on my stomach, still perfectly level. The wagon continues down the hill with Pip, who is waving with both hands and having the time of her life.",
+        "The farmer driving the cart glances back at me, deeply unsurprised. \"The fair is that way, son,\" he says. I deliver the pie on a hay cart. It wins \"Best Entrance By Vehicle,\" which is not even a real category, but they invent it."
+      ],
+      "ending": {
+        "title": "Hay Cart Hero",
+        "mood": "funny"
+      }
+    },
+    "end_share": {
+      "text": [
+        "Pip takes her slice with great ceremony and eats it in one bite. \"Best pie ever,\" she says, mouth full. We sit on the curb of the town square, passing the rest of the pie back and forth, until only the plate is left.",
+        "I miss the Fair, but Gran does not mind a bit. \"A pie is for sharing,\" she says. \"The judges can eat their own.\" And I think she is probably right."
+      ],
+      "ending": {
+        "title": "A Pie Is for Sharing",
+        "mood": "sweet"
+      }
+    },
+    "end_win": {
+      "text": [
+        "\"It is the perfect pie,\" I say, and I mean it. The judges taste it, one by one, and their eyes close in unison. Someone sniffs. A tear rolls down the head judge's cheek.",
+        "Gran wins first prize, for the fifteenth year in a row. She hugs me, and I realize I have delivered the pie, the whole way, without a single disaster. I look around for the goat. He is quietly eating the ribbon."
+      ],
+      "ending": {
+        "title": "The Perfect Pie",
+        "mood": "happy"
+      }
+    },
+    "end_honest": {
+      "text": [
+        "\"It has a small dent on the left,\" I confess. \"From the walk.\" The head judge looks at me, and then, slowly, she smiles. \"Honesty,\" she says. \"Delicious.\" She awards Gran a special ribbon for Most Honest Delivery, and tastes the dented side first.",
+        "Gran is so proud she gives me the first slice. It is, I must admit, the best pie I have ever had, dent and all."
+      ],
+      "ending": {
+        "title": "Honest and Delicious",
+        "mood": "sweet"
+      }
+    }
+  }
+}

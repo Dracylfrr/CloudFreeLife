@@ -1,0 +1,103 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "wall",
+      "name": "Wall",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "banner",
+      "name": "Shop sign",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "counter",
+      "name": "Counter",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "plate",
+      "name": "Plate",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "donut_dough",
+      "name": "Donut",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "donut_frosting",
+      "name": "Frosting",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "sprinkle_a",
+      "name": "Sprinkle",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "sprinkle_b",
+      "name": "Sprinkle",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "sprinkle_c",
+      "name": "Sprinkle",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "sprinkle_d",
+      "name": "Sprinkle",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "sprinkle_e",
+      "name": "Sprinkle",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "sprinkle_f",
+      "name": "Sprinkle",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "mini_left_dough",
+      "name": "Mini donut",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "mini_left_frosting",
+      "name": "Mini frosting",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "mini_right_dough",
+      "name": "Mini donut",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "mini_right_frosting",
+      "name": "Mini frosting",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "shelf",
+      "name": "Shelf",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "cup",
+      "name": "Milk",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cup_milk",
+      "name": "Milk top",
+      "suggested": "#fff8ec"
+    }
+  ]
+}

@@ -20,6 +20,10 @@ import { memoryLevels } from './art/levels_memory.mjs';
 import { treatsPages } from './art/pages_treats.mjs';
 import { forestPages } from './art/pages_forest.mjs';
 import { puzzleLevels } from './art/levels_puzzle.mjs';
+import { extraPages } from './art/pages_extra.mjs';
+import { relaxing } from './stories/relaxing.mjs';
+import { adventures } from './stories/adventures.mjs';
+import { storyCovers } from './stories/covers.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const content = resolve(root, 'content');
@@ -32,6 +36,9 @@ async function put(rel, text) {
   await mkdir(dirname(p), { recursive: true });
   await writeFile(p, text, 'utf8');
 }
+
+// 1.2 added more pages to four existing books; those pages need app 1.2.0.
+const withExtra = (id, pages) => [...pages, ...(extraPages[id] ?? []).map((p) => ({ ...p, minApp: '1.2.0' }))];
 
 const books = [
   {
@@ -61,38 +68,38 @@ const books = [
   {
     id: 'castle_dreams',
     name: 'Castle Dreams',
-    description: 'Towers, drawbridges and a very gentle dragon.',
+    description: 'Towers, drawbridges, a very gentle dragon, a unicorn and swans on the moat.',
     accent: '#c9a8e8',
     order: 4,
     minApp: '1.1.0',
-    pages: castlePages
+    pages: withExtra('castle_dreams', castlePages)
   },
   {
     id: 'ocean_friends',
     name: 'Ocean Friends',
-    description: 'Whales, octopuses, turtles and fish in a calm blue sea.',
+    description: 'Whales, octopuses, turtles, dolphins, jellyfish and fish in a calm blue sea.',
     accent: '#7fcfe0',
     order: 5,
     minApp: '1.1.0',
-    pages: oceanPages
+    pages: withExtra('ocean_friends', oceanPages)
   },
   {
     id: 'sweet_treats',
     name: 'Sweet Treats',
-    description: 'Cupcakes, tea parties, a bakery and an ice cream cart.',
+    description: 'Cupcakes, tea parties, a bakery, an ice cream cart, donuts and a birthday cake.',
     accent: '#f49bbd',
     order: 6,
     minApp: '1.1.1',
-    pages: treatsPages
+    pages: withExtra('sweet_treats', treatsPages)
   },
   {
     id: 'forest_friends',
     name: 'Forest Friends',
-    description: 'A sleepy bear, a clever fox, a bunny, an owl and a hedgehog.',
+    description: 'A sleepy bear, a clever fox, a bunny, an owl, a hedgehog, a deer and a squirrel.',
     accent: '#8ed2b2',
     order: 7,
     minApp: '1.1.1',
-    pages: forestPages
+    pages: withExtra('forest_friends', forestPages)
   }
 ];
 
@@ -100,6 +107,7 @@ const books = [
 await rm(resolve(content, 'books'), { recursive: true, force: true });
 await rm(resolve(content, 'palettes'), { recursive: true, force: true });
 await rm(resolve(content, 'minigames'), { recursive: true, force: true });
+await rm(resolve(content, 'stories'), { recursive: true, force: true });
 
 let pageCount = 0;
 for (const b of books) {
@@ -133,7 +141,7 @@ for (const b of books) {
         name: p.name,
         description: p.description,
         version: VERSION,
-        minAppVersion: b.minApp ?? MIN,
+        minAppVersion: p.minApp ?? b.minApp ?? MIN,
         thumbnail: 'thumbnail.svg',
         lineArt: 'lineart.svg',
         regions: 'regions.json',
@@ -206,4 +214,56 @@ for (const l of puzzleLevels) {
   await put(`${dir}/level.json`, json(l.manifest(VERSION)));
 }
 
-console.log(`Generated ${books.length + 1} books, ${pageCount} coloring pages, ${palettes.length} palettes, ${breakerLevels.length} Pastel Breaker levels, ${splashLevels.length} Splash Wall levels, ${memoryLevels.length} Memory Meadow levels, ${puzzleLevels.length} Pastel Puzzle levels.`);
+
+// Cozy Stories and Story Adventures (new in 1.2)
+const STORY_VERSION = '1.2.0';
+for (const [i, st] of relaxing.entries()) {
+  const dir = `stories/relaxing/${st.id}`;
+  await put(`${dir}/cover.svg`, storyCovers[st.cover]);
+  await put(
+    `${dir}/story.json`,
+    json({
+      id: st.id,
+      name: st.name,
+      description: st.description,
+      version: STORY_VERSION,
+      minAppVersion: STORY_VERSION,
+      cover: 'cover.svg',
+      accent: st.accent,
+      mood: st.mood,
+      minutes: st.minutes,
+      order: i + 1,
+      chapters: st.chapters
+    })
+  );
+}
+for (const [i, ad] of adventures.entries()) {
+  const dir = `stories/adventures/${ad.id}`;
+  const nodes = {};
+  for (const [nid, n] of Object.entries(ad.nodes)) {
+    nodes[nid] = n.end ? { text: n.t, ending: { title: n.end[0], mood: n.end[1] } } : { text: n.t, choices: n.c.map(([text, to]) => ({ text, to })) };
+  }
+  await put(`${dir}/cover.svg`, storyCovers[ad.cover]);
+  await put(
+    `${dir}/adventure.json`,
+    json({
+      id: ad.id,
+      name: ad.name,
+      description: ad.description,
+      version: STORY_VERSION,
+      minAppVersion: STORY_VERSION,
+      cover: 'cover.svg',
+      accent: ad.accent,
+      genre: ad.genre,
+      protagonist: ad.protagonist,
+      ...(ad.interest ? { interest: ad.interest } : {}),
+      hero: ad.hero,
+      minutes: ad.minutes,
+      order: i + 1,
+      start: ad.start,
+      nodes
+    })
+  );
+}
+
+console.log(`Generated ${books.length + 1} books, ${pageCount} coloring pages, ${palettes.length} palettes, ${breakerLevels.length} Pastel Breaker levels, ${splashLevels.length} Splash Wall levels, ${memoryLevels.length} Memory Meadow levels, ${puzzleLevels.length} Pastel Puzzle levels, ${relaxing.length} cozy stories and ${adventures.length} story adventures.`);

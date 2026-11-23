@@ -1,0 +1,158 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Autumn sky",
+      "suggested": "#ffdcc8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "hill",
+      "name": "Hill",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "ground",
+      "name": "Ground",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "trunk",
+      "name": "Tree trunk",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "branch",
+      "name": "Branch",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "leaves_top",
+      "name": "Leaves",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "branch_leaf_a",
+      "name": "Leaf",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "branch_leaf_b",
+      "name": "Leaf",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "squirrel_tail",
+      "name": "Tail",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "squirrel_tail_tip",
+      "name": "Tail tip",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "squirrel_body",
+      "name": "Body",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "squirrel_belly",
+      "name": "Belly",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "squirrel_foot",
+      "name": "Foot",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "squirrel_ear_left",
+      "name": "Ear",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "squirrel_ear_right",
+      "name": "Ear",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "squirrel_head",
+      "name": "Head",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "squirrel_cheek",
+      "name": "Cheek",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "acorn_held_nut",
+      "name": "Acorn",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "acorn_held_cap",
+      "name": "Acorn cap",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "acorn_1_nut",
+      "name": "Acorn",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "acorn_1_cap",
+      "name": "Acorn cap",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "acorn_2_nut",
+      "name": "Acorn",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "acorn_2_cap",
+      "name": "Acorn cap",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "acorn_3_nut",
+      "name": "Acorn",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "acorn_3_cap",
+      "name": "Acorn cap",
+      "suggested": "#f8e4c2"
+    },
+    {
+      "id": "leaf_g1",
+      "name": "Fallen leaf",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "leaf_g2",
+      "name": "Fallen leaf",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "mush",
+      "name": "Mushroom cap",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "mush_stem",
+      "name": "Mushroom stem",
+      "suggested": "#fff8ec"
+    }
+  ]
+}

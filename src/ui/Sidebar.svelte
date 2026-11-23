@@ -10,6 +10,8 @@
     { id: 'books', label: 'Coloring Books', icon: 'book', go: () => navigate({ name: 'books' }) },
     { id: 'draw', label: 'Free Draw', icon: 'brush', go: () => navigate({ name: 'draw' }) },
     { id: 'gallery', label: 'Gallery', icon: 'image', go: () => navigate({ name: 'gallery' }) },
+    { id: 'stories', label: 'Cozy Stories', icon: 'bookOpen', go: () => navigate({ name: 'stories' }) },
+    { id: 'adventures', label: 'Story Adventures', icon: 'compass', go: () => navigate({ name: 'adventures' }) },
     { id: 'minigames', label: 'Mini-Games', icon: 'gamepad', go: () => navigate({ name: 'minigames' }) },
     { id: 'updates', label: 'Updates', icon: 'cloudDown', go: () => navigate({ name: 'updates' }) },
     { id: 'settings', label: 'Settings', icon: 'sliders', go: () => navigate({ name: 'settings' }) },
@@ -80,6 +82,10 @@
     flex-direction: column;
     gap: 4px;
     flex: 1;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: thin;
   }
   .item {
     width: 100%;

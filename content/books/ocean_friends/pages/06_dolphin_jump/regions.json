@@ -1,0 +1,93 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sun_rays",
+      "name": "Sun rays",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "cloud_b",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "sea_far",
+      "name": "Far sea",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "dolphin_tail",
+      "name": "Tail",
+      "suggested": "#a4d2f2"
+    },
+    {
+      "id": "dolphin_body",
+      "name": "Dolphin",
+      "suggested": "#a4d2f2"
+    },
+    {
+      "id": "dolphin_belly",
+      "name": "Belly",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "dolphin_snout",
+      "name": "Snout",
+      "suggested": "#a4d2f2"
+    },
+    {
+      "id": "dolphin_fin_top",
+      "name": "Fin",
+      "suggested": "#a4d2f2"
+    },
+    {
+      "id": "dolphin_fin_side",
+      "name": "Fin",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "wave_front",
+      "name": "Front wave",
+      "suggested": "#bdeeea"
+    },
+    {
+      "id": "splash_1",
+      "name": "Splash",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "splash_2",
+      "name": "Splash",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "splash_3",
+      "name": "Splash",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "splash_4",
+      "name": "Splash",
+      "suggested": "#ffffff"
+    }
+  ]
+}

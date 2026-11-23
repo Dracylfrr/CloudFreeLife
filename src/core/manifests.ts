@@ -462,6 +462,236 @@ export function validateLevel(raw: unknown, where = 'level.json'): Result<LevelM
   return done(e, { ...validateLevelBase(raw, e), ...raw } as LevelManifest);
 }
 
+// ---------------------------------------------------------------- stories
+
+export interface StoryChapter {
+  title: string;
+  /** Paragraphs, in reading order. */
+  text: string[];
+}
+
+export interface StoryManifest {
+  id: string;
+  name: string;
+  description: string;
+  cover: string;
+  version: string;
+  minAppVersion: string;
+  accent?: string;
+  /** One or two words shown on the card, e.g. "Bedtime" or "Cozy". */
+  mood?: string;
+  /** Rough reading time. */
+  minutes?: number;
+  order?: number;
+  chapters: StoryChapter[];
+}
+
+export const ENDING_MOODS = ['happy', 'sweet', 'funny', 'dreamy', 'cozy'] as const;
+export type EndingMood = (typeof ENDING_MOODS)[number];
+
+export interface AdventureChoice {
+  text: string;
+  to: string;
+}
+export interface AdventureNode {
+  text: string[];
+  choices?: AdventureChoice[];
+  ending?: { title: string; mood: EndingMood };
+}
+export type Protagonist = 'guy' | 'girl';
+
+export interface AdventureManifest {
+  id: string;
+  name: string;
+  description: string;
+  cover: string;
+  version: string;
+  minAppVersion: string;
+  accent?: string;
+  /** e.g. Adventure, Romance, Comedy, Mystery. */
+  genre: string;
+  /** Whose eyes the story is told through. */
+  protagonist: Protagonist;
+  /** Name of the love interest in a romance (always the opposite of the protagonist for now). */
+  interest?: string;
+  /** The narrator's name. */
+  hero?: string;
+  minutes?: number;
+  order?: number;
+  start: string;
+  nodes: Record<string, AdventureNode>;
+}
+
+const NODE_ID_RE = /^[a-z0-9][a-z0-9_]{0,47}$/;
+export const MIN_ENDINGS = 3;
+
+function textList(v: unknown, e: Errs, label: string): string[] {
+  if (!Array.isArray(v) || v.length === 0) {
+    e.add(`${label}: "text" must be a list of paragraphs`);
+    return [];
+  }
+  const out: string[] = [];
+  for (const t of v) {
+    if (typeof t !== 'string' || t.trim() === '') e.add(`${label}: paragraphs must be non-empty text`);
+    else if (t.length > 3000) e.add(`${label}: a paragraph is too long`);
+    else out.push(t);
+  }
+  return out;
+}
+
+export function validateStory(raw: unknown, where = 'story.json'): Result<StoryManifest> {
+  const e = new Errs(where);
+  if (!isObj(raw)) {
+    e.add('must be a JSON object');
+    return done(e, null as never);
+  }
+  const story: StoryManifest = {
+    id: reqId(raw, 'id', e),
+    name: reqString(raw, 'name', e, 80),
+    description: reqString(raw, 'description', e, 300),
+    cover: reqFile(raw, 'cover', e),
+    version: reqVersion(raw, 'version', e),
+    minAppVersion: reqVersion(raw, 'minAppVersion', e),
+    accent: typeof raw.accent === 'string' && HEX_RE.test(raw.accent) ? raw.accent : undefined,
+    mood: typeof raw.mood === 'string' && raw.mood.length <= 24 ? raw.mood : undefined,
+    minutes: typeof raw.minutes === 'number' && raw.minutes > 0 && raw.minutes < 600 ? Math.round(raw.minutes) : undefined,
+    order: typeof raw.order === 'number' && Number.isFinite(raw.order) ? raw.order : undefined,
+    chapters: []
+  };
+  if (!Array.isArray(raw.chapters) || raw.chapters.length === 0) e.add('"chapters" must be a non-empty list');
+  else if (raw.chapters.length > 60) e.add('too many chapters (60 at most)');
+  else {
+    for (const [i, c] of raw.chapters.entries()) {
+      if (!isObj(c)) {
+        e.add(`chapter ${i + 1} must be an object`);
+        continue;
+      }
+      const title = reqString(c, 'title', e, 80);
+      const text = textList(c.text, e, `chapter ${i + 1}`);
+      story.chapters.push({ title, text });
+    }
+  }
+  return done(e, story);
+}
+
+export function validateAdventure(raw: unknown, where = 'adventure.json'): Result<AdventureManifest> {
+  const e = new Errs(where);
+  if (!isObj(raw)) {
+    e.add('must be a JSON object');
+    return done(e, null as never);
+  }
+  if (raw.protagonist !== 'guy' && raw.protagonist !== 'girl') e.add('"protagonist" must be "guy" or "girl"');
+  const adv: AdventureManifest = {
+    id: reqId(raw, 'id', e),
+    name: reqString(raw, 'name', e, 80),
+    description: reqString(raw, 'description', e, 300),
+    cover: reqFile(raw, 'cover', e),
+    version: reqVersion(raw, 'version', e),
+    minAppVersion: reqVersion(raw, 'minAppVersion', e),
+    accent: typeof raw.accent === 'string' && HEX_RE.test(raw.accent) ? raw.accent : undefined,
+    genre: reqString(raw, 'genre', e, 24),
+    protagonist: raw.protagonist === 'girl' ? 'girl' : 'guy',
+    interest: typeof raw.interest === 'string' && raw.interest.length <= 40 ? raw.interest : undefined,
+    hero: typeof raw.hero === 'string' && raw.hero.length <= 40 ? raw.hero : undefined,
+    minutes: typeof raw.minutes === 'number' && raw.minutes > 0 && raw.minutes < 600 ? Math.round(raw.minutes) : undefined,
+    order: typeof raw.order === 'number' && Number.isFinite(raw.order) ? raw.order : undefined,
+    start: reqString(raw, 'start', e, 48),
+    nodes: {}
+  };
+  if (!isObj(raw.nodes) || Object.keys(raw.nodes).length === 0) {
+    e.add('"nodes" must be an object of story passages');
+    return done(e, adv);
+  }
+  const rawNodes = raw.nodes;
+  const ids = Object.keys(rawNodes);
+  if (ids.length > 400) e.add('too many passages (400 at most)');
+  for (const id of ids) {
+    const n = rawNodes[id];
+    const label = `passage "${id}"`;
+    if (!NODE_ID_RE.test(id)) {
+      e.add(`${label}: ids use lowercase letters, digits and underscores`);
+      continue;
+    }
+    if (!isObj(n)) {
+      e.add(`${label} must be an object`);
+      continue;
+    }
+    const node: AdventureNode = { text: textList(n.text, e, label) };
+    const hasChoices = n.choices !== undefined;
+    const hasEnding = n.ending !== undefined;
+    if (hasChoices === hasEnding) e.add(`${label}: needs either "choices" or "ending" (not both, not neither)`);
+    if (hasChoices) {
+      if (!Array.isArray(n.choices) || n.choices.length < 1 || n.choices.length > 4) e.add(`${label}: "choices" must list 1 to 4 options`);
+      else {
+        node.choices = [];
+        for (const c of n.choices) {
+          if (!isObj(c) || typeof c.text !== 'string' || c.text.trim() === '' || c.text.length > 160 || typeof c.to !== 'string') {
+            e.add(`${label}: every choice needs "text" and "to"`);
+            continue;
+          }
+          if (!(c.to in rawNodes)) e.add(`${label}: choice leads to "${c.to}", which does not exist`);
+          node.choices.push({ text: c.text, to: c.to });
+        }
+      }
+    }
+    if (hasEnding) {
+      const en = n.ending;
+      if (!isObj(en) || typeof en.title !== 'string' || en.title.trim() === '' || en.title.length > 60) e.add(`${label}: "ending" needs a "title"`);
+      else {
+        if (en.mood !== undefined && !ENDING_MOODS.includes(en.mood as EndingMood)) e.add(`${label}: ending "mood" must be one of ${ENDING_MOODS.join(', ')}`);
+        node.ending = { title: en.title, mood: ENDING_MOODS.includes(en.mood as EndingMood) ? (en.mood as EndingMood) : 'happy' };
+      }
+    }
+    adv.nodes[id] = node;
+  }
+  if (e.list.length) return done(e, adv);
+  if (!(adv.start in adv.nodes)) e.add(`"start" points to "${adv.start}", which does not exist`);
+  else {
+    const g = analyzeAdventure(adv);
+    if (g.endings < MIN_ENDINGS) e.add(`needs at least ${MIN_ENDINGS} different endings (has ${g.endings})`);
+    if (g.unreachable.length) e.add(`passages that can never be reached: ${g.unreachable.slice(0, 5).join(', ')}`);
+    if (g.stuck.length) e.add(`passages from which no ending can be reached: ${g.stuck.slice(0, 5).join(', ')}`);
+  }
+  return done(e, adv);
+}
+
+export interface AdventureGraphInfo {
+  endings: number;
+  unreachable: string[];
+  stuck: string[];
+}
+
+/** Structural facts about an adventure: ending count, dead passages and passages that trap the reader. */
+export function analyzeAdventure(adv: Pick<AdventureManifest, 'start' | 'nodes'>): AdventureGraphInfo {
+  const ids = Object.keys(adv.nodes);
+  const seen = new Set<string>();
+  const stack = [adv.start];
+  while (stack.length) {
+    const id = stack.pop()!;
+    if (seen.has(id) || !(id in adv.nodes)) continue;
+    seen.add(id);
+    for (const c of adv.nodes[id].choices ?? []) stack.push(c.to);
+  }
+  // Which passages can reach an ending? Iterate to a fixed point.
+  const canEnd = new Set(ids.filter((id) => adv.nodes[id].ending));
+  let grew = true;
+  while (grew) {
+    grew = false;
+    for (const id of ids) {
+      if (canEnd.has(id)) continue;
+      if ((adv.nodes[id].choices ?? []).some((c) => canEnd.has(c.to))) {
+        canEnd.add(id);
+        grew = true;
+      }
+    }
+  }
+  return {
+    endings: ids.filter((id) => adv.nodes[id].ending).length,
+    unreachable: ids.filter((id) => !seen.has(id)),
+    stuck: ids.filter((id) => seen.has(id) && !canEnd.has(id))
+  };
+}
+
 // ---------------------------------------------------------------- compatibility
 
 export interface Compat {

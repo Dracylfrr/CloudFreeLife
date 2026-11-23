@@ -6,6 +6,7 @@
   import Icon from '../../ui/Icon.svelte';
   import { openArtwork } from '../books/open';
   import CoverImg from '../books/CoverImg.svelte';
+  import ReadingCover from '../stories/ReadingCover.svelte';
   import { sfx } from '../../core/audio';
   import { onMount } from 'svelte';
   import { onAmbientTick } from '../../ui/ticker';
@@ -59,6 +60,32 @@
         <span class="tag sky"><Icon name="book" size={14} /> Open Coloring Books</span>
         <h3>Coloring Books</h3>
         <p>{$catalog.books.filter((b) => b.manifest.kind === 'coloring').reduce((n, b) => n + b.pages.length, 0)} cute pages across {$catalog.books.filter((b) => b.manifest.kind === 'coloring').length} books.</p>
+      </div>
+    </button>
+
+    <button class="card stories" onclick={() => navigate({ name: 'stories' })}>
+      <div class="visual stack warm">
+        {#each $catalog.stories.slice(0, 3) as s, i}
+          <div class="mini" style="--i:{i}"><ReadingCover item={s} /></div>
+        {/each}
+      </div>
+      <div class="meta">
+        <span class="tag pink"><Icon name="bookOpen" size={14} /> Read a Story</span>
+        <h3>Cozy Stories</h3>
+        <p>{$catalog.stories.length} short, gentle stories to unwind with. We keep your place.</p>
+      </div>
+    </button>
+
+    <button class="card adventures" onclick={() => navigate({ name: 'adventures' })}>
+      <div class="visual stack cool">
+        {#each $catalog.adventures.slice(0, 3) as a, i}
+          <div class="mini" style="--i:{i}"><ReadingCover item={a} /></div>
+        {/each}
+      </div>
+      <div class="meta">
+        <span class="tag butter"><Icon name="compass" size={14} /> Choose Your Path</span>
+        <h3>Story Adventures</h3>
+        <p>Be the guy or the girl. Adventure, romance, comedy and many endings.</p>
       </div>
     </button>
 
@@ -229,8 +256,25 @@
     background: var(--lilac);
     color: #5a4a98;
   }
+  .tag.pink {
+    background: var(--pink);
+    color: #8a3f63;
+  }
+  .tag.butter {
+    background: #fff2bd;
+    color: #7a6420;
+  }
   .stack {
     background: linear-gradient(135deg, #dff0fb, #ece3fb);
+  }
+  .stack.warm {
+    background: linear-gradient(135deg, #fde6ef, #fff0d8);
+  }
+  .stack.cool {
+    background: linear-gradient(135deg, #e3f5ee, #e6dcfa);
+  }
+  .mini :global(img) {
+    object-fit: cover;
   }
   .mini {
     position: absolute;

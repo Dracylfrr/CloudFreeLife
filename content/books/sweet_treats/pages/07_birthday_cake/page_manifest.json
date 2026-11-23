@@ -1,0 +1,11 @@
+{
+  "id": "birthday_cake",
+  "name": "Birthday Cake",
+  "description": "A three-tier cake with candles, cherries and balloons.",
+  "version": "1.0.0",
+  "minAppVersion": "1.2.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

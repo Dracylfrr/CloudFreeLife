@@ -1,0 +1,163 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "rainbow_outer",
+      "name": "Rainbow band",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "rainbow_mid",
+      "name": "Rainbow band",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "rainbow_inner",
+      "name": "Rainbow band",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "rainbow_sky",
+      "name": "Sky inside",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "far_wall",
+      "name": "Castle wall",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "far_tower",
+      "name": "Castle tower",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "far_roof",
+      "name": "Castle roof",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "hill",
+      "name": "Hill",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "meadow",
+      "name": "Meadow",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "uni_leg_a",
+      "name": "Leg",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "uni_leg_b",
+      "name": "Leg",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "uni_tail",
+      "name": "Tail",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "uni_body",
+      "name": "Body",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "uni_leg_c",
+      "name": "Leg",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "uni_leg_d",
+      "name": "Leg",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "uni_neck",
+      "name": "Neck",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "uni_mane",
+      "name": "Mane",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "uni_head",
+      "name": "Head",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "uni_snout",
+      "name": "Snout",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "uni_ear",
+      "name": "Ear",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "uni_horn",
+      "name": "Horn",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "uni_forelock",
+      "name": "Forelock",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "flower_a_petals",
+      "name": "Flower petals",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "flower_a_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "flower_b_petals",
+      "name": "Flower petals",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "flower_b_center",
+      "name": "Flower center",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "sparkle1",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "sparkle2",
+      "name": "Star",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

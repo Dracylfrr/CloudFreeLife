@@ -55,6 +55,8 @@ async function installedVersions(): Promise<InstalledVersions> {
   for (const l of getCatalog().splashLevels) out[l.manifest.id] = l.manifest.version;
   for (const l of getCatalog().memoryLevels) out[l.manifest.id] = l.manifest.version;
   for (const l of getCatalog().puzzleLevels) out[l.manifest.id] = l.manifest.version;
+  for (const l of getCatalog().stories) out[l.manifest.id] = l.manifest.version;
+  for (const l of getCatalog().adventures) out[l.manifest.id] = l.manifest.version;
   for (const r of await listInstalledPacks()) out[r.id] = out[r.id] && out[r.id]! > r.version ? out[r.id] : r.version;
   return out;
 }

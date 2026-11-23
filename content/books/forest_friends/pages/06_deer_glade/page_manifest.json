@@ -1,0 +1,11 @@
+{
+  "id": "deer_glade",
+  "name": "Deer in the Glade",
+  "description": "A gentle deer resting in a sunny glade.",
+  "version": "1.0.0",
+  "minAppVersion": "1.2.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

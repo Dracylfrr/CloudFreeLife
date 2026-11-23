@@ -1,0 +1,11 @@
+{
+  "id": "unicorn_meadow",
+  "name": "Unicorn Meadow",
+  "description": "A unicorn trotting beneath a pastel rainbow.",
+  "version": "1.0.0",
+  "minAppVersion": "1.2.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}

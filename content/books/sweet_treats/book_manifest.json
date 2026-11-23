@@ -1,7 +1,7 @@
 {
   "id": "sweet_treats",
   "name": "Sweet Treats",
-  "description": "Cupcakes, tea parties, a bakery and an ice cream cart.",
+  "description": "Cupcakes, tea parties, a bakery, an ice cream cart, donuts and a birthday cake.",
   "cover": "cover.svg",
   "version": "1.0.0",
   "minAppVersion": "1.1.1",
@@ -13,6 +13,8 @@
     "02_tea_party",
     "03_bakery_shop",
     "04_ice_cream_cart",
-    "05_picnic_basket"
+    "05_picnic_basket",
+    "06_donut_shop",
+    "07_birthday_cake"
   ]
 }

@@ -15,6 +15,8 @@ export interface Settings {
   uiScale: number; // 0.85 - 1.4
   lowPowerMode: boolean;
   fps30: boolean;
+  /** Reading size in Cozy Stories and Story Adventures (1 = normal). */
+  storyFontScale: number; // 0.9 - 1.7
   // Accessibility
   reducedMotion: boolean;
   disableParticles: boolean;
@@ -46,6 +48,7 @@ export const DEFAULT_SETTINGS: Settings = {
   uiScale: 1,
   lowPowerMode: false,
   fps30: false,
+  storyFontScale: 1.1,
   reducedMotion: false,
   disableParticles: false,
   highContrast: false,
@@ -82,6 +85,7 @@ export function sanitizeSettings(raw: unknown): Settings {
     uiScale: num(r.uiScale, d.uiScale, 0.85, 1.4),
     lowPowerMode: bool(r.lowPowerMode, d.lowPowerMode),
     fps30: bool(r.fps30, d.fps30),
+    storyFontScale: num(r.storyFontScale, d.storyFontScale, 0.9, 1.7),
     reducedMotion: bool(r.reducedMotion, d.reducedMotion),
     disableParticles: bool(r.disableParticles, d.disableParticles),
     highContrast: bool(r.highContrast, d.highContrast),

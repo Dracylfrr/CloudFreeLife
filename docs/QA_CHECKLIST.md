@@ -38,6 +38,15 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 - [ ] Splash Wall: all 10 levels open; aim, click-throw, hold-to-charge throw; splat stays in the region; goals count correctly; color match hints; Wash and Save PNG.
 - [ ] Pause with P; minimize the window and confirm CPU drops to ~0.
 
+## Cozy Stories & Story Adventures
+- [ ] Home and the sidebar show **Cozy Stories** and **Story Adventures** above Mini-Games.
+- [ ] Open each of the six stories; the text size buttons (A-/A+) change the text, Next/Previous and the arrow keys move chapters, and "The End" appears after the last chapter.
+- [ ] Leave a story halfway, restart the app, reopen it: it is on the same chapter.
+- [ ] Story Adventures: the "Play as a guy / girl" and genre filters work; each card shows its endings found.
+- [ ] Play an adventure: keys 1-4 choose, Step back undoes a choice, Start over restarts, an ending shows its title and the endings tracker.
+- [ ] Leave an adventure mid-way and restart the app: "Welcome back" and the same passage. A finished run starts over next time, but found endings stay.
+- [ ] Nothing overflows the window at the smallest size or at a large interface scale.
+
 ## Settings
 - [ ] Reduced Motion removes drifting clouds/bubbles immediately; particles off removes game particles.
 - [ ] UI scale, Low Power, 30 FPS take effect; sliders for Master/Music/Ambience/Effects/Painting; Mute.

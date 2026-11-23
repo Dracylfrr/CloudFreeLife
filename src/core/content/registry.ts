@@ -17,6 +17,10 @@ import {
   validatePalette,
   validateRegions,
   validateSplashLevel,
+  validateStory,
+  validateAdventure,
+  type AdventureManifest,
+  type StoryManifest,
   type BookManifest,
   type BreakerLevel,
   type MemoryLevel,
@@ -70,6 +74,15 @@ export interface LoadedPuzzleLevel extends Located {
   manifest: PuzzleLevel;
 }
 
+export interface LoadedStory extends Located {
+  folder: string;
+  manifest: StoryManifest;
+}
+export interface LoadedAdventure extends Located {
+  folder: string;
+  manifest: AdventureManifest;
+}
+
 export interface Skipped {
   where: string;
   reason: string;
@@ -83,11 +96,13 @@ export interface Catalog {
   splashLevels: LoadedSplashLevel[];
   memoryLevels: LoadedMemoryLevel[];
   puzzleLevels: LoadedPuzzleLevel[];
+  stories: LoadedStory[];
+  adventures: LoadedAdventure[];
   /** Content that exists but was not usable (invalid or needs a newer app). */
   skipped: Skipped[];
 }
 
-const empty = (): Catalog => ({ ready: false, books: [], palettes: [], breakerLevels: [], splashLevels: [], memoryLevels: [], puzzleLevels: [], skipped: [] });
+const empty = (): Catalog => ({ ready: false, books: [], palettes: [], breakerLevels: [], splashLevels: [], memoryLevels: [], puzzleLevels: [], stories: [], adventures: [], skipped: [] });
 
 const store = writable<Catalog>(empty());
 export const catalog = { subscribe: store.subscribe };
@@ -197,6 +212,33 @@ async function loadLevels<T extends BreakerLevel | SplashLevel | MemoryLevel | P
   return out;
 }
 
+async function loadReadings<T extends StoryManifest | AdventureManifest>(
+  tree: ContentTree,
+  base: string,
+  file: string,
+  validate: (raw: unknown, where: string) => { ok: true; value: T } | { ok: false; errors: string[] },
+  skipped: Skipped[],
+  appVersion?: string
+): Promise<(Located & { folder: string; manifest: T })[]> {
+  const out: (Located & { folder: string; manifest: T })[] = [];
+  for (const folder of await tree.listDirs(base)) {
+    const dir = `${base}/${folder}`;
+    const raw = await tree.readJson(`${dir}/${file}`);
+    if (raw === null) continue;
+    const v = validate(raw, `${dir}/${file}`);
+    if (!v.ok) {
+      skipped.push({ where: dir, reason: v.errors.join('; ') });
+      continue;
+    }
+    if (!checkCompatibility(v.value, appVersion).ok) {
+      skipped.push({ where: dir, reason: `Requires Cloud-Freelife ${v.value.minAppVersion}` });
+      continue;
+    }
+    out.push({ source: tree.source, tree, dir, folder, manifest: v.value });
+  }
+  return out;
+}
+
 /** When the same id exists in several sources the newest version wins; ties prefer bundled. */
 function mergeById<T extends Located>(items: T[], idOf: (t: T) => string, versionOf: (t: T) => string): T[] {
   const best = new Map<string, T>();
@@ -216,6 +258,8 @@ export async function buildCatalog(trees: ContentTree[], appVersion?: string): P
   const splash: LoadedSplashLevel[] = [];
   const memory: LoadedMemoryLevel[] = [];
   const puzzle: LoadedPuzzleLevel[] = [];
+  const stories: LoadedStory[] = [];
+  const adventures: LoadedAdventure[] = [];
   for (const tree of trees) {
     try {
       books.push(...(await loadBooks(tree, skipped, appVersion)));
@@ -224,11 +268,14 @@ export async function buildCatalog(trees: ContentTree[], appVersion?: string): P
       splash.push(...(await loadLevels<SplashLevel>(tree, 'splash_wall', skipped, appVersion)));
       memory.push(...(await loadLevels<MemoryLevel>(tree, 'memory_meadow', skipped, appVersion)));
       puzzle.push(...(await loadLevels<PuzzleLevel>(tree, 'pastel_puzzle', skipped, appVersion)));
+      stories.push(...(await loadReadings<StoryManifest>(tree, 'stories/relaxing', 'story.json', validateStory, skipped, appVersion)));
+      adventures.push(...(await loadReadings<AdventureManifest>(tree, 'stories/adventures', 'adventure.json', validateAdventure, skipped, appVersion)));
     } catch (err) {
       skipped.push({ where: `${tree.source} content`, reason: String(err) });
     }
   }
   const byFolder = (a: { folder: string }, b: { folder: string }) => a.folder.localeCompare(b.folder);
+  const byOrder = (a: { folder: string; manifest: { order?: number } }, b: { folder: string; manifest: { order?: number } }) => (a.manifest.order ?? 1000) - (b.manifest.order ?? 1000) || byFolder(a, b);
   return {
     ready: true,
     books: mergeById(books, (b) => b.manifest.id, (b) => b.manifest.version).sort((a, b) => a.manifest.name.localeCompare(b.manifest.name)),
@@ -237,6 +284,8 @@ export async function buildCatalog(trees: ContentTree[], appVersion?: string): P
     splashLevels: mergeById(splash, (l) => l.manifest.id, (l) => l.manifest.version).sort(byFolder),
     memoryLevels: mergeById(memory, (l) => l.manifest.id, (l) => l.manifest.version).sort(byFolder),
     puzzleLevels: mergeById(puzzle, (l) => l.manifest.id, (l) => l.manifest.version).sort(byFolder),
+    stories: mergeById(stories, (l) => l.manifest.id, (l) => l.manifest.version).sort(byOrder),
+    adventures: mergeById(adventures, (l) => l.manifest.id, (l) => l.manifest.version).sort(byOrder),
     skipped
   };
 }
@@ -260,6 +309,12 @@ export function findBook(id: string): LoadedBook | undefined {
 }
 export function findPage(bookId: string, pageId: string): LoadedPage | undefined {
   return findBook(bookId)?.pages.find((p) => p.manifest.id === pageId);
+}
+export function findStory(id: string): LoadedStory | undefined {
+  return get(store).stories.find((s) => s.manifest.id === id);
+}
+export function findAdventure(id: string): LoadedAdventure | undefined {
+  return get(store).adventures.find((s) => s.manifest.id === id);
 }
 export function findPalette(id: string): LoadedPalette | undefined {
   return get(store).palettes.find((p) => p.manifest.id === id);

@@ -1,0 +1,138 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "sky",
+      "name": "Sky",
+      "suggested": "#dff0fb"
+    },
+    {
+      "id": "sun_rays",
+      "name": "Sun rays",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "sun",
+      "name": "Sun",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cloud_a",
+      "name": "Cloud",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "castle_wall",
+      "name": "Castle wall",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "merlons",
+      "name": "Battlements",
+      "suggested": "#e3e0f0"
+    },
+    {
+      "id": "tower_left",
+      "name": "Tower",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "tower_right",
+      "name": "Tower",
+      "suggested": "#d9cdf6"
+    },
+    {
+      "id": "roof_left",
+      "name": "Roof",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "roof_right",
+      "name": "Roof",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "gate",
+      "name": "Gate",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "bank",
+      "name": "Bank",
+      "suggested": "#c2e8c4"
+    },
+    {
+      "id": "moat",
+      "name": "Moat",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "pad_a",
+      "name": "Lily pad",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "pad_b",
+      "name": "Lily pad",
+      "suggested": "#a9dcb4"
+    },
+    {
+      "id": "lily",
+      "name": "Lily",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "swan_a_body",
+      "name": "Swan",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "swan_a_wing",
+      "name": "Wing",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "swan_a_neck",
+      "name": "Neck",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "swan_a_head",
+      "name": "Head",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "swan_a_beak",
+      "name": "Beak",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "swan_b_body",
+      "name": "Swan",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "swan_b_wing",
+      "name": "Wing",
+      "suggested": "#fff8ec"
+    },
+    {
+      "id": "swan_b_neck",
+      "name": "Neck",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "swan_b_head",
+      "name": "Head",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "swan_b_beak",
+      "name": "Beak",
+      "suggested": "#ffc3b0"
+    }
+  ]
+}

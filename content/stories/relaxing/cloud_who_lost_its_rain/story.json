@@ -1,0 +1,38 @@
+{
+  "id": "cloud_who_lost_its_rain",
+  "name": "The Cloud Who Lost Its Rain",
+  "description": "A small cloud wakes up with no rain to give, and learns that some things come back when you stop chasing them.",
+  "version": "1.2.0",
+  "minAppVersion": "1.2.0",
+  "cover": "cover.svg",
+  "accent": "#8fc7ec",
+  "mood": "Soothing",
+  "minutes": 4,
+  "order": 1,
+  "chapters": [
+    {
+      "title": "A Very Dry Morning",
+      "text": [
+        "Pebble was a small, round cloud who lived above Willow Hill. Every morning she stretched, yawned, and let a little rain fall on the daisies below. It was her favorite job in the whole sky.",
+        "But one morning, Pebble stretched, yawned, and nothing happened. She gave a gentle wiggle. Still nothing. Not one drop came out. \"Oh dear,\" said Pebble. \"I seem to have lost my rain.\"",
+        "Down on the hill, the daisies looked up with their sleepy yellow faces. \"Good morning, Pebble,\" they said politely. Pebble felt her cheeks go pink. She did not want to disappoint anyone, least of all flowers."
+      ]
+    },
+    {
+      "title": "Asking Around",
+      "text": [
+        "Pebble drifted off to find her rain. First she asked the Wind, who was busy folding the treetops. \"Have you seen my rain?\" she asked. \"Hm,\" said the Wind. \"I have seen leaves, kites and one very surprised hat. No rain, I am afraid.\"",
+        "Next she asked the Sun, who was warming a wall for a cat. \"Perhaps it dried up,\" said the Sun kindly. \"That does happen. But rain is usually just resting somewhere.\"",
+        "Last she asked a frog beside the pond. The frog thought for a long, slow moment. \"When I lose something,\" he said, \"I stop looking for it and sit very still. Then it usually finds me.\" Pebble did not understand, but she trusted a frog who thought that slowly."
+      ]
+    },
+    {
+      "title": "Rain, Slowly",
+      "text": [
+        "So Pebble sat very still above the pond, and she did something she had not done in a long while. She simply watched. A dragonfly stitched the air. A snail crossed a leaf. Somewhere a bee hummed one lazy note, over and over.",
+        "And Pebble began to giggle. It was a small giggle at first, then a bigger one, and with every giggle her middle went soft and heavy and cool. Plink. Plink. Plinkety plink.",
+        "Rain! Soft, silver, gentle rain, falling on the daisies and the pond and the sleepy frog. \"There it is,\" said the frog, without opening his eyes. Pebble smiled all the way down to her edges, and rained until the whole hill smelled of clover. When the last drop fell, she curled up in the evening sky and went to sleep."
+      ]
+    }
+  ]
+}

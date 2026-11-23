@@ -1,0 +1,148 @@
+{
+  "viewBox": [
+    1000,
+    750
+  ],
+  "regions": [
+    {
+      "id": "wall",
+      "name": "Wall",
+      "suggested": "#e6d8f8"
+    },
+    {
+      "id": "bunting_1",
+      "name": "Flag",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "bunting_2",
+      "name": "Flag",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "bunting_3",
+      "name": "Flag",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "bunting_4",
+      "name": "Flag",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "bunting_5",
+      "name": "Flag",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "bunting_6",
+      "name": "Flag",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "bunting_7",
+      "name": "Flag",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "bunting_8",
+      "name": "Flag",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "table",
+      "name": "Table",
+      "suggested": "#e9c7a3"
+    },
+    {
+      "id": "plate",
+      "name": "Plate",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "tier_bottom",
+      "name": "Bottom tier",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "tier_middle",
+      "name": "Middle tier",
+      "suggested": "#fff2bd"
+    },
+    {
+      "id": "tier_top",
+      "name": "Top tier",
+      "suggested": "#c6ecda"
+    },
+    {
+      "id": "icing_bottom",
+      "name": "Icing",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "icing_top",
+      "name": "Icing",
+      "suggested": "#ffffff"
+    },
+    {
+      "id": "candle_a",
+      "name": "Candle",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "candle_b",
+      "name": "Candle",
+      "suggested": "#ffc3b0"
+    },
+    {
+      "id": "candle_c",
+      "name": "Candle",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "flame_1",
+      "name": "Flame",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "flame_2",
+      "name": "Flame",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "flame_3",
+      "name": "Flame",
+      "suggested": "#ffe9a8"
+    },
+    {
+      "id": "cherry_a",
+      "name": "Cherry",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "cherry_b",
+      "name": "Cherry",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "cherry_c",
+      "name": "Cherry",
+      "suggested": "#f6b8cf"
+    },
+    {
+      "id": "balloon_left",
+      "name": "Balloon",
+      "suggested": "#ffd3e2"
+    },
+    {
+      "id": "balloon_right",
+      "name": "Balloon",
+      "suggested": "#bfe4f7"
+    },
+    {
+      "id": "balloon_far",
+      "name": "Balloon",
+      "suggested": "#fff2bd"
+    }
+  ]
+}

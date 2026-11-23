@@ -1,0 +1,225 @@
+{
+  "id": "letters_at_the_lighthouse",
+  "name": "Letters at the Lighthouse",
+  "description": "You are Sam, the mail-boat boy, and a bottle on the beach asks a question: is the sea lonely too?",
+  "version": "1.2.0",
+  "minAppVersion": "1.2.0",
+  "cover": "cover.svg",
+  "accent": "#7fcfe0",
+  "genre": "Romance",
+  "protagonist": "guy",
+  "interest": "Clara",
+  "hero": "Sam",
+  "minutes": 9,
+  "order": 4,
+  "start": "start",
+  "nodes": {
+    "start": {
+      "text": [
+        "I'm Sam, and I deliver the mail by boat to every island between here and the horizon. This morning the mist is thick and pearl-colored, and when I pull up at Lighthouse Rock, a small green bottle is rolling gently on the sand.",
+        "Inside it is a note in slanted handwriting: \"To whoever finds this: is the sea lonely too?\" I read it three times. Whoever wrote it is somewhere nearby."
+      ],
+      "choices": [
+        {
+          "text": "Climb the spiral stairs to find the writer",
+          "to": "stairs"
+        },
+        {
+          "text": "Write a reply and send the bottle back",
+          "to": "reply"
+        },
+        {
+          "text": "Ask the seagulls, who always know everything",
+          "to": "gulls"
+        }
+      ]
+    },
+    "stairs": {
+      "text": [
+        "The stairs wind up and up. At the top, in the lamp room, a girl my age is polishing the great glass lens, humming. She turns, sees the bottle in my hand, and goes the color of a sunrise. \"Oh,\" she says. \"Oh no. You found it.\""
+      ],
+      "choices": [
+        {
+          "text": "Tell her I'm glad I did",
+          "to": "admit"
+        },
+        {
+          "text": "Pretend I came to inspect the lamp",
+          "to": "pretend"
+        }
+      ]
+    },
+    "reply": {
+      "text": [
+        "I scribble an answer on the back of a delivery slip: \"Sometimes. But it is better with a friend on the shore.\" I seal the bottle, wade out to my knees and let the tide carry it away. The next morning there is a new bottle in the same spot, with a new note: \"Who are you?\""
+      ],
+      "choices": [
+        {
+          "text": "Keep writing back and forth",
+          "to": "pen_pals"
+        },
+        {
+          "text": "Go up and meet her instead",
+          "to": "stairs"
+        }
+      ]
+    },
+    "gulls": {
+      "text": [
+        "The gulls stare at me. Then the biggest one snatches the note out of my hand, flaps up the cliff and drops it at the feet of a girl on the lighthouse balcony. She reads it, looks at me, and waves. I think I just delivered my own mail."
+      ],
+      "choices": [
+        {
+          "text": "Run up the stairs after the gulls",
+          "to": "stairs"
+        }
+      ]
+    },
+    "admit": {
+      "text": [
+        "\"I'm Clara,\" she says, and tucks a strand of hair behind her ear. \"My father keeps the light, and I keep the lonely thoughts.\" She shows me a brass telescope pointed at the first evening star. \"Would you like to look?\""
+      ],
+      "choices": [
+        {
+          "text": "Stay for sunset",
+          "to": "sunset"
+        },
+        {
+          "text": "Offer to take her out on my boat",
+          "to": "boat"
+        }
+      ]
+    },
+    "pretend": {
+      "text": [
+        "\"Just checking the lamp,\" I say, and press the nearest lever, very officially. The great light swings around, and a foghorn the size of a house blasts across the bay. Clara claps her hands over her ears, and we both nearly tumble into the lens."
+      ],
+      "choices": [
+        {
+          "text": "Confess everything",
+          "to": "admit"
+        },
+        {
+          "text": "Keep pretending anyway",
+          "to": "end_busted"
+        }
+      ]
+    },
+    "pen_pals": {
+      "text": [
+        "For weeks, bottles drift back and forth. She tells me about the storm that taught her to count waves. I tell her about the otter who steals my mail. Her handwriting becomes the best part of my morning.",
+        "One day she writes, \"You know my name. May I know yours?\" I realize I have never signed a single letter."
+      ],
+      "choices": [
+        {
+          "text": "Finally sign my name",
+          "to": "end_letters"
+        },
+        {
+          "text": "Leave it a mystery until we meet",
+          "to": "end_mystery"
+        }
+      ]
+    },
+    "sunset": {
+      "text": [
+        "The sun sets slowly, painting the water orange and lavender. Clara stands beside me at the rail, and her father starts the great lamp for the night. It turns, slow and gold, across the waves. \"It's the best part of the day,\" she says softly."
+      ],
+      "choices": [
+        {
+          "text": "Take her hand as the lamp sweeps past",
+          "to": "end_lamp"
+        },
+        {
+          "text": "Tell her I'm afraid of storms",
+          "to": "end_storm_tale"
+        }
+      ]
+    },
+    "boat": {
+      "text": [
+        "My little mail boat rocks like a cradle. Clara sits in the bow with her hands trailing in the water, laughing every time a wave tickles her wrist. The sea is calm, the evening is warm, and the gulls trail behind us like a parade."
+      ],
+      "choices": [
+        {
+          "text": "Row to the sandbar at low tide",
+          "to": "end_sandbar"
+        },
+        {
+          "text": "Show her my mail route",
+          "to": "end_route"
+        }
+      ]
+    },
+    "end_busted": {
+      "text": [
+        "The foghorn blasts again. And again. Clara's father bursts in, still holding a sandwich, and finds me hugging the control panel. \"You're the new inspector?\" he says. \"Then you'll want to check the other lamp.\" There is no other lamp.",
+        "I am marched around the entire lighthouse before lunch. Clara walks beside me, trying very hard not to laugh. By the end, she's laughing so hard she has to hold the railing. I do not mind."
+      ],
+      "ending": {
+        "title": "The Official Inspector",
+        "mood": "funny"
+      }
+    },
+    "end_letters": {
+      "text": [
+        "\"Dear Clara,\" I write, \"my name is Sam, and I would like to carry this letter to you in person.\" I row to the rock the next morning. She is already waiting on the dock, with a bottle in each hand.",
+        "We sit on the rocks until the tide comes in, reading each other's letters out loud. It turns out that handwriting can fall in love before the people do."
+      ],
+      "ending": {
+        "title": "Dear Clara",
+        "mood": "sweet"
+      }
+    },
+    "end_mystery": {
+      "text": [
+        "\"Meet me on the dock at dawn,\" I write, and leave the name off. Dawn comes cold and clear. Clara stands on the planks, holding the bottle, squinting at the one boy in the whole bay who is carrying a bag of mail.",
+        "\"It's you!\" she says. \"I knew it! The otter told me.\" She has been guessing for weeks. We stand there laughing, a mystery solved, and a much better one just starting."
+      ],
+      "ending": {
+        "title": "The Mystery Solved",
+        "mood": "dreamy"
+      }
+    },
+    "end_lamp": {
+      "text": [
+        "The light sweeps across the water, and I take her hand, just as it passes. She does not let go. We stand there as the beam turns, once, twice, ten times, neither of us wanting to be the first to speak.",
+        "\"Is the sea lonely?\" I ask at last. She squeezes my hand. \"Not tonight,\" Clara says."
+      ],
+      "ending": {
+        "title": "Not Tonight",
+        "mood": "happy"
+      }
+    },
+    "end_storm_tale": {
+      "text": [
+        "\"I hate storms,\" I admit, a little embarrassed. \"Out on the water, they're so loud.\" Clara doesn't laugh. She points at the great lamp. \"That's what it's for. It isn't only a light. It's a promise that somebody is watching for you.\"",
+        "From that night on, whenever the sky grows dark and the waves turn rough, I look for the golden beam. And I always know exactly who is behind it."
+      ],
+      "ending": {
+        "title": "Somebody Is Watching",
+        "mood": "sweet"
+      }
+    },
+    "end_sandbar": {
+      "text": [
+        "The tide has pulled back to reveal a long, silver sandbar shaped like a smile. We step out barefoot and walk across it, with the sea on both sides, wet sand squishing between our toes. Clara runs ahead, spinning, her arms wide.",
+        "We stay until the water begins to creep back over our ankles. Then we dash for the boat, drenched, giggling and without a single regret."
+      ],
+      "ending": {
+        "title": "The Sandbar",
+        "mood": "happy"
+      }
+    },
+    "end_route": {
+      "text": [
+        "I show her every island on my route, the otter who steals the mail, the old man with seventeen cats, the tiny post office on stilts. Clara has never been past the rock before. Her eyes grow wider with every stop.",
+        "At the last island, the postmaster stamps a card with a little compass on it. \"Assistant Postmaster,\" he says, handing it to her. She holds it as though it were a medal. And from that day on, the boat has two sets of oars."
+      ],
+      "ending": {
+        "title": "Two Sets of Oars",
+        "mood": "cozy"
+      }
+    }
+  }
+}

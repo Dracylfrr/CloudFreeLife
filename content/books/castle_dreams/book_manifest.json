@@ -1,7 +1,7 @@
 {
   "id": "castle_dreams",
   "name": "Castle Dreams",
-  "description": "Towers, drawbridges and a very gentle dragon.",
+  "description": "Towers, drawbridges, a very gentle dragon, a unicorn and swans on the moat.",
   "cover": "cover.svg",
   "version": "1.0.0",
   "minAppVersion": "1.1.0",
@@ -13,6 +13,8 @@
     "02_dragon_tower",
     "03_knight_friend",
     "04_throne_room",
-    "05_castle_garden"
+    "05_castle_garden",
+    "06_unicorn_meadow",
+    "07_moat_swans"
   ]
 }

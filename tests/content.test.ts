@@ -16,7 +16,7 @@ describe('bundled content', () => {
     expect(cat.books.map((b) => b.manifest.id).sort()).toEqual(['castle_dreams', 'cloud_dreams', 'cosmic_colors', 'forest_friends', 'free_canvas', 'ocean_friends', 'peaceful_places', 'sweet_treats']);
   });
 
-  it('ships at least 6 pages in each of the three original books (18) and 5 in each newer book (38 total)', async () => {
+  it('ships at least 6 pages in each of the three original books (18) and 5 in each newer book (46 total after 1.2)', async () => {
     const cat = await catalogP;
     for (const id of ['cloud_dreams', 'cosmic_colors', 'peaceful_places']) {
       expect(cat.books.find((b) => b.manifest.id === id)!.pages.length).toBeGreaterThanOrEqual(6);
@@ -31,7 +31,7 @@ describe('bundled content', () => {
       expect(b.pages.length).toBeGreaterThanOrEqual(5);
       expect(b.manifest.minAppVersion).toBe('1.1.1');
     }
-    expect(cat.books.reduce((n, b) => n + b.pages.length, 0)).toBe(38);
+    expect(cat.books.reduce((n, b) => n + b.pages.length, 0)).toBe(46);
   });
 
   it('keeps human-readable folder names (no generated ids)', async () => {

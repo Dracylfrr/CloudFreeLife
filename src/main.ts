@@ -3,6 +3,7 @@ import './app.css';
 import App from './App.svelte';
 import { initAudio } from './core/audio';
 import { loadCatalog } from './core/content/registry';
+import { loadStoryProgress } from './features/stories/progress';
 import { runLeaveGuards } from './core/router';
 import { applyUiScale } from './core/display';
 import { isAppHidden, onVisibilityChange } from './core/visibility';
@@ -26,7 +27,7 @@ async function boot() {
   });
   initAudio();
 
-  await Promise.all([loadCatalog(), refreshArtworks()]);
+  await Promise.all([loadCatalog(), refreshArtworks(), loadStoryProgress()]);
 
   // Pause decorative animation when the window is hidden or minimised.
   const syncPaused = () => document.documentElement.setAttribute('data-paused', String(isAppHidden()));

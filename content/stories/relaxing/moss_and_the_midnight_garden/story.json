@@ -1,0 +1,37 @@
+{
+  "id": "moss_and_the_midnight_garden",
+  "name": "Moss and the Midnight Garden",
+  "description": "A little mouse waits up late to see the one flower that only blooms at midnight.",
+  "version": "1.2.0",
+  "minAppVersion": "1.2.0",
+  "cover": "cover.svg",
+  "accent": "#8ed2b2",
+  "mood": "Dreamy",
+  "minutes": 5,
+  "order": 4,
+  "chapters": [
+    {
+      "title": "The Promise of a Bud",
+      "text": [
+        "At the bottom of the old stone wall there was a garden, and in the garden there was a single silver bud. Moss, a small gray mouse, had watched it for nine days. His grandmother had told him the secret: this flower opens only at midnight, and only once.",
+        "Tonight was the night. Moss packed a thimble of warm milk, a button-sized pillow and a very large amount of patience. Then he sat down beside the bud and waited."
+      ]
+    },
+    {
+      "title": "Waiting",
+      "text": [
+        "Waiting, Moss discovered, is a kind of listening. He heard the crickets begin their evening song. He heard a leaf let go of a branch and take a very long time to land. He heard his own breathing slow down, until it matched the breathing of the garden.",
+        "A snail came by and shared a story about a very tall tomato. A moth landed on the pillow and fell asleep at once. The moon rose over the wall and the shadows grew long and kind.",
+        "Moss blinked. Once. Twice. The bud did not move. \"Not yet,\" whispered the garden, and Moss nodded, because he was not in any hurry at all."
+      ]
+    },
+    {
+      "title": "Midnight",
+      "text": [
+        "Somewhere far away a clock took a deep breath and began to chime. One. Two. Three. And as the twelfth chime floated over the wall, the silver bud shivered and unfolded, one petal after another, like a hand opening in its sleep.",
+        "The whole garden lit up with a soft pearly glow. Every leaf looked as if it had been dipped in moonlight. The scent was the smell of every good evening Moss had ever had.",
+        "He did not say a word. He only sat and looked, with his chin in his paws, until his eyes grew heavy. In the morning he woke up curled on his pillow, with a single silver petal tucked under his arm, and he knew that it had not been a dream."
+      ]
+    }
+  ]
+}

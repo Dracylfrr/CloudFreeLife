@@ -7,6 +7,10 @@ export type Route =
   | { name: 'draw' }
   | { name: 'paint'; artworkId: string }
   | { name: 'gallery' }
+  | { name: 'stories' }
+  | { name: 'story'; storyId: string }
+  | { name: 'adventures' }
+  | { name: 'adventure'; adventureId: string }
   | { name: 'minigames'; game?: string }
   | { name: 'breaker'; levelId?: string; mode?: 'relax' | 'classic' | 'endless' }
   | { name: 'splash'; levelId?: string }
@@ -16,7 +20,7 @@ export type Route =
   | { name: 'settings'; tab?: string }
   | { name: 'about' };
 
-export type NavSection = 'home' | 'books' | 'draw' | 'gallery' | 'minigames' | 'updates' | 'settings' | 'about';
+export type NavSection = 'home' | 'books' | 'draw' | 'gallery' | 'stories' | 'adventures' | 'minigames' | 'updates' | 'settings' | 'about';
 
 const store = writable<Route>({ name: 'home' });
 export const route = { subscribe: store.subscribe };
@@ -59,6 +63,10 @@ export function sectionOf(r: Route): NavSection {
       return 'books';
     case 'draw':
       return 'draw';
+    case 'story':
+      return 'stories';
+    case 'adventure':
+      return 'adventures';
     case 'paint':
       return 'books';
     case 'breaker':

@@ -1,0 +1,11 @@
+{
+  "id": "jellyfish_glow",
+  "name": "Glowing Jellyfish",
+  "description": "Two soft jellyfish drifting through the deep blue.",
+  "version": "1.0.0",
+  "minAppVersion": "1.2.0",
+  "thumbnail": "thumbnail.svg",
+  "lineArt": "lineart.svg",
+  "regions": "regions.json",
+  "difficulty": "easy"
+}
