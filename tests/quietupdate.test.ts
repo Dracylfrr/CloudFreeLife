@@ -51,7 +51,7 @@ describe('quiet updates: the desktop side', () => {
     expect(rust).toContain('can_self_update');
   });
   it('is registered as a command', () => {
-    expect(rust).toContain('generate_handler![can_self_update, install_update]');
+    expect(rust).toContain('generate_handler![can_self_update, install_update, set_taskbar_icon]');
   });
   it('can still read and tidy up its own old installers, and the NSIS installer runs for the current user', () => {
     const caps = readFileSync('src-tauri/capabilities/default.json', 'utf8');

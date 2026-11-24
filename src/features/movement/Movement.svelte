@@ -73,11 +73,26 @@
     color: var(--c-violet);
     background: linear-gradient(135deg, var(--nav-a), var(--nav-b));
   }
+  /* five cards across, so the whole shelf shows at once; fewer columns only on a narrow window */
   .shelf {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 24px;
-    max-width: 1180px;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 16px;
+  }
+  @media (max-width: 1180px) {
+    .shelf {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 940px) {
+    .shelf {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 680px) {
+    .shelf {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
   .card {
     position: relative;
@@ -109,10 +124,14 @@
     border-bottom: 5px solid var(--accent);
   }
   .info {
-    padding: 14px 20px 20px;
+    padding: 10px 14px 16px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 5px;
+  }
+  .info h3 {
+    font-size: 1.02rem;
+    line-height: 1.2;
   }
   .chips {
     display: flex;
@@ -122,9 +141,9 @@
   .chip {
     background: var(--lilac);
     color: var(--c-violet);
-    padding: 3px 10px;
+    padding: 3px 9px;
     border-radius: 999px;
-    font-size: 0.74rem;
+    font-size: 0.7rem;
     font-weight: 800;
   }
   .chip.soft {
@@ -133,8 +152,8 @@
   }
   .info p {
     color: var(--ink-soft);
-    font-size: 0.93rem;
-    min-height: 2.6em;
+    font-size: 0.84rem;
+    line-height: 1.4;
   }
   .fav {
     position: absolute;

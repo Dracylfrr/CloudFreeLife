@@ -1,6 +1,6 @@
 [package]
 name = "cloud-freelife"
-version = "1.6.2"
+version = "1.6.3"
 description = "Cloud-Freelife - a calm pastel coloring, drawing and mini-game app"
 authors = ["Cloud-Freelife contributors"]
 edition = "2021"
@@ -22,6 +22,9 @@ tauri-plugin-http = "2"
 sha2 = "0.10"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = ["Win32_Foundation", "Win32_UI_WindowsAndMessaging"] }
 
 # Small, fast, quiet release binary.
 [profile.release]

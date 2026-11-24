@@ -217,11 +217,26 @@
     background: linear-gradient(135deg, var(--nav-a), var(--nav-b));
     color: var(--nav-ink);
   }
+  /* five cards across, so the whole shelf shows at once; fewer columns only on a narrow window */
   .shelf {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 26px;
-    max-width: 1180px;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 16px;
+  }
+  @media (max-width: 1180px) {
+    .shelf {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 940px) {
+    .shelf {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 680px) {
+    .shelf {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
   .series {
     grid-column: 1 / -1;

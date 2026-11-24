@@ -2,6 +2,14 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com), and the project uses [Semantic Versioning](https://semver.org).
 
+## [1.6.3]
+
+### Changed
+- **Coloring Books (the shelf of books and the pages inside each book), Meditation, Exercise, Cozy Stories and Story Adventures now show their cards five across**, so a whole shelf fits on one screen (all ten exercises are five by two). The cards are a little more compact; on a narrow window the shelf drops to four, three or two columns.
+
+### Fixed
+- **The App icon you choose now shows on the Windows taskbar too.** Until now it only changed the small icon in the window's title bar, while the taskbar button kept the original picture. (A shortcut or a pinned button is still drawn from the file itself, so those keep the original icon.)
+
 ## [1.6.2]
 
 ### Changed

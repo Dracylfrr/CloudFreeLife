@@ -38,6 +38,10 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 - [ ] Splash Wall: all 16 levels open; aim, click-throw, hold-to-charge throw; splat stays in the region; goals count correctly; color match hints; Wash and Save PNG.
 - [ ] Pause with P; minimize the window and confirm CPU drops to ~0.
 
+## 1.6.3 checks
+- [ ] Coloring Books (the books, and the pages inside a book), Meditation, Exercise, Cozy Stories (All stories) and Story Adventures show five cards across at a full-size window; narrower windows show fewer columns, never a sideways scrollbar.
+- [ ] Settings > Display > App icon: pick another icon and the taskbar button changes within a couple of seconds (and the title bar icon too). Picking the original icon again puts it back.
+
 ## 1.6.2 checks
 - [ ] The sidebar and Home say **Games** and **Exercise**; the Exercise pages say "exercise" rather than "movement".
 - [ ] Open Exercise on a light theme (Cloud Morning) and a dark one (Moonlight): the little friend is clear on both, and there is no pastel sky box behind it.

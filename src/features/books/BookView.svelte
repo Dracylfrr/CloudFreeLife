@@ -91,11 +91,26 @@
     font-weight: 800;
     box-shadow: var(--shadow-s);
   }
+  /* five cards across, so the whole shelf shows at once; fewer columns only on a narrow window */
   .pages {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 24px;
-    max-width: 1180px;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 16px;
+  }
+  @media (max-width: 1180px) {
+    .pages {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 940px) {
+    .pages {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 680px) {
+    .pages {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
   .pg {
     border-radius: var(--radius-xl);
@@ -138,10 +153,10 @@
     font-weight: 800;
   }
   .cap {
-    padding: 14px 18px 18px;
+    padding: 10px 12px 14px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
     flex: 1;
     justify-content: space-between;
   }
@@ -152,11 +167,12 @@
   }
   .cap p {
     color: var(--ink-soft);
-    font-size: 0.9rem;
+    font-size: 0.82rem;
     margin-top: 2px;
   }
   .btns {
     display: flex;
+    flex-wrap: wrap;
     gap: 6px;
   }
 </style>

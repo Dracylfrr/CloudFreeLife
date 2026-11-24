@@ -82,6 +82,14 @@ export async function applyWindowIcon(id: AppIconId): Promise<boolean> {
     const png = await canvasToPng(await rasterizeSvg(iconSvg(id, 256, 'win'), 256, 256));
     const { getCurrentWindow } = await import('@tauri-apps/api/window');
     await getCurrentWindow().setIcon(png);
+    // The line above only changes the small icon (title bar, Alt+Tab). The taskbar button has its own
+    // large icon, which only the native side can set.
+    try {
+      const { invoke } = await import('@tauri-apps/api/core');
+      await invoke('set_taskbar_icon', png);
+    } catch (err) {
+      console.warn('Could not change the taskbar icon', err);
+    }
     applied = id;
     return true;
   } catch (err) {

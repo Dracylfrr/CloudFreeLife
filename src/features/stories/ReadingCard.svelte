@@ -82,10 +82,14 @@
     border-bottom: 5px solid var(--accent);
   }
   .info {
-    padding: 14px 20px 20px;
+    padding: 10px 14px 16px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 5px;
+  }
+  .info h3 {
+    font-size: 1.02rem;
+    line-height: 1.2;
   }
   .chips {
     display: flex;
@@ -94,9 +98,9 @@
     min-height: 24px;
   }
   .chip {
-    padding: 3px 10px;
+    padding: 3px 9px;
     border-radius: 999px;
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     font-weight: 800;
     background: var(--lilac);
     color: var(--c-violet);
@@ -125,8 +129,8 @@
   }
   .info p {
     color: var(--ink-soft);
-    font-size: 0.93rem;
-    min-height: 2.6em;
+    font-size: 0.84rem;
+    line-height: 1.4;
   }
   .count {
     display: inline-flex;

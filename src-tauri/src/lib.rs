@@ -51,6 +51,66 @@ fn installed_copy() -> bool {
         .unwrap_or(false)
 }
 
+/// Windows wants icon pixels as blue, green, red, alpha; pictures come as red, green, blue, alpha.
+fn rgba_to_bgra(rgba: &[u8]) -> Vec<u8> {
+    let mut out = Vec::with_capacity(rgba.len());
+    for px in rgba.chunks_exact(4) {
+        out.extend_from_slice(&[px[2], px[1], px[0], px[3]]);
+    }
+    out
+}
+
+/// Turns a PNG into a Windows icon (32-bit with transparency).
+#[cfg(windows)]
+fn icon_from_png(png: &[u8]) -> Result<windows_sys::Win32::UI::WindowsAndMessaging::HICON, String> {
+    use windows_sys::Win32::UI::WindowsAndMessaging::CreateIcon;
+    let img = tauri::image::Image::from_bytes(png).map_err(|_| "The icon picture could not be read.".to_string())?;
+    let (w, h) = (img.width(), img.height());
+    let rgba = img.rgba();
+    if w == 0 || h == 0 || w > 512 || h > 512 || rgba.len() != (w as usize) * (h as usize) * 4 {
+        return Err("The icon picture has an unexpected size.".into());
+    }
+    let bgra = rgba_to_bgra(rgba);
+    let mask = vec![0u8; (((w as usize) + 31) / 32) * 4 * (h as usize)];
+    // SAFETY: both buffers are alive for the call and sized for a w x h, 32-bit icon.
+    let icon = unsafe { CreateIcon(std::ptr::null_mut(), w as i32, h as i32, 1, 32, mask.as_ptr(), bgra.as_ptr()) };
+    if icon.is_null() {
+        Err("Windows could not make the icon.".into())
+    } else {
+        Ok(icon)
+    }
+}
+
+/// Changes the picture on the taskbar button. The page can only change the small icon in the title
+/// bar; the taskbar draws the separate large icon, so without this it would keep the original one.
+/// Windows only redraws the taskbar button when the small icon is set, so both are set here, large
+/// first. The body is the PNG itself.
+#[cfg(windows)]
+#[tauri::command]
+fn set_taskbar_icon(window: tauri::WebviewWindow, request: tauri::ipc::Request<'_>) -> Result<(), String> {
+    use windows_sys::Win32::UI::WindowsAndMessaging::{SendMessageW, ICON_BIG, ICON_SMALL, WM_SETICON};
+    let tauri::ipc::InvokeBody::Raw(bytes) = request.body() else {
+        return Err("No icon was sent.".into());
+    };
+    if bytes.is_empty() || bytes.len() > 1_000_000 {
+        return Err("The icon picture has an unexpected size.".into());
+    }
+    let icon = icon_from_png(bytes)?;
+    let hwnd = window.hwnd().map_err(|_| "The window is not ready.".to_string())?;
+    // SAFETY: hwnd is this app's own window and icon is a valid handle made just above.
+    unsafe {
+        SendMessageW(hwnd.0 as _, WM_SETICON, ICON_BIG as usize, icon as isize);
+        SendMessageW(hwnd.0 as _, WM_SETICON, ICON_SMALL as usize, icon as isize);
+    }
+    Ok(())
+}
+
+#[cfg(not(windows))]
+#[tauri::command]
+fn set_taskbar_icon() -> Result<(), String> {
+    Ok(())
+}
+
 #[tauri::command]
 fn can_self_update() -> bool {
     cfg!(windows) && installed_copy()
@@ -114,13 +174,19 @@ pub fn run() {
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_http::init())
-        .invoke_handler(tauri::generate_handler![can_self_update, install_update])
+        .invoke_handler(tauri::generate_handler![can_self_update, install_update, set_taskbar_icon])
         .run(tauri::generate_context!())
         .expect("error while running Cloud-Freelife");
 }
 
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn icon_pixels_are_reordered_to_bgra() {
+        assert_eq!(super::rgba_to_bgra(&[1, 2, 3, 4, 10, 20, 30, 40]), vec![3, 2, 1, 4, 30, 20, 10, 40]);
+        assert!(super::rgba_to_bgra(&[]).is_empty());
+    }
+
     use super::*;
 
     #[test]
