@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en" data-game-state="start">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#153a36" />
+    <meta
+      name="description"
+      content="A cartoon carnival survival arcade. Dodge diving crows, collect midway prizes, and chase your personal best."
+    />
+    <link rel="icon" href="./src/assets/sprites/popcorn_idle.svg" />
+    <title>Popcorn Crow Carnival · Midway Arcade</title>
+  </head>
+  <body>
+    <header>
+      <div class="wrap mast">
+        <div class="brand">
+          <span class="brandmark" aria-hidden="true">✦</span> Midway
+          <i>Arcade</i>
+        </div>
+        <nav aria-label="Arcade">
+          <button class="nav-btn" id="scores">High scores</button
+          ><button class="help-btn" id="help">
+            <b aria-hidden="true">?</b> How to play
+          </button>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <section class="cabinet" aria-label="Popcorn Crow Carnival">
+        <div class="rail">
+          <span><i class="lamp"></i><span id="status">Ready to play</span></span
+          ><span>Single player <i>✦</i> Survival arcade</span>
+        </div>
+        <div class="screen">
+          <div class="stage">
+            <canvas
+              id="game"
+              width="1280"
+              height="720"
+              aria-label="Carnival playfield"
+            ></canvas>
+            <div class="poster">
+              <div class="billing">
+                <span></span> The midway presents <span></span>
+              </div>
+              <h1>Popcorn<br />Crow <em>Carnival</em></h1>
+              <p>Dodge the flock. Keep your kernels.</p>
+              <button id="play" class="ticket">
+                <span aria-hidden="true">▶</span> Start game
+              </button>
+            </div>
+            <div class="hud">
+              <div><small>Score</small><strong id="score">0</strong></div>
+              <div><small>Lives</small><strong id="lives"></strong></div>
+              <span id="effect"></span
+              ><button id="pause" aria-label="Pause game">Ⅱ</button>
+            </div>
+            <div class="cover">
+              <section class="slip">
+                <div class="billing">Midway Arcade</div>
+                <h2 id="result-title"></h2>
+                <p id="result-copy"></p>
+                <button id="again" class="ticket"></button
+                ><button id="menu" class="text-btn">Return to arcade</button>
+              </section>
+            </div>
+          </div>
+        </div>
+        <div class="deck">
+          <span class="legend"
+            ><kbd>←</kbd><kbd>→</kbd> or <kbd>A</kbd><kbd>D</kbd> Move <i></i
+            ><kbd>Space</kbd> Jump <i></i><kbd>P</kbd> Pause</span
+          >
+          <span class="touch-hint">Touch controls</span>
+          <div class="touch">
+            <button id="left" aria-label="Move left">◀</button
+            ><button id="right" aria-label="Move right">▶</button
+            ><button id="jump">Jump</button>
+          </div>
+          <button id="fullscreen" type="button" aria-pressed="false">
+            Fullscreen</button
+          ><span class="record"
+            ><span aria-hidden="true">★</span> Personal best
+            <b id="best">0</b></span
+          >
+        </div>
+      </section>
+      <section class="guide" aria-labelledby="guide-title">
+        <div class="section-title">
+          <span aria-hidden="true">✦</span>
+          <h2 id="guide-title">Midway pickups</h2>
+          <hr />
+        </div>
+        <div class="cards">
+          <article>
+            <div class="stamp gold">
+              <img
+                src="./src/assets/sprites/score_multiplier_powerup.svg"
+                alt=""
+              />
+            </div>
+            <div>
+              <h3>Double score</h3>
+              <p>Earn twice the points for 7 seconds.</p>
+            </div>
+          </article>
+          <article>
+            <div class="stamp mint">
+              <img src="./src/assets/sprites/hide_powerup.svg" alt="" />
+            </div>
+            <div>
+              <h3>Disguise</h3>
+              <p>Slip past new crow locks for 7 seconds.</p>
+            </div>
+          </article>
+          <article>
+            <div class="stamp pink">
+              <img src="./src/assets/sprites/heart_life.svg" alt="" />
+            </div>
+            <div>
+              <h3>Extra life</h3>
+              <p>Recover one heart, up to three.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <dialog>
+      <div class="dialog-head">
+        <span class="billing">Midway Arcade</span
+        ><button id="close" aria-label="Close dialog">×</button>
+      </div>
+      <h2 id="dialog-title"></h2>
+      <div id="dialog-body"></div>
+    </dialog>
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>

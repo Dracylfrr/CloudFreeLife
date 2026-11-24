@@ -1,0 +1,768 @@
+:root {
+  color-scheme: light;
+  --ink: #173932;
+  --paper: #f8f4e8;
+  --gold: #ffce58;
+  font:
+    16px/1.4 "Segoe UI",
+    Arial,
+    sans-serif;
+  color: var(--ink);
+  background: #f3efe2;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background-image: radial-gradient(#ad99772b 0.7px, transparent 0.9px);
+  background-size: 5px 5px;
+  min-height: 100vh;
+}
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+button:focus-visible {
+  outline: 3px solid #ee5f38;
+  outline-offset: 4px;
+}
+button:active {
+  transform: translateY(2px);
+}
+.wrap {
+  width: min(1230px, 92vw);
+  margin: auto;
+}
+header {
+  border-bottom: 2px solid var(--ink);
+  background: var(--paper);
+}
+.mast,
+.mast nav,
+.brand,
+.rail,
+.deck,
+.section-title,
+.cards article,
+.dialog-head,
+.legend,
+.record,
+.billing {
+  display: flex;
+  align-items: center;
+}
+.mast {
+  height: 72px;
+  justify-content: space-between;
+}
+.brand {
+  font:
+    900 30px/1 Georgia,
+    serif;
+  letter-spacing: -1.8px;
+  gap: 6px;
+}
+.brand i {
+  font-weight: bold;
+}
+.brandmark {
+  width: 39px;
+  height: 37px;
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  background: var(--ink);
+  font: 33px/1 Georgia;
+  clip-path: polygon(0 12%, 85% 0, 100% 16%, 100% 85%, 16% 100%, 0 85%);
+  margin-right: 4px;
+}
+.mast nav {
+  gap: 22px;
+}
+.nav-btn,
+.help-btn,
+.text-btn {
+  background: transparent;
+  border: 0;
+  font-weight: 650;
+}
+.help-btn {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border: 1.5px solid var(--ink);
+  border-radius: 22px;
+  padding: 7px 15px;
+}
+.help-btn b {
+  border: 1.5px solid;
+  border-radius: 100%;
+  width: 17px;
+  height: 17px;
+  font: 700 12px/15px Arial;
+}
+.nav-btn:hover,
+.text-btn:hover {
+  text-decoration: underline;
+}
+.help-btn:hover {
+  background: #e9e4d5;
+}
+main {
+  padding: 28px 0 32px;
+}
+.cabinet {
+  border: 2px solid var(--ink);
+  border-radius: 15px;
+  overflow: hidden;
+  background: var(--ink);
+  box-shadow: 0 5px 0 #173932;
+}
+.rail,
+.deck {
+  justify-content: space-between;
+}
+.rail {
+  padding: 10px 20px;
+  color: #f7efd9;
+  font:
+    700 11px/1.3 Consolas,
+    monospace;
+  text-transform: uppercase;
+  letter-spacing: 1.7px;
+}
+.rail span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.rail i:not(.lamp) {
+  color: var(--gold);
+  padding: 0 8px;
+}
+.lamp {
+  width: 8px;
+  height: 8px;
+  background: #c6e58a;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px #ffffff12;
+}
+.stage {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  aspect-ratio: 2.4;
+  background: #103938;
+}
+.poster {
+  position: absolute;
+  inset: 0;
+  padding: clamp(20px, 3.3vw, 51px) 5.6%;
+  background: center center/cover url("./assets/midway.webp");
+  color: #fff0c9;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+}
+.billing {
+  gap: 9px;
+  font:
+    700 11px/1.4 Consolas,
+    monospace;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+}
+.billing span {
+  width: 22px;
+  height: 1px;
+  background: currentColor;
+}
+.poster h1 {
+  font:
+    bold clamp(52px, 6.6vw, 100px) / 0.81 Georgia,
+    serif;
+  letter-spacing: -0.075em;
+  margin: 13px 0 0;
+  text-shadow: 2px 3px 0 #092c30;
+}
+.poster h1 em {
+  display: block;
+  position: relative;
+  transform: rotate(-3deg);
+  margin: 10px 0 0 -3px;
+  background: #f7c34e;
+  color: #1c3933;
+  clip-path: polygon(0 3%, 100% 0, 97% 48%, 100% 94%, 0 100%, 3% 51%);
+  font:
+    900 clamp(25px, 3.1vw, 45px) / 1.05 Georgia,
+    serif;
+  letter-spacing: 1.5px;
+  text-shadow: none;
+  text-transform: uppercase;
+  padding: 4px 20px;
+}
+.poster p {
+  margin: 18px 0 13px;
+  font-weight: 550;
+}
+.ticket {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 11px 25px;
+  border: 2px solid #152f2f;
+  border-radius: 9px;
+  background: var(--gold);
+  font-weight: 800;
+  box-shadow: 0 3px 0 #112b29;
+  color: #173730;
+}
+.ticket:hover {
+  background: #ffdf83;
+}
+.ticket span {
+  font-size: 13px;
+}
+.deck {
+  background: #faf6e9;
+  padding: 12px 20px;
+  gap: 8px;
+  border-top: 2px solid var(--ink);
+  font-size: 14px;
+}
+.legend,
+.record {
+  gap: 7px;
+}
+.legend i {
+  width: 1px;
+  height: 18px;
+  background: #bbb9a9;
+  margin: 0 6px;
+}
+kbd {
+  border: 1px solid #858c7e;
+  border-bottom-width: 2px;
+  background: #fffcf2;
+  border-radius: 4px;
+  min-width: 23px;
+  text-align: center;
+  padding: 1px 3px;
+  font:
+    700 13px/18px Consolas,
+    monospace;
+}
+.record > span,
+.section-title > span {
+  color: #b65330;
+}
+.record b {
+  font:
+    700 18px Consolas,
+    monospace;
+  margin-left: 5px;
+}
+.section-title {
+  gap: 10px;
+  margin: 26px 0 13px;
+}
+.section-title > span {
+  font-size: 25px;
+}
+.section-title h2,
+.cards h3 {
+  font:
+    bold 27px/1.1 Georgia,
+    serif;
+  letter-spacing: -1px;
+  margin: 0;
+}
+.section-title hr {
+  flex: 1;
+  border: 0;
+  border-top: 1px solid #a5ab94;
+  margin-left: 8px;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+.cards article {
+  padding: 14px 15px;
+  gap: 15px;
+  background: var(--paper);
+  border: 1px solid #a6ab98;
+  border-radius: 10px;
+}
+.cards h3 {
+  font-size: 20px;
+  letter-spacing: -0.6px;
+}
+.cards p {
+  font-size: 14px;
+  color: #455a4d;
+  margin: 4px 0 0;
+}
+.stamp {
+  flex: none;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  border: 1px dashed #17393270;
+}
+.stamp img {
+  width: 36px;
+  height: 36px;
+}
+.gold {
+  background: #f9de8c;
+}
+.mint {
+  background: #b5dac5;
+}
+.pink {
+  background: #f4c2ab;
+}
+canvas,
+.hud,
+.cover,
+.touch {
+  display: none;
+}
+html:not([data-game-state="start"]) .poster {
+  display: none;
+}
+html:not([data-game-state="start"]) .stage {
+  aspect-ratio: auto;
+  height: min(64vh, 640px);
+  background: #143b3d;
+}
+html:not([data-game-state="start"]) canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+canvas {
+  background: center/contain no-repeat
+    url("./assets/sprites/carnival_background_v2.webp");
+}
+.hud {
+  position: absolute;
+  inset: 12px 14px auto;
+  align-items: center;
+  gap: 12px;
+  pointer-events: none;
+}
+.hud > div,
+.hud button,
+.hud #effect:not(:empty) {
+  background: #153a36f2;
+  color: #fff1cf;
+  border: 1px solid #ffdf8b88;
+  border-radius: 8px;
+  padding: 5px 12px;
+}
+.hud small {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font: 700 11px Consolas;
+}
+.hud strong {
+  font: 700 20px Consolas;
+}
+.hud button {
+  pointer-events: auto;
+  margin-left: auto;
+  font-weight: 900;
+  font-size: 18px;
+  min-width: 42px;
+}
+.hud #lives {
+  color: #ffa787;
+}
+.hud #effect {
+  font-size: 14px;
+}
+[data-game-state="playing"] .hud {
+  display: flex;
+}
+[data-game-state="paused"] .cover,
+[data-game-state="gameOver"] .cover {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  inset: 0;
+  background: #092c2cc2;
+}
+.slip,
+dialog {
+  background: var(--paper);
+  padding: 28px 35px;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  box-shadow: 0 5px 0 var(--ink);
+  text-align: center;
+}
+.slip .billing {
+  justify-content: center;
+}
+.slip h2,
+dialog h2 {
+  font:
+    bold 38px/1 Georgia,
+    serif;
+  letter-spacing: -1.8px;
+  margin: 14px 0;
+}
+.slip p {
+  margin: 10px 0 18px;
+}
+.text-btn {
+  display: block;
+  margin: 12px auto 0;
+  font-size: 14px;
+}
+.touch button,
+.dialog-head button {
+  border: 1px solid var(--ink);
+  border-radius: 6px;
+  background: var(--paper);
+  font-weight: bold;
+}
+.touch {
+  gap: 10px;
+}
+.touch button {
+  touch-action: none;
+  padding: 9px 20px;
+  user-select: none;
+}
+dialog {
+  width: min(440px, 90vw);
+  text-align: left;
+  color: var(--ink);
+}
+dialog::backdrop {
+  background: #0d2928bf;
+}
+.dialog-head {
+  justify-content: space-between;
+}
+.dialog-head button {
+  font-size: 22px;
+  width: 34px;
+}
+.scores {
+  padding: 0;
+  list-style: none;
+  counter-reset: rank;
+}
+.scores li {
+  counter-increment: rank;
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 0;
+  border-bottom: 1px dashed #899886;
+  font: bold 19px Consolas;
+}
+.scores li::before {
+  content: "0" counter(rank);
+  color: #767e69;
+}
+dialog p {
+  line-height: 1.55;
+}
+@media (pointer: coarse) {
+  html:not([data-game-state="start"]) .touch {
+    display: flex;
+  }
+  html:not([data-game-state="start"]) .legend {
+    display: none;
+  }
+}
+@media (max-width: 760px) {
+  .wrap {
+    width: 94vw;
+  }
+  .mast {
+    height: 62px;
+  }
+  .brand {
+    font-size: 25px;
+  }
+  .brandmark {
+    width: 30px;
+    height: 30px;
+    font-size: 26px;
+  }
+  .mast nav {
+    gap: 8px;
+  }
+  .mast button {
+    font-size: 14px;
+  }
+  .help-btn {
+    padding: 6px 10px;
+  }
+  .cards {
+    gap: 8px;
+  }
+  .cards article {
+    padding: 12px;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .stage {
+    aspect-ratio: 2;
+  }
+  .poster {
+    background-position: 57% center;
+    padding: 20px 5%;
+  }
+  .poster h1 {
+    font-size: 56px;
+  }
+  .poster p {
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  .section-title {
+    margin-top: 21px;
+  }
+}
+@media (max-width: 540px) {
+  main {
+    padding-top: 15px;
+  }
+  .brand {
+    font-size: 20px;
+    gap: 3px;
+    letter-spacing: -1px;
+  }
+  .mast nav {
+    gap: 0;
+  }
+  .help-btn b {
+    display: none;
+  }
+  .rail {
+    padding: 10px;
+    font-size: 10px;
+    letter-spacing: 0.7px;
+  }
+  .stage {
+    aspect-ratio: 0.99;
+  }
+  .poster {
+    justify-content: flex-end;
+    background-image:
+      linear-gradient(90deg, #093233e8 0%, #09323390 35%, transparent 68%),
+      url("./assets/midway.webp");
+    background-position: 63% center;
+    padding: 22px 5%;
+  }
+  .poster h1 {
+    font-size: 59px;
+  }
+  .poster h1 em {
+    font-size: 25px;
+  }
+  .poster .billing {
+    font-size: 9px;
+  }
+  .deck {
+    padding: 10px;
+    font-size: 12px;
+  }
+  .legend {
+    gap: 3px;
+  }
+  .legend i {
+    margin: 0 2px;
+  }
+  .legend kbd {
+    min-width: 16px;
+  }
+  .record {
+    gap: 3px;
+  }
+  .cards {
+    grid-template-columns: 1fr;
+  }
+  .cards article {
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+  }
+  .stamp {
+    width: 43px;
+    height: 43px;
+  }
+  .stamp img {
+    width: 30px;
+    height: 30px;
+  }
+  .hud {
+    gap: 5px;
+    inset: 4px 4px auto;
+  }
+  .hud > div {
+    padding: 2px 6px;
+  }
+  .hud strong {
+    font-size: 15px;
+  }
+  html:not([data-game-state="start"]) .stage {
+    height: auto;
+    aspect-ratio: 16/10;
+  }
+  .slip {
+    padding: 12px 20px;
+  }
+  .slip h2 {
+    font-size: 27px;
+    margin: 5px;
+  }
+  .slip p,
+  .slip .text-btn {
+    margin: 5px auto;
+  }
+  .slip .ticket {
+    padding: 5px 16px;
+  }
+}
+@media (max-height: 520px) and (orientation: landscape) {
+  html:not([data-game-state="start"]) header,
+  html:not([data-game-state="start"]) .rail,
+  html:not([data-game-state="start"]) .guide {
+    display: none;
+  }
+  html:not([data-game-state="start"]) main {
+    padding: 0;
+  }
+  html:not([data-game-state="start"]) .stage {
+    height: calc(100dvh - 65px);
+  }
+}
+
+html:not([data-game-state="start"]) .guide {
+  display: none;
+}
+.touch-hint {
+  display: none;
+}
+@media (pointer: coarse) {
+  .legend {
+    display: none;
+  }
+  .touch-hint {
+    display: inline;
+  }
+  html:not([data-game-state="start"]) .touch-hint {
+    display: none;
+  }
+}
+@media (max-width: 540px) {
+  .mast button {
+    font-size: 13px;
+    white-space: nowrap;
+  }
+  .mast nav {
+    gap: 4px;
+  }
+  .mast .help-btn {
+    padding: 6px 9px;
+  }
+  .poster {
+    background-image:
+      linear-gradient(90deg, #093233f5 0%, #09323396 38%, transparent 78%),
+      url("./assets/midway.webp");
+  }
+}
+@media (max-width: 360px) {
+  .brandmark {
+    display: none;
+  }
+}
+
+/* Fit the live cabinet to the window. The stage preserves world coordinates
+   on wide screens and follows the player on narrower screens. */
+#fullscreen {
+  background: transparent;
+  border: 1px solid #829384;
+  border-radius: 6px;
+  font-weight: 650;
+  padding: 4px 10px;
+  margin-left: auto;
+}
+#fullscreen:disabled {
+  display: none;
+}
+.deck .record {
+  margin-left: 12px;
+}
+html:not([data-game-state="start"]) .cabinet {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  border: 0;
+  border-radius: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  background: #102d2b;
+  box-shadow: none;
+}
+html:not([data-game-state="start"]) body {
+  overflow: hidden;
+}
+html:not([data-game-state="start"]) header,
+html:not([data-game-state="start"]) .rail {
+  display: none;
+}
+html:not([data-game-state="start"]) .screen {
+  container-type: size;
+  display: grid;
+  place-items: center;
+}
+html:not([data-game-state="start"]) .stage {
+  width: min(100cqw, 177.7778cqh);
+  height: min(100cqh, 112.5cqw);
+  aspect-ratio: auto;
+}
+html:not([data-game-state="start"]) canvas {
+  background: none;
+}
+html:not([data-game-state="start"]) .deck {
+  padding: 8px max(14px, env(safe-area-inset-right))
+    max(8px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
+}
+@media (max-width: 600px) {
+  .deck {
+    flex-wrap: wrap;
+  }
+  .deck .record {
+    margin-left: 0;
+  }
+  .deck .touch {
+    gap: 6px;
+  }
+  .deck .touch button {
+    padding: 8px 13px;
+  }
+  html:not([data-game-state="start"]) .record {
+    display: none;
+  }
+  .deck #fullscreen {
+    font-size: 12px;
+  }
+}
