@@ -1,19 +1,28 @@
 import { writable } from 'svelte/store';
 
 /* ----------------------------- toasts ----------------------------- */
+/** A button inside a toast, such as "Show in folder". */
+export interface ToastAction {
+  label: string;
+  run: () => void;
+}
 export interface ToastMsg {
   id: number;
   text: string;
   kind: 'info' | 'success' | 'error';
+  action?: ToastAction;
 }
 let toastId = 1;
 export const toasts = writable<ToastMsg[]>([]);
 
-export function toast(text: string, kind: ToastMsg['kind'] = 'info', ms = 3200) {
+export function toast(text: string, kind: ToastMsg['kind'] = 'info', ms = 3200, action?: ToastAction) {
   const id = toastId++;
-  toasts.update((t) => [...t.slice(-3), { id, text, kind }]);
+  toasts.update((t) => [...t.slice(-3), { id, text, kind, action }]);
   setTimeout(() => toasts.update((t) => t.filter((x) => x.id !== id)), ms);
 }
+
+/** How long the "saved" notice stays: long enough to notice and click, short enough to stay out of the way. */
+export const SAVED_TOAST_MS = 8000;
 
 /* ------------------------- confirm dialog ------------------------- */
 export interface ConfirmRequest {

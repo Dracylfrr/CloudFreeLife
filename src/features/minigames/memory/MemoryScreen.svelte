@@ -4,14 +4,19 @@
   import { navigate } from '../../../core/router';
   import { sfx } from '../../../core/audio';
   import Button from '../../../ui/Button.svelte';
+  import GameResult from '../GameResult.svelte';
   import Icon from '../../../ui/Icon.svelte';
-  import { MemoryGame, type Card } from './logic';
+  import { MEMORY_ICON_IDS } from '../../../core/manifests';
+  import { ENDLESS_MAX_CARDS, MemoryGame, endlessColumns, endlessPairs, endlessSymbols, type Card } from './logic';
   import { iconSvg } from './icons';
 
   let { levelId }: { levelId?: string } = $props();
 
   const levels = $derived($catalog.memoryLevels);
   let idx = $state(0);
+  /** "levels" are the hand-made boards; "endless" keeps adding cards, round after round. */
+  let mode = $state<'levels' | 'endless'>('levels');
+  let round = $state(1);
   let game: MemoryGame | null = null;
   let cards = $state<Card[]>([]);
   let moves = $state(0);
@@ -22,8 +27,12 @@
   let timers: ReturnType<typeof setTimeout>[] = [];
 
   const level = $derived(levels[idx]);
-  const cols = $derived(level?.manifest.columns ?? 4);
-  const rows = $derived(level ? Math.ceil((level.manifest.symbols.length * 2) / cols) : 3);
+  const pairsNow = $derived(mode === 'endless' ? endlessPairs(round) : (level?.manifest.symbols.length ?? 0));
+  const cols = $derived(mode === 'endless' ? endlessColumns(pairsNow) : (level?.manifest.columns ?? 4));
+  const rows = $derived(Math.max(1, Math.ceil((pairsNow * 2) / cols)));
+  const biggest = $derived(pairsNow * 2 >= ENDLESS_MAX_CARDS);
+  // a crowded board gets smaller gaps so the cards can stay a readable size
+  const gap = $derived(cols > 8 ? 6 : cols > 6 ? 9 : 14);
 
   function later(fn: () => void, ms: number) {
     timers.push(setTimeout(fn, ms));
@@ -43,10 +52,16 @@
 
   function start(i = idx) {
     clearTimers();
-    const lv = levels[i];
-    if (!lv) return;
-    idx = i;
-    game = new MemoryGame(lv.manifest.symbols, Math.random);
+    let symbols: string[];
+    if (mode === 'endless') {
+      symbols = endlessSymbols(endlessPairs(round), MEMORY_ICON_IDS, Math.random);
+    } else {
+      const lv = levels[i];
+      if (!lv) return;
+      idx = i;
+      symbols = lv.manifest.symbols;
+    }
+    game = new MemoryGame(symbols, Math.random);
     hinted = [];
     justMatched = [];
     sync();
@@ -80,6 +95,18 @@
     }
   }
 
+  function setMode(m: 'levels' | 'endless') {
+    if (mode === m) return;
+    mode = m;
+    round = 1;
+    start();
+  }
+
+  function nextRound() {
+    round++;
+    start();
+  }
+
   function hint() {
     if (!game || complete) return;
     const h = game.hint(Math.random);
@@ -101,23 +128,33 @@
   <header class="bar">
     <Button variant="soft" size="sm" icon="chevronLeft" onclick={() => navigate({ name: 'minigames', game: 'memory' })}>Levels</Button>
     <h2>Memory Meadow</h2>
-    <label class="pick">
-      <span class="sr-only">Level</span>
-      <select value={idx} onchange={(e) => start(Number(e.currentTarget.value))}>
-        {#each levels as l, i}<option value={i}>{String(i + 1).padStart(2, '0')} · {l.manifest.name}</option>{/each}
-      </select>
-    </label>
+    <div class="seg" role="group" aria-label="Mode">
+      <button class:on={mode === 'levels'} aria-pressed={mode === 'levels'} onclick={() => setMode('levels')}>Levels</button>
+      <button class:on={mode === 'endless'} aria-pressed={mode === 'endless'} onclick={() => setMode('endless')}>Endless</button>
+    </div>
+    {#if mode === 'levels'}
+      <label class="pick">
+        <span class="sr-only">Level</span>
+        <select value={idx} onchange={(e) => start(Number(e.currentTarget.value))}>
+          {#each levels as l, i}<option value={i}>{String(i + 1).padStart(2, '0')} · {l.manifest.name}</option>{/each}
+        </select>
+      </label>
+    {/if}
     <span class="spacer"></span>
-    <span class="stat"><Icon name="heart" size={16} /> {matches}/{level?.manifest.symbols.length ?? 0} pairs</span>
+    <span class="stat"><Icon name="heart" size={16} /> {matches}/{pairsNow} pairs</span>
     <span class="stat">{moves} {moves === 1 ? 'try' : 'tries'}</span>
     <Button variant="soft" size="sm" icon="sparkle" title="Show me a pair (H)" onclick={hint}>Hint</Button>
     <Button variant="ghost" size="sm" icon="refresh" title="Shuffle and start over" onclick={() => start()}>Shuffle</Button>
   </header>
 
   <div class="stage">
-    <div class="info"><strong>{level?.manifest.name ?? ''}</strong><span>{level?.manifest.objective ?? ''}</span></div>
+    {#if mode === 'endless'}
+      <div class="info"><strong>Endless · Round {round}</strong><span>{pairsNow * 2} cards. {biggest ? 'The biggest board — the rounds keep coming at this size.' : 'Every round adds a few more.'}</span></div>
+    {:else}
+      <div class="info"><strong>{level?.manifest.name ?? ''}</strong><span>{level?.manifest.objective ?? ''}</span></div>
+    {/if}
 
-    <div class="board" style="--cols:{cols}; --rows:{rows}; --back:{level?.manifest.cardBack ?? '#bfe4f7'}" role="group" aria-label="Cards">
+    <div class="board" style="--cols:{cols}; --rows:{rows}; --gap:{gap}px; --back:{level?.manifest.cardBack ?? '#bfe4f7'}" role="group" aria-label="Cards">
       {#each cards as c (c.id)}
         <button
           class="card"
@@ -140,16 +177,29 @@
     <p class="how">Flip two cards at a time and find the pairs. No timer — take all the time you like.</p>
 
     {#if complete}
-      <div class="overlay">
-        <div class="big">🌼</div>
-        <h2>All pairs found!</h2>
-        <p class="muted">{moves} {moves === 1 ? 'try' : 'tries'}. Lovely.</p>
-        <div class="acts">
-          <Button variant="primary" onclick={() => start((idx + 1) % levels.length)}>Next level</Button>
-          <Button variant="soft" onclick={() => start()}>Play again</Button>
-          <Button variant="ghost" onclick={() => navigate({ name: 'minigames' })}>All games</Button>
-        </div>
-      </div>
+      {#if mode === 'endless'}
+        <GameResult
+          big="🌼"
+          title="Round {round} complete!"
+          message="All {pairsNow} pairs found in {moves} {moves === 1 ? 'try' : 'tries'}. Lovely."
+          onAgain={() => start()}
+          againLabel="Play again"
+          onNext={nextRound}
+          nextLabel="Next round"
+        />
+      {:else}
+        <GameResult
+          big="🌼"
+          title="All pairs found!"
+          message="{moves} {moves === 1 ? 'try' : 'tries'}. Lovely."
+          level={idx + 1}
+          total={levels.length}
+          noun="level"
+          onAgain={() => start()}
+          onNext={() => start(idx + 1)}
+          onFirst={() => start(0)}
+        />
+      {/if}
     {/if}
   </div>
 </div>
@@ -195,6 +245,23 @@
     color: var(--ink-soft);
     font-size: 0.88rem;
   }
+  .seg {
+    display: flex;
+    background: rgb(var(--w) / 0.7);
+    border-radius: 999px;
+    padding: 3px;
+  }
+  .seg button {
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+  .seg button.on {
+    background: linear-gradient(135deg, var(--nav-a), var(--nav-b));
+    color: var(--nav-ink);
+  }
   .stage {
     flex: 1;
     min-height: 0;
@@ -219,10 +286,12 @@
     font-size: 1.05rem;
   }
   .board {
-    --w: min(150px, calc((100vh - 270px) / var(--rows) / 1.2), calc((100cqw - 14px * (var(--cols) - 1)) / var(--cols)));
+    --gap: 14px;
+    /* never smaller than a readable card; a very big board then scrolls instead of shrinking away */
+    --w: max(36px, min(150px, calc((100vh - 270px - var(--gap) * var(--rows)) / var(--rows) / 1.2), calc((100cqw - var(--gap) * (var(--cols) - 1)) / var(--cols))));
     display: grid;
     grid-template-columns: repeat(var(--cols), var(--w));
-    gap: 14px;
+    gap: var(--gap);
     justify-content: center;
     margin: auto 0;
     perspective: 900px;
@@ -300,28 +369,6 @@
     color: var(--ink-faint);
     font-size: 0.8rem;
     font-weight: 700;
-  }
-  .overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(240, 236, 252, 0.8);
-    backdrop-filter: blur(5px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    animation: fade 0.3s ease-out;
-    text-align: center;
-    padding: 20px;
-  }
-  .big {
-    font-size: 3rem;
-  }
-  .acts {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
   }
   @keyframes fade {
     from {

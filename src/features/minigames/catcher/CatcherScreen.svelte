@@ -6,6 +6,7 @@
   import { sfx } from '../../../core/audio';
   import type { CatcherKind } from '../../../core/manifests14';
   import Button from '../../../ui/Button.svelte';
+  import GameResult from '../GameResult.svelte';
   import Icon from '../../../ui/Icon.svelte';
   import GameFrame from '../GameFrame.svelte';
   import { GameLoop } from '../loop';
@@ -291,16 +292,19 @@
       <div class="overlay"><h2>Paused</h2><Button variant="primary" icon="play" onclick={() => (paused = false)}>Resume</Button></div>
     {/if}
     {#if finished}
-      <div class="overlay">
-        <div class="big">☁️</div>
-        <h2>All caught, softly</h2>
-        <p class="muted">What a calm sky.</p>
-        <div class="acts">
-          <Button variant="primary" onclick={() => start(mode)}>Play again</Button>
-          <Button variant="soft" onclick={() => start('relax')}>Just relax</Button>
-          <Button variant="ghost" onclick={() => navigate({ name: 'minigames' })}>All games</Button>
-        </div>
-      </div>
+      <GameResult
+        big="☁️"
+        title="All caught, softly"
+        message="What a calm sky."
+        level={mode === 'match' || mode === 'pattern' ? idx + 1 : 0}
+        total={mode === 'match' || mode === 'pattern' ? levels.length : 0}
+        noun="level"
+        onAgain={() => start(mode)}
+        onNext={(mode === 'match' || mode === 'pattern') && idx + 1 < levels.length ? () => start(mode, idx + 1) : undefined}
+        onFirst={() => start(mode, 0)}
+      >
+        {#snippet extra()}<Button variant="soft" onclick={() => start('relax')}>Just relax</Button>{/snippet}
+      </GameResult>
     {/if}
   </div>
 </GameFrame>
@@ -376,14 +380,5 @@
     background: rgb(var(--w) / 0.55);
     backdrop-filter: blur(3px);
     text-align: center;
-  }
-  .big {
-    font-size: 3rem;
-  }
-  .acts {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center;
   }
 </style>

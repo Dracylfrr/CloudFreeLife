@@ -115,10 +115,10 @@ describe('release notes are shown inside the app', () => {
     expect(app.includes).toEqual([]);
   });
 
-  it('the notice reads "Cloud-Freelife 1.3.1 is available" and offers no link to a website', () => {
+  it('the notice reads "Project D.R.E.A.M 1.3.1 is available" and offers no link to a website', () => {
     const app = planFromManifest(manifest, rel, '1.3.0', {})[0];
     const text = noticeText(app);
-    expect(text.title).toBe('Cloud-Freelife 1.3.1 is available');
+    expect(text.title).toBe('Project D.R.E.A.M 1.3.1 is available');
     expect(text.detail).toBe('2 new stories and a calmer rain track');
     const notice = readFileSync(resolve('src/features/updates/UpdateNotice.svelte'), 'utf8');
     for (const label of ['Install', 'Details', 'Later']) expect(notice).toContain(`>${label}<`);

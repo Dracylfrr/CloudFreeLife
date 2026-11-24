@@ -3,6 +3,7 @@
  * No network, no UI: everything here is unit-tested.
  */
 import { ALLOWED_DOWNLOAD_HOSTS, GITHUB_REPO, RELEASE_MANIFEST_ASSET } from '../../core/config';
+import { BRAND_NAME } from '../../core/brand';
 import { APP_VERSION, compareVersions, isNewer, isValidVersion, meetsMinVersion, parseVersion } from '../../core/version';
 
 export type ContentKind = 'book' | 'palettes' | 'themes' | 'breaker_levels' | 'splash_levels' | 'memory_levels' | 'puzzle_levels' | 'bubble_levels' | 'catcher_levels' | 'zen_levels' | 'flow_levels' | 'stories' | 'adventures' | 'meditation' | 'movement' | 'minigame';
@@ -362,7 +363,7 @@ export function describeUpdate(u: UpdateItem): string {
 /** Friendly wording for the top-right notice: a title and a softer second line. */
 export function noticeText(u: UpdateItem): { title: string; detail: string } {
   if (u.kind === 'app') {
-    return { title: `Cloud-Freelife ${u.version} is available`, detail: u.headline ?? 'A new version is ready to install' };
+    return { title: `${BRAND_NAME} ${u.version} is available`, detail: u.headline ?? 'A new version is ready to install' };
   }
   return { title: 'New content is ready', detail: describeUpdate(u) };
 }

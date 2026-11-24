@@ -49,6 +49,12 @@
   }
   function keyRow(e: KeyboardEvent, l: LayerMeta) {
     if (e.key === 'F2') startRename(l);
+    else if ((e.key === 'Delete' || e.key === 'Backspace') && renaming === null) {
+      // Delete or Backspace on a layer deletes that layer (there is always at least one left).
+      e.preventDefault();
+      e.stopPropagation();
+      if (layers.length > 1) onDelete(l.id);
+    }
   }
 </script>
 
@@ -146,6 +152,11 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
+    /* ten layers can be a long list: it scrolls instead of pushing the colors away */
+    flex: none;
+    max-height: 236px;
+    overflow-y: auto;
+    scrollbar-width: thin;
   }
   li {
     display: flex;

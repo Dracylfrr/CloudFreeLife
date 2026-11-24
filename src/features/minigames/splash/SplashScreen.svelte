@@ -9,6 +9,7 @@
   import { confirmDialog, toast } from '../../../core/feedback';
   import { saveWallToGallery } from './gallery';
   import Button from '../../../ui/Button.svelte';
+  import GameResult from '../GameResult.svelte';
   import Icon from '../../../ui/Icon.svelte';
   import { GameLoop } from '../loop';
   import { SplashGame } from './game';
@@ -186,6 +187,14 @@
     complete = false;
     void openLevel((idx + 1) % levels.length);
   }
+
+  /** Washes the wall and starts the same one again (no question: the wall was just finished). */
+  function playAgain() {
+    if (!game) return;
+    game.resetWall();
+    complete = false;
+    loop?.drawOnce();
+  }
 </script>
 
 <svelte:window onkeydown={key} />
@@ -220,17 +229,25 @@
       {#if loading}<div class="overlay soft"><i class="spin"></i> Setting up the wall…</div>{/if}
       {#if error}<div class="overlay soft">{error}</div>{/if}
       {#if complete}
-        <div class="overlay">
-          <div class="big">🎉</div>
-          <h2>Wall complete!</h2>
-          <p class="muted">It looks wonderful. Keep splashing, or move on whenever you like.</p>
-          <div class="acts">
-            <Button variant="primary" onclick={nextLevel}>Next wall</Button>
+        <GameResult
+          big="🎉"
+          title="Wall complete!"
+          message="It looks wonderful. Keep splashing, or move on whenever you like."
+          level={idx + 1}
+          total={levels.length}
+          noun="wall"
+          onAgain={playAgain}
+          onNext={nextLevel}
+          onFirst={() => {
+            complete = false;
+            void openLevel(0);
+          }}
+        >
+          {#snippet extra()}
             <Button variant="soft" icon="image" disabled={savingToGallery} onclick={saveToGallery}>Save to Gallery</Button>
             <Button variant="soft" onclick={() => (complete = false)}>Keep splashing</Button>
-            <Button variant="ghost" onclick={() => navigate({ name: 'minigames' })}>All games</Button>
-          </div>
-        </div>
+          {/snippet}
+        </GameResult>
       {/if}
     </div>
 
@@ -357,14 +374,6 @@
     flex-direction: row;
     font-weight: 800;
     color: var(--ink-soft);
-  }
-  .big {
-    font-size: 3rem;
-  }
-  .acts {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
   }
   .spin {
     width: 24px;

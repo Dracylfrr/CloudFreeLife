@@ -5,7 +5,7 @@
   import { asset, findBook, findPage } from '../../core/content/registry';
   import { confirmDialog, confirmRequest, toast } from '../../core/feedback';
   import { navigate, onBeforeLeave } from '../../core/router';
-  import { brushSound, sfx } from '../../core/audio';
+  import { brushKindFor, brushSound, sfx } from '../../core/audio';
   import { settings, updateSettings } from '../../core/settings';
   import { isAppHidden, onVisibilityChange } from '../../core/visibility';
   import { clamp } from '../../core/util';
@@ -191,12 +191,14 @@
         title = data.meta.title || page.manifest.name;
         hasRegions = true;
         backTo = 'books';
+        sfx.enterColoring();
       } else {
         const book = findBook('free_canvas');
         const def = book?.manifest.backgrounds?.find((b) => b.id === data.meta.background) ?? book?.manifest.backgrounds?.[0] ?? null;
         e.setBackground(def);
         tool = 'brush';
         backTo = 'draw';
+        sfx.enterFreeDraw();
       }
       await e.loadPaint(data.paint);
       if (e.allowLayers) {
@@ -393,7 +395,7 @@
     } else if (isBrushTool(t)) {
       if (engine.beginStroke(p.x, p.y)) {
         recorder?.begin(p.x, p.y, engine.state);
-        brushSound.begin(t === 'crayon' ? 'grainy' : 'soft');
+        brushSound.begin(brushKindFor(t));
         lastPt = { ...p, t: performance.now() };
       }
     } else if (t === 'fill') {

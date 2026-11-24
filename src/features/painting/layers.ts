@@ -1,12 +1,12 @@
 /**
- * Layers for Free Draw (added in 1.6). A painting has between 1 and 4 layers, drawn from the
+ * Layers for Free Draw (added in 1.6, up to 10 since 1.7). A painting has between 1 and 10 layers, drawn from the
  * bottom up on top of the background. Coloring pages keep a single paint layer under the line art.
  *
  * This file is only data and rules (no canvas), so it is easy to test. The painting engine does
  * the drawing, and `gallery/layerStore.ts` does the saving.
  */
 
-export const MAX_LAYERS = 4;
+export const MAX_LAYERS = 10;
 export const MAX_LAYER_NAME = 24;
 
 export const BLEND_MODES = [
@@ -46,7 +46,7 @@ const ID_RE = /^l[0-9]{1,2}$/;
 export const isLayerId = (v: unknown): v is string => typeof v === 'string' && ID_RE.test(v);
 export const layerFile = (id: string) => `layer-${id}.png`;
 
-/** The smallest unused id: l1, l2, l3, l4 ... */
+/** The smallest unused id: l1, l2, l3 ... */
 export function nextLayerId(used: string[]): string {
   for (let i = 1; i < 100; i++) if (!used.includes(`l${i}`)) return `l${i}`;
   return `l${used.length + 1}`;

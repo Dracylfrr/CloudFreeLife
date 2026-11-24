@@ -18,11 +18,13 @@ describe('layer rules', () => {
     expect(blendOf('normal').op).toBe('source-over');
     expect(blendOf('nonsense').id).toBe('normal');
   });
-  it('allows four layers', () => expect(MAX_LAYERS).toBe(4));
+  it('allows ten layers', () => expect(MAX_LAYERS).toBe(10));
   it('chooses unused ids and names', () => {
     expect(nextLayerId([])).toBe('l1');
     expect(nextLayerId(['l1', 'l3'])).toBe('l2');
     expect(nextLayerId(['l1', 'l2', 'l3'])).toBe('l4');
+    expect(nextLayerId(['l1', 'l2', 'l3', 'l4', 'l5', 'l6', 'l7', 'l8', 'l9'])).toBe('l10');
+    expect(isLayerId('l10')).toBe(true);
     expect(defaultLayerName([])).toBe('Layer 1');
     expect(defaultLayerName(['Layer 1', 'Sky'])).toBe('Layer 2');
     expect(isLayerId('l2')).toBe(true);
@@ -50,11 +52,13 @@ describe('layer rules', () => {
     expect(ok?.layers.map((l) => l.id)).toEqual(['l1', 'l2']);
     expect(ok?.active).toBe('l1');
     expect(ok?.saves).toBe(2);
-    // unknown active falls back to the top layer; duplicates and extras are dropped; at most four
+    // unknown active falls back to the top layer; duplicates and broken entries are dropped; at most ten
     const messy = sanitizeLayersFile({ v: 1, layers: [meta('l1'), meta('l1'), meta('l2'), meta('l3'), meta('l4'), meta('l5'), { id: 'bad' }], active: 'zzz', saves: 'many' });
-    expect(messy?.layers.map((l) => l.id)).toEqual(['l1', 'l2', 'l3']);
-    expect(messy?.active).toBe('l3');
+    expect(messy?.layers.map((l) => l.id)).toEqual(['l1', 'l2', 'l3', 'l4', 'l5']);
+    expect(messy?.active).toBe('l5');
     expect(messy?.saves).toBe(0);
+    const many = sanitizeLayersFile({ v: 1, layers: Array.from({ length: 14 }, (_, i) => meta('l' + (i + 1))), active: 'l1', saves: 0 });
+    expect(many?.layers).toHaveLength(MAX_LAYERS);
     for (const bad of [null, 'x', {}, { v: 2, layers: [meta('l1')] }, { v: 1, layers: [] }, { v: 1, layers: 'no' }, { v: 1, layers: [{ id: 'x' }] }]) expect(sanitizeLayersFile(bad), JSON.stringify(bad)).toBeNull();
   });
   it('reads layer commands from a log', () => {

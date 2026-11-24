@@ -73,5 +73,5 @@ async function boot() {
 boot().catch((err) => {
   console.error('Cloud-Freelife failed to start', err);
   const t = document.getElementById('app');
-  if (t) t.textContent = 'Cloud-Freelife could not start. Please restart the app.';
+  if (t) t.textContent = 'The app could not start. Please restart it.';
 });

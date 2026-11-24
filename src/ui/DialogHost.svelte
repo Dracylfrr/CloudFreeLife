@@ -52,7 +52,12 @@
 
 <div class="toasts" aria-live="polite">
   {#each $toasts as t (t.id)}
-    <div class="toast {t.kind}">{t.text}</div>
+    <div class="toast {t.kind}">
+      <span>{t.text}</span>
+      {#if t.action}
+        <button class="act" onclick={t.action.run}>{t.action.label}</button>
+      {/if}
+    </div>
   {/each}
 </div>
 
@@ -120,11 +125,15 @@
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 8px;
     z-index: 120;
     pointer-events: none;
   }
   .toast {
+    display: flex;
+    align-items: center;
+    gap: 14px;
     background: var(--panel-solid);
     padding: 11px 20px;
     border-radius: 999px;
@@ -132,6 +141,22 @@
     font-weight: 700;
     animation: rise 0.3s var(--ease);
     border: 1px solid var(--line);
+  }
+  .toast .act {
+    pointer-events: auto;
+    padding: 4px 14px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 0.86rem;
+    white-space: nowrap;
+    color: var(--nav-ink);
+    background: linear-gradient(135deg, var(--nav-a), var(--nav-b));
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    box-shadow: var(--shadow-s);
+  }
+  .toast .act:hover {
+    filter: brightness(0.97);
   }
   .toast.success {
     background: var(--c-green-bg);

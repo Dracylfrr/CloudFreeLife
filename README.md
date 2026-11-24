@@ -7,7 +7,7 @@ A calm, pastel place to **color, draw and play** — a lightweight Windows deskt
 - **Story Adventures** — ten choose-your-path stories told as a guy or a girl (adventure, romance, comedy and mystery), each with five or more endings to find; it remembers your place and the endings you have found
 - **Themes, moods and music** — eight color themes (plus Follow System), four mood presets and gentle generated background music, with redesigned soft sound effects
 - **Long reads** — bookmarks, "time left", a dimmer **Sleep mode** with music that fades out, and series. Two half-hour stories (*The Tea Boat on Willow River*, *The Cartographer of Small Things*) and a long mystery adventure (*The Night Market at Lamplight Quay*) are downloadable from Updates
-- **Layers and more brushes** — Free Draw has up to four layers with opacity and blend modes; new Watercolor, Pastel, Ink Pen and Glitter brushes, stamps, a reference picture to paint from, and Gallery albums with search
+- **Layers and more brushes** — Free Draw has up to ten layers with opacity and blend modes; new Watercolor, Pastel, Ink Pen and Glitter brushes, stamps, a reference picture to paint from, and Gallery albums with search
 - **Import line art** — turn a clean outline drawing into a coloring page, and replay any new painting as a **Timelapse** video
 - **Free Draw** — eight soft backgrounds (white, warm cream, cloud blue, lavender, mint, pastel pink, starry sky, soft clouds)
 - **Painting tools** — Brush, Marker, Crayon, Airbrush, Fill Bucket, Eraser, Paintball, Color Picker, Clear Region, Undo/Redo, Zoom, Pan

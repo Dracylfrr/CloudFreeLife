@@ -3,6 +3,7 @@ import { getStorage } from './storage';
 import { clamp, debounce } from './util';
 import { DEFAULT_THEME, applyTheme, isThemeChoice, systemPrefersDark, type ThemeChoice } from './themes';
 import { DEFAULT_APP_ICON, isAppIcon, type AppIconId } from './appIcon';
+import { sanitizeAvatar, type AvatarConfig } from '../features/avatar/avatar';
 import { isPaintMode, modeFromLegacy, type PaintMode } from '../features/painting/paintMode';
 
 export const SETTINGS_PATH = 'settings.json';
@@ -31,6 +32,8 @@ export interface Settings {
   theme: ThemeChoice;
   /** Which little cloud icon to show in the window, taskbar and the app's corner logo (v1.4). */
   appIcon: AppIconId;
+  /** The player's avatar, or null until one has been chosen. */
+  avatar: AvatarConfig | null;
   /** One-tap feeling preset (v1.3): shapes music, ambience, sound softness and ambient speed. */
   mood: Mood;
   // Accessibility
@@ -71,6 +74,7 @@ export const DEFAULT_SETTINGS: Settings = {
   storyFontScale: 1.1,
   theme: DEFAULT_THEME,
   appIcon: DEFAULT_APP_ICON,
+  avatar: null,
   mood: 'default',
   reducedMotion: false,
   disableParticles: false,
@@ -114,6 +118,7 @@ export function sanitizeSettings(raw: unknown): Settings {
     storyFontScale: num(r.storyFontScale, d.storyFontScale, 0.9, 1.7),
     theme: isThemeChoice(r.theme) ? r.theme : d.theme,
     appIcon: isAppIcon(r.appIcon) ? r.appIcon : d.appIcon,
+    avatar: sanitizeAvatar(r.avatar),
     mood: (MOODS as readonly string[]).includes(r.mood as string) ? (r.mood as Mood) : d.mood,
     reducedMotion: bool(r.reducedMotion, d.reducedMotion),
     disableParticles: bool(r.disableParticles, d.disableParticles),

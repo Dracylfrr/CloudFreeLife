@@ -300,6 +300,18 @@ export const sfx = {
     tone({ freq: 280, to: 150, dur: 0.14, gain: 0.05, attack: 0.012, lp: 700, wet: 0.2 });
     noise({ dur: 0.1, freq: 900, q: 0.7, gain: 0.025, attack: 0.012 });
   },
+  /** Opening a coloring page: a turned page and two warm, woody notes. */
+  enterColoring() {
+    noise({ dur: 0.28, freq: 1500, sweepTo: 800, q: 0.5, gain: 0.035, attack: 0.06, wet: 0.08 });
+    pluck(noteHz(SFX_ROOT, 4) * 0.5, { dur: 0.35, gain: 0.04, delay: 0.1 });
+    pluck(noteHz(SFX_ROOT, 9) * 0.5, { dur: 0.45, gain: 0.035, delay: 0.24, wet: 0.4 });
+  },
+  /** Opening a blank Free Draw canvas: two airy, rising bells, like a fresh sheet of sky. */
+  enterFreeDraw() {
+    bell(noteHz(SFX_ROOT, 12), { dur: 1.1, gain: 0.03, wet: 0.6 });
+    bell(noteHz(SFX_ROOT, 19), { dur: 1.2, gain: 0.024, delay: 0.14, wet: 0.65 });
+    noise({ dur: 0.45, freq: 2200, sweepTo: 3200, q: 0.5, gain: 0.018, attack: 0.15, wet: 0.3 });
+  },
   /** A singing bowl, for starting and ending a quiet moment. */
   bowl(root = 196) {
     bell(root, { dur: 6, gain: 0.06, attack: 0.04, wet: 0.7 });
@@ -337,8 +349,38 @@ let brushSrc: AudioBufferSourceNode | null = null;
 let brushGain: GainNode | null = null;
 let brushFilter: BiquadFilterNode | null = null;
 
+/** What a stroke sounds like. Each kind is a differently filtered hush, so tools feel different under the brush. */
+export type BrushKind = 'soft' | 'grainy' | 'wet' | 'marker' | 'ink' | 'glitter';
+const BRUSH_PROFILE: Record<BrushKind, { freq: number; q: number; level: number; spread: number }> = {
+  soft: { freq: 1200, q: 0.7, level: 1, spread: 1200 },
+  grainy: { freq: 2000, q: 0.7, level: 1, spread: 1200 },
+  wet: { freq: 650, q: 0.5, level: 0.9, spread: 600 },
+  marker: { freq: 2600, q: 1.4, level: 0.75, spread: 900 },
+  ink: { freq: 1700, q: 1.1, level: 0.6, spread: 500 },
+  glitter: { freq: 3300, q: 0.9, level: 0.7, spread: 1500 }
+};
+/** Which stroke sound a painting tool uses. */
+export function brushKindFor(tool: string): BrushKind {
+  switch (tool) {
+    case 'crayon':
+    case 'pastel':
+      return 'grainy';
+    case 'watercolor':
+      return 'wet';
+    case 'marker':
+      return 'marker';
+    case 'ink':
+      return 'ink';
+    case 'glitter':
+      return 'glitter';
+    default:
+      return 'soft';
+  }
+}
+let brushProfile = BRUSH_PROFILE.soft;
+
 export const brushSound = {
-  begin(kind: 'soft' | 'grainy' = 'soft') {
+  begin(kind: BrushKind = 'soft') {
     const c = canPlay('painting');
     if (!c || !noiseBuf || brushSrc) return;
     brushSrc = c.createBufferSource();
@@ -346,8 +388,9 @@ export const brushSound = {
     brushSrc.loop = true;
     brushFilter = c.createBiquadFilter();
     brushFilter.type = 'bandpass';
-    brushFilter.frequency.value = kind === 'grainy' ? 2000 : 1200;
-    brushFilter.Q.value = 0.7;
+    brushProfile = BRUSH_PROFILE[kind] ?? BRUSH_PROFILE.soft;
+    brushFilter.frequency.value = brushProfile.freq;
+    brushFilter.Q.value = brushProfile.q;
     brushGain = c.createGain();
     brushGain.gain.value = 0.0001;
     brushSrc.connect(brushFilter).connect(brushGain).connect(buses.painting!);
@@ -356,9 +399,9 @@ export const brushSound = {
   /** speed in canvas px per ms. */
   move(speed: number) {
     if (!brushGain || !ctx) return;
-    const level = Math.min(0.14, speed * 0.08) * mood().softness;
+    const level = Math.min(0.14, speed * 0.08) * mood().softness * brushProfile.level;
     brushGain.gain.setTargetAtTime(level, ctx.currentTime, 0.06);
-    if (brushFilter) brushFilter.frequency.setTargetAtTime(800 + Math.min(1200, speed * 800), ctx.currentTime, 0.06);
+    if (brushFilter) brushFilter.frequency.setTargetAtTime(brushProfile.freq * 0.67 + Math.min(brushProfile.spread, speed * 800), ctx.currentTime, 0.06);
   },
   end() {
     if (!brushSrc || !brushGain || !ctx) return;

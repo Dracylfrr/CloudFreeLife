@@ -46,6 +46,9 @@ Cloud-Freelife does not send personal content or analytics. When checking for or
 
 Without Internet access everything else works normally: painting, the Gallery, games, exports and settings.
 
+## Your avatar
+If you choose an avatar, its look (hair, eyes, skin, clothes and background colors) is saved in your settings file on this computer, like your other settings. It is never sent anywhere.
+
 ## Updating
 When you press **Update now**, the new installer is downloaded from the official release host into `%APPDATA%\Cloud-Freelife\update`, checked against the published SHA-256, run quietly and removed the next time the app starts. Nothing is saved in Downloads or shown in File Explorer.
 

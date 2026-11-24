@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import { settings } from '../../core/settings';
   import { APP_VERSION } from '../../core/version';
+  import { BRAND_NAME } from '../../core/brand';
   import { loadCatalog } from '../../core/content/registry';
   import { confirmDialog, toast } from '../../core/feedback';
   import { formatBytes, formatDate } from '../../core/util';
@@ -56,7 +57,7 @@
     <div class="ico"><Icon name={$updateState.outcome === 'available' ? 'sparkle' : $updateState.outcome === 'offline' || $updateState.outcome === 'error' ? 'cloud' : 'check'} size={26} /></div>
     <div>
       <strong>
-        {#if $updateState.outcome === 'idle'}Cloud-Freelife v{APP_VERSION}
+        {#if $updateState.outcome === 'idle'}{BRAND_NAME} v{APP_VERSION}
         {:else if checking}Checking for updates…
         {:else if $updateState.outcome === 'available'}{$updateState.available.length} {$updateState.available.length === 1 ? 'update is' : 'updates are'} ready
         {:else if $updateState.outcome === 'up_to_date'}You're up to date
@@ -81,7 +82,7 @@
           <Icon name="chevronRight" size={20} />
           <span class="v new">v{u.version}<small>Available</small></span>
         </div>
-        <h2>{u.headline ?? 'A new version of Cloud-Freelife'}</h2>
+        <h2>{u.headline ?? `A new version of ${BRAND_NAME}`}</h2>
 
         {#if u.notes}
           <h3 class="mini">What's new</h3>
@@ -98,7 +99,7 @@
 
         <div class="foot-row">
           <p class="fine">
-            {#if u.asset}Download size {formatBytes(u.asset.size)} · checked with SHA-256 before use · {selfUpdate ? 'updates quietly and reopens Cloud-Freelife, keeping everything' : 'you choose when to run it'}{:else}No verified installer is attached to this release yet.{/if}
+            {#if u.asset}Download size {formatBytes(u.asset.size)} · checked with SHA-256 before use · {selfUpdate ? 'updates quietly and reopens {BRAND_NAME}, keeping everything' : 'you choose when to run it'}{:else}No verified installer is attached to this release yet.{/if}
           </p>
           <div class="btns">
             {#if saved}

@@ -6,6 +6,7 @@
   import { settings } from '../../../core/settings';
   import { sfx } from '../../../core/audio';
   import Button from '../../../ui/Button.svelte';
+  import GameResult from '../GameResult.svelte';
   import Icon from '../../../ui/Icon.svelte';
   import { PuzzleGame } from './logic';
 
@@ -129,16 +130,17 @@
     <p class="how">Pick a piece, then pick another to swap them. No timer — take all the time you like.</p>
 
     {#if solved}
-      <div class="overlay">
-        <div class="big">🧩</div>
-        <h2>Picture complete!</h2>
-        <p class="muted">{swaps} {swaps === 1 ? 'swap' : 'swaps'}. Lovely work.</p>
-        <div class="acts">
-          <Button variant="primary" onclick={() => start((idx + 1) % levels.length)}>Next picture</Button>
-          <Button variant="soft" onclick={() => start()}>Play again</Button>
-          <Button variant="ghost" onclick={() => navigate({ name: 'minigames' })}>All games</Button>
-        </div>
-      </div>
+      <GameResult
+        big="🧩"
+        title="Picture complete!"
+        message="{swaps} {swaps === 1 ? 'swap' : 'swaps'}. Lovely work."
+        level={idx + 1}
+        total={levels.length}
+        noun="picture"
+        onAgain={() => start()}
+        onNext={() => start(idx + 1)}
+        onFirst={() => start(0)}
+      />
     {/if}
   </div>
 </div>
@@ -256,29 +258,6 @@
     color: var(--ink-faint);
     font-size: 0.8rem;
     font-weight: 700;
-  }
-  .overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(240, 236, 252, 0.8);
-    backdrop-filter: blur(5px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    animation: fade 0.3s ease-out;
-    text-align: center;
-    padding: 20px;
-    z-index: 5;
-  }
-  .big {
-    font-size: 3rem;
-  }
-  .acts {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
   }
   @keyframes fade {
     from {

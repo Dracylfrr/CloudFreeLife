@@ -2,6 +2,23 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com), and the project uses [Semantic Versioning](https://semver.org).
 
+## [1.7.0]
+
+### Added
+- **A new name: Project D.R.E.A.M: Cloud Sonata**, with *Draw • Relax • Explore • Adventure • Meditate* under it in the sidebar and on the About page. (Only the name you see changed; the installer, the install folder and your saved paintings keep their old names, so updating and your art are untouched.)
+- **Your avatar.** A young, round-faced portrait that looks straight at you, shown in the top-left of the sidebar (blank until you choose one). Pick a girl or boy look to start, then change the hair style (short, messy, bob, long, pigtails, bun), hair, eye and skin colors, clothes (T-shirt, hoodie or dress) and their color, and the background. It also appears at the top of every Story Adventure. It is saved on your computer with your other settings.
+- **Games: a congratulations screen after every level**, with *Play again* on the left and *Next level* (or wall, board, picture) on the right. After the very last level it says *Congratulations! You finished every level* instead of offering a next one.
+- **Memory Meadow Endless mode.** Each round adds two pairs, from 8 cards up to a 10 by 10 board (100 cards), then the rounds keep coming at that size.
+- **Meditation: sort by time.** *Suggested*, *Shortest first* or *Longest first* (the silent timer, where you choose the length, always goes last). Your choice is remembered.
+- **A "saved" notice for every file you export** (PNG, Timelapse): for about eight seconds it says what was saved and offers *Show in folder*, which opens the folder with the file selected.
+- **Free Draw: up to 10 layers** (it was 4). Press **Delete** or **Backspace** on a layer in the Layers panel to delete it (it still asks first, and you can undo).
+- **Sounds that fit what you are doing.** Opening a coloring page and opening Free Draw each have their own soft sound, and every painting tool now sounds a little different under the brush (watercolor is wetter, markers brighter, ink thinner, glitter airier, crayon and pastel grainy).
+
+### Changed
+- **Gallery** moved to the end of the *Explore* group in the sidebar.
+- **Cozy Stories and Story Adventures** now open on *All stories* / *All adventures*, with *Continue* the next tab along.
+- The sidebar is a little wider so the full name fits.
+
 ## [1.6.3]
 
 ### Changed

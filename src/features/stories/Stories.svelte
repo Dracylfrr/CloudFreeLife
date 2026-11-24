@@ -6,6 +6,9 @@
   import { buildReadingList, groupReadingList, type ReadingEntry } from './readingList';
   import ReadingCard from './ReadingCard.svelte';
   import { groupSeries, partLabel } from './longread';
+  import Avatar from '../avatar/Avatar.svelte';
+  import { openAvatarEditor } from '../avatar/state';
+  import { settings } from '../../core/settings';
 
   // One screen, two places: "Cozy Stories" (books you read, with no choices) and
   // "Story Adventures" (you choose what happens). They share the same simple list.
@@ -17,21 +20,16 @@
   const mine = $derived(everything.filter((e) => e.kind === kind));
   const groups = $derived(groupReadingList(mine));
 
-  let tab = $state<Tab>(
-    untrack(() => {
-      if (initial) return initial;
-      const list = buildReadingList($catalog.stories, $catalog.adventures, $storyProgress).filter((e) => e.kind === kind);
-      return groupReadingList(list).continue.length ? 'continue' : 'all';
-    })
-  );
+  // The shelf opens on everything; "Continue" is the next tab along.
+  let tab = $state<Tab>(untrack(() => initial ?? 'all'));
   let who = $state<'all' | Protagonist>('all');
   let genre = $state<string>('all');
 
   const genres = $derived([...new Set($catalog.adventures.map((a) => a.manifest.genre))].sort());
 
   const tabs = $derived<{ id: Tab; label: string; count: number }[]>([
-    { id: 'continue', label: 'Continue', count: groups.continue.length },
     { id: 'all', label: isAdventure ? 'All adventures' : 'All stories', count: mine.length },
+    { id: 'continue', label: 'Continue', count: groups.continue.length },
     { id: 'notStarted', label: 'Not started', count: groups.notStarted.length },
     { id: 'finished', label: 'Finished', count: groups.finished.length },
     { id: 'favorites', label: 'Favorites', count: groups.favorites.length }
@@ -76,7 +74,15 @@
           : 'Gentle illustrated stories to read slowly. Nothing to do but enjoy them.'}
       </p>
     </div>
-    <span class="pill">{mine.length} {isAdventure ? 'adventures' : 'stories'}</span>
+    <div class="head-right">
+      {#if isAdventure}
+        <button class="player" onclick={openAvatarEditor} title={$settings.avatar ? 'Change your avatar' : 'Choose your avatar'}>
+          <Avatar avatar={$settings.avatar} size={44} />
+          <span>{$settings.avatar ? 'Playing as you' : 'Choose your avatar'}</span>
+        </button>
+      {/if}
+      <span class="pill">{mine.length} {isAdventure ? 'adventures' : 'stories'}</span>
+    </div>
   </header>
 
   <div class="tabs" role="tablist" aria-label={isAdventure ? 'Adventure sections' : 'Story sections'}>
@@ -128,6 +134,28 @@
 </div>
 
 <style>
+  .head-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .player {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 16px 4px 5px;
+    border-radius: 999px;
+    background: var(--panel-strong);
+    box-shadow: var(--shadow-s);
+    font-weight: 800;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+  }
+  .player:hover {
+    color: var(--ink);
+    box-shadow: var(--shadow-m);
+  }
   .pill {
     background: var(--panel-strong);
     padding: 8px 16px;

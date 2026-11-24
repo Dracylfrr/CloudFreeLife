@@ -5,6 +5,7 @@
   import { settings } from '../../../core/settings';
   import { sfx } from '../../../core/audio';
   import Button from '../../../ui/Button.svelte';
+  import GameResult from '../GameResult.svelte';
   import Icon from '../../../ui/Icon.svelte';
   import GameFrame from '../GameFrame.svelte';
   import { GameLoop } from '../loop';
@@ -211,16 +212,19 @@
       </div>
     {/if}
     {#if finished}
-      <div class="overlay">
-        <div class="big">🫧</div>
-        <h2>A lovely round</h2>
-        <p class="muted">All your bubbles are happy.</p>
-        <div class="acts">
-          <Button variant="primary" onclick={() => start(mode)}>Play again</Button>
-          <Button variant="soft" onclick={() => start('relax')}>Just relax</Button>
-          <Button variant="ghost" onclick={() => navigate({ name: 'minigames' })}>All games</Button>
-        </div>
-      </div>
+      <GameResult
+        big="🫧"
+        title="A lovely round"
+        message="All your bubbles are happy."
+        level={mode === 'match' ? idx + 1 : 0}
+        total={mode === 'match' ? levels.length : 0}
+        noun="level"
+        onAgain={() => start(mode)}
+        onNext={mode === 'match' && idx + 1 < levels.length ? () => start(mode, idx + 1) : undefined}
+        onFirst={() => start(mode, 0)}
+      >
+        {#snippet extra()}<Button variant="soft" onclick={() => start('relax')}>Just relax</Button>{/snippet}
+      </GameResult>
     {/if}
   </div>
 </GameFrame>
@@ -289,14 +293,5 @@
     background: rgb(var(--w) / 0.55);
     backdrop-filter: blur(3px);
     text-align: center;
-  }
-  .big {
-    font-size: 3rem;
-  }
-  .acts {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center;
   }
 </style>

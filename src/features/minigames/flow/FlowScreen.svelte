@@ -4,6 +4,7 @@
   import { navigate } from '../../../core/router';
   import { sfx } from '../../../core/audio';
   import Button from '../../../ui/Button.svelte';
+  import GameResult from '../GameResult.svelte';
   import Icon from '../../../ui/Icon.svelte';
   import GameFrame from '../GameFrame.svelte';
   import { gamesProgress, recordFlowSolved, recordOpened } from '../progress';
@@ -359,19 +360,20 @@
   <div class="board" bind:this={box}>
     <canvas bind:this={canvas} onpointerdown={down} onpointermove={move} onpointerup={up} onpointercancel={up} aria-label="Paint Flow board. Drag from a dot to its matching dot, or use the arrow keys and Space."></canvas>
     {#if solved}
-      <div class="overlay">
-        <div class="big">🎨</div>
-        <h2>Beautifully connected</h2>
-        <div class="acts">
-          {#if mode === 'puzzle'}
-            <Button variant="primary" onclick={() => newPuzzle((idx + 1) % levels.length)}>Next board</Button>
-            <Button variant="soft" onclick={() => newPuzzle()}>Play again</Button>
-          {:else}
-            <Button variant="primary" onclick={newRelax}>New board</Button>
-          {/if}
-          <Button variant="ghost" onclick={() => navigate({ name: 'minigames' })}>All games</Button>
-        </div>
-      </div>
+      {#if mode === 'puzzle'}
+        <GameResult
+          big="🎨"
+          title="Beautifully connected"
+          level={idx + 1}
+          total={levels.length}
+          noun="board"
+          onAgain={() => newPuzzle()}
+          onNext={() => newPuzzle(idx + 1)}
+          onFirst={() => newPuzzle(0)}
+        />
+      {:else}
+        <GameResult big="🎨" title="Beautifully connected" onNext={newRelax} nextLabel="New board" />
+      {/if}
     {/if}
   </div>
 </GameFrame>
@@ -444,26 +446,5 @@
   }
   .swatches button.on {
     box-shadow: 0 0 0 3px var(--lavender-deep);
-  }
-  .overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    background: rgb(var(--w) / 0.55);
-    backdrop-filter: blur(3px);
-    text-align: center;
-  }
-  .big {
-    font-size: 3rem;
-  }
-  .acts {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center;
   }
 </style>

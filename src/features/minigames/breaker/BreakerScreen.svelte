@@ -5,6 +5,7 @@
   import { settings } from '../../../core/settings';
   import { sfx } from '../../../core/audio';
   import Button from '../../../ui/Button.svelte';
+  import GameResult from '../GameResult.svelte';
   import Icon from '../../../ui/Icon.svelte';
   import { GameLoop } from '../loop';
   import { ParticleSystem } from '../particles';
@@ -226,16 +227,22 @@
         </div>
       {/if}
       {#if status === 'won'}
-        <div class="overlay">
-          <div class="big">✨</div>
-          <h2>Beautiful!</h2>
-          <p class="muted">{popped} blocks popped so far.</p>
-          <div class="acts">
-            <Button variant="primary" onclick={next}>{mode === 'endless' ? 'Next round' : 'Next level'}</Button>
-            <Button variant="soft" onclick={() => restart(mode)}>Replay</Button>
-            <Button variant="ghost" onclick={() => navigate({ name: 'minigames' })}>All games</Button>
-          </div>
-        </div>
+        <GameResult
+          big="✨"
+          title="Beautiful!"
+          message="{popped} blocks popped so far."
+          level={mode === 'endless' ? 0 : idx + 1}
+          total={mode === 'endless' ? 0 : levels.length}
+          noun="level"
+          againLabel="Play again"
+          onAgain={() => restart(mode)}
+          onNext={next}
+          nextLabel={mode === 'endless' ? 'Next round' : 'Next level'}
+          onFirst={() => {
+            idx = 0;
+            restart(mode);
+          }}
+        />
       {/if}
       {#if status === 'over'}
         <div class="overlay">

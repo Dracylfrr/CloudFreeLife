@@ -1,7 +1,8 @@
 <script lang="ts">
   import Logo from '../../ui/Logo.svelte';
   import Icon from '../../ui/Icon.svelte';
-  import { APP_NAME, APP_VERSION } from '../../core/version';
+  import { APP_VERSION } from '../../core/version';
+  import { BRAND_NAME, BRAND_SUBTITLE, DREAM_WORDS } from '../../core/brand';
   import { catalog } from '../../core/content/registry';
 
   const pages = $derived($catalog.books.reduce((n, b) => n + b.pages.length, 0));
@@ -11,7 +12,11 @@
 <div class="page">
   <div class="about">
     <div class="logo"><Logo size={120} /></div>
-    <h1>{APP_NAME}</h1>
+    <h1>{BRAND_NAME}</h1>
+    <p class="subtitle">{BRAND_SUBTITLE}</p>
+    <p class="dream" aria-label={DREAM_WORDS.join(', ')}>
+      {#each DREAM_WORDS as w, i (w)}<span><b>{w[0]}</b>{w.slice(1)}</span>{#if i < DREAM_WORDS.length - 1}<i aria-hidden="true">•</i>{/if}{/each}
+    </p>
     <p class="ver">Version {APP_VERSION}</p>
     <p class="blurb">A small, gentle place to color, draw and play. No scores to chase, no accounts to make — just soft colors and slow clouds.</p>
 
@@ -46,6 +51,30 @@
   .logo {
     filter: drop-shadow(0 14px 22px rgba(130, 110, 200, 0.3));
     margin-bottom: 6px;
+  }
+  .subtitle {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--ink-soft);
+    margin-top: -4px;
+  }
+  .dream {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+    gap: 2px 8px;
+    margin: 6px 0 4px;
+    font-weight: 700;
+    color: var(--ink-soft);
+  }
+  .dream b {
+    color: var(--lavender-deep);
+    font-weight: 900;
+  }
+  .dream i {
+    font-style: normal;
+    color: var(--ink-faint);
   }
   .ver {
     color: var(--lavender-deep);

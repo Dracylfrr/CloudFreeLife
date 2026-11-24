@@ -5,6 +5,7 @@
   import { formatBytes, formatDate } from '../../core/util';
   import { confirmDialog, toast } from '../../core/feedback';
   import { APP_VERSION } from '../../core/version';
+  import { BRAND_FULL, BRAND_NAME } from '../../core/brand';
   import { sfx, preview } from '../../core/audio';
   import { MOOD_PROFILES } from '../../core/moods';
   import { MUSIC } from '../../core/music';
@@ -154,7 +155,7 @@
         <Toggle label="Check for updates when the app starts" description="One quick check for a new version and new content. Never repeated in the background." checked={$settings.checkUpdatesOnStartup} onchange={(v) => updateSettings({ checkUpdatesOnStartup: v })} />
         <div class="check">
           <div>
-            <strong>Cloud-Freelife v{APP_VERSION}</strong>
+            <strong>{BRAND_NAME} v{APP_VERSION}</strong>
             <p class="muted">{$settings.lastUpdateCheck ? `Last checked ${formatDate($settings.lastUpdateCheck)}` : 'Not checked yet'}</p>
             {#if $updateState.message}<p class="muted">{$updateState.message}</p>{/if}
           </div>
@@ -170,7 +171,7 @@
         <div class="foot"><Button variant="soft" icon="folder" onclick={openFolder}>Open folder</Button></div>
       {:else}
         <h2>About</h2>
-        <p>Cloud-Freelife v{APP_VERSION} is a calm place to color, draw and play.</p>
+        <p>{BRAND_FULL} v{APP_VERSION} is a calm place to color, draw and play.</p>
         <p class="muted">No accounts, no tracking, no ads. It works fully offline.</p>
       {/if}
     </section>

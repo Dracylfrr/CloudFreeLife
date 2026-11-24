@@ -9,6 +9,8 @@
   import Button from '../../ui/Button.svelte';
   import Icon from '../../ui/Icon.svelte';
   import { sfx } from '../../core/audio';
+  import Avatar from '../avatar/Avatar.svelte';
+  import { openAvatarEditor } from '../avatar/state';
 
   let { adventureId }: { adventureId: string } = $props();
   const aid = untrack(() => adventureId);
@@ -79,6 +81,9 @@
 
     <article class="paper" style="--fs:{$settings.storyFontScale}; --accent:{adv.accent ?? '#b7a8ec'}">
       <div class="meta">
+        <button class="you" onclick={openAvatarEditor} title={$settings.avatar ? 'This is you. Click to change your avatar.' : 'Choose your avatar'} aria-label={$settings.avatar ? 'Change your avatar' : 'Choose your avatar'}>
+          <Avatar avatar={$settings.avatar} size={48} />
+        </button>
         <h1 class="title">{adv.name}</h1>
         <span class="who">{adv.hero ? `${adv.hero} · ` : ''}{adv.protagonist === 'girl' ? "Girl's perspective" : "Guy's perspective"}</span>
       </div>
@@ -191,6 +196,14 @@
     border: 1px solid rgb(var(--w) / 0.9);
     border-top: 6px solid var(--accent);
     padding: clamp(22px, 5vw, 48px) clamp(20px, 6vw, 60px) clamp(24px, 5vw, 44px);
+  }
+  .you {
+    border-radius: 50%;
+    align-self: center;
+    transition: transform 0.2s var(--ease);
+  }
+  .you:hover {
+    transform: scale(1.07) rotate(-3deg);
   }
   .meta {
     display: flex;

@@ -9,6 +9,7 @@ import { getSettings, updateSettings } from '../../core/settings';
 import { getStorage, isTauri } from '../../core/storage';
 import { APP_VERSION, compareVersions } from '../../core/version';
 import { toast } from '../../core/feedback';
+import { BRAND_NAME } from '../../core/brand';
 import { navigate, runLeaveGuards } from '../../core/router';
 import { sha256Hex } from './checksum';
 import { httpGet, NetworkError } from './http';
@@ -272,7 +273,7 @@ export async function installAppQuietly(item: UpdateItem): Promise<{ ok: boolean
     await runLeaveGuards();
     const { invoke } = await import('@tauri-apps/api/core');
     await invoke('install_update', { fileName: item.asset.name, sha256: item.asset.sha256 });
-    return { ok: true, message: 'Updating Cloud-Freelife. It will reopen in a moment.' };
+    return { ok: true, message: `Updating ${BRAND_NAME}. It will reopen in a moment.` };
   } catch (err) {
     if (kept) await (await getStorage()).remove(kept).catch(() => undefined);
     const text = typeof err === 'string' ? err : (err as Error)?.message;

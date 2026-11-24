@@ -150,11 +150,11 @@ describe('update parsing', () => {
     expect(withHeadline.value.headline).toBe('2 new books and a new mini-game');
     const rel: ReleaseInfo = parseReleases([releaseJson('v1.1.0', [{ name: RELEASE_MANIFEST_ASSET }, { name: 'Cloud-Freelife_1.1.0_x64-setup.exe' }, { name: 'castle_dreams_v1.0.0.cfpack' }])])[0];
     const [app, book] = planFromManifest(withHeadline.value, rel, '1.0.0', {});
-    expect(noticeText(app)).toEqual({ title: 'Cloud-Freelife 1.1.0 is available', detail: '2 new books and a new mini-game' });
+    expect(noticeText(app)).toEqual({ title: 'Project D.R.E.A.M 1.1.0 is available', detail: '2 new books and a new mini-game' });
     expect(noticeText(book)).toEqual({ title: 'New content is ready', detail: 'New coloring book available — Castle Dreams' });
     const plain = parseReleaseManifest(goodManifest);
     if (!plain.ok) throw new Error('manifest');
-    expect(noticeText(planFromManifest(plain.value, rel, '1.0.0', {})[0])).toEqual({ title: 'Cloud-Freelife 1.1.0 is available', detail: 'A new version is ready to install' });
+    expect(noticeText(planFromManifest(plain.value, rel, '1.0.0', {})[0])).toEqual({ title: 'Project D.R.E.A.M 1.1.0 is available', detail: 'A new version is ready to install' });
     // the Update Center list keeps the plain wording
     expect(describeUpdate(app)).toBe('Update available — v1.1.0');
   });

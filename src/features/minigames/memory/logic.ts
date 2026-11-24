@@ -22,6 +22,36 @@ export function shuffle<T>(list: T[], rng: Rng): T[] {
   return a;
 }
 
+// ---------------------------------------------------------------- endless mode
+// Round 1 is a small board; every round adds two pairs, until the board is as big as it can
+// comfortably be on a screen. After that the rounds keep coming at that size.
+
+/** The most cards on one board (a 10 x 10 grid). */
+export const ENDLESS_MAX_CARDS = 100;
+
+/** How many pairs a round has. */
+export function endlessPairs(round: number): number {
+  const r = Math.max(1, Math.floor(round) || 1);
+  return Math.min(ENDLESS_MAX_CARDS / 2, 4 + 2 * (r - 1));
+}
+
+/** The number of columns that makes a board of this many pairs roughly square-ish (a bit wider). */
+export function endlessColumns(pairs: number): number {
+  const cards = Math.max(2, pairs * 2);
+  return Math.min(10, Math.max(4, Math.ceil(Math.sqrt(cards * 1.3))));
+}
+
+/**
+ * The pictures for a round: every picture is used once before any is used again, so small boards have
+ * all-different pairs. A bigger board repeats pictures, and any two equal cards still match.
+ */
+export function endlessSymbols(pairs: number, ids: readonly string[], rng: Rng): string[] {
+  if (ids.length === 0 || pairs <= 0) return [];
+  const out: string[] = [];
+  while (out.length < pairs) out.push(...shuffle([...ids], rng));
+  return out.slice(0, pairs);
+}
+
 export class MemoryGame {
   cards: Card[];
   moves = 0;

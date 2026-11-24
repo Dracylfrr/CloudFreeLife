@@ -38,6 +38,18 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 - [ ] Splash Wall: all 16 levels open; aim, click-throw, hold-to-charge throw; splat stays in the region; goals count correctly; color match hints; Wash and Save PNG.
 - [ ] Pause with P; minimize the window and confirm CPU drops to ~0.
 
+## 1.7.0 checks
+- [ ] Sidebar: the avatar circle (empty with a +) is top left with the full name "Project D.R.E.A.M", "Cloud Sonata" and the five words under it. Gallery is last under Explore.
+- [ ] Click the avatar: choose Girl or Boy; change hair style, hair, eyes, skin, clothes, clothes color and background; each change shows at once and is still there after restarting. Remove avatar returns to the empty circle. Esc closes the editor.
+- [ ] Story Adventures: the avatar shows on the page header ("Playing as you") and on every adventure; clicking it opens the editor.
+- [ ] Every game: finishing a level shows "Congratulations! Level N complete" with Play again on the left and Next level on the right; finishing the last level shows "You finished every level!" and Back to level 1.
+- [ ] Memory Meadow > Endless: round 1 has 8 cards, each round adds 4 cards, a big board (10 x 10) is still readable, and Next round works.
+- [ ] Meditation: Sort by time reorders the cards; the choice is still set after restarting.
+- [ ] Export PNG and Timelapse: a notice appears for several seconds with the file name and Show in folder; the button opens the folder with the file selected.
+- [ ] Free Draw: Add layer works up to 10; Delete or Backspace on a selected layer asks to delete it; undo brings it back; a 10-layer painting saves and reopens.
+- [ ] Opening a coloring page and opening Free Draw play different soft sounds; Watercolor, Marker, Ink, Glitter and Crayon sound different while painting.
+- [ ] Cozy Stories and Story Adventures open on the All tab; Continue is the second tab.
+
 ## 1.6.3 checks
 - [ ] Coloring Books (the books, and the pages inside a book), Meditation, Exercise, Cozy Stories (All stories) and Story Adventures show five cards across at a full-size window; narrower windows show fewer columns, never a sideways scrollbar.
 - [ ] Settings > Display > App icon: pick another icon and the taskbar button changes within a couple of seconds (and the title bar icon too). Picking the original icon again puts it back.

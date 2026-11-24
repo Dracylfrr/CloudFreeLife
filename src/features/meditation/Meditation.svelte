@@ -7,8 +7,30 @@
   import Icon from '../../ui/Icon.svelte';
   import { meditationProgress, toggleMeditationFavorite } from './progress';
   import { minutesLabel } from './breath';
+  import { SORTS, SORT_LABEL, isSort, sortSessions, type MeditationSort } from './sort';
 
-  const sessions = $derived($catalog.meditations);
+  // The order is remembered on this computer.
+  const SORT_KEY = 'cloud-freelife-meditation-sort';
+  function loadSort(): MeditationSort {
+    try {
+      const v = localStorage.getItem(SORT_KEY);
+      return isSort(v) ? v : 'suggested';
+    } catch {
+      return 'suggested';
+    }
+  }
+  let sort = $state<MeditationSort>(loadSort());
+  function setSort(s: MeditationSort) {
+    sort = s;
+    sfx.click();
+    try {
+      localStorage.setItem(SORT_KEY, s);
+    } catch {
+      /* remembering the order is optional */
+    }
+  }
+
+  const sessions = $derived(sortSessions($catalog.meditations, sort));
   const last = $derived($meditationProgress.last ? sessions.find((s) => s.manifest.id === $meditationProgress.last!.id) : undefined);
 
   function open(id: string) {
@@ -28,6 +50,15 @@
 
   {#if last && $meditationProgress.last}
     <p class="lastline">Last time: <strong>{last.manifest.name}</strong>, {formatDate($meditationProgress.last.at)}</p>
+  {/if}
+
+  {#if sessions.length > 1}
+    <div class="sorter" role="group" aria-label="Sort sessions by time">
+      <span class="lab">Sort by time</span>
+      {#each SORTS as s (s)}
+        <button class:on={sort === s} aria-pressed={sort === s} onclick={() => setSort(s)}>{SORT_LABEL[s]}</button>
+      {/each}
+    </div>
   {/if}
 
   {#if sessions.length === 0}
@@ -59,6 +90,35 @@
 </div>
 
 <style>
+  .sorter {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 18px;
+  }
+  .sorter .lab {
+    font-weight: 800;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    margin-right: 2px;
+  }
+  .sorter button {
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 0.84rem;
+    color: var(--ink-soft);
+    background: var(--panel);
+    box-shadow: var(--shadow-s);
+  }
+  .sorter button:hover {
+    color: var(--ink);
+  }
+  .sorter button.on {
+    background: linear-gradient(135deg, var(--nav-a), var(--nav-b));
+    color: var(--nav-ink);
+  }
   .lastline {
     margin: -8px 0 20px;
     color: var(--ink-soft);
