@@ -9,6 +9,7 @@
   import { MOOD_PROFILES } from '../../core/moods';
   import { MUSIC } from '../../core/music';
   import Toggle from '../../ui/Toggle.svelte';
+  import { keepsInside, modeInfo, modeList } from '../painting/paintMode';
   import ThemePicker from './ThemePicker.svelte';
   import AppIconPicker from './AppIconPicker.svelte';
   import { MOODS, MUSIC_MOODS, type Mood } from '../../core/settings';
@@ -86,7 +87,13 @@
     <section class="panel">
       {#if tab === 'general'}
         <h2>General</h2>
-        <Toggle label="Stay inside lines by default" description="When painting coloring pages, color stays in the region where your stroke started." checked={$settings.stayInsideLines} onchange={(v) => updateSettings({ stayInsideLines: v })} />
+        <h3 class="sub">Paint mode on coloring pages</h3>
+        <div class="moods" role="radiogroup" aria-label="Paint mode on coloring pages">
+          {#each modeList(true) as m (m.id)}
+            <button class="chip" class:on={$settings.paintMode === m.id} role="radio" aria-checked={$settings.paintMode === m.id} title={m.hint} onclick={() => { updateSettings({ paintMode: m.id, stayInsideLines: keepsInside(m.id) }); sfx.click(); }}>{m.label}</button>
+          {/each}
+        </div>
+        <p class="muted small">{modeInfo($settings.paintMode, true).hint} You can also change it while you paint.</p>
         <Toggle label="Show brush outline" description="A soft ring shows the size of your brush." checked={$settings.showBrushCursor} onchange={(v) => updateSettings({ showBrushCursor: v })} />
         <p class="note"><Icon name="shield" size={16} /> Resetting a page always asks for confirmation.</p>
         <div class="foot"><Button variant="danger" icon="refresh" onclick={resetAll}>Reset all settings</Button></div>

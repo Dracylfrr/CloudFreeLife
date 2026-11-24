@@ -38,6 +38,23 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 - [ ] Splash Wall: all 16 levels open; aim, click-throw, hold-to-charge throw; splat stays in the region; goals count correctly; color match hints; Wash and Save PNG.
 - [ ] Pause with P; minimize the window and confirm CPU drops to ~0.
 
+## 1.6.1 checks: paint mode
+- [ ] On a coloring page the switch reads **Inside the lines / Splash anywhere / Fill areas**; on Free Draw it reads **Inside areas / Anywhere / Fill areas**.
+- [ ] Inside the lines: a stroke that starts in one area never crosses its outline (try Brush, Watercolor, Glitter, Stamp and Paintball).
+- [ ] Splash anywhere: strokes cross the lines freely.
+- [ ] Fill areas: tapping with any painting brush fills that area; the Eraser still erases normally; Undo undoes the fill.
+- [ ] Free Draw: draw a closed shape, switch to Inside areas and scribble from inside it: color stays in the shape. Fill areas fills only the shape or only the outside.
+- [ ] A coloring page remembers its mode after restarting; a new Free Draw always starts on Anywhere.
+- [ ] Timelapse of a painting made with Fill areas replays the fills.
+
+## 1.6.1 checks (quiet updates; test on an installed copy, from one version to the next)
+- [ ] Updates shows **Update now** (not "Install") and the line "updates quietly and reopens Cloud-Freelife".
+- [ ] Pressing it shows no installer window, no UAC prompt, no question and nothing in File Explorer; the app closes, then reopens on the new version within about half a minute.
+- [ ] Paintings, Gallery, albums, settings, story places and Meditation favorites are all still there afterwards.
+- [ ] After the restart there is no Cloud-Freelife installer left in `Downloads\Cloud-Freelife` and no `update` folder in the app's data folder (the second may take until the next start).
+- [ ] A copy unpacked from the portable zip still gets the old behaviour (Install, then the installer is shown).
+- [ ] Turn off the Internet in the middle of the download: a clear message, and the app stays open and untouched.
+
 ## 1.6 checks
 - [ ] Layers (Free Draw): Add up to four; paint on each; show/hide, lock (a gentle message appears when you try to paint on a locked or hidden layer), rename, move up and down, copy, merge down, delete (asks first), opacity and each blend mode; Undo and Redo work across every one of these, including delete and merge.
 - [ ] Layers survive closing and reopening, Duplicate in the Gallery, Export PNG (looks the same as in the painter) and Timelapse.

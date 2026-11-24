@@ -19,6 +19,7 @@
   import { Recorder, recordingSupported, renderTimelapse, sanitizeLog } from './timelapse';
   import { getStorage } from '../../core/storage';
   import LayersPanel from './LayersPanel.svelte';
+  import { brushActsAsFill, keepsInside, modeList, type PaintMode } from './paintMode';
   import ReferencePanel from './ReferencePanel.svelte';
   import { prepareReference } from './referenceImage';
   import { DEFAULT_REF, loadReference, removeReference, saveReference, saveReferenceSettings, type RefSettings } from '../gallery/referenceStore';
@@ -91,7 +92,9 @@
   let stampShape = $state<StampId>('star');
   let canUndo = $state(false);
   let canRedo = $state(false);
-  let stayInside = $state($settings.stayInsideLines);
+  // How paint behaves. On a coloring page it is remembered; on Free Draw it starts as "Anywhere".
+  let paintMode = $state<PaintMode>($settings.paintMode);
+  const stayInside = $derived(keepsInside(paintMode));
   let hasRegions = $state(false);
   let title = $state('');
   let backTo = $state<'books' | 'draw'>('books');
@@ -178,6 +181,7 @@
       e.state = { ...e.state, color, size, stayInside, reduceMotion: $settings.reducedMotion, particles: !$settings.disableParticles };
       e.allowLayers = !data.meta.pageId;
       canLayer = e.allowLayers;
+      if (!data.meta.pageId) paintMode = 'anywhere';
       if (data.meta.pageId) {
         const page = findPage(data.meta.bookId, data.meta.pageId);
         if (!page) throw new Error('Page missing');
@@ -345,7 +349,8 @@
     sizeTimer = setTimeout(() => updateSettings({ brushSize: s }), 600);
   });
   $effect(() => {
-    updateSettings({ stayInsideLines: stayInside });
+    // only a coloring page's choice is remembered (Free Draw always starts as "Anywhere")
+    if (hasRegions) updateSettings({ paintMode, stayInsideLines: keepsInside(paintMode) });
   });
 
   // ------------------------------------------------------------- pointer input
@@ -378,7 +383,14 @@
     const p = toCanvas(e);
     const t = effectiveTool;
     if ((isBrushTool(t) || t === 'fill' || t === 'clearRegion' || t === 'paintball' || t === 'stamp') && !guardPaint()) return;
-    if (isBrushTool(t)) {
+    if (brushActsAsFill(paintMode, t)) {
+      // Fill mode: the brush fills the area you tap
+      if (engine.fillAt(p.x, p.y)) {
+        recorder?.fill(p.x, p.y, engine.state.color, engine.state.stayInside);
+        logged = recorder?.count ?? 0;
+        sfx.fill();
+      }
+    } else if (isBrushTool(t)) {
       if (engine.beginStroke(p.x, p.y)) {
         recorder?.begin(p.x, p.y, engine.state);
         brushSound.begin(t === 'crayon' ? 'grainy' : 'soft');
@@ -600,11 +612,13 @@
     <h2 class="title" title={title}>{title}</h2>
     <SaveIndicator />
     <span class="spacer"></span>
-    {#if hasRegions}
-      <button class="chip" class:on={stayInside} onclick={() => (stayInside = !stayInside)} title="Keep paint inside the region where you start" aria-pressed={stayInside}>
-        <Icon name="frame" size={16} /> Stay inside lines
-      </button>
-    {/if}
+    <div class="modes" role="radiogroup" aria-label="Paint mode">
+      {#each modeList(hasRegions) as m (m.id)}
+        <button class="mode" class:on={paintMode === m.id} role="radio" aria-checked={paintMode === m.id} title={m.hint} onclick={() => { paintMode = m.id; sfx.click(); }}>
+          {m.label}
+        </button>
+      {/each}
+    </div>
     <div class="group">
       <Button variant="ghost" size="sm" icon="undo" title="Undo (Ctrl+Z)" disabled={!canUndo} onclick={undo} />
       <Button variant="ghost" size="sm" icon="redo" title="Redo (Ctrl+Y)" disabled={!canRedo} onclick={redo} />
@@ -729,6 +743,28 @@
     object-fit: contain;
     border-radius: 10px;
   }
+  .modes {
+    display: inline-flex;
+    padding: 3px;
+    border-radius: 999px;
+    background: var(--panel);
+    box-shadow: var(--shadow-s);
+  }
+  .mode {
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+  .mode:hover {
+    color: var(--ink);
+  }
+  .mode.on {
+    background: linear-gradient(135deg, var(--nav-a), var(--nav-b));
+    color: var(--nav-ink);
+  }
   .rightcol {
     display: flex;
     flex-direction: column;
@@ -815,22 +851,6 @@
     min-width: 48px;
     color: var(--ink-soft);
     font-variant-numeric: tabular-nums;
-  }
-  .chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 7px 14px;
-    border-radius: 999px;
-    font-weight: 800;
-    font-size: 0.84rem;
-    background: rgb(var(--w) / 0.7);
-    color: var(--ink-soft);
-    white-space: nowrap;
-  }
-  .chip.on {
-    background: var(--mint);
-    color: var(--c-green);
   }
   .work {
     flex: 1;

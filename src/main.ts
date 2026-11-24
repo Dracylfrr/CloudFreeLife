@@ -15,7 +15,7 @@ import { isAppHidden, onVisibilityChange } from './core/visibility';
 import { applySettingsToDocument, getSettings, loadSettings, settings, updateSettings } from './core/settings';
 import { getStorage, isTauri } from './core/storage';
 import { refreshArtworks } from './features/gallery/artwork';
-import { startupUpdateCheck } from './features/updates/updater';
+import { cleanUpInstallers, startupUpdateCheck } from './features/updates/updater';
 
 async function boot() {
   const target = document.getElementById('app')!;
@@ -63,6 +63,9 @@ async function boot() {
     window.addEventListener('beforeunload', () => void runLeaveGuards());
   }
 
+  // After an update: delete the installer that was used, and any left in Downloads by older versions.
+  void cleanUpInstallers();
+  setTimeout(() => void cleanUpInstallers(), 30000);
   startupUpdateCheck();
   void getSettings;
 }

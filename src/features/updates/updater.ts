@@ -7,9 +7,9 @@ import { GITHUB_API_RELEASES } from '../../core/config';
 import { getCatalog, loadCatalog } from '../../core/content/registry';
 import { getSettings, updateSettings } from '../../core/settings';
 import { getStorage, isTauri } from '../../core/storage';
-import { APP_VERSION } from '../../core/version';
+import { APP_VERSION, compareVersions } from '../../core/version';
 import { toast } from '../../core/feedback';
-import { navigate } from '../../core/router';
+import { navigate, runLeaveGuards } from '../../core/router';
 import { sha256Hex } from './checksum';
 import { httpGet, NetworkError } from './http';
 import { installPack, listInstalledPacks, packAssetMatches, parsePack, verifyDownloadedAsset } from './packs';
@@ -205,6 +205,94 @@ export async function installContentUpdate(item: UpdateItem): Promise<{ ok: bool
   }
 }
 
+/** The file name every Cloud-Freelife installer has, and the version inside it. */
+export const INSTALLER_NAME = /^Cloud-Freelife_(\d{1,5})\.(\d{1,5})\.(\d{1,5})_x64-setup\.exe$/;
+export function installerVersion(name: string): string | null {
+  const m = INSTALLER_NAME.exec(name);
+  return m ? `${m[1]}.${m[2]}.${m[3]}` : null;
+}
+/** Installers (by file name) that are not newer than `current`, so are safe to delete. */
+export function staleInstallers(names: string[], current: string): string[] {
+  return names.filter((n) => {
+    const v = installerVersion(n);
+    return v !== null && compareVersions(v, current) <= 0;
+  });
+}
+
+/** Where the quiet update is kept while it installs: the app's own data folder, never Downloads. */
+export const UPDATE_DIR = 'update';
+
+/** True when this copy was installed by the installer, so an update can be installed quietly in place. */
+export async function canSelfUpdate(): Promise<boolean> {
+  if (!isTauri()) return false;
+  try {
+    const { invoke } = await import('@tauri-apps/api/core');
+    return (await invoke<boolean>('can_self_update')) === true;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * The quiet update: download the installer into the app's own folder, check size and SHA-256, save
+ * everything, then hand it to the native side, which checks the SHA-256 again, runs it with no
+ * windows and closes the app. The installer keeps all your data, installs over the old version
+ * and starts Cloud-Freelife again. Nothing is shown in Explorer and nothing asks anything.
+ */
+export async function installAppQuietly(item: UpdateItem): Promise<{ ok: boolean; message: string }> {
+  if (item.kind !== 'app' || !item.asset || !item.downloadUrl) return { ok: false, message: 'No verified installer is attached to this release.' };
+  const key = updateKey(item);
+  setBusy(key, true);
+  let kept = '';
+  try {
+    let res;
+    try {
+      res = await httpGet(item.downloadUrl, { accept: 'application/octet-stream', maxBytes: item.asset.size + 4096, timeoutMs: 180000 });
+    } catch (err) {
+      return { ok: false, message: (err as Error).message || 'Download failed.' };
+    }
+    if (res.status !== 200) return { ok: false, message: `Download failed (status ${res.status}).` };
+    const verified = await verifyDownloadedAsset(item.asset, res.bytes, res.contentType, ALLOWED_APP_TYPES);
+    if (!verified.ok) return { ok: false, message: verified.error };
+    if (!installerVersion(item.asset.name)) return { ok: false, message: 'The installer has an unexpected name, so it was not run.' };
+    const st = await getStorage();
+    kept = `${UPDATE_DIR}/${item.asset.name}`;
+    await st.writeBytes(kept, res.bytes);
+    // everything the app keeps is written before it closes
+    await runLeaveGuards();
+    const { invoke } = await import('@tauri-apps/api/core');
+    await invoke('install_update', { fileName: item.asset.name, sha256: item.asset.sha256 });
+    return { ok: true, message: 'Updating Cloud-Freelife. It will reopen in a moment.' };
+  } catch (err) {
+    if (kept) await (await getStorage()).remove(kept).catch(() => undefined);
+    const text = typeof err === 'string' ? err : (err as Error)?.message;
+    return { ok: false, message: text || 'The update could not be installed.' };
+  } finally {
+    setBusy(key, false);
+  }
+}
+
+/**
+ * Tidies up after updates: removes the quiet-update folder and any installer an older version of the
+ * app left in Downloads/Cloud-Freelife (only files that are not newer than this version).
+ */
+export async function cleanUpInstallers(): Promise<void> {
+  if (!isTauri()) return;
+  try {
+    await (await getStorage()).remove(UPDATE_DIR);
+  } catch {
+    /* the installer may still be finishing; the next start tries again */
+  }
+  try {
+    const { BaseDirectory, exists, readDir, remove } = await import('@tauri-apps/plugin-fs');
+    if (!(await exists('Cloud-Freelife', { baseDir: BaseDirectory.Download }))) return;
+    const names = (await readDir('Cloud-Freelife', { baseDir: BaseDirectory.Download })).filter((e) => e.isFile).map((e) => e.name);
+    for (const n of staleInstallers(names, APP_VERSION)) await remove(`Cloud-Freelife/${n}`, { baseDir: BaseDirectory.Download });
+  } catch {
+    /* tidying up is a nicety */
+  }
+}
+
 export interface DownloadedInstaller {
   ok: boolean;
   message: string;
@@ -249,10 +337,14 @@ export async function revealPath(path: string) {
 
 /**
  * Does whatever "Install" means for this update: content is downloaded, verified and installed;
- * an app update is downloaded, verified and shown in Explorer (the user runs it, never the app).
+ * an app update installs quietly and restarts the app (or, for a copy that cannot update itself,
+ * is downloaded, verified and shown in Explorer).
  */
 export async function installUpdate(item: UpdateItem): Promise<{ ok: boolean; message: string }> {
   if (item.kind === 'content') return installContentUpdate(item);
+  // An installed copy updates itself quietly. A copy that was not put here by the installer
+  // (for example one unpacked from the portable zip) cannot, so it gets the installer to run.
+  if (await canSelfUpdate()) return installAppQuietly(item);
   const r = await downloadAppInstaller(item);
   if (r.ok && r.path) {
     updateState.update((s) => ({ ...s, installers: { ...s.installers, [updateKey(item)]: r.path! } }));

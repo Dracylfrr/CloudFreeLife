@@ -22,6 +22,7 @@ import { RegionMap, buildRegionSvg } from './regionMap';
 import { canvasToPng, ctx2d, makeCanvas, pngToBitmap, rasterizeSvg, sizeSvg } from './raster';
 import { BRUSHES, isBrushTool, type ToolId } from './tools';
 import { drawStamp, stampExtent, stampRadius, type StampId } from './stamps';
+import { colorAreaMask } from './colorArea';
 import { MAX_LAYERS, blendOf, cleanName, cleanOpacity, defaultLayerName, nextLayerId, type BlendId, type LayerCommand, type LayerMeta } from './layers';
 
 export const PAPER = '#fffdf8';
@@ -136,6 +137,8 @@ export class PaintEngine {
   private lastMid: Pt = { x: 0, y: 0 };
   private bounds: Rect | null = null;
   private maskId = 0;
+  /** On Free Draw, "inside areas": the pixels of the similar-color area where the stroke started. */
+  private maskBits: Uint8Array | null = null;
   private strokeTool: ToolId = 'brush';
   private strokeColor = '#000';
   private strokeSize = 10;
@@ -327,7 +330,11 @@ export class PaintEngine {
     this.snctx.clearRect(0, 0, this.width, this.height);
     this.snctx.drawImage(this.paint, 0, 0);
     this.maskId = 0;
-    if (this.state.stayInside && this.regionMap && tool !== 'eraser') this.maskId = this.regionMap.idNearest(x, y, 4);
+    this.maskBits = null;
+    if (this.state.stayInside && tool !== 'eraser') {
+      if (this.regionMap) this.maskId = this.regionMap.idNearest(x, y, 4);
+      else this.maskBits = this.colorAreaBits(x, y);
+    }
     if (tool === 'crayon' || tool === 'pastel') this.crayonPattern = this.sctx.createPattern(this.noiseTile(this.strokeColor, tool), 'repeat');
     this.prev = { x, y };
     this.lastMid = { x, y };
@@ -378,6 +385,7 @@ export class PaintEngine {
     }
     this.bounds = null;
     this.maskId = 0;
+    this.maskBits = null;
   }
 
   cancelStroke() {
@@ -493,6 +501,7 @@ export class PaintEngine {
     for (const sp of this.sparks) {
       if (sp.x < rect.x - sp.r || sp.x > rect.x + rect.w + sp.r || sp.y < rect.y - sp.r || sp.y > rect.y + rect.h + sp.r) continue;
       if (this.maskId && this.regionMap && this.regionMap.ids[Math.floor(sp.y) * this.width + Math.floor(sp.x)] !== this.maskId) continue;
+      if (this.maskBits && this.maskBits[Math.floor(sp.y) * this.width + Math.floor(sp.x)] !== 1) continue;
       p.fillStyle = sp.c;
       p.beginPath();
       for (let k = 0; k < 8; k++) {
@@ -591,7 +600,9 @@ export class PaintEngine {
       return;
     }
     const alpha = BRUSHES[this.strokeTool as keyof typeof BRUSHES].alpha;
-    if (this.maskId && this.regionMap) {
+    if (this.maskBits) {
+      this.applyMasked(this.stroke, rect, 0, alpha, this.maskBits);
+    } else if (this.maskId && this.regionMap) {
       this.applyMasked(this.stroke, rect, this.maskId, alpha);
     } else {
       p.save();
@@ -603,19 +614,20 @@ export class PaintEngine {
   }
 
   /** Draws `src` into the paint layer, keeping only pixels that belong to region `id`. */
-  private applyMasked(src: HTMLCanvasElement, rect: Rect, id: number, alpha: number) {
+  private applyMasked(src: HTMLCanvasElement, rect: Rect, id: number, alpha: number, bits: Uint8Array | null = null) {
     const { x, y, w, h } = rect;
     const t = this.tctx;
     t.clearRect(0, 0, w, h);
     t.drawImage(src, x, y, w, h, 0, 0, w, h);
     const img = t.getImageData(0, 0, w, h);
     const d = img.data;
-    const ids = this.regionMap!.ids;
+    const ids = bits ? null : this.regionMap!.ids;
     const W = this.width;
     for (let j = 0; j < h; j++) {
       const row = (y + j) * W + x;
       for (let i = 0; i < w; i++) {
-        if (ids[row + i] !== id) d[(j * w + i) * 4 + 3] = 0;
+        const inside = bits ? bits[row + i] === 1 : ids![row + i] === id;
+        if (!inside) d[(j * w + i) * 4 + 3] = 0;
       }
     }
     t.putImageData(img, 0, 0);
@@ -825,6 +837,16 @@ export class PaintEngine {
     return rgbToHex(p[0], p[1], p[2]);
   }
 
+  /** On Free Draw: the area of similar color (in the picture you can see) around a point, or null. */
+  private colorAreaBits(x: number, y: number): Uint8Array | null {
+    const c = makeCanvas(this.width, this.height);
+    const g = ctx2d(c, { willReadFrequently: true });
+    g.drawImage(this.bg, 0, 0);
+    this.drawLayers(g, this.width, this.height);
+    const data = g.getImageData(0, 0, this.width, this.height).data;
+    return colorAreaMask(data, this.width, this.height, x, y)?.bits ?? null;
+  }
+
   // ------------------------------------------------------------ stamps
 
   /** Presses the chosen stamp onto the active layer. `rot` (radians) tilts it a little. */
@@ -838,7 +860,9 @@ export class PaintEngine {
     this.sctx.clearRect(rect.x, rect.y, rect.w, rect.h);
     drawStamp(this.sctx, this.state.stampShape, x, y, r, rot, this.state.color);
     const maskId = this.state.stayInside && this.regionMap ? this.regionMap.idNearest(x, y, 4) : 0;
-    if (maskId && this.regionMap) this.applyMasked(this.stroke, rect, maskId, 1);
+    const bits = this.state.stayInside && !this.regionMap ? this.colorAreaBits(x, y) : null;
+    if (bits) this.applyMasked(this.stroke, rect, 0, 1, bits);
+    else if (maskId && this.regionMap) this.applyMasked(this.stroke, rect, maskId, 1);
     else this.pctx.drawImage(this.stroke, rect.x, rect.y, rect.w, rect.h, rect.x, rect.y, rect.w, rect.h);
     this.sctx.clearRect(rect.x, rect.y, rect.w, rect.h);
     this.commit(before);
@@ -853,6 +877,7 @@ export class PaintEngine {
     const color = this.state.color;
     const shape = makeSplat(radius, randomSeed());
     const maskId = this.state.stayInside && this.regionMap ? this.regionMap.idNearest(x, y, 4) : 0;
+    const bits = this.state.stayInside && !this.regionMap ? this.colorAreaBits(x, y) : null;
     const finish = () => {
       const rect = this.clampRect({ x: x - shape.extent, y: y - shape.extent, w: shape.extent * 2, h: shape.extent * 2 });
       if (rect.w <= 0 || rect.h <= 0) return;
@@ -860,7 +885,8 @@ export class PaintEngine {
       // draw onto the stroke layer, then composite (optionally masked) over the paint layer
       this.sctx.clearRect(rect.x, rect.y, rect.w, rect.h);
       drawSplat(this.sctx, x, y, shape, color, 1);
-      if (maskId && this.regionMap) this.applyMasked(this.stroke, rect, maskId, 1);
+      if (bits) this.applyMasked(this.stroke, rect, 0, 1, bits);
+      else if (maskId && this.regionMap) this.applyMasked(this.stroke, rect, maskId, 1);
       else this.pctx.drawImage(this.stroke, rect.x, rect.y, rect.w, rect.h, rect.x, rect.y, rect.w, rect.h);
       this.sctx.clearRect(rect.x, rect.y, rect.w, rect.h);
       this.commit(before);

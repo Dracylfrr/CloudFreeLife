@@ -3,6 +3,7 @@ import { getStorage } from './storage';
 import { clamp, debounce } from './util';
 import { DEFAULT_THEME, applyTheme, isThemeChoice, systemPrefersDark, type ThemeChoice } from './themes';
 import { DEFAULT_APP_ICON, isAppIcon, type AppIconId } from './appIcon';
+import { isPaintMode, modeFromLegacy, type PaintMode } from '../features/painting/paintMode';
 
 export const SETTINGS_PATH = 'settings.json';
 export const SETTINGS_SCHEMA = 2;
@@ -16,6 +17,8 @@ export interface Settings {
   schema: number;
   // General
   stayInsideLines: boolean;
+  /** How paint behaves on coloring pages (1.6.1): inside the lines, anywhere, or tap-to-fill. */
+  paintMode: PaintMode;
   showBrushCursor: boolean;
   confirmBeforeReset: boolean;
   // Display
@@ -59,6 +62,7 @@ export interface Settings {
 export const DEFAULT_SETTINGS: Settings = {
   schema: SETTINGS_SCHEMA,
   stayInsideLines: true,
+  paintMode: 'inside',
   showBrushCursor: true,
   confirmBeforeReset: true,
   uiScale: 1,
@@ -101,6 +105,7 @@ export function sanitizeSettings(raw: unknown): Settings {
   return {
     schema: SETTINGS_SCHEMA,
     stayInsideLines: bool(r.stayInsideLines, d.stayInsideLines),
+    paintMode: isPaintMode(r.paintMode) ? r.paintMode : modeFromLegacy(r.stayInsideLines),
     showBrushCursor: bool(r.showBrushCursor, d.showBrushCursor),
     confirmBeforeReset: true, // reset confirmation is mandatory
     uiScale: num(r.uiScale, d.uiScale, 0.85, 1.4),

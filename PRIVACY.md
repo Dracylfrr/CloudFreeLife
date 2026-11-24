@@ -46,5 +46,8 @@ Cloud-Freelife does not send personal content or analytics. When checking for or
 
 Without Internet access everything else works normally: painting, the Gallery, mini-games, exports and settings.
 
+## Updating
+When you press **Update now**, the new installer is downloaded from the official release host into `%APPDATA%\Cloud-Freelife\update`, checked against the published SHA-256, run quietly and removed the next time the app starts. Nothing is saved in Downloads or shown in File Explorer.
+
 ## Permissions
-The desktop shell is limited to: reading/writing inside `%APPDATA%\Cloud-Freelife` (plus `Downloads\Cloud-Freelife` for update installers and any file you choose in a save dialog), and HTTPS requests to the official release host. It can set the window's own icon (for the *App icon* setting) and it cannot open web pages. See `src-tauri/capabilities/default.json`.
+The desktop shell is limited to: reading/writing inside `%APPDATA%\Cloud-Freelife` (plus `Downloads\Cloud-Freelife` for update installers and any file you choose in a save dialog), and HTTPS requests to the official release host. It can set the window's own icon (for the *App icon* setting), run the app's own, checksum-verified update installer from its update folder (nothing else), and it cannot open web pages. See `src-tauri/capabilities/default.json`.

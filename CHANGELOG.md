@@ -2,6 +2,25 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com), and the project uses [Semantic Versioning](https://semver.org).
 
+## [1.6.1]
+
+### Added
+- **Paint mode: one clear choice for how paint behaves.** The old "Stay inside lines" button is now a three-way switch above the canvas:
+  - **Inside the lines** (on Free Draw: *Inside areas*): paint stays inside the area where you start.
+  - **Splash anywhere** (on Free Draw: *Anywhere*): paint goes wherever you drag, over the lines.
+  - **Fill areas**: tap an area and it fills with color. Every painting brush (Brush, Marker, Crayon, Airbrush, Watercolor, Pastel, Ink, Glitter) works like the Fill Bucket in this mode.
+- It applies to all painting tools, including stamps and paintballs.
+- **Free Draw can color in, too.** *Inside areas* keeps strokes, stamps and paintballs inside the area of similar color where you start (so you can draw a shape and then shade it without going over its outline); *Fill areas* fills the connected area of similar color. Free Draw starts on *Anywhere*, as before.
+- Your choice on a coloring page is remembered. If you had switched "Stay inside lines" off before, it becomes *Splash anywhere*.
+
+### Changed
+- **Quiet updates.** When Cloud-Freelife was installed with its installer, an app update now installs itself: press **Update now** and the new version is downloaded, checked, installed over the old one and opened again, with no installer window, no questions, no UAC prompt and nothing opened in File Explorer. All your paintings, settings and progress stay exactly as they were. (This starts with the update *after* 1.6.1, since the quiet update has to already be in the version that is running.)
+- The installer file is kept in the app's own folder while it installs and is deleted the next time the app starts, instead of being left in Downloads. Old installers that earlier versions left in `Downloads\Cloud-Freelife` are removed too (only ones that are not newer than the version you have).
+- A copy that was not put there by the installer (for example one unpacked from the portable zip) cannot replace itself, so it keeps the old way: the installer is downloaded, checked and shown for you to run.
+
+### Safety
+- The installer is checked three times before it runs: its size and SHA-256 when it is downloaded, and its SHA-256 again by the app's native side immediately before starting it. Only a correctly named installer of a **newer** version, from the app's own update folder, will ever be run.
+
 ## [1.6.0]
 
 ### Added

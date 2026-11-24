@@ -8,7 +8,7 @@
   import Button from '../../ui/Button.svelte';
   import Icon from '../../ui/Icon.svelte';
   import { listInstalledPacks, uninstallPack, type InstalledPackRecord } from './packs';
-  import { checkForUpdates, describeUpdate, installUpdate, revealPath, updateKey, updateState } from './updater';
+  import { canSelfUpdate, checkForUpdates, describeUpdate, installUpdate, revealPath, updateKey, updateState } from './updater';
   import type { UpdateItem } from './release';
 
   let installed = $state<InstalledPackRecord[]>([]);
@@ -17,7 +17,12 @@
   async function refreshInstalled() {
     installed = await listInstalledPacks();
   }
-  onMount(refreshInstalled);
+  // An installed copy can update itself quietly; one unpacked from the portable zip cannot.
+  let selfUpdate = $state(false);
+  onMount(() => {
+    void refreshInstalled();
+    void canSelfUpdate().then((v) => (selfUpdate = v));
+  });
 
   async function install(u: UpdateItem) {
     const r = await installUpdate(u);
@@ -93,13 +98,13 @@
 
         <div class="foot-row">
           <p class="fine">
-            {#if u.asset}Download size {formatBytes(u.asset.size)} · checked with SHA-256 before use · you choose when to run it{:else}No verified installer is attached to this release yet.{/if}
+            {#if u.asset}Download size {formatBytes(u.asset.size)} · checked with SHA-256 before use · {selfUpdate ? 'updates quietly and reopens Cloud-Freelife, keeping everything' : 'you choose when to run it'}{:else}No verified installer is attached to this release yet.{/if}
           </p>
           <div class="btns">
             {#if saved}
               <Button size="sm" variant="mint" icon="folder" onclick={() => revealPath(saved)}>Show installer</Button>
             {:else if u.asset}
-              <Button variant="primary" icon="download" disabled={busy} onclick={() => install(u)}>{busy ? 'Downloading…' : 'Install'}</Button>
+              <Button variant="primary" icon="download" disabled={busy} onclick={() => install(u)}>{busy ? (selfUpdate ? 'Updating…' : 'Downloading…') : selfUpdate ? 'Update now' : 'Install'}</Button>
             {/if}
           </div>
         </div>
