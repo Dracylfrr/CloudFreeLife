@@ -16,7 +16,8 @@ Artwork, settings and downloaded content are stored **only on your computer**, i
 
 ```
 %APPDATA%\Cloud-Freelife\
-  settings.json
+  settings.json  (including your avatar look, frame and saved looks)
+  avatar/picture.png  (only if you choose a picture from your computer as your avatar)
   progress\stories.json  (your reading place, favorites and the story endings you have found)
   progress\meditation.json  (favorites, the last session, and how many times you finished each one)
   progress\movement.json  (favorites and the last Exercise card you opened)
@@ -47,7 +48,7 @@ Cloud-Freelife does not send personal content or analytics. When checking for or
 Without Internet access everything else works normally: painting, the Gallery, games, exports and settings.
 
 ## Your avatar
-If you choose an avatar, its look (hair, eyes, skin, clothes and background colors) is saved in your settings file on this computer, like your other settings. It is never sent anywhere.
+If you choose an avatar, its look (hair, eyes, skin, clothes, accessories, frame and so on) and any looks you save are kept in your settings file on this computer, like your other settings. If you choose a picture from your computer, a small round-cropped copy is saved as `avatar/picture.png` in the app's data folder; your original file is never changed or kept. None of it is ever sent anywhere.
 
 ## Updating
 When you press **Update now**, the new installer is downloaded from the official release host into `%APPDATA%\Cloud-Freelife\update`, checked against the published SHA-256, run quietly and removed the next time the app starts. Nothing is saved in Downloads or shown in File Explorer.

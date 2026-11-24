@@ -3,7 +3,8 @@ import { getStorage } from './storage';
 import { clamp, debounce } from './util';
 import { DEFAULT_THEME, applyTheme, isThemeChoice, systemPrefersDark, type ThemeChoice } from './themes';
 import { DEFAULT_APP_ICON, isAppIcon, type AppIconId } from './appIcon';
-import { sanitizeAvatar, type AvatarConfig } from '../features/avatar/avatar';
+import { sanitizeAvatar, sanitizeLooks, type AvatarConfig, type SavedLook } from '../features/avatar/avatar';
+import { cleanFrame, isFrame } from '../features/avatar/frames';
 import { isPaintMode, modeFromLegacy, type PaintMode } from '../features/painting/paintMode';
 
 export const SETTINGS_PATH = 'settings.json';
@@ -34,6 +35,14 @@ export interface Settings {
   appIcon: AppIconId;
   /** The player's avatar, or null until one has been chosen. */
   avatar: AvatarConfig | null;
+  /** Show the drawn avatar, or the picture the person chose from their computer. */
+  avatarMode: 'drawn' | 'picture';
+  /** The frame around the avatar ('none' for no frame). */
+  avatarFrame: string;
+  /** When the saved picture was made (0 = there is none); used to know when to read it again. */
+  avatarPicture: number;
+  /** Looks the person saved to come back to. */
+  avatarLooks: SavedLook[];
   /** One-tap feeling preset (v1.3): shapes music, ambience, sound softness and ambient speed. */
   mood: Mood;
   // Accessibility
@@ -75,6 +84,10 @@ export const DEFAULT_SETTINGS: Settings = {
   theme: DEFAULT_THEME,
   appIcon: DEFAULT_APP_ICON,
   avatar: null,
+  avatarMode: 'drawn',
+  avatarFrame: 'none',
+  avatarPicture: 0,
+  avatarLooks: [],
   mood: 'default',
   reducedMotion: false,
   disableParticles: false,
@@ -119,6 +132,10 @@ export function sanitizeSettings(raw: unknown): Settings {
     theme: isThemeChoice(r.theme) ? r.theme : d.theme,
     appIcon: isAppIcon(r.appIcon) ? r.appIcon : d.appIcon,
     avatar: sanitizeAvatar(r.avatar),
+    avatarMode: r.avatarMode === 'picture' ? 'picture' : 'drawn',
+    avatarFrame: cleanFrame(r.avatarFrame),
+    avatarPicture: typeof r.avatarPicture === 'number' && Number.isFinite(r.avatarPicture) && r.avatarPicture > 0 ? Math.floor(r.avatarPicture) : 0,
+    avatarLooks: sanitizeLooks(r.avatarLooks, isFrame),
     mood: (MOODS as readonly string[]).includes(r.mood as string) ? (r.mood as Mood) : d.mood,
     reducedMotion: bool(r.reducedMotion, d.reducedMotion),
     disableParticles: bool(r.disableParticles, d.disableParticles),

@@ -1,7 +1,8 @@
 import { readFileSync } from 'node:fs';
 import { get } from 'svelte/store';
 import { describe, expect, it, vi } from 'vitest';
-import { BACKGROUNDS, EYE_COLORS, HAIR_COLORS, HAIR_STYLES, OUTFITS, OUTFIT_COLORS, PRESETS, SKIN_TONES, avatarSvg, sameAvatar, sanitizeAvatar, shade } from '../src/features/avatar/avatar';
+import { BACKGROUNDS, EYE_COLORS, HAIR_COLORS, HAIR_STYLES, OUTFITS, OUTFIT_COLORS, PRESETS, SKIN_TONES, sameAvatar, sanitizeAvatar, shade } from '../src/features/avatar/avatar';
+import { avatarSvg } from '../src/features/avatar/render';
 import { BRAND_FULL, BRAND_NAME, BRAND_SUBTITLE, DREAM_WORDS } from '../src/core/brand';
 import { DEFAULT_SETTINGS, sanitizeSettings } from '../src/core/settings';
 import { brushKindFor } from '../src/core/audio';

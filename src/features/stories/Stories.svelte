@@ -6,8 +6,8 @@
   import { buildReadingList, groupReadingList, type ReadingEntry } from './readingList';
   import ReadingCard from './ReadingCard.svelte';
   import { groupSeries, partLabel } from './longread';
-  import Avatar from '../avatar/Avatar.svelte';
-  import { openAvatarEditor } from '../avatar/state';
+  import MyAvatar from '../avatar/MyAvatar.svelte';
+  import { hasAvatar, openAvatarEditor } from '../avatar/state';
   import { settings } from '../../core/settings';
 
   // One screen, two places: "Cozy Stories" (books you read, with no choices) and
@@ -76,9 +76,9 @@
     </div>
     <div class="head-right">
       {#if isAdventure}
-        <button class="player" onclick={openAvatarEditor} title={$settings.avatar ? 'Change your avatar' : 'Choose your avatar'}>
-          <Avatar avatar={$settings.avatar} size={44} />
-          <span>{$settings.avatar ? 'Playing as you' : 'Choose your avatar'}</span>
+        <button class="player" onclick={openAvatarEditor} title={hasAvatar($settings) ? 'Change your avatar' : 'Choose your avatar'}>
+          <MyAvatar size={44} />
+          <span>{hasAvatar($settings) ? 'Playing as you' : 'Choose your avatar'}</span>
         </button>
       {/if}
       <span class="pill">{mine.length} {isAdventure ? 'adventures' : 'stories'}</span>

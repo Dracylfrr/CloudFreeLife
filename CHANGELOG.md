@@ -2,6 +2,21 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com), and the project uses [Semantic Versioning](https://semver.org).
 
+## [1.7.1]
+
+### Added
+- **Four art styles for your avatar:** *Chibi* (the cute starting look, with rounded ears), *Anime*, *Semi-realistic* and *Storybook* (flat shapes, no outlines). Choosing a style sets the head, eyes and neck to that style's usual shape.
+- **Face and head shapes.** Head width and height, chin (round, soft, pointed), eye shape (round, almond, sleepy, cat, sparkle), eye size and the space between the eyes, mouth (smile, grin, calm, surprised) and ears (rounded, small, pointed).
+- **Body and neck.** Body type (slim, average, broad, soft), and neck length and width.
+- **Accessories.** Hats (cap, beanie, bucket hat), glasses (round, square, cat-eye, sunglasses, heart shades), earrings (studs, hoops, drops, stars) and hair accessories (bow, headband, hair clips, flower), each in your choice of 13 colors.
+- **Frames** around your avatar: plain rings (silver, gold, blue, rose, rainbow, twin ring), ornate frames (gilded, starlit, laurel) and soft themes (clouds, blossoms, night sky, daisies).
+- **Your own picture.** Choose a picture from your computer in the usual window, then move, zoom and turn it inside the circle. It replaces your drawn avatar, which is kept so you can switch back at any time. The picture is copied into the app's own folder only; your original file is never changed.
+- **Saved looks.** Save how your avatar looks right now (with its frame), name it, and come back to it later. Up to 12.
+
+### Changed
+- The five words (*Draw • Relax • Explore • Adventure • Meditate*) are gone from the top of the sidebar. They are still on the About page.
+- The avatar editor is organised in tabs: Style, Face, Hair, Body, Clothes, Extras, Frame, Picture and My looks. An avatar made in 1.7.0 opens exactly as it was.
+
 ## [1.7.0]
 
 ### Added

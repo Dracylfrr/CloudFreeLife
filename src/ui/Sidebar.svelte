@@ -4,9 +4,9 @@
   import { updateState } from '../features/updates/updater';
   import { settings, updateSettings } from '../core/settings';
   import Icon from './Icon.svelte';
-  import Avatar from '../features/avatar/Avatar.svelte';
-  import { openAvatarEditor } from '../features/avatar/state';
-  import { BRAND_FULL, BRAND_NAME, BRAND_SUBTITLE, DREAM_WORDS } from '../core/brand';
+  import MyAvatar from '../features/avatar/MyAvatar.svelte';
+  import { hasAvatar, openAvatarEditor } from '../features/avatar/state';
+  import { BRAND_FULL, BRAND_NAME, BRAND_SUBTITLE } from '../core/brand';
 
   type Item = { id: NavSection; label: string; icon: string; go: () => void };
   const home: Item = { id: 'home', label: 'Home', icon: 'home', go: () => navigate({ name: 'home' }) };
@@ -57,16 +57,13 @@
 
 <nav class="side" aria-label="Main navigation">
   <div class="brand">
-    <button class="me" onclick={openAvatarEditor} aria-label={$settings.avatar ? 'Change your avatar' : 'Choose your avatar'} title={$settings.avatar ? 'Change your avatar' : 'Choose your avatar'}>
-      <Avatar avatar={$settings.avatar} size={50} />
+    <button class="me" onclick={openAvatarEditor} aria-label={hasAvatar($settings) ? 'Change your avatar' : 'Choose your avatar'} title={hasAvatar($settings) ? 'Change your avatar' : 'Choose your avatar'}>
+      <MyAvatar size={50} />
     </button>
     <button class="title" onclick={() => navigate({ name: 'home' })} aria-label="{BRAND_FULL}, home">
       <span class="name">{BRAND_NAME}</span>
       <span class="sub">{BRAND_SUBTITLE}</span>
     </button>
-    <p class="words" aria-label={DREAM_WORDS.join(', ')}>
-      {#each DREAM_WORDS as w, i (w)}<span class="w"><b>{w[0]}</b>{w.slice(1)}</span>{#if i < DREAM_WORDS.length - 1}{' '}<i aria-hidden="true">•</i>{' '}{/if}{/each}
-    </p>
   </div>
   <div class="list">
     <ul class="top">
@@ -136,6 +133,7 @@
     row-gap: 8px;
     padding: 2px 6px 10px;
     text-align: left;
+    border-bottom: 1px solid var(--line);
   }
   .me {
     border-radius: 50%;
@@ -168,31 +166,6 @@
     font-size: 0.8rem;
     color: var(--ink-soft);
     letter-spacing: 0.02em;
-  }
-  .words {
-    grid-column: 1 / -1;
-    display: block;
-    text-align: center;
-    text-wrap: balance;
-    margin: 0;
-    padding: 6px 4px 0;
-    border-top: 1px solid var(--line);
-    font-size: 0.66rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    color: var(--ink-soft);
-  }
-  .words b {
-    color: var(--lavender-deep);
-    font-weight: 900;
-  }
-  .words .w {
-    white-space: nowrap;
-  }
-  .words i {
-    font-style: normal;
-    color: var(--ink-faint);
-    margin: 0 1px;
   }
   .list {
     flex: 1;

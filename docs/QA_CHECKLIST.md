@@ -38,6 +38,17 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 - [ ] Splash Wall: all 16 levels open; aim, click-throw, hold-to-charge throw; splat stays in the region; goals count correctly; color match hints; Wash and Save PNG.
 - [ ] Pause with P; minimize the window and confirm CPU drops to ~0.
 
+## 1.7.1 checks (avatar)
+- [ ] The sidebar top shows only the avatar, "Project D.R.E.A.M" and "Cloud Sonata". The five words are on the About page.
+- [ ] An avatar saved by 1.7.0 opens unchanged. Style tab: Chibi, Anime, Semi-realistic and Storybook each look different; the sliders still work after changing style.
+- [ ] Face tab: head width and height, chin, eye shape, eye size, eye spacing, mouth and ears all change the picture at once. Reset puts the style's shape back.
+- [ ] Body tab: body type and neck length/width change the portrait without gaps between head, neck and body.
+- [ ] Extras tab: each hat, glasses, earrings and hair accessory shows, takes a color, and none removes it. A cap or beanie hides a bun and spikes.
+- [ ] Frame tab: every frame looks right with a drawn avatar and with a picture; the sidebar avatar is not cut off by a frame.
+- [ ] Picture tab: Choose a picture opens the Windows file window. After choosing, drag, zoom (slider and wheel) and turn it; Use this picture makes it the avatar. A non-picture file or a file over 12 MB gives a plain message. Use my drawn avatar goes back; Delete picture removes it.
+- [ ] My looks: Save this look asks for a name; Use brings it back (with its frame); Delete asks first; the 13th look is refused with a message.
+- [ ] Close and reopen the app: the avatar, frame, picture and looks are all still there.
+
 ## 1.7.0 checks
 - [ ] Sidebar: the avatar circle (empty with a +) is top left with the full name "Project D.R.E.A.M", "Cloud Sonata" and the five words under it. Gallery is last under Explore.
 - [ ] Click the avatar: choose Girl or Boy; change hair style, hair, eyes, skin, clothes, clothes color and background; each change shows at once and is still there after restarting. Remove avatar returns to the empty circle. Esc closes the editor.

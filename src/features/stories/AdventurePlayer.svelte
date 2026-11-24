@@ -9,8 +9,8 @@
   import Button from '../../ui/Button.svelte';
   import Icon from '../../ui/Icon.svelte';
   import { sfx } from '../../core/audio';
-  import Avatar from '../avatar/Avatar.svelte';
-  import { openAvatarEditor } from '../avatar/state';
+  import MyAvatar from '../avatar/MyAvatar.svelte';
+  import { hasAvatar, openAvatarEditor } from '../avatar/state';
 
   let { adventureId }: { adventureId: string } = $props();
   const aid = untrack(() => adventureId);
@@ -81,8 +81,8 @@
 
     <article class="paper" style="--fs:{$settings.storyFontScale}; --accent:{adv.accent ?? '#b7a8ec'}">
       <div class="meta">
-        <button class="you" onclick={openAvatarEditor} title={$settings.avatar ? 'This is you. Click to change your avatar.' : 'Choose your avatar'} aria-label={$settings.avatar ? 'Change your avatar' : 'Choose your avatar'}>
-          <Avatar avatar={$settings.avatar} size={48} />
+        <button class="you" onclick={openAvatarEditor} title={hasAvatar($settings) ? 'This is you. Click to change your avatar.' : 'Choose your avatar'} aria-label={hasAvatar($settings) ? 'Change your avatar' : 'Choose your avatar'}>
+          <MyAvatar size={48} />
         </button>
         <h1 class="title">{adv.name}</h1>
         <span class="who">{adv.hero ? `${adv.hero} · ` : ''}{adv.protagonist === 'girl' ? "Girl's perspective" : "Guy's perspective"}</span>
