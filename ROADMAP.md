@@ -27,8 +27,8 @@ Illustrated Cozy Stories and four new stories, Read Aloud (removed again in 1.4.
 ## 1.5.0 — long reads (see [docs/PLAN_1.5.0.md](docs/PLAN_1.5.0.md))
 Bookmarks, time left, Sleep mode and series for stories; two long stories (about half an hour each) and a long mystery adventure as downloadable packs; installable themes; import your own line art (My Pages); and Timelapse export.
 
-## 1.6.0 — layers (planned)
-- Free Draw layers (two to four layers with show/hide, reorder and opacity), in a release of their own because the change touches the painting engine, undo and autosave and must keep every existing painting safe.
+## 1.6.0 — layers and more painting tools (see [docs/PLAN_1.6.0.md](docs/PLAN_1.6.0.md))
+Free Draw layers (up to four, with opacity, blend modes, merge, copy and lock), four new brushes and stamps, a reference picture, Gallery albums and search, and a Quiet Moments meditation pack. A new coloring book was left for a later content pack.
 
 ## Later ideas
 - Monetization and licensing architecture (to be evaluated separately; nothing is built for it).

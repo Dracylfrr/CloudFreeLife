@@ -24,6 +24,9 @@ Artwork, settings and downloaded content are stored **only on your computer**, i
   gardens\<name>.json  (your Zen Garden layouts)
   artworks\<name>\timelapse.json  (a list of your strokes, for the Timelapse button; no pictures)
   content\books\my_pages\...  (line art you imported)
+  artworks\<name>\layers.json, layer-*.png  (the layers of a Free Draw painting)
+  artworks\<name>\reference.jpg, reference.json  (a reference picture you chose, resized)
+  albums.json  (your Gallery albums: names and which paintings are in them)
   artworks\<name>\artwork.json, paint.png, thumb.png
   content\...            (downloaded books, palettes, levels, stories)
   installed_packs.json

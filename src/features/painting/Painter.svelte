@@ -18,8 +18,15 @@
   import { savePngFile, saveVideoFile } from './export';
   import { Recorder, recordingSupported, renderTimelapse, sanitizeLog } from './timelapse';
   import { getStorage } from '../../core/storage';
-  import { isBrushTool, TOOLS, type ToolId } from './tools';
+  import LayersPanel from './LayersPanel.svelte';
+  import ReferencePanel from './ReferencePanel.svelte';
+  import { prepareReference } from './referenceImage';
+  import { DEFAULT_REF, loadReference, removeReference, saveReference, saveReferenceSettings, type RefSettings } from '../gallery/referenceStore';
+  import type { LayerCommand, LayerMeta } from './layers';
+  import { loadLayerData, saveLayerData } from '../gallery/layerStore';
+  import { BRUSHES, isBrushTool, TOOLS, type ToolId } from './tools';
   import type { PaintballSize } from '../../core/splat';
+  import type { StampId } from './stamps';
 
   let { artworkId }: { artworkId: string } = $props();
 
@@ -32,6 +39,45 @@
   // Timelapse: a light log of what is painted, kept beside the artwork (only for pictures that start empty).
   let recorder = $state.raw<Recorder | null>(null);
   let logged = $state(0);
+
+  // Reference picture (to look at while painting; never part of the painting)
+  let refUrl = $state('');
+  let refSettings = $state<RefSettings>({ ...DEFAULT_REF });
+  let refOpen = $state(false);
+  let refMessage = $state('');
+  function setRefUrl(bytes: Uint8Array | null) {
+    if (refUrl) URL.revokeObjectURL(refUrl);
+    refUrl = bytes ? URL.createObjectURL(new Blob([bytes as BlobPart], { type: 'image/jpeg' })) : '';
+  }
+  async function chooseReference(file: File) {
+    if (!meta) return;
+    refMessage = '';
+    try {
+      const bytes = await prepareReference(file, file.name);
+      refSettings = { ...refSettings, shown: true };
+      await saveReference(meta.id, bytes, refSettings);
+      setRefUrl(bytes);
+    } catch (err) {
+      refMessage = err instanceof Error ? err.message : 'That picture could not be used.';
+    }
+  }
+  function changeReference(s: RefSettings) {
+    refSettings = s;
+    if (meta) void saveReferenceSettings(meta.id, s);
+  }
+  async function dropReference() {
+    if (meta) await removeReference(meta.id);
+    setRefUrl(null);
+    refSettings = { ...DEFAULT_REF };
+    refOpen = false;
+  }
+
+  // Layers (Free Draw only)
+  let layerList = $state.raw<LayerMeta[]>([]);
+  let activeLayerId = $state('l1');
+  let layerRev = $state(0);
+  let canLayer = $state(false);
+  let usesLayers = false;
   let making = $state(false);
   let makeProgress = $state(0);
   let makeCancelled = false;
@@ -42,6 +88,7 @@
   let color = $state($settings.lastColor);
   let size = $state($settings.brushSize);
   let paintballSize = $state<PaintballSize>('medium');
+  let stampShape = $state<StampId>('star');
   let canUndo = $state(false);
   let canRedo = $state(false);
   let stayInside = $state($settings.stayInsideLines);
@@ -129,6 +176,8 @@
       bookId = data.meta.bookId;
       const e = new PaintEngine(CANVAS_W, CANVAS_H);
       e.state = { ...e.state, color, size, stayInside, reduceMotion: $settings.reducedMotion, particles: !$settings.disableParticles };
+      e.allowLayers = !data.meta.pageId;
+      canLayer = e.allowLayers;
       if (data.meta.pageId) {
         const page = findPage(data.meta.bookId, data.meta.pageId);
         if (!page) throw new Error('Page missing');
@@ -146,6 +195,26 @@
         backTo = 'draw';
       }
       await e.loadPaint(data.paint);
+      if (e.allowLayers) {
+        try {
+          const saved = await loadLayerData(data.meta.id);
+          if (saved) {
+            await e.loadLayers(saved.file.layers, saved.pngs, saved.file.active);
+            usesLayers = true;
+          }
+        } catch (err) {
+          console.warn('Layers could not be read, opening the flattened painting instead', err);
+        }
+      }
+      try {
+        const ref = await loadReference(data.meta.id);
+        if (ref) {
+          refSettings = ref.settings;
+          setRefUrl(ref.bytes);
+        }
+      } catch {
+        /* a reference picture is optional */
+      }
       // Pick up an existing timelapse log, or start one when the picture is still empty.
       try {
         const st = await getStorage();
@@ -162,12 +231,20 @@
         canRedo = e.history.canRedo;
       };
       autosaver = new Autosaver(save);
-      e.onChange = () => autosaver?.markDirty();
+      e.onChange = () => {
+        autosaver?.markDirty();
+        layerRev++;
+      };
+      const syncLayers = () => {
+        layerList = e.layerMetas();
+        activeLayerId = e.activeId;
+        layerRev++;
+        if (e.layerCount > 1) usesLayers = true;
+      };
+      e.onLayers = syncLayers;
+      syncLayers();
       engine = e;
-      for (const c of [e.bg, e.paint, e.lines, e.fx]) {
-        c.className = 'layer';
-        stageHost?.appendChild(c);
-      }
+      if (stageHost) e.attach(stageHost);
       e.lines.classList.add('lines');
       e.fx.classList.add('fx');
       ready = true;
@@ -181,6 +258,12 @@
 
   async function save() {
     if (!engine || !meta) return;
+    // Layers: pictures first, then the list, then the flattened paint.png.
+    if (usesLayers) {
+      const changed = await engine.dirtyLayerPngs();
+      const ok = await saveLayerData(meta.id, engine.layerMetas(), engine.activeId, changed).catch(() => false);
+      if (!ok) engine.markLayersDirty(Object.keys(changed));
+    }
     const png = engine.blank && !meta.hasPaint ? null : await engine.exportPaintPng();
     const thumb = png ? await engine.thumbnailPng(360) : null;
     meta = await saveArtwork(meta, png, thumb);
@@ -208,6 +291,7 @@
     const shown = meta;
     const replay = new PaintEngine(CANVAS_W, CANVAS_H);
     replay.state = { ...replay.state, reduceMotion: true, particles: false };
+    replay.allowLayers = !shown.pageId;
     try {
       if (shown.pageId) {
         const page = findPage(shown.bookId, shown.pageId);
@@ -231,6 +315,7 @@
   }
 
   onDestroy(() => {
+    if (refUrl) URL.revokeObjectURL(refUrl);
     // Flush synchronously-scheduled write; the router guard has normally already done this.
     void autosaver?.flush().finally(() => {
       autosaver?.dispose();
@@ -246,6 +331,7 @@
     engine.state.size = size;
     engine.state.stayInside = stayInside;
     engine.state.paintballSize = paintballSize;
+    engine.state.stampShape = stampShape;
     engine.state.reduceMotion = $settings.reducedMotion || $settings.lowPowerMode;
     engine.state.particles = !($settings.disableParticles || $settings.lowPowerMode);
   });
@@ -276,7 +362,7 @@
   }
 
   const cursorSize = $derived(
-    tool === 'paintball' ? 0 : isBrushTool(tool) ? Math.max(6, size * (tool === 'airbrush' ? 2.4 : tool === 'marker' ? 1.25 : tool === 'eraser' ? 1.3 : 1) * fit * zoom) : 0
+    tool === 'paintball' ? 0 : tool === 'stamp' ? Math.max(12, size * 3.2 * fit * zoom) : isBrushTool(tool) ? Math.max(6, size * BRUSHES[tool].scale * fit * zoom) : 0
   );
 
   function down(e: PointerEvent) {
@@ -291,6 +377,7 @@
     if (e.button !== 0) return;
     const p = toCanvas(e);
     const t = effectiveTool;
+    if ((isBrushTool(t) || t === 'fill' || t === 'clearRegion' || t === 'paintball' || t === 'stamp') && !guardPaint()) return;
     if (isBrushTool(t)) {
       if (engine.beginStroke(p.x, p.y)) {
         recorder?.begin(p.x, p.y, engine.state);
@@ -310,6 +397,13 @@
         sfx.pop(0.8);
       }
       else toast('Nothing to clear there.', 'info', 1600);
+    } else if (t === 'stamp') {
+      const rot = Math.round((Math.random() - 0.5) * 0.9 * 100) / 100;
+      if (engine.stampAt(p.x, p.y, rot)) {
+        recorder?.stamp(p.x, p.y, engine.state.color, engine.state.stampShape, engine.state.size, rot, engine.state.stayInside);
+        logged = recorder?.count ?? 0;
+        sfx.pop(1.1);
+      }
     } else if (t === 'paintball') {
       sfx.throw();
       engine.paintball(p.x, p.y);
@@ -396,6 +490,58 @@
     if (e.key === ' ') spaceDown = false;
   }
 
+  // ---- layer actions: the panel calls these, and what is done is also kept for the timelapse
+  function guardPaint(): boolean {
+    const why = engine?.paintBlockedReason();
+    if (!why) return true;
+    toast(why === 'locked' ? 'This layer is locked. Unlock it to paint on it.' : 'This layer is hidden. Show it to paint on it.', 'info', 2400);
+    return false;
+  }
+  function note(cmd: LayerCommand) {
+    recorder?.layer(cmd);
+    logged = recorder?.count ?? 0;
+  }
+  function addLayer() {
+    if (!engine) return;
+    const id = engine.addLayer();
+    if (id) note({ c: 'add', id, name: engine.getLayer(id)!.name });
+  }
+  function duplicateLayer(from: string) {
+    if (!engine) return;
+    const id = engine.duplicateLayer(from);
+    if (id) note({ c: 'dup', id, from, name: engine.getLayer(id)!.name });
+  }
+  function selectLayer(id: string) {
+    if (engine?.selectLayer(id)) note({ c: 'sel', id });
+  }
+  async function deleteLayer(id: string) {
+    if (!engine) return;
+    const ok = await confirmDialog({ title: 'Delete this layer?', message: 'Everything painted on it goes away. You can still undo right after.', confirmLabel: 'Delete layer', danger: true });
+    if (ok && engine.deleteLayer(id)) note({ c: 'del', id });
+  }
+  function mergeLayer(id: string) {
+    if (!engine) return;
+    if (engine.mergeDown(id)) note({ c: 'merge', id });
+    else toast('Unlock both layers to merge them.', 'info', 2400);
+  }
+  function moveLayer(id: string, by: -1 | 1) {
+    if (engine?.moveLayer(id, by)) note({ c: 'mv', id, by });
+  }
+  function setLayer(id: string, p: Partial<Pick<LayerMeta, 'name' | 'visible' | 'locked' | 'opacity' | 'blend'>>, record: boolean) {
+    if (!engine) return;
+    if (!record) {
+      engine.setLayerProps(id, p, false);
+      return;
+    }
+    if (engine.setLayerProps(id, p, true)) note({ c: 'set', id, p });
+  }
+  function settleLayer(id: string, before: Partial<LayerMeta>) {
+    if (!engine) return;
+    engine.recordLayerChange(id, before);
+    const l = engine.getLayer(id);
+    if (l) note({ c: 'set', id, p: { opacity: l.opacity } });
+  }
+
   function undo() {
     if (engine?.undo()) {
       recorder?.undo();
@@ -468,6 +614,7 @@
       <button class="zoomval" onclick={centerView} title="Fit to window (0)">{Math.round(zoom * 100)}%</button>
       <Button variant="ghost" size="sm" icon="zoomIn" title="Zoom in (+)" onclick={() => zoomAt(1.25)} />
     </div>
+    <Button variant="ghost" size="sm" icon="image" title="Keep a picture in view to paint from" onclick={() => (refOpen = !refOpen)}>Reference</Button>
     <Button variant="soft" size="sm" icon="download" onclick={exportPng}>Export PNG</Button>
     {#if logged > 2 && recorder && recordingSupported()}
       <Button variant="soft" size="sm" icon="play" title="Replay how you painted this as a short video" disabled={making} onclick={makeTimelapse}>Timelapse</Button>
@@ -504,6 +651,12 @@
       {#if cursorVisible && cursorSize > 0 && $settings.showBrushCursor && effectiveTool !== 'pan'}
         <div class="ring" bind:this={cursorEl} style="width:{cursorSize}px; height:{cursorSize}px; margin:{-cursorSize / 2}px 0 0 {-cursorSize / 2}px; {tool === 'eraser' ? 'border-style:dashed' : ''}"></div>
       {/if}
+      {#if refUrl && refSettings.shown && refSettings.mode === 'trace'}
+        <img class="trace" src={refUrl} alt="" aria-hidden="true" style="width:{stageW}px; height:{stageH}px; opacity:{refSettings.opacity}; transform: translate({tx}px, {ty}px) scale({zoom});" />
+      {/if}
+      {#if refUrl && refSettings.shown && refSettings.mode === 'beside'}
+        <div class="ref-card"><img src={refUrl} alt="Your reference, for looking at while you paint" /></div>
+      {/if}
       {#if !ready && !failed}<div class="loading"><i></i> Opening…</div>{/if}
       {#if failed}
         <div class="loading">This artwork couldn't be opened. <Button size="sm" onclick={() => navigate({ name: 'gallery' })}>Go to Gallery</Button></div>
@@ -511,20 +664,81 @@
       <div class="hint-bar">{activeToolInfo.label}: {activeToolInfo.hint}</div>
     </div>
 
-    <PalettePanel
-      {color}
-      {size}
-      {tool}
-      sizeEnabled={activeToolInfo.sized}
-      {paintballSize}
-      onColor={(c) => (color = c)}
-      onSize={(n) => (size = n)}
-      onPaintball={(s) => (paintballSize = s)}
-    />
+    {#if refOpen}
+      <ReferencePanel has={!!refUrl} settings={refSettings} message={refMessage} onChoose={chooseReference} onChange={changeReference} onRemove={dropReference} onClose={() => (refOpen = false)} />
+    {/if}
+    <div class="rightcol">
+      {#if canLayer && ready && engine}
+        <LayersPanel
+          layers={layerList}
+          activeId={activeLayerId}
+          rev={layerRev}
+          thumb={(id, c) => engine?.layerThumb(id, c)}
+          onSelect={selectLayer}
+          onAdd={addLayer}
+          onDuplicate={duplicateLayer}
+          onDelete={deleteLayer}
+          onMerge={mergeLayer}
+          onMove={moveLayer}
+          onSet={setLayer}
+          onSettled={settleLayer}
+        />
+      {/if}
+      <PalettePanel
+        {color}
+        {size}
+        {tool}
+        sizeEnabled={activeToolInfo.sized}
+        {paintballSize}
+        onColor={(c) => (color = c)}
+        onSize={(n) => (size = n)}
+        onPaintball={(s) => (paintballSize = s)}
+        {stampShape}
+        onStamp={(s) => (stampShape = s)}
+      />
+    </div>
   </div>
 </div>
 
 <style>
+  .trace {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform-origin: 0 0;
+    object-fit: fill;
+    pointer-events: none;
+    border-radius: 6px;
+  }
+  .ref-card {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    width: min(240px, 34%);
+    padding: 6px;
+    border-radius: 14px;
+    background: var(--panel-strong);
+    box-shadow: var(--shadow-m);
+    pointer-events: none;
+    z-index: 4;
+  }
+  .ref-card img {
+    display: block;
+    width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+    border-radius: 10px;
+  }
+  .rightcol {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    flex: none;
+  }
+  .rightcol > :global(aside.panel) {
+    flex: 1;
+    min-height: 0;
+  }
   .making {
     position: absolute;
     inset: 0;

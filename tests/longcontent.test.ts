@@ -4,6 +4,7 @@ import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync } from 'node
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { validateMeditation } from '../src/core/manifests14';
 import { analyzeAdventure, storyIllustrationFiles, storyWordCount, validateAdventure, validateStory } from '../src/core/manifests';
 import { parsePack, svgIsPassive, validatePackContents } from '../src/features/updates/packs';
 
@@ -30,8 +31,8 @@ describe('downloadable pack sources', () => {
       const m = read(join(PACKS, id, 'pack.json'));
       expect(m.name, id).toBeTruthy();
       expect(m.description, id).toBeTruthy();
-      expect(['stories', 'adventures', 'book', 'palettes', 'themes']).toContain(m.kind);
-      expect(m.minAppVersion).toBe('1.5.0');
+      expect(['stories', 'adventures', 'book', 'palettes', 'themes', 'meditation']).toContain(m.kind);
+      expect(['1.5.0', '1.6.0']).toContain(m.minAppVersion);
     }
   });
 });
@@ -55,7 +56,7 @@ describe('pack sources build into packs the app accepts', () => {
         const parsed = parsePack(bytes);
         expect(parsed.ok, parsed.ok ? '' : parsed.error).toBe(true);
         if (!parsed.ok) return;
-        const v = await validatePackContents(parsed.value, '1.5.0');
+        const v = await validatePackContents(parsed.value, '1.6.0');
         expect(v.ok, v.ok ? '' : v.error).toBe(true);
       } finally {
         rmSync(out, { recursive: true, force: true });
@@ -149,6 +150,24 @@ describe('long adventure', () => {
         const moods = new Set(Object.values(v.value.nodes).filter((n) => n.ending).map((n) => n.ending!.mood));
         expect(moods.size).toBeGreaterThanOrEqual(4);
       });
+    });
+  }
+});
+
+describe('meditation packs', () => {
+  const base = join(PACKS, 'quiet_moments/content/meditation');
+  const ids = existsSync(base) ? readdirSync(base) : [];
+  it('Quiet Moments has four sessions', () => expect(ids.length).toBe(4));
+  for (const id of ids) {
+    it(`${id} is valid, has its cover and keeps to the quiet wording rules`, () => {
+      const raw = read(join(base, id, 'session.json'));
+      const v = validateMeditation(raw);
+      expect(v.ok, v.ok ? '' : v.errors.join('; ')).toBe(true);
+      expect(existsSync(join(base, id, raw.cover))).toBe(true);
+      expect(svgIsPassive(readFileSync(join(base, id, raw.cover), 'utf8'))).toBe(true);
+      const text = JSON.stringify(raw);
+      expect(text).not.toMatch(/(streak|leaderboard|caloriew*|burnw*|weight loss|score|rank|fail(ed|ure)?|guiltw*)/i);
+      expect(text).not.toMatch(/(cure|treat|heal|relieve|anxiety|depression|insomnia|medicw*)/i);
     });
   }
 });

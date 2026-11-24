@@ -1,0 +1,42 @@
+{
+  "id": "gentle_morning",
+  "name": "Gentle Morning",
+  "description": "A soft, slow start to the day with a few easy breaths. About three minutes.",
+  "accent": "#f4c27a",
+  "kind": "breathing",
+  "minutes": 3,
+  "breath": {
+    "inhale": 4,
+    "hold": 1,
+    "exhale": 5,
+    "rest": 1
+  },
+  "ambience": "garden",
+  "scene": "garden",
+  "order": 20,
+  "cues": [
+    {
+      "at": 0,
+      "text": "Good morning. There is no hurry yet."
+    },
+    {
+      "at": 25,
+      "text": "Feel the light on the other side of your eyelids."
+    },
+    {
+      "at": 70,
+      "text": "Let your breath find its own easy rhythm."
+    },
+    {
+      "at": 120,
+      "text": "Think of one small, kind thing you could do today."
+    },
+    {
+      "at": 165,
+      "text": "When you are ready, take a stretch and start your day."
+    }
+  ],
+  "version": "1.0.0",
+  "minAppVersion": "1.6.0",
+  "cover": "cover.svg"
+}

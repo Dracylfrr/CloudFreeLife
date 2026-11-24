@@ -6,6 +6,7 @@
   import { sfx } from '../../core/audio';
   import { PAINTBALL_SIZES, type PaintballSize } from '../../core/splat';
   import type { ToolId } from './tools';
+  import { STAMPS, drawStamp, type StampId } from './stamps';
 
   interface Props {
     color: string;
@@ -16,8 +17,22 @@
     onColor: (hex: string) => void;
     onSize: (n: number) => void;
     onPaintball: (s: PaintballSize) => void;
+    stampShape: StampId;
+    onStamp: (s: StampId) => void;
   }
-  let { color, size, tool, sizeEnabled, paintballSize, onColor, onSize, onPaintball }: Props = $props();
+  let { color, size, tool, sizeEnabled, paintballSize, onColor, onSize, onPaintball, stampShape, onStamp }: Props = $props();
+
+  /** Draws a little preview of a stamp in the current color. */
+  function stampPreview(node: HTMLCanvasElement, args: { id: StampId; color: string }) {
+    const paint = (a: { id: StampId; color: string }) => {
+      const c = node.getContext('2d');
+      if (!c) return;
+      c.clearRect(0, 0, node.width, node.height);
+      drawStamp(c, a.id, node.width / 2, node.height / 2, node.width * 0.34, 0, a.color);
+    };
+    paint(args);
+    return { update: paint };
+  }
 
   const palettes = $derived($catalog.palettes);
   const current = $derived(palettes.find((p) => p.manifest.id === $settings.paletteId) ?? palettes[0]);
@@ -95,6 +110,16 @@
   {/if}
 
   <div class="size">
+    {#if tool === 'stamp'}
+      <small>Stamp</small>
+      <div class="stamps" role="radiogroup" aria-label="Stamp shape">
+        {#each STAMPS as st}
+          <button class:on={stampShape === st.id} role="radio" aria-checked={stampShape === st.id} title={st.label} aria-label={st.label} onclick={() => onStamp(st.id)}>
+            <canvas width="44" height="44" use:stampPreview={{ id: st.id, color }} aria-hidden="true"></canvas>
+          </button>
+        {/each}
+      </div>
+    {/if}
     {#if tool === 'paintball'}
       <small>Paintball size</small>
       <div class="seg">
@@ -113,6 +138,26 @@
 </aside>
 
 <style>
+  .stamps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+  .stamps button {
+    padding: 4px;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    background: rgb(var(--w) / 0.5);
+  }
+  .stamps button.on {
+    border-color: var(--lavender-deep);
+    background: rgb(var(--w) / 0.9);
+  }
+  .stamps canvas {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
   .panel {
     width: 268px;
     flex: none;

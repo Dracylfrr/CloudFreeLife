@@ -1,0 +1,46 @@
+{
+  "id": "before_sleep",
+  "name": "Before Sleep",
+  "description": "Long, slow breaths under a quiet sky, to rest with before bed. About six minutes.",
+  "accent": "#8f8ad6",
+  "kind": "breathing",
+  "minutes": 6,
+  "breath": {
+    "inhale": 4,
+    "hold": 2,
+    "exhale": 8,
+    "rest": 1
+  },
+  "ambience": "hush",
+  "scene": "evening",
+  "order": 22,
+  "cues": [
+    {
+      "at": 0,
+      "text": "The day is finished. You can put it down."
+    },
+    {
+      "at": 45,
+      "text": "Breathe in slowly, and let the breath out even more slowly."
+    },
+    {
+      "at": 120,
+      "text": "Picture a quiet room, with one small lamp glowing."
+    },
+    {
+      "at": 200,
+      "text": "If thoughts come, let them float by like clouds in the dark."
+    },
+    {
+      "at": 280,
+      "text": "Your bed is waiting. You have done enough today."
+    },
+    {
+      "at": 330,
+      "text": "Goodnight. Breathe, and rest."
+    }
+  ],
+  "version": "1.0.0",
+  "minAppVersion": "1.6.0",
+  "cover": "cover.svg"
+}

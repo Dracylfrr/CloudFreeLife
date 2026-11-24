@@ -4,6 +4,8 @@ import { PAPER } from '../painting/engine';
 import { drawBackground } from '../painting/backgrounds';
 import { canvasToPng, ctx2d, makeCanvas, pngToBitmap, rasterizeSvg, sizeSvg } from '../painting/raster';
 import { loadArtwork } from './artwork';
+import { loadLayerData } from './layerStore';
+import { blendOf } from '../painting/layers';
 
 /** Renders a saved artwork (paper + paint + line art) to PNG without opening the painter. */
 export async function exportArtworkPng(id: string): Promise<Uint8Array | null> {
@@ -27,7 +29,21 @@ export async function exportArtworkPng(id: string): Promise<Uint8Array | null> {
       ctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
     }
   }
-  if (data.paint) {
+  const layered = !meta.pageId ? await loadLayerData(id).catch(() => null) : null;
+  if (layered) {
+    // each layer with its own opacity and blend mode, the way it looks in the painter
+    for (const l of layered.file.layers) {
+      const bytes = layered.pngs[l.id];
+      if (!l.visible || l.opacity <= 0 || !bytes) continue;
+      const bmp = await pngToBitmap(bytes);
+      ctx.save();
+      ctx.globalAlpha = l.opacity;
+      ctx.globalCompositeOperation = blendOf(l.blend).op as GlobalCompositeOperation;
+      ctx.drawImage(bmp, 0, 0, CANVAS_W, CANVAS_H);
+      ctx.restore();
+      bmp.close();
+    }
+  } else if (data.paint) {
     const bmp = await pngToBitmap(data.paint);
     ctx.drawImage(bmp, 0, 0, CANVAS_W, CANVAS_H);
     bmp.close();

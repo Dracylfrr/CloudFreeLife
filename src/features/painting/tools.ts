@@ -1,4 +1,4 @@
-export type ToolId = 'brush' | 'marker' | 'crayon' | 'airbrush' | 'fill' | 'eraser' | 'paintball' | 'picker' | 'clearRegion' | 'pan';
+export type ToolId = 'brush' | 'marker' | 'crayon' | 'airbrush' | 'watercolor' | 'pastel' | 'ink' | 'glitter' | 'stamp' | 'fill' | 'eraser' | 'paintball' | 'picker' | 'clearRegion' | 'pan';
 
 export interface ToolInfo {
   id: ToolId;
@@ -15,6 +15,11 @@ export const TOOLS: ToolInfo[] = [
   { id: 'marker', label: 'Marker', icon: 'marker', hint: 'Even, slightly see-through color', sized: true, key: 'M' },
   { id: 'crayon', label: 'Crayon', icon: 'crayon', hint: 'Grainy, waxy texture', sized: true, key: 'C' },
   { id: 'airbrush', label: 'Airbrush', icon: 'spray', hint: 'Soft misty color', sized: true, key: 'A' },
+  { id: 'watercolor', label: 'Watercolor', icon: 'cloud', hint: 'Soft, see-through washes with darker edges', sized: true, key: 'W' },
+  { id: 'pastel', label: 'Pastel', icon: 'leaf', hint: 'Chalky, grainy and gentle', sized: true, key: 'L' },
+  { id: 'ink', label: 'Ink Pen', icon: 'pencil', hint: 'Thin, steady lines', sized: true, key: 'K' },
+  { id: 'glitter', label: 'Glitter', icon: 'sparkle', hint: 'A soft trail of sparkles', sized: true, key: 'G' },
+  { id: 'stamp', label: 'Stamp', icon: 'star', hint: 'Press a star, heart, flower and more', sized: true, key: 'S' },
   { id: 'fill', label: 'Fill Bucket', icon: 'bucket', hint: 'Fill a region (always recolorable)', sized: false, key: 'F' },
   { id: 'eraser', label: 'Eraser', icon: 'eraser', hint: 'Erase paint', sized: true, key: 'E' },
   { id: 'paintball', label: 'Paintball', icon: 'paintball', hint: 'Splat a playful burst of paint', sized: false, key: 'P' },
@@ -33,11 +38,15 @@ export interface BrushSpec {
   margin: number;
 }
 
-export const BRUSHES: Record<'brush' | 'marker' | 'crayon' | 'airbrush' | 'eraser', BrushSpec> = {
+export const BRUSHES: Record<'brush' | 'marker' | 'crayon' | 'airbrush' | 'watercolor' | 'pastel' | 'ink' | 'glitter' | 'eraser', BrushSpec> = {
   brush: { scale: 1, alpha: 1, cap: 'round', margin: 3 },
   marker: { scale: 1.25, alpha: 0.72, cap: 'square', margin: 4 },
   crayon: { scale: 1.1, alpha: 1, cap: 'round', margin: 5 },
   airbrush: { scale: 2.4, alpha: 1, cap: 'round', margin: 6 },
+  watercolor: { scale: 1.8, alpha: 0.5, cap: 'round', margin: 8 },
+  pastel: { scale: 1.5, alpha: 0.92, cap: 'round', margin: 7 },
+  ink: { scale: 0.5, alpha: 1, cap: 'round', margin: 3 },
+  glitter: { scale: 1.3, alpha: 0.5, cap: 'round', margin: 12 },
   eraser: { scale: 1.3, alpha: 1, cap: 'round', margin: 3 }
 };
 

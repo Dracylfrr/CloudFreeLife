@@ -38,6 +38,16 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 - [ ] Splash Wall: all 16 levels open; aim, click-throw, hold-to-charge throw; splat stays in the region; goals count correctly; color match hints; Wash and Save PNG.
 - [ ] Pause with P; minimize the window and confirm CPU drops to ~0.
 
+## 1.6 checks
+- [ ] Layers (Free Draw): Add up to four; paint on each; show/hide, lock (a gentle message appears when you try to paint on a locked or hidden layer), rename, move up and down, copy, merge down, delete (asks first), opacity and each blend mode; Undo and Redo work across every one of these, including delete and merge.
+- [ ] Layers survive closing and reopening, Duplicate in the Gallery, Export PNG (looks the same as in the painter) and Timelapse.
+- [ ] Old paintings: open a Free Draw from 1.5 (it shows one layer and looks the same), add a layer, save, reopen. A coloring page shows no Layers panel and paints as before.
+- [ ] Damage test: delete one of a painting's layer-*.png files in the data folder; the painting still opens (flattened) instead of failing.
+- [ ] Brushes: Watercolor, Pastel, Ink Pen and Glitter each paint on coloring pages and Free Draw, honor Stay inside lines, and Undo works. Stamps: all eight shapes, size follows the size slider, one Undo removes one stamp.
+- [ ] Reference picture: choose a PNG/JPG/WebP, see it beside and faintly over the canvas, change strength, hide, remove; it is not in Export PNG or the Gallery thumbnail; it is still there after reopening.
+- [ ] Gallery: search by name (also without accents), the filter chips, New album, add a painting to two albums, open an album, rename and delete an album (paintings stay), delete a painting and see it leave its albums.
+- [ ] Quiet Moments: the pack installs from Updates and its four sessions run (the two "stillness" ones show their cues and no breathing cloud pattern).
+
 ## 1.5 checks
 - [ ] Reader: bookmark a spot with a note, leave, come back and jump to it; remove it; the list is limited to 20; "time left" falls as you read and grows with bigger text.
 - [ ] Reader: Sleep mode dims the page, enlarges the text, stops the page-turn motion and fades the music out after 15, 30 or 60 minutes; turning it off (or leaving the story) brings the music back.

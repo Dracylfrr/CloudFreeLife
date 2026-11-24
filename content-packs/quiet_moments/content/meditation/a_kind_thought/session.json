@@ -1,0 +1,40 @@
+{
+  "id": "a_kind_thought",
+  "name": "A Kind Thought",
+  "description": "A few minutes of sending good wishes, first to yourself, then to everyone nearby. About four minutes.",
+  "accent": "#f2a7c3",
+  "kind": "stillness",
+  "minutes": 4,
+  "ambience": "none",
+  "scene": "dots",
+  "order": 23,
+  "cues": [
+    {
+      "at": 0,
+      "text": "Sit quietly. Let your breathing be easy."
+    },
+    {
+      "at": 35,
+      "text": "Think of yourself, and wish yourself something gentle: may I be at ease."
+    },
+    {
+      "at": 90,
+      "text": "Now think of someone you care about. May you be happy."
+    },
+    {
+      "at": 145,
+      "text": "Think of someone you see every day. May you have a good day."
+    },
+    {
+      "at": 195,
+      "text": "Let the kind thought grow wider, to everyone nearby."
+    },
+    {
+      "at": 225,
+      "text": "Carry the warmth with you when you go."
+    }
+  ],
+  "version": "1.0.0",
+  "minAppVersion": "1.6.0",
+  "cover": "cover.svg"
+}

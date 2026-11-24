@@ -7,6 +7,8 @@
  */
 import type { PaintEngine } from './engine';
 import { TOOLS } from './tools';
+import { sanitizeCommand, type LayerCommand } from './layers';
+import { isStamp } from './stamps';
 
 export const MAX_EVENTS = 40000;
 export const MAX_NUMBERS = 400000;
@@ -20,12 +22,15 @@ export type Ev =
   | ['f', number, number, string, 0 | 1] // fill: x, y, color, stay inside
   | ['c', number, number] // clear a region
   | ['p', number, number, string, string, 0 | 1] // paintball: x, y, color, size, stay inside
+  | ['s', number, number, string, string, number, number, 0 | 1] // stamp: x, y, color, shape, size, rotation, stay inside
   | ['u'] // undo
   | ['r'] // redo
-  | ['x']; // reset page
+  | ['x'] // reset page
+  | ['y', LayerCommand]; // a layer action (Free Draw layers, from 1.6)
 
 export interface TimelapseLog {
-  v: 1;
+  /** 1 = before layers (1.5); 2 = with layer actions. */
+  v: 1 | 2;
   w: number;
   h: number;
   /** True when the log stopped growing because it reached its limit. */
@@ -103,9 +108,15 @@ export class Recorder {
   reset() {
     this.push(['x'], 0);
   }
+  stamp(x: number, y: number, color: string, shape: string, size: number, rot: number, stay: boolean) {
+    this.push(['s', q(x), q(y), color, shape, Math.round(size * 10) / 10, Math.round(rot * 100) / 100, stay ? 1 : 0], 5);
+  }
+  layer(cmd: LayerCommand) {
+    this.push(['y', cmd], 3);
+  }
 
   toLog(): TimelapseLog {
-    return { v: 1, w: this.w, h: this.h, truncated: this.truncated, events: this.events };
+    return { v: 2, w: this.w, h: this.h, truncated: this.truncated, events: this.events };
   }
 
   /** Carries on from a saved log. */
@@ -122,7 +133,7 @@ export class Recorder {
 export function sanitizeLog(raw: unknown): TimelapseLog | null {
   if (!raw || typeof raw !== 'object') return null;
   const r = raw as Record<string, unknown>;
-  if (r.v !== 1 || !fin(r.w) || !fin(r.h) || r.w < 16 || r.h < 16 || r.w > 8192 || r.h > 8192 || !Array.isArray(r.events)) return null;
+  if ((r.v !== 1 && r.v !== 2) || !fin(r.w) || !fin(r.h) || r.w < 16 || r.h < 16 || r.w > 8192 || r.h > 8192 || !Array.isArray(r.events)) return null;
   const events: Ev[] = [];
   let numbers = 0;
   let inStroke = false;
@@ -158,15 +169,24 @@ export function sanitizeLog(raw: unknown): TimelapseLog | null {
       case 'p':
         if (fin(e[1]) && fin(e[2]) && typeof e[3] === 'string' && HEX.test(e[3]) && typeof e[4] === 'string' && BALL.has(e[4])) events.push(['p', e[1], e[2], e[3], e[4], e[5] === 1 ? 1 : 0]), (numbers += 3);
         break;
+      case 's':
+        if (r.v === 2 && fin(e[1]) && fin(e[2]) && typeof e[3] === 'string' && HEX.test(e[3]) && isStamp(e[4]) && fin(e[5]) && e[5] >= 2 && e[5] <= 120 && fin(e[6]) && Math.abs(e[6]) <= 7) events.push(['s', e[1], e[2], e[3], e[4], e[5], e[6], e[7] === 1 ? 1 : 0]), (numbers += 5);
+        break;
       case 'u':
       case 'r':
       case 'x':
         events.push([e[0]]);
         break;
+      case 'y': {
+        // layer actions only exist in version 2 logs
+        const cmd = r.v === 2 ? sanitizeCommand(e[1]) : null;
+        if (cmd) events.push(['y', cmd]), (numbers += 3);
+        break;
+      }
     }
   }
   if (inStroke) events.push(['e']);
-  return events.length ? { v: 1, w: r.w, h: r.h, truncated: r.truncated === true, events } : null;
+  return events.length ? { v: r.v === 2 ? 2 : 1, w: r.w, h: r.h, truncated: r.truncated === true, events } : null;
 }
 
 /** The slice of events to play for each video frame, so the whole log fits the video's length. */
@@ -183,7 +203,7 @@ export function videoSeconds(events: number): number {
 }
 
 /** The few engine methods a replay needs (so a test can stand in for the real engine). */
-export type ReplayTarget = Pick<PaintEngine, 'beginStroke' | 'moveStroke' | 'endStroke' | 'fillAt' | 'clearRegionAt' | 'paintball' | 'undo' | 'redo' | 'resetAll'> & {
+export type ReplayTarget = Pick<PaintEngine, 'beginStroke' | 'moveStroke' | 'endStroke' | 'fillAt' | 'clearRegionAt' | 'paintball' | 'stampAt' | 'undo' | 'redo' | 'resetAll' | 'layerCommand'> & {
   state: PaintEngine['state'];
 };
 
@@ -219,6 +239,13 @@ export function applyEvent(t: ReplayTarget, ev: Ev) {
       t.state.stayInside = ev[5] === 1;
       t.paintball(ev[1], ev[2]);
       break;
+    case 's':
+      t.state.color = ev[3];
+      t.state.stampShape = ev[4] as never;
+      t.state.size = ev[5];
+      t.state.stayInside = ev[7] === 1;
+      t.stampAt(ev[1], ev[2], ev[6]);
+      break;
     case 'u':
       t.undo();
       break;
@@ -227,6 +254,9 @@ export function applyEvent(t: ReplayTarget, ev: Ev) {
       break;
     case 'x':
       t.resetAll();
+      break;
+    case 'y':
+      t.layerCommand(ev[1]);
       break;
   }
 }

@@ -1,0 +1,44 @@
+{
+  "id": "soft_shoulders",
+  "name": "Soft Shoulders",
+  "description": "A slow, quiet rest where you notice each part of yourself and let it be. About five minutes.",
+  "accent": "#c3b0ee",
+  "kind": "stillness",
+  "minutes": 5,
+  "ambience": "hush",
+  "scene": "cloud",
+  "order": 21,
+  "cues": [
+    {
+      "at": 0,
+      "text": "Find a comfortable way to sit or lie."
+    },
+    {
+      "at": 30,
+      "text": "Notice your feet. They have carried you all day."
+    },
+    {
+      "at": 75,
+      "text": "Notice your legs, and let them be heavy and still."
+    },
+    {
+      "at": 120,
+      "text": "Notice your hands. Let them open, just a little."
+    },
+    {
+      "at": 170,
+      "text": "Notice your shoulders. If they have crept upward, let them settle."
+    },
+    {
+      "at": 220,
+      "text": "Notice your face. Let your jaw and brow go soft."
+    },
+    {
+      "at": 265,
+      "text": "Rest here a moment longer. There is nothing to do."
+    }
+  ],
+  "version": "1.0.0",
+  "minAppVersion": "1.6.0",
+  "cover": "cover.svg"
+}

@@ -8,6 +8,7 @@ import { loadMeditationProgress, meditationProgress } from './features/meditatio
 import { loadMovementProgress, movementProgress } from './features/movement/progress';
 import { gamesProgress, loadGamesProgress } from './features/minigames/progress';
 import { applyWindowIcon } from './core/appIcon';
+import { albums, loadAlbums } from './features/gallery/albums';
 import { onBeforeLeave, runLeaveGuards } from './core/router';
 import { applyUiScale } from './core/display';
 import { isAppHidden, onVisibilityChange } from './core/visibility';
@@ -34,12 +35,12 @@ async function boot() {
   window.matchMedia?.('(prefers-color-scheme: dark)').addEventListener?.('change', () => applySettingsToDocument(getSettings()));
   initAudio();
 
-  await Promise.all([loadCatalog(), refreshArtworks(), loadStoryProgress(), loadMeditationProgress(), loadMovementProgress(), loadGamesProgress()]);
+  await Promise.all([loadCatalog(), refreshArtworks(), loadStoryProgress(), loadMeditationProgress(), loadMovementProgress(), loadGamesProgress(), loadAlbums()]);
   // Installed themes arrive with the content; show the chosen one now that it can be found.
   applySettingsToDocument(getSettings());
   // Small local progress files are written shortly after a change; this makes sure they are
   // also written when you move to another screen or close the window.
-  onBeforeLeave(() => Promise.all([flushStoryProgress(), meditationProgress.flush(), movementProgress.flush(), gamesProgress.flush()]).then(() => undefined));
+  onBeforeLeave(() => Promise.all([flushStoryProgress(), meditationProgress.flush(), movementProgress.flush(), gamesProgress.flush(), albums.flush()]).then(() => undefined));
 
   // Pause decorative animation when the window is hidden or minimised.
   const syncPaused = () => document.documentElement.setAttribute('data-paused', String(isAppHidden()));

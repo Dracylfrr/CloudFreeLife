@@ -9,6 +9,9 @@
 import { get, writable } from 'svelte/store';
 import { getStorage } from '../../core/storage';
 import { slugify, shortId } from '../../core/util';
+import { copyLayerData } from './layerStore';
+import { copyReference } from './referenceStore';
+import { forgetArtwork } from './albums';
 
 export interface ArtworkMeta {
   schema: 1;
@@ -146,6 +149,8 @@ export async function duplicateArtwork(id: string): Promise<ArtworkMeta | null> 
   if (src.paint) await st.writeBytes(paintPath(copy.id), src.paint);
   const thumb = await st.readBytes(thumbPath(id));
   if (thumb) await st.writeBytes(thumbPath(copy.id), thumb);
+  await copyLayerData(id, copy.id);
+  await copyReference(id, copy.id);
   await st.writeText(metaPath(copy.id), JSON.stringify(copy, null, 2));
   artworks.update((list) => [copy, ...list]);
   return copy;
@@ -155,6 +160,7 @@ export async function deleteArtwork(id: string): Promise<void> {
   if (!ID_RE.test(id)) return;
   const st = await getStorage();
   await st.remove(`${ARTWORK_ROOT}/${id}`);
+  forgetArtwork(id);
   artworks.update((list) => list.filter((a) => a.id !== id));
 }
 

@@ -2,6 +2,24 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com), and the project uses [Semantic Versioning](https://semver.org).
 
+## [1.6.0]
+
+### Added
+- **Layers in Free Draw.** Up to four layers, with a Layers panel beside the colors. Show or hide a layer, lock it so it cannot be painted on by accident, rename it (double-click), move it up or down, copy it, merge it into the one below, set its opacity and choose a blend mode (Normal, Multiply, Screen, Overlay, Soft Light, Color, each with a one-line explanation). Every layer action can be undone, including deleting a layer. Coloring pages are unchanged and keep their single paint layer under the line art.
+  - **Old paintings are safe.** An older Free Draw opens exactly as before as a single layer, and nothing is converted until you add a second layer. Even then the flattened picture (`paint.png`) is always kept, so the Gallery, Export PNG and Splash Wall saves keep working, and the old single-layer file is kept as a backup for the first few saves. If a layer file is ever missing or damaged, the painting opens from the flattened picture instead.
+  - Export PNG, Duplicate and Timelapse all understand layers.
+- **Four new brushes**: *Watercolor* (soft, see-through washes with a slightly darker rim), *Pastel* (chalky and grainy), *Ink Pen* (thin and steady) and *Glitter* (a soft trail of sparkles). They work on coloring pages and Free Draw, and on whichever layer is selected.
+- **Stamps**: press a star, heart, flower, cloud, leaf, paw, moon or drop in your chosen color, with a little random tilt. A stamp is one undo step and respects *Stay inside lines*.
+- **Reference picture**: keep a picture in view while you paint. Show it beside the canvas, or faintly over it to trace (with a strength slider). It is only for looking at: it is never part of the painting or its exports, and it stays on this computer, resized so it stays small.
+- **Gallery albums and search**: make albums, put any painting in as many as you like, and search by name. Filter by All, Coloring pages, Free Draw or Splash Wall. Deleting an album never deletes paintings.
+- **Quiet Moments**, four more meditation sessions as a downloadable pack: *Gentle Morning*, *Soft Shoulders*, *Before Sleep* and *A Kind Thought*.
+
+### Changed
+- Timelapse recordings now include layer actions and stamps (older recordings still replay).
+
+### Not in this version
+A new coloring book, and per-layer export, are not part of 1.6.0.
+
 ## [1.5.0]
 
 ### Added
