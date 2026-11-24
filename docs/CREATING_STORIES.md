@@ -69,7 +69,7 @@ An adventure is a set of *passages*. Each passage is either a place where the re
 }
 ```
 
-- `protagonist` is `"guy"` or `"girl"`: whose perspective the story is told from. Players can filter by it. Write in the first person ("I") from that character's point of view.
+- `protagonist` is `"guy"`, `"girl"` or `"hero"`: whose perspective the story is told from. Players can filter by it. For a guy or a girl, write in the first person ("I") from that named character's point of view. A `"hero"` story is told as "you", suits any player, and shows the player's own avatar; write it in the second person and avoid words that assume a gender. Hero stories need app 1.8.0 or newer (`minAppVersion`).
 - `genre` is free text (`Adventure`, `Romance`, `Comedy`, `Mystery` get their own colors). `hero` is the narrator's name. `interest` is the love interest in a romance. For now romances are guy-and-girl stories.
 - Passage ids use lowercase letters, digits and underscores. A passage has **either** `choices` (1 to 4 of them) **or** an `ending`, never both.
 - `ending.mood` is one of `happy`, `sweet`, `funny`, `dreamy`, `cozy` and tints the ending's title.

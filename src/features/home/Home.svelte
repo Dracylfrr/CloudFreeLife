@@ -134,7 +134,7 @@
       <div class="meta">
         <span class="tag butter"><Icon name="compass" size={14} /> Choose Your Path</span>
         <h3>Story Adventures</h3>
-        <p>{$catalog.adventures.length} stories where you decide. Be the guy or the girl, and find every ending.</p>
+        <p>{$catalog.adventures.length} stories where you decide. Be the guy, the girl or yourself, and find every ending.</p>
       </div>
     </button>
 

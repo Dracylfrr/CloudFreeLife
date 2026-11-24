@@ -7,6 +7,11 @@
   "cover": "cover.svg",
   "accent": "#9bb4f0",
   "mood": "Lullaby",
+  "series": {
+    "id": "night_train",
+    "name": "The Night Train",
+    "order": 1
+  },
   "order": 7,
   "chapters": [
     {

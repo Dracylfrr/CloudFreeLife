@@ -38,6 +38,14 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 - [ ] Splash Wall: all 16 levels open; aim, click-throw, hold-to-charge throw; splat stays in the region; goals count correctly; color match hints; Wash and Save PNG.
 - [ ] Pause with P; minimize the window and confirm CPU drops to ~0.
 
+## 1.8.0 checks (title-only cards, hero adventures, The Night Train)
+- [ ] Cozy Stories and Story Adventures cards show a picture and a title only, five across, with no summary text.
+- [ ] Clicking a card opens a window with the picture, the summary, the length and one button; Escape, the X and a click outside all close it; focus returns to the card.
+- [ ] A story you have started shows a Resume button on its card that goes straight back in, and the progress bar stays.
+- [ ] The Night Train appears as one group of three parts in order, each saying "part N of 3"; the new parts read through to the end.
+- [ ] "Playing as you" and the "Play as you" filter are not shown on Story Adventures (there are no hero adventures yet), and the player shows no avatar for the named adventures.
+- [ ] The Story Adventures card on Home still looks right.
+
 ## 1.7.3 checks (Storybook only, and backgrounds)
 - [ ] The avatar editor has no Style tab and opens on Face; the first screen shows a Storybook girl and boy.
 - [ ] An avatar saved earlier in Chibi, Anime, Semi-realistic or Illustrated opens as Storybook with the same colors, hair and clothes.

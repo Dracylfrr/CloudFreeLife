@@ -5,14 +5,15 @@
   import { setFavorite } from './progress';
   import type { ReadingEntry } from './readingList';
   import { sfx } from '../../core/audio';
-  import { formatLength } from './longread';
 
-  let { entry, part = '' }: { entry: ReadingEntry; part?: string } = $props();
+  // A card is only the picture and the title. The few words about the book wait in a window that
+  // opens on a click, so the title does the inviting. A book that is already started shows a
+  // Resume button that skips that window and goes straight back in.
+  let { entry, part = '', onpreview }: { entry: ReadingEntry; part?: string; onpreview: (e: ReadingEntry) => void } = $props();
   const item = $derived((entry.story ?? entry.adventure)!);
   const m = $derived(item.manifest);
-  const hue = (g: string) => (g === 'Romance' ? 'pink' : g === 'Comedy' ? 'butter' : g === 'Mystery' ? 'lilac' : g === 'Adventure' ? 'mint' : 'sky');
 
-  function open() {
+  function resume() {
     sfx.pageTurn();
     if (entry.kind === 'story') navigate({ name: 'story', storyId: entry.id });
     else navigate({ name: 'adventure', adventureId: entry.id });
@@ -20,26 +21,11 @@
 </script>
 
 <article class="card" style="--accent:{m.accent ?? '#b7a8ec'}">
-  <button class="open" onclick={open} aria-label="{entry.kind === 'story' ? 'Read' : 'Play'} {m.name}. {entry.label}">
+  <button class="open" onclick={() => onpreview(entry)} aria-label="{m.name}. {entry.label}. Show details" aria-haspopup="dialog">
     <div class="cover"><ReadingCover {item} /></div>
     <div class="info">
-      <div class="chips">
-        {#if entry.kind === 'adventure' && entry.adventure}
-          <span class="chip {hue(entry.adventure.manifest.genre)}">{entry.adventure.manifest.genre}</span>
-          <span class="chip who">{entry.adventure.manifest.hero ? `${entry.adventure.manifest.hero}, ` : ''}{entry.adventure.manifest.protagonist === 'girl' ? 'a girl' : 'a guy'}</span>
-        {:else if entry.story?.manifest.mood}
-          <span class="chip">{entry.story.manifest.mood}</span>
-        {/if}
-        {#if part}<span class="chip">{part}</span>{/if}
-        {#if item.source === 'installed'}<span class="chip new">Downloaded</span>{/if}
-      </div>
       <h3>{m.name}</h3>
-      <p>{m.description}</p>
-      <span class="count">
-        <Icon name={entry.kind === 'story' ? 'bookOpen' : 'compass'} size={14} />
-        {#if entry.kind === 'story' && entry.story}{entry.story.manifest.chapters.length} chapters{:else}Choose your path{/if}
-        · about {formatLength(entry.minutes)}
-      </span>
+      {#if part}<span class="part">{part}</span>{/if}
       {#if entry.group !== 'notStarted'}
         <div class="progress" role="img" aria-label={entry.label}>
           <span class="track"><span class="fill" style="width:{entry.percent}%"></span></span>
@@ -48,6 +34,11 @@
       {/if}
     </div>
   </button>
+  {#if entry.group === 'continue'}
+    <button class="resume" onclick={resume} aria-label="Resume {m.name}">
+      <Icon name={entry.kind === 'story' ? 'bookOpen' : 'compass'} size={15} /> Resume
+    </button>
+  {/if}
   <button class="fav" class:on={entry.favorite} aria-pressed={entry.favorite} aria-label={entry.favorite ? `Remove ${m.name} from favorites` : `Add ${m.name} to favorites`} title={entry.favorite ? 'Favorite' : 'Add to favorites'} onclick={() => setFavorite(entry.kind, entry.id, !entry.favorite)}>
     <Icon name="heart" size={18} />
   </button>
@@ -56,6 +47,8 @@
 <style>
   .card {
     position: relative;
+    display: flex;
+    flex-direction: column;
     border-radius: var(--radius-xl);
     background: var(--panel);
     box-shadow: var(--shadow-m);
@@ -74,7 +67,7 @@
     flex-direction: column;
     text-align: left;
     width: 100%;
-    height: 100%;
+    flex: 1;
   }
   .cover {
     aspect-ratio: 4 / 3;
@@ -82,66 +75,19 @@
     border-bottom: 5px solid var(--accent);
   }
   .info {
-    padding: 10px 14px 16px;
+    padding: 10px 14px 14px;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 4px;
   }
   .info h3 {
     font-size: 1.02rem;
-    line-height: 1.2;
+    line-height: 1.25;
   }
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    min-height: 24px;
-  }
-  .chip {
-    padding: 3px 9px;
-    border-radius: 999px;
-    font-size: 0.68rem;
+  .part {
+    font-size: 0.72rem;
     font-weight: 800;
-    background: var(--lilac);
-    color: var(--c-violet);
-  }
-  .chip.pink {
-    background: var(--pink);
-    color: var(--c-pink);
-  }
-  .chip.butter {
-    background: var(--c-gold-bg);
-    color: var(--c-gold);
-  }
-  .chip.lilac {
-    background: var(--lilac);
-    color: var(--c-violet);
-  }
-  .chip.mint,
-  .chip.new {
-    background: var(--mint);
-    color: var(--c-green);
-  }
-  .chip.who {
-    background: var(--panel-strong);
     color: var(--ink-soft);
-    box-shadow: inset 0 0 0 1.5px var(--line);
-  }
-  .info p {
-    color: var(--ink-soft);
-    font-size: 0.84rem;
-    line-height: 1.4;
-  }
-  .count {
-    display: inline-flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 6px;
-    font-weight: 800;
-    font-size: 0.85rem;
-    color: var(--accent);
-    filter: brightness(0.82);
   }
   .progress {
     display: flex;
@@ -166,6 +112,24 @@
     font-size: 0.78rem;
     font-weight: 800;
     color: var(--ink-soft);
+  }
+  .resume {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    margin: 0 12px 12px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 0.88rem;
+    color: var(--nav-ink);
+    background: linear-gradient(135deg, var(--nav-a), var(--nav-b));
+    box-shadow: var(--shadow-s);
+    transition: transform 0.2s var(--ease);
+  }
+  .resume:hover {
+    transform: translateY(-1px);
   }
   .fav {
     position: absolute;

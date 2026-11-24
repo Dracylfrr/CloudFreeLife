@@ -33,8 +33,15 @@ import { storyCovers as oldCovers } from './stories/covers.mjs';
 import { relaxingNew } from './stories/relaxing_new.mjs';
 import { existing as existingArt } from './stories/art_existing.mjs';
 import { newCovers, newIllustrations } from './stories/art_new.mjs';
+import { relaxingV18 } from './stories/relaxing_v18.mjs';
+import { v18Covers } from './stories/art_v18.mjs';
 
-const storyCovers = { ...oldCovers, ...newCovers };
+const storyCovers = { ...oldCovers, ...newCovers, ...v18Covers };
+// Stories that belong to a series (new in 1.8). The rest of each series is optional extra content.
+const SERIES = {
+  night_train_to_moonwater: { id: 'night_train', name: 'The Night Train', order: 1 },
+  library_on_lantern_lane: { id: 'lantern_lane', name: 'Lantern Lane', order: 1 }
+};
 // 1.3: stories gained pictures; story and chapter pictures are plain SVG next to story.json.
 const NEW_VERSION = '1.3.0';
 
@@ -261,7 +268,7 @@ for (const l of puzzleLevels) {
 
 // Cozy Stories and Story Adventures (new in 1.2)
 const STORY_VERSION = '1.2.0';
-const allStories = [...relaxing.map((st) => ({ ...st, isNew: false })), ...relaxingNew.map((st) => ({ ...st, isNew: true }))];
+const allStories = [...relaxing.map((st) => ({ ...st, isNew: false })), ...relaxingNew.map((st) => ({ ...st, isNew: true })), ...relaxingV18.map((st) => ({ ...st, isNew: true, v18: true }))];
 for (const [i, st] of allStories.entries()) {
   const dir = `stories/relaxing/${st.id}`;
   await put(`${dir}/cover.svg`, storyCovers[st.cover]);
@@ -283,10 +290,11 @@ for (const [i, st] of allStories.entries()) {
       name: st.name,
       description: st.description,
       version: NEW_VERSION,
-      minAppVersion: st.isNew ? NEW_VERSION : STORY_VERSION,
+      minAppVersion: st.v18 ? '1.8.0' : st.isNew ? NEW_VERSION : STORY_VERSION,
       cover: 'cover.svg',
       accent: st.accent,
       mood: st.mood,
+      ...((st.series ?? SERIES[st.id]) ? { series: st.series ?? SERIES[st.id] } : {}),
       ...(st.minutes ? { minutes: st.minutes } : {}),
       order: i + 1,
       chapters

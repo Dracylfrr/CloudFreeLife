@@ -7,6 +7,11 @@
   "cover": "cover.svg",
   "accent": "#c7a8f0",
   "mood": "Cozy",
+  "series": {
+    "id": "lantern_lane",
+    "name": "Lantern Lane",
+    "order": 1
+  },
   "order": 8,
   "chapters": [
     {

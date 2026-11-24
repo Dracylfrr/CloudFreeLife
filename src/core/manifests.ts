@@ -539,7 +539,8 @@ export interface AdventureNode {
   choices?: AdventureChoice[];
   ending?: { title: string; mood: EndingMood };
 }
-export type Protagonist = 'guy' | 'girl';
+/** "hero" is a story told as "you", for any player: it uses the player's own avatar. */
+export type Protagonist = 'guy' | 'girl' | 'hero';
 
 export interface AdventureManifest {
   id: string;
@@ -551,7 +552,7 @@ export interface AdventureManifest {
   accent?: string;
   /** e.g. Adventure, Romance, Comedy, Mystery. */
   genre: string;
-  /** Whose eyes the story is told through. */
+  /** Whose eyes the story is told through: a named guy or girl, or "hero" (you, with your own avatar). */
   protagonist: Protagonist;
   /** Name of the love interest in a romance (always the opposite of the protagonist for now). */
   interest?: string;
@@ -676,7 +677,7 @@ export function validateAdventure(raw: unknown, where = 'adventure.json'): Resul
     e.add('must be a JSON object');
     return done(e, null as never);
   }
-  if (raw.protagonist !== 'guy' && raw.protagonist !== 'girl') e.add('"protagonist" must be "guy" or "girl"');
+  if (raw.protagonist !== 'guy' && raw.protagonist !== 'girl' && raw.protagonist !== 'hero') e.add('"protagonist" must be "guy", "girl" or "hero"');
   const adv: AdventureManifest = {
     id: reqId(raw, 'id', e),
     name: reqString(raw, 'name', e, 80),
@@ -686,7 +687,7 @@ export function validateAdventure(raw: unknown, where = 'adventure.json'): Resul
     minAppVersion: reqVersion(raw, 'minAppVersion', e),
     accent: typeof raw.accent === 'string' && HEX_RE.test(raw.accent) ? raw.accent : undefined,
     genre: reqString(raw, 'genre', e, 24),
-    protagonist: raw.protagonist === 'girl' ? 'girl' : 'guy',
+    protagonist: raw.protagonist === 'girl' ? 'girl' : raw.protagonist === 'hero' ? 'hero' : 'guy',
     interest: typeof raw.interest === 'string' && raw.interest.length <= 40 ? raw.interest : undefined,
     hero: typeof raw.hero === 'string' && raw.hero.length <= 40 ? raw.hero : undefined,
     minutes: typeof raw.minutes === 'number' && raw.minutes > 0 && raw.minutes < 600 ? Math.round(raw.minutes) : undefined,

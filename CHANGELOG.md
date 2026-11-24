@@ -2,6 +2,17 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com), and the project uses [Semantic Versioning](https://semver.org).
 
+## [1.8.0]
+
+### Added
+- **A free starter series, "The Night Train", now has three parts.** The new parts are *Tilly and the Snowbound Express* and *Tilly and the Midsummer Run*. The parts sit together on the shelf and say which part they are.
+- **Hero adventures.** A Story Adventure can now be told as "you", for anyone, using your own avatar. The app understands the new kind. "Playing as you" only appears on the adventures page when there are hero adventures on the shelf, and a "Play as you" filter joins "Play as a guy" and "Play as a girl" at the same time. None are included in this version yet, so neither shows.
+- Lantern Lane is marked as a series (this story is part 1), ready for more parts.
+
+### Changed
+- **Cozy Stories and Story Adventures show only the picture and the title.** Click a card to open a small window with the summary, the length and one clear button (Start reading, Begin the adventure, Read again). A story that is already started has a **Resume** button right on its card that skips the window. Press Escape or click outside to close the window.
+- The Story Adventures card on Home mentions playing as yourself.
+
 ## [1.7.3]
 
 ### Added

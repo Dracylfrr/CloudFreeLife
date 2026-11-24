@@ -5,6 +5,7 @@
   import { storyProgress } from './progress';
   import { buildReadingList, groupReadingList, type ReadingEntry } from './readingList';
   import ReadingCard from './ReadingCard.svelte';
+  import ReadingPreview from './ReadingPreview.svelte';
   import { groupSeries, partLabel } from './longread';
   import MyAvatar from '../avatar/MyAvatar.svelte';
   import { hasAvatar, openAvatarEditor } from '../avatar/state';
@@ -24,8 +25,14 @@
   let tab = $state<Tab>(untrack(() => initial ?? 'all'));
   let who = $state<'all' | Protagonist>('all');
   let genre = $state<string>('all');
+  // The book whose little summary window is open.
+  let preview = $state<ReadingEntry | null>(null);
+  const previewPart = $derived(preview ? partLabel(preview, mine) : '');
 
   const genres = $derived([...new Set($catalog.adventures.map((a) => a.manifest.genre))].sort());
+  // "Playing as you" only makes sense for adventures that are told as you, with your own avatar.
+  const heroCount = $derived(mine.filter((e) => e.adventure?.manifest.protagonist === 'hero').length);
+  const showPlayer = $derived(isAdventure && heroCount > 0 && (who === 'all' || who === 'hero'));
 
   const tabs = $derived<{ id: Tab; label: string; count: number }[]>([
     { id: 'all', label: isAdventure ? 'All adventures' : 'All stories', count: mine.length },
@@ -75,7 +82,7 @@
       </p>
     </div>
     <div class="head-right">
-      {#if isAdventure}
+      {#if showPlayer}
         <button class="player" onclick={openAvatarEditor} title={hasAvatar($settings) ? 'Change your avatar' : 'Choose your avatar'}>
           <MyAvatar size={44} />
           <span>{hasAvatar($settings) ? 'Playing as you' : 'Choose your avatar'}</span>
@@ -97,6 +104,7 @@
     <div class="filters" aria-label="Filter adventures">
       <div class="seg" role="group" aria-label="Play as">
         <button class:on={who === 'all'} onclick={() => (who = 'all')}>Everyone</button>
+        {#if heroCount > 0}<button class:on={who === 'hero'} onclick={() => (who = 'hero')}>Play as you</button>{/if}
         <button class:on={who === 'guy'} onclick={() => (who = 'guy')}>Play as a guy</button>
         <button class:on={who === 'girl'} onclick={() => (who = 'girl')}>Play as a girl</button>
       </div>
@@ -116,13 +124,13 @@
       <div class="shelf">
         {#each items as it (it.kind === 'single' ? it.entry.kind + it.entry.id : 'series:' + it.series.id)}
           {#if it.kind === 'single'}
-            <ReadingCard entry={it.entry} />
+            <ReadingCard entry={it.entry} onpreview={(e) => (preview = e)} />
           {:else}
             <section class="series" aria-label="{it.series.name}, a series of {it.parts.length}">
               <h2 class="series-name">{it.series.name}<span>{it.parts.length} parts</span></h2>
               <div class="shelf inner">
                 {#each it.parts as e (e.kind + e.id)}
-                  <ReadingCard entry={e} part={partLabel(e, mine)} />
+                  <ReadingCard entry={e} part={partLabel(e, mine)} onpreview={(x) => (preview = x)} />
                 {/each}
               </div>
             </section>
@@ -132,6 +140,10 @@
     {/if}
   </div>
 </div>
+
+{#if preview}
+  <ReadingPreview entry={preview} part={previewPart} onclose={() => (preview = null)} />
+{/if}
 
 <style>
   .head-right {

@@ -81,11 +81,13 @@
 
     <article class="paper" style="--fs:{$settings.storyFontScale}; --accent:{adv.accent ?? '#b7a8ec'}">
       <div class="meta">
-        <button class="you" onclick={openAvatarEditor} title={hasAvatar($settings) ? 'This is you. Click to change your avatar.' : 'Choose your avatar'} aria-label={hasAvatar($settings) ? 'Change your avatar' : 'Choose your avatar'}>
-          <MyAvatar size={48} />
-        </button>
+        {#if adv.protagonist === 'hero'}
+          <button class="you" onclick={openAvatarEditor} title={hasAvatar($settings) ? 'This is you. Click to change your avatar.' : 'Choose your avatar'} aria-label={hasAvatar($settings) ? 'Change your avatar' : 'Choose your avatar'}>
+            <MyAvatar size={48} />
+          </button>
+        {/if}
         <h1 class="title">{adv.name}</h1>
-        <span class="who">{adv.hero ? `${adv.hero} · ` : ''}{adv.protagonist === 'girl' ? "Girl's perspective" : "Guy's perspective"}</span>
+        <span class="who">{adv.protagonist === 'hero' ? 'You are the hero' : `${adv.hero ? `${adv.hero} · ` : ''}${adv.protagonist === 'girl' ? "Girl's perspective" : "Guy's perspective"}`}</span>
       </div>
       {#if showResume}
         <p class="resume">Welcome back. We saved your place.</p>

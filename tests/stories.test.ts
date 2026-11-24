@@ -30,9 +30,9 @@ beforeEach(async () => {
 });
 
 describe('bundled stories', () => {
-  it('ships ten cozy stories and the adventures, all valid and compatible', () => {
+  it('ships twelve cozy stories and the adventures, all valid and compatible', () => {
     expect(catalog.skipped).toEqual([]);
-    expect(catalog.stories).toHaveLength(10);
+    expect(catalog.stories).toHaveLength(12);
     expect(catalog.adventures.length).toBeGreaterThanOrEqual(6);
   });
 
@@ -44,7 +44,7 @@ describe('bundled stories', () => {
         expect(c.title.length).toBeGreaterThan(2);
         expect(c.text.join(' ').split(/\s+/).length).toBeGreaterThan(60);
       }
-      expect(['1.2.0', '1.3.0']).toContain(s.manifest.minAppVersion);
+      expect(['1.2.0', '1.3.0', '1.8.0']).toContain(s.manifest.minAppVersion);
       expect(`${s.dir}/${s.manifest.cover}` in files).toBe(true);
     }
   });
