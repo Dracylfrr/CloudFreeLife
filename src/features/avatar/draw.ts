@@ -4,9 +4,11 @@
  * width and height; the body sits in a group moved down by the neck length and widened by the body
  * type. The result is placed inside a circle by `render.ts`.
  */
-import { mix, shade, type AvatarConfig, type Chin, type EyeShape } from './avatar';
+import { mix, shade, type AvatarConfig, type Chin } from './avatar';
+import { EYE_LASH as LASH, EYE_SCLERA as SCLERA } from './eyeShapes';
+import { illusBackHair, illusBackground, illusBodyShade, illusBrows, illusDefs, illusEye, illusFaceShading, illusFrontHair } from './illus';
 
-interface Ctx {
+export interface Ctx {
   c: AvatarConfig;
   uid: string;
   /** Outline color ("none" in the flat style). */
@@ -18,18 +20,21 @@ interface Ctx {
   flat: boolean;
   real: boolean;
   anime: boolean;
+  /** The painterly "Illustrated" style. */
+  illus: boolean;
 }
 
 function makeCtx(c: AvatarConfig, uid: string): Ctx {
   const flat = c.style === 'flat';
   const real = c.style === 'real';
   const anime = c.style === 'anime';
-  const line = flat ? 'none' : real ? shade(c.skin, -0.55) : anime ? '#463c5a' : '#5b5678';
-  const lw = flat ? 0 : real ? 1.1 : anime ? 1.8 : 2.4;
+  const illus = c.style === 'illus';
+  const line = flat ? 'none' : real || illus ? shade(c.skin, -0.55) : anime ? '#463c5a' : '#5b5678';
+  const lw = flat ? 0 : real ? 1.1 : illus ? 1.2 : anime ? 1.8 : 2.4;
   const st = flat ? 'stroke="none"' : `stroke="${line}" stroke-width="${lw}" stroke-linejoin="round" stroke-linecap="round"`;
   const hline = flat ? 'none' : real ? shade(c.hair, -0.5) : line;
   const hst = flat ? 'stroke="none"' : `stroke="${hline}" stroke-width="${lw}" stroke-linejoin="round" stroke-linecap="round"`;
-  return { c, uid, line, st, hst, flat, real, anime };
+  return { c, uid, line, st, hst, flat, real, anime, illus };
 }
 
 // ---------------------------------------------------------------- head shape
@@ -111,20 +116,6 @@ function frontHair(x: Ctx): string {
 
 // ---------------------------------------------------------------- face
 
-const SCLERA: Record<EyeShape, string> = {
-  round: 'M-6.9 0A6.9 8.3 0 1 0 6.9 0A6.9 8.3 0 1 0 -6.9 0Z',
-  sparkle: 'M-6.9 0A6.9 8.3 0 1 0 6.9 0A6.9 8.3 0 1 0 -6.9 0Z',
-  sleepy: 'M-6.9 0A6.9 8.3 0 1 0 6.9 0A6.9 8.3 0 1 0 -6.9 0Z',
-  almond: 'M-8.4 1.2C-6 -6.4 5 -8.2 8.8 -1.8C5.4 5.8 -5 7.4 -8.4 1.2Z',
-  cat: 'M-8 2.4C-5 -5.6 3.8 -8.4 10 -4.2C6.4 4.6 -3.8 7 -8 2.4Z'
-};
-const LASH: Record<EyeShape, string> = {
-  round: 'M-7.6 -3.6Q0 -11.6 7.6 -3.6',
-  sparkle: 'M-7.6 -3.6Q0 -11.6 7.6 -3.6',
-  sleepy: 'M-7.8 -1.4Q0 -5.4 7.8 -1.4',
-  almond: 'M-8.9 1C-6.4 -7.2 5.2 -9 9.8 -2.2',
-  cat: 'M-8.4 2.2C-5.2 -6.4 4 -9.4 10.4 -4.6L11.9 -7.4'
-};
 
 /** One eye. `sign` is +1 for the right eye and -1 for the left, so the outer corner points outward. */
 function eye(x: Ctx, cx: number, sign: 1 | -1, n: number): string {
@@ -174,7 +165,7 @@ function eye(x: Ctx, cx: number, sign: 1 | -1, n: number): string {
 function mouth(x: Ctx): string {
   const { c } = x;
   const lipTone = mix(c.skin, '#d46a7e', 0.5);
-  const lw = x.flat ? 2 : x.real ? 1.2 : x.anime ? 1.8 : 2.2;
+  const lw = x.flat ? 2 : x.real ? 1.2 : x.illus ? 1.5 : x.anime ? 1.8 : 2.2;
   const stroke = x.flat ? shade(c.skin, -0.55) : x.line;
   const line = `fill="none" stroke="${stroke}" stroke-width="${lw}" stroke-linecap="round" stroke-linejoin="round"`;
   switch (c.mouth) {
@@ -196,7 +187,7 @@ function nose(x: Ctx): string {
   if (x.flat) return '';
   const tone = shade(c.skin, -0.3);
   if (x.real) return `<path d="M60.4 61.5Q59 68 56.8 70.4Q60 72.4 63.2 70.4Q61.4 68.6 60.6 63" fill="none" stroke="${tone}" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>`;
-  if (x.anime) return `<path d="M59.4 69.4Q60 70.4 60.8 69.4" fill="none" stroke="${tone}" stroke-width="1.2" stroke-linecap="round"/>`;
+  if (x.anime || x.illus) return `<path d="M59.4 69.4Q60 70.4 60.8 69.4" fill="none" stroke="${tone}" stroke-width="1.2" stroke-linecap="round"/>`;
   return `<path d="M59 69.2Q60 70.8 61 69.2" fill="none" stroke="${tone}" stroke-width="1.6" stroke-linecap="round"/>`;
 }
 
@@ -213,7 +204,7 @@ function brows(x: Ctx): string {
 }
 
 function blush(x: Ctx): string {
-  const o = x.real ? 0.2 : x.anime ? 0.32 : x.flat ? 0.4 : 0.5;
+  const o = x.real ? 0.2 : x.illus ? 0.26 : x.anime ? 0.32 : x.flat ? 0.4 : 0.5;
   return `<ellipse cx="37.5" cy="72" rx="5.8" ry="3.4" fill="#ff9fb4" opacity="${o}"/><ellipse cx="82.5" cy="72" rx="5.8" ry="3.4" fill="#ff9fb4" opacity="${o}"/>`;
 }
 
@@ -407,32 +398,33 @@ export function portraitInner(c: AvatarConfig, uid: string): { defs: string; bod
   const bodyT = `translate(60 ${nl}) scale(${BODY_WIDTH[c.body]} 1) translate(-60 0)`;
   const bgTop = shade(c.background, 0.4);
   const chinY = 57 + 29.5 * hh;
-  const shaded = x.anime || x.real;
+  const shaded = x.anime || x.real || x.illus;
   const faceFill = shaded ? `url(#face-${uid})` : c.skin;
   const defs =
     `<linearGradient id="bg-${uid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${bgTop}"/><stop offset="1" stop-color="${c.background}"/></linearGradient>` +
+    (x.illus ? illusDefs(x) : '') +
     (shaded ? `<radialGradient id="face-${uid}" cx="0.5" cy="0.42" r="0.62"><stop offset="0" stop-color="${shade(c.skin, 0.1)}"/><stop offset="0.7" stop-color="${c.skin}"/><stop offset="1" stop-color="${shade(c.skin, -0.09)}"/></radialGradient>` : '');
   const neckPath = `<path d="M${60 - nw} 72L${60 - nw} ${95 + nl}C${60 - nw} ${100 + nl} ${60 + nw} ${100 + nl} ${60 + nw} ${95 + nl}L${60 + nw} 72Z" fill="${c.skin}" ${x.st}/>`;
   const chinShadow = `<ellipse cx="60" cy="${(chinY - 0.5).toFixed(1)}" rx="9.5" ry="4" fill="${shade(c.skin, -0.22)}" opacity="${x.real ? 0.5 : 0.35}"/>`;
   const ex = 13 * (c.eyeGap / 100);
   const body =
     `<rect width="120" height="120" fill="url(#bg-${uid})"/>` +
-    `<circle cx="22" cy="22" r="3" fill="#ffffff" opacity="0.7"/><circle cx="100" cy="30" r="2" fill="#ffffff" opacity="0.7"/>` +
-    `<g transform="${headT}">${backHair(x)}</g>` +
-    `<g transform="${bodyT}">${cl.behind}${cl.body}</g>` +
+    (x.illus ? illusBackground(x) : `<circle cx="22" cy="22" r="3" fill="#ffffff" opacity="0.7"/><circle cx="100" cy="30" r="2" fill="#ffffff" opacity="0.7"/>`) +
+    `<g transform="${headT}">${x.illus ? illusBackHair(x) : backHair(x)}</g>` +
+    `<g transform="${bodyT}">${cl.behind}${cl.body}${x.illus ? illusBodyShade(x) : ''}</g>` +
     neckPath +
     chinShadow +
     `<g transform="${bodyT}">${cl.front}</g>` +
     `<g transform="${headT}">` +
     ears(x) +
     `<path d="${headPath(c.chin)}" fill="${faceFill}" ${x.st}/>` +
-    eye(x, 60 - ex, -1, 0) +
-    eye(x, 60 + ex, 1, 1) +
-    brows(x) +
+    (x.illus ? illusFaceShading(x, headPath(c.chin)) : '') +
+    (x.illus ? illusEye(x, 60 - ex, -1, 0) + illusEye(x, 60 + ex, 1, 1) : eye(x, 60 - ex, -1, 0) + eye(x, 60 + ex, 1, 1)) +
+    (x.illus ? illusBrows(x) : brows(x)) +
     blush(x) +
     nose(x) +
     mouth(x) +
-    frontHair(x) +
+    (x.illus ? illusFrontHair(x) : frontHair(x)) +
     hairAccSvg(x) +
     hatSvg(x) +
     glassesSvg(x) +

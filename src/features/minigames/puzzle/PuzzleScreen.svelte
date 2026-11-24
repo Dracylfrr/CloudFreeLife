@@ -7,6 +7,7 @@
   import { sfx } from '../../../core/audio';
   import Button from '../../../ui/Button.svelte';
   import GameResult from '../GameResult.svelte';
+  import { recordPlayed } from '../progress';
   import Icon from '../../../ui/Icon.svelte';
   import { PuzzleGame } from './logic';
 
@@ -36,7 +37,9 @@
     selected = game.selected;
     swaps = game.swaps;
     home = game.home;
+    const was = solved;
     solved = game.solved;
+    if (solved && !was && level) recordPlayed('puzzle', level.manifest.id);
   }
 
   async function start(i = idx) {

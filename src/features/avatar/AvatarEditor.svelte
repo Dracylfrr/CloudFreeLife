@@ -8,13 +8,15 @@
   import Avatar from './Avatar.svelte';
   import MyAvatar from './MyAvatar.svelte';
   import PictureCropper from './PictureCropper.svelte';
-  import { avatarEditorOpen, closeAvatarEditor, hasAvatar } from './state';
-  import { FRAMES, FRAME_GROUPS } from './frames';
+  import { get } from 'svelte/store';
+  import { avatarEditorOpen, avatarEditorTab, closeAvatarEditor, hasAvatar } from './state';
+  import { FRAMES, type FrameDef } from './frames';
+  import { KIND_LABEL, counts, frameStatus } from './unlocks';
   import { checkPictureFile, loadPicture, pictureUrl, removePicture, savePicture } from './picture';
   import {
     ACCENT_COLORS, BACKGROUNDS, BODIES, BODY_LABEL, CHINS, CHIN_LABEL, EARRINGS, EARRINGS_LABEL, EARS, EARS_LABEL, EYE_COLORS, EYE_SHAPES, EYE_SHAPE_LABEL, GLASSES, GLASSES_LABEL, HAIR_ACCS, HAIR_ACC_LABEL,
     HAIR_COLORS, HAIR_STYLES, HAIR_STYLE_LABEL, HATS, HAT_LABEL, LIMITS, MAX_LOOKS, MAX_LOOK_NAME, MOUTHS, MOUTH_LABEL, OUTFITS, OUTFIT_COLORS, OUTFIT_LABEL, SKIN_TONES, STYLES, STYLE_HINT, STYLE_LABEL,
-    cleanLookName, presetFor, styleDefaults, type AvatarBase, type AvatarConfig, type AvatarStyle, type SavedLook, type Swatch
+    START_STYLE, cleanLookName, presetFor, styleDefaults, type AvatarBase, type AvatarConfig, type AvatarStyle, type SavedLook, type Swatch
   } from './avatar';
 
   type Tab = 'style' | 'face' | 'hair' | 'body' | 'clothes' | 'extras' | 'frame' | 'picture' | 'looks';
@@ -47,10 +49,24 @@
       opener = document.activeElement instanceof HTMLElement ? document.activeElement : null;
       chosen = null;
       pictureError = '';
+      const want = get(avatarEditorTab);
+      if (want && TABS.some((t) => t.id === want)) tab = want as Tab;
+      avatarEditorTab.set(null);
       void loadPicture();
       void tick().then(() => dialog?.focus());
     }
   });
+
+  const plain = $derived(FRAMES.filter((f) => f.group === 'Plain rings'));
+  const soft = $derived(FRAMES.filter((f) => f.group === 'Soft themes'));
+  const earned = $derived(FRAMES.filter((f) => f.group === 'Earned'));
+  const KINDS = ['stories', 'endings', 'levels'] as const;
+  const unlockedCount = $derived(earned.filter((f) => frameStatus(f, $counts).unlocked).length);
+  function chooseFrame(f: FrameDef) {
+    if (!frameStatus(f, $counts).unlocked) return;
+    updateSettings({ avatarFrame: f.id });
+    sfx.click();
+  }
 
   function close() {
     chosen = null;
@@ -59,7 +75,7 @@
     opener = null;
   }
   function begin(base: AvatarBase) {
-    updateSettings({ avatar: presetFor(base), avatarMode: 'drawn' });
+    updateSettings({ avatar: presetFor(base, START_STYLE), avatarMode: 'drawn' });
     sfx.pop(1.2);
   }
   function change(patch: Partial<AvatarConfig>) {
@@ -97,7 +113,7 @@
     if (!problem) chosen = f;
   }
   async function pictureDone(png: Uint8Array) {
-    if (!avatar) updateSettings({ avatar: presetFor('girl') }); // so there is a drawn look to go back to
+    if (!avatar) updateSettings({ avatar: presetFor('girl', START_STYLE) }); // so there is a drawn look to go back to
     chosen = null;
     try {
       await savePicture(png);
@@ -173,7 +189,7 @@
         <div class="starters">
           {#each ['girl', 'boy'] as const as b}
             <button class="starter" onclick={() => begin(b)}>
-              <Avatar avatar={presetFor(b)} size={124} />
+              <Avatar avatar={presetFor(b, START_STYLE)} size={124} />
               <strong>{b === 'girl' ? 'Girl' : 'Boy'}</strong>
             </button>
           {/each}
@@ -222,13 +238,41 @@
                     <span>No frame</span>
                   </button>
                 </div>
-                {#each FRAME_GROUPS as g (g)}
-                  <h3 class="grp">{g}</h3>
+                <h3 class="grp">Plain rings</h3>
+                <div class="frames">
+                  {#each plain as f (f.id)}
+                    <button class="frame" class:on={frame === f.id} aria-pressed={frame === f.id} onclick={() => chooseFrame(f)}>
+                      {@render preview(f.id)}
+                      <span>{f.label}</span>
+                    </button>
+                  {/each}
+                </div>
+                <h3 class="grp">Soft themes</h3>
+                <div class="frames">
+                  {#each soft as f (f.id)}
+                    <button class="frame" class:on={frame === f.id} aria-pressed={frame === f.id} onclick={() => chooseFrame(f)}>
+                      {@render preview(f.id)}
+                      <span>{f.label}</span>
+                    </button>
+                  {/each}
+                </div>
+                <h3 class="grp">Earned themes <span class="tally">{unlockedCount} of {earned.length} unlocked</span></h3>
+                <p class="note">These unlock as you read stories, find adventure endings and finish game levels. There is no hurry.</p>
+                {#each KINDS as k (k)}
+                  <h4 class="kind">{KIND_LABEL[k].total}: <strong>{$counts[k]}</strong></h4>
                   <div class="frames">
-                    {#each FRAMES.filter((f) => f.group === g) as f (f.id)}
-                      <button class="frame" class:on={frame === f.id} aria-pressed={frame === f.id} onclick={() => { updateSettings({ avatarFrame: f.id }); sfx.click(); }}>
-                        {@render preview(f.id)}
+                    {#each earned.filter((f) => f.unlock?.kind === k) as f (f.id)}
+                      {@const st = frameStatus(f, $counts)}
+                      <button class="frame" class:on={frame === f.id} class:locked={!st.unlocked} aria-pressed={frame === f.id} aria-disabled={!st.unlocked} title={st.unlocked ? f.label : `Locked. ${st.task} to unlock (${st.counter}).`} onclick={() => chooseFrame(f)}>
+                        <span class="pv">{@render preview(f.id)}{#if !st.unlocked}<i class="lock" aria-hidden="true">🔒</i>{/if}</span>
                         <span>{f.label}</span>
+                        {#if st.unlocked}
+                          <small class="done">Unlocked</small>
+                        {:else}
+                          <small>{st.task}</small>
+                          <span class="meter" role="progressbar" aria-label={st.counter} aria-valuemin="0" aria-valuemax={st.need} aria-valuenow={st.have}><i style="width:{st.percent}%"></i></span>
+                          <small class="count">{st.counter}</small>
+                        {/if}
                       </button>
                     {/each}
                   </div>
@@ -600,6 +644,66 @@
   .note {
     color: var(--ink-soft);
     font-size: 0.9rem;
+  }
+  .tally {
+    margin-left: 8px;
+    font-weight: 700;
+    color: var(--ink-faint);
+  }
+  .kind {
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    margin: 8px 0 0;
+  }
+  .kind strong {
+    color: var(--ink);
+    font-size: 0.95rem;
+  }
+  .frame small {
+    font-weight: 700;
+    font-size: 0.68rem;
+    line-height: 1.2;
+    text-align: center;
+    color: var(--ink-faint);
+  }
+  .frame small.done {
+    color: var(--c-green2);
+  }
+  .frame small.count {
+    color: var(--ink-soft);
+  }
+  .frame.locked {
+    cursor: default;
+  }
+  .frame.locked .pv :global(.av) {
+    filter: grayscale(0.85) opacity(0.55);
+  }
+  .pv {
+    position: relative;
+    display: inline-block;
+    line-height: 0;
+  }
+  .lock {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-style: normal;
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+  .meter {
+    width: 100%;
+    height: 5px;
+    border-radius: 999px;
+    background: var(--track);
+    overflow: hidden;
+  }
+  .meter i {
+    display: block;
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--nav-a), var(--lavender-deep));
   }
   .muted {
     color: var(--ink-soft);

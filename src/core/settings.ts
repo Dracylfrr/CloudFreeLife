@@ -43,6 +43,8 @@ export interface Settings {
   avatarPicture: number;
   /** Looks the person saved to come back to. */
   avatarLooks: SavedLook[];
+  /** Earned avatar frames the person has already been told about (null until first checked). */
+  avatarFramesSeen: string[] | null;
   /** One-tap feeling preset (v1.3): shapes music, ambience, sound softness and ambient speed. */
   mood: Mood;
   // Accessibility
@@ -88,6 +90,7 @@ export const DEFAULT_SETTINGS: Settings = {
   avatarFrame: 'none',
   avatarPicture: 0,
   avatarLooks: [],
+  avatarFramesSeen: null,
   mood: 'default',
   reducedMotion: false,
   disableParticles: false,
@@ -136,6 +139,7 @@ export function sanitizeSettings(raw: unknown): Settings {
     avatarFrame: cleanFrame(r.avatarFrame),
     avatarPicture: typeof r.avatarPicture === 'number' && Number.isFinite(r.avatarPicture) && r.avatarPicture > 0 ? Math.floor(r.avatarPicture) : 0,
     avatarLooks: sanitizeLooks(r.avatarLooks, isFrame),
+    avatarFramesSeen: Array.isArray(r.avatarFramesSeen) ? [...new Set(r.avatarFramesSeen.filter((x): x is string => typeof x === 'string' && isFrame(x)))] : null,
     mood: (MOODS as readonly string[]).includes(r.mood as string) ? (r.mood as Mood) : d.mood,
     reducedMotion: bool(r.reducedMotion, d.reducedMotion),
     disableParticles: bool(r.disableParticles, d.disableParticles),

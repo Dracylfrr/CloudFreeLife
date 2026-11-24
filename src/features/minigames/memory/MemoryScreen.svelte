@@ -5,6 +5,7 @@
   import { sfx } from '../../../core/audio';
   import Button from '../../../ui/Button.svelte';
   import GameResult from '../GameResult.svelte';
+  import { recordPlayed } from '../progress';
   import Icon from '../../../ui/Icon.svelte';
   import { MEMORY_ICON_IDS } from '../../../core/manifests';
   import { ENDLESS_MAX_CARDS, MemoryGame, endlessColumns, endlessPairs, endlessSymbols, type Card } from './logic';
@@ -47,7 +48,9 @@
     cards = game.cards.map((c) => ({ ...c }));
     moves = game.moves;
     matches = game.matches;
+    const was = complete;
     complete = game.complete;
+    if (complete && !was && mode === 'levels' && level) recordPlayed('memory', level.manifest.id);
   }
 
   function start(i = idx) {

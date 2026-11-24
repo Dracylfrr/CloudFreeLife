@@ -8,10 +8,13 @@
  * default that draws exactly the same picture as before.
  */
 
-export const STYLES = ['chibi', 'anime', 'real', 'flat'] as const;
+export const STYLES = ['illus', 'chibi', 'anime', 'real', 'flat'] as const;
 export type AvatarStyle = (typeof STYLES)[number];
-export const STYLE_LABEL: Record<AvatarStyle, string> = { chibi: 'Chibi', anime: 'Anime', real: 'Semi-realistic', flat: 'Storybook' };
+export const STYLE_LABEL: Record<AvatarStyle, string> = { illus: 'Illustrated', chibi: 'Chibi', anime: 'Anime', real: 'Semi-realistic', flat: 'Storybook' };
+/** The style a new avatar starts in. */
+export const START_STYLE: AvatarStyle = 'illus';
 export const STYLE_HINT: Record<AvatarStyle, string> = {
+  illus: 'Painterly anime: glossy layered hair, big detailed eyes, soft shading and a brush-stroke background.',
   chibi: 'Big head, big shiny eyes and rounded ears: the cute starting look.',
   anime: 'A slimmer face and longer neck, with sharper, more detailed eyes.',
   real: 'Natural proportions with smaller eyes, soft shading and a lifelike face.',
@@ -181,6 +184,8 @@ export const LIMITS = {
 export function styleDefaults(style: AvatarStyle): Pick<AvatarConfig, 'style' | 'headW' | 'headH' | 'chin' | 'eyeShape' | 'eyeSize' | 'eyeGap' | 'mouth' | 'ears' | 'neckLen' | 'neckWidth'> {
   const common = { mouth: 'smile' as Mouth, eyeGap: 100 };
   switch (style) {
+    case 'illus':
+      return { ...common, style, headW: 90, headH: 102, chin: 'soft', eyeShape: 'almond', eyeSize: 96, ears: 'round', neckLen: 6, neckWidth: 7.6 };
     case 'anime':
       return { ...common, style, headW: 91, headH: 101, chin: 'soft', eyeShape: 'almond', eyeSize: 88, ears: 'round', neckLen: 5, neckWidth: 7.8 };
     case 'real':

@@ -6,6 +6,7 @@
   import { sfx } from '../../../core/audio';
   import Button from '../../../ui/Button.svelte';
   import GameResult from '../GameResult.svelte';
+  import { recordPlayed } from '../progress';
   import Icon from '../../../ui/Icon.svelte';
   import { GameLoop } from '../loop';
   import { ParticleSystem } from '../particles';
@@ -54,6 +55,9 @@
       onPaddle: () => sfx.balloon(),
       onWin: () => {
         sfx.chime();
+        // a level finished counts toward avatar frames (endless rounds are not levels)
+        const done = mode === 'endless' ? undefined : levels[idx];
+        if (done) recordPlayed('breaker', done.manifest.id);
         for (let i = 0; i < 14; i++) particles.burst(Math.random() * FIELD_W, FIELD_H * 0.5 + Math.random() * 100, PALETTE[i % PALETTE.length], 3);
         sync();
       },

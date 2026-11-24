@@ -2,6 +2,23 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com), and the project uses [Semantic Versioning](https://semver.org).
 
+## [1.7.2]
+
+### Added
+- **A new avatar art style: Illustrated.** A painterly anime look with glossy, layered hair made of pointed locks (with a bright rim light picked up from the eye color and a shine band across the crown), large detailed eyes, soft cel shadows on the face, and a background of sweeping brush strokes. It is now the style new avatars start in; every hair style, outfit and accessory works with it. Avatars you already made keep the style they have.
+- **Earned avatar frames.** Soft themes you unlock by doing things you already do, each with a counter and progress bar while it is locked:
+  - *Finish cozy stories:* Night sky (1), Autumn leaves (3), Snowfall (6), Fireflies (10).
+  - *Find adventure endings:* Butterflies (3), Aurora (8), Lanterns (15).
+  - *Complete game levels:* Bubbles (5), Ocean waves (15), Galaxy (30), Confetti (50). Every game now counts its finished levels (Pastel Breaker, Splash Wall, Memory Meadow and Pastel Puzzle did not before; endless rounds are not levels, and a level only counts once).
+  - A message appears when a new frame is earned, with a button that opens the frames.
+  - Clouds, Blossoms and Daisies stay free from the start, as do the plain rings.
+
+### Removed
+- The three ornate frames (Gilded, Starlit, Laurel). If you were using one, you get the gold ring instead.
+
+### Changed
+- **Windows now shows the new name too.** After this update, the Start menu and desktop shortcuts and the entry in *Settings > Apps > Installed apps* are called **Project D.R.E.A.M**. This happens during the update itself (including the quiet update), without moving or reinstalling anything: the program file, its install folder and your saved paintings keep their original names. A shortcut you pinned to the taskbar yourself keeps the name it has until you unpin and pin it again, and the program's name in Task Manager stays as it was.
+
 ## [1.7.1]
 
 ### Added

@@ -16,6 +16,7 @@ import { applySettingsToDocument, getSettings, loadSettings, settings, updateSet
 import { getStorage, isTauri } from './core/storage';
 import { refreshArtworks } from './features/gallery/artwork';
 import { cleanUpInstallers, startupUpdateCheck } from './features/updates/updater';
+import { startFrameUnlockWatcher } from './features/avatar/unlocks';
 
 async function boot() {
   const target = document.getElementById('app')!;
@@ -38,6 +39,8 @@ async function boot() {
   await Promise.all([loadCatalog(), refreshArtworks(), loadStoryProgress(), loadMeditationProgress(), loadMovementProgress(), loadGamesProgress(), loadAlbums()]);
   // Installed themes arrive with the content; show the chosen one now that it can be found.
   applySettingsToDocument(getSettings());
+  // Say so when finishing stories or game levels earns a new avatar frame.
+  startFrameUnlockWatcher();
   // Small local progress files are written shortly after a change; this makes sure they are
   // also written when you move to another screen or close the window.
   onBeforeLeave(() => Promise.all([flushStoryProgress(), meditationProgress.flush(), movementProgress.flush(), gamesProgress.flush(), albums.flush()]).then(() => undefined));

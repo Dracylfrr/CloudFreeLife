@@ -10,6 +10,7 @@
   import { saveWallToGallery } from './gallery';
   import Button from '../../../ui/Button.svelte';
   import GameResult from '../GameResult.svelte';
+  import { recordPlayed } from '../progress';
   import Icon from '../../../ui/Icon.svelte';
   import { GameLoop } from '../loop';
   import { SplashGame } from './game';
@@ -57,6 +58,7 @@
         onProgress: (s) => (status = s),
         onComplete: () => {
           complete = true;
+          recordPlayed('splash', lv.manifest.id);
           sfx.chime();
           const g = game!;
           for (let k = 0; k < 10; k++) g.particles.burst(Math.random() * WALL_W, 200 + Math.random() * 300, g.palette[k % g.palette.length], 4);

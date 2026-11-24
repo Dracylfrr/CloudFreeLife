@@ -38,6 +38,19 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 - [ ] Splash Wall: all 16 levels open; aim, click-throw, hold-to-charge throw; splat stays in the region; goals count correctly; color match hints; Wash and Save PNG.
 - [ ] Pause with P; minimize the window and confirm CPU drops to ~0.
 
+## 1.7.2 checks (Illustrated style and earned frames)
+- [ ] A new avatar starts in the Illustrated style; the Style tab lists five styles and every hair style, outfit and accessory looks right in each.
+- [ ] Frame tab: Plain rings and Soft themes (Clouds, Blossoms, Daisies) are open; the Earned themes show a lock, the task ("Finish 3 stories"), a progress bar and a counter ("1 of 3 stories"). There are no ornate frames.
+- [ ] Finish a cozy story, find an adventure ending and complete a level in each game (Breaker, Splash Wall, Memory, Puzzle, Bubble Garden, Cloud Catcher, Paint Flow): the matching counter goes up by one, and playing the same level again does not.
+- [ ] Reaching a number unlocks the frame at that moment, a message says so, and its button opens the Frame tab.
+- [ ] A frame picked in 1.7.1 that was ornate shows as the gold ring.
+
+## 1.7.2 checks (Windows names; try on an installed copy, as an update from the version before)
+- [ ] After updating, the Start menu entry and the desktop shortcut (if there was one) are called "Project D.R.E.A.M" and still open the app. There is no second "Cloud-Freelife" shortcut.
+- [ ] Settings > Apps > Installed apps lists "Project D.R.E.A.M" with the new version number.
+- [ ] Update once more: nothing is duplicated and the names stay.
+- [ ] Uninstall: both shortcuts and the Installed apps entry are gone.
+
 ## 1.7.1 checks (avatar)
 - [ ] The sidebar top shows only the avatar, "Project D.R.E.A.M" and "Cloud Sonata". The five words are on the About page.
 - [ ] An avatar saved by 1.7.0 opens unchanged. Style tab: Chibi, Anime, Semi-realistic and Storybook each look different; the sliders still work after changing style.

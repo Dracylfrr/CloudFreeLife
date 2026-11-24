@@ -1,10 +1,11 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import {
-  ACCENT_COLORS, BODIES, CHINS, EARRINGS, EARS, EYE_SHAPES, GLASSES, HAIR_ACCS, HAIR_STYLES, HATS, LIMITS, MAX_LOOKS, MOUTHS, OUTFITS, PRESETS, STYLES, cleanLookName, mix, presetFor, sanitizeAvatar, sanitizeLooks,
+  ACCENT_COLORS, START_STYLE, BODIES, CHINS, EARRINGS, EARS, EYE_SHAPES, GLASSES, HAIR_ACCS, HAIR_STYLES, HATS, LIMITS, MAX_LOOKS, MOUTHS, OUTFITS, PRESETS, STYLES, cleanLookName, mix, presetFor, sanitizeAvatar, sanitizeLooks,
   styleDefaults, type AvatarConfig
 } from '../src/features/avatar/avatar';
 import { headPath } from '../src/features/avatar/draw';
+import { lock } from '../src/features/avatar/illus';
 import { FRAMES, FRAME_GROUPS, FRAME_MARGIN, cleanFrame, frameSvg, isFrame } from '../src/features/avatar/frames';
 import { avatarSvg, pictureSvg } from '../src/features/avatar/render';
 import { DEFAULT_CROP, MAX_PICTURE_BYTES, ZOOM_MAX, ZOOM_MIN, checkPictureFile, clampOffset, coverScale } from '../src/features/avatar/picture';
@@ -38,8 +39,10 @@ describe('Avatars from 1.7.0', () => {
 });
 
 describe('Avatar data', () => {
-  it('has four art styles with their own starting shapes', () => {
-    expect([...STYLES]).toEqual(['chibi', 'anime', 'real', 'flat']);
+  it('has five art styles with their own starting shapes', () => {
+    expect([...STYLES]).toEqual(['illus', 'chibi', 'anime', 'real', 'flat']);
+    expect(START_STYLE).toBe('illus');
+    expect(styleDefaults('illus').headW).toBeLessThan(100);
     expect(styleDefaults('chibi').headW).toBe(100);
     expect(styleDefaults('real').eyeSize).toBeLessThan(styleDefaults('anime').eyeSize);
     expect(styleDefaults('anime').neckLen).toBeGreaterThan(styleDefaults('chibi').neckLen);
@@ -105,9 +108,27 @@ describe('Drawing', () => {
       clean(avatarSvg(a, 'u' + i, pick(['none', ...FRAMES.map((f) => f.id)], r)));
     }
   });
-  it('the four styles look different from each other', () => {
+  it('the styles look different from each other', () => {
     const svgs = STYLES.map((s) => avatarSvg(presetFor('girl', s), 'x'));
-    expect(new Set(svgs).size).toBe(4);
+    expect(new Set(svgs).size).toBe(STYLES.length);
+  });
+  it('the Illustrated style is painterly: layered hair, a rough-edge filter, brush strokes and detailed eyes', () => {
+    for (const hairStyle of HAIR_STYLES) {
+      const svg = avatarSvg({ ...presetFor('boy', 'illus'), hairStyle }, 'x');
+      expect(svg).toContain('filter id="rough-x"');
+      expect(svg).toContain('url(#hg-x)');
+      expect(svg).toContain('url(#ig-x)');
+      expect(svg).toContain('clip-path="url(#hc-x)"');
+    }
+    const plain = avatarSvg(presetFor('boy', 'chibi'), 'x');
+    expect(plain).not.toContain('rough-x');
+  });
+  it('a pointed lock has a root and a tip', () => {
+    const d = lock(10, 10, 30, 40, 6, 2);
+    expect(d.startsWith('M')).toBe(true);
+    expect(d.endsWith('Z')).toBe(true);
+    expect(d).toContain('30 40');
+    expect(lock(5, 5, 5, 5, 4)).not.toContain('NaN');
   });
   it('the storybook style has no outlines and the realistic style has thin ones', () => {
     const flat = avatarSvg(presetFor('girl', 'flat'), 'x');
@@ -153,9 +174,12 @@ describe('Drawing', () => {
 });
 
 describe('Frames', () => {
-  it('has plain, ornate and soft frames', () => {
-    expect(FRAMES.length).toBeGreaterThanOrEqual(12);
+  it('has plain, soft and earned frames, and the ornate ones are gone', () => {
+    expect(FRAMES.length).toBeGreaterThanOrEqual(18);
     for (const g of FRAME_GROUPS) expect(FRAMES.some((f) => f.group === g)).toBe(true);
+    expect(FRAMES.some((f) => f.id.startsWith('ornate'))).toBe(false);
+    expect(FRAMES.filter((f) => f.group === 'Soft themes').length).toBeGreaterThanOrEqual(3);
+    expect(FRAMES.filter((f) => f.unlock).length).toBe(FRAMES.filter((f) => f.group === 'Earned').length);
     expect(new Set(FRAMES.map((f) => f.id)).size).toBe(FRAMES.length);
     for (const id of ['silver', 'gold', 'sky', 'rainbow']) expect(FRAMES.some((f) => f.id === id)).toBe(true);
   });
@@ -166,6 +190,9 @@ describe('Frames', () => {
     expect(isFrame(5)).toBe(false);
     expect(cleanFrame('nope')).toBe('none');
     expect(cleanFrame('rainbow')).toBe('rainbow');
+    // an ornate frame chosen in 1.7.1 becomes the gold ring
+    expect(cleanFrame('ornate-star')).toBe('gold');
+    expect(isFrame('ornate-star')).toBe(false);
   });
   it('draws each frame around the portrait, with room made for it', () => {
     const base = presetFor('girl');
