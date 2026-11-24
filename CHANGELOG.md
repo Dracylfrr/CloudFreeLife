@@ -2,6 +2,16 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com), and the project uses [Semantic Versioning](https://semver.org).
 
+## [1.6.2]
+
+### Changed
+- **Mini-Games is now just "Games"**, and **Gentle Movement is now "Exercise"**, in the sidebar, on Home and on their own pages.
+- **The exercise pictures now fit every theme.** They no longer carry their own pastel sky: the card shows your current theme behind the little friend, and a soft glow keeps the friend and its outline easy to see on light and dark themes alike.
+- Messages about updates never show a web address or the name of the release host: if something goes wrong you get a plain sentence instead.
+
+### Fixed
+- **A paintball could linger after clearing the canvas.** The last frame of a paintball's splash stayed on the effects layer after the paint was saved, so it was still on screen after *Clear canvas*. The layer is now wiped when the last effect ends, and a paintball that is still flying when the page is cleared is dropped instead of landing afterwards.
+
 ## [1.6.1]
 
 ### Added

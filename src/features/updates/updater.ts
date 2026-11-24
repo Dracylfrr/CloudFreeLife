@@ -68,6 +68,16 @@ async function installedVersions(): Promise<InstalledVersions> {
   return out;
 }
 
+/**
+ * A message that is safe to show. Messages from the network layer can contain a web address or the
+ * name of the release host; people only ever see plain words about "the update service".
+ */
+export function plainMessage(raw: unknown, fallback = 'Something went wrong with the update. Please try again later.'): string {
+  const text = raw instanceof Error ? raw.message : typeof raw === 'string' ? raw : '';
+  if (!text || /github|https?:|:\/\/|\.(com|io|org)\b/i.test(text)) return fallback;
+  return text;
+}
+
 /** Core check. Pure with respect to the UI: returns what it found. */
 export async function runUpdateCheck(appVersion: string = APP_VERSION): Promise<{ items: UpdateItem[]; outcome: CheckOutcome; message: string }> {
   let res;
@@ -75,7 +85,7 @@ export async function runUpdateCheck(appVersion: string = APP_VERSION): Promise<
     res = await httpGet(GITHUB_API_RELEASES, { accept: 'application/vnd.github+json', maxBytes: 3 * 1024 * 1024 });
   } catch (err) {
     const offline = err instanceof NetworkError ? err.offline : true;
-    return { items: [], outcome: offline ? 'offline' : 'error', message: offline ? "Couldn't reach the update service. You can keep using Cloud-Freelife offline." : (err as Error).message };
+    return { items: [], outcome: offline ? 'offline' : 'error', message: offline ? "Couldn't reach the update service. You can keep using Cloud-Freelife offline." : plainMessage(err, "Couldn't check for updates right now. Please try again later.") };
   }
   if (res.status === 404) return { items: [], outcome: 'up_to_date', message: 'No releases have been published yet.' };
   if (res.status === 403 || res.status === 429) return { items: [], outcome: 'error', message: 'The update service is busy right now. Please try again later.' };
@@ -135,7 +145,7 @@ export function checkForUpdates(): Promise<UpdateState> {
       updateSettings({ lastUpdateCheck: now });
       updateState.update((s) => ({ ...s, outcome: r.outcome, available: r.items, message: r.message, lastChecked: now }));
     } catch (err) {
-      updateState.update((s) => ({ ...s, outcome: 'error', message: String((err as Error).message ?? err) }));
+      updateState.update((s) => ({ ...s, outcome: 'error', message: plainMessage(err, "Couldn't check for updates right now. Please try again later.") }));
     } finally {
       inFlight = null;
     }
@@ -186,7 +196,7 @@ export async function installContentUpdate(item: UpdateItem): Promise<{ ok: bool
     try {
       res = await httpGet(item.downloadUrl, { accept: 'application/octet-stream', maxBytes: item.asset.size + 1024, timeoutMs: 60000 });
     } catch (err) {
-      return { ok: false, message: (err as Error).message || 'Download failed.' };
+      return { ok: false, message: plainMessage(err, 'Download failed.') || 'Download failed.' };
     }
     if (res.status !== 200) return { ok: false, message: `Download failed (status ${res.status}).` };
     const verified = await verifyDownloadedAsset(item.asset, res.bytes, res.contentType);
@@ -249,7 +259,7 @@ export async function installAppQuietly(item: UpdateItem): Promise<{ ok: boolean
     try {
       res = await httpGet(item.downloadUrl, { accept: 'application/octet-stream', maxBytes: item.asset.size + 4096, timeoutMs: 180000 });
     } catch (err) {
-      return { ok: false, message: (err as Error).message || 'Download failed.' };
+      return { ok: false, message: plainMessage(err, 'Download failed.') || 'Download failed.' };
     }
     if (res.status !== 200) return { ok: false, message: `Download failed (status ${res.status}).` };
     const verified = await verifyDownloadedAsset(item.asset, res.bytes, res.contentType, ALLOWED_APP_TYPES);
@@ -266,7 +276,7 @@ export async function installAppQuietly(item: UpdateItem): Promise<{ ok: boolean
   } catch (err) {
     if (kept) await (await getStorage()).remove(kept).catch(() => undefined);
     const text = typeof err === 'string' ? err : (err as Error)?.message;
-    return { ok: false, message: text || 'The update could not be installed.' };
+    return { ok: false, message: plainMessage(text, 'The update could not be installed.') };
   } finally {
     setBusy(key, false);
   }
@@ -313,7 +323,7 @@ export async function downloadAppInstaller(item: UpdateItem): Promise<Downloaded
     try {
       res = await httpGet(item.downloadUrl, { accept: 'application/octet-stream', maxBytes: item.asset.size + 4096, timeoutMs: 180000 });
     } catch (err) {
-      return { ok: false, message: (err as Error).message || 'Download failed.' };
+      return { ok: false, message: plainMessage(err, 'Download failed.') || 'Download failed.' };
     }
     if (res.status !== 200) return { ok: false, message: `Download failed (status ${res.status}).` };
     const verified = await verifyDownloadedAsset(item.asset, res.bytes, res.contentType, ALLOWED_APP_TYPES);

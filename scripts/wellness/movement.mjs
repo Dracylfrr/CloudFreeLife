@@ -1,7 +1,7 @@
 // Gentle Movement cards (1.4): general, conservative ideas for a pleasant movement break.
 // Not medical advice, no diagnoses, no goals, no streaks, no calories. Each card has one cute picture.
 import * as A from '../stories/artlib.mjs';
-const { scene, cloud, sun, hills, ground, flower, sparkles, S, LINE } = A;
+const { cloud, sun, hills, ground, flower, sparkles, S, LINE, fixDup } = A;
 
 // ---- "Puff", a round little friend, drawn from a few joints so every pose stays consistent ----
 const limb = (pts, w, fill) => {
@@ -32,8 +32,13 @@ function puff(p) {
   return `${p.behind ?? ''}<g transform="translate(400 262) scale(1.28) translate(-400 -262)">${stool}${legs}${torso}${p.extras ?? ''}</g>`;
 }
 
-const sky = (a, b, body) => scene(a, b, `${body}`);
-const floor = (c) => `<path d="M-10 410H810V490H-10z" fill="${c}" stroke="${LINE}" stroke-width="3"/>`;
+// The picture has NO background of its own: the card shows the app's current theme behind it, so it fits
+// every theme. A soft white glow sits right behind the little friend so the pink body and the outline
+// stay easy to see on a pale theme and on a dark one. (The two colors a and b are no longer used.)
+const sky = (_a, _b, body) =>
+  fixDup(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480"><defs><radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffffff" stop-opacity=".5"/><stop offset=".55" stop-color="#ffffff" stop-opacity=".34"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient></defs><ellipse cx="400" cy="262" rx="330" ry="215" fill="url(#glow)"/>${body}</svg>`);
+// A soft mat under the feet instead of a full-width floor.
+const floor = (c) => `<ellipse cx="400" cy="446" rx="318" ry="34" fill="${c}" stroke="${LINE}" stroke-width="3"/>`;
 const sparkle = sparkles([[160, 120, 4], [660, 100, 3], [700, 250, 4], [120, 260, 3]]);
 
 const arts = {

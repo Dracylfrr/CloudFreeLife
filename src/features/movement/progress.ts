@@ -1,5 +1,5 @@
 /**
- * Gentle Movement only remembers your favorites and the last card you opened, so the screen
+ * Exercise only remembers your favorites and the last card you opened, so the screen
  * can say "Last time". No counts, no streaks, no goals. One small file, never uploaded.
  */
 import { persisted } from '../../core/persist';

@@ -67,10 +67,10 @@
 <div class="page">
   {#if !m || !item}
     <p>This card isn't available.</p>
-    <Button onclick={() => navigate({ name: 'movement' })}>Back to Gentle Movement</Button>
+    <Button onclick={() => navigate({ name: 'movement' })}>Back to Exercise</Button>
   {:else}
     <header class="bar">
-      <button class="back" onclick={() => navigate({ name: 'movement' })}><Icon name="chevronLeft" size={18} /> Gentle Movement</button>
+      <button class="back" onclick={() => navigate({ name: 'movement' })}><Icon name="chevronLeft" size={18} /> Exercise</button>
       <button class="heart" class:on={fav} aria-pressed={fav} aria-label={fav ? 'Remove from favorites' : 'Add to favorites'} onclick={() => toggleMovementFavorite(m.id)}><Icon name="heart" size={18} /></button>
     </header>
 
@@ -107,7 +107,7 @@
         {#if left < m.minutes * 60}<Button variant="ghost" size="sm" onclick={resetTimer}>Reset</Button>{/if}
       </div>
 
-      <p class="care"><Icon name="info" size={15} /> General movement ideas, not medical advice. Go slowly, stay comfortable and stop if anything hurts.</p>
+      <p class="care"><Icon name="info" size={15} /> General exercise ideas, not medical advice. Go slowly, stay comfortable and stop if anything hurts.</p>
     </article>
   {/if}
 </div>
@@ -161,6 +161,8 @@
   }
   .art {
     aspect-ratio: 5 / 3;
+    /* the picture has no background of its own, so it takes on whatever theme is active */
+    background: radial-gradient(120% 120% at 50% 40%, var(--bg-a), var(--bg-c));
     border-radius: 22px;
     overflow: hidden;
     box-shadow: var(--shadow-s);

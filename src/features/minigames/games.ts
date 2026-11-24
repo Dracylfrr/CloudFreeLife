@@ -1,5 +1,5 @@
 /**
- * The list of mini-games shown on the Mini-Games page. Adding a game means adding one
+ * The list of mini-games shown on the Games page. Adding a game means adding one
  * entry here (plus its screen); its levels come from the content manifests as usual.
  */
 import type { Catalog, Located } from '../../core/content/registry';

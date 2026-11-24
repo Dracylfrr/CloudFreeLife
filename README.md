@@ -13,8 +13,8 @@ A calm, pastel place to **color, draw and play** — a lightweight Windows deskt
 - **Painting tools** — Brush, Marker, Crayon, Airbrush, Fill Bucket, Eraser, Paintball, Color Picker, Clear Region, Undo/Redo, Zoom, Pan
 - **Autosave & Gallery** — your art saves itself (outside the install folder), with Open / Duplicate / Rename / Export PNG / Clear / Delete
 - **Meditation** — six optional quiet sessions (One Minute Reset, Cloud Breathing, Quiet Garden, Evening Wind Down, Rain Pause and a Silent Timer). No streaks, no scores, no medical claims
-- **Gentle Movement** — ten friendly stretch cards with pictures, steps and an optional timer. General ideas, not medical advice
-- **Mini-games** — eight calm games: *Pastel Breaker* (12 levels), *Splash Wall* (16 walls, saved to the Gallery or exported), *Memory Meadow* (12 levels), *Pastel Puzzle* (14 pictures), *Bubble Garden*, *Cloud Catcher*, *Zen Garden* (rake sand, place stones and plants, save your gardens) and *Paint Flow* (12 boards)
+- **Exercise** — ten friendly stretch cards with pictures, steps and an optional timer. General ideas, not medical advice
+- **Games** — eight calm games: *Pastel Breaker* (12 levels), *Splash Wall* (16 walls, saved to the Gallery or exported), *Memory Meadow* (12 levels), *Pastel Puzzle* (14 pictures), *Bubble Garden*, *Cloud Catcher*, *Zen Garden* (rake sand, place stones and plants, save your gardens) and *Paint Flow* (12 boards)
 - **App icon** — five cute icons to choose from in Settings
 - **Updates** — a quiet startup check, an in-app Update Center with release notes, and downloadable content packs (books, palettes, stories, levels) verified with SHA-256
 - **Private & offline** — no telemetry, no accounts, no ads. Everything except update checks works without Internet.
@@ -56,9 +56,9 @@ src/features/home        Home screen
 src/features/books       book shelf + page picker
 src/features/painting    painting engine, tools, palettes, backgrounds
 src/features/gallery     artwork persistence + Gallery
-src/features/minigames   the eight mini-games (Pastel Breaker, Splash Wall, Memory Meadow, Pastel Puzzle, Bubble Garden, Cloud Catcher, Zen Garden, Paint Flow)
+src/features/minigames   the eight games (Pastel Breaker, Splash Wall, Memory Meadow, Pastel Puzzle, Bubble Garden, Cloud Catcher, Zen Garden, Paint Flow)
 src/features/meditation  Meditation sessions and the breathing timer
-src/features/movement    Gentle Movement cards
+src/features/movement    Exercise cards
 src/features/stories     Stories hub, reader, adventures, reading list and progress
 src/features/import      import line art as coloring pages (My Pages)
 src/features/updates     update check, release manifests, content packs, Update Center
@@ -69,7 +69,7 @@ content/minigames        bundled mini-game levels
 content/stories         bundled cozy stories and story adventures
 content-packs            sources of downloadable packs (long stories, adventures, themes)
 content/meditation      bundled meditation sessions
-content/movement        bundled Gentle Movement cards
+content/movement        bundled Exercise cards
 src-tauri                the thin native shell (Rust)
 scripts                  content generator, pack/release tools
 docs                     guides and templates
@@ -82,7 +82,7 @@ Books, pages, palettes and levels are plain JSON + SVG — nothing is hard-coded
 - [docs/CREATING_BOOKS.md](docs/CREATING_BOOKS.md)
 - [docs/CREATING_PAGES.md](docs/CREATING_PAGES.md)
 - [docs/CREATING_LEVELS.md](docs/CREATING_LEVELS.md)
-- [docs/CREATING_WELLNESS.md](docs/CREATING_WELLNESS.md) (meditation sessions and Gentle Movement cards)
+- [docs/CREATING_WELLNESS.md](docs/CREATING_WELLNESS.md) (meditation sessions and Exercise cards)
 - [docs/CREATING_STORIES.md](docs/CREATING_STORIES.md) (stories, illustrated stories, adventures)
 - [docs/THEMES_AND_AUDIO.md](docs/THEMES_AND_AUDIO.md) (themes, moods and music)
 - [docs/PUBLISHING_CONTENT.md](docs/PUBLISHING_CONTENT.md)

@@ -24,7 +24,7 @@
 
     <ul class="facts">
       <li><Icon name="shield" size={20} /><div><strong>Private by design</strong><span>No telemetry, analytics, accounts or personal data. The only network use is checking for updates and downloading new content.</span></div></li>
-      <li><Icon name="cloud" size={20} /><div><strong>Works offline</strong><span>Painting, the Gallery, mini-games and settings never need the Internet.</span></div></li>
+      <li><Icon name="cloud" size={20} /><div><strong>Works offline</strong><span>Painting, the Gallery, games and settings never need the Internet.</span></div></li>
       <li><Icon name="folder" size={20} /><div><strong>Your art is yours</strong><span>Saved on your computer, outside the install folder. Updates never touch it.</span></div></li>
     </ul>
 

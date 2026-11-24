@@ -20,8 +20,8 @@
   <header class="page-head">
     <div>
       <p class="eyebrow">Take a little break</p>
-      <h1>Gentle Movement</h1>
-      <p class="sub">Simple, easy ideas for a pleasant movement break. Pick one, go slowly, and stop whenever you like.</p>
+      <h1>Exercise</h1>
+      <p class="sub">Simple, easy ideas for a pleasant exercise break. Pick one, go slowly, and stop whenever you like.</p>
     </div>
     <button class="fav-toggle" class:on={favoritesOnly} aria-pressed={favoritesOnly} onclick={() => (favoritesOnly = !favoritesOnly)}>
       <Icon name="heart" size={16} /> Favorites
@@ -29,7 +29,7 @@
   </header>
 
   {#if shown.length === 0}
-    <p class="muted">{favoritesOnly ? 'Tap the heart on a card to keep it here.' : 'No movement cards are installed. New ones arrive through Updates.'}</p>
+    <p class="muted">{favoritesOnly ? 'Tap the heart on a card to keep it here.' : 'No exercise cards are installed. New ones arrive through Updates.'}</p>
   {:else}
     <div class="shelf">
       {#each shown as c (c.manifest.id)}
@@ -54,7 +54,7 @@
     </div>
   {/if}
 
-  <p class="note"><Icon name="info" size={16} /> These are general movement ideas, not medical advice. Move slowly, only as far as feels comfortable, and stop if anything hurts. If you have a health concern, please ask a professional.</p>
+  <p class="note"><Icon name="info" size={16} /> These are general exercise ideas, not medical advice. Move slowly, only as far as feels comfortable, and stop if anything hurts. If you have a health concern, please ask a professional.</p>
 </div>
 
 <style>
@@ -103,6 +103,8 @@
   }
   .cover {
     aspect-ratio: 5 / 3;
+    /* the picture has no background of its own, so it takes on whatever theme is active */
+    background: radial-gradient(120% 120% at 50% 40%, var(--bg-a), var(--bg-c));
     overflow: hidden;
     border-bottom: 5px solid var(--accent);
   }

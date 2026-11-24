@@ -29,7 +29,7 @@
     <header class="page-head">
       <div>
         <p class="eyebrow">Take a little break</p>
-        <h1>Mini-Games</h1>
+        <h1>Games</h1>
         <p class="sub">{GAMES.length} calm games. Every level is open from the start — no locks, no pressure.</p>
       </div>
     </header>
@@ -57,7 +57,7 @@
   {:else}
     <header class="page-head">
       <div>
-        <button class="back" onclick={() => navigate({ name: 'minigames' })}><Icon name="chevronLeft" size={18} /> Mini-Games</button>
+        <button class="back" onclick={() => navigate({ name: 'minigames' })}><Icon name="chevronLeft" size={18} /> Games</button>
         <h1>{game.title}</h1>
         <p class="sub">{game.blurb}</p>
       </div>

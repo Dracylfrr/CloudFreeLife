@@ -14,9 +14,9 @@
     { id: 'gallery', label: 'Gallery', icon: 'image', go: () => navigate({ name: 'gallery' }) },
     { id: 'stories', label: 'Cozy Stories', icon: 'bookOpen', go: () => navigate({ name: 'stories' }) },
     { id: 'adventures', label: 'Story Adventures', icon: 'compass', go: () => navigate({ name: 'adventures' }) },
-    { id: 'minigames', label: 'Mini-Games', icon: 'gamepad', go: () => navigate({ name: 'minigames' }) },
+    { id: 'minigames', label: 'Games', icon: 'gamepad', go: () => navigate({ name: 'minigames' }) },
     { id: 'meditation', label: 'Meditation', icon: 'leaf', go: () => navigate({ name: 'meditation' }) },
-    { id: 'movement', label: 'Gentle Movement', icon: 'stretch', go: () => navigate({ name: 'movement' }) }
+    { id: 'movement', label: 'Exercise', icon: 'stretch', go: () => navigate({ name: 'movement' }) }
   ];
   const controls: Item[] = [
     { id: 'updates', label: 'Updates', icon: 'cloudDown', go: () => navigate({ name: 'updates' }) },

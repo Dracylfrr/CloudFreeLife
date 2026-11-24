@@ -153,6 +153,8 @@ export class PaintEngine {
   // fx
   private anims: Array<(t: number) => boolean> = [];
   private raf = 0;
+  /** Bumped when the page is cleared, so a paintball still in the air does not land afterwards. */
+  private pageEpoch = 0;
 
   constructor(
     readonly width: number,
@@ -789,6 +791,7 @@ export class PaintEngine {
 
   /** Clears the whole page (undoable). The UI must ask for confirmation first. */
   resetAll(): void {
+    this.dropFlyingEffects();
     if (this.layers.length > 1) {
       // every layer is cleared in one undoable step
       const saved = this.layers.map((l) => ({ l, copy: this.cloneCanvas(l.canvas) }));
@@ -876,9 +879,11 @@ export class PaintEngine {
     const radius = PAINTBALL_SIZES[this.state.paintballSize];
     const color = this.state.color;
     const shape = makeSplat(radius, randomSeed());
+    const epoch = this.pageEpoch;
     const maskId = this.state.stayInside && this.regionMap ? this.regionMap.idNearest(x, y, 4) : 0;
     const bits = this.state.stayInside && !this.regionMap ? this.colorAreaBits(x, y) : null;
     const finish = () => {
+      if (epoch !== this.pageEpoch) return; // the page was cleared while the ball was still flying
       const rect = this.clampRect({ x: x - shape.extent, y: y - shape.extent, w: shape.extent * 2, h: shape.extent * 2 });
       if (rect.w <= 0 || rect.h <= 0) return;
       const before = this.readRect(rect);
@@ -907,6 +912,7 @@ export class PaintEngine {
       : [];
     let committed = false;
     this.anim((now) => {
+      if (epoch !== this.pageEpoch) return false;
       const t = now - t0;
       const f = this.fxctx;
       if (t < flight) {
@@ -957,12 +963,25 @@ export class PaintEngine {
     });
   }
 
+  /** Stops every effect that is still in the air (a paintball, sparkles) and wipes the effects layer. */
+  private dropFlyingEffects() {
+    this.pageEpoch++;
+    this.anims = [];
+    if (this.raf) cancelAnimationFrame(this.raf);
+    this.raf = 0;
+    this.fxctx.clearRect(0, 0, this.width, this.height);
+  }
+
   private anim(step: (now: number) => boolean) {
     this.anims.push(step);
     if (!this.raf) {
       const loop = (now: number) => {
         this.fxctx.clearRect(0, 0, this.width, this.height);
         this.anims = this.anims.filter((a) => a(now));
+        // When the last effect ends, wipe the effects layer. Without this the final frame (a whole
+        // splat) stays on it after the paint has been committed, and a ghost of it would still be
+        // there after the page is cleared.
+        if (!this.anims.length) this.fxctx.clearRect(0, 0, this.width, this.height);
         this.raf = this.anims.length ? requestAnimationFrame(loop) : 0;
       };
       this.raf = requestAnimationFrame(loop);

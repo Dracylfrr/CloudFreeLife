@@ -19,7 +19,7 @@ Artwork, settings and downloaded content are stored **only on your computer**, i
   settings.json
   progress\stories.json  (your reading place, favorites and the story endings you have found)
   progress\meditation.json  (favorites, the last session, and how many times you finished each one)
-  progress\movement.json  (favorites and the last Gentle Movement card you opened)
+  progress\movement.json  (favorites and the last Exercise card you opened)
   progress\games.json  (Paint Flow boards you have connected, levels played and the last game)
   gardens\<name>.json  (your Zen Garden layouts)
   artworks\<name>\timelapse.json  (a list of your strokes, for the Timelapse button; no pictures)
@@ -42,9 +42,9 @@ Only for these two things, always over HTTPS:
 
 Cloud-Freelife does not send personal content or analytics. When checking for or downloading updates, standard network requests are made to the infrastructure that hosts the official Cloud-Freelife releases, so that service can see the usual details of any web request (such as your IP address and the standard HTTP headers). Cloud-Freelife does not add cookies, tokens, user IDs or device information. The app never opens a web page.
 
-**Meditation, Gentle Movement and the games** keep a few small files on your computer (listed above) so they can show your favorites and the last thing you did. They have no streaks, scores or health information, and they are never uploaded.
+**Meditation, Exercise and the games** keep a few small files on your computer (listed above) so they can show your favorites and the last thing you did. They have no streaks, scores or health information, and they are never uploaded.
 
-Without Internet access everything else works normally: painting, the Gallery, mini-games, exports and settings.
+Without Internet access everything else works normally: painting, the Gallery, games, exports and settings.
 
 ## Updating
 When you press **Update now**, the new installer is downloaded from the official release host into `%APPDATA%\Cloud-Freelife\update`, checked against the published SHA-256, run quietly and removed the next time the app starts. Nothing is saved in Downloads or shown in File Explorer.

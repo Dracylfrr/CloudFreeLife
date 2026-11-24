@@ -156,8 +156,8 @@
         <b></b>
       </div>
       <div class="meta">
-        <span class="tag lilac"><Icon name="gamepad" size={14} /> Mini-Games</span>
-        <h3>Mini-Games</h3>
+        <span class="tag lilac"><Icon name="gamepad" size={14} /> Games</span>
+        <h3>Games</h3>
         <p>Pastel Breaker, Splash Wall and more. Calm, quick and relaxing.</p>
       </div>
     </button>
@@ -179,8 +179,8 @@
       </div>
       <div class="meta">
         <span class="tag sky"><Icon name="stretch" size={14} /> Stretch a little</span>
-        <h3>Gentle Movement</h3>
-        <p>{$catalog.movements.length} easy stretches for a short break. General ideas, go at your own pace.</p>
+        <h3>Exercise</h3>
+        <p>{$catalog.movements.length} easy exercises for a short break. General ideas, go at your own pace.</p>
       </div>
     </button>
   </section>

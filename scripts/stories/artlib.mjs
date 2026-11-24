@@ -6,7 +6,7 @@ export const S = `stroke="${LINE}" stroke-width="3" stroke-linejoin="round" stro
 const n = (v) => +v.toFixed(1);
 
 // Some shapes override the default stroke width; keep only the last declaration per tag.
-const fixDup = (svg) =>
+export const fixDup = (svg) =>
   svg.replace(/<[^>]+>/g, (tag) => {
     const all = tag.match(/ stroke-width="[^"]*"/g);
     if (!all || all.length < 2) return tag;

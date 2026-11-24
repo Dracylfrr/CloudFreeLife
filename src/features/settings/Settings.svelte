@@ -116,7 +116,7 @@
         <Slider label="Interface size" value={$settings.uiScale} min={0.85} max={1.4} step={0.05} format={(v) => `${Math.round(v * 100)}%`} onchange={(v) => updateSettings({ uiScale: v })} />
         <Slider label="Reading size" value={$settings.storyFontScale} min={0.9} max={1.7} step={0.1} format={(v) => `${Math.round(v * 100)}%`} onchange={(v) => updateSettings({ storyFontScale: v })} />
         <Toggle label="Low Power Mode" description="Turns off ambient animation and particles, and lowers game frame rate. Good for batteries and older laptops." checked={$settings.lowPowerMode} onchange={(v) => updateSettings({ lowPowerMode: v })} />
-        <Toggle label="30 FPS mode" description="Mini-games render at 30 frames per second to use less CPU and battery." checked={$settings.fps30} onchange={(v) => updateSettings({ fps30: v })} />
+        <Toggle label="30 FPS mode" description="Games render at 30 frames per second to use less CPU and battery." checked={$settings.fps30} onchange={(v) => updateSettings({ fps30: v })} />
       {:else if tab === 'audio'}
         <h2>Audio</h2>
         <Toggle label="Mute everything" checked={$settings.muted} onchange={(v) => updateSettings({ muted: v })} />
@@ -147,7 +147,7 @@
       {:else if tab === 'accessibility'}
         <h2>Accessibility</h2>
         <Toggle label="Reduced motion" description="Removes drifting clouds, bubbles and most animation. Nothing decorative moves." checked={$settings.reducedMotion} onchange={(v) => updateSettings({ reducedMotion: v })} />
-        <Toggle label="Disable particles" description="No sparkles, bubbles or paint particles in mini-games and effects." checked={$settings.disableParticles} onchange={(v) => updateSettings({ disableParticles: v })} />
+        <Toggle label="Disable particles" description="No sparkles, bubbles or paint particles in games and effects." checked={$settings.disableParticles} onchange={(v) => updateSettings({ disableParticles: v })} />
         <Toggle label="Higher contrast" description="Darker text and stronger outlines." checked={$settings.highContrast} onchange={(v) => updateSettings({ highContrast: v })} />
       {:else if tab === 'updates'}
         <h2>Updates</h2>

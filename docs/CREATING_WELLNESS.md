@@ -1,4 +1,4 @@
-# Creating Meditation sessions and Gentle Movement cards
+# Creating Meditation sessions and Exercise cards
 
 Both are plain JSON plus one small cover picture, like every other kind of content. Put them under `content/` to bundle them, or in a content pack to ship them later ([PUBLISHING_CONTENT.md](PUBLISHING_CONTENT.md), kinds `meditation` and `movement`).
 
@@ -49,7 +49,7 @@ One folder per session: `content/meditation/<id>/` containing `session.json` and
 
 The app remembers only the last session, your favorites and how many times each was finished, in `progress\meditation.json`. A session you add later simply shows up with no history.
 
-## Gentle Movement cards
+## Exercise cards
 
 One folder per card: `content/movement/<id>/` containing `card.json` and `cover.svg`.
 
@@ -85,7 +85,7 @@ Covers are small SVGs drawn in the app's soft style. The bundled ones are genera
 
 ```powershell
 npm test      # validates every bundled session and card and checks the wording
-npm run dev   # open Meditation / Gentle Movement and try it
+npm run dev   # open Meditation / Exercise and try it
 ```
 
 A session or card with a missing required field is skipped and never breaks the app.

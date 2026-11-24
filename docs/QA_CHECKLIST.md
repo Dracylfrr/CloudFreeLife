@@ -4,8 +4,8 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 
 ## Launch & shell
 - [ ] App opens quickly (< 2 s) with no console window, no white flash.
-- [ ] Home shows Continue Painting, Open Coloring Books, Start Free Draw, Mini-Games.
-- [ ] Every sidebar item opens its screen: Home, Coloring Books, Free Draw, Gallery, Mini-Games, Updates, Settings, About.
+- [ ] Home shows Continue Painting, Open Coloring Books, Start Free Draw, Games.
+- [ ] Every sidebar item opens its screen: Home, Coloring Books, Free Draw, Gallery, Games, Updates, Settings, About.
 - [ ] Window can be resized down to 980 × 660 and up to a 4K screen without clipped or out-of-place controls on any screen (check Gallery cards, the painter top bar, every game bar, Settings).
 - [ ] Repeat at *Settings → Display → Interface size* 125 % and 140 %: the sidebar turns into icons and everything still fits.
 
@@ -33,10 +33,16 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 - [ ] Open, Duplicate, Rename, Export PNG (open the PNG: paper + paint + lines), Clear (confirm), Delete (confirm).
 - [ ] Artwork is in `%APPDATA%\Cloud-Freelife\artworks\…`; reinstalling/updating keeps it.
 
-## Mini-games
+## Games
 - [ ] Pastel Breaker: all 12 levels open; Relax / Classic / Endless; paddle follows the mouse; particles; level-complete screen; Classic game-over.
 - [ ] Splash Wall: all 16 levels open; aim, click-throw, hold-to-charge throw; splat stays in the region; goals count correctly; color match hints; Wash and Save PNG.
 - [ ] Pause with P; minimize the window and confirm CPU drops to ~0.
+
+## 1.6.2 checks
+- [ ] The sidebar and Home say **Games** and **Exercise**; the Exercise pages say "exercise" rather than "movement".
+- [ ] Open Exercise on a light theme (Cloud Morning) and a dark one (Moonlight): the little friend is clear on both, and there is no pastel sky box behind it.
+- [ ] Free Draw: throw a paintball, then Clear canvas right away and a few seconds later: nothing is left on the canvas.
+- [ ] Turn off the Internet and press Check for Updates: the message is a plain sentence with no web address.
 
 ## 1.6.1 checks: paint mode
 - [ ] On a coloring page the switch reads **Inside the lines / Splash anywhere / Fill areas**; on Free Draw it reads **Inside areas / Anywhere / Fill areas**.
@@ -79,7 +85,7 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 - [ ] Sidebar: Home, then Explore (eight entries) and App controls (Updates, Settings, About); each heading folds and unfolds, the choice survives a restart, the group you are in stays open, and the Updates dot shows on the App controls heading while it is folded.
 - [ ] Sidebar and Home show Cozy Stories and Story Adventures as two separate places; each has its own tabs; the Home Continue card resumes the last painting, story, adventure, meditation or Zen garden.
 - [ ] Meditation: each of the six sessions starts, shows the cloud and cues, pauses and resumes (the clock stops while paused), finishes early without any "failed" wording, and rings the soft bowl; Silent Timer offers 1, 3, 5, 10, 15 and 20 minutes; leaving the screen mid-session stops all sound; favorites and "last time" survive a restart.
-- [ ] Gentle Movement: all ten cards open with a picture, steps, Previous / Next (and arrow keys), an optional timer, a favorite heart and the "not medical advice" note.
+- [ ] Exercise: all ten cards open with a picture, steps, Previous / Next (and arrow keys), an optional timer, a favorite heart and the "not medical advice" note.
 - [ ] Bubble Garden: pop by click, merge by dragging matching colors, Color Match requests complete, Relax / Color Match / Endless, all six levels; Space pops the lowest bubble.
 - [ ] Cloud Catcher: dragging into the right zone works in each mode (Relax, Color Match, Pattern, Endless); all six levels.
 - [ ] Zen Garden: rake, stones, plants, flowers, bushes, Move, Erase, Undo, Clear (asks first); each of the five backgrounds; leave and come back and the garden is still there; New, Duplicate and the Gardens list work; a corrupt file in `gardens\` is skipped, not fatal.
@@ -102,7 +108,7 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 - [ ] Offline: everything except update checks works with no Internet.
 
 ## Cozy Stories & Story Adventures
-- [ ] Home and the sidebar show **Cozy Stories** and **Story Adventures** above Mini-Games.
+- [ ] Home and the sidebar show **Cozy Stories** and **Story Adventures** above Games.
 - [ ] Open each of the six stories; the text size buttons (A-/A+) change the text, Next/Previous and the arrow keys move chapters, and "The End" appears after the last chapter.
 - [ ] Leave a story halfway, restart the app, reopen it: it is on the same chapter.
 - [ ] Story Adventures: the "Play as a guy / girl" and genre filters work; each card shows its endings found.
