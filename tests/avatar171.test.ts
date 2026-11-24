@@ -1,11 +1,11 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import {
-  ACCENT_COLORS, START_STYLE, BODIES, CHINS, EARRINGS, EARS, EYE_SHAPES, GLASSES, HAIR_ACCS, HAIR_STYLES, HATS, LIMITS, MAX_LOOKS, MOUTHS, OUTFITS, PRESETS, STYLES, cleanLookName, mix, presetFor, sanitizeAvatar, sanitizeLooks,
+  ACCENT_COLORS, START_STYLE, SCENES, SCENE_LABEL, BODIES, CHINS, EARRINGS, EARS, EYE_SHAPES, GLASSES, HAIR_ACCS, HAIR_STYLES, HATS, LIMITS, MAX_LOOKS, MOUTHS, OUTFITS, PRESETS, STYLES, cleanLookName, mix, presetFor, sanitizeAvatar, sanitizeLooks,
   styleDefaults, type AvatarConfig
 } from '../src/features/avatar/avatar';
 import { headPath } from '../src/features/avatar/draw';
-import { lock } from '../src/features/avatar/illus';
+import { lock } from '../src/features/avatar/scenes';
 import { FRAMES, FRAME_GROUPS, FRAME_MARGIN, cleanFrame, frameSvg, isFrame } from '../src/features/avatar/frames';
 import { avatarSvg, pictureSvg } from '../src/features/avatar/render';
 import { DEFAULT_CROP, MAX_PICTURE_BYTES, ZOOM_MAX, ZOOM_MIN, checkPictureFile, clampOffset, coverScale } from '../src/features/avatar/picture';
@@ -27,51 +27,77 @@ const clean = (svg: string) => {
   expect((svg.match(/<(?!\/|!)[^>]*[^/]>/g) ?? []).filter((t) => /^<(path|circle|ellipse|rect|stop|image)\b/.test(t))).toEqual([]);
 };
 
-describe('Avatars from 1.7.0', () => {
-  it('still open, and look the same as the chibi starting style', () => {
+describe('Storybook is the only avatar style', () => {
+  it('is the one style, and the one new avatars start in', () => {
+    expect([...STYLES]).toEqual(['flat']);
+    expect(START_STYLE).toBe('flat');
+    expect(presetFor('girl').style).toBe('flat');
+    expect(presetFor('boy').style).toBe('flat');
+    expect(PRESETS.girl.style).toBe('flat');
+    const src = readFileSync('src/features/avatar/AvatarEditor.svelte', 'utf8');
+    expect(src).not.toContain("id: 'style'");
+    expect(src).not.toContain('Art style');
+  });
+  it('avatars made in any older style open as Storybook, keeping their colors, hair, clothes and accessories', () => {
+    for (const style of ['chibi', 'anime', 'real', 'cel', 'illus', 'paint', 'oil', undefined]) {
+      const a = sanitizeAvatar({
+        base: 'boy', style, skin: '#c68a5f', hair: '#123456', hairStyle: 'bob', eyes: '#3f8f6a', outfit: 'hoodie', outfitColor: '#7fb4e0', background: '#d9eefb',
+        headW: 85, headH: 110, chin: 'pointed', eyeShape: 'fierce', eyeSize: 62, eyeGap: 110, mouth: 'open', ears: 'small', neckLen: 12, neckWidth: 10,
+        hat: 'cap', glasses: 'sun', earrings: 'hoops', hairAcc: 'bow', scene: 'castle'
+      })!;
+      expect(a.style, String(style)).toBe('flat');
+      expect(a.skin).toBe('#c68a5f');
+      expect(a.hair).toBe('#123456');
+      expect(a.hairStyle).toBe('bob');
+      expect(a.eyes).toBe('#3f8f6a');
+      expect(a.outfit).toBe('hoodie');
+      expect(a.hat).toBe('cap');
+      expect(a.glasses).toBe('sun');
+      expect(a.earrings).toBe('hoops');
+      expect(a.hairAcc).toBe('bow');
+      expect(a.scene).toBe('castle');
+      // the head, eyes, mouth and neck go back to Storybook's usual shape
+      const d = styleDefaults();
+      expect([a.headW, a.headH, a.chin, a.eyeShape, a.eyeSize, a.eyeGap, a.mouth, a.ears, a.neckLen, a.neckWidth]).toEqual([d.headW, d.headH, d.chin, d.eyeShape, d.eyeSize, d.eyeGap, d.mouth, d.ears, d.neckLen, d.neckWidth]);
+    }
+  });
+  it('a Storybook avatar keeps the head and face shape it was given', () => {
+    const a = sanitizeAvatar({ base: 'girl', style: 'flat', headW: 90, headH: 110, chin: 'pointed', eyeShape: 'cat', eyeSize: 70, neckLen: 9 })!;
+    expect([a.headW, a.headH, a.chin, a.eyeShape, a.eyeSize, a.neckLen]).toEqual([90, 110, 'pointed', 'cat', 70, 9]);
+  });
+  it('an avatar from 1.7.0 opens as the Storybook starting look', () => {
     const old = { base: 'girl', skin: '#fbd3b8', hair: '#8a5a3c', hairStyle: 'long', eyes: '#3d6fb5', outfit: 'dress', outfitColor: '#ffd3e2', background: '#e6dcfa' };
-    const a = sanitizeAvatar(old)!;
-    expect(a).toEqual(PRESETS.girl);
-    expect(a.style).toBe('chibi');
-    expect(a.hat).toBe('none');
-    expect(a.headW).toBe(100);
+    expect(sanitizeAvatar(old)).toEqual(PRESETS.girl);
   });
 });
 
 describe('Avatar data', () => {
-  it('has five art styles with their own starting shapes', () => {
-    expect([...STYLES]).toEqual(['illus', 'chibi', 'anime', 'real', 'flat']);
-    expect(START_STYLE).toBe('illus');
-    expect(styleDefaults('illus').headW).toBeLessThan(100);
-    expect(styleDefaults('chibi').headW).toBe(100);
-    expect(styleDefaults('real').eyeSize).toBeLessThan(styleDefaults('anime').eyeSize);
-    expect(styleDefaults('anime').neckLen).toBeGreaterThan(styleDefaults('chibi').neckLen);
-    expect(presetFor('boy', 'real').style).toBe('real');
-    expect(presetFor('boy', 'real').hairStyle).toBe(PRESETS.boy.hairStyle);
-  });
-  it('offers rounded ears and many more choices', () => {
-    expect(EARS[0]).toBe('round');
+  it('has no pointed ears at all', () => {
+    expect([...EARS]).toEqual(['round', 'small']);
     expect(PRESETS.girl.ears).toBe('round');
-    expect(PRESETS.boy.ears).toBe('round');
-    for (const list of [HATS, GLASSES, EARRINGS, HAIR_ACCS, EYE_SHAPES, CHINS, BODIES, MOUTHS, EARS]) expect(list.length).toBeGreaterThanOrEqual(3);
+    expect(sanitizeAvatar({ base: 'girl', style: 'flat', ears: 'pointed' })!.ears).toBe('round');
+    for (const ears of EARS) expect(avatarSvg({ ...presetFor('girl'), ears }, 'x')).not.toMatch(/M32 63C25 62/);
+    expect(readFileSync('src/features/avatar/AvatarEditor.svelte', 'utf8')).not.toMatch(/pointed ears/i);
+  });
+  it('offers plenty of choices', () => {
+    for (const list of [HATS, GLASSES, EARRINGS, HAIR_ACCS, EYE_SHAPES, CHINS, BODIES, MOUTHS]) expect(list.length).toBeGreaterThanOrEqual(3);
     expect(EARRINGS).toEqual(expect.arrayContaining(['studs', 'hoops']));
     expect(GLASSES).toContain('sun');
     expect(HATS).toContain('cap');
     expect(ACCENT_COLORS.length).toBeGreaterThanOrEqual(10);
   });
   it('keeps sliders inside their limits and ignores junk', () => {
-    const a = sanitizeAvatar({ base: 'boy', headW: 500, headH: -3, eyeSize: 'big', eyeGap: 1e9, neckLen: Infinity, neckWidth: NaN, hat: 'crown', glasses: 3, earrings: 'rings', hairAcc: null, style: 'oil' })!;
+    const a = sanitizeAvatar({ base: 'boy', style: 'flat', headW: 500, headH: -3, eyeSize: 'big', eyeGap: 1e9, neckLen: Infinity, neckWidth: NaN, hat: 'crown', glasses: 3, earrings: 'rings', hairAcc: null })!;
     expect(a.headW).toBe(LIMITS.headW.max);
     expect(a.headH).toBe(LIMITS.headH.min);
-    expect(a.eyeSize).toBe(styleDefaults('chibi').eyeSize);
+    expect(a.eyeSize).toBe(styleDefaults().eyeSize);
     expect(a.eyeGap).toBe(LIMITS.eyeGap.max);
-    expect(a.neckLen).toBe(styleDefaults('chibi').neckLen);
-    expect(a.neckWidth).toBe(styleDefaults('chibi').neckWidth);
+    expect(a.neckLen).toBe(styleDefaults().neckLen);
+    expect(a.neckWidth).toBe(styleDefaults().neckWidth);
     expect(a.hat).toBe('none');
     expect(a.glasses).toBe('none');
     expect(a.earrings).toBe('none');
     expect(a.hairAcc).toBe('none');
-    expect(a.style).toBe('chibi');
   });
   it('blends colors', () => {
     expect(mix('#000000', '#ffffff', 0.5)).toBe('#808080');
@@ -80,13 +106,11 @@ describe('Avatar data', () => {
 });
 
 describe('Drawing', () => {
-  it('draws every style with every kind of accessory and shape', () => {
+  it('draws every combination of shape, accessory, outfit, scene and frame', () => {
     const r = seeded(11);
     for (let i = 0; i < 500; i++) {
-      const base = pick(['girl', 'boy'] as const, r);
-      const style = pick(STYLES, r);
       const a: AvatarConfig = {
-        ...presetFor(base, style),
+        ...presetFor(pick(['girl', 'boy'] as const, r)),
         hairStyle: pick(HAIR_STYLES, r),
         outfit: pick(OUTFITS, r),
         chin: pick(CHINS, r),
@@ -98,6 +122,7 @@ describe('Drawing', () => {
         glasses: pick(GLASSES, r),
         earrings: pick(EARRINGS, r),
         hairAcc: pick(HAIR_ACCS, r),
+        scene: pick(SCENES, r),
         headW: LIMITS.headW.min + Math.floor(r() * 41),
         headH: LIMITS.headH.min + Math.floor(r() * 41),
         eyeSize: LIMITS.eyeSize.min + Math.floor(r() * 76),
@@ -108,37 +133,24 @@ describe('Drawing', () => {
       clean(avatarSvg(a, 'u' + i, pick(['none', ...FRAMES.map((f) => f.id)], r)));
     }
   });
-  it('the styles look different from each other', () => {
-    const svgs = STYLES.map((s) => avatarSvg(presetFor('girl', s), 'x'));
-    expect(new Set(svgs).size).toBe(STYLES.length);
-  });
-  it('the Illustrated style is painterly: layered hair, a rough-edge filter, brush strokes and detailed eyes', () => {
+  it('has no outlines, noise or rough edges: flat, clean shapes', () => {
     for (const hairStyle of HAIR_STYLES) {
-      const svg = avatarSvg({ ...presetFor('boy', 'illus'), hairStyle }, 'x');
-      expect(svg).toContain('filter id="rough-x"');
-      expect(svg).toContain('url(#hg-x)');
-      expect(svg).toContain('url(#ig-x)');
-      expect(svg).toContain('clip-path="url(#hc-x)"');
+      const svg = avatarSvg({ ...presetFor('girl'), hairStyle }, 'x');
+      expect(svg).not.toContain('feTurbulence');
+      expect(svg).not.toContain('feDisplacementMap');
+      expect(svg).not.toContain('filter id');
+      expect(svg).not.toContain('#5b5678');
     }
-    const plain = avatarSvg(presetFor('boy', 'chibi'), 'x');
-    expect(plain).not.toContain('rough-x');
   });
-  it('a pointed lock has a root and a tip', () => {
+  it('shows the chosen eye color', () => {
+    expect(avatarSvg({ ...presetFor('girl'), eyes: '#3d6fb5' }, 'x')).not.toBe(avatarSvg({ ...presetFor('girl'), eyes: '#d9973a' }, 'x'));
+  });
+  it('a tapered lock (used by the backgrounds) has a root and a tip', () => {
     const d = lock(10, 10, 30, 40, 6, 2);
     expect(d.startsWith('M')).toBe(true);
     expect(d.endsWith('Z')).toBe(true);
     expect(d).toContain('30 40');
     expect(lock(5, 5, 5, 5, 4)).not.toContain('NaN');
-  });
-  it('the storybook style has no outlines and the realistic style has thin ones', () => {
-    const flat = avatarSvg(presetFor('girl', 'flat'), 'x');
-    expect(flat).not.toContain('#5b5678');
-    expect(flat).not.toMatch(/stroke-width="2\.4"/);
-    const chibi = avatarSvg(presetFor('girl', 'chibi'), 'x');
-    expect(chibi).toContain('stroke-width="2.4"');
-    const real = avatarSvg(presetFor('girl', 'real'), 'x');
-    expect(real).toContain('stroke-width="1.1"');
-    expect(real).toContain('radialGradient');
   });
   it('shows chosen accessories in the drawing', () => {
     const base = presetFor('girl');
@@ -150,10 +162,8 @@ describe('Drawing', () => {
   });
   it('stretches the head and moves the body for neck length and body type', () => {
     const base = presetFor('girl');
-    const a = avatarSvg({ ...base, headW: 90, headH: 110 }, 'x');
-    expect(a).toContain('scale(0.9 1.1)');
-    const b = avatarSvg({ ...base, neckLen: 10, body: 'broad' }, 'x');
-    expect(b).toContain('translate(60 10) scale(1.2 1)');
+    expect(avatarSvg({ ...base, headW: 90, headH: 110 }, 'x')).toContain('scale(0.9 1.1)');
+    expect(avatarSvg({ ...base, neckLen: 10, body: 'broad' }, 'x')).toContain('translate(60 10) scale(1.2 1)');
   });
   it('makes closed head outlines for every chin', () => {
     for (const chin of CHINS) {
@@ -166,10 +176,8 @@ describe('Drawing', () => {
   });
   it('hides a bun or tall spikes under a hat', () => {
     const base = { ...presetFor('girl'), hairStyle: 'bun' as const };
-    const withHat = avatarSvg({ ...base, hat: 'cap' }, 'x');
-    const without = avatarSvg(base, 'x');
-    expect(without).toContain('r="12"');
-    expect(withHat).not.toContain('r="12"');
+    expect(avatarSvg(base, 'x')).toContain('r="12"');
+    expect(avatarSvg({ ...base, hat: 'cap' }, 'x')).not.toContain('r="12"');
   });
 });
 
@@ -304,8 +312,46 @@ describe('The sidebar and About', () => {
   });
   it('the editor has tabs for every part of the avatar', () => {
     const src = readFileSync('src/features/avatar/AvatarEditor.svelte', 'utf8');
-    for (const t of ["'style'", "'face'", "'hair'", "'body'", "'clothes'", "'extras'", "'frame'", "'picture'", "'looks'"]) expect(src).toContain(t);
+    for (const t of ["'face'", "'hair'", "'body'", "'clothes'", "'extras'", "'frame'", "'picture'", "'looks'"]) expect(src).toContain(t);
     expect(src).toContain('type="file"');
     expect(src).toContain('PictureCropper');
+  });
+});
+
+describe('Cinematic backgrounds, the jacket and the fierce eyes', () => {
+  const girl = () => presetFor('girl');
+  it('new avatars start with a plain background', () => {
+    expect(girl().scene).toBe('color');
+    expect(presetFor('boy').scene).toBe('color');
+  });
+  it('draws the same picture every time for the same avatar', () => {
+    expect(avatarSvg(girl(), 'x')).toBe(avatarSvg(girl(), 'x'));
+    expect(avatarSvg({ ...girl(), hair: '#223344' }, 'x')).not.toBe(avatarSvg(girl(), 'x'));
+  });
+  it('draws every scene with its own colors', () => {
+    expect([...SCENES]).toEqual(['color', 'storm', 'crimson', 'castle', 'ember', 'void']);
+    const seen = new Set<string>();
+    for (const scene of SCENES) {
+      const svg = avatarSvg({ ...girl(), scene }, 'x');
+      clean(svg);
+      seen.add(svg);
+      expect(SCENE_LABEL[scene].length).toBeGreaterThan(3);
+    }
+    expect(seen.size).toBe(SCENES.length);
+    expect(avatarSvg({ ...girl(), scene: 'castle' }, 'x')).toContain('#ffdca0'); // lit windows
+    expect(avatarSvg({ ...girl(), scene: 'color' }, 'x')).toContain('url(#bg-x)');
+  });
+  it('has a fierce eye shape and a jacket with plates', () => {
+    expect(EYE_SHAPES).toContain('fierce');
+    expect(OUTFITS).toContain('jacket');
+    expect(avatarSvg({ ...presetFor('boy'), outfit: 'jacket' }, 'x')).toContain('#b4bac3');
+    const saved = sanitizeAvatar({ base: 'boy', style: 'flat', outfit: 'jacket', scene: 'castle', eyeShape: 'fierce' })!;
+    expect([saved.outfit, saved.scene, saved.eyeShape]).toEqual(['jacket', 'castle', 'fierce']);
+    expect(sanitizeAvatar({ base: 'boy', scene: 'volcano' })!.scene).toBe('color');
+  });
+  it('the editor offers the scenes', () => {
+    const src = readFileSync('src/features/avatar/AvatarEditor.svelte', 'utf8');
+    expect(src).toContain('Background scene');
+    expect(src).toContain('SCENE_LABEL');
   });
 });

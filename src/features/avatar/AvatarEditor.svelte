@@ -14,14 +14,13 @@
   import { KIND_LABEL, counts, frameStatus } from './unlocks';
   import { checkPictureFile, loadPicture, pictureUrl, removePicture, savePicture } from './picture';
   import {
-    ACCENT_COLORS, BACKGROUNDS, BODIES, BODY_LABEL, CHINS, CHIN_LABEL, EARRINGS, EARRINGS_LABEL, EARS, EARS_LABEL, EYE_COLORS, EYE_SHAPES, EYE_SHAPE_LABEL, GLASSES, GLASSES_LABEL, HAIR_ACCS, HAIR_ACC_LABEL,
-    HAIR_COLORS, HAIR_STYLES, HAIR_STYLE_LABEL, HATS, HAT_LABEL, LIMITS, MAX_LOOKS, MAX_LOOK_NAME, MOUTHS, MOUTH_LABEL, OUTFITS, OUTFIT_COLORS, OUTFIT_LABEL, SKIN_TONES, STYLES, STYLE_HINT, STYLE_LABEL,
-    START_STYLE, cleanLookName, presetFor, styleDefaults, type AvatarBase, type AvatarConfig, type AvatarStyle, type SavedLook, type Swatch
+    ACCENT_COLORS, BACKGROUNDS, SCENES, SCENE_LABEL, BODIES, BODY_LABEL, CHINS, CHIN_LABEL, EARRINGS, EARRINGS_LABEL, EARS, EARS_LABEL, EYE_COLORS, EYE_SHAPES, EYE_SHAPE_LABEL, GLASSES, GLASSES_LABEL, HAIR_ACCS, HAIR_ACC_LABEL,
+    HAIR_COLORS, HAIR_STYLES, HAIR_STYLE_LABEL, HATS, HAT_LABEL, LIMITS, MAX_LOOKS, MAX_LOOK_NAME, MOUTHS, MOUTH_LABEL, OUTFITS, OUTFIT_COLORS, OUTFIT_LABEL, SKIN_TONES,
+    cleanLookName, presetFor, styleDefaults, type AvatarBase, type AvatarConfig, type SavedLook, type Swatch
   } from './avatar';
 
-  type Tab = 'style' | 'face' | 'hair' | 'body' | 'clothes' | 'extras' | 'frame' | 'picture' | 'looks';
+  type Tab = 'face' | 'hair' | 'body' | 'clothes' | 'extras' | 'frame' | 'picture' | 'looks';
   const TABS: { id: Tab; label: string }[] = [
-    { id: 'style', label: 'Style' },
     { id: 'face', label: 'Face' },
     { id: 'hair', label: 'Hair' },
     { id: 'body', label: 'Body' },
@@ -34,7 +33,7 @@
 
   let dialog = $state<HTMLDivElement | undefined>();
   let opener: HTMLElement | null = null;
-  let tab = $state<Tab>('style');
+  let tab = $state<Tab>('face');
   let chosen = $state<File | null>(null);
   let pictureError = $state('');
   const avatar = $derived($settings.avatar);
@@ -75,7 +74,7 @@
     opener = null;
   }
   function begin(base: AvatarBase) {
-    updateSettings({ avatar: presetFor(base, START_STYLE), avatarMode: 'drawn' });
+    updateSettings({ avatar: presetFor(base), avatarMode: 'drawn' });
     sfx.pop(1.2);
   }
   function change(patch: Partial<AvatarConfig>) {
@@ -83,11 +82,8 @@
     updateSettings({ avatar: { ...avatar, ...patch }, avatarMode: 'drawn' });
     sfx.click();
   }
-  function setStyle(s: AvatarStyle) {
-    change({ ...styleDefaults(s) });
-  }
   function resetShape() {
-    if (avatar) change(styleDefaults(avatar.style));
+    if (avatar) change(styleDefaults());
   }
   async function remove() {
     const ok = await confirmDialog({ title: 'Remove your avatar?', message: 'Your drawn avatar, picture and frame go back to empty. Your saved looks stay.', confirmLabel: 'Remove', danger: true });
@@ -113,7 +109,7 @@
     if (!problem) chosen = f;
   }
   async function pictureDone(png: Uint8Array) {
-    if (!avatar) updateSettings({ avatar: presetFor('girl', START_STYLE) }); // so there is a drawn look to go back to
+    if (!avatar) updateSettings({ avatar: presetFor('girl') }); // so there is a drawn look to go back to
     chosen = null;
     try {
       await savePicture(png);
@@ -185,11 +181,11 @@
       </header>
 
       {#if !started}
-        <p class="lead">Pick a starting look. You can change everything about it afterwards: the art style, face, hair, body, clothes, accessories and frame. Or use a picture of your own.</p>
+        <p class="lead">Pick a starting look. You can change everything about it afterwards: face, hair, body, clothes, accessories and frame. Or use a picture of your own.</p>
         <div class="starters">
           {#each ['girl', 'boy'] as const as b}
             <button class="starter" onclick={() => begin(b)}>
-              <Avatar avatar={presetFor(b, START_STYLE)} size={124} />
+              <Avatar avatar={presetFor(b)} size={124} />
               <strong>{b === 'girl' ? 'Girl' : 'Boy'}</strong>
             </button>
           {/each}
@@ -216,8 +212,8 @@
             {/if}
             {#if avatar}
               <div class="starts" role="group" aria-label="Start again from">
-                <button onclick={() => change({ ...presetFor('girl', avatar.style) })}>Girl look</button>
-                <button onclick={() => change({ ...presetFor('boy', avatar.style) })}>Boy look</button>
+                <button onclick={() => change({ ...presetFor('girl') })}>Girl look</button>
+                <button onclick={() => change({ ...presetFor('boy') })}>Boy look</button>
               </div>
             {/if}
           </div>
@@ -326,18 +322,7 @@
                   </ul>
                 {/if}
               {:else if avatar}
-                {#if tab === 'style'}
-                  <div class="styles" role="radiogroup" aria-label="Art style">
-                    {#each STYLES as s (s)}
-                      <button class="style" class:on={avatar.style === s} role="radio" aria-checked={avatar.style === s} onclick={() => setStyle(s)}>
-                        <Avatar avatar={{ ...avatar, ...styleDefaults(s) }} size={84} />
-                        <strong>{STYLE_LABEL[s]}</strong>
-                        <small>{STYLE_HINT[s]}</small>
-                      </button>
-                    {/each}
-                  </div>
-                  <p class="note">Choosing a style sets the head, eyes and neck to that style's usual shape. You can fine-tune them in the other tabs.</p>
-                {:else if tab === 'face'}
+                {#if tab === 'face'}
                   <Slider label="Head width" value={avatar.headW} min={LIMITS.headW.min} max={LIMITS.headW.max} step={1} format={(v) => `${Math.round(v)}%`} onchange={(v) => change({ headW: v })} />
                   <Slider label="Head height" value={avatar.headH} min={LIMITS.headH.min} max={LIMITS.headH.max} step={1} format={(v) => `${Math.round(v)}%`} onchange={(v) => change({ headH: v })} />
                   {@render chips('Chin', CHINS, CHIN_LABEL, avatar.chin, (v) => change({ chin: v as AvatarConfig['chin'] }))}
@@ -359,7 +344,8 @@
                 {:else if tab === 'clothes'}
                   {@render chips('Clothes', OUTFITS, OUTFIT_LABEL, avatar.outfit, (v) => change({ outfit: v as AvatarConfig['outfit'] }))}
                   {@render swatches('Clothes color', OUTFIT_COLORS, avatar.outfitColor, (c) => change({ outfitColor: c }))}
-                  {@render swatches('Background', BACKGROUNDS, avatar.background, (c) => change({ background: c }))}
+                  {@render chips('Background scene', SCENES, SCENE_LABEL, avatar.scene, (v) => change({ scene: v as AvatarConfig['scene'] }))}
+                  {#if avatar.scene === 'color'}{@render swatches('Background color', BACKGROUNDS, avatar.background, (c) => change({ background: c }))}{/if}
                 {:else if tab === 'extras'}
                   {@render chips('Hat', HATS, HAT_LABEL, avatar.hat, (v) => change({ hat: v as AvatarConfig['hat'] }))}
                   {#if avatar.hat !== 'none'}{@render swatches('Hat color', ACCENT_COLORS, avatar.hatColor, (c) => change({ hatColor: c }))}{/if}
@@ -586,34 +572,6 @@
     background: linear-gradient(135deg, var(--nav-a), var(--nav-b));
     color: var(--nav-ink);
   }
-  .styles {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-  .style {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    padding: 14px 12px;
-    text-align: center;
-    border-radius: var(--radius-l);
-    background: var(--panel);
-    box-shadow: var(--shadow-s);
-    border: 2px solid transparent;
-  }
-  .style:hover {
-    box-shadow: var(--shadow-m);
-  }
-  .style.on {
-    border-color: var(--lavender-deep);
-  }
-  .style small {
-    color: var(--ink-soft);
-    font-size: 0.78rem;
-    line-height: 1.3;
-  }
   .frames {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
@@ -797,9 +755,6 @@
     }
     .view {
       position: static;
-    }
-    .styles {
-      grid-template-columns: 1fr;
     }
   }
 </style>

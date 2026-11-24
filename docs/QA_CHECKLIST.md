@@ -38,6 +38,15 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 - [ ] Splash Wall: all 16 levels open; aim, click-throw, hold-to-charge throw; splat stays in the region; goals count correctly; color match hints; Wash and Save PNG.
 - [ ] Pause with P; minimize the window and confirm CPU drops to ~0.
 
+## 1.7.3 checks (Storybook only, and backgrounds)
+- [ ] The avatar editor has no Style tab and opens on Face; the first screen shows a Storybook girl and boy.
+- [ ] An avatar saved earlier in Chibi, Anime, Semi-realistic or Illustrated opens as Storybook with the same colors, hair and clothes.
+- [ ] There is no "pointed" choice under Ears.
+- [ ] Clothes > Background scene: Storm, Crimson, Moonlit castle, Embers and Violet void each show behind the avatar; Plain color brings back the swatches.
+- [ ] Hats, glasses, earrings, hair accessories, the Jacket outfit and Fierce eyes all look right.
+- [ ] Changing the eye color visibly changes the eyes. Uploading a picture from the computer still works.
+- [ ] The project on GitHub has no "games" folder.
+
 ## 1.7.2 checks (Illustrated style and earned frames)
 - [ ] A new avatar starts in the Illustrated style; the Style tab lists five styles and every hair style, outfit and accessory looks right in each.
 - [ ] Frame tab: Plain rings and Soft themes (Clouds, Blossoms, Daisies) are open; the Earned themes show a lock, the task ("Finish 3 stories"), a progress bar and a counter ("1 of 3 stories"). There are no ornate frames.

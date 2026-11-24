@@ -56,7 +56,7 @@ describe('The avatar', () => {
   });
   it('offers plenty to customize', () => {
     expect(HAIR_STYLES.length).toBeGreaterThanOrEqual(6);
-    expect([...OUTFITS]).toEqual(['tee', 'hoodie', 'dress']);
+    expect([...OUTFITS]).toEqual(['tee', 'hoodie', 'dress', 'jacket']);
     for (const list of [SKIN_TONES, HAIR_COLORS, EYE_COLORS, OUTFIT_COLORS, BACKGROUNDS]) {
       expect(list.length).toBeGreaterThanOrEqual(6);
       expect(new Set(list.map((s) => s.color)).size).toBe(list.length);
@@ -72,7 +72,7 @@ describe('The avatar', () => {
           expect(svg.endsWith('</svg>')).toBe(true);
           expect(svg).toContain(PRESETS[base].skin);
           expect(svg).toContain(PRESETS[base].hair);
-          expect(svg).toContain(PRESETS[base].eyes);
+          expect(svg).toContain(shade(PRESETS[base].eyes, -0.35));
           expect(svg).not.toContain('undefined');
           expect(svg).not.toContain('NaN');
         }

@@ -2,6 +2,21 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com), and the project uses [Semantic Versioning](https://semver.org).
 
+## [1.7.3]
+
+### Added
+- **Cinematic avatar backgrounds**: *Storm*, *Crimson*, *Moonlit castle*, *Embers* and *Violet void*. Choose them under Clothes > Background scene; "Plain color" brings back the color swatches.
+- A **Fierce** eye shape and a **Jacket** outfit (a dark suit with a high collar, grey shoulder plates and a plated chest).
+
+### Changed
+- **Storybook is now the only avatar style.** The Style tab is gone and the editor opens on Face. An avatar saved in any older style (Chibi, Anime, Semi-realistic, Illustrated) opens in Storybook and keeps its colors, hair, clothes and accessories, with Storybook's usual head, eyes and neck. Uploading your own picture from your computer works as before.
+- The eye color you pick now shows clearly in the iris.
+
+### Removed
+- The Chibi, Anime, Semi-realistic and short-lived Illustrated art styles.
+- **Pointed ears.** The Ears choice is now Rounded or Small, and an avatar that had pointed ears gets rounded ones.
+- The game "Popcorn Crow Carnival" that was added to the project by mistake (it was never part of the app or any release) is gone from the repository, including its history.
+
 ## [1.7.2]
 
 ### Added

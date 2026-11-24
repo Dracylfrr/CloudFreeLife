@@ -8,33 +8,33 @@
  * default that draws exactly the same picture as before.
  */
 
-export const STYLES = ['illus', 'chibi', 'anime', 'real', 'flat'] as const;
+/** The one art style: Storybook, simple flat shapes like a picture book. */
+export const STYLES = ['flat'] as const;
 export type AvatarStyle = (typeof STYLES)[number];
-export const STYLE_LABEL: Record<AvatarStyle, string> = { illus: 'Illustrated', chibi: 'Chibi', anime: 'Anime', real: 'Semi-realistic', flat: 'Storybook' };
+export const STYLE_LABEL: Record<AvatarStyle, string> = { flat: 'Storybook' };
 /** The style a new avatar starts in. */
-export const START_STYLE: AvatarStyle = 'illus';
+export const START_STYLE: AvatarStyle = 'flat';
 export const STYLE_HINT: Record<AvatarStyle, string> = {
-  illus: 'Painterly anime: glossy layered hair, big detailed eyes, soft shading and a brush-stroke background.',
-  chibi: 'Big head, big shiny eyes and rounded ears: the cute starting look.',
-  anime: 'A slimmer face and longer neck, with sharper, more detailed eyes.',
-  real: 'Natural proportions with smaller eyes, soft shading and a lifelike face.',
   flat: 'Simple flat shapes with no outlines, like a picture book.'
 };
 
 export const HAIR_STYLES = ['short', 'messy', 'bob', 'long', 'pigtails', 'bun'] as const;
 export type HairStyle = (typeof HAIR_STYLES)[number];
-export const OUTFITS = ['tee', 'hoodie', 'dress'] as const;
+export const OUTFITS = ['tee', 'hoodie', 'dress', 'jacket'] as const;
 export type Outfit = (typeof OUTFITS)[number];
 export const BASES = ['girl', 'boy'] as const;
+export const SCENES = ['color', 'storm', 'crimson', 'castle', 'ember', 'void'] as const;
+export type Scene = (typeof SCENES)[number];
+export const SCENE_LABEL: Record<Scene, string> = { color: 'Plain color', storm: 'Storm', crimson: 'Crimson', castle: 'Moonlit castle', ember: 'Embers', void: 'Violet void' };
 export type AvatarBase = (typeof BASES)[number];
 
 export const CHINS = ['round', 'soft', 'pointed'] as const;
 export type Chin = (typeof CHINS)[number];
-export const EYE_SHAPES = ['round', 'almond', 'sleepy', 'cat', 'sparkle'] as const;
+export const EYE_SHAPES = ['round', 'almond', 'sleepy', 'cat', 'sparkle', 'fierce'] as const;
 export type EyeShape = (typeof EYE_SHAPES)[number];
 export const MOUTHS = ['smile', 'grin', 'calm', 'open'] as const;
 export type Mouth = (typeof MOUTHS)[number];
-export const EARS = ['round', 'small', 'pointed'] as const;
+export const EARS = ['round', 'small'] as const;
 export type Ears = (typeof EARS)[number];
 export const BODIES = ['slim', 'average', 'broad', 'soft'] as const;
 export type Body = (typeof BODIES)[number];
@@ -58,6 +58,8 @@ export interface AvatarConfig {
   outfit: Outfit;
   outfitColor: string;
   background: string;
+  /** A cinematic painted background, or "color" for the plain background color. */
+  scene: Scene;
   // face and head (percent, 100 = the style's usual size)
   headW: number;
   headH: number;
@@ -85,11 +87,11 @@ export interface AvatarConfig {
 }
 
 export const HAIR_STYLE_LABEL: Record<HairStyle, string> = { short: 'Short', messy: 'Messy', bob: 'Bob', long: 'Long', pigtails: 'Pigtails', bun: 'Bun' };
-export const OUTFIT_LABEL: Record<Outfit, string> = { tee: 'T-shirt', hoodie: 'Hoodie', dress: 'Dress' };
+export const OUTFIT_LABEL: Record<Outfit, string> = { tee: 'T-shirt', hoodie: 'Hoodie', dress: 'Dress', jacket: 'Jacket' };
 export const CHIN_LABEL: Record<Chin, string> = { round: 'Round', soft: 'Soft', pointed: 'Pointed' };
-export const EYE_SHAPE_LABEL: Record<EyeShape, string> = { round: 'Round', almond: 'Almond', sleepy: 'Sleepy', cat: 'Cat', sparkle: 'Sparkle' };
+export const EYE_SHAPE_LABEL: Record<EyeShape, string> = { round: 'Round', almond: 'Almond', sleepy: 'Sleepy', cat: 'Cat', sparkle: 'Sparkle', fierce: 'Fierce' };
 export const MOUTH_LABEL: Record<Mouth, string> = { smile: 'Smile', grin: 'Grin', calm: 'Calm', open: 'Surprised' };
-export const EARS_LABEL: Record<Ears, string> = { round: 'Rounded', small: 'Small', pointed: 'Pointed' };
+export const EARS_LABEL: Record<Ears, string> = { round: 'Rounded', small: 'Small' };
 export const BODY_LABEL: Record<Body, string> = { slim: 'Slim', average: 'Average', broad: 'Broad', soft: 'Soft' };
 export const HAT_LABEL: Record<Hat, string> = { none: 'None', cap: 'Cap', beanie: 'Beanie', bucket: 'Bucket hat' };
 export const GLASSES_LABEL: Record<Glasses, string> = { none: 'None', round: 'Round', square: 'Square', cat: 'Cat-eye', sun: 'Sunglasses', heart: 'Heart shades' };
@@ -180,21 +182,9 @@ export const LIMITS = {
   neckWidth: { min: 6, max: 11 }
 } as const;
 
-/** What each art style starts with. Choosing a style sets these; the sliders can then change them. */
-export function styleDefaults(style: AvatarStyle): Pick<AvatarConfig, 'style' | 'headW' | 'headH' | 'chin' | 'eyeShape' | 'eyeSize' | 'eyeGap' | 'mouth' | 'ears' | 'neckLen' | 'neckWidth'> {
-  const common = { mouth: 'smile' as Mouth, eyeGap: 100 };
-  switch (style) {
-    case 'illus':
-      return { ...common, style, headW: 90, headH: 102, chin: 'soft', eyeShape: 'almond', eyeSize: 96, ears: 'round', neckLen: 6, neckWidth: 7.6 };
-    case 'anime':
-      return { ...common, style, headW: 91, headH: 101, chin: 'soft', eyeShape: 'almond', eyeSize: 88, ears: 'round', neckLen: 5, neckWidth: 7.8 };
-    case 'real':
-      return { ...common, style, headW: 85, headH: 97, chin: 'soft', eyeShape: 'almond', eyeSize: 62, ears: 'round', neckLen: 8, neckWidth: 7.4 };
-    case 'flat':
-      return { ...common, style, headW: 100, headH: 98, chin: 'round', eyeShape: 'round', eyeSize: 86, ears: 'round', neckLen: 2, neckWidth: 8 };
-    default:
-      return { ...common, style: 'chibi', headW: 100, headH: 100, chin: 'round', eyeShape: 'round', eyeSize: 100, ears: 'round', neckLen: 0, neckWidth: 8 };
-  }
+/** The usual shape of the head, eyes, mouth and neck. "Reset" in the editor goes back to these. */
+export function styleDefaults(_style: AvatarStyle = 'flat'): Pick<AvatarConfig, 'style' | 'headW' | 'headH' | 'chin' | 'eyeShape' | 'eyeSize' | 'eyeGap' | 'mouth' | 'ears' | 'neckLen' | 'neckWidth'> {
+  return { style: 'flat', mouth: 'smile', eyeGap: 100, headW: 100, headH: 98, chin: 'round', eyeShape: 'round', eyeSize: 86, ears: 'round', neckLen: 2, neckWidth: 8 };
 }
 
 const NONE_ACCESSORIES = {
@@ -210,12 +200,12 @@ const NONE_ACCESSORIES = {
 
 /** The two starting points on the first screen. */
 export const PRESETS: Record<AvatarBase, AvatarConfig> = {
-  girl: { base: 'girl', skin: '#fbd3b8', hair: '#8a5a3c', hairStyle: 'long', eyes: '#3d6fb5', outfit: 'dress', outfitColor: '#ffd3e2', background: '#e6dcfa', ...styleDefaults('chibi'), body: 'average', ...NONE_ACCESSORIES },
-  boy: { base: 'boy', skin: '#f3c09d', hair: '#5b3a29', hairStyle: 'short', eyes: '#3f8f6a', outfit: 'hoodie', outfitColor: '#7fb4e0', background: '#d9eefb', ...styleDefaults('chibi'), body: 'average', ...NONE_ACCESSORIES }
+  girl: { base: 'girl', skin: '#fbd3b8', hair: '#8a5a3c', hairStyle: 'long', eyes: '#3d6fb5', outfit: 'dress', outfitColor: '#ffd3e2', background: '#e6dcfa', scene: 'color', ...styleDefaults('flat'), body: 'average', ...NONE_ACCESSORIES },
+  boy: { base: 'boy', skin: '#f3c09d', hair: '#5b3a29', hairStyle: 'short', eyes: '#3f8f6a', outfit: 'hoodie', outfitColor: '#7fb4e0', background: '#d9eefb', scene: 'color', ...styleDefaults('flat'), body: 'average', ...NONE_ACCESSORIES }
 };
 
-/** The starting look for a base in a given style. */
-export function presetFor(base: AvatarBase, style: AvatarStyle = 'chibi'): AvatarConfig {
+/** The starting look for a girl or a boy. */
+export function presetFor(base: AvatarBase, style: AvatarStyle = 'flat'): AvatarConfig {
   return { ...PRESETS[base], ...styleDefaults(style) };
 }
 
@@ -229,8 +219,12 @@ export function sanitizeAvatar(raw: unknown): AvatarConfig | null {
   if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return null;
   const r = raw as Record<string, unknown>;
   const base = oneOf(BASES, r.base, 'girl');
-  const style = oneOf(STYLES, r.style, 'chibi');
+  // Storybook is the only style now. An avatar made in an older style keeps its colors, hair, clothes
+  // and accessories but is drawn in Storybook, with Storybook's usual head, eyes and neck.
+  const style: AvatarStyle = 'flat';
+  const legacy = r.style !== 'flat';
   const d = { ...PRESETS[base], ...styleDefaults(style) };
+  const shape = <T>(v: T | undefined, fallback: T): T => (legacy ? fallback : (v ?? fallback));
   return {
     base,
     style,
@@ -241,17 +235,18 @@ export function sanitizeAvatar(raw: unknown): AvatarConfig | null {
     outfit: oneOf(OUTFITS, r.outfit, d.outfit),
     outfitColor: color(r.outfitColor, d.outfitColor),
     background: color(r.background, d.background),
-    headW: num(r.headW, LIMITS.headW.min, LIMITS.headW.max, d.headW),
-    headH: num(r.headH, LIMITS.headH.min, LIMITS.headH.max, d.headH),
-    chin: oneOf(CHINS, r.chin, d.chin),
-    eyeShape: oneOf(EYE_SHAPES, r.eyeShape, d.eyeShape),
-    eyeSize: num(r.eyeSize, LIMITS.eyeSize.min, LIMITS.eyeSize.max, d.eyeSize),
-    eyeGap: num(r.eyeGap, LIMITS.eyeGap.min, LIMITS.eyeGap.max, d.eyeGap),
-    mouth: oneOf(MOUTHS, r.mouth, d.mouth),
-    ears: oneOf(EARS, r.ears, d.ears),
+    scene: oneOf(SCENES, r.scene, d.scene),
+    headW: num(shape(r.headW, d.headW), LIMITS.headW.min, LIMITS.headW.max, d.headW),
+    headH: num(shape(r.headH, d.headH), LIMITS.headH.min, LIMITS.headH.max, d.headH),
+    chin: oneOf(CHINS, shape(r.chin, d.chin), d.chin),
+    eyeShape: oneOf(EYE_SHAPES, shape(r.eyeShape, d.eyeShape), d.eyeShape),
+    eyeSize: num(shape(r.eyeSize, d.eyeSize), LIMITS.eyeSize.min, LIMITS.eyeSize.max, d.eyeSize),
+    eyeGap: num(shape(r.eyeGap, d.eyeGap), LIMITS.eyeGap.min, LIMITS.eyeGap.max, d.eyeGap),
+    mouth: oneOf(MOUTHS, shape(r.mouth, d.mouth), d.mouth),
+    ears: oneOf(EARS, shape(r.ears, d.ears), d.ears),
     body: oneOf(BODIES, r.body, d.body),
-    neckLen: num(r.neckLen, LIMITS.neckLen.min, LIMITS.neckLen.max, d.neckLen),
-    neckWidth: num(r.neckWidth, LIMITS.neckWidth.min, LIMITS.neckWidth.max, d.neckWidth),
+    neckLen: num(shape(r.neckLen, d.neckLen), LIMITS.neckLen.min, LIMITS.neckLen.max, d.neckLen),
+    neckWidth: num(shape(r.neckWidth, d.neckWidth), LIMITS.neckWidth.min, LIMITS.neckWidth.max, d.neckWidth),
     hat: oneOf(HATS, r.hat, d.hat),
     hatColor: color(r.hatColor, d.hatColor),
     glasses: oneOf(GLASSES, r.glasses, d.glasses),
