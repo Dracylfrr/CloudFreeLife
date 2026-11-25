@@ -9,6 +9,7 @@
   import Button from '../../ui/Button.svelte';
   import Icon from '../../ui/Icon.svelte';
   import { listInstalledPacks, uninstallPack, type InstalledPackRecord } from './packs';
+  import { addLicense, describeLicense, licenseState, loadLicense, removeLicense } from '../premium/license';
   import { canSelfUpdate, checkForUpdates, describeUpdate, installUpdate, revealPath, updateKey, updateState } from './updater';
   import type { UpdateItem } from './release';
 
@@ -20,7 +21,27 @@
   }
   // An installed copy can update itself quietly; one unpacked from the portable zip cannot.
   let selfUpdate = $state(false);
+  let licenseInput = $state<HTMLInputElement | undefined>();
+  async function chooseLicense(e: Event) {
+    const input = e.currentTarget as HTMLInputElement;
+    const file = input.files?.[0];
+    input.value = '';
+    if (!file) return;
+    if (file.size > 64 * 1024) return void toast('That file is not a valid license.', 'error', 4500);
+    const r = await addLicense(await file.text());
+    if (r.ok) {
+      toast('Your license is added. Checking for your content…', 'success', 4500);
+      void checkForUpdates();
+    } else toast(r.error, 'error', 4500);
+  }
+  async function forgetLicense() {
+    const ok = await confirmDialog({ title: 'Remove your license?', message: 'Content you already installed stays. Premium content you have not installed yet will be locked again until you add the license back.', confirmLabel: 'Remove', danger: true });
+    if (!ok) return;
+    await removeLicense();
+    void checkForUpdates();
+  }
   onMount(() => {
+    void loadLicense();
     void refreshInstalled();
     void canSelfUpdate().then((v) => (selfUpdate = v));
   });
@@ -136,6 +157,42 @@
     </div>
   {/if}
 
+  <h2 class="h">Premium content</h2>
+  <article class="item">
+    <div class="badge"><Icon name="shield" size={22} /></div>
+    <div class="body">
+      {#if $licenseState.status === 'ok'}
+        <h3>Your license is active</h3>
+        <p class="muted">{describeLicense($licenseState.info)}. Your premium content shows up above under New content, ready to install.</p>
+      {:else if $licenseState.status === 'bad'}
+        <h3>Your license could not be used</h3>
+        <p class="muted">{$licenseState.message}</p>
+      {:else}
+        <h3>Add a license</h3>
+        <p class="muted">Premium series and adventures open with a license file. It stays on this computer, and nothing about you is sent anywhere.</p>
+      {/if}
+    </div>
+    <div class="btns">
+      <input class="hidden" type="file" accept=".dreamlicense,application/json" bind:this={licenseInput} onchange={chooseLicense} aria-label="Choose a license file" />
+      <Button size="sm" variant={$licenseState.status === 'ok' ? 'soft' : 'primary'} icon="folder" onclick={() => licenseInput?.click()}>{$licenseState.status === 'ok' ? 'Replace license' : 'Choose license file'}</Button>
+      {#if $licenseState.status === 'ok' || $licenseState.status === 'bad'}<Button size="sm" variant="ghost" icon="trash" onclick={forgetLicense}>Remove</Button>{/if}
+    </div>
+  </article>
+  {#if $updateState.locked.length}
+    <div class="list">
+      {#each $updateState.locked as p (p.id)}
+        <article class="item locked">
+          <div class="badge"><Icon name="shield" size={22} /></div>
+          <div class="body">
+            <h3>{p.name}</h3>
+            <p class="muted">{p.description || 'Premium content for Cloud-Freelife.'}</p>
+            <p class="fine">Locked · needs a license that includes it</p>
+          </div>
+        </article>
+      {/each}
+    </div>
+  {/if}
+
   <h2 class="h">Downloaded content</h2>
   {#if installed.length === 0}
     <p class="muted empty">Nothing downloaded yet. New coloring books, palettes, stories and game levels will appear here and install in one click.</p>
@@ -162,6 +219,12 @@
 <style>
   .page {
     max-width: 960px;
+  }
+  .hidden {
+    display: none;
+  }
+  .item.locked {
+    opacity: 0.85;
   }
   .status {
     display: flex;

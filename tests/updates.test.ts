@@ -161,7 +161,7 @@ describe('update parsing', () => {
 
   it('shows the update toast only for updates not dismissed', () => {
     const item = { kind: 'app', version: '1.1.0', notes: '', includes: [] as string[], releaseUrl: '' } as const;
-    const state: UpdateState = { outcome: 'available', available: [item], lastChecked: 1, message: '', busy: [], hidden: [], installers: {} };
+    const state: UpdateState = { outcome: 'available', available: [item], lastChecked: 1, message: '', busy: [], hidden: [], installers: {}, locked: [] };
     expect(toastCandidate(state, [])).toBe(item);
     expect(toastCandidate(state, ['app:1.1.0'])).toBeNull();
     expect(toastCandidate({ ...state, hidden: ['app:1.1.0'] }, [])).toBeNull();
@@ -170,7 +170,7 @@ describe('update parsing', () => {
   it('"Later" hides every currently available update so a second notice never pops up', () => {
     const app = { kind: 'app', version: '1.1.0', notes: '', includes: [] as string[], releaseUrl: '' } as const;
     const book = { kind: 'content', contentKind: 'book', id: 'castle_dreams', name: 'Castle Dreams', description: '', version: '1.0.0', minAppVersion: '1.0.0', releaseUrl: '', downloadUrl: '', asset: { name: '', sha256: '', size: 1, contentType: '' } } as const;
-    updateState.set({ outcome: 'available', available: [app, book], lastChecked: 1, message: '', busy: [], hidden: [], installers: {} });
+    updateState.set({ outcome: 'available', available: [app, book], lastChecked: 1, message: '', busy: [], hidden: [], installers: {}, locked: [] });
     hideForNow(app);
     expect(toastCandidate(get(updateState), [])).toBeNull();
     expect(get(updateState).available).toHaveLength(2); // still listed in the Update Center

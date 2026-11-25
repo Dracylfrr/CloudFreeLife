@@ -38,6 +38,14 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 - [ ] Splash Wall: all 16 levels open; aim, click-throw, hold-to-charge throw; splat stays in the region; goals count correctly; color match hints; Wash and Save PNG.
 - [ ] Pause with P; minimize the window and confirm CPU drops to ~0.
 
+## 1.9.0 checks (premium packs and licenses)
+- [ ] Updates > Premium content shows "Add a license" and a Choose license file button; nothing else changes for someone without a license.
+- [ ] Choosing a file that is not a license (a text file, a picture, a renamed .json) shows "That file is not a valid license" and saves nothing.
+- [ ] Choosing a good license (made with `node scripts/dlc.mjs license`) shows "Your license is active", how many packs it covers, and then the pack appears under New content.
+- [ ] Installing that pack works, the stories/adventures appear on their shelves, and removing the license keeps what was installed.
+- [ ] A premium pack the license does not cover is listed as Locked and has no Install button.
+- [ ] An expired license is refused with "This license has expired".
+
 ## 1.8.0 checks (title-only cards, hero adventures, The Night Train)
 - [ ] Cozy Stories and Story Adventures cards show a picture and a title only, five across, with no summary text.
 - [ ] Clicking a card opens a window with the picture, the summary, the length and one button; Escape, the X and a click outside all close it; focus returns to the card.

@@ -1,0 +1,51 @@
+# Put this file in the PRIVATE repo (projectDreamResources) as .github/workflows/build-premium-pack.yml
+#
+# Push a tag such as lantern_lane_v1.0.0 and this builds packs/lantern_lane/content into an encrypted pack
+# and publishes it, as a release, on the PUBLIC repo that the app checks. Only the encrypted file leaves
+# this repository; the stories themselves stay here.
+#
+# Repository secrets (Settings > Secrets and variables > Actions):
+#   PACK_KEYS_JSON         the contents of ~/.dream-dlc/pack-keys.json on your computer
+#   PUBLIC_RELEASES_TOKEN  a fine-grained token that can write RELEASES (contents) on the public repo only
+name: Build premium pack
+
+on:
+  push:
+    tags: ['*_v[0-9]*.[0-9]*.[0-9]*']
+
+permissions:
+  contents: read
+
+env:
+  PUBLIC_REPO: Dracylfrr/CloudFreeLife
+
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ env.PUBLIC_REPO }}
+          path: tools
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Encrypt the pack
+        shell: bash
+        env:
+          PACK_KEYS_JSON: ${{ secrets.PACK_KEYS_JSON }}
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          ID="${TAG%_v*}"
+          VERSION="${TAG##*_v}"
+          export DREAM_DLC_HOME="$RUNNER_TEMP/dlc"
+          mkdir -p "$DREAM_DLC_HOME"
+          printf '%s' "$PACK_KEYS_JSON" > "$DREAM_DLC_HOME/pack-keys.json"
+          get() { node -e "const m=require('./packs/$ID/pack.json');console.log(m['$1']||'$2')"; }
+          node tools/scripts/dlc.mjs pack "packs/$ID/content" --id "$ID" --version "$VERSION" --name "$(get name $ID)" --description "$(get description '')" --kind "$(get kind stories)" --min-app "$(get minAppVersion 1.8.0)" --out release
+          rm -rf "$DREAM_DLC_HOME"
+      - name: Publish the encrypted pack on the public repo
+        env:
+          GH_TOKEN: ${{ secrets.PUBLIC_RELEASES_TOKEN }}
+        run: gh release create "${GITHUB_REF_NAME}" release/* --repo "$PUBLIC_REPO" --title "${GITHUB_REF_NAME}" --notes "Premium content. Needs a license."

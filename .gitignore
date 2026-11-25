@@ -2,6 +2,10 @@ node_modules/
 dist/
 release/
 src-tauri/target/
+# premium content: keys and licenses never belong in the project
+.dream-dlc/
+*.dreamlicense
+!src-tauri/fixtures/*.dreamlicense
 src-tauri/gen/
 .vite/
 *.log

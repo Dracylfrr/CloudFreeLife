@@ -14,6 +14,7 @@ import { navigate, runLeaveGuards } from '../../core/router';
 import { sha256Hex } from './checksum';
 import { httpGet, NetworkError } from './http';
 import { installPack, listInstalledPacks, packAssetMatches, parsePack, verifyDownloadedAsset } from './packs';
+import { licensedIds, loadLicense, openEncryptedPack } from '../premium/license';
 import {
   ALLOWED_APP_TYPES,
   describeUpdate,
@@ -21,10 +22,12 @@ import {
   isTrustedDownloadUrl,
   parseReleaseManifest,
   parseReleases,
+  lockedFromManifest,
   planFromManifest,
   releaseMayMatter,
   updateKey,
   type InstalledVersions,
+  type LockedPack,
   type UpdateItem
 } from './release';
 
@@ -41,9 +44,11 @@ export interface UpdateState {
   hidden: string[];
   /** Verified installers already saved to Downloads, by update key. */
   installers: Record<string, string>;
+  /** Premium packs the current license does not open. */
+  locked: LockedPack[];
 }
 
-export const updateState = writable<UpdateState>({ outcome: 'idle', available: [], lastChecked: 0, message: '', busy: [], hidden: [], installers: {} });
+export const updateState = writable<UpdateState>({ outcome: 'idle', available: [], lastChecked: 0, message: '', busy: [], hidden: [], installers: {}, locked: [] });
 
 let checkedOnStartup = false;
 let inFlight: Promise<UpdateState> | null = null;
@@ -80,27 +85,30 @@ export function plainMessage(raw: unknown, fallback = 'Something went wrong with
 }
 
 /** Core check. Pure with respect to the UI: returns what it found. */
-export async function runUpdateCheck(appVersion: string = APP_VERSION): Promise<{ items: UpdateItem[]; outcome: CheckOutcome; message: string }> {
+export async function runUpdateCheck(appVersion: string = APP_VERSION): Promise<{ items: UpdateItem[]; locked: LockedPack[]; outcome: CheckOutcome; message: string }> {
   let res;
   try {
     res = await httpGet(GITHUB_API_RELEASES, { accept: 'application/vnd.github+json', maxBytes: 3 * 1024 * 1024 });
   } catch (err) {
     const offline = err instanceof NetworkError ? err.offline : true;
-    return { items: [], outcome: offline ? 'offline' : 'error', message: offline ? "Couldn't reach the update service. You can keep using Cloud-Freelife offline." : plainMessage(err, "Couldn't check for updates right now. Please try again later.") };
+    return { items: [], locked: [], outcome: offline ? 'offline' : 'error', message: offline ? "Couldn't reach the update service. You can keep using Cloud-Freelife offline." : plainMessage(err, "Couldn't check for updates right now. Please try again later.") };
   }
-  if (res.status === 404) return { items: [], outcome: 'up_to_date', message: 'No releases have been published yet.' };
-  if (res.status === 403 || res.status === 429) return { items: [], outcome: 'error', message: 'The update service is busy right now. Please try again later.' };
-  if (res.status < 200 || res.status >= 300) return { items: [], outcome: 'error', message: `The update service answered with status ${res.status}.` };
+  if (res.status === 404) return { items: [], locked: [], outcome: 'up_to_date', message: 'No releases have been published yet.' };
+  if (res.status === 403 || res.status === 429) return { items: [], locked: [], outcome: 'error', message: 'The update service is busy right now. Please try again later.' };
+  if (res.status < 200 || res.status >= 300) return { items: [], locked: [], outcome: 'error', message: `The update service answered with status ${res.status}.` };
 
   let json: unknown;
   try {
     json = JSON.parse(new TextDecoder().decode(res.bytes));
   } catch {
-    return { items: [], outcome: 'error', message: 'The update service sent a response that could not be read.' };
+    return { items: [], locked: [], outcome: 'error', message: 'The update service sent a response that could not be read.' };
   }
   const releases = parseReleases(json);
   const installed = await installedVersions();
+  await loadLicense();
+  const licensed = licensedIds();
   const items: UpdateItem[] = [];
+  const lockedAll: LockedPack[] = [];
   let looked = 0;
   for (const rel of releases) {
     if (!releaseMayMatter(rel, appVersion, installed)) continue;
@@ -115,7 +123,8 @@ export async function runUpdateCheck(appVersion: string = APP_VERSION): Promise<
         console.warn('Ignoring invalid release manifest', rel.tag, parsed.errors);
         continue;
       }
-      items.push(...planFromManifest(parsed.value, rel, appVersion, installed));
+      items.push(...planFromManifest(parsed.value, rel, appVersion, installed, licensed));
+      lockedAll.push(...lockedFromManifest(parsed.value, rel, appVersion, installed, licensed));
     } catch (err) {
       console.warn('Could not read release manifest', rel.tag, err);
     }
@@ -128,8 +137,14 @@ export async function runUpdateCheck(appVersion: string = APP_VERSION): Promise<
     if (!cur || cur.version < it.version) seen.set(k, it);
   }
   const final = [...seen.values()].sort((a, b) => (a.kind === b.kind ? 0 : a.kind === 'app' ? -1 : 1));
+  const lockedById = new Map<string, LockedPack>();
+  for (const l of lockedAll) {
+    const cur = lockedById.get(l.id);
+    if (!cur || cur.version < l.version) lockedById.set(l.id, l);
+  }
   return {
     items: final,
+    locked: [...lockedById.values()],
     outcome: final.length ? 'available' : 'up_to_date',
     message: final.length ? `${final.length} update${final.length === 1 ? '' : 's'} available` : "You're up to date."
   };
@@ -144,7 +159,7 @@ export function checkForUpdates(): Promise<UpdateState> {
       const r = await runUpdateCheck();
       const now = Date.now();
       updateSettings({ lastUpdateCheck: now });
-      updateState.update((s) => ({ ...s, outcome: r.outcome, available: r.items, message: r.message, lastChecked: now }));
+      updateState.update((s) => ({ ...s, outcome: r.outcome, available: r.items, locked: r.locked, message: r.message, lastChecked: now }));
     } catch (err) {
       updateState.update((s) => ({ ...s, outcome: 'error', message: plainMessage(err, "Couldn't check for updates right now. Please try again later.") }));
     } finally {
@@ -202,7 +217,14 @@ export async function installContentUpdate(item: UpdateItem): Promise<{ ok: bool
     if (res.status !== 200) return { ok: false, message: `Download failed (status ${res.status}).` };
     const verified = await verifyDownloadedAsset(item.asset, res.bytes, res.contentType);
     if (!verified.ok) return { ok: false, message: verified.error };
-    const parsed = parsePack(res.bytes);
+    let packBytes = res.bytes;
+    if (item.asset.name.endsWith('.dreampack')) {
+      // Premium: the download is encrypted. The native side opens it with the key the license holds for this pack.
+      const opened = await openEncryptedPack(item.id, new TextDecoder().decode(res.bytes));
+      if (!opened.ok) return { ok: false, message: opened.error };
+      packBytes = opened.bytes;
+    }
+    const parsed = parsePack(packBytes);
     if (!parsed.ok) return { ok: false, message: parsed.error };
     if (!packAssetMatches(item.asset, parsed.value)) return { ok: false, message: 'The pack does not match the release manifest.' };
     if (parsed.value.id !== item.id || parsed.value.version !== item.version) return { ok: false, message: 'The pack identity does not match the release manifest.' };

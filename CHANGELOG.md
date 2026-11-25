@@ -2,6 +2,16 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com), and the project uses [Semantic Versioning](https://semver.org).
 
+## [1.9.0]
+
+### Added
+- **Premium content, ready for paid series and adventures.** Premium packs are encrypted, so the files that are downloaded are unreadable without a license. The Updates page has a new **Premium content** section where you add a license file; the app checks it, keeps it on your computer and then offers the packs it covers as normal new content. Packs you do not have a license for are shown as locked. No account, no sign-in and nothing about you is sent anywhere.
+- The app holds only the *public* half of the signing key, so it can check a license but can never make one, and it contains no private key or token. The checking and unlocking happen in the native part of the app.
+- Tools for the author (`scripts/dlc.mjs`) to make the signing key, encrypt a pack and sign a license, plus `docs/PREMIUM_CONTENT.md` and a ready workflow for the private repository.
+
+### Changed
+- Content releases can now mark a pack as premium (`.dreampack`). Free packs and the free starter series work exactly as before.
+
 ## [1.8.0]
 
 ### Added

@@ -1,6 +1,6 @@
 [package]
 name = "cloud-freelife"
-version = "1.8.0"
+version = "1.9.0"
 description = "Cloud-Freelife - a calm pastel coloring, drawing and mini-game app"
 authors = ["Cloud-Freelife contributors"]
 edition = "2021"
@@ -20,6 +20,9 @@ tauri-plugin-dialog = "2"
 tauri-plugin-opener = "2"
 tauri-plugin-http = "2"
 sha2 = "0.10"
+ed25519-dalek = "2"
+aes-gcm = "0.10"
+base64 = "0.22"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 

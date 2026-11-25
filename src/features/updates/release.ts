@@ -57,6 +57,18 @@ export interface ContentUpdate {
   releaseUrl: string;
   asset: AssetSpec;
   downloadUrl: string;
+  /** An encrypted pack that a license opens. */
+  premium?: boolean;
+}
+
+/** A premium pack that exists but that the current license does not open. Shown as locked. */
+export interface LockedPack {
+  id: string;
+  name: string;
+  description: string;
+  version: string;
+  contentKind: ContentKind;
+  releaseUrl: string;
 }
 
 export type UpdateItem = AppUpdate | ContentUpdate;
@@ -74,13 +86,15 @@ export interface ReleaseManifest {
     description?: string;
     version: string;
     minAppVersion: string;
+    /** True for an encrypted pack (.dreampack) that needs a license. */
+    premium?: boolean;
     asset: AssetSpec;
   }[];
 }
 
 const SHA256_RE = /^[a-f0-9]{64}$/;
 const CONTENT_ID_RE = /^[a-z0-9][a-z0-9_]{0,63}$/;
-export const PACK_ASSET_RE = /^([a-z0-9][a-z0-9_]{0,63})_v(\d+\.\d+\.\d+)\.cfpack$/;
+export const PACK_ASSET_RE = /^([a-z0-9][a-z0-9_]{0,63})_v(\d+\.\d+\.\d+)\.(?:cfpack|dreampack)$/;
 export const APP_ASSET_RE = /^Cloud-Freelife_(\d+\.\d+\.\d+)_x64-setup\.exe$/;
 export const ALLOWED_PACK_TYPES = ['application/json', 'application/octet-stream', 'application/x-cfpack'];
 export const ALLOWED_APP_TYPES = ['application/octet-stream', 'application/x-msdownload', 'application/vnd.microsoft.portable-executable', 'application/x-msdos-program'];
@@ -225,6 +239,7 @@ export function parseReleaseManifest(raw: unknown): ManifestResult {
           const m = PACK_ASSET_RE.exec(asset.name);
           if (!m) errors.push(`${where}: asset name must look like <id>_v<version>.cfpack`);
           else if (m[1] !== c.id || m[2] !== c.version) errors.push(`${where}: asset name must match id and version`);
+          else if ((c.premium === true) !== asset.name.endsWith('.dreampack')) errors.push(`${where}: premium packs are .dreampack files and free ones are .cfpack files`);
           if (!ALLOWED_PACK_TYPES.includes(asset.contentType)) errors.push(`${where}: content type "${asset.contentType}" not allowed`);
           if (asset.size > MAX_PACK_BYTES) errors.push(`${where}: pack is unreasonably large`);
         }
@@ -236,6 +251,7 @@ export function parseReleaseManifest(raw: unknown): ManifestResult {
             description: typeof c.description === 'string' ? c.description : undefined,
             version: c.version as string,
             minAppVersion: c.minAppVersion as string,
+            ...(c.premium === true ? { premium: true } : {}),
             asset
           });
         }
@@ -273,7 +289,8 @@ export function planFromManifest(
   manifest: ReleaseManifest,
   release: ReleaseInfo,
   appVersion: string,
-  installed: InstalledVersions
+  installed: InstalledVersions,
+  licensed: ReadonlySet<string> = new Set()
 ): UpdateItem[] {
   const items: UpdateItem[] = [];
   const dl = (name: string) => release.assets.find((a) => a.name === name);
@@ -298,6 +315,7 @@ export function planFromManifest(
     const have = installed[c.id];
     if (have !== undefined && compareVersions(c.version, have) <= 0) continue;
     if (!meetsMinVersion(c.minAppVersion, appVersion)) continue; // needs a newer app: shown via the app update instead
+    if (c.premium && !licensed.has(c.id)) continue; // locked: listed under Premium content, never offered as an update
     const a = dl(c.asset.name);
     if (!a || !isTrustedDownloadUrl(a.downloadUrl, release.tag, a.name)) continue;
     items.push({
@@ -310,10 +328,28 @@ export function planFromManifest(
       minAppVersion: c.minAppVersion,
       releaseUrl: release.htmlUrl,
       asset: c.asset,
-      downloadUrl: a.downloadUrl
+      downloadUrl: a.downloadUrl,
+      ...(c.premium ? { premium: true } : {})
     });
   }
   return items;
+}
+
+/** The premium packs in a release that the license does not open (and that are not installed already). */
+export function lockedFromManifest(
+  manifest: ReleaseManifest,
+  release: ReleaseInfo,
+  appVersion: string,
+  installed: InstalledVersions,
+  licensed: ReadonlySet<string> = new Set()
+): LockedPack[] {
+  const out: LockedPack[] = [];
+  for (const c of manifest.content) {
+    if (!c.premium || licensed.has(c.id) || installed[c.id] !== undefined) continue;
+    if (!meetsMinVersion(c.minAppVersion, appVersion)) continue;
+    out.push({ id: c.id, name: c.name, description: c.description ?? '', version: c.version, contentKind: c.type, releaseUrl: release.htmlUrl });
+  }
+  return out;
 }
 
 /**

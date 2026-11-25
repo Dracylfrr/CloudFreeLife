@@ -8,6 +8,8 @@
 use sha2::{Digest, Sha256};
 use tauri::Manager;
 
+mod premium;
+
 const FILE_PREFIX: &str = "Cloud-Freelife_";
 const FILE_SUFFIX: &str = "_x64-setup.exe";
 
@@ -174,7 +176,7 @@ pub fn run() {
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_http::init())
-        .invoke_handler(tauri::generate_handler![can_self_update, install_update, set_taskbar_icon])
+        .invoke_handler(tauri::generate_handler![can_self_update, install_update, set_taskbar_icon, premium::premium_check_license, premium::premium_open_pack])
         .run(tauri::generate_context!())
         .expect("error while running Cloud-Freelife");
 }
