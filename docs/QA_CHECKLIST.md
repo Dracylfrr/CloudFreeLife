@@ -38,6 +38,11 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 - [ ] Splash Wall: all 16 levels open; aim, click-throw, hold-to-charge throw; splat stays in the region; goals count correctly; color match hints; Wash and Save PNG.
 - [ ] Pause with P; minimize the window and confirm CPU drops to ~0.
 
+## 1.9.1 checks (green update dot, no Settings > Updates)
+- [ ] With an update available, the dot beside Updates in the sidebar (and on the folded "App controls" group) is green, in every theme.
+- [ ] Settings has General, Display, Audio, Accessibility, Storage and About, and no Updates tab.
+- [ ] The Updates page has the "Check for updates when the app starts" switch and it still works.
+
 ## 1.9.0 checks (premium packs and licenses)
 - [ ] Updates > Premium content shows "Add a license" and a Choose license file button; nothing else changes for someone without a license.
 - [ ] Choosing a file that is not a license (a text file, a picture, a renamed .json) shows "That file is not a valid license" and saves nothing.

@@ -1,7 +1,7 @@
 {
   "name": "cloud-freelife",
   "private": true,
-  "version": "1.9.0",
+  "version": "1.9.1",
   "description": "Cloud-Freelife - a calm pastel coloring, drawing and mini-game app for Windows.",
   "type": "module",
   "scripts": {

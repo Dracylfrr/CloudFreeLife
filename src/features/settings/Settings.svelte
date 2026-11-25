@@ -2,10 +2,10 @@
   import { onMount, untrack } from 'svelte';
   import { settings, updateSettings, resetSettings } from '../../core/settings';
   import { getStorage, isTauri } from '../../core/storage';
-  import { formatBytes, formatDate } from '../../core/util';
+  import { formatBytes } from '../../core/util';
   import { confirmDialog, toast } from '../../core/feedback';
   import { APP_VERSION } from '../../core/version';
-  import { BRAND_FULL, BRAND_NAME } from '../../core/brand';
+  import { BRAND_FULL } from '../../core/brand';
   import { sfx, preview } from '../../core/audio';
   import { MOOD_PROFILES } from '../../core/moods';
   import { MUSIC } from '../../core/music';
@@ -17,7 +17,6 @@
   import Slider from '../../ui/Slider.svelte';
   import Button from '../../ui/Button.svelte';
   import Icon from '../../ui/Icon.svelte';
-  import { checkForUpdates, updateState } from '../updates/updater';
 
   let { tab: initial = 'general' }: { tab?: string } = $props();
   const TABS = [
@@ -25,7 +24,6 @@
     { id: 'display', label: 'Display', icon: 'image' },
     { id: 'audio', label: 'Audio', icon: 'volume' },
     { id: 'accessibility', label: 'Accessibility', icon: 'heart' },
-    { id: 'updates', label: 'Updates', icon: 'cloudDown' },
     { id: 'storage', label: 'Storage', icon: 'folder' },
     { id: 'about', label: 'About', icon: 'info' }
   ];
@@ -150,17 +148,6 @@
         <Toggle label="Reduced motion" description="Removes drifting clouds, bubbles and most animation. Nothing decorative moves." checked={$settings.reducedMotion} onchange={(v) => updateSettings({ reducedMotion: v })} />
         <Toggle label="Disable particles" description="No sparkles, bubbles or paint particles in games and effects." checked={$settings.disableParticles} onchange={(v) => updateSettings({ disableParticles: v })} />
         <Toggle label="Higher contrast" description="Darker text and stronger outlines." checked={$settings.highContrast} onchange={(v) => updateSettings({ highContrast: v })} />
-      {:else if tab === 'updates'}
-        <h2>Updates</h2>
-        <Toggle label="Check for updates when the app starts" description="One quick check for a new version and new content. Never repeated in the background." checked={$settings.checkUpdatesOnStartup} onchange={(v) => updateSettings({ checkUpdatesOnStartup: v })} />
-        <div class="check">
-          <div>
-            <strong>{BRAND_NAME} v{APP_VERSION}</strong>
-            <p class="muted">{$settings.lastUpdateCheck ? `Last checked ${formatDate($settings.lastUpdateCheck)}` : 'Not checked yet'}</p>
-            {#if $updateState.message}<p class="muted">{$updateState.message}</p>{/if}
-          </div>
-          <Button variant="primary" icon="refresh" disabled={$updateState.outcome === 'checking'} onclick={() => checkForUpdates()}>{$updateState.outcome === 'checking' ? 'Checking…' : 'Check for Updates'}</Button>
-        </div>
       {:else if tab === 'storage'}
         <h2>Storage</h2>
         <div class="kv"><span>Artwork &amp; settings folder</span><code>{root}</code></div>
@@ -311,16 +298,6 @@
     color: var(--ink);
     background: rgb(var(--w) / 0.95);
   }
-  .check {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    margin-top: 12px;
-    padding: 16px 20px;
-    border-radius: 20px;
-    background: rgb(var(--w) / 0.7);
-  }
   .kv {
     display: flex;
     justify-content: space-between;
@@ -343,7 +320,6 @@
     padding: 4px 10px;
     border-radius: 10px;
   }
-  .check,
   .kv {
     flex-wrap: wrap;
   }

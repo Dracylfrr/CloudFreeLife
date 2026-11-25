@@ -224,7 +224,7 @@
     margin-left: 0;
     width: 8px;
     height: 8px;
-    box-shadow: 0 0 0 3px rgba(244, 155, 189, 0.25);
+    box-shadow: 0 0 0 3px rgba(92, 199, 154, 0.28);
   }
   .item {
     width: 100%;
@@ -257,8 +257,8 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: var(--pink-deep);
-    box-shadow: 0 0 0 4px rgba(244, 155, 189, 0.25);
+    background: #5cc79a;
+    box-shadow: 0 0 0 4px rgba(92, 199, 154, 0.28);
   }
   .quick {
     display: flex;

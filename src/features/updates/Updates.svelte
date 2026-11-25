@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { settings } from '../../core/settings';
+  import { settings, updateSettings } from '../../core/settings';
   import { APP_VERSION } from '../../core/version';
   import { BRAND_NAME } from '../../core/brand';
   import { loadCatalog } from '../../core/content/registry';
@@ -8,6 +8,7 @@
   import { formatBytes, formatDate } from '../../core/util';
   import Button from '../../ui/Button.svelte';
   import Icon from '../../ui/Icon.svelte';
+  import Toggle from '../../ui/Toggle.svelte';
   import { listInstalledPacks, uninstallPack, type InstalledPackRecord } from './packs';
   import { addLicense, describeLicense, licenseState, loadLicense, removeLicense } from '../premium/license';
   import { canSelfUpdate, checkForUpdates, describeUpdate, installUpdate, revealPath, updateKey, updateState } from './updater';
@@ -92,6 +93,10 @@
       </p>
     </div>
   </section>
+
+  <div class="startup">
+    <Toggle label="Check for updates when the app starts" description="One quick check for a new version and new content. Never repeated in the background." checked={$settings.checkUpdatesOnStartup} onchange={(v) => updateSettings({ checkUpdatesOnStartup: v })} />
+  </div>
 
   {#each appUpdates as u (updateKey(u))}
     {#if u.kind === 'app'}
@@ -222,6 +227,9 @@
   }
   .hidden {
     display: none;
+  }
+  .startup {
+    margin-top: 14px;
   }
   .item.locked {
     opacity: 0.85;

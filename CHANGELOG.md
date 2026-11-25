@@ -2,6 +2,12 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com), and the project uses [Semantic Versioning](https://semver.org).
 
+## [1.9.1]
+
+### Changed
+- **The "update available" dot in the sidebar is now a soft green** instead of pink-red, so it reads as good news and not as an emergency.
+- **The Updates tab is gone from Settings.** Updates live on their own page in the sidebar. The "Check for updates when the app starts" switch moved there too, so nothing was lost.
+
 ## [1.9.0]
 
 ### Added
