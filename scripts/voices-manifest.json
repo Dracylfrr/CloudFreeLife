@@ -1,6 +1,6 @@
 {
-  "_about": "The voice files mirrored on the voices_v1.0.0 release. Source: onnx-community/Kokoro-82M-v1.0-ONNX on Hugging Face (Apache-2.0). Every file is checked against this checksum before it is published, and the app checks it again before using it.",
-  "tag": "voices_v1.0.0",
+  "_about": "The voice files mirrored on the kokoro_voices_v1.0.0 release. Source: onnx-community/Kokoro-82M-v1.0-ONNX on Hugging Face (Apache-2.0). Every file is checked against this checksum before it is published, and the app checks it again before using it.",
+  "tag": "kokoro_voices_v1.0.0",
   "files": [
     {
       "asset": "kokoro-tokenizer.json",

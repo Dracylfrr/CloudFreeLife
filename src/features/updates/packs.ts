@@ -119,7 +119,7 @@ export function parsePack(bytes: Uint8Array): PackResult<ContentPack> {
 /** Runs the pack's contents through the real registry validators without installing anything. */
 export async function validatePackContents(pack: ContentPack, appVersion: string = APP_VERSION): Promise<PackResult<{ books: number; palettes: number; levels: number }>> {
   if (!meetsMinVersion(pack.minAppVersion, appVersion)) {
-    return { ok: false, error: `This content needs Cloud-Freelife ${pack.minAppVersion} or newer` };
+    return { ok: false, error: `This content needs Project D.R.E.A.M ${pack.minAppVersion} or newer` };
   }
   const text: Record<string, string> = {};
   for (const [path, f] of Object.entries(pack.files)) {

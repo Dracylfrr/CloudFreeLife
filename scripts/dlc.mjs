@@ -7,6 +7,7 @@
 //   node scripts/dlc.mjs license --id friend-01 --packs lantern_lane,sky_post [--expires 2027-12-31] [--out my.dreamlicense]
 //   node scripts/dlc.mjs license --id all-2026 --all         a license for every pack you have packed so far
 //   node scripts/dlc.mjs verify my.dreamlicense              check a license against your public key
+//   node scripts/dlc.mjs addkey lantern_lane hero_adventures   make the keys for packs you plan, so a license can name them before they are packed
 //   node scripts/dlc.mjs list                                packs and keys you hold
 //
 // Secrets live in your home folder (~/.dream-dlc): the license signing key and one key per pack.
@@ -113,9 +114,19 @@ if (cmd === 'keygen') {
   const ok = verifyLicense(lic, readFileSync(PUBLIC, 'utf8'));
   console.log(ok ? `Valid. ${lic.id}: ${lic.packs.map((p) => p.id).join(', ')}` : 'NOT valid.');
   process.exit(ok ? 0 : 1);
+} else if (cmd === 'addkey') {
+  if (rest.length === 0) fail('Usage: node scripts/dlc.mjs addkey <pack_id> [<pack_id> ...]');
+  mkdirSync(HOME, { recursive: true });
+  const keys = readKeys();
+  for (const id of rest) {
+    if (!/^[a-z0-9][a-z0-9_]{0,63}$/.test(id)) fail(`"${id}" is not a good pack id (lowercase letters, digits and underscores).`);
+    if (!keys[id]) keys[id] = newKey().toString('base64');
+  }
+  writeFileSync(KEYS, JSON.stringify(keys, null, 2) + '\n', { mode: 0o600 });
+  console.log(`Keys held for: ${Object.keys(keys).join(', ')}`);
 } else if (cmd === 'list') {
   console.log(Object.keys(readKeys()).join('\n') || '(no packs yet)');
 } else {
-  console.log('Commands: keygen, pack, license, verify, list. See the top of scripts/dlc.mjs.');
+  console.log('Commands: keygen, addkey, pack, license, verify, list. See the top of scripts/dlc.mjs.');
   process.exit(cmd ? 1 : 0);
 }

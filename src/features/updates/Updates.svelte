@@ -35,6 +35,11 @@
       void checkForUpdates();
     } else toast(r.error, 'error', 4500);
   }
+  async function lookAgain() {
+    const s = await loadLicense();
+    toast(s.status === 'ok' ? 'Your license was found. Checking for your content…' : 'No license file was found in your Project D.R.E.A.M folder.', s.status === 'ok' ? 'success' : 'info', 4500);
+    if (s.status === 'ok') void checkForUpdates();
+  }
   async function forgetLicense() {
     const ok = await confirmDialog({ title: 'Remove your license?', message: 'Content you already installed stays. Premium content you have not installed yet will be locked again until you add the license back.', confirmLabel: 'Remove', danger: true });
     if (!ok) return;
@@ -150,7 +155,7 @@
             <div class="badge"><Icon name="book" size={22} /></div>
             <div class="body">
               <h3>{describeUpdate(u)}</h3>
-              <p class="muted">{u.description || 'New content for Cloud-Freelife.'}</p>
+              <p class="muted">{u.description || 'New content for Project D.R.E.A.M.'}</p>
               <p class="fine">v{u.version} · {formatBytes(u.asset.size)} · checksum verified before installing</p>
             </div>
             <div class="btns">
@@ -167,19 +172,20 @@
     <div class="badge"><Icon name="shield" size={22} /></div>
     <div class="body">
       {#if $licenseState.status === 'ok'}
-        <h3>Your license is active</h3>
-        <p class="muted">{describeLicense($licenseState.info)}. Your premium content shows up above under New content, ready to install.</p>
+        <h3>{$licenseState.found.length > 1 ? 'Your licenses are active' : 'Your license is active'}</h3>
+        <p class="muted">{describeLicense($licenseState.info)}. Found in your Project D.R.E.A.M folder. Your premium content shows up above under New content, ready to install.</p>
       {:else if $licenseState.status === 'bad'}
         <h3>Your license could not be used</h3>
         <p class="muted">{$licenseState.message}</p>
       {:else}
         <h3>Add a license</h3>
-        <p class="muted">Premium series and adventures open with a license file. It stays on this computer, and nothing about you is sent anywhere.</p>
+        <p class="muted">Premium series and adventures open with a license file (.dreamlicense). Put it in the Project D.R.E.A.M folder and it is found automatically, or choose it here. It stays on this computer, and nothing about you is sent anywhere.</p>
       {/if}
     </div>
     <div class="btns">
       <input class="hidden" type="file" accept=".dreamlicense,application/json" bind:this={licenseInput} onchange={chooseLicense} aria-label="Choose a license file" />
-      <Button size="sm" variant={$licenseState.status === 'ok' ? 'soft' : 'primary'} icon="folder" onclick={() => licenseInput?.click()}>{$licenseState.status === 'ok' ? 'Replace license' : 'Choose license file'}</Button>
+      <Button size="sm" variant={$licenseState.status === 'ok' ? 'soft' : 'primary'} icon="folder" onclick={() => licenseInput?.click()}>{$licenseState.status === 'ok' ? 'Add another license' : 'Choose license file'}</Button>
+      <Button size="sm" variant="ghost" icon="refresh" onclick={lookAgain}>Look again</Button>
       {#if $licenseState.status === 'ok' || $licenseState.status === 'bad'}<Button size="sm" variant="ghost" icon="trash" onclick={forgetLicense}>Remove</Button>{/if}
     </div>
   </article>
@@ -190,7 +196,7 @@
           <div class="badge"><Icon name="shield" size={22} /></div>
           <div class="body">
             <h3>{p.name}</h3>
-            <p class="muted">{p.description || 'Premium content for Cloud-Freelife.'}</p>
+            <p class="muted">{p.description || 'Premium content for Project D.R.E.A.M.'}</p>
             <p class="fine">Locked · needs a license that includes it</p>
           </div>
         </article>
@@ -217,7 +223,7 @@
   {/if}
 
   <p class="foot muted">
-    Cloud-Freelife only goes online when you check for updates or install content, and it never sends personal information. Everything else works offline.
+    Project D.R.E.A.M only goes online when you check for updates or install content, and it never sends personal information. Everything else works offline.
   </p>
 </div>
 

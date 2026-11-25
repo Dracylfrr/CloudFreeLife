@@ -4,7 +4,7 @@ name: Release
 # portable zip, the checksums and the release manifest to a GitHub Release.
 on:
   push:
-    tags: ['v*']
+    tags: ['v[0-9]*']
 
 permissions:
   contents: write

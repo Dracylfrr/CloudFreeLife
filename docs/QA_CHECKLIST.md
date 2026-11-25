@@ -38,6 +38,15 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 - [ ] Splash Wall: all 16 levels open; aim, click-throw, hold-to-charge throw; splat stays in the region; goals count correctly; color match hints; Wash and Save PNG.
 - [ ] Pause with P; minimize the window and confirm CPU drops to ~0.
 
+## 2.0.1 checks (folder name and license detection)
+- [ ] Copy a .dreamlicense file (any name) into AppData\Roaming\Project D.R.E.A.M, open Updates and press Look again: "Your license is active" appears with the number of packs. Restart the app: it is still active with no other step.
+- [ ] A file ending in .dreamlicense that is not a real license shows "That file is not a valid license" and unlocks nothing; other files in the folder are ignored.
+- [ ] Two license files together unlock the packs of both. Removing licenses deletes every .dreamlicense file in the folder.
+
+- [ ] After updating from an earlier version (2.0.0, 1.9.x or older), Settings > Storage shows the folder as ...\AppData\Roaming\Project D.R.E.A.M, your paintings are all in the Gallery and your settings and avatar are unchanged, and the old Cloud-Freelife folder is gone from AppData\Roaming.
+- [ ] A new install creates only Project D.R.E.A.M, never Cloud-Freelife.
+- [ ] No message in the app (Updates, Settings, errors) says Cloud-Freelife.
+
 ## 2.0.0 checks (spoken stories)
 - [ ] Settings > Voices offers "Download voices (93 MB)"; the download shows progress and ends with "The voices are on this computer". Nothing downloads without pressing it.
 - [ ] A Cozy Story has a Listen button above its text. Before the voices are downloaded it says "Listen · set up voices" and opens the Voices window.

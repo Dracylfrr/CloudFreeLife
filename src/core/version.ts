@@ -2,7 +2,7 @@
 import pkg from '../../package.json';
 
 export const APP_VERSION: string = pkg.version;
-export const APP_NAME = 'Cloud-Freelife';
+export const APP_NAME = 'Project D.R.E.A.M';
 
 export interface ParsedVersion {
   major: number;

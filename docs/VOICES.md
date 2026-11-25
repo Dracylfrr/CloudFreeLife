@@ -54,7 +54,7 @@ The bundled stories' casts are in `scripts/stories/casts.mjs`. Premium packs car
 The files are open-source copies of **Kokoro-82M** (ONNX, 8-bit), published as a release of this project so the app only ever downloads from one place.
 
 1. `scripts/voices-manifest.json` pins the source address, size and SHA-256 of every file.
-2. Push the tag `voices_v1.0.0`. The **Voices release** workflow downloads the files from their source, checks each one against the manifest, and publishes them as the release.
+2. Push the tag `kokoro_voices_v1.0.0`. The **Voices release** workflow downloads the files from their source, checks each one against the manifest, and publishes them as the release.
 3. The app downloads them from that release and checks the same SHA-256 values (written in `src/features/voices/model.ts`) before it keeps or uses any file. A test keeps the two lists in step.
 
 ## Notices

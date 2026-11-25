@@ -1,4 +1,4 @@
-//! Cloud-Freelife desktop shell.
+//! Project D.R.E.A.M desktop shell.
 //!
 //! All application logic lives in the web UI. The native side only provides
 //! sandboxed capabilities (file access inside the app-data folder, save
@@ -126,7 +126,7 @@ fn can_self_update() -> bool {
 /// afterwards). The app closes itself right after starting it; the installer finishes on its own.
 #[tauri::command]
 fn install_update(app: tauri::AppHandle, file_name: String, sha256: String) -> Result<(), String> {
-    let version = installer_version(&file_name).ok_or("That is not a Cloud-Freelife installer.")?;
+    let version = installer_version(&file_name).ok_or("That is not an installer for this app.")?;
     if version <= current_version() {
         return Err("That installer is not a newer version.".into());
     }
@@ -134,15 +134,12 @@ fn install_update(app: tauri::AppHandle, file_name: String, sha256: String) -> R
         return Err("The installer's checksum is missing.".into());
     }
     if !can_self_update() {
-        return Err("This copy of Cloud-Freelife was not installed with the installer, so it cannot update itself.".into());
+        return Err("This copy of Project D.R.E.A.M was not installed with the installer, so it cannot update itself.".into());
     }
-    let dir = app
-        .path()
-        .data_dir()
-        .map_err(|e| e.to_string())?
-        .join("Cloud-Freelife")
-        .join("update");
-    let path = dir.join(&file_name);
+    // the app keeps its files in "Project D.R.E.A.M"; a copy that could not move its old "Cloud-Freelife" folder still uses that one
+    let data = app.path().data_dir().map_err(|e| e.to_string())?;
+    let new_path = data.join("Project D.R.E.A.M").join("update").join(&file_name);
+    let path = if new_path.is_file() { new_path } else { data.join("Cloud-Freelife").join("update").join(&file_name) };
     let bytes = std::fs::read(&path).map_err(|_| "The downloaded installer could not be read.".to_string())?;
     let got = format!("{:x}", Sha256::digest(&bytes));
     if !got.eq_ignore_ascii_case(&sha256) {
@@ -178,7 +175,7 @@ pub fn run() {
         .plugin(tauri_plugin_http::init())
         .invoke_handler(tauri::generate_handler![can_self_update, install_update, set_taskbar_icon, premium::premium_check_license, premium::premium_open_pack])
         .run(tauri::generate_context!())
-        .expect("error while running Cloud-Freelife");
+        .expect("error while running Project D.R.E.A.M");
 }
 
 #[cfg(test)]

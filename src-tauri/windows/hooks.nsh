@@ -1,14 +1,24 @@
 ; Extra steps for the Windows installer (Tauri runs these at the marked moments).
 ;
 ; The program, its install folder and its installer keep the original "Cloud-Freelife" names, so
-; updating in place and your saved paintings are never affected. These steps only change the name
-; Windows SHOWS: the Start menu and desktop shortcuts and the entry in Settings > Apps.
+; updating in place is never affected. These steps change the name Windows SHOWS (the Start menu and
+; desktop shortcuts and the entry in Settings > Apps) and move the saved-data folder to its new name.
 ;
 ; They also run during a quiet update (which does not make new shortcuts), so an existing install
 ; gets the new name the next time it updates.
 
 !ifndef DREAM_NAME
   !define DREAM_NAME "Project D.R.E.A.M"
+!endif
+
+; The folder inside AppData where the app keeps its paintings and settings. It used to be called
+; "Cloud-Freelife"; every install and every update moves it to the new name (the app also does this
+; itself the first time it starts, so whichever happens first is enough).
+!ifndef DREAM_DATA_OLD
+  !define DREAM_DATA_OLD "Cloud-Freelife"
+!endif
+!ifndef DREAM_DATA_NEW
+  !define DREAM_DATA_NEW "${DREAM_NAME}"
 !endif
 
 ; Rename a shortcut from the old name to the new one, but only when it really opens this program.
@@ -35,7 +45,19 @@
   ${EndIf}
 !macroend
 
+; Move the saved-data folder to its new name. Nothing is ever overwritten: if the new folder already
+; exists the old one is left exactly where it is.
+!macro DreamMoveData
+  ${If} ${FileExists} "$APPDATA\${DREAM_DATA_OLD}\*.*"
+  ${AndIfNot} ${FileExists} "$APPDATA\${DREAM_DATA_NEW}"
+    ClearErrors
+    Rename "$APPDATA\${DREAM_DATA_OLD}" "$APPDATA\${DREAM_DATA_NEW}"
+  ${EndIf}
+!macroend
+
 !macro NSIS_HOOK_POSTINSTALL
+  ; the saved paintings and settings
+  !insertmacro DreamMoveData
   ; the name in Settings > Apps > Installed apps
   WriteRegStr SHCTX "${UNINSTKEY}" "DisplayName" "${DREAM_NAME}"
   ; the Start menu and desktop shortcuts

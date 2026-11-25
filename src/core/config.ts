@@ -23,7 +23,10 @@ export const ALLOWED_DOWNLOAD_HOSTS = [
 /** Name of the manifest asset attached to every release. */
 export const RELEASE_MANIFEST_ASSET = 'cloud-freelife-release.json';
 
-export const DATA_DIR_NAME = 'Cloud-Freelife';
+/** The folder the app keeps its saved art, settings and downloads in (inside AppData). */
+export const DATA_DIR_NAME = 'Project D.R.E.A.M';
+/** What that folder was called before 2.0.1. Anything found there is moved to the new folder on first start. */
+export const LEGACY_DATA_DIR_NAME = 'Cloud-Freelife';
 
 /** Canvas working resolution (4:3). Keeps memory use predictable. */
 export const CANVAS_W = 1280;

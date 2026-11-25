@@ -1,7 +1,7 @@
 /**
- * The name people see. Only what is *displayed* lives here: the installer name, the install folder,
- * the saved-data folder and the update files keep the original "Cloud-Freelife" name so updating
- * and saved paintings are never affected.
+ * The name people see. The saved-data folder, the downloads folder and every message use it. Only the
+ * installer's file name, the install folder and the program file inside it keep the original
+ * "Cloud-Freelife" name, because updating from older versions looks for exactly that name.
  */
 export const BRAND_NAME = 'Project D.R.E.A.M';
 export const BRAND_SUBTITLE = 'Cloud Sonata';

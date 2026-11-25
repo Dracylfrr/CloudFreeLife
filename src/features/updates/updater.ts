@@ -7,6 +7,7 @@ import { GITHUB_API_RELEASES } from '../../core/config';
 import { getCatalog, loadCatalog } from '../../core/content/registry';
 import { getSettings, updateSettings } from '../../core/settings';
 import { getStorage, isTauri } from '../../core/storage';
+import { DATA_DIR_NAME, LEGACY_DATA_DIR_NAME } from '../../core/config';
 import { APP_VERSION, compareVersions } from '../../core/version';
 import { toast } from '../../core/feedback';
 import { BRAND_NAME } from '../../core/brand';
@@ -91,7 +92,7 @@ export async function runUpdateCheck(appVersion: string = APP_VERSION): Promise<
     res = await httpGet(GITHUB_API_RELEASES, { accept: 'application/vnd.github+json', maxBytes: 3 * 1024 * 1024 });
   } catch (err) {
     const offline = err instanceof NetworkError ? err.offline : true;
-    return { items: [], locked: [], outcome: offline ? 'offline' : 'error', message: offline ? "Couldn't reach the update service. You can keep using Cloud-Freelife offline." : plainMessage(err, "Couldn't check for updates right now. Please try again later.") };
+    return { items: [], locked: [], outcome: offline ? 'offline' : 'error', message: offline ? "Couldn't reach the update service. You can keep using Project D.R.E.A.M offline." : plainMessage(err, "Couldn't check for updates right now. Please try again later.") };
   }
   if (res.status === 404) return { items: [], locked: [], outcome: 'up_to_date', message: 'No releases have been published yet.' };
   if (res.status === 403 || res.status === 429) return { items: [], locked: [], outcome: 'error', message: 'The update service is busy right now. Please try again later.' };
@@ -270,7 +271,7 @@ export async function canSelfUpdate(): Promise<boolean> {
  * The quiet update: download the installer into the app's own folder, check size and SHA-256, save
  * everything, then hand it to the native side, which checks the SHA-256 again, runs it with no
  * windows and closes the app. The installer keeps all your data, installs over the old version
- * and starts Cloud-Freelife again. Nothing is shown in Explorer and nothing asks anything.
+ * and starts the app again. Nothing is shown in Explorer and nothing asks anything.
  */
 export async function installAppQuietly(item: UpdateItem): Promise<{ ok: boolean; message: string }> {
   if (item.kind !== 'app' || !item.asset || !item.downloadUrl) return { ok: false, message: 'No verified installer is attached to this release.' };
@@ -318,9 +319,12 @@ export async function cleanUpInstallers(): Promise<void> {
   }
   try {
     const { BaseDirectory, exists, readDir, remove } = await import('@tauri-apps/plugin-fs');
-    if (!(await exists('Cloud-Freelife', { baseDir: BaseDirectory.Download }))) return;
-    const names = (await readDir('Cloud-Freelife', { baseDir: BaseDirectory.Download })).filter((e) => e.isFile).map((e) => e.name);
-    for (const n of staleInstallers(names, APP_VERSION)) await remove(`Cloud-Freelife/${n}`, { baseDir: BaseDirectory.Download });
+    // old installers can be in the folder of either name
+    for (const folder of [DATA_DIR_NAME, LEGACY_DATA_DIR_NAME]) {
+      if (!(await exists(folder, { baseDir: BaseDirectory.Download }))) continue;
+      const names = (await readDir(folder, { baseDir: BaseDirectory.Download })).filter((e) => e.isFile).map((e) => e.name);
+      for (const n of staleInstallers(names, APP_VERSION)) await remove(`${folder}/${n}`, { baseDir: BaseDirectory.Download });
+    }
   } catch {
     /* tidying up is a nicety */
   }
@@ -353,10 +357,10 @@ export async function downloadAppInstaller(item: UpdateItem): Promise<Downloaded
     if (!verified.ok) return { ok: false, message: verified.error };
     const { BaseDirectory, mkdir, writeFile } = await import('@tauri-apps/plugin-fs');
     const { downloadDir } = await import('@tauri-apps/api/path');
-    await mkdir('Cloud-Freelife', { baseDir: BaseDirectory.Download, recursive: true });
-    await writeFile(`Cloud-Freelife/${item.asset.name}`, res.bytes, { baseDir: BaseDirectory.Download });
+    await mkdir(DATA_DIR_NAME, { baseDir: BaseDirectory.Download, recursive: true });
+    await writeFile(`${DATA_DIR_NAME}/${item.asset.name}`, res.bytes, { baseDir: BaseDirectory.Download });
     const dir = (await downloadDir()).replace(/[\\/]+$/, '');
-    return { ok: true, message: 'Installer downloaded and verified.', path: `${dir}\\Cloud-Freelife\\${item.asset.name}` };
+    return { ok: true, message: 'Installer downloaded and verified.', path: `${dir}\\${DATA_DIR_NAME}\\${item.asset.name}` };
   } finally {
     setBusy(key, false);
   }

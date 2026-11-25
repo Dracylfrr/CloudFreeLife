@@ -15,7 +15,7 @@ import { isTrustedDownloadUrl } from '../updates/release';
 import { VOICE_IDS } from './casts';
 import { VOICE_BYTES } from './synth';
 
-export const VOICE_RELEASE_TAG = 'voices_v1.0.0';
+export const VOICE_RELEASE_TAG = 'kokoro_voices_v1.0.0';
 export const VOICE_DIR = 'voices';
 
 export interface ModelFile {

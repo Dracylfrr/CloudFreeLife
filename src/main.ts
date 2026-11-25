@@ -74,7 +74,7 @@ async function boot() {
 }
 
 boot().catch((err) => {
-  console.error('Cloud-Freelife failed to start', err);
+  console.error('Project D.R.E.A.M failed to start', err);
   const t = document.getElementById('app');
   if (t) t.textContent = 'The app could not start. Please restart it.';
 });

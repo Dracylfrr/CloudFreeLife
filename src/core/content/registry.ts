@@ -199,7 +199,7 @@ async function loadBooks(tree: ContentTree, skipped: Skipped[], appVersion?: str
         continue;
       }
       if (!checkCompatibility(pv.value, appVersion).ok) {
-        skipped.push({ where: pdir, reason: `Requires Cloud-Freelife ${pv.value.minAppVersion}` });
+        skipped.push({ where: pdir, reason: `Requires Project D.R.E.A.M ${pv.value.minAppVersion}` });
         continue;
       }
       book.pages.push({
@@ -229,7 +229,7 @@ async function loadPalettes(tree: ContentTree, skipped: Skipped[], appVersion?: 
       continue;
     }
     if (!checkCompatibility(v.value, appVersion).ok) {
-      skipped.push({ where: `palettes/${file}`, reason: `Requires Cloud-Freelife ${v.value.minAppVersion}` });
+      skipped.push({ where: `palettes/${file}`, reason: `Requires Project D.R.E.A.M ${v.value.minAppVersion}` });
       continue;
     }
     out.push({ source: tree.source, tree, dir: 'palettes', manifest: v.value });
@@ -248,7 +248,7 @@ async function loadThemePacks(tree: ContentTree, skipped: Skipped[], appVersion?
       continue;
     }
     if (!checkCompatibility(v.value, appVersion).ok) {
-      skipped.push({ where: `themes/${file}`, reason: `Requires Cloud-Freelife ${v.value.minAppVersion}` });
+      skipped.push({ where: `themes/${file}`, reason: `Requires Project D.R.E.A.M ${v.value.minAppVersion}` });
       continue;
     }
     out.push({ source: tree.source, tree, dir: 'themes', manifest: v.value });
@@ -285,7 +285,7 @@ async function loadLevels<T extends BreakerLevel | SplashLevel | MemoryLevel | P
       continue;
     }
     if (!checkCompatibility(v.value, appVersion).ok) {
-      skipped.push({ where: dir, reason: `Requires Cloud-Freelife ${v.value.minAppVersion}` });
+      skipped.push({ where: dir, reason: `Requires Project D.R.E.A.M ${v.value.minAppVersion}` });
       continue;
     }
     out.push({ source: tree.source, tree, dir, folder, manifest: v.value as T });
@@ -312,7 +312,7 @@ async function loadReadings<T extends { version: string; minAppVersion: string }
       continue;
     }
     if (!checkCompatibility(v.value, appVersion).ok) {
-      skipped.push({ where: dir, reason: `Requires Cloud-Freelife ${v.value.minAppVersion}` });
+      skipped.push({ where: dir, reason: `Requires Project D.R.E.A.M ${v.value.minAppVersion}` });
       continue;
     }
     out.push({ source: tree.source, tree, dir, folder, manifest: v.value });

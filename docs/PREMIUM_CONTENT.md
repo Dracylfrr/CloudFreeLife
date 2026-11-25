@@ -43,7 +43,7 @@ node scripts/dlc.mjs license --id all-2026 --all --expires 2027-12-31
 node scripts/dlc.mjs verify friend-01.dreamlicense
 ```
 
-Send the `.dreamlicense` file to the buyer. In the app: **Updates > Premium content > Choose license file**. The app checks the signature, keeps the file in its data folder and then offers the packs the license opens as normal "New content".
+Send the `.dreamlicense` file to the buyer. They only need to put it in the app's folder (`C:\Users\<name>\AppData\Roaming\Project D.R.E.A.M`, whatever the file is called). The app finds it by itself, checks the signature and then offers the packs the license opens as normal "New content". **Updates > Premium content > Choose license file** does the same by copying the file there, and **Look again** re-reads the folder. Several license files work together.
 
 ## What this protects, honestly
 

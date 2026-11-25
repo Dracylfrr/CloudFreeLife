@@ -829,7 +829,7 @@ export interface Compat {
 export function checkCompatibility(item: { minAppVersion: string }, appVersion: string = APP_VERSION): Compat {
   if (!isValidVersion(item.minAppVersion)) return { ok: false, reason: 'Invalid minimum app version' };
   if (!meetsMinVersion(item.minAppVersion, appVersion)) {
-    return { ok: false, reason: `Requires Cloud-Freelife ${item.minAppVersion} or newer` };
+    return { ok: false, reason: `Requires Project D.R.E.A.M ${item.minAppVersion} or newer` };
   }
   return { ok: true };
 }

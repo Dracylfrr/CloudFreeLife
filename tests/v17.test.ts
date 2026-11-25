@@ -28,8 +28,9 @@ describe('The name', () => {
   it('is shown in the window, but the installer and data folder names are unchanged', () => {
     const conf = JSON.parse(readFileSync('src-tauri/tauri.conf.json', 'utf8'));
     expect(conf.app.windows[0].title).toBe(BRAND_FULL);
-    expect(conf.productName).toBe('Cloud-Freelife');
-    expect(readFileSync('src/core/config.ts', 'utf8')).toContain("DATA_DIR_NAME = 'Cloud-Freelife'");
+    expect(conf.productName).toBe('Cloud-Freelife'); // the installer's file name and install folder keep this name so updating from older versions works
+    expect(readFileSync('src/core/config.ts', 'utf8')).toContain("DATA_DIR_NAME = 'Project D.R.E.A.M'");
+    expect(readFileSync('src/core/config.ts', 'utf8')).toContain("LEGACY_DATA_DIR_NAME = 'Cloud-Freelife'");
     expect(readFileSync('index.html', 'utf8')).toContain(`<title>${BRAND_FULL}</title>`);
   });
 });

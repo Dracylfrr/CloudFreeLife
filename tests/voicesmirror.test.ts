@@ -14,9 +14,14 @@ describe('The voice files the app downloads and the ones the workflow publishes 
       expect(f.source.startsWith('https://huggingface.co/onnx-community/Kokoro-82M-v1.0-ONNX/resolve/main/')).toBe(true);
     }
   });
-  it('the workflow runs on voices_ tags only, and the pack workflow leaves them alone', () => {
-    expect(readFileSync('.github/workflows/voices-release.yml', 'utf8')).toContain("tags: ['voices_v*']");
-    expect(readFileSync('.github/workflows/content-release.yml', 'utf8')).toContain("'!voices_v*'");
+  it('the voices workflow runs on its own tags only, and the other two workflows leave those tags alone', () => {
+    const voices = readFileSync('.github/workflows/voices-release.yml', 'utf8');
+    expect(voices).toContain("tags: ['kokoro_voices_v*']");
+    expect(voices).toContain('name: "Spoken stories - voice files"'); // a colon in an unquoted name breaks the file
+    expect(readFileSync('.github/workflows/content-release.yml', 'utf8')).toContain("'!kokoro_voices_v*'");
+    // the app release is for version tags like v2.0.1; a tag that merely starts with "v" must not build an app
+    expect(readFileSync('.github/workflows/release.yml', 'utf8')).toContain("tags: ['v[0-9]*']");
+    expect(VOICE_RELEASE_TAG.startsWith('v')).toBe(false);
   });
   it('the voice files are never bundled with the app', () => {
     const ignored = readFileSync('.gitignore', 'utf8');

@@ -2,6 +2,18 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com), and the project uses [Semantic Versioning](https://semver.org).
 
+## [2.0.1]
+
+### Changed
+- **The folder where the app keeps your paintings, settings and downloads is now called "Project D.R.E.A.M"** (in AppData, and in Downloads for update files), and nothing you read in the app says "Cloud-Freelife" any more. Updating from any earlier version moves your existing folder to the new name by itself, with everything in it: the installer does it as part of the update, and the app does it the first time it starts if that did not happen. Nothing is ever overwritten or deleted: if both folders somehow exist, the new one is used and the old one is left untouched.
+- Only the installer's file name, the install folder and the program file inside it still carry the old name, because updating from older versions looks for exactly that name.
+
+### Added
+- **Premium licenses are found by themselves.** Put a license file (.dreamlicense, any name) in the Project D.R.E.A.M folder and the app finds, checks and uses it, with no steps. Several license files work together, each opening the packs it covers. Updates > Premium content has **Look again** for after you drop a file in. Choosing a license there still works and keeps a copy in the same folder.
+
+### Fixed
+- The voice files now live on a release of their own that can never be mistaken for an app version, and the download points there. (2.0.0 pointed at an address that was not set up properly.) If you tried to download the voices in 2.0.0, update and try again.
+
 ## [2.0.0]
 
 ### Added
