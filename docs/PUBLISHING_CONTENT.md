@@ -40,7 +40,7 @@ To **update** a book later, bump `version` in its manifest and publish `castle_d
    npm run tauri build
    npm run package:win
    ```
-   `release/` now holds the installer (`Cloud-Freelife_1.1.0_x64-setup.exe`), the portable zip, `cloud-freelife-release.json` and `SHA256SUMS.txt`.
+   `release/` now holds the installer (`Cloud-Freelife_1.1.0_x64-setup.exe`, also as `Project-DREAM_1.1.0_x64-setup.exe`), the portable zip, `cloud-freelife-release.json` and `SHA256SUMS.txt`.
 4. Create a GitHub Release tagged `v1.1.0` and attach everything in `release/`. (Pushing the tag also triggers `.github/workflows/release.yml`, which does the above on GitHub.)
 
 Players are notified; *Updates → Download* saves the installer to `Downloads\Cloud-Freelife`, verifies it, and shows it in Explorer. They run it when they like.

@@ -1,7 +1,8 @@
 /**
- * The name people see. The saved-data folder, the downloads folder and every message use it. Only the
- * installer's file name, the install folder and the program file inside it keep the original
- * "Cloud-Freelife" name, because updating from older versions looks for exactly that name.
+ * The name people see. The program, its install folder, its shortcuts, the entry in Settings > Apps,
+ * the saved-data folder, the downloads folder and every message use it. Only the names of the files
+ * attached to a GitHub release (the installer asset and the release manifest) keep the original
+ * "Cloud-Freelife" name, because every older version looks for exactly those names when it updates.
  */
 export const BRAND_NAME = 'Project D.R.E.A.M';
 export const BRAND_SUBTITLE = 'Cloud Sonata';

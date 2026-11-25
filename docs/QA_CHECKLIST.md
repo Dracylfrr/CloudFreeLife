@@ -31,12 +31,24 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 - [ ] Kill the app (Task Manager) 3 s after painting → art persists.
 - [ ] Gallery shows thumbnail, title, book, page, last-edited date.
 - [ ] Open, Duplicate, Rename, Export PNG (open the PNG: paper + paint + lines), Clear (confirm), Delete (confirm).
-- [ ] Artwork is in `%APPDATA%\Cloud-Freelife\artworks\…`; reinstalling/updating keeps it.
+- [ ] Artwork is in `%APPDATA%\Project D.R.E.A.M\artworks\…`; reinstalling/updating keeps it.
 
 ## Games
 - [ ] Pastel Breaker: all 12 levels open; Relax / Classic / Endless; paddle follows the mouse; particles; level-complete screen; Classic game-over.
 - [ ] Splash Wall: all 16 levels open; aim, click-throw, hold-to-charge throw; splat stays in the region; goals count correctly; color match hints; Wash and Save PNG.
 - [ ] Pause with P; minimize the window and confirm CPU drops to ~0.
+
+## 2.2.0 checks (the rename: installer, program file, folder, shortcuts)
+Needs a computer that still has an older version installed (ideally in a custom folder, with a desktop shortcut and a taskbar pin).
+- [ ] Update from the old app (Updates > Update now). The app closes, reopens and says Project D.R.E.A.M everywhere; the old folder is gone and a new folder named Project D.R.E.A.M sits in the same place as the old one.
+- [ ] Settings > Apps shows one entry, "Project D.R.E.A.M" with the publisher "Project D.R.E.A.M", and no "Cloud-Freelife" entry.
+- [ ] The Start menu and desktop shortcuts are named Project D.R.E.A.M, open the app, and there is no second shortcut. The taskbar pin still opens the app and is in the same place on the taskbar.
+- [ ] The program file in the install folder is "Project D.R.E.A.M.exe" and nothing in that folder says Cloud-Freelife.
+- [ ] Paintings, settings, avatar, downloaded content, voices and the Premium/Base label are exactly as before.
+- [ ] Updating from 2.1.0, from 2.0.x and from an older version all end the same way.
+- [ ] A new install on a clean computer creates only Project D.R.E.A.M names (folder, Start menu, entry in Settings > Apps).
+- [ ] Uninstalling from Settings > Apps removes the program and its shortcuts and keeps the saved data folder.
+- [ ] The release page has Cloud-Freelife_<version>_x64-setup.exe, Project-DREAM_<version>_x64-setup.exe (the same file), the portable zip, SHA256SUMS.txt and cloud-freelife-release.json.
 
 ## 2.1.0 checks (fast voices, storage, edition label)
 - [ ] Settings > Voices on a computer with a graphics chip offers Fast voices as recommended; downloading it shows progress and ends with "Fast voices are ready". Listen then says "Speaking with the graphics chip" and speech keeps ahead of what you hear.
@@ -156,7 +168,7 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 - [ ] Timelapse of a painting made with Fill areas replays the fills.
 
 ## 1.6.1 checks (quiet updates; test on an installed copy, from one version to the next)
-- [ ] Updates shows **Update now** (not "Install") and the line "updates quietly and reopens Cloud-Freelife".
+- [ ] Updates shows **Update now** (not "Install") and the line "updates quietly and reopens Project D.R.E.A.M".
 - [ ] Pressing it shows no installer window, no UAC prompt, no question and nothing in File Explorer; the app closes, then reopens on the new version within about half a minute.
 - [ ] Paintings, Gallery, albums, settings, story places and Meditation favorites are all still there afterwards.
 - [ ] After the restart there is no Cloud-Freelife installer left in `Downloads\Cloud-Freelife` and no `update` folder in the app's data folder (the second may take until the next start).
@@ -238,4 +250,4 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 ## Packaging
 - [ ] Installer installs per-user, creates a Start Menu entry, icon shows the cloud + brush.
 - [ ] Portable zip runs from a USB stick / any folder.
-- [ ] Uninstall removes the app but not `%APPDATA%\Cloud-Freelife`.
+- [ ] Uninstall removes the app but not `%APPDATA%\Project D.R.E.A.M`.

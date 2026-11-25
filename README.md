@@ -27,11 +27,12 @@ Download from the [Releases page](../../releases):
 
 | File | What it is |
 |---|---|
-| `Cloud-Freelife_<version>_x64-setup.exe` | Installer (per-user, no admin rights needed) |
-| `Cloud-Freelife_<version>_x64-portable.zip` | Just the app — unzip and run |
+| `Project-DREAM_<version>_x64-setup.exe` | Installer (per-user, no admin rights needed) |
+| `Project-DREAM_<version>_x64-portable.zip` | Just the app — unzip and run |
+| `Cloud-Freelife_<version>_x64-setup.exe` | The same installer under the name older versions look for when they update themselves. Download the one above by hand. |
 | `SHA256SUMS.txt` | Checksums for the files above |
 
-Your artwork and settings live in `%APPDATA%\Cloud-Freelife`. Uninstalling or updating never deletes them.
+Your artwork and settings live in `%APPDATA%\Project D.R.E.A.M`. Uninstalling or updating never deletes them.
 
 ## Develop
 

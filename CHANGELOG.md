@@ -2,6 +2,13 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com), and the project uses [Semantic Versioning](https://semver.org).
 
+## [2.2.0]
+
+### Changed
+- **The app is now called Project D.R.E.A.M on your computer, everywhere.** The installer, the program file, its folder, the Start menu and desktop shortcuts, the entry in Settings > Apps (with its publisher) and the portable download all say Project D.R.E.A.M. Nothing says Cloud-Freelife any more.
+- **Updating takes care of the move by itself.** Updating from any earlier version (2.1.0 and older) installs the new version first, in the same place on your computer as before, and only then removes the old one. Your Start menu, desktop and taskbar shortcuts are pointed at the new program (the taskbar pin stays where it was), and the old entry in Settings > Apps is replaced by the new one, so there is only ever one. Your paintings, settings, downloads, voices and license are not touched. If anything fails before the new version is in place, the old one is left exactly as it was.
+- The installer on the release page is also offered under its real name, Project-DREAM_<version>_x64-setup.exe. The file the app itself downloads for updates keeps its old name on the release page, because every earlier version looks for exactly that name; it is never shown to you.
+
 ## [Premium packs 1.0.0]
 
 - The first three premium packs are published as encrypted releases: **Lantern Lane** (parts 2 and 3), **Cozy Collection** (six stories) and **Hero Adventures** (ten adventures where you are the hero). They open with a license; without one they show as locked.

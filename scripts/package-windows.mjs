@@ -1,6 +1,9 @@
 // Collects the Windows build into ./release, ready to attach to a GitHub Release:
-//   - Cloud-Freelife_<version>_x64-setup.exe   (installer, per-user, no admin needed)
-//   - Cloud-Freelife_<version>_x64-portable.zip (just the exe; run from anywhere)
+//   - Cloud-Freelife_<version>_x64-setup.exe   (the installer, under the file name every older version
+//                                              looks for when it updates itself: do not rename)
+//   - Project-DREAM_<version>_x64-setup.exe    (the very same installer under the app's real name,
+//                                              for people downloading by hand)
+//   - Project-DREAM_<version>_x64-portable.zip (just the exe; run from anywhere)
 //   - cloud-freelife-release.json              (verified-update manifest)
 //   - SHA256SUMS.txt
 // Run `npm run tauri build` first.
@@ -15,9 +18,12 @@ const pkg = JSON.parse(await readFile(resolve(root, 'package.json'), 'utf8'));
 const v = pkg.version;
 const out = resolve(root, 'release');
 const bundle = resolve(root, 'src-tauri/target/release');
-const installerName = `Cloud-Freelife_${v}_x64-setup.exe`;
-const installer = resolve(bundle, 'bundle/nsis', installerName);
-const exe = resolve(bundle, 'cloud-freelife.exe');
+const PRODUCT = 'Project D.R.E.A.M'; // tauri.conf.json productName: the program and the installer tauri makes
+const installerName = `Cloud-Freelife_${v}_x64-setup.exe`; // what older versions download: it MUST keep this name
+const friendlyName = `Project-DREAM_${v}_x64-setup.exe`;
+const portableName = `Project-DREAM_${v}_x64-portable.zip`;
+const installer = resolve(bundle, 'bundle/nsis', `${PRODUCT}_${v}_x64-setup.exe`);
+const exe = resolve(bundle, `${PRODUCT}.exe`);
 
 for (const f of [installer, exe]) {
   try {
@@ -31,12 +37,13 @@ for (const f of [installer, exe]) {
 await rm(out, { recursive: true, force: true });
 await mkdir(resolve(out, 'portable'), { recursive: true });
 await copyFile(installer, resolve(out, installerName));
-await copyFile(exe, resolve(out, 'portable/Cloud-Freelife.exe'));
+await copyFile(installer, resolve(out, friendlyName));
+await copyFile(exe, resolve(out, `portable/${PRODUCT}.exe`));
 await writeFile(
   resolve(out, 'portable/README.txt'),
-  `Cloud-Freelife ${v} (portable)\n\nRun Cloud-Freelife.exe from any folder. It needs the Microsoft WebView2 runtime,\nwhich is already part of Windows 11 and up-to-date Windows 10.\n\nYour artwork and settings are stored in %APPDATA%\\Cloud-Freelife, never next to the exe.\n`
+  `${PRODUCT} ${v} (portable)\n\nRun ${PRODUCT}.exe from any folder. It needs the Microsoft WebView2 runtime,\nwhich is already part of Windows 11 and up-to-date Windows 10.\n\nYour artwork and settings are stored in %APPDATA%\\${PRODUCT}, never next to the exe.\n`
 );
-const zip = resolve(out, `Cloud-Freelife_${v}_x64-portable.zip`);
+const zip = resolve(out, portableName);
 const r = spawnSync('powershell', ['-NoProfile', '-Command', `Compress-Archive -Path '${resolve(out, 'portable')}\\*' -DestinationPath '${zip}' -Force`], { stdio: 'inherit' });
 if (r.status !== 0) process.exit(r.status ?? 1);
 await rm(resolve(out, 'portable'), { recursive: true, force: true });
@@ -70,7 +77,7 @@ manifest.app = {
 await saveManifest(out, manifest);
 
 const sums = [];
-for (const f of [installerName, `Cloud-Freelife_${v}_x64-portable.zip`, 'cloud-freelife-release.json']) sums.push(`${sha256(await readFile(resolve(out, f)))}  ${f}`);
+for (const f of [installerName, friendlyName, portableName, 'cloud-freelife-release.json']) sums.push(`${sha256(await readFile(resolve(out, f)))}  ${f}`);
 await writeFile(resolve(out, 'SHA256SUMS.txt'), sums.join('\n') + '\n');
 
 console.log(`\nRelease files for v${v} are in ${out}:`);
