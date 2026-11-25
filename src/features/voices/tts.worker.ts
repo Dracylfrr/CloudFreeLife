@@ -4,12 +4,11 @@
  * smooth. It speaks only when asked, one line at a time, and never touches the network or the disk:
  * everything it needs (the model, the voices) is handed to it by the app.
  */
-import * as ort from 'onnxruntime-web/wasm';
 import { phonemize } from 'phonemizer';
 import { Synth, vocabFromTokenizer, type OrtLike } from './synth';
 
 export type ToWorker =
-  | { type: 'init'; model: Uint8Array; tokenizer: string; wasmBase: string }
+  | { type: 'init'; model: Uint8Array; tokenizer: string; wasmBase: string; device: 'cpu' | 'gpu' }
   | { type: 'voice'; id: string; bytes: ArrayBuffer }
   | { type: 'speak'; req: number; text: string; voice: string; speed: number }
   /** A health check: can the word-to-sound step run here? */
@@ -34,12 +33,14 @@ ctx.onmessage = (e: MessageEvent<ToWorker>) => {
   if (m.type === 'init') {
     queue = queue.then(async () => {
       try {
-        // one thread per engine: extra threads did not make it faster, and several engines work side by side instead
+        // the engine for the processor, or the one that can also use the graphics chip: only the one needed is loaded
+        const ort = m.device === 'gpu' ? await import('onnxruntime-web/webgpu') : await import('onnxruntime-web/wasm');
+        // one thread: extra threads did not make it faster
         ort.env.wasm.numThreads = 1;
         ort.env.wasm.proxy = false;
         ort.env.wasm.wasmPaths = m.wasmBase;
         synth = new Synth(ort as unknown as OrtLike, phonemize, vocabFromTokenizer(JSON.parse(m.tokenizer)));
-        await synth.load(m.model);
+        await synth.load(m.model, m.device === 'gpu' ? { executionProviders: ['webgpu'], graphOptimizationLevel: 'all' } : undefined);
         say({ type: 'ready' });
       } catch (err) {
         say({ type: 'error', message: err instanceof Error ? err.message : String(err) });

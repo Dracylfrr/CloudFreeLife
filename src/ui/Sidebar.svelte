@@ -1,6 +1,7 @@
 <script lang="ts">
   import { navigate, route, sectionOf, type NavSection } from '../core/router';
   import { APP_VERSION } from '../core/version';
+  import { edition } from '../features/premium/license';
   import { updateState } from '../features/updates/updater';
   import { settings, updateSettings } from '../core/settings';
   import Icon from './Icon.svelte';
@@ -106,7 +107,7 @@
     <Icon name={$settings.musicOn && !$settings.muted ? 'volume' : 'mute'} size={19} />
     <span>{$settings.musicOn ? 'Music on' : 'Music off'}</span>
   </button>
-  <div class="foot">v{APP_VERSION}</div>
+  <div class="foot">v{APP_VERSION} <span class="ed" class:premium={$edition === 'Premium'}>{$edition}</span></div>
 </nav>
 
 <style>
@@ -276,6 +277,12 @@
     background: rgb(var(--w) / 0.8);
   }
   .quick[aria-pressed='true'] {
+    color: var(--c-violet);
+  }
+  .ed {
+    font-weight: 800;
+  }
+  .ed.premium {
     color: var(--c-violet);
   }
   .foot {

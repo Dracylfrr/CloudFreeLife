@@ -9,10 +9,12 @@
 import { writable } from 'svelte/store';
 import { getStorage } from '../../core/storage';
 import { VOICE_DIR, modelStatus } from './model';
+import { graphicsChipUsable } from './acceleration';
 import { SAMPLE_RATE } from './synth';
 import type { FromWorker, ToWorker } from './tts.worker';
 
-export type EngineState = { status: 'off' } | { status: 'loading' } | { status: 'ready'; workers: number } | { status: 'error'; message: string };
+export type EngineMode = 'gpu' | 'cpu';
+export type EngineState = { status: 'off' } | { status: 'loading' } | { status: 'ready'; workers: number; mode: EngineMode } | { status: 'error'; message: string };
 export const engineState = writable<EngineState>({ status: 'off' });
 
 /** How the app talks to the engine. Tests put a stand-in here. */
@@ -59,7 +61,7 @@ function killAll() {
   waiting.clear();
 }
 
-function launch(model: Uint8Array, tokenizer: string): Promise<Slot> {
+function launch(model: Uint8Array, tokenizer: string, device: EngineMode): Promise<Slot> {
   const w = new Worker(new URL('./tts.worker.ts', import.meta.url), { type: 'module' });
   const slot: Slot = { w, busy: 0, sent: new Set() };
   return new Promise<Slot>((resolve, reject) => {
@@ -84,8 +86,11 @@ function launch(model: Uint8Array, tokenizer: string): Promise<Slot> {
       }
     };
     w.onerror = (e) => reject(new Error(e.message || 'The voice engine could not start.'));
-    const init: ToWorker = { type: 'init', model, tokenizer, wasmBase: wasmBase() };
+    const init: ToWorker = { type: 'init', model, tokenizer, wasmBase: wasmBase(), device };
     w.postMessage(init, [model.buffer as ArrayBuffer]);
+  }).catch((e) => {
+    w.terminate();
+    throw e;
   });
 }
 
@@ -101,16 +106,32 @@ const nativeLink: EngineLink = {
       const status = await modelStatus();
       if (!status.installed) throw new Error('The voices have not been downloaded yet.');
       const st = await getStorage();
-      const model = await st.readBytes(`${VOICE_DIR}/model.onnx`);
       const tokenizer = await st.readText(`${VOICE_DIR}/tokenizer.json`);
-      if (!model || !tokenizer) throw new Error('The voice files could not be read.');
-      const n = workerCount(typeof navigator !== 'undefined' ? navigator.hardwareConcurrency : 1);
-      // every engine gets its own copy of the model to work from
-      // (the copies are made first: handing a model to an engine hands the original over)
-      const copies = Array.from({ length: n }, (_, i) => (i === n - 1 ? model : model.slice()));
-      const made = await Promise.all(copies.map((m) => launch(m, tokenizer)));
-      slots = made;
-      engineState.set({ status: 'ready', workers: n });
+      if (!tokenizer) throw new Error('The voice files could not be read.');
+      // The fast voices when this computer can use its graphics chip; the standard ones otherwise, and
+      // also if the graphics chip turns out not to work, so that a driver problem never leaves no voice.
+      const tries: EngineMode[] = [];
+      if (status.fast && (await graphicsChipUsable())) tries.push('gpu');
+      if (status.standard) tries.push('cpu');
+      if (!tries.length) throw new Error('This computer cannot use the fast voices. Download the standard voices in Settings > Voices.');
+      let lastError: unknown = null;
+      for (const mode of tries) {
+        const model = await st.readBytes(`${VOICE_DIR}/${mode === 'gpu' ? 'model-fast.onnx' : 'model.onnx'}`);
+        if (!model) {
+          lastError = new Error('The voice files could not be read.');
+          continue;
+        }
+        try {
+          slots = [await launch(model, tokenizer, mode)];
+          // the graphics chip prepares its work on the first sentence; do that now, out of the way
+          if (mode === 'gpu') await nativeLink.speak('Hello.', 'af_nicole', 1).catch(() => {});
+          engineState.set({ status: 'ready', workers: 1, mode });
+          return;
+        } catch (e) {
+          lastError = e;
+        }
+      }
+      throw lastError instanceof Error ? lastError : new Error('The voice engine could not start.');
     })()
       .catch((e) => {
         killAll();

@@ -3,15 +3,20 @@ import { getSettings, updateSettings } from '../../core/settings';
 import { resolveSpeakers, type CastMember, type SavedVoice, type Speaker } from './casts';
 import { modelStatus } from './model';
 
-/** Whether the voice files are on this computer (null until looked at). */
+/** Whether the voices can be used at all: the shared files and at least one speech model (null until looked at). */
 export const modelReady = writable<boolean | null>(null);
+/** Which of the two speech models are on this computer. */
+export const modelTiers = writable<{ standard: boolean; fast: boolean }>({ standard: false, fast: false });
 
 export async function refreshModel(): Promise<boolean> {
   let ok = false;
   try {
-    ok = (await modelStatus()).installed;
+    const s = await modelStatus();
+    ok = s.installed;
+    modelTiers.set({ standard: s.standard, fast: s.fast });
   } catch {
     ok = false;
+    modelTiers.set({ standard: false, fast: false });
   }
   modelReady.set(ok);
   return ok;

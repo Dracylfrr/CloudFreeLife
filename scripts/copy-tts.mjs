@@ -5,7 +5,8 @@ import { resolve } from 'node:path';
 const from = resolve('node_modules/onnxruntime-web/dist');
 const to = resolve('public/tts');
 mkdirSync(to, { recursive: true });
-for (const f of ['ort-wasm-simd-threaded.mjs', 'ort-wasm-simd-threaded.wasm']) {
+// the first two run the speech model on the processor; the "jsep" pair adds the graphics chip
+for (const f of ['ort-wasm-simd-threaded.mjs', 'ort-wasm-simd-threaded.wasm', 'ort-wasm-simd-threaded.jsep.mjs', 'ort-wasm-simd-threaded.jsep.wasm']) {
   if (!existsSync(resolve(from, f))) throw new Error(`Missing ${f}. Run npm install first.`);
   copyFileSync(resolve(from, f), resolve(to, f));
 }

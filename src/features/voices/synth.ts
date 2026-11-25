@@ -83,6 +83,17 @@ export function styleFor(voice: Float32Array, tokenCount: number): Float32Array 
 
 export const isBritish = (voiceId: string) => voiceId.startsWith('b');
 
+/** Anything that is not a real number becomes silence, and nothing is louder than the speakers can take. */
+export function tidy(sound: Float32Array): Float32Array {
+  for (let i = 0; i < sound.length; i++) {
+    const x = sound[i];
+    if (!Number.isFinite(x)) sound[i] = 0;
+    else if (x > 1) sound[i] = 1;
+    else if (x < -1) sound[i] = -1;
+  }
+  return sound;
+}
+
 /** The bits of onnxruntime-web this file uses, so tests can hand in a stand-in. */
 export interface OrtLike {
   InferenceSession: { create(model: Uint8Array, opts?: unknown): Promise<{ run(feeds: Record<string, unknown>): Promise<Record<string, { data: Float32Array | ArrayLike<number> }>>; release?(): Promise<void> }> };
@@ -118,7 +129,8 @@ export class Synth {
       speed: new this.ort.Tensor('float32', new Float32Array([speed]), [1])
     };
     const out = await this.session.run(feeds);
-    return Float32Array.from(out.waveform.data as ArrayLike<number>);
+    const sound = Float32Array.from(out.waveform.data as ArrayLike<number>);
+    return tidy(sound);
   }
 
   async dispose() {

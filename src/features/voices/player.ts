@@ -166,17 +166,28 @@ export function stopListening() {
   listenState.set(IDLE);
 }
 
+// A sample that has been made once is kept for this session, so hearing it again is instant.
+const heardBefore = new Map<string, Float32Array>();
+
 /** Hear one voice at one speed, for choosing. */
 export async function previewVoice(text: string, voice: string, speed: number): Promise<void> {
   const gen = ++generation;
   out.stop();
+  const key = `${voice}|${speed}|${text}`;
   listenState.set({ status: 'loading', para: -1, index: 0, total: 1, message: '' });
   try {
-    await startEngine();
-    const samples = await speakLine(text, voice, speed);
+    let sound = heardBefore.get(key);
+    if (!sound) {
+      await startEngine();
+      sound = await speakLine(text, voice, speed);
+      if (sound.length) {
+        heardBefore.set(key, sound);
+        if (heardBefore.size > 40) heardBefore.delete(heardBefore.keys().next().value as string);
+      }
+    }
     if (gen !== generation) return;
     listenState.set({ status: 'playing', para: -1, index: 0, total: 1, message: '' });
-    if (samples.length) await out.play(samples, SAMPLE_RATE, volume());
+    if (sound.length) await out.play(sound, SAMPLE_RATE, volume());
     if (gen === generation) listenState.set(IDLE);
   } catch (e) {
     if (gen !== generation) return;

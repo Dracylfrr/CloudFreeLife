@@ -9,11 +9,11 @@ import { DEFAULT_SETTINGS, sanitizeSettings } from '../src/core/settings';
 import { MemoryStorage, setStorage } from '../src/core/storage';
 import { setHttpGet, type HttpGet } from '../src/features/updates/http';
 import {
-  NARRATOR_ID, SPEED_MAX, SPEED_MIN, VOICES, VOICE_IDS, clampSpeed, namesFor, resolveSpeakers, sanitizeSavedCasts, sentences, splitQuotes, toChunks, type CastMember
+  NARRATOR_ID, SAMPLE_LINE, SPEED_MAX, SPEED_MIN, VOICES, VOICE_IDS, clampSpeed, namesFor, resolveSpeakers, sanitizeSavedCasts, sentences, splitQuotes, toChunks, type CastMember
 } from '../src/features/voices/casts';
-import { MODEL_BYTES, MODEL_FILES, VOICE_RELEASE_TAG, downloadModel, modelStatus, modelUrl, removeModel } from '../src/features/voices/model';
-import { SAMPLE_RATE, cleanForSpeech, encodePhonemes, styleFor, vocabFromTokenizer } from '../src/features/voices/synth';
-import { firstBite, listen, listenState, pauseListening, resumeListening, setAudioOut, stopListening, type AudioOut } from '../src/features/voices/player';
+import { MODEL_BYTES, MODEL_FILES, VOICE_RELEASE_TAG, downloadModel, filesOf, modelStatus, modelUrl, removeModel, tierBytes } from '../src/features/voices/model';
+import { SAMPLE_RATE, cleanForSpeech, encodePhonemes, styleFor, tidy, vocabFromTokenizer } from '../src/features/voices/synth';
+import { firstBite, listen, listenState, previewVoice, pauseListening, resumeListening, setAudioOut, stopListening, type AudioOut } from '../src/features/voices/player';
 import { setEngineLink, workerCount, type EngineLink } from '../src/features/voices/engine';
 import { DiskTree } from './helpers/diskTree';
 
@@ -224,60 +224,124 @@ describe('Getting the voice files', () => {
   // small stand-ins with the right names, so no 90 MB is needed
   const sha = (b: Uint8Array) => createHash('sha256').update(b).digest('hex');
 
-  it('lists the model, the tokenizer and all nine voices, with a checksum for every file', () => {
-    expect(MODEL_FILES).toHaveLength(11);
-    expect(MODEL_FILES.map((f) => f.asset)).toEqual(expect.arrayContaining(['kokoro-model_quantized.onnx', 'kokoro-tokenizer.json', ...NINE.map((v) => `kokoro-voice-${v}.bin`)]));
+  it('lists the sound table, all nine voices and both speech models, with a checksum for every file', () => {
+    expect(MODEL_FILES).toHaveLength(12);
+    expect(MODEL_FILES.map((f) => f.asset)).toEqual(expect.arrayContaining(['kokoro-model_quantized.onnx', 'kokoro-model_fp32.onnx', 'kokoro-tokenizer.json', ...NINE.map((v) => `kokoro-voice-${v}.bin`)]));
     for (const f of MODEL_FILES) {
       expect(f.sha256).toMatch(/^[a-f0-9]{64}$/);
       expect(f.size).toBeGreaterThan(0);
       expect(modelUrl(f)).toBe(`https://github.com/Dracylfrr/CloudFreeLife/releases/download/${VOICE_RELEASE_TAG}/${f.asset}`);
     }
-    expect(MODEL_BYTES).toBeGreaterThan(90 * 1024 * 1024);
-    expect(MODEL_BYTES).toBeLessThan(100 * 1024 * 1024);
   });
-  it('says the voices are missing until every file is in place', async () => {
-    const s = await modelStatus();
-    expect(s.installed).toBe(false);
-    expect(s.missing).toHaveLength(11);
-    await mem.writeBytes(MODEL_FILES[0].path, new Uint8Array(MODEL_FILES[0].size));
-    expect((await modelStatus()).missing).toHaveLength(10);
-    await mem.writeBytes(MODEL_FILES[1].path, new Uint8Array(3)); // wrong size does not count
-    expect((await modelStatus()).missing).toHaveLength(10);
+  it('a computer needs only one of the two speech models: the standard download is about 93 MB, the fast one about 315 MB', () => {
+    expect(tierBytes('standard')).toBeGreaterThan(90 * 1024 * 1024);
+    expect(tierBytes('standard')).toBeLessThan(100 * 1024 * 1024);
+    expect(tierBytes('fast')).toBeGreaterThan(300 * 1024 * 1024);
+    expect(tierBytes('fast')).toBeLessThan(340 * 1024 * 1024);
+    expect(MODEL_BYTES).toBe(tierBytes('standard') + tierBytes('fast') - filesOf('shared').reduce((n, f) => n + f.size, 0));
+  });
+  const fill = async (parts: ('shared' | 'standard' | 'fast')[]) => {
+    for (const part of parts) for (const f of filesOf(part)) await mem.writeBytes(f.path, new Uint8Array(f.size));
+  };
+  it('knows which voices are installed: the shared files plus either speech model', async () => {
+    let s = await modelStatus();
+    expect(s).toMatchObject({ installed: false, shared: false, standard: false, fast: false });
+    expect(s.missing).toHaveLength(12);
+    await fill(['shared']);
+    expect(await modelStatus()).toMatchObject({ shared: true, installed: false });
+    await fill(['standard']);
+    s = await modelStatus();
+    expect(s).toMatchObject({ installed: true, standard: true, fast: false });
+    await fill(['fast']);
+    expect(await modelStatus()).toMatchObject({ installed: true, standard: true, fast: true, missing: [] });
+    await mem.writeBytes(filesOf('fast')[0].path, new Uint8Array(3)); // a wrong size does not count
+    expect(await modelStatus()).toMatchObject({ standard: true, fast: false });
+  });
+  it('removing one speech model keeps the other, and removing the last one frees everything', async () => {
+    await fill(['shared', 'standard', 'fast']);
+    await removeModel('fast');
+    expect(await modelStatus()).toMatchObject({ standard: true, fast: false, installed: true });
+    expect(await mem.exists(filesOf('shared')[0].path)).toBe(true);
+    await removeModel('standard');
+    expect((await modelStatus()).installed).toBe(false);
+    expect(await mem.list('voices')).toEqual([]);
+    await fill(['shared', 'standard', 'fast']);
+    await removeModel('all');
+    expect(await mem.list('voices')).toEqual([]);
   });
   it('refuses a file whose size or checksum is wrong, and keeps nothing', async () => {
-    const tampered: HttpGet = async () => ({ status: 200, contentType: 'application/octet-stream', bytes: new Uint8Array(MODEL_FILES[0].size).fill(7) });
-    setHttpGet(tampered);
-    const r = await downloadModel();
-    expect(r.ok).toBe(false);
-    expect(r.ok === false && r.message).toMatch(/checksum/);
-    expect(await mem.exists(MODEL_FILES[0].path)).toBe(false);
+    const first = filesOf('shared')[0];
+    setHttpGet(async () => ({ status: 200, contentType: 'application/octet-stream', bytes: new Uint8Array(first.size).fill(7) }));
+    for (const tier of ['standard', 'fast'] as const) {
+      const r = await downloadModel(tier);
+      expect(r.ok).toBe(false);
+      expect(r.ok === false && r.message).toMatch(/checksum/);
+    }
+    expect(await mem.exists(first.path)).toBe(false);
     setHttpGet(async () => ({ status: 200, contentType: 'application/octet-stream', bytes: new Uint8Array(5) }));
-    const small = await downloadModel();
+    const small = await downloadModel('standard');
     expect(small.ok === false && small.message).toMatch(/size/);
   });
   it('says plainly when the files are not published yet, and when the network fails', async () => {
     setHttpGet(async () => ({ status: 404, contentType: '', bytes: new Uint8Array(0) }));
-    const r = await downloadModel();
+    const r = await downloadModel('fast');
     expect(r.ok === false && r.message).toMatch(/not available/);
     setHttpGet(async () => {
       throw new Error('offline');
     });
-    const n = await downloadModel();
+    const n = await downloadModel('standard');
     expect(n.ok === false && n.message).toMatch(/connection/);
   });
-  it('downloads, checks and keeps each file, shows progress, and can be removed again', async () => {
-    // make the checksums match tiny files by serving the very bytes whose digest is expected: use a modified copy of the table
-    const files = MODEL_FILES.map((f) => ({ ...f }));
-    const body = (f: (typeof files)[number]) => new Uint8Array(f.size).fill(f.size % 251);
-    // only run the happy path on the first (smallest) file: others are stood in by pre-filled storage
-    const small = files.filter((f) => f.size < 5000)[0];
-    const real = body(small);
-    expect(sha(real)).not.toBe(small.sha256); // the stand-in is not the real file, so it is refused
-    setHttpGet(async () => ({ status: 200, contentType: 'application/octet-stream', bytes: real }));
-    expect((await downloadModel()).ok).toBe(false);
-    await mem.writeBytes(MODEL_FILES[0].path, new Uint8Array(1));
-    await removeModel();
-    expect(await mem.exists(MODEL_FILES[0].path)).toBe(false);
+  it('only fetches what a tier is missing, and reports progress against that tier\'s own total', async () => {
+    await fill(['shared', 'standard']); // everything the standard voices need is there
+    let asked = 0;
+    setHttpGet(async () => {
+      asked++;
+      return { status: 404, contentType: '', bytes: new Uint8Array(0) };
+    });
+    const seen: number[] = [];
+    expect((await downloadModel('standard', (d, t) => seen.push(d / t))).ok).toBe(true);
+    expect(asked).toBe(0);
+    expect(seen[0]).toBe(1);
+    // the fast voices still need their model, and only that
+    await downloadModel('fast');
+    expect(asked).toBe(1);
+  });
+});
+
+describe('The graphics chip', () => {
+  it('is used only when it is there, and is asked about only once', async () => {
+    const { graphicsChipUsable, forgetGraphicsChip } = await import('../src/features/voices/acceleration');
+    forgetGraphicsChip();
+    Object.defineProperty(globalThis, 'navigator', { value: {}, configurable: true });
+    expect(await graphicsChipUsable()).toBe(false); // no WebGPU at all, as on an older computer
+    forgetGraphicsChip();
+    let asked = 0;
+    Object.defineProperty(globalThis, 'navigator', { value: { gpu: { requestAdapter: async () => (asked++, { requestDevice: async () => ({ destroy() {} }) }) } }, configurable: true });
+    expect(await graphicsChipUsable()).toBe(true);
+    expect(await graphicsChipUsable()).toBe(true);
+    expect(asked).toBe(1);
+    forgetGraphicsChip();
+    Object.defineProperty(globalThis, 'navigator', { value: { gpu: { requestAdapter: async () => null } }, configurable: true });
+    expect(await graphicsChipUsable()).toBe(false); // WebGPU exists but there is no usable chip
+    forgetGraphicsChip();
+    Object.defineProperty(globalThis, 'navigator', { value: { gpu: { requestAdapter: async () => ({ requestDevice: async () => { throw new Error('lost'); } }) } }, configurable: true });
+    expect(await graphicsChipUsable()).toBe(false); // the driver refuses
+  });
+  it('sound that is not a real number becomes silence and never louder than the speakers take', () => {
+    const t = tidy(Float32Array.from([0.5, NaN, Infinity, -Infinity, 3, -3, 0]));
+    expect([...t]).toEqual([0.5, 0, 0, 0, 1, -1, 0]);
+  });
+  it('the worker loads only the engine it is asked for, and the app ships both', () => {
+    const w = readFileSync('src/features/voices/tts.worker.ts', 'utf8');
+    expect(w).toContain("import('onnxruntime-web/webgpu')");
+    expect(w).toContain("import('onnxruntime-web/wasm')");
+    expect(w).toContain("executionProviders: ['webgpu']");
+    const e = readFileSync('src/features/voices/engine.ts', 'utf8');
+    expect(e).toContain('tries.push(\'gpu\')');
+    expect(e).toContain('model-fast.onnx');
+    const copy = readFileSync('scripts/copy-tts.mjs', 'utf8');
+    expect(copy).toContain('ort-wasm-simd-threaded.jsep.wasm');
   });
 });
 
@@ -415,6 +479,38 @@ describe('Keeping up with the story', () => {
     expect(most).toBeGreaterThanOrEqual(3);
     setEngineLink(null);
     setAudioOut(null);
+  });
+});
+
+describe('Hearing a voice', () => {
+  it('the sample is short, so the first press answers within a few seconds', () => {
+    expect(SAMPLE_LINE.length).toBeLessThanOrEqual(45);
+  });
+  it('the Hear buttons say what they are doing, and a sample made once plays again at once', async () => {
+    const settings = readFileSync('src/features/settings/Settings.svelte', 'utf8');
+    expect(settings).toContain("$listenState.status === 'loading' ? 'Getting ready…'");
+    expect(settings).toContain("'Speaking…'");
+    expect(settings).toContain("$listenState.status === 'error'");
+    let made = 0;
+    setEngineLink({ async start() {}, async speak() { made++; return new Float32Array(20).fill(0.1); }, stop() {} });
+    setAudioOut({ async play() {}, pause() {}, resume() {}, stop() {} });
+    await previewVoice('Hello there.', 'af_nicole', 1);
+    await previewVoice('Hello there.', 'af_nicole', 1);
+    await previewVoice('Hello there.', 'af_nicole', 1.2);
+    expect(made).toBe(2); // the second press reused the first; a different speed is a new sample
+    expect(get(listenState).status).toBe('idle');
+    setEngineLink(null);
+    setAudioOut(null);
+  });
+});
+
+describe('Getting ready before Listen is pressed', () => {
+  it('pointing at Listen starts the voices, and the graphics chip is warmed up with one short sentence', () => {
+    const bar = readFileSync('src/features/voices/ListenBar.svelte', 'utf8');
+    expect(bar).toContain('onpointerenter={warm}');
+    expect(bar).toContain('onfocus={warm}');
+    const e = readFileSync('src/features/voices/engine.ts', 'utf8');
+    expect(e).toContain("if (mode === 'gpu') await nativeLink.speak('Hello.'");
   });
 });
 

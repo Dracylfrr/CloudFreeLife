@@ -4,6 +4,7 @@
   import { settings } from '../../core/settings';
   import type { CastMember } from './casts';
   import { listen, listenState, pauseListening, resumeListening, stopListening } from './player';
+  import { startEngine } from './engine';
   import { modelReady, openVoices, refreshModel, speakersFor } from './state';
 
   // The small "Listen" strip above a story's text: read aloud, pause, and choose the voices.
@@ -41,11 +42,15 @@
     void listen(paragraphs, speakersFor(storyId, cast), { from, extras });
   }
   const voices = () => openVoices({ storyId, title, cast });
+  // Pointing at Listen starts getting the voices ready, so the first words come sooner when it is pressed.
+  function warm() {
+    if ($modelReady && !active) void startEngine().catch(() => {});
+  }
 </script>
 
 <div class="bar" role="group" aria-label="Read aloud">
   {#if !active}
-    <button class="main" onclick={start}><Icon name="volume" size={17} /> {$modelReady ? 'Listen' : 'Listen · set up voices'}</button>
+    <button class="main" onclick={start} onpointerenter={warm} onfocus={warm}><Icon name="volume" size={17} /> {$modelReady ? 'Listen' : 'Listen · set up voices'}</button>
   {:else if busy}
     <button class="main" disabled><Icon name="volume" size={17} /> {$listenState.index > 0 ? 'Catching up…' : 'Getting ready…'}</button>
     <button class="side" onclick={stopListening} aria-label="Stop"><Icon name="stop" size={16} /></button>

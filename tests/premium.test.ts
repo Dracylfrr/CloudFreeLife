@@ -100,6 +100,26 @@ const respond = (routes: Record<string, unknown>): HttpGet => async (url) => {
   return { status: 200, bytes, contentType: 'application/octet-stream' } as never;
 };
 
+describe('The version says whether it is Premium or Base', () => {
+  it('is Base until a license has been applied, and Premium after', async () => {
+    const { edition } = await import('../src/features/premium/license');
+    expect(get(edition)).toBe('Base'); // nothing known yet
+    await loadLicense();
+    expect(get(edition)).toBe('Base');
+    await addLicense(licenseFor([{ id: 'castle_dreams', key: packKey }]));
+    expect(get(edition)).toBe('Premium');
+    await removeLicense();
+    expect(get(edition)).toBe('Base');
+  });
+  it('is shown after the version number in the sidebar, About, Settings and Updates', () => {
+    for (const f of ['src/ui/Sidebar.svelte', 'src/features/about/About.svelte', 'src/features/settings/Settings.svelte', 'src/features/updates/Updates.svelte']) {
+      const src = readFileSync(f, 'utf8');
+      expect(src, f).toContain('$edition');
+      expect(src, f).toMatch(/\{APP_VERSION\}[^\n]*\{\$edition\}/);
+    }
+  });
+});
+
 describe('Premium packs in a release manifest', () => {
   it('a premium pack is a .dreampack and a free pack is a .cfpack', async () => {
     const { manifest } = await premiumManifest();

@@ -9,7 +9,18 @@ Stories and adventures can be read aloud. The voices run **on the person's own c
 - **Voices** (on every story) lists the narrator and each speaking character. Each has its own voice and its own speed (0.6× to 1.4×), with a **Hear** button. Choices are saved automatically for that character of that story. "Back to the suggested voices" undoes them.
 - Settings > Voices sets the narrator for every story. A story's own narrator choice wins over it.
 
-## How fast it is (an honest note)
+## Fast voices and standard voices
+
+There are two speech models and a computer needs only one:
+
+| | Runs on | Download | Speed (measured on a 16-core Intel laptop) |
+| --- | --- | --- | --- |
+| **Fast voices** (full precision) | the graphics chip | about 315 MB | about 4 to 5 times faster than the speech is spoken, clean sound |
+| **Standard voices** (8-bit) | the processor | about 93 MB | about 1.2 to 2.5 times slower than the speech is spoken |
+
+Fast voices need WebGPU (a recent Windows with a graphics chip and driver that support Direct3D 12). Many older computers do not have it, and then the standard voices are used. A half-precision model was tried too: it is fast, but one line in eleven came out as noise, so it is not used. If the graphics chip fails at any point the app falls back to the standard voices. The first sentence on the graphics chip takes a few seconds while the chip prepares, so pointing at Listen starts that early.
+
+## How fast it is on the processor (an honest note)
 
 The speech is made on the person's own computer, by a model of 82 million numbers, and that takes about as long as the speech lasts. On the 16-core laptop it was built on, a sentence takes roughly 1 to 2.5 times as long to make as to say, and neither more threads nor more engines made it faster (the limit is the processor's vector units, not the number of cores). So the app starts after a short wait, reads ahead as far as it can, and when the next line is not ready it says **Catching up…** and carries on as soon as it is. A faster processor reads more smoothly. The app runs two engines side by side on computers with four or more cores.
 

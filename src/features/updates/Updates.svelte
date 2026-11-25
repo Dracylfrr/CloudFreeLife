@@ -10,7 +10,7 @@
   import Icon from '../../ui/Icon.svelte';
   import Toggle from '../../ui/Toggle.svelte';
   import { listInstalledPacks, uninstallPack, type InstalledPackRecord } from './packs';
-  import { addLicense, describeLicense, licenseState, loadLicense, removeLicense } from '../premium/license';
+  import { addLicense, describeLicense, edition, licenseState, loadLicense, removeLicense } from '../premium/license';
   import { canSelfUpdate, checkForUpdates, describeUpdate, installUpdate, revealPath, updateKey, updateState } from './updater';
   import type { UpdateItem } from './release';
 
@@ -87,7 +87,7 @@
     <div class="ico"><Icon name={$updateState.outcome === 'available' ? 'sparkle' : $updateState.outcome === 'offline' || $updateState.outcome === 'error' ? 'cloud' : 'check'} size={26} /></div>
     <div>
       <strong>
-        {#if $updateState.outcome === 'idle'}{BRAND_NAME} v{APP_VERSION}
+        {#if $updateState.outcome === 'idle'}{BRAND_NAME} v{APP_VERSION} {$edition}
         {:else if checking}Checking for updates…
         {:else if $updateState.outcome === 'available'}{$updateState.available.length} {$updateState.available.length === 1 ? 'update is' : 'updates are'} ready
         {:else if $updateState.outcome === 'up_to_date'}You're up to date
@@ -97,7 +97,7 @@
       <p class="muted">
         {#if $updateState.outcome === 'available'}Installed: v{APP_VERSION}. Choose what to install below.
         {:else if $updateState.message && $updateState.outcome !== 'idle'}{$updateState.message}
-        {:else}You're running v{APP_VERSION}. {$settings.lastUpdateCheck ? `Last checked ${formatDate($settings.lastUpdateCheck)}.` : 'Updates are checked once when the app starts.'}{/if}
+        {:else}You're running v{APP_VERSION} {$edition}. {$settings.lastUpdateCheck ? `Last checked ${formatDate($settings.lastUpdateCheck)}.` : 'Updates are checked once when the app starts.'}{/if}
       </p>
     </div>
   </section>

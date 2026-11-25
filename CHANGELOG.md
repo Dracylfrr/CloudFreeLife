@@ -2,10 +2,25 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com), and the project uses [Semantic Versioning](https://semver.org).
 
+## [2.1.0]
+
+### Added
+- **Fast voices.** On a computer whose graphics chip supports it, the speech can be made on the graphics chip, several times faster than it is spoken (about 4 to 5 times on the machine this was tried on) instead of slower than it is spoken. Stories then flow with no waiting for the next line. Settings > Voices offers **Fast voices** (about 315 MB, recommended when your computer can use them) and **Standard voices** (about 93 MB, work on every computer). Download either or both, remove either and download it again whenever you like. The app picks the fast ones when it can, and if the graphics chip ever fails it uses the standard voices, so a driver problem never leaves you without a voice.
+- **A whole-app size on the Storage screen.** Settings > Storage shows everything the app uses on your computer (the program plus your files and downloads) and where the space goes: your artwork, avatar, downloaded content, each kind of voices, update leftovers, the premium license and everything small. Voices can be removed or downloaded again right there, update leftovers can be cleared, and downloaded content opens in Updates.
+- **The version says Premium or Base** after the version number (for example "v2.1.0 Premium"): in the sidebar, About, Settings and Updates. Premium once a license has been applied, Base until then.
+- **A license file now applies itself and then removes itself.** Put a .dreamlicense file (any name) in the Project D.R.E.A.M folder and the app applies it and deletes the file you put there, keeping what it needs in its own premium folder. A file that is not a valid license is left alone.
+
+### Changed
+- **The Hear buttons answer right away**: a shorter sample sentence, "Getting ready…" and "Speaking…" states, a message if something goes wrong, and instant replays of a sample you have already heard.
+- Pointing at Listen starts getting the voices ready, so the first words come sooner when you press it.
+- Sound that is not a real number becomes silence and is never louder than the speakers can take.
+
 ## [2.0.2]
 
 ### Changed
 - **Reading aloud starts sooner and tells you what it is doing.** The first words are a short line made on their own (a few seconds on a typical computer instead of more than ten), later lines are shorter so each is ready sooner, and while it waits the bar says why: "Getting the first words ready…" and then "The speech is made on this computer, so it pauses to catch up." One speech engine is used instead of two: a second one made nothing faster, slowed the first line down and used more memory.
+- **The version now says whether it is Premium or Base**, after the version number (for example "v2.0.3 Premium"): in the sidebar, About, Settings and Updates. It says Premium once a license has been applied and Base until then.
+- **The Hear buttons answer right away.** The sample sentence is shorter, the button says "Getting ready…" and "Speaking…" and shows a message if something goes wrong, and a sample you have already heard plays again instantly.
 - The Premium content section on the Updates page stays hidden until a premium pack is actually on offer.
 - **A license file now applies itself and then removes itself.** Put a .dreamlicense file (any name) in the Project D.R.E.A.M folder: the next time the app starts or checks for updates it checks the file, applies it (keeping what it needs in its own premium folder, so later pack updates still open) and deletes the file you put there. A file that is not a valid license is left alone. Choosing a license on the Updates page does the same.
 

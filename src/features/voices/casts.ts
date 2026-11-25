@@ -243,7 +243,7 @@ export function toChunks(paragraphs: readonly string[], speakers: Speaker[], car
 }
 
 /** A short, friendly sample line for trying out a voice. */
-export const SAMPLE_LINE = 'Good evening. The lanterns are lit, the tea is warm, and there is nowhere we need to be.';
+export const SAMPLE_LINE = 'Good evening. The lanterns are lit.';
 
 // ------------------------------------------------------------------ settings
 

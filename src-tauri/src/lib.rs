@@ -166,6 +166,27 @@ fn install_update(app: tauri::AppHandle, file_name: String, sha256: String) -> R
     }
 }
 
+/// How many bytes the program's own folder holds (what the installer put there), for the storage screen.
+#[tauri::command]
+fn install_size() -> u64 {
+    fn walk(dir: &std::path::Path, depth: u8) -> u64 {
+        if depth > 6 {
+            return 0;
+        }
+        let Ok(entries) = std::fs::read_dir(dir) else { return 0 };
+        entries
+            .flatten()
+            .map(|e| match e.file_type() {
+                Ok(t) if t.is_symlink() => 0,
+                Ok(t) if t.is_dir() => walk(&e.path(), depth + 1),
+                Ok(_) => e.metadata().map(|m| m.len()).unwrap_or(0),
+                Err(_) => 0,
+            })
+            .sum()
+    }
+    std::env::current_exe().ok().and_then(|p| p.parent().map(|d| walk(d, 0))).unwrap_or(0)
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
@@ -173,7 +194,7 @@ pub fn run() {
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_http::init())
-        .invoke_handler(tauri::generate_handler![can_self_update, install_update, set_taskbar_icon, premium::premium_check_license, premium::premium_open_pack])
+        .invoke_handler(tauri::generate_handler![can_self_update, install_update, set_taskbar_icon, install_size, premium::premium_check_license, premium::premium_open_pack])
         .run(tauri::generate_context!())
         .expect("error while running Project D.R.E.A.M");
 }

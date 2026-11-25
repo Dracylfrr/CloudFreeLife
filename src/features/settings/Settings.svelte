@@ -5,7 +5,8 @@
   import { formatBytes } from '../../core/util';
   import { confirmDialog, toast } from '../../core/feedback';
   import { APP_VERSION } from '../../core/version';
-  import { BRAND_FULL } from '../../core/brand';
+  import { edition } from '../premium/license';
+  import { BRAND_FULL, BRAND_NAME } from '../../core/brand';
   import { sfx, preview } from '../../core/audio';
   import { MOOD_PROFILES } from '../../core/moods';
   import { MUSIC } from '../../core/music';
@@ -20,7 +21,12 @@
   import Select from '../../ui/Select.svelte';
   import VoiceSetup from '../voices/VoiceSetup.svelte';
   import { SAMPLE_LINE, SPEED_MAX, SPEED_MIN, VOICES } from '../voices/casts';
-  import { previewVoice } from '../voices/player';
+  import { listenState, previewVoice } from '../voices/player';
+  import { measureFootprint, programSize, type Footprint, type Part } from './footprint';
+  import { downloadModel, removeModel, tierBytes } from '../voices/model';
+  import { refreshModel } from '../voices/state';
+  import { stopEngine } from '../voices/engine';
+  import { navigate } from '../../core/router';
   import { modelReady } from '../voices/state';
 
   let { tab: initial = 'general' }: { tab?: string } = $props();
@@ -43,6 +49,36 @@
   let usageArt = $state(0);
   let usageContent = $state(0);
   let backend = $state('');
+  let footprint = $state<Footprint | null>(null);
+  let working = $state('');
+  async function refreshFootprint() {
+    footprint = await measureFootprint(await programSize());
+  }
+  async function fix(p: Part) {
+    if (p.remedy === 'gallery') navigate({ name: 'gallery' });
+    else if (p.remedy === 'content') navigate({ name: 'updates' });
+    else if (p.remedy === 'update-leftovers') {
+      await (await getStorage()).remove('update');
+      await refreshFootprint();
+    } else if (p.remedy === 'voices-standard' || p.remedy === 'voices-fast') {
+      const tier = p.remedy === 'voices-fast' ? 'fast' : 'standard';
+      if (p.bytes > 0) {
+        const ok = await confirmDialog({ title: `Remove the ${p.label.toLowerCase()}?`, message: 'This frees the space. Your choices for each character are kept, and you can download them again any time from here or from Voices.', confirmLabel: 'Remove', danger: true });
+        if (!ok) return;
+        stopEngine();
+        await removeModel(tier);
+      } else {
+        working = `Downloading the ${p.label.toLowerCase()}…`;
+        const r = await downloadModel(tier);
+        working = '';
+        stopEngine();
+        if (!r.ok) toast(r.message, 'error', 6000);
+      }
+      await refreshModel();
+      await refreshFootprint();
+    }
+  }
+  const actionText = (p: Part) => (p.remedy === 'gallery' ? 'Open Gallery' : p.remedy === 'content' ? 'Manage' : p.remedy === 'update-leftovers' ? 'Clear' : p.bytes > 0 ? 'Remove' : 'Download again');
 
   onMount(async () => {
     const st = await getStorage();
@@ -50,6 +86,7 @@
     root = await st.describeRoot();
     usageArt = await st.usage('artworks');
     usageContent = await st.usage('content');
+    void refreshFootprint();
   });
 
   async function openFolder() {
@@ -162,11 +199,43 @@
           <h3 class="mini">Narrator</h3>
           <Select label="Voice for everything that is not spoken" value={$settings.voiceNarrator} options={VOICES.map((v) => ({ value: v.id, label: `${v.name} · ${v.accent} · ${v.feel}` }))} onchange={(v) => updateSettings({ voiceNarrator: v })} />
           <Slider label="Narrator speed" value={$settings.voiceNarratorSpeed} min={SPEED_MIN} max={SPEED_MAX} step={0.05} format={(v) => `${v.toFixed(2).replace(/0$/, '')}×`} onchange={(v) => updateSettings({ voiceNarratorSpeed: v })} />
-          <div class="hear"><Button variant="soft" icon="play" onclick={() => previewVoice(SAMPLE_LINE, $settings.voiceNarrator, $settings.voiceNarratorSpeed)}>Hear the narrator</Button></div>
+          <div class="hear">
+            <Button variant="soft" icon="play" disabled={$listenState.status === 'loading' || $listenState.status === 'playing'} onclick={() => previewVoice(SAMPLE_LINE, $settings.voiceNarrator, $settings.voiceNarratorSpeed)}>
+              {$listenState.status === 'loading' ? 'Getting ready…' : $listenState.status === 'playing' ? 'Speaking…' : 'Hear the narrator'}
+            </Button>
+            {#if $listenState.status === 'loading'}<span class="muted">The first time takes a few seconds on this computer.</span>{/if}
+            {#if $listenState.status === 'error'}<p class="note" role="alert">{$listenState.message}</p>{/if}
+          </div>
         {/if}
         <p class="note small">Voices: Kokoro-82M (Apache-2.0). Speech engine: ONNX Runtime (MIT) and eSpeak NG (GPL-3.0) through the phonemizer package. Everything runs on this computer. Full notices are in docs/VOICES.md.</p>
       {:else if tab === 'storage'}
         <h2>Storage</h2>
+        <div class="total">
+          <div>
+            <span class="big">{footprint ? formatBytes(footprint.total) : '…'}</span>
+            <strong>Everything {BRAND_NAME} uses on this computer</strong>
+            {#if footprint}
+              <small>
+                {#if footprint.program !== null}The program {formatBytes(footprint.program)} · {/if}Your files and downloads {formatBytes(footprint.data)}
+              </small>
+            {/if}
+          </div>
+        </div>
+        {#if working}<p class="note" role="status">{working}</p>{/if}
+        {#if footprint}
+          <ul class="parts">
+            {#each footprint.parts as p (p.id)}
+              <li>
+                <div class="what">
+                  <strong>{p.label}</strong>
+                  <small>{p.note}</small>
+                </div>
+                <b class="sz">{p.bytes > 0 ? formatBytes(p.bytes) : p.remedy.startsWith('voices') ? `not downloaded (${formatBytes(tierBytes(p.remedy === 'voices-fast' ? 'fast' : 'standard'))})` : '—'}</b>
+                {#if p.remedy !== 'none'}<Button size="sm" variant="ghost" disabled={!!working} onclick={() => fix(p)}>{actionText(p)}</Button>{/if}
+              </li>
+            {/each}
+          </ul>
+        {/if}
         <div class="kv"><span>Artwork &amp; settings folder</span><code>{root}</code></div>
         <div class="kv"><span>Storage type</span><b>{backend === 'tauri' ? 'Windows app-data folder' : backend === 'browser' ? 'Browser (development)' : backend}</b></div>
         <div class="kv"><span>Artwork size</span><b>{formatBytes(usageArt)}</b></div>
@@ -175,7 +244,7 @@
         <div class="foot"><Button variant="soft" icon="folder" onclick={openFolder}>Open folder</Button></div>
       {:else}
         <h2>About</h2>
-        <p>{BRAND_FULL} v{APP_VERSION} is a calm place to color, draw and play.</p>
+        <p>{BRAND_FULL} v{APP_VERSION} {$edition} is a calm place to color, draw and play.</p>
         <p class="muted">No accounts, no tracking, no ads. It works fully offline.</p>
       {/if}
     </section>
@@ -237,8 +306,64 @@
     margin-top: 16px;
     font-size: 0.95rem;
   }
+  .total {
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    border-radius: 20px;
+    background: rgb(var(--w) / 0.7);
+    margin-bottom: 10px;
+  }
+  .total > div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .big {
+    font-size: 1.9rem;
+    font-weight: 900;
+    line-height: 1.1;
+  }
+  .total small,
+  .parts small {
+    color: var(--ink-soft);
+    font-weight: 700;
+    font-size: 0.8rem;
+    line-height: 1.35;
+  }
+  .parts {
+    list-style: none;
+    margin: 0 0 12px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .parts li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 16px;
+    border-radius: 18px;
+    background: rgb(var(--w) / 0.55);
+  }
+  .what {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .sz {
+    white-space: nowrap;
+    font-size: 0.9rem;
+  }
   .hear {
     margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
   }
   .note.small {
     font-size: 0.8rem;

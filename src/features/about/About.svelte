@@ -2,6 +2,7 @@
   import Logo from '../../ui/Logo.svelte';
   import Icon from '../../ui/Icon.svelte';
   import { APP_VERSION } from '../../core/version';
+  import { edition } from '../premium/license';
   import { BRAND_NAME, BRAND_SUBTITLE, DREAM_WORDS } from '../../core/brand';
   import { catalog } from '../../core/content/registry';
 
@@ -17,7 +18,7 @@
     <p class="dream" aria-label={DREAM_WORDS.join(', ')}>
       {#each DREAM_WORDS as w, i (w)}<span><b>{w[0]}</b>{w.slice(1)}</span>{#if i < DREAM_WORDS.length - 1}<i aria-hidden="true">•</i>{/if}{/each}
     </p>
-    <p class="ver">Version {APP_VERSION}</p>
+    <p class="ver">Version {APP_VERSION} {$edition}</p>
     <p class="blurb">A small, gentle place to color, draw and play. No scores to chase, no accounts to make — just soft colors and slow clouds.</p>
 
     <div class="stats">

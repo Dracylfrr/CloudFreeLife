@@ -38,6 +38,14 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 - [ ] Splash Wall: all 16 levels open; aim, click-throw, hold-to-charge throw; splat stays in the region; goals count correctly; color match hints; Wash and Save PNG.
 - [ ] Pause with P; minimize the window and confirm CPU drops to ~0.
 
+## 2.1.0 checks (fast voices, storage, edition label)
+- [ ] Settings > Voices on a computer with a graphics chip offers Fast voices as recommended; downloading it shows progress and ends with "Fast voices are ready". Listen then says "Speaking with the graphics chip" and speech keeps ahead of what you hear.
+- [ ] With only Standard voices downloaded, Listen still works (slower, with "catching up" pauses). Removing Fast voices leaves Standard working, and removing the last one frees everything.
+- [ ] If the graphics chip is not usable (older computer or driver), Fast voices show "this computer cannot use them" and Standard voices work.
+- [ ] Settings > Storage shows one big total, the program size, and a row for each piece (artwork, avatar, downloaded content, voices, update leftovers, license, everything small) that add up. Remove a voice row, then Download again: the size returns.
+- [ ] The version in the sidebar footer, About, Settings and Updates ends with Base, or Premium once a license has been applied.
+- [ ] Hear the narrator in Settings > Voices says Getting ready…, then Speaking…, within a few seconds; pressing it again plays at once.
+
 ## 2.0.2 checks (reading aloud feels responsive)
 - [ ] Press Listen on a story: the bar says the first words are being prepared, and speech starts within a few seconds (not ten or more). Later it may say it is catching up, then carries on.
 - [ ] Updates > Premium content is not shown at all while no premium pack is on offer.

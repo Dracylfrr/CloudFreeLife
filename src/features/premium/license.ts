@@ -10,7 +10,7 @@
  *
  * No license means everything else works as before: premium packs simply stay locked.
  */
-import { get, writable } from 'svelte/store';
+import { derived, get, writable } from 'svelte/store';
 import { getStorage, isTauri } from '../../core/storage';
 import { decodeBase64 } from '../updates/packs';
 
@@ -43,6 +43,10 @@ export type LicenseState =
   | { status: 'bad'; message: string };
 
 export const licenseState = writable<LicenseState>({ status: 'unknown' });
+
+/** Which version of the app this is: "Premium" once a license has been applied, otherwise "Base". */
+export type Edition = 'Premium' | 'Base';
+export const edition = derived(licenseState, (s): Edition => (s.status === 'ok' ? 'Premium' : 'Base'));
 
 /** The native checks, swappable so tests (and the browser preview) can stand in for them. */
 export interface PremiumBackend {
