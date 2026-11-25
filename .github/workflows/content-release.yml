@@ -1,8 +1,10 @@
 name: Content release
 
 # Push a tag such as castle_dreams_v1.0.0 to publish a downloadable content pack.
-# The pack source must be committed under content-packs/<id>/ (same layout as content/).
-# content-packs/<id>/pack.json holds the pack's name, description, kind and minAppVersion.
+#   - A free pack: its source is committed under content-packs/<id>/ (same layout as content/), with
+#     content-packs/<id>/pack.json holding the pack's name, description, kind and minAppVersion.
+#   - A premium pack: its ENCRYPTED files (made on the author's computer with scripts/dlc.mjs) are committed under
+#     premium-releases/<tag>/ and are published as they are. The stories themselves are never in this repository.
 on:
   push:
     tags: ['*_v[0-9]*.[0-9]*.[0-9]*', '!kokoro_voices_v*']
@@ -26,9 +28,15 @@ jobs:
           ID="${TAG%_v*}"
           if [ -f "content-packs/$ID/pack.json" ]; then
             echo "build=true" >> "$GITHUB_OUTPUT"
+            echo "premium=false" >> "$GITHUB_OUTPUT"
+          elif ls "premium-releases/$TAG/"*.dreampack >/dev/null 2>&1 && [ -f "premium-releases/$TAG/cloud-freelife-release.json" ]; then
+            echo "build=false" >> "$GITHUB_OUTPUT"
+            echo "premium=true" >> "$GITHUB_OUTPUT"
+            echo "Publishing the encrypted premium pack for $TAG."
           else
             echo "build=false" >> "$GITHUB_OUTPUT"
-            echo "No free pack source for $ID in this repository: premium packs are published from the private repository."
+            echo "premium=false" >> "$GITHUB_OUTPUT"
+            echo "Nothing to publish for $TAG in this repository."
           fi
       - name: Build the pack
         if: steps.chk.outputs.build == 'true'
@@ -46,3 +54,9 @@ jobs:
         if: steps.chk.outputs.build == 'true'
         with:
           files: release/*
+      - uses: softprops/action-gh-release@v2
+        if: steps.chk.outputs.premium == 'true'
+        with:
+          name: ${{ github.ref_name }}
+          body: Premium content. It is encrypted and needs a license to open.
+          files: premium-releases/${{ github.ref_name }}/*

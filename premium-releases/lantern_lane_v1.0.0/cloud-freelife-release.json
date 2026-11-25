@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "release": "1.0.0",
+  "content": [
+    {
+      "type": "stories",
+      "id": "lantern_lane",
+      "name": "Lantern Lane",
+      "description": "Two more evenings at the little library on Lantern Lane: The Library After Dark and The Lantern Lane Spring Fair.",
+      "version": "1.0.0",
+      "minAppVersion": "1.9.0",
+      "premium": true,
+      "asset": {
+        "name": "lantern_lane_v1.0.0.dreampack",
+        "sha256": "7e493da99a206000eb20ebca30df8cdb7b9f9fc4bd08f51f17a13f951b2717d6",
+        "size": 43287,
+        "contentType": "application/octet-stream"
+      }
+    }
+  ]
+}

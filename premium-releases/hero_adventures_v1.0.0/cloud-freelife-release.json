@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "release": "1.0.0",
+  "content": [
+    {
+      "type": "adventures",
+      "id": "hero_adventures",
+      "name": "Hero Adventures",
+      "description": "Ten adventures where you are the hero, with your own avatar and many endings: dragons, castles, clock towers, kites, lighthouses and sky ships.",
+      "version": "1.0.0",
+      "minAppVersion": "1.9.0",
+      "premium": true,
+      "asset": {
+        "name": "hero_adventures_v1.0.0.dreampack",
+        "sha256": "4c1117e94a64b124c80eb3cf8936ddb5cc12286583d1df2ff89032a85a2190a6",
+        "size": 355430,
+        "contentType": "application/octet-stream"
+      }
+    }
+  ]
+}

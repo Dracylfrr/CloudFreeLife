@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "release": "1.0.0",
+  "content": [
+    {
+      "type": "stories",
+      "id": "cozy_collection",
+      "name": "Cozy Collection",
+      "description": "Six gentle stories: a kite maker, a snail postman, a mountain hot spring, a dream weaver, a floating island and a lighthouse cat.",
+      "version": "1.0.0",
+      "minAppVersion": "1.9.0",
+      "premium": true,
+      "asset": {
+        "name": "cozy_collection_v1.0.0.dreampack",
+        "sha256": "ea0e3419f1d0d371ba5b433df2dcca4db35c1c32922f17b8a058daae4eab2109",
+        "size": 110117,
+        "contentType": "application/octet-stream"
+      }
+    }
+  ]
+}

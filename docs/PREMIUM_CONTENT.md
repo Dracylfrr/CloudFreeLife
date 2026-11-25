@@ -33,6 +33,8 @@ node scripts/dlc.mjs pack ..\projectDreamResources\packs\lantern_lane\content --
 
 This writes `release/lantern_lane_v1.0.0.dreampack` and `release/cloud-freelife-release.json`. Create a GitHub release tagged `lantern_lane_v1.0.0` on the **public** repo and attach both files. The pack's key is made the first time and reused for later versions, so existing licenses keep opening new versions.
 
+**Without the private repo's workflow** (what the first publication used): make the pack with the command above into `premium-releases/<id>_v<version>/` in this repository, commit it (it is encrypted, so that is safe) and push the tag `<id>_v<version>`. The "Content release" workflow publishes the two files as the release, with no secrets needed.
+
 `docs/premium/build-premium-pack.yml` is a workflow for the private repo that does the same on a tag push. It needs two secrets there: `PACK_KEYS_JSON` (the contents of `~/.dream-dlc/pack-keys.json`) and `PUBLIC_RELEASES_TOKEN` (a fine-grained token with write access to the public repo's releases only).
 
 ## Make a license

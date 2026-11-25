@@ -2,6 +2,10 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com), and the project uses [Semantic Versioning](https://semver.org).
 
+## [Premium packs 1.0.0]
+
+- The first three premium packs are published as encrypted releases: **Lantern Lane** (parts 2 and 3), **Cozy Collection** (six stories) and **Hero Adventures** (ten adventures where you are the hero). They open with a license; without one they show as locked.
+
 ## [2.1.0]
 
 ### Added
