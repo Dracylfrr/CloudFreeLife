@@ -2,6 +2,8 @@ node_modules/
 dist/
 release/
 src-tauri/target/
+# copied from node_modules by scripts/copy-tts.mjs
+public/tts/
 # premium content: keys and licenses never belong in the project
 .dream-dlc/
 *.dreamlicense

@@ -35,6 +35,7 @@ import { existing as existingArt } from './stories/art_existing.mjs';
 import { newCovers, newIllustrations } from './stories/art_new.mjs';
 import { relaxingV18 } from './stories/relaxing_v18.mjs';
 import { v18Covers } from './stories/art_v18.mjs';
+import { casts } from './stories/casts.mjs';
 
 const storyCovers = { ...oldCovers, ...newCovers, ...v18Covers };
 // Stories that belong to a series (new in 1.8). The rest of each series is optional extra content.
@@ -295,6 +296,7 @@ for (const [i, st] of allStories.entries()) {
       accent: st.accent,
       mood: st.mood,
       ...((st.series ?? SERIES[st.id]) ? { series: st.series ?? SERIES[st.id] } : {}),
+      ...(casts[st.id] ? { cast: casts[st.id] } : {}),
       ...(st.minutes ? { minutes: st.minutes } : {}),
       order: i + 1,
       chapters
@@ -323,6 +325,7 @@ for (const [i, ad] of allAdventures.entries()) {
       protagonist: ad.protagonist,
       ...(ad.interest ? { interest: ad.interest } : {}),
       hero: ad.hero,
+      ...(casts[ad.id] ? { cast: casts[ad.id] } : {}),
       minutes: ad.minutes,
       order: i + 1,
       start: ad.start,

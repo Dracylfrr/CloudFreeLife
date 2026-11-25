@@ -2,6 +2,19 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com), and the project uses [Semantic Versioning](https://semver.org).
 
+## [2.0.0]
+
+### Added
+- **Spoken stories.** Cozy Stories and Story Adventures can be read aloud, on your own computer, with no internet once the voices are downloaded. Press **Listen** on a story or adventure: it reads the chapter or passage a line at a time, highlights the paragraph being read, and (in adventures) reads the choices afterwards. Pause, keep listening and stop are beside it.
+- **A voice for every character.** Stories now have a cast. Each speaking character has their own voice and speed, chosen to suit them: a jolly bear sounds jolly, a gentle girl soft, a wise old tortoise deep and calm. The nine voices are Nicole, Bella, Sarah, Emma, Isabella, Michael, Onyx, Santa and Lewis (American and British). Open **Voices** on any story to change a character's voice or speed and to **Hear** it; your choices are **saved automatically** for each character of each story, with a way back to the suggested voices.
+- **Settings > Voices** to download or remove the voices, and to choose the narrator for every story.
+- The voices are an **optional download** (about 93 MB), never part of the installer. Each file is checked against a checksum before it is used.
+- Casts for the bundled stories and adventures, and a `cast` field that any story or pack can carry (see `docs/VOICES.md`). A story with no cast is read entirely by the narrator.
+
+### Notes
+- The speech is made on your computer and takes about as long as the speech lasts, so it starts after a short wait and sometimes says "Catching up…" before carrying on. A faster computer reads more smoothly.
+- The voices are Kokoro-82M (Apache-2.0), run with ONNX Runtime (MIT) and the eSpeak NG based phonemizer (GPL-3.0). The notices are in Settings > Voices and `docs/VOICES.md`.
+
 ## [1.9.1]
 
 ### Changed

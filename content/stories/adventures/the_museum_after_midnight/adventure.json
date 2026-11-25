@@ -9,6 +9,17 @@
   "genre": "Mystery",
   "protagonist": "girl",
   "hero": "Juniper",
+  "cast": [
+    {
+      "id": "portrait",
+      "name": "the portrait",
+      "gender": "f",
+      "trait": "proper",
+      "aka": [
+        "portrait"
+      ]
+    }
+  ],
   "minutes": 8,
   "order": 6,
   "start": "start",

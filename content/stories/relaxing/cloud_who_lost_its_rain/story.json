@@ -7,6 +7,35 @@
   "cover": "cover.svg",
   "accent": "#8fc7ec",
   "mood": "Soothing",
+  "cast": [
+    {
+      "id": "pebble",
+      "name": "Pebble",
+      "gender": "f",
+      "trait": "gentle",
+      "aka": [
+        "the little cloud"
+      ]
+    },
+    {
+      "id": "wind",
+      "name": "the Wind",
+      "gender": "m",
+      "trait": "gentle"
+    },
+    {
+      "id": "sun",
+      "name": "the Sun",
+      "gender": "f",
+      "trait": "warm"
+    },
+    {
+      "id": "frog",
+      "name": "the frog",
+      "gender": "m",
+      "trait": "wise"
+    }
+  ],
   "minutes": 4,
   "order": 1,
   "chapters": [

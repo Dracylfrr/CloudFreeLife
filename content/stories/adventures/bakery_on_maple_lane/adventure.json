@@ -10,6 +10,14 @@
   "protagonist": "girl",
   "interest": "Elliot",
   "hero": "Nora",
+  "cast": [
+    {
+      "id": "elliot",
+      "name": "Elliot",
+      "gender": "m",
+      "trait": "warm"
+    }
+  ],
   "minutes": 9,
   "order": 3,
   "start": "start",

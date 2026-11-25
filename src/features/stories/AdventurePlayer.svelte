@@ -10,6 +10,8 @@
   import Icon from '../../ui/Icon.svelte';
   import { sfx } from '../../core/audio';
   import MyAvatar from '../avatar/MyAvatar.svelte';
+  import ListenBar from '../voices/ListenBar.svelte';
+  import { listenState } from '../voices/player';
   import { hasAvatar, openAvatarEditor } from '../avatar/state';
 
   let { adventureId }: { adventureId: string } = $props();
@@ -29,6 +31,8 @@
   const endings = $derived(adv ? listEndings(adv) : []);
   const found = $derived($storyProgress.adventures[aid]?.endings ?? []);
   const step = $derived(run.path.length);
+  // when listening, the choices are read after the passage
+  const choiceLines = $derived((node?.choices ?? []).map((c, i) => `Choice ${i + 1}. ${c.text}.`));
 
   async function commit(next: AdventureRun) {
     run = next;
@@ -94,14 +98,15 @@
       {/if}
 
       {#if node}
+        <ListenBar storyId={aid} title={adv.name} cast={adv.cast} paragraphs={node.text} extras={choiceLines} />
         {#key currentId(run)}
           <div class="text" class:end={!!ending}>
             {#if ending}
               <p class="eyebrow">The End · {found.length} of {endings.length} endings found</p>
               <h2 class="ending-title mood-{ending.mood}">{ending.title}</h2>
             {/if}
-            {#each node.text as para}
-              <p>{para}</p>
+            {#each node.text as para, i}
+              <p data-listen-para={i} class:reading={$listenState.status !== 'idle' && $listenState.para === i}>{para}</p>
             {/each}
           </div>
         {/key}
@@ -232,6 +237,11 @@
     color: var(--ink-soft);
     font-style: italic;
     margin-bottom: 14px;
+  }
+  .text p.reading {
+    background: rgb(var(--w) / 0.55);
+    border-radius: 14px;
+    box-shadow: inset 4px 0 0 var(--accent);
   }
   .text p {
     font-family: Georgia, 'Times New Roman', serif;

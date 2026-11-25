@@ -12,6 +12,32 @@
     "name": "The Night Train",
     "order": 3
   },
+  "cast": [
+    {
+      "id": "tilly",
+      "name": "Tilly",
+      "gender": "f",
+      "trait": "gentle"
+    },
+    {
+      "id": "bear",
+      "name": "the bear",
+      "gender": "m",
+      "trait": "jolly"
+    },
+    {
+      "id": "mole",
+      "name": "the mole",
+      "gender": "m",
+      "trait": "proper"
+    },
+    {
+      "id": "marigold",
+      "name": "Marigold",
+      "gender": "f",
+      "trait": "bright"
+    }
+  ],
   "order": 12,
   "chapters": [
     {

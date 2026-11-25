@@ -7,6 +7,26 @@
   "cover": "cover.svg",
   "accent": "#a698e0",
   "mood": "Bedtime",
+  "cast": [
+    {
+      "id": "olive",
+      "name": "Olive",
+      "gender": "f",
+      "trait": "gentle",
+      "aka": [
+        "the little owl"
+      ]
+    },
+    {
+      "id": "dot",
+      "name": "Dot",
+      "gender": "f",
+      "trait": "bright",
+      "aka": [
+        "the firefly"
+      ]
+    }
+  ],
   "minutes": 5,
   "order": 2,
   "chapters": [

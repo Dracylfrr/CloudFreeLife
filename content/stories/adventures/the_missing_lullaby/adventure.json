@@ -9,6 +9,35 @@
   "genre": "Mystery",
   "protagonist": "girl",
   "hero": "Hana",
+  "cast": [
+    {
+      "id": "goose",
+      "name": "the goose",
+      "gender": "f",
+      "trait": "jolly",
+      "aka": [
+        "goose"
+      ]
+    },
+    {
+      "id": "bee",
+      "name": "the fluffy bee",
+      "gender": "f",
+      "trait": "bright",
+      "aka": [
+        "fluffy bee"
+      ]
+    },
+    {
+      "id": "pennywhistle",
+      "name": "Pennywhistle",
+      "gender": "m",
+      "trait": "jolly",
+      "aka": [
+        "the magpie"
+      ]
+    }
+  ],
   "minutes": 12,
   "order": 7,
   "start": "start",

@@ -9,6 +9,23 @@
   "genre": "Comedy",
   "protagonist": "guy",
   "hero": "Benji",
+  "cast": [
+    {
+      "id": "gran",
+      "name": "Gran",
+      "gender": "f",
+      "trait": "wise",
+      "aka": [
+        "Grandma"
+      ]
+    },
+    {
+      "id": "pip",
+      "name": "Pip",
+      "gender": "f",
+      "trait": "bright"
+    }
+  ],
   "minutes": 8,
   "order": 5,
   "start": "start",

@@ -38,6 +38,16 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 - [ ] Splash Wall: all 16 levels open; aim, click-throw, hold-to-charge throw; splat stays in the region; goals count correctly; color match hints; Wash and Save PNG.
 - [ ] Pause with P; minimize the window and confirm CPU drops to ~0.
 
+## 2.0.0 checks (spoken stories)
+- [ ] Settings > Voices offers "Download voices (93 MB)"; the download shows progress and ends with "The voices are on this computer". Nothing downloads without pressing it.
+- [ ] A Cozy Story has a Listen button above its text. Before the voices are downloaded it says "Listen · set up voices" and opens the Voices window.
+- [ ] Listen reads the chapter, highlights the paragraph being read and keeps it in view; Pause, Keep listening and Stop work; leaving the chapter or the story stops it.
+- [ ] Voices > each character has a different voice that suits them (Tilly soft, the bear low and jolly, the owl proper). Hear plays a short sample for that voice and speed.
+- [ ] Changing a character's voice or speed is saved with nothing to press: leave the story, come back, and it is still chosen. "Back to the suggested voices" undoes it.
+- [ ] A Story Adventure reads the passage, then "Choice 1. ...", "Choice 2. ...".
+- [ ] A story without a cast is read by the narrator only. Removing the voices (Settings > Voices) frees the space and Listen asks to set them up again.
+- [ ] Reading aloud never freezes the app; the speed slider (0.6x to 1.4x) clearly changes the pace.
+
 ## 1.9.1 checks (green update dot, no Settings > Updates)
 - [ ] With an update available, the dot beside Updates in the sidebar (and on the folded "App controls" group) is green, in every theme.
 - [ ] Settings has General, Display, Audio, Accessibility, Storage and About, and no Updates tab.

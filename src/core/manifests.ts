@@ -4,6 +4,7 @@
  * by JSON files and validated here before the app ever uses them.
  */
 import { APP_VERSION, isValidVersion, meetsMinVersion } from './version';
+import { TRAITS, isVoice, type CastMember, type Trait } from '../features/voices/casts';
 
 export type Result<T> = { ok: true; value: T } | { ok: false; errors: string[] };
 
@@ -510,6 +511,27 @@ export interface StoryChapter extends Partial<Illustration> {
   scenes?: StoryScene[];
 }
 
+/**
+ * The speaking characters of a story, for the read-aloud voices. Optional: a story without one is
+ * read entirely by the narrator. Anything malformed is dropped, so a story is never refused over it.
+ */
+export function readCast(raw: unknown): CastMember[] | undefined {
+  if (!Array.isArray(raw)) return undefined;
+  const out: CastMember[] = [];
+  const seen = new Set<string>();
+  for (const c of raw.slice(0, 12)) {
+    if (!isObj(c) || typeof c.id !== 'string' || !/^[a-z0-9][a-z0-9_]{0,31}$/.test(c.id) || c.id === 'narrator' || seen.has(c.id)) continue;
+    if (typeof c.name !== 'string' || !c.name.trim() || c.name.length > 40 || (c.gender !== 'f' && c.gender !== 'm')) continue;
+    seen.add(c.id);
+    const member: CastMember = { id: c.id, name: c.name.trim(), gender: c.gender };
+    if (typeof c.trait === 'string' && (TRAITS as readonly string[]).includes(c.trait)) member.trait = c.trait as Trait;
+    if (Array.isArray(c.aka)) member.aka = c.aka.filter((a): a is string => typeof a === 'string' && a.trim().length > 0 && a.length <= 40).slice(0, 6);
+    if (isVoice(c.voice)) member.voice = c.voice;
+    out.push(member);
+  }
+  return out.length ? out : undefined;
+}
+
 export interface StoryManifest extends Partial<Illustration> {
   id: string;
   name: string;
@@ -524,6 +546,8 @@ export interface StoryManifest extends Partial<Illustration> {
   minutes?: number;
   order?: number;
   series?: SeriesInfo;
+  /** Speaking characters, for the read-aloud voices. */
+  cast?: CastMember[];
   chapters: StoryChapter[];
 }
 
@@ -561,6 +585,8 @@ export interface AdventureManifest {
   minutes?: number;
   order?: number;
   series?: SeriesInfo;
+  /** Speaking characters, for the read-aloud voices. */
+  cast?: CastMember[];
   start: string;
   nodes: Record<string, AdventureNode>;
 }
@@ -640,6 +666,7 @@ export function validateStory(raw: unknown, where = 'story.json'): Result<StoryM
     order: typeof raw.order === 'number' && Number.isFinite(raw.order) ? raw.order : undefined,
     ...readIllustration(raw),
     ...(readSeries(raw) ? { series: readSeries(raw) } : {}),
+    ...(readCast(raw.cast) ? { cast: readCast(raw.cast) } : {}),
     chapters: []
   };
   if (!Array.isArray(raw.chapters) || raw.chapters.length === 0) e.add('"chapters" must be a non-empty list');
@@ -693,6 +720,7 @@ export function validateAdventure(raw: unknown, where = 'adventure.json'): Resul
     minutes: typeof raw.minutes === 'number' && raw.minutes > 0 && raw.minutes < 600 ? Math.round(raw.minutes) : undefined,
     order: typeof raw.order === 'number' && Number.isFinite(raw.order) ? raw.order : undefined,
     ...(readSeries(raw) ? { series: readSeries(raw) } : {}),
+    ...(readCast(raw.cast) ? { cast: readCast(raw.cast) } : {}),
     start: reqString(raw, 'start', e, 48),
     nodes: {}
   };

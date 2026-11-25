@@ -12,6 +12,42 @@
     "name": "Lantern Lane",
     "order": 1
   },
+  "cast": [
+    {
+      "id": "hester",
+      "name": "Hester Quill",
+      "gender": "f",
+      "trait": "wise",
+      "aka": [
+        "Hester",
+        "Miss Quill"
+      ]
+    },
+    {
+      "id": "pim",
+      "name": "Pim",
+      "gender": "f",
+      "trait": "bright"
+    },
+    {
+      "id": "barnaby",
+      "name": "Barnaby",
+      "gender": "m",
+      "trait": "wise",
+      "aka": [
+        "the tortoise"
+      ]
+    },
+    {
+      "id": "rowan",
+      "name": "Rowan",
+      "gender": "m",
+      "trait": "warm",
+      "aka": [
+        "the fox"
+      ]
+    }
+  ],
   "order": 8,
   "chapters": [
     {

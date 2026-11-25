@@ -10,6 +10,14 @@
   "protagonist": "guy",
   "interest": "Clara",
   "hero": "Sam",
+  "cast": [
+    {
+      "id": "clara",
+      "name": "Clara",
+      "gender": "f",
+      "trait": "warm"
+    }
+  ],
   "minutes": 9,
   "order": 4,
   "start": "start",

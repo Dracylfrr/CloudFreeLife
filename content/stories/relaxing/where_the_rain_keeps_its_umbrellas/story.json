@@ -7,6 +7,23 @@
   "cover": "cover.svg",
   "accent": "#8fc7ec",
   "mood": "Gentle",
+  "cast": [
+    {
+      "id": "wick",
+      "name": "Wick",
+      "gender": "m",
+      "trait": "gentle"
+    },
+    {
+      "id": "tansy",
+      "name": "Aunt Tansy",
+      "gender": "f",
+      "trait": "warm",
+      "aka": [
+        "Tansy"
+      ]
+    }
+  ],
   "order": 9,
   "chapters": [
     {

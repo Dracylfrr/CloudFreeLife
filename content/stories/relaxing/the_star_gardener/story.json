@@ -7,6 +7,26 @@
   "cover": "cover.svg",
   "accent": "#f4d77a",
   "mood": "Dreamy",
+  "cast": [
+    {
+      "id": "luma",
+      "name": "Luma",
+      "gender": "f",
+      "trait": "bright"
+    },
+    {
+      "id": "marlow",
+      "name": "Marlow",
+      "gender": "m",
+      "trait": "wise"
+    },
+    {
+      "id": "star",
+      "name": "the star",
+      "gender": "f",
+      "trait": "gentle"
+    }
+  ],
   "order": 10,
   "chapters": [
     {

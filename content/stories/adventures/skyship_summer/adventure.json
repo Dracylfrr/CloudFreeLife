@@ -9,6 +9,17 @@
   "genre": "Adventure",
   "protagonist": "guy",
   "hero": "Theo",
+  "cast": [
+    {
+      "id": "gull",
+      "name": "Captain Gull",
+      "gender": "f",
+      "trait": "jolly",
+      "aka": [
+        "the gull"
+      ]
+    }
+  ],
   "minutes": 8,
   "order": 2,
   "start": "start",

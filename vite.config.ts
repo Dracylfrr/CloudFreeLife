@@ -12,6 +12,8 @@ export default defineConfig({
     watch: { ignored: ['**/src-tauri/**'] }
   },
   envPrefix: ['VITE_', 'TAURI_ENV_*'],
+  // the voice engine runs in its own module worker
+  worker: { format: 'es' },
   build: {
     target: 'es2022',
     sourcemap: false,

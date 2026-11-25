@@ -11,6 +11,8 @@
   import Button from '../../ui/Button.svelte';
   import Icon from '../../ui/Icon.svelte';
   import { sfx, fadeMusic } from '../../core/audio';
+  import ListenBar from '../voices/ListenBar.svelte';
+  import { listenState } from '../voices/player';
 
   let { storyId }: { storyId: string } = $props();
   const sid = untrack(() => storyId);
@@ -232,12 +234,13 @@
             <p class="eyebrow">Chapter {page + 1} of {total} · {percent}%</p>
             {#if left}<p class="left" aria-live="off">{formatLeft(left.chapter)} left in this chapter{total > 1 ? ` · ${formatLeft(left.story).toLowerCase()} in the story` : ''}</p>{/if}
             <h2>{chapter.title}</h2>
+            <ListenBar storyId={sid} title={story.manifest.name} cast={story.manifest.cast} paragraphs={chapter.text} from={curPara} />
             {#if chapter.illustration}
               <StoryArt {story} file={chapter.illustration} alt={chapter.illustrationAlt ?? ''} caption={chapter.illustrationCaption ?? ''} />
             {/if}
             <div class="text" bind:this={textEl}>
               {#each chapter.text as para, i}
-                <p data-p={i}>{para}</p>
+                <p data-p={i} data-listen-para={i} class:reading={$listenState.status !== 'idle' && $listenState.para === i}>{para}</p>
                 {#each (chapter.scenes ?? []).filter((sc) => sc.after === i + 1) as sc (sc.illustration)}
                   <StoryArt {story} file={sc.illustration} alt={sc.illustrationAlt ?? ''} caption={sc.illustrationCaption ?? ''} />
                 {/each}
@@ -538,6 +541,11 @@
       opacity: 1;
       transform: none;
     }
+  }
+  .text p.reading {
+    background: rgb(var(--w) / 0.55);
+    border-radius: 14px;
+    box-shadow: inset 4px 0 0 var(--accent);
   }
   .text p {
     font-family: Georgia, 'Times New Roman', serif;

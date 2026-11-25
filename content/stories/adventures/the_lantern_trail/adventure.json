@@ -9,6 +9,26 @@
   "genre": "Adventure",
   "protagonist": "girl",
   "hero": "Mira",
+  "cast": [
+    {
+      "id": "grandpa",
+      "name": "Grandpa",
+      "gender": "m",
+      "trait": "wise"
+    },
+    {
+      "id": "badger",
+      "name": "the badger",
+      "gender": "m",
+      "trait": "jolly"
+    },
+    {
+      "id": "heron",
+      "name": "the heron",
+      "gender": "f",
+      "trait": "proper"
+    }
+  ],
   "minutes": 9,
   "order": 1,
   "start": "start",

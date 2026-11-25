@@ -1,0 +1,30 @@
+name: Voices release
+
+# Push a tag such as voices_v1.0.0 to publish the voice files the app downloads when someone turns on
+# spoken stories. The files are copied from their open-source home (Hugging Face, Apache-2.0) and every
+# one is checked against the checksum pinned in scripts/voices-manifest.json before it is published.
+on:
+  push:
+    tags: ['voices_v*']
+
+permissions:
+  contents: write
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Copy and check the voice files
+        run: node scripts/mirror-voices.mjs --out voices-out
+      - uses: softprops/action-gh-release@v2
+        with:
+          name: Spoken stories: voice files
+          body: |
+            The voice files that Project D.R.E.A.M downloads when you turn on spoken stories. You do not need to download these yourself: the app fetches and checks them for you.
+
+            Kokoro-82M (Apache-2.0), ONNX version from onnx-community. See docs/VOICES.md for the notices.
+          files: voices-out/*

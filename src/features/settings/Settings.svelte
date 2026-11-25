@@ -17,6 +17,11 @@
   import Slider from '../../ui/Slider.svelte';
   import Button from '../../ui/Button.svelte';
   import Icon from '../../ui/Icon.svelte';
+  import Select from '../../ui/Select.svelte';
+  import VoiceSetup from '../voices/VoiceSetup.svelte';
+  import { SAMPLE_LINE, SPEED_MAX, SPEED_MIN, VOICES } from '../voices/casts';
+  import { previewVoice } from '../voices/player';
+  import { modelReady } from '../voices/state';
 
   let { tab: initial = 'general' }: { tab?: string } = $props();
   const TABS = [
@@ -24,6 +29,7 @@
     { id: 'display', label: 'Display', icon: 'image' },
     { id: 'audio', label: 'Audio', icon: 'volume' },
     { id: 'accessibility', label: 'Accessibility', icon: 'heart' },
+    { id: 'voices', label: 'Voices', icon: 'headphones' },
     { id: 'storage', label: 'Storage', icon: 'folder' },
     { id: 'about', label: 'About', icon: 'info' }
   ];
@@ -148,6 +154,17 @@
         <Toggle label="Reduced motion" description="Removes drifting clouds, bubbles and most animation. Nothing decorative moves." checked={$settings.reducedMotion} onchange={(v) => updateSettings({ reducedMotion: v })} />
         <Toggle label="Disable particles" description="No sparkles, bubbles or paint particles in games and effects." checked={$settings.disableParticles} onchange={(v) => updateSettings({ disableParticles: v })} />
         <Toggle label="Higher contrast" description="Darker text and stronger outlines." checked={$settings.highContrast} onchange={(v) => updateSettings({ highContrast: v })} />
+      {:else if tab === 'voices'}
+        <h2>Voices</h2>
+        <p class="note">Stories can be read aloud, with a different voice for each character. Choose the voices here once; each story remembers what you pick for its characters.</p>
+        <VoiceSetup />
+        {#if $modelReady}
+          <h3 class="mini">Narrator</h3>
+          <Select label="Voice for everything that is not spoken" value={$settings.voiceNarrator} options={VOICES.map((v) => ({ value: v.id, label: `${v.name} · ${v.accent} · ${v.feel}` }))} onchange={(v) => updateSettings({ voiceNarrator: v })} />
+          <Slider label="Narrator speed" value={$settings.voiceNarratorSpeed} min={SPEED_MIN} max={SPEED_MAX} step={0.05} format={(v) => `${v.toFixed(2).replace(/0$/, '')}×`} onchange={(v) => updateSettings({ voiceNarratorSpeed: v })} />
+          <div class="hear"><Button variant="soft" icon="play" onclick={() => previewVoice(SAMPLE_LINE, $settings.voiceNarrator, $settings.voiceNarratorSpeed)}>Hear the narrator</Button></div>
+        {/if}
+        <p class="note small">Voices: Kokoro-82M (Apache-2.0). Speech engine: ONNX Runtime (MIT) and eSpeak NG (GPL-3.0) through the phonemizer package. Everything runs on this computer. Full notices are in docs/VOICES.md.</p>
       {:else if tab === 'storage'}
         <h2>Storage</h2>
         <div class="kv"><span>Artwork &amp; settings folder</span><code>{root}</code></div>
@@ -215,6 +232,16 @@
   .panel :global(label.row + label.row),
   .panel :global(label.slider + label.slider) {
     border-top: 1px solid var(--line);
+  }
+  .mini {
+    margin-top: 16px;
+    font-size: 0.95rem;
+  }
+  .hear {
+    margin-top: 10px;
+  }
+  .note.small {
+    font-size: 0.8rem;
   }
   .note {
     display: flex;

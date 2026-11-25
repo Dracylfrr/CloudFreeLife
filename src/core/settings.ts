@@ -5,6 +5,7 @@ import { DEFAULT_THEME, applyTheme, isThemeChoice, systemPrefersDark, type Theme
 import { DEFAULT_APP_ICON, isAppIcon, type AppIconId } from './appIcon';
 import { sanitizeAvatar, sanitizeLooks, type AvatarConfig, type SavedLook } from '../features/avatar/avatar';
 import { cleanFrame, isFrame } from '../features/avatar/frames';
+import { DEFAULT_NARRATOR_VOICE, clampSpeed, isVoice, sanitizeSavedCasts, type SavedCasts } from '../features/voices/casts';
 import { isPaintMode, modeFromLegacy, type PaintMode } from '../features/painting/paintMode';
 
 export const SETTINGS_PATH = 'settings.json';
@@ -45,6 +46,10 @@ export interface Settings {
   avatarLooks: SavedLook[];
   /** Earned avatar frames the person has already been told about (null until first checked). */
   avatarFramesSeen: string[] | null;
+  /** Story voices: the narrator's voice and speed, and what the reader chose for each character of each story. */
+  voiceNarrator: string;
+  voiceNarratorSpeed: number;
+  voiceCasts: SavedCasts;
   /** One-tap feeling preset (v1.3): shapes music, ambience, sound softness and ambient speed. */
   mood: Mood;
   // Accessibility
@@ -91,6 +96,9 @@ export const DEFAULT_SETTINGS: Settings = {
   avatarPicture: 0,
   avatarLooks: [],
   avatarFramesSeen: null,
+  voiceNarrator: DEFAULT_NARRATOR_VOICE,
+  voiceNarratorSpeed: 1,
+  voiceCasts: {},
   mood: 'default',
   reducedMotion: false,
   disableParticles: false,
@@ -140,6 +148,9 @@ export function sanitizeSettings(raw: unknown): Settings {
     avatarPicture: typeof r.avatarPicture === 'number' && Number.isFinite(r.avatarPicture) && r.avatarPicture > 0 ? Math.floor(r.avatarPicture) : 0,
     avatarLooks: sanitizeLooks(r.avatarLooks, isFrame),
     avatarFramesSeen: Array.isArray(r.avatarFramesSeen) ? [...new Set(r.avatarFramesSeen.filter((x): x is string => typeof x === 'string' && isFrame(x)))] : null,
+    voiceNarrator: isVoice(r.voiceNarrator) ? r.voiceNarrator : d.voiceNarrator,
+    voiceNarratorSpeed: clampSpeed(r.voiceNarratorSpeed ?? d.voiceNarratorSpeed),
+    voiceCasts: sanitizeSavedCasts(r.voiceCasts),
     mood: (MOODS as readonly string[]).includes(r.mood as string) ? (r.mood as Mood) : d.mood,
     reducedMotion: bool(r.reducedMotion, d.reducedMotion),
     disableParticles: bool(r.disableParticles, d.disableParticles),

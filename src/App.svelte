@@ -5,6 +5,7 @@
   import Sidebar from './ui/Sidebar.svelte';
   import DialogHost from './ui/DialogHost.svelte';
   import AvatarEditor from './features/avatar/AvatarEditor.svelte';
+  import VoicesPanel from './features/voices/VoicesPanel.svelte';
   import Logo from './ui/Logo.svelte';
   import UpdateNotice from './features/updates/UpdateNotice.svelte';
   import Home from './features/home/Home.svelte';
@@ -120,6 +121,7 @@
 {/if}
 <DialogHost />
 <AvatarEditor />
+<VoicesPanel />
 
 <style>
   .shell {

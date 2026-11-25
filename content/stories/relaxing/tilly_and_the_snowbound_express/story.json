@@ -12,6 +12,42 @@
     "name": "The Night Train",
     "order": 2
   },
+  "cast": [
+    {
+      "id": "tilly",
+      "name": "Tilly",
+      "gender": "f",
+      "trait": "gentle"
+    },
+    {
+      "id": "bear",
+      "name": "the bear",
+      "gender": "m",
+      "trait": "jolly"
+    },
+    {
+      "id": "owl",
+      "name": "the owl",
+      "gender": "f",
+      "trait": "proper"
+    },
+    {
+      "id": "heron",
+      "name": "the heron",
+      "gender": "m",
+      "trait": "proper",
+      "aka": [
+        "the conductor",
+        "conductor"
+      ]
+    },
+    {
+      "id": "marigold",
+      "name": "Marigold",
+      "gender": "f",
+      "trait": "bright"
+    }
+  ],
   "order": 11,
   "chapters": [
     {

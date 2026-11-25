@@ -9,6 +9,26 @@
   "genre": "Comedy",
   "protagonist": "guy",
   "hero": "Otis",
+  "cast": [
+    {
+      "id": "pickle",
+      "name": "Mr. Pickle",
+      "gender": "m",
+      "trait": "proper",
+      "aka": [
+        "Pickle"
+      ]
+    },
+    {
+      "id": "caller",
+      "name": "the small voice",
+      "gender": "f",
+      "trait": "bright",
+      "aka": [
+        "small voice"
+      ]
+    }
+  ],
   "minutes": 11,
   "order": 8,
   "start": "start",

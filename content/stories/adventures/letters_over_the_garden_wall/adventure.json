@@ -10,6 +10,14 @@
   "protagonist": "girl",
   "interest": "Felix",
   "hero": "Wren",
+  "cast": [
+    {
+      "id": "felix",
+      "name": "Felix",
+      "gender": "m",
+      "trait": "warm"
+    }
+  ],
   "minutes": 12,
   "order": 9,
   "start": "start",

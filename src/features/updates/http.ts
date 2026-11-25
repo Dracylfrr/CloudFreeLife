@@ -6,7 +6,7 @@ export interface HttpResult {
   bytes: Uint8Array;
 }
 
-export type HttpGet = (url: string, opts?: { timeoutMs?: number; maxBytes?: number; accept?: string }) => Promise<HttpResult>;
+export type HttpGet = (url: string, opts?: { timeoutMs?: number; maxBytes?: number; accept?: string; onProgress?: (doneBytes: number, totalBytes: number) => void }) => Promise<HttpResult>;
 
 export class NetworkError extends Error {
   constructor(message: string, readonly offline = true) {
@@ -18,7 +18,7 @@ export class NetworkError extends Error {
 /** HTTPS GET with a timeout and a hard size cap. The only network entry point in the app. */
 export const defaultHttpGet: HttpGet = async (url, opts = {}) => {
   if (!url.startsWith('https://')) throw new NetworkError('Only HTTPS requests are allowed', false);
-  const { timeoutMs = 12000, maxBytes = 5 * 1024 * 1024, accept } = opts;
+  const { timeoutMs = 12000, maxBytes = 5 * 1024 * 1024, accept, onProgress } = opts;
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), timeoutMs);
   try {
@@ -35,7 +35,27 @@ export const defaultHttpGet: HttpGet = async (url, opts = {}) => {
     } as RequestInit);
     const declared = Number(res.headers.get('content-length') ?? 0);
     if (declared > maxBytes) throw new NetworkError('Response is larger than allowed', false);
-    const buf = new Uint8Array(await res.arrayBuffer());
+    let buf: Uint8Array;
+    if (onProgress && res.body) {
+      // a big download is read piece by piece so the person can see it moving
+      const reader = res.body.getReader();
+      const parts: Uint8Array[] = [];
+      let got = 0;
+      for (;;) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        got += value.byteLength;
+        if (got > maxBytes) throw new NetworkError('Response is larger than allowed', false);
+        parts.push(value);
+        onProgress(got, declared);
+      }
+      buf = new Uint8Array(got);
+      let at = 0;
+      for (const p of parts) {
+        buf.set(p, at);
+        at += p.byteLength;
+      }
+    } else buf = new Uint8Array(await res.arrayBuffer());
     if (buf.byteLength > maxBytes) throw new NetworkError('Response is larger than allowed', false);
     return { status: res.status, contentType: (res.headers.get('content-type') ?? '').split(';')[0].trim().toLowerCase(), bytes: buf };
   } catch (err) {
