@@ -13,7 +13,7 @@ import { setHttpGet, type HttpGet } from '../src/features/updates/http';
 import { listInstalledPacks } from '../src/features/updates/packs';
 import { lockedFromManifest, parseReleaseManifest, parseReleases, planFromManifest } from '../src/features/updates/release';
 import { installContentUpdate, runUpdateCheck } from '../src/features/updates/updater';
-import { LICENSE_PATH, addLicense, licenseState, licensedIds, loadLicense, openEncryptedPack, removeLicense, setPremiumBackend, type LicenseInfo } from '../src/features/premium/license';
+import { addLicense, licenseState, licensedIds, loadLicense, openEncryptedPack, removeLicense, setPremiumBackend, type LicenseInfo } from '../src/features/premium/license';
 // the author's tool is plain JavaScript, so it has no type declarations
 // @ts-ignore
 import { decryptPack, encryptPack, makeLicense, newKey, verifyLicense } from '../scripts/dlc/lib.mjs';
@@ -130,69 +130,91 @@ describe('Premium packs in a release manifest', () => {
   });
 });
 
-describe('Licenses are found by themselves in the app\'s folder', () => {
-  const lic = (id: string, packs: { id: string; key: Buffer }[]) => JSON.stringify(makeLicense({ id, issued: '2026-01-01', packs: packs.map((p) => ({ id: p.id, key: p.key.toString('base64') })) }, privatePem));
+describe('A license file put in the folder applies itself, then removes itself', () => {
+  const lic = (id: string, packs: { id: string; key: Buffer }[], extra: { expires?: string | null } = {}) => JSON.stringify(makeLicense({ id, issued: '2026-01-01', packs: packs.map((p) => ({ id: p.id, key: p.key.toString('base64') })), ...extra }, privatePem));
+  const dropped = async () => (await mem.list('')).filter((n) => n.toLowerCase().endsWith('.dreamlicense'));
+  const kept = async () => (await mem.list('premium')).sort();
 
-  it('finds a license file dropped into the folder, whatever it is called', async () => {
+  it('applies a file dropped into the folder, whatever it is called, and deletes that file', async () => {
     await mem.writeText('from-a-friend.dreamlicense', lic('friend-1', [{ id: 'castle_dreams', key: packKey }]));
     expect(get(licenseState).status).toBe('unknown');
     const s = await loadLicense();
     expect(s.status).toBe('ok');
     expect([...licensedIds()]).toEqual(['castle_dreams']);
-    expect(s.status === 'ok' && s.found.map((f) => f.file)).toEqual(['from-a-friend.dreamlicense']);
+    expect(await dropped()).toEqual([]); // the file has done its job
+    expect(await kept()).toEqual(['friend-1.lic']); // what the app needs is kept inside its own premium folder
   });
-  it('ignores other files, and says so plainly about a license file that is not valid', async () => {
+  it('keeps working after the file is gone, and after a restart, including for later pack updates', async () => {
+    await mem.writeText('license.dreamlicense', lic('keep-1', [{ id: 'castle_dreams', key: packKey }]));
+    await loadLicense();
+    licenseState.set({ status: 'unknown' });
+    expect((await loadLicense()).status).toBe('ok');
+    expect([...licensedIds()]).toEqual(['castle_dreams']);
+    const { bytes } = await premiumManifest();
+    expect((await openEncryptedPack('castle_dreams', new TextDecoder().decode(bytes))).ok).toBe(true);
+  });
+  it('leaves a file that is not a valid license exactly where it is, and says so plainly', async () => {
     await mem.writeText('notes.txt', 'not a license');
     await mem.writeText('settings.json', '{}');
     expect((await loadLicense()).status).toBe('none');
     await mem.writeText('broken.dreamlicense', '{"format":1}');
     const s = await loadLicense();
     expect(s).toEqual({ status: 'bad', message: 'That file is not a valid license.' });
+    expect(await dropped()).toEqual(['broken.dreamlicense']);
+    expect(await mem.exists('notes.txt')).toBe(true);
     expect(licensedIds().size).toBe(0);
   });
-  it('a bad file beside a good one does not matter', async () => {
+  it('an expired or forged license file is not applied and not deleted', async () => {
+    const other = generateKeyPairSync('ed25519').privateKey.export({ type: 'pkcs8', format: 'pem' }) as string;
+    await mem.writeText('old.dreamlicense', lic('old-1', [{ id: 'castle_dreams', key: packKey }], { expires: '2020-01-01' }));
+    await mem.writeText('forged.dreamlicense', JSON.stringify(makeLicense({ id: 'forged-1', issued: '2026-01-01', packs: [{ id: 'castle_dreams', key: packKey.toString('base64') }] }, other)));
+    expect((await loadLicense()).status).toBe('bad');
+    expect((await dropped()).sort()).toEqual(['forged.dreamlicense', 'old.dreamlicense']);
+    expect(await kept()).toEqual([]);
+  });
+  it('a bad file beside a good one does not matter: the good one applies, the bad one stays', async () => {
     await mem.writeText('broken.dreamlicense', 'junk');
     await mem.writeText('good.dreamlicense', lic('ok-1', [{ id: 'castle_dreams', key: packKey }]));
-    const s = await loadLicense();
-    expect(s.status).toBe('ok');
-    expect([...licensedIds()]).toEqual(['castle_dreams']);
+    expect((await loadLicense()).status).toBe('ok');
+    expect(await dropped()).toEqual(['broken.dreamlicense']);
   });
-  it('uses several licenses together, and opens each pack with the license that covers it', async () => {
-    const otherKey = newKey();
+  it('applies several files together, and opens each pack with the license that covers it', async () => {
     await mem.writeText('a.dreamlicense', lic('one-1', [{ id: 'castle_dreams', key: packKey }]));
-    await mem.writeText('b.DreamLicense', lic('two-2', [{ id: 'sky_post', key: otherKey }]));
+    await mem.writeText('b.DreamLicense', lic('two-2', [{ id: 'sky_post', key: newKey() }]));
     const s = await loadLicense();
     expect(s.status === 'ok' && s.info.packs.sort()).toEqual(['castle_dreams', 'sky_post']);
     expect(s.status === 'ok' && s.found).toHaveLength(2);
+    expect(await dropped()).toEqual([]);
     const { bytes } = await premiumManifest();
     expect((await openEncryptedPack('castle_dreams', new TextDecoder().decode(bytes))).ok).toBe(true);
     expect((await openEncryptedPack('sky_post', new TextDecoder().decode(bytes))).ok).toBe(false); // right license, wrong pack contents
   });
-  it('is found again after the app restarts, with nothing remembered in between', async () => {
-    await mem.writeText('license.dreamlicense', lic('keep-1', [{ id: 'castle_dreams', key: packKey }]));
+  it('the same license dropped in again is applied once, and its file is removed again', async () => {
+    const text = lic('same-1', [{ id: 'castle_dreams', key: packKey }]);
+    await mem.writeText('x.dreamlicense', text);
     await loadLicense();
-    licenseState.set({ status: 'unknown' });
-    expect((await loadLicense()).status).toBe('ok');
+    await mem.writeText('x-again.dreamlicense', text);
+    await loadLicense();
+    expect(await kept()).toEqual(['same-1.lic']);
+    expect(await dropped()).toEqual([]);
   });
-  it('a license added on the Updates page is kept beside the others, never over a different one', async () => {
+  it('choosing a file on the Updates page applies it the same way, with no copy left in the folder', async () => {
     const a = lic('first-1', [{ id: 'castle_dreams', key: packKey }]);
     const b = lic('second-2', [{ id: 'sky_post', key: newKey() }]);
     expect((await addLicense(a)).ok).toBe(true);
     expect((await addLicense(b)).ok).toBe(true);
-    expect(await mem.readText('license.dreamlicense')).toBe(a);
-    expect(await mem.exists('license-second-2.dreamlicense')).toBe(true);
+    expect(await dropped()).toEqual([]);
+    expect(await kept()).toEqual(['first-1.lic', 'second-2.lic']);
     const s = get(licenseState);
     expect(s.status === 'ok' && s.info.packs.sort()).toEqual(['castle_dreams', 'sky_post']);
-    // adding the same license again does not make a copy
-    await addLicense(a);
-    expect((await mem.list('')).filter((n) => n.endsWith('.dreamlicense')).sort()).toEqual(['license-second-2.dreamlicense', 'license.dreamlicense']);
   });
-  it('removing forgets every license file', async () => {
+  it('removing forgets every license, applied or waiting', async () => {
     await mem.writeText('a.dreamlicense', lic('one-1', [{ id: 'castle_dreams', key: packKey }]));
-    await mem.writeText('license.dreamlicense', lic('two-2', [{ id: 'sky_post', key: newKey() }]));
     await loadLicense();
+    await mem.writeText('waiting.dreamlicense', 'junk');
     await removeLicense();
-    expect((await mem.list('')).filter((n) => n.endsWith('.dreamlicense'))).toEqual([]);
+    expect(await kept()).toEqual([]);
+    expect(await dropped()).toEqual([]);
     expect(get(licenseState)).toEqual({ status: 'none' });
   });
 });
@@ -202,7 +224,8 @@ describe('The license the person adds', () => {
     const text = licenseFor([{ id: 'castle_dreams', key: packKey }]);
     const r = await addLicense(text);
     expect(r.ok).toBe(true);
-    expect(await mem.readText(LICENSE_PATH)).toBe(text);
+    expect(await mem.list('premium')).toHaveLength(1);
+    expect((await mem.list('')).filter((n) => n.endsWith('.dreamlicense'))).toEqual([]);
     expect([...licensedIds()]).toEqual(['castle_dreams']);
     licenseState.set({ status: 'unknown' });
     expect((await loadLicense()).status).toBe('ok');
@@ -214,7 +237,7 @@ describe('The license the person adds', () => {
     const forged = JSON.stringify(makeLicense({ id: 'forged-1', issued: '2026-01-01', packs: [{ id: 'castle_dreams', key: packKey.toString('base64') }] }, other));
     const r = await addLicense(forged);
     expect(r).toEqual({ ok: false, error: 'That file is not a valid license.' });
-    expect(await mem.exists(LICENSE_PATH)).toBe(false);
+    expect(await mem.list('premium')).toEqual([]);
     expect(licensedIds().size).toBe(0);
     // junk and oversized input are refused without a crash
     for (const bad of ['', 'not json', '{}', 'x'.repeat(70000)]) expect((await addLicense(bad)).ok).toBe(false);
@@ -230,7 +253,7 @@ describe('The license the person adds', () => {
   it('can be removed, and without one nothing is licensed', async () => {
     await addLicense(licenseFor([{ id: 'castle_dreams', key: packKey }]));
     await removeLicense();
-    expect(await mem.exists(LICENSE_PATH)).toBe(false);
+    expect(await mem.list('premium')).toEqual([]);
     expect(get(licenseState)).toEqual({ status: 'none' });
     expect(licensedIds().size).toBe(0);
   });
@@ -365,5 +388,8 @@ describe('The author tool and the app agree, and nothing secret is in the app', 
     expect(page).toContain('Choose license file');
     expect(page).toContain('$updateState.locked');
     expect(page).toContain('type="file"');
+    // and it stays silent until a premium pack is actually on offer
+    expect(page).toContain('{#if showPremium}');
+    expect(page).toContain("u.kind === 'content' && u.premium === true");
   });
 });

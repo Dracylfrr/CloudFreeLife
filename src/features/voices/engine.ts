@@ -25,12 +25,12 @@ export interface EngineLink {
 }
 
 /**
- * How many engines to run. Two lets the next line be made while another is: measured on a 16-core laptop,
- * more engines did not make speech any faster (the work is limited by the processor's vector units, not by
- * the number of cores), and each one holds the model in memory. Small computers get one.
+ * How many engines to run: one. Measured on a 16-core laptop, a second engine made speech no faster (the
+ * work is limited by the processor's vector units, not by the number of cores) and slowed down the line
+ * that was needed first, while holding a second copy of the model in memory.
  */
-export function workerCount(cores: number): number {
-  return Number.isFinite(cores) && cores >= 4 ? 2 : 1;
+export function workerCount(_cores: number): number {
+  return 1;
 }
 
 interface Slot {

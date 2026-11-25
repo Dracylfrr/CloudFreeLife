@@ -56,6 +56,7 @@
     <button class="side" onclick={stopListening} aria-label="Stop"><Icon name="stop" size={16} /></button>
   {/if}
   <button class="side voices" onclick={voices}><Icon name="sliders" size={16} /> Voices</button>
+  {#if busy}<span class="hint">{$listenState.index > 0 ? 'The speech is made on this computer, so it pauses to catch up.' : 'Getting the first words ready. This takes a few seconds on this computer.'}</span>{/if}
   {#if $listenState.status === 'error'}<span class="err" role="alert">{$listenState.message}</span>{/if}
 </div>
 
@@ -91,6 +92,11 @@
   }
   button:disabled {
     opacity: 0.7;
+  }
+  .hint {
+    color: var(--ink-soft);
+    font-weight: 700;
+    font-size: 0.8rem;
   }
   .err {
     color: var(--c-rose);

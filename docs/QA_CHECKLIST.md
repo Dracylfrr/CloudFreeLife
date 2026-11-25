@@ -38,6 +38,11 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 - [ ] Splash Wall: all 16 levels open; aim, click-throw, hold-to-charge throw; splat stays in the region; goals count correctly; color match hints; Wash and Save PNG.
 - [ ] Pause with P; minimize the window and confirm CPU drops to ~0.
 
+## 2.0.2 checks (reading aloud feels responsive)
+- [ ] Press Listen on a story: the bar says the first words are being prepared, and speech starts within a few seconds (not ten or more). Later it may say it is catching up, then carries on.
+- [ ] Updates > Premium content is not shown at all while no premium pack is on offer.
+- [ ] Copy a .dreamlicense file into AppData\Roaming\Project D.R.E.A.M and start the app: the file disappears from that folder by itself and a premium folder appears there holding the applied license. A file that is not a real license stays where it was.
+
 ## 2.0.1 checks (folder name and license detection)
 - [ ] Copy a .dreamlicense file (any name) into AppData\Roaming\Project D.R.E.A.M, open Updates and press Look again: "Your license is active" appears with the number of packs. Restart the app: it is still active with no other step.
 - [ ] A file ending in .dreamlicense that is not a real license shows "That file is not a valid license" and unlocks nothing; other files in the folder are ignored.

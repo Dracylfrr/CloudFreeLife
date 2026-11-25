@@ -349,10 +349,14 @@ describe('Reading aloud', () => {
 });
 
 describe('Keeping up with the story', () => {
-  it('runs two engines side by side on a computer with several cores, one on a small one', () => {
-    expect([0, 1, 2, 3].map(workerCount)).toEqual([1, 1, 1, 1]);
-    expect([4, 8, 16, 64].map(workerCount)).toEqual([2, 2, 2, 2]);
-    expect(workerCount(NaN)).toBe(1);
+  it('runs one engine: a second one made speech no faster and slowed the first line down', () => {
+    expect([0, 1, 4, 8, 16, 64, NaN].map(workerCount)).toEqual([1, 1, 1, 1, 1, 1, 1]);
+  });
+  it('cuts every line short enough to be made quickly', () => {
+    const long = Array.from({ length: 12 }, (_, i) => `Sentence number ${i + 1} goes on for a little while, with a comma in the middle of it.`).join(' ');
+    const chunks = toChunks([long], speakers());
+    expect(chunks.length).toBeGreaterThan(8);
+    expect(chunks.every((c) => c.text.length <= 180)).toBe(true);
   });
   it('says "catching up" and not nothing when the next line is not ready yet', async () => {
     const states: string[] = [];
@@ -383,14 +387,14 @@ describe('Keeping up with the story', () => {
     const long = 'Tilly walked down the carriage with her tray of warm milk and honey biscuits, humming softly to herself all the way.';
     const out = firstBite([{ para: 0, who: 'narrator', text: long }, { para: 0, who: 'narrator', text: 'Next.' }]);
     expect(out.length).toBe(3);
-    expect(out[0].text.length).toBeLessThanOrEqual(80);
+    expect(out[0].text.length).toBeLessThanOrEqual(45);
     expect(out.slice(0, 2).map((c) => c.text).join(' ')).toBe(long);
     expect(out[2].text).toBe('Next.');
     const short = [{ para: 0, who: 'narrator', text: 'A short line.' }];
     expect(firstBite(short)).toBe(short);
     expect(firstBite([])).toEqual([]);
   });
-  it('the player asks the engines to work on several lines at once', async () => {
+  it('the player has the next lines being made while one is heard', async () => {
     let live = 0;
     let most = 0;
     const slow: EngineLink = {

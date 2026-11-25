@@ -83,11 +83,11 @@ export function setAudioOut(o: AudioOut | null) {
 let generation = 0;
 
 /** The first line is cut short so the sound starts sooner; the rest follow while it plays. */
-export function firstBite(chunks: Chunk[], max = 80): Chunk[] {
+export function firstBite(chunks: Chunk[], max = 45): Chunk[] {
   const c = chunks[0];
   if (!c || c.text.length <= max) return chunks;
   const cut = Math.max(c.text.lastIndexOf(', ', max), c.text.lastIndexOf('; ', max), c.text.lastIndexOf(' ', max));
-  if (cut < 20) return chunks;
+  if (cut < 12) return chunks;
   return [{ ...c, text: c.text.slice(0, cut + 1).trim() }, { ...c, text: c.text.slice(cut + 1).trim() }, ...chunks.slice(1)].filter((x) => x.text.length > 0);
 }
 
@@ -123,7 +123,8 @@ export async function listen(paragraphs: readonly string[], speakers: Speaker[],
     // as many lines are being made ahead as the engines can work on at once, and one more
     const ahead = engineParallelism() + 1;
     for (let i = 0; i < chunks.length; i++) {
-      for (let k = 0; k <= ahead; k++) make(i + k);
+      // the very first line is made on its own, so the first words come as soon as possible
+      make(i);
       // if the next line is not ready, say so, rather than going quiet without a word
       let settled = false;
       const pending = made.get(i)!.then((v) => ((settled = true), v));
@@ -131,6 +132,8 @@ export async function listen(paragraphs: readonly string[], speakers: Speaker[],
       if (!settled && i > 0) listenState.update((s) => (s.status === 'paused' ? s : { ...s, status: 'loading', para: chunks[i].para, index: i, message: 'Catching up…' }));
       const samples = await pending;
       if (gen !== generation) return;
+      // now the next lines are made while this one is heard
+      for (let k = 1; k <= ahead; k++) make(i + k);
       made.delete(i);
       listenState.update((s) => (s.status === 'paused' ? s : { ...s, status: 'playing', para: chunks[i].para, index: i, message: '' }));
       if (samples.length) await out.play(samples, SAMPLE_RATE, volume());

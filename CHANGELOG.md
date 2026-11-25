@@ -2,11 +2,24 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com), and the project uses [Semantic Versioning](https://semver.org).
 
+## [2.0.2]
+
+### Changed
+- **Reading aloud starts sooner and tells you what it is doing.** The first words are a short line made on their own (a few seconds on a typical computer instead of more than ten), later lines are shorter so each is ready sooner, and while it waits the bar says why: "Getting the first words ready…" and then "The speech is made on this computer, so it pauses to catch up." One speech engine is used instead of two: a second one made nothing faster, slowed the first line down and used more memory.
+- The Premium content section on the Updates page stays hidden until a premium pack is actually on offer.
+- **A license file now applies itself and then removes itself.** Put a .dreamlicense file (any name) in the Project D.R.E.A.M folder: the next time the app starts or checks for updates it checks the file, applies it (keeping what it needs in its own premium folder, so later pack updates still open) and deletes the file you put there. A file that is not a valid license is left alone. Choosing a license on the Updates page does the same.
+
+### Fixed
+- Publishing a premium pack from the private repository no longer makes the public project show a failed build.
+
 ## [2.0.1]
 
 ### Changed
 - **The folder where the app keeps your paintings, settings and downloads is now called "Project D.R.E.A.M"** (in AppData, and in Downloads for update files), and nothing you read in the app says "Cloud-Freelife" any more. Updating from any earlier version moves your existing folder to the new name by itself, with everything in it: the installer does it as part of the update, and the app does it the first time it starts if that did not happen. Nothing is ever overwritten or deleted: if both folders somehow exist, the new one is used and the old one is left untouched.
 - Only the installer's file name, the install folder and the program file inside it still carry the old name, because updating from older versions looks for exactly that name.
+
+### Changed
+- The Premium content section on the Updates page stays hidden until a premium pack is actually on offer, so nothing asks for a license when there is nothing to unlock.
 
 ### Added
 - **Premium licenses are found by themselves.** Put a license file (.dreamlicense, any name) in the Project D.R.E.A.M folder and the app finds, checks and uses it, with no steps. Several license files work together, each opening the packs it covers. Updates > Premium content has **Look again** for after you drop a file in. Choosing a license there still works and keeps a copy in the same folder.

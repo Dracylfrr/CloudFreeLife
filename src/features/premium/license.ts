@@ -1,11 +1,12 @@
 /**
  * Premium content: the licenses the person has, and opening the encrypted packs they cover.
  *
- * A license is a small signed file ending in .dreamlicense. The app looks for them by itself: any
- * license file in the app's own folder (Project D.R.E.A.M, inside AppData) is found, checked and used,
- * whatever it is called, so putting a file there is enough. Choosing a file on the Updates page just
- * puts a copy there. The checking and unlocking happen in the native side (src-tauri/src/premium.rs);
- * the keys inside a license are never shown or sent anywhere.
+ * A license is a small signed file ending in .dreamlicense. Putting one in the app's own folder (Project
+ * D.R.E.A.M, inside AppData) is all it takes, whatever the file is called: the app finds it, checks it,
+ * applies it (keeping what it needs inside its own premium folder) and then deletes the file you put there.
+ * Choosing a file on the Updates page does the same. A file that is not a valid license is left alone.
+ * The checking and unlocking happen in the native side (src-tauri/src/premium.rs); the keys inside a
+ * license are never shown or sent anywhere.
  *
  * No license means everything else works as before: premium packs simply stay locked.
  */
@@ -13,9 +14,11 @@ import { get, writable } from 'svelte/store';
 import { getStorage, isTauri } from '../../core/storage';
 import { decodeBase64 } from '../updates/packs';
 
-/** The name a license is saved under when the person chooses one on the Updates page. */
-export const LICENSE_PATH = 'license.dreamlicense';
+/** Where an applied license is kept: inside the app's folder, not next to the paintings. */
+export const LICENSE_DIR = 'premium';
+/** What a license a person drops in is called; what the app keeps is stored as .lic inside LICENSE_DIR. */
 export const LICENSE_EXT = '.dreamlicense';
+const KEPT_EXT = '.lic';
 const MAX_LICENSE_CHARS = 64 * 1024;
 const MAX_LICENSE_FILES = 12;
 
@@ -73,31 +76,69 @@ interface Scanned {
 }
 let scanned: Scanned[] = [];
 
-/** Every license file in the app's folder, checked. Files that are not valid licenses are named in `bad`. */
+const safeName = (id: string) => id.replace(/[^A-Za-z0-9_-]/g, '').slice(0, 40) || 'license';
+
+async function listDir(dir: string, ext: string): Promise<string[]> {
+  try {
+    return (await (await getStorage()).list(dir)).filter((n) => n.toLowerCase().endsWith(ext)).slice(0, MAX_LICENSE_FILES);
+  } catch {
+    return [];
+  }
+}
+
+async function readText(path: string): Promise<string | null> {
+  try {
+    return await (await getStorage()).readText(path);
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Every license the app has: the ones it already applied, and any new .dreamlicense file in the app's folder.
+ * A new file that is a valid license is applied (kept inside the premium folder) and then deleted. A file
+ * that is not valid is left exactly where it is and named in `bad`.
+ */
 async function scan(): Promise<{ good: Scanned[]; bad: { file: string; message: string }[] }> {
   const good: Scanned[] = [];
   const bad: { file: string; message: string }[] = [];
   const b = active();
-  let names: string[] = [];
-  try {
-    names = (await (await getStorage()).list('')).filter((n) => n.toLowerCase().endsWith(LICENSE_EXT)).slice(0, MAX_LICENSE_FILES);
-  } catch {
-    names = [];
-  }
-  for (const file of names) {
-    let text: string | null = null;
+  const seen = new Set<string>();
+  const st = await getStorage().catch(() => null);
+  if (!st) return { good, bad };
+
+  // 1. what was applied before
+  for (const name of await listDir(LICENSE_DIR, KEPT_EXT)) {
+    const text = await readText(`${LICENSE_DIR}/${name}`);
+    if (!text || !b) continue;
     try {
-      text = await (await getStorage()).readText(file);
-    } catch {
-      text = null;
+      const info = await b.checkLicense(text.trim());
+      if (!seen.has(info.id)) {
+        seen.add(info.id);
+        good.push({ file: name, text: text.trim(), info });
+      }
+    } catch (e) {
+      bad.push({ file: name, message: friendly(e, 'That license could not be used.') });
     }
+  }
+
+  // 2. new files put in the folder: apply the good ones, then remove them
+  for (const file of await listDir('', LICENSE_EXT)) {
+    const text = await readText(file);
     if (!text) continue;
     if (!b || text.length > MAX_LICENSE_CHARS) {
       if (b) bad.push({ file, message: 'That file is not a valid license.' });
       continue;
     }
     try {
-      good.push({ file, text: text.trim(), info: await b.checkLicense(text.trim()) });
+      const info = await b.checkLicense(text.trim());
+      const kept = `${safeName(info.id)}${KEPT_EXT}`;
+      await st.writeText(`${LICENSE_DIR}/${kept}`, text.trim());
+      await st.remove(file); // the file has done its job
+      if (!seen.has(info.id)) {
+        seen.add(info.id);
+        good.push({ file: kept, text: text.trim(), info });
+      }
     } catch (e) {
       bad.push({ file, message: friendly(e, 'That file is not a valid license.') });
     }
@@ -127,9 +168,7 @@ export async function loadLicense(): Promise<LicenseState> {
   return state;
 }
 
-const safeName = (id: string) => id.replace(/[^A-Za-z0-9_-]/g, '').slice(0, 40) || 'license';
-
-/** Checks a license file's text and, only if it is good, keeps a copy in the app's folder. */
+/** Checks a license file's text and, only if it is good, applies it (the same as putting the file in the folder). */
 export async function addLicense(text: string): Promise<{ ok: true; info: LicenseInfo } | { ok: false; error: string }> {
   const trimmed = text.trim();
   if (!trimmed || trimmed.length > MAX_LICENSE_CHARS) return { ok: false, error: 'That file is not a valid license.' };
@@ -142,10 +181,7 @@ export async function addLicense(text: string): Promise<{ ok: true; info: Licens
     return { ok: false, error: friendly(e, 'That file is not a valid license.') };
   }
   try {
-    const st = await getStorage();
-    // the first license is kept as license.dreamlicense; another one is kept beside it under its own name
-    const name = (await st.exists(LICENSE_PATH)) && !scanned.some((s) => s.file === LICENSE_PATH && s.info.id === info.id) ? `license-${safeName(info.id)}${LICENSE_EXT}` : LICENSE_PATH;
-    await st.writeText(name, trimmed);
+    await (await getStorage()).writeText(`${LICENSE_DIR}/${safeName(info.id)}${KEPT_EXT}`, trimmed);
   } catch {
     return { ok: false, error: 'The license could not be saved.' };
   }
@@ -157,7 +193,8 @@ export async function addLicense(text: string): Promise<{ ok: true; info: Licens
 export async function removeLicense(): Promise<void> {
   try {
     const st = await getStorage();
-    for (const n of (await st.list('')).filter((x) => x.toLowerCase().endsWith(LICENSE_EXT))) await st.remove(n);
+    await st.remove(LICENSE_DIR);
+    for (const n of await listDir('', LICENSE_EXT)) await st.remove(n);
   } catch {
     /* nothing to remove */
   }

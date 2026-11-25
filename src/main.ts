@@ -70,6 +70,8 @@ async function boot() {
   void cleanUpInstallers();
   setTimeout(() => void cleanUpInstallers(), 30000);
   startupUpdateCheck();
+  // a license file put in the app's folder is applied right away, even when update checks are off
+  void import('./features/premium/license').then((m) => m.loadLicense());
   void getSettings;
 }
 

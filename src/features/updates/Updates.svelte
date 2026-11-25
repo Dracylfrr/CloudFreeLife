@@ -66,6 +66,9 @@
     await refreshInstalled();
   }
 
+  // The premium section says nothing until there is premium content to talk about: a premium pack on offer
+  // (locked, or ready to install with the license), so nobody is asked for a license that has nothing to open.
+  const showPremium = $derived($updateState.locked.length > 0 || $updateState.available.some((u) => u.kind === 'content' && u.premium === true));
   const appUpdates = $derived($updateState.available.filter((u) => u.kind === 'app'));
   const contentUpdates = $derived($updateState.available.filter((u) => u.kind === 'content'));
 </script>
@@ -167,19 +170,20 @@
     </div>
   {/if}
 
+  {#if showPremium}
   <h2 class="h">Premium content</h2>
   <article class="item">
     <div class="badge"><Icon name="shield" size={22} /></div>
     <div class="body">
       {#if $licenseState.status === 'ok'}
         <h3>{$licenseState.found.length > 1 ? 'Your licenses are active' : 'Your license is active'}</h3>
-        <p class="muted">{describeLicense($licenseState.info)}. Found in your Project D.R.E.A.M folder. Your premium content shows up above under New content, ready to install.</p>
+        <p class="muted">{describeLicense($licenseState.info)}. Your premium content shows up above under New content, ready to install.</p>
       {:else if $licenseState.status === 'bad'}
         <h3>Your license could not be used</h3>
         <p class="muted">{$licenseState.message}</p>
       {:else}
         <h3>Add a license</h3>
-        <p class="muted">Premium series and adventures open with a license file (.dreamlicense). Put it in the Project D.R.E.A.M folder and it is found automatically, or choose it here. It stays on this computer, and nothing about you is sent anywhere.</p>
+        <p class="muted">Premium series and adventures open with a license file (.dreamlicense). Put it in the Project D.R.E.A.M folder and the app applies it by itself, then removes the file. Or choose it here. It stays on this computer, and nothing about you is sent anywhere.</p>
       {/if}
     </div>
     <div class="btns">
@@ -202,6 +206,8 @@
         </article>
       {/each}
     </div>
+  {/if}
+
   {/if}
 
   <h2 class="h">Downloaded content</h2>

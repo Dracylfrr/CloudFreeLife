@@ -189,6 +189,9 @@ export function splitQuotes(text: string): Piece[] {
   return out.filter((p) => p.text.trim().length > 0);
 }
 
+/** How long a line of speech may be. Shorter lines are made faster, so the next one is ready sooner. */
+export const SPEECH_MAX = 110;
+
 /** Cuts a long piece of text into sentences no longer than `max` characters, for smooth, quick speech. */
 export function sentences(text: string, max = 240): string[] {
   const parts = text.replace(/\s+/g, ' ').trim().match(/[^.!?…]+[.!?…]+["')\]]*|[^.!?…]+$/g) ?? [];
@@ -222,7 +225,7 @@ export function toChunks(paragraphs: readonly string[], speakers: Speaker[], car
     const pieces = splitQuotes(paragraph);
     pieces.forEach((piece, i) => {
       if (!piece.speech) {
-        for (const s of sentences(piece.text)) chunks.push({ para, who: NARRATOR_ID, text: s });
+        for (const s of sentences(piece.text, SPEECH_MAX)) chunks.push({ para, who: NARRATOR_ID, text: s });
         return;
       }
       const before = pieces[i - 1]?.speech === false ? pieces[i - 1].text : '';
@@ -233,7 +236,7 @@ export function toChunks(paragraphs: readonly string[], speakers: Speaker[], car
       const byPronoun = pronoun ? gendered(pronoun.toLowerCase() === 'he' ? 'm' : 'f') : undefined;
       const who = found ? found.id : byPronoun ? byPronoun : carry.last && !after && !before ? carry.last : NARRATOR_ID;
       if (who !== NARRATOR_ID) carry.last = who;
-      for (const s of sentences(piece.text)) chunks.push({ para, who, text: s });
+      for (const s of sentences(piece.text, SPEECH_MAX)) chunks.push({ para, who, text: s });
     });
   });
   return chunks;
