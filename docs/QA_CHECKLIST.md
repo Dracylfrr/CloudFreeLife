@@ -38,6 +38,14 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 - [ ] Splash Wall: all 15 levels open; aim, click-throw, hold-to-charge throw; splat stays in the region; goals count correctly; color match hints; Wash and Save PNG.
 - [ ] Pause with P; minimize the window and confirm CPU drops to ~0.
 
+## 2.3.0 checks (recorded stories)
+- [ ] Settings > Voices: all nine voices have a Hear button that plays a sample at once, with no download; Use this voice changes the reading voice; with no internet the rows say so; before a voice is published they say "coming soon".
+- [ ] After a voice's recordings are published: Download all fetches them with a progress bar; a story's Voices window shows its own Download / Remove; the sizes shown are right; removing a voice frees the space.
+- [ ] Listen on a downloaded story starts at once (no "Getting ready"), highlights each paragraph in step, Pause / Keep listening / Stop work, and starting from the middle of a chapter starts near that paragraph.
+- [ ] In an adventure: the passage, then the choices, are read and highlighted; picking a choice moves on and Listen reads the new passage from its own recording.
+- [ ] Changing a character's voice in a story makes Listen use the voices made on this computer for that story; "Back to the suggested voices" returns to the recording.
+- [ ] A story with no recording still reads aloud with the downloaded voices as before.
+
 ## 2.2.1 checks (calmer voices, Zen settings, gentler games)
 - [ ] Listen reads at a clearly calm pace; the narrator is Elodie; Settings > Voices shows the nine new names; changing the speed there changes every story.
 - [ ] Adventure: while a passage is read, the choices are read and highlighted afterwards; picking a choice while Listen is still getting ready works, and Back to Story Adventures and More adventures always work.

@@ -15,6 +15,8 @@ export interface Voice {
   id: string;
   /** The name the voice goes by in the app. */
   name: string;
+  /** The short word the recordings of this voice are published and stored under. It never changes, even if the name does. */
+  pack: string;
   gender: Gender;
   accent: 'American' | 'British';
   /** A few words on how it is meant to sound. */
@@ -26,19 +28,20 @@ export interface Voice {
  * f/m = female/male) and is never shown; the `name` is what people see and can be changed without touching anything else.
  */
 export const VOICES: readonly Voice[] = [
-  { id: 'af_nicole', name: 'Wren', gender: 'f', accent: 'American', feel: 'soft and hushed' },
-  { id: 'af_bella', name: 'Saffron', gender: 'f', accent: 'American', feel: 'warm and expressive' },
-  { id: 'af_sarah', name: 'Lark', gender: 'f', accent: 'American', feel: 'clear and friendly' },
-  { id: 'bf_emma', name: 'Elodie', gender: 'f', accent: 'British', feel: 'bright and bookish' },
-  { id: 'bf_isabella', name: 'Linnea', gender: 'f', accent: 'British', feel: 'gentle and kind' },
-  { id: 'am_michael', name: 'Corin', gender: 'm', accent: 'American', feel: 'warm and steady' },
-  { id: 'am_onyx', name: 'Orrin', gender: 'm', accent: 'American', feel: 'deep and calm' },
-  { id: 'am_santa', name: 'Bramble', gender: 'm', accent: 'American', feel: 'low and jolly' },
-  { id: 'bm_lewis', name: 'Edmund', gender: 'm', accent: 'British', feel: 'polite and proper' }
+  { id: 'af_nicole', name: 'Wren', pack: 'wren', gender: 'f', accent: 'American', feel: 'soft and hushed' },
+  { id: 'af_bella', name: 'Saffron', pack: 'saffron', gender: 'f', accent: 'American', feel: 'warm and expressive' },
+  { id: 'af_sarah', name: 'Lark', pack: 'lark', gender: 'f', accent: 'American', feel: 'clear and friendly' },
+  { id: 'bf_emma', name: 'Elodie', pack: 'elodie', gender: 'f', accent: 'British', feel: 'bright and bookish' },
+  { id: 'bf_isabella', name: 'Linnea', pack: 'linnea', gender: 'f', accent: 'British', feel: 'gentle and kind' },
+  { id: 'am_michael', name: 'Corin', pack: 'corin', gender: 'm', accent: 'American', feel: 'warm and steady' },
+  { id: 'am_onyx', name: 'Orrin', pack: 'orrin', gender: 'm', accent: 'American', feel: 'deep and calm' },
+  { id: 'am_santa', name: 'Bramble', pack: 'bramble', gender: 'm', accent: 'American', feel: 'low and jolly' },
+  { id: 'bm_lewis', name: 'Edmund', pack: 'edmund', gender: 'm', accent: 'British', feel: 'polite and proper' }
 ];
 export const VOICE_IDS: readonly string[] = VOICES.map((v) => v.id);
 export const isVoice = (id: unknown): id is string => typeof id === 'string' && VOICE_IDS.includes(id);
 export const voiceInfo = (id: string): Voice | undefined => VOICES.find((v) => v.id === id);
+export const voiceByPack = (pack: string): Voice | undefined => VOICES.find((v) => v.pack === pack);
 
 export const NARRATOR_ID = 'narrator';
 export const DEFAULT_NARRATOR_VOICE = 'bf_emma';

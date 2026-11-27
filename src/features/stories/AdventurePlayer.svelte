@@ -98,7 +98,7 @@
       {/if}
 
       {#if node}
-        <ListenBar storyId={aid} title={adv.name} cast={adv.cast} paragraphs={node.text} extras={choiceLines} />
+        <ListenBar storyId={aid} title={adv.name} cast={adv.cast} paragraphs={node.text} extras={choiceLines} unit={currentId(run)} />
         {#key currentId(run)}
           <div class="text" class:end={!!ending}>
             {#if ending}

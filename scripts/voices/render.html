@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Voice pack renderer</title>
+    <style>
+      body { font: 14px system-ui; margin: 24px; max-width: 720px; }
+      pre { background: #f3f1fa; padding: 12px; border-radius: 8px; white-space: pre-wrap; }
+    </style>
+  </head>
+  <body>
+    <h1>Voice pack renderer</h1>
+    <p>Developer tool. Renders a story in one voice with the speech model on this computer's graphics chip and saves
+      calm, compressed audio files. Open it with <code>?path=stories/relaxing/&lt;story&gt;&amp;voice=bf_emma</code>.</p>
+    <pre id="log">waiting…</pre>
+    <script type="module" src="./render.ts"></script>
+  </body>
+</html>

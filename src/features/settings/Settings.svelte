@@ -19,6 +19,7 @@
   import Button from '../../ui/Button.svelte';
   import Icon from '../../ui/Icon.svelte';
   import Select from '../../ui/Select.svelte';
+  import RecordedVoices from '../voices/RecordedVoices.svelte';
   import VoiceSetup from '../voices/VoiceSetup.svelte';
   import { SAMPLE_LINE, SPEED_MAX, SPEED_MIN, VOICES, withoutNarrator } from '../voices/casts';
   import { listenState, previewVoice } from '../voices/player';
@@ -194,6 +195,9 @@
       {:else if tab === 'voices'}
         <h2>Voices</h2>
         <p class="note">Stories can be read aloud, with a different voice for each character. Choose the voices here once; each story remembers what you pick for its characters.</p>
+        <RecordedVoices />
+        <h3 class="mini">Voices made on this computer</h3>
+        <p class="note small">If a story has no recording yet, its voices can be made on this computer instead. This needs a download and takes more power.</p>
         <VoiceSetup />
         {#if $modelReady}
           <h3 class="mini">Narrator</h3>

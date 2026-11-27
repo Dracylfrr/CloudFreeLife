@@ -559,7 +559,7 @@ describe('Where it appears', () => {
     }
     const bar = read('src/features/voices/ListenBar.svelte');
     expect(bar).toContain('Voices');
-    expect(bar).toContain('set up voices');
+    expect(bar).toContain('get voices');
   });
   it('the voices window saves choices at once, and Settings has a Voices tab with the notices', () => {
     const panel = read('src/features/voices/VoicesPanel.svelte');

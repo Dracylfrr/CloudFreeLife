@@ -6,6 +6,7 @@ import { get, writable } from 'svelte/store';
 import { getSettings } from '../../core/settings';
 import { toChunks, type Chunk, type Speaker } from './casts';
 import { SAMPLE_RATE, cancelSpeech, engineParallelism, speakLine, startEngine } from './engine';
+import { paragraphAt, startOf } from './packfile';
 
 export interface ListenState {
   status: 'idle' | 'loading' | 'playing' | 'paused' | 'error';
@@ -100,6 +101,7 @@ const volume = () => {
 export async function listen(paragraphs: readonly string[], speakers: Speaker[], opts: { from?: number; extras?: readonly string[] } = {}): Promise<void> {
   const gen = ++generation;
   out.stop();
+  endRecording();
   cancelSpeech(); // lines of the passage that was being read are not wanted any more
   const carry: { last?: string } = {};
   const all: Chunk[] = toChunks(paragraphs, speakers, carry);
@@ -149,20 +151,76 @@ export async function listen(paragraphs: readonly string[], speakers: Speaker[],
   }
 }
 
+// ------------------------------------------------------------------ recorded stories
+
+let rec: { audio: HTMLAudioElement; url: string } | null = null;
+
+function endRecording() {
+  if (!rec) return;
+  const { audio, url } = rec;
+  rec = null;
+  audio.onended = audio.onerror = audio.ontimeupdate = null;
+  audio.pause();
+  audio.removeAttribute('src');
+  URL.revokeObjectURL(url);
+}
+
+/** Plays a ready-made recording of a passage, from paragraph `from`, highlighting the paragraph being read. */
+export async function listenRecorded(bytes: Uint8Array, lines: readonly [number, number, number][], from = 0): Promise<void> {
+  const gen = ++generation;
+  out.stop();
+  cancelSpeech();
+  endRecording();
+  listenState.set({ status: 'loading', para: -1, index: 0, total: lines.length, message: '' });
+  const url = URL.createObjectURL(new Blob([bytes as BlobPart], { type: 'audio/ogg; codecs=opus' }));
+  const audio = new Audio(url);
+  audio.volume = volume();
+  rec = { audio, url };
+  audio.onended = () => {
+    if (rec?.audio !== audio) return;
+    endRecording();
+    if (gen === generation) listenState.set(IDLE);
+  };
+  audio.onerror = () => {
+    if (rec?.audio !== audio) return;
+    endRecording();
+    if (gen === generation) listenState.set({ ...IDLE, status: 'error', message: 'This recording could not be played.' });
+  };
+  audio.ontimeupdate = () => {
+    if (gen !== generation) return;
+    const para = paragraphAt(lines, audio.currentTime);
+    listenState.update((s) => (s.status === 'paused' || (s.status === 'playing' && (para < 0 || para === s.para)) ? s : { ...s, status: 'playing', para: para >= 0 ? para : s.para, message: '' }));
+  };
+  const at = startOf(lines, from);
+  if (at > 0) audio.currentTime = at;
+  try {
+    await audio.play();
+    if (gen === generation) listenState.update((s) => (s.status === 'loading' ? { ...s, status: 'playing' } : s));
+  } catch {
+    if (gen === generation && rec?.audio === audio) {
+      endRecording();
+      listenState.set({ ...IDLE, status: 'error', message: 'This recording could not be played.' });
+    }
+  }
+}
+
 export function pauseListening() {
   if (get(listenState).status !== 'playing') return;
+  rec?.audio.pause();
   out.pause();
   listenState.update((s) => ({ ...s, status: 'paused' }));
 }
 
 export function resumeListening() {
   if (get(listenState).status !== 'paused') return;
+  void rec?.audio.play();
   out.resume();
   listenState.update((s) => ({ ...s, status: 'playing' }));
 }
 
 export function stopListening() {
   generation++;
+  endRecording();
   out.stop();
   cancelSpeech();
   listenState.set(IDLE);
@@ -175,6 +233,7 @@ const heardBefore = new Map<string, Float32Array>();
 export async function previewVoice(text: string, voice: string, speed: number): Promise<void> {
   const gen = ++generation;
   out.stop();
+  endRecording();
   cancelSpeech();
   const key = `${voice}|${speed}|${text}`;
   listenState.set({ status: 'loading', para: -1, index: 0, total: 1, message: '' });

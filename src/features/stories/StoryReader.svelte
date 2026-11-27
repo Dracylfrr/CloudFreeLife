@@ -234,7 +234,7 @@
             <p class="eyebrow">Chapter {page + 1} of {total} · {percent}%</p>
             {#if left}<p class="left" aria-live="off">{formatLeft(left.chapter)} left in this chapter{total > 1 ? ` · ${formatLeft(left.story).toLowerCase()} in the story` : ''}</p>{/if}
             <h2>{chapter.title}</h2>
-            <ListenBar storyId={sid} title={story.manifest.name} cast={story.manifest.cast} paragraphs={chapter.text} from={curPara} />
+            <ListenBar storyId={sid} title={story.manifest.name} cast={story.manifest.cast} paragraphs={chapter.text} from={curPara} unit={`c${page + 1}`} />
             {#if chapter.illustration}
               <StoryArt {story} file={chapter.illustration} alt={chapter.illustrationAlt ?? ''} caption={chapter.illustrationCaption ?? ''} />
             {/if}

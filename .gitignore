@@ -14,3 +14,7 @@ src-tauri/gen/
 .DS_Store
 Thumbs.db
 .claude/
+
+# voice pack tool output (published as release files, not kept in git)
+voicepacks-out/
+voicepack-test/

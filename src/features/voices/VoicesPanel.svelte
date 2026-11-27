@@ -10,6 +10,7 @@
   import { listenState } from './player';
   import { closeVoices, modelReady, resetVoices, saveVoice, speakersFor, voicesPanel } from './state';
   import VoiceSetup from './VoiceSetup.svelte';
+  import StoryRecording from './StoryRecording.svelte';
 
   let dialog = $state<HTMLDivElement | undefined>();
   let opener: HTMLElement | null = null;
@@ -60,7 +61,12 @@
         <button class="x" aria-label="Close" onclick={close}>×</button>
       </header>
 
-      <VoiceSetup />
+      {#if speakers[0]}<StoryRecording storyId={target.storyId} voiceId={speakers[0].voice} customCharacters={speakers.slice(1).some((x) => x.custom)} />{/if}
+
+      <details class="live">
+        <summary>Voices made on this computer</summary>
+        <VoiceSetup />
+      </details>
 
       {#if $modelReady}
         <p class="lead">Pick a voice and a speed for each one. Your choices are saved for this story automatically.</p>
@@ -92,6 +98,15 @@
 {/if}
 
 <style>
+  .live summary {
+    cursor: pointer;
+    font-weight: 800;
+    color: var(--ink-soft);
+    padding: 6px 4px;
+  }
+  .live[open] summary {
+    margin-bottom: 8px;
+  }
   .scrim {
     position: fixed;
     inset: 0;

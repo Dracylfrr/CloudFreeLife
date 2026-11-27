@@ -3,11 +3,30 @@
   import Icon from '../../ui/Icon.svelte';
   import { settings } from '../../core/settings';
   import type { CastMember } from './casts';
-  import { listen, listenState, pauseListening, resumeListening, stopListening } from './player';
+  import { listen, listenRecorded, listenState, pauseListening, resumeListening, stopListening } from './player';
   import { modelReady, openVoices, refreshModel, speakersFor } from './state';
+  import { voiceInfo } from './casts';
+  import { loadPack } from './packs';
+  import type { Pack } from './packfile';
 
   // The small "Listen" strip above a story's text: read aloud, pause, and choose the voices.
-  let { storyId, title, cast, paragraphs, extras = [], from = 0 }: { storyId: string; title: string; cast: CastMember[] | undefined; paragraphs: readonly string[]; extras?: readonly string[]; from?: number } = $props();
+  let { storyId, title, cast, paragraphs, extras = [], from = 0, unit = '' }: { storyId: string; title: string; cast: CastMember[] | undefined; paragraphs: readonly string[]; extras?: readonly string[]; from?: number; unit?: string } = $props();
+
+  // A ready-made recording of this story in the narrator's voice, if one has been downloaded. It is used when
+  // nobody has changed the voice of a character, because the recording was made with the suggested voices.
+  let recording = $state<Pack | null>(null);
+  $effect(() => {
+    void $settings.voiceCasts; // choices change which recording fits
+    void $settings.voiceNarrator;
+    const sp = speakersFor(storyId, cast);
+    const voice = voiceInfo(sp[0].voice);
+    const plain = sp.slice(1).every((x) => !x.custom);
+    let live = true;
+    recording = null;
+    if (voice && plain) void loadPack(voice, storyId).then((p) => live && (recording = p));
+    return () => (live = false);
+  });
+  const recorded = $derived(recording && unit ? recording.header.units[unit] : undefined);
 
   const busy = $derived($listenState.status === 'loading');
   const playing = $derived($listenState.status === 'playing');
@@ -34,6 +53,13 @@
   });
 
   function start() {
+    if (recorded && recording) {
+      const bytes = recording.audio(unit);
+      if (bytes) {
+        void listenRecorded(bytes, recorded.l, from);
+        return;
+      }
+    }
     if (!$modelReady) {
       openVoices({ storyId, title, cast });
       return;
@@ -45,7 +71,7 @@
 
 <div class="bar" role="group" aria-label="Read aloud">
   {#if !active}
-    <button class="main" onclick={start}><Icon name="volume" size={17} /> {$modelReady ? 'Listen' : 'Listen · set up voices'}</button>
+    <button class="main" onclick={start}><Icon name="volume" size={17} /> {$modelReady || recorded ? 'Listen' : 'Listen · get voices'}</button>
   {:else if busy}
     <button class="main" disabled><Icon name="volume" size={17} /> {$listenState.index > 0 ? 'Catching up…' : 'Getting ready…'}</button>
     <button class="side" onclick={stopListening} aria-label="Stop"><Icon name="stop" size={16} /></button>

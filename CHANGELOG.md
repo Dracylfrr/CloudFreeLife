@@ -2,6 +2,15 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com), and the project uses [Semantic Versioning](https://semver.org).
 
+## [2.3.0]
+
+### Added
+- **Recorded stories.** Every voice now comes with a short sample you can hear at once, with nothing to download (Settings > Voices). Whole stories can be recorded in a voice and downloaded: one story at a time from its Voices window (1 to 3 MB), or all of a voice's stories together. A recorded story starts the moment you press Listen, uses almost no power, works offline and highlights the paragraph being read, and in adventures the choices too.
+- Stories without a recording are read by the voices made on your computer, exactly as before; that part has moved into "Voices made on this computer".
+
+### Changed
+- Recorded stories are published one voice at a time. Until a voice has its recordings you will see "Recorded stories are coming soon" next to it.
+
 ## [2.2.1]
 
 ### Changed
