@@ -55,7 +55,8 @@ async function getBytes(url: string) {
 async function loadUnits(path: string): Promise<{ id: string; cast: CastMember[] | undefined; units: Unit[] }> {
   for (const f of ['story.json', 'adventure.json']) {
     const r = await fetch(`/content/${path}/${f}`);
-    if (!r.ok) continue;
+    // an unknown file is answered with the app's own page, so only a real JSON answer counts
+    if (!r.ok || !(r.headers.get('content-type') ?? '').includes('json')) continue;
     const j = await r.json();
     if (Array.isArray(j.chapters)) {
       return { id: j.id, cast: j.cast, units: j.chapters.map((c: { text: string[] }, i: number) => ({ id: `c${i + 1}`, paragraphs: c.text, extras: [] })) };
