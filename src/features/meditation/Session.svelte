@@ -149,8 +149,8 @@
         <h1>That was lovely.</h1>
         <p class="hint">Take a moment before you move on.</p>
         <div class="row">
-          <Button variant="soft" icon="refresh" onclick={() => { stage = 'ready'; t = 0; }}>Again</Button>
-          <Button variant="primary" onclick={leave}>Done</Button>
+          <Button variant="soft" icon="refresh" onclick={() => { stage = 'ready'; t = 0; }}>Repeat</Button>
+          <Button variant="primary" onclick={leave}>More</Button>
         </div>
       {:else}
         <div class="orb" style="--s:{scale}; --dur:{calm ? 0 : 0.35}s" class:float={!breath && !calm}>

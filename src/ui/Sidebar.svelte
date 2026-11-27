@@ -13,7 +13,6 @@
   const home: Item = { id: 'home', label: 'Home', icon: 'home', go: () => navigate({ name: 'home' }) };
   const explore: Item[] = [
     { id: 'books', label: 'Coloring Books', icon: 'book', go: () => navigate({ name: 'books' }) },
-    { id: 'draw', label: 'Free Draw', icon: 'brush', go: () => navigate({ name: 'draw' }) },
     { id: 'stories', label: 'Cozy Stories', icon: 'bookOpen', go: () => navigate({ name: 'stories' }) },
     { id: 'adventures', label: 'Story Adventures', icon: 'compass', go: () => navigate({ name: 'adventures' }) },
     { id: 'minigames', label: 'Games', icon: 'gamepad', go: () => navigate({ name: 'minigames' }) },

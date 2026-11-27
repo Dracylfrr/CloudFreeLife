@@ -112,11 +112,11 @@ describe('bundled content', () => {
     }
   });
 
-  it('Splash Wall has sixteen levels (the original ten plus six more in 1.4) and valid goals', async () => {
+  it('Splash Wall has fifteen levels (Free Splash was taken away in 2.2.1) and valid goals', async () => {
     const cat = await catalogP;
     expect(cat.splashLevels.map((l) => l.folder)).toEqual([
       '01_blank_car', '02_cloud_castle_wall', '03_rainbow_target', '04_beach_mural', '05_star_constellation',
-      '06_flower_wall', '07_space_planets', '08_grassland_scene', '09_color_match', '10_free_splash',
+      '06_flower_wall', '07_space_planets', '08_grassland_scene', '09_color_match',
       '11_fox_in_leaves', '12_bunny_garden', '13_night_owl', '14_turtle_reef', '15_birthday_cake', '16_balloon_colors'
     ]);
     const files = await readAllText();

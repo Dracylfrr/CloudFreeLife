@@ -92,10 +92,30 @@ describe('Remembering the choices', () => {
     expect(sanitizeSavedCasts('junk')).toEqual({});
     expect(sanitizeSavedCasts({ a: { b: null } })).toEqual({});
   });
-  it('the narrator defaults to Nicole at normal speed', () => {
-    expect(DEFAULT_SETTINGS.voiceNarrator).toBe('af_nicole');
-    expect(DEFAULT_SETTINGS.voiceNarratorSpeed).toBe(1);
+  it('the narrator defaults to the bedtime reader at a calm pace', () => {
+    expect(DEFAULT_SETTINGS.voiceNarrator).toBe('bf_emma');
+    expect(DEFAULT_SETTINGS.voiceNarratorSpeed).toBe(0.8);
     expect(DEFAULT_SETTINGS.voiceCasts).toEqual({});
+  });
+  it('moves settings saved by an older version to the calm pace once, and then leaves choices alone', () => {
+    const old = sanitizeSettings({ schema: 2, voiceNarrator: 'af_nicole', voiceNarratorSpeed: 1, voiceCasts: { the_story: { narrator: { voice: 'af_nicole', speed: 1 }, tilly: { voice: 'af_sarah', speed: 1 } } } });
+    expect(old.voiceNarrator).toBe('bf_emma');
+    expect(old.voiceNarratorSpeed).toBe(0.8);
+    expect(old.voiceCasts).toEqual({ the_story: { tilly: { voice: 'af_sarah', speed: 1 } } });
+    // a voice that was chosen, and a pace already slower than the new one, are kept
+    const chosen = sanitizeSettings({ schema: 2, voiceNarrator: 'af_bella', voiceNarratorSpeed: 0.7 });
+    expect(chosen.voiceNarrator).toBe('af_bella');
+    expect(chosen.voiceNarratorSpeed).toBe(0.7);
+    // once saved by this version, nothing is changed behind the person's back
+    const now = sanitizeSettings({ schema: 3, voiceNarrator: 'af_nicole', voiceNarratorSpeed: 1, voiceCasts: { s: { narrator: { voice: 'af_bella', speed: 1.1 } } } });
+    expect(now.voiceNarrator).toBe('af_nicole');
+    expect(now.voiceNarratorSpeed).toBe(1);
+    expect(now.voiceCasts.s.narrator).toEqual({ voice: 'af_bella', speed: 1.1 });
+  });
+  it('shows each voice under its own name, never the one it came with', () => {
+    const shown = VOICES.map((v) => v.name);
+    expect(new Set(shown).size).toBe(9);
+    for (const n of ['Nicole', 'Bella', 'Sarah', 'Emma', 'Isabella', 'Michael', 'Onyx', 'Santa', 'Lewis']) expect(shown).not.toContain(n);
   });
 });
 
@@ -504,13 +524,27 @@ describe('Hearing a voice', () => {
   });
 });
 
-describe('Getting ready before Listen is pressed', () => {
-  it('pointing at Listen starts the voices, and the graphics chip is warmed up with one short sentence', () => {
+describe('Getting ready only when Listen is pressed', () => {
+  it('does not load the voices just because the pointer passes over Listen, and gives up on a speech model that never starts', () => {
     const bar = readFileSync('src/features/voices/ListenBar.svelte', 'utf8');
-    expect(bar).toContain('onpointerenter={warm}');
-    expect(bar).toContain('onfocus={warm}');
+    expect(bar).not.toContain('onpointerenter');
+    expect(bar).not.toContain('onfocus');
     const e = readFileSync('src/features/voices/engine.ts', 'utf8');
-    expect(e).toContain("if (mode === 'gpu') await nativeLink.speak('Hello.'");
+    expect(e).toContain("if (mode === 'gpu') {"); // the graphics chip is still warmed up with one short sentence...
+    expect(e).toContain("nativeLink.speak('Hello.'");
+    expect(e).toContain('START_LIMIT_MS'); // ...but never for ever
+  });
+  it('drops the lines still waiting when the reading is stopped or moves on', async () => {
+    let cancelled = 0;
+    setEngineLink({ async start() {}, async speak() { return new Float32Array(10); }, stop() {}, cancel() { cancelled++; } });
+    setAudioOut({ async play() {}, pause() {}, resume() {}, stop() {} });
+    await listen(['One.'], speakers());
+    const afterListen = cancelled;
+    stopListening();
+    expect(afterListen).toBeGreaterThanOrEqual(1);
+    expect(cancelled).toBeGreaterThan(afterListen);
+    setEngineLink(null);
+    setAudioOut(null);
   });
 });
 

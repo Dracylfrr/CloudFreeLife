@@ -12,7 +12,7 @@ import { albums, loadAlbums } from './features/gallery/albums';
 import { onBeforeLeave, runLeaveGuards } from './core/router';
 import { applyUiScale } from './core/display';
 import { isAppHidden, onVisibilityChange } from './core/visibility';
-import { applySettingsToDocument, getSettings, loadSettings, settings, updateSettings } from './core/settings';
+import { applySettingsToDocument, getSettings, loadSettings, saveSettingsNow, settings, updateSettings } from './core/settings';
 import { getStorage, isTauri } from './core/storage';
 import { refreshArtworks } from './features/gallery/artwork';
 import { cleanUpInstallers, startupUpdateCheck } from './features/updates/updater';
@@ -43,7 +43,7 @@ async function boot() {
   startFrameUnlockWatcher();
   // Small local progress files are written shortly after a change; this makes sure they are
   // also written when you move to another screen or close the window.
-  onBeforeLeave(() => Promise.all([flushStoryProgress(), meditationProgress.flush(), movementProgress.flush(), gamesProgress.flush(), albums.flush()]).then(() => undefined));
+  onBeforeLeave(() => Promise.all([flushStoryProgress(), meditationProgress.flush(), movementProgress.flush(), gamesProgress.flush(), albums.flush(), saveSettingsNow()]).then(() => undefined));
 
   // Pause decorative animation when the window is hidden or minimised.
   const syncPaused = () => document.documentElement.setAttribute('data-paused', String(isAppHidden()));

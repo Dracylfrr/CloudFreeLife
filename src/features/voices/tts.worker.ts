@@ -11,6 +11,8 @@ export type ToWorker =
   | { type: 'init'; model: Uint8Array; tokenizer: string; wasmBase: string; device: 'cpu' | 'gpu' }
   | { type: 'voice'; id: string; bytes: ArrayBuffer }
   | { type: 'speak'; req: number; text: string; voice: string; speed: number }
+  /** Forget every line that has been asked for but not started: the passage they belong to is no longer being read. */
+  | { type: 'cancel' }
   /** A health check: can the word-to-sound step run here? */
   | { type: 'check'; req: number };
 
@@ -25,6 +27,8 @@ const voices = new Map<string, Float32Array>();
 let synth: Synth | null = null;
 // lines are made one after another, in the order they were asked for
 let queue: Promise<void> = Promise.resolve();
+// bumped by "cancel": lines asked for before that are skipped when their turn comes
+let epoch = 0;
 
 const say = (m: FromWorker, transfer: Transferable[] = []) => ctx.postMessage(m, transfer);
 
@@ -53,9 +57,13 @@ ctx.onmessage = (e: MessageEvent<ToWorker>) => {
     );
   } else if (m.type === 'voice') {
     voices.set(m.id, new Float32Array(m.bytes));
+  } else if (m.type === 'cancel') {
+    epoch++;
   } else if (m.type === 'speak') {
+    const asked = epoch;
     queue = queue.then(async () => {
       try {
+        if (asked !== epoch) throw new Error('Stopped.');
         const voice = voices.get(m.voice);
         if (!synth || !voice) throw new Error('The voice engine is not ready.');
         const samples = await synth.speak(m.text, m.voice, voice, m.speed);

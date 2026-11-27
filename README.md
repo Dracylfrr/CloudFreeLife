@@ -14,7 +14,7 @@ A calm, pastel place to **color, draw and play** — a lightweight Windows deskt
 - **Autosave & Gallery** — your art saves itself (outside the install folder), with Open / Duplicate / Rename / Export PNG / Clear / Delete
 - **Meditation** — six optional quiet sessions (One Minute Reset, Cloud Breathing, Quiet Garden, Evening Wind Down, Rain Pause and a Silent Timer). No streaks, no scores, no medical claims
 - **Exercise** — ten friendly stretch cards with pictures, steps and an optional timer. General ideas, not medical advice
-- **Games** — eight calm games: *Pastel Breaker* (12 levels), *Splash Wall* (16 walls, saved to the Gallery or exported), *Memory Meadow* (12 levels), *Pastel Puzzle* (14 pictures), *Bubble Garden*, *Cloud Catcher*, *Zen Garden* (rake sand, place stones and plants, save your gardens) and *Paint Flow* (12 boards)
+- **Games** — eight calm games: *Pastel Breaker* (12 levels), *Splash Wall* (15 walls, saved to the Gallery or exported), *Memory Meadow* (12 levels), *Pastel Puzzle* (14 pictures), *Bubble Garden*, *Cloud Catcher*, *Zen Garden* (rake sand, place stones and plants, save your gardens) and *Paint Flow* (12 boards)
 - **App icon** — five cute icons to choose from in Settings
 - **Updates** — a quiet startup check, an in-app Update Center with release notes, and downloadable content packs (books, palettes, stories, levels) verified with SHA-256
 - **Private & offline** — no telemetry, no accounts, no ads. Everything except update checks works without Internet.

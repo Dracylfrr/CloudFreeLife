@@ -171,7 +171,7 @@ describe('Shelves, names and keys in the source', () => {
     const explore = src.slice(src.indexOf('const explore'), src.indexOf('const controls'));
     const ids = [...explore.matchAll(/id: '(\w+)'/g)].map((m) => m[1]);
     expect(ids[ids.length - 1]).toBe('gallery');
-    expect(ids).toEqual(['books', 'draw', 'stories', 'adventures', 'minigames', 'meditation', 'movement', 'gallery']);
+    expect(ids).toEqual(['books', 'stories', 'adventures', 'minigames', 'meditation', 'movement', 'gallery']);
   });
   it('Delete and Backspace on a layer delete it', () => {
     const src = readFileSync('src/features/painting/LayersPanel.svelte', 'utf8');

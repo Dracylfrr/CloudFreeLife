@@ -31,10 +31,14 @@ export interface PlacedZone extends CatcherZone {
   y: number;
   w: number;
   h: number;
+  /** Seconds left of the soft red glow shown when something that does not belong here is offered. */
+  flash?: number;
 }
 
 export interface CatcherEvents {
   onCatch?: (item: Drifter, zone: PlacedZone) => void;
+  /** Something was offered to a zone it does not belong in. */
+  onReject?: (item: Drifter, zone: PlacedZone) => void;
   onPatternStep?: () => void;
   onFinish?: () => void;
 }
@@ -59,6 +63,8 @@ export class CloudCatcher {
   step = 0;
   repeats = 0;
   finished = false;
+  /** The item that has been clicked and is waiting to be sent to a zone. */
+  selected: number | null = null;
   private nextId = 1;
   private spawnAcc = 0;
   private time = 0;
@@ -106,6 +112,8 @@ export class CloudCatcher {
 
   update(dt: number) {
     this.time += dt;
+    for (const z of this.zones) if (z.flash) z.flash = Math.max(0, z.flash - dt);
+    if (this.selected !== null && !this.items.some((d) => d.id === this.selected && !d.settling)) this.selected = null;
     this.spawnAcc += dt * this.level.spawn * this.calm;
     while (this.spawnAcc >= 1) {
       this.spawnAcc -= 1;
@@ -123,7 +131,7 @@ export class CloudCatcher {
         }
         continue;
       }
-      if (d.held) continue;
+      if (d.held || d.id === this.selected) continue; // a picked-up item waits for its zone
       d.x += d.vx * dt * this.calm;
       d.y += Math.sin(this.time * 0.9 + d.phase) * 10 * dt * this.calm;
     }
@@ -170,10 +178,36 @@ export class CloudCatcher {
     d.held = false;
     const z = this.zoneAt(d.x, d.y);
     if (z && this.accepts(z, d)) return this.settle(d, z);
+    if (z) this.reject(d, z);
     return null; // it simply drifts on
   }
 
-  /** A click without dragging: the item floats to the first zone that welcomes it. */
+  /** A click on an item picks it up (a second click lets it go); the next click on a zone sends it there. */
+  select(id: number) {
+    const d = this.items.find((q) => q.id === id);
+    if (!d || d.settling) return;
+    this.selected = this.selected === id ? null : id;
+  }
+
+  /** Sends the picked-up item to this zone: in if it belongs there, a soft red glow and back to drifting if not. */
+  sendTo(zoneId: string): PlacedZone | null {
+    const d = this.items.find((q) => q.id === this.selected);
+    const z = this.zones.find((q) => q.id === zoneId);
+    this.selected = null;
+    if (!d || !z || d.settling) return null;
+    if (this.accepts(z, d)) return this.settle(d, z);
+    this.reject(d, z);
+    return null;
+  }
+
+  private reject(d: Drifter, z: PlacedZone) {
+    z.flash = 0.9;
+    d.held = false;
+    d.y = Math.min(d.y, z.y - d.r - 30); // back up into the sky, where it drifts on
+    this.events.onReject?.(d, z);
+  }
+
+  /** Keyboard help: the item floats to the first zone that welcomes it. */
   autoCatch(id: number): PlacedZone | null {
     const d = this.items.find((q) => q.id === id);
     if (!d || d.settling) return null;

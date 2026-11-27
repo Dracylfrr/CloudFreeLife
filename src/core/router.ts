@@ -45,13 +45,30 @@ export function onBeforeLeave(fn: Guard): () => void {
   return () => guards.delete(fn);
 }
 
-export async function runLeaveGuards(): Promise<void> {
-  for (const g of [...guards]) {
-    try {
-      await g();
-    } catch (err) {
-      console.warn('leave guard failed', err);
+/** How long saving may take before the app moves on anyway. Leaving a screen or closing the window must never wait for ever. */
+export const LEAVE_WAIT_MS = 8000;
+
+export async function runLeaveGuards(waitMs = LEAVE_WAIT_MS): Promise<void> {
+  const all = (async () => {
+    for (const g of [...guards]) {
+      try {
+        await g();
+      } catch (err) {
+        console.warn('leave guard failed', err);
+      }
     }
+  })();
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const late = new Promise<void>((resolve) => {
+    timer = setTimeout(() => {
+      console.warn('Saving is taking a long time; moving on. It keeps going in the background.');
+      resolve();
+    }, waitMs);
+  });
+  try {
+    await Promise.race([all, late]);
+  } finally {
+    clearTimeout(timer);
   }
 }
 
@@ -70,7 +87,7 @@ export function sectionOf(r: Route): NavSection {
     case 'books':
       return 'books';
     case 'draw':
-      return 'draw';
+      return 'books';
     case 'story':
       return 'stories';
     case 'adventure':

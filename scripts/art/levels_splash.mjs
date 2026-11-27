@@ -97,15 +97,6 @@ function balloonColors() {
   return S;
 }
 
-function freeSplash() {
-  const S = new Scene('free_splash', 'Free Splash');
-  S.region('back_wall', 'Wall', rect(-6, -6, 1012, 762), C.cream);
-  S.region('panel_left', 'Left panel', rect(60, 70, 270, 610, 36), C.white);
-  S.region('panel_center', 'Center panel', rect(365, 70, 270, 610, 36), C.white);
-  S.region('panel_right', 'Right panel', rect(670, 70, 270, 610, 36), C.white);
-  return S;
-}
-
 const wallLevels = [
   {
     folder: '01_blank_car',
@@ -180,14 +171,6 @@ const wallLevels = [
     scene: colorMatch(),
     goal: { type: 'color_match', targets: { ball_pink: '#f6b8cf', square_blue: '#bfe4f7', star_yellow: '#fff2bd', triangle_mint: '#c6ecda', cloud_lilac: '#d9cdf6', drop_peach: '#ffdcc8' } },
     colors: ['#f6b8cf', '#bfe4f7', '#fff2bd', '#c6ecda', '#d9cdf6', '#ffdcc8']
-  },
-  {
-    folder: '10_free_splash',
-    name: 'Free Splash',
-    description: 'A blank wall with three panels. No goal, just splash.',
-    objective: 'Splash however you like. There is nothing to win.',
-    scene: freeSplash(),
-    goal: { type: 'free' }
   },
   {
     folder: '11_fox_in_leaves',

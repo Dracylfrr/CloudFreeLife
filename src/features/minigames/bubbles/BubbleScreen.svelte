@@ -90,21 +90,31 @@
     const lv = level.manifest;
     drawScenery(ctx, FIELD_W, FIELD_H, lv.sky, lv.scenery);
     for (const b of game.bubbles) {
-      const g = ctx.createRadialGradient(b.x - b.r * 0.35, b.y - b.r * 0.4, b.r * 0.1, b.x, b.y, b.r);
-      g.addColorStop(0, 'rgba(255,255,255,0.95)');
-      g.addColorStop(0.35, b.color + 'cc');
-      g.addColorStop(1, b.color + '88');
+      // Solid color, so a bubble keeps its own color whatever is behind it (the sea, the night sky...).
       ctx.beginPath();
       ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+      ctx.fillStyle = b.color;
+      ctx.fill();
+      // a soft light on the lower edge gives it roundness without making it see-through
+      const g = ctx.createRadialGradient(b.x - b.r * 0.3, b.y - b.r * 0.35, b.r * 0.1, b.x, b.y, b.r);
+      g.addColorStop(0, 'rgba(255,255,255,0.28)');
+      g.addColorStop(0.6, 'rgba(255,255,255,0)');
+      g.addColorStop(1, 'rgba(0,0,0,0.16)');
       ctx.fillStyle = g;
       ctx.fill();
-      ctx.lineWidth = 2;
-      ctx.strokeStyle = b.held ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.75)';
+      // a dark and a light ring: one shows against pale scenery, the other against dark
+      ctx.lineWidth = 3.5;
+      ctx.strokeStyle = 'rgba(60,56,96,0.8)';
+      ctx.stroke();
+      ctx.lineWidth = b.held ? 2.2 : 1.4;
+      ctx.strokeStyle = 'rgba(255,255,255,0.95)';
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, b.r - 3, 0, Math.PI * 2);
       ctx.stroke();
       ctx.beginPath();
       ctx.arc(b.x - b.r * 0.35, b.y - b.r * 0.38, b.r * 0.2, Math.PI * 1.1, Math.PI * 1.7);
       ctx.lineWidth = 3;
-      ctx.strokeStyle = 'rgba(255,255,255,0.9)';
+      ctx.strokeStyle = 'rgba(255,255,255,0.85)';
       ctx.lineCap = 'round';
       ctx.stroke();
     }

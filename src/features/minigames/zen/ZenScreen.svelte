@@ -29,6 +29,7 @@
     type ZenObject
   } from './gardens';
   import { drawGarden, drawSand, drawStroke } from './render';
+  import { ZEN_SETTINGS, ZEN_SETTING_LABEL, isZenSetting } from './settings';
 
   let { levelId, gardenId }: { levelId?: string; gardenId?: string } = $props();
 
@@ -130,7 +131,7 @@
         g = all[0] ?? null;
       }
       if (!g) {
-        g = emptyGarden(levelId && levels.some((l) => l.manifest.id === levelId) ? levelId : (levels[0]?.manifest.id ?? 'warm_sand'));
+        g = emptyGarden(levelId && levels.some((l) => l.manifest.id === levelId) ? levelId : (levels[0]?.manifest.id ?? 'warm_sand'), 'My garden', 'japanese');
         await saveGarden(g);
       } else if (levelId && levels.some((l) => l.manifest.id === levelId) && !gardenId) {
         g.levelId = levelId;
@@ -231,7 +232,7 @@
   // ---- actions ----
   async function newGarden() {
     await saver.flush();
-    const g = emptyGarden(garden?.levelId ?? levels[0]?.manifest.id ?? 'warm_sand', 'New garden');
+    const g = emptyGarden(garden?.levelId ?? levels[0]?.manifest.id ?? 'warm_sand', 'New garden', garden?.setting ?? 'japanese');
     await saveGarden(g);
     await open(g);
     toast('A fresh garden.', 'success', 1800);
@@ -283,6 +284,11 @@
       if (!list[0]) await saveGarden(rest);
       await open(rest);
     }
+  }
+  function setSetting(v: string) {
+    if (!garden || !isZenSetting(v)) return;
+    garden.setting = v;
+    changed();
   }
   function setLevel(i: number) {
     if (!garden || !levels[i]) return;
@@ -344,6 +350,12 @@
         </button>
       {/each}
       <div class="sep"></div>
+      <label class="setting">
+        <span>Place</span>
+        <select value={garden?.setting ?? 'plain'} onchange={(e) => setSetting(e.currentTarget.value)} aria-label="Where the garden is">
+          {#each ZEN_SETTINGS as z}<option value={z}>{ZEN_SETTING_LABEL[z]}</option>{/each}
+        </select>
+      </label>
       <Slider label="Size" value={size} min={0.6} max={1.8} step={0.1} format={(v) => `${Math.round(v * 100)}%`} onchange={(v) => (size = v)} />
       <Button variant="ghost" size="sm" icon="undo" onclick={undo}>Undo</Button>
       <Button variant="ghost" size="sm" icon="refresh" onclick={clearAll}>Clear</Button>
@@ -414,6 +426,25 @@
   }
   .tools button:hover:not(.on):not(.btn) {
     background: rgb(var(--w) / 0.7);
+  }
+  .setting {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 2px 4px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: var(--ink-soft);
+  }
+  .setting select {
+    width: 100%;
+    padding: 6px 8px;
+    border-radius: 12px;
+    font: inherit;
+    font-weight: 700;
+    color: var(--ink);
+    background: var(--panel-strong);
+    border: 1.5px solid var(--line);
   }
   .sep {
     height: 1px;

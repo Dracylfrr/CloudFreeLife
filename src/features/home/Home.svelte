@@ -138,18 +138,6 @@
       </div>
     </button>
 
-    <button class="card draw" onclick={() => navigate({ name: 'draw' })}>
-      <div class="visual swatches" aria-hidden="true">
-        <i style="background:#bfe4f7"></i><i style="background:#e6d8f8"></i><i style="background:#ffd3e2"></i><i style="background:#c6ecda"></i><i style="background:#fff2bd"></i>
-        <svg viewBox="0 0 300 90" width="100%" height="90"><path d="M12 62 C 60 12, 100 100, 150 48 S 240 22, 288 58" fill="none" stroke="#b7a8ec" stroke-width="12" stroke-linecap="round"/><path d="M12 72 C 70 40, 110 96, 160 66 S 240 50, 288 74" fill="none" stroke="#ffb7d1" stroke-width="8" stroke-linecap="round" opacity=".8"/></svg>
-      </div>
-      <div class="meta">
-        <span class="tag mint"><Icon name="brush" size={14} /> Start Free Draw</span>
-        <h3>Free Draw</h3>
-        <p>A blank canvas in soft pastel backgrounds.</p>
-      </div>
-    </button>
-
     <button class="card games" onclick={() => navigate({ name: 'minigames' })}>
       <div class="visual play" aria-hidden="true">
         <span style="--c:#bfe4f7"></span><span style="--c:#ffd3e2"></span><span style="--c:#c6ecda"></span><span style="--c:#fff2bd"></span><span style="--c:#e6d8f8"></span>
@@ -394,24 +382,6 @@
   }
   .stack {
     min-height: 140px;
-  }
-  .swatches {
-    background: linear-gradient(135deg, #e3f5ee, #e6effa);
-    padding: 12px;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    gap: 6px;
-    min-height: 140px;
-  }
-  .swatches i {
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    box-shadow: 0 2px 6px rgba(100, 90, 170, 0.18);
-  }
-  .swatches svg {
-    margin-top: 6px;
   }
   .play {
     background: linear-gradient(135deg, #ece3fb, #fde6ef);

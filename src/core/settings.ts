@@ -5,11 +5,11 @@ import { DEFAULT_THEME, applyTheme, isThemeChoice, systemPrefersDark, type Theme
 import { DEFAULT_APP_ICON, isAppIcon, type AppIconId } from './appIcon';
 import { sanitizeAvatar, sanitizeLooks, type AvatarConfig, type SavedLook } from '../features/avatar/avatar';
 import { cleanFrame, isFrame } from '../features/avatar/frames';
-import { DEFAULT_NARRATOR_VOICE, clampSpeed, isVoice, sanitizeSavedCasts, type SavedCasts } from '../features/voices/casts';
+import { DEFAULT_NARRATOR_SPEED, DEFAULT_NARRATOR_VOICE, clampSpeed, isVoice, sanitizeSavedCasts, withoutNarrator, type SavedCasts } from '../features/voices/casts';
 import { isPaintMode, modeFromLegacy, type PaintMode } from '../features/painting/paintMode';
 
 export const SETTINGS_PATH = 'settings.json';
-export const SETTINGS_SCHEMA = 2;
+export const SETTINGS_SCHEMA = 3;
 
 export const MOODS = ['default', 'relaxed', 'chill', 'cozy', 'dreamy'] as const;
 export type Mood = (typeof MOODS)[number];
@@ -97,7 +97,7 @@ export const DEFAULT_SETTINGS: Settings = {
   avatarLooks: [],
   avatarFramesSeen: null,
   voiceNarrator: DEFAULT_NARRATOR_VOICE,
-  voiceNarratorSpeed: 1,
+  voiceNarratorSpeed: DEFAULT_NARRATOR_SPEED,
   voiceCasts: {},
   mood: 'default',
   reducedMotion: false,
@@ -120,6 +120,19 @@ export const DEFAULT_SETTINGS: Settings = {
   lastColor: '#a9d4f5',
   brushSize: 18
 };
+
+function voiceFields(r: Record<string, unknown>, d: Settings): Pick<Settings, 'voiceNarrator' | 'voiceNarratorSpeed' | 'voiceCasts'> {
+  const old = typeof r.schema === 'number' && r.schema < 3;
+  let voice = isVoice(r.voiceNarrator) ? r.voiceNarrator : d.voiceNarrator;
+  let speed = clampSpeed(r.voiceNarratorSpeed ?? d.voiceNarratorSpeed);
+  let casts = sanitizeSavedCasts(r.voiceCasts);
+  if (old) {
+    if (voice === 'af_nicole') voice = DEFAULT_NARRATOR_VOICE;
+    speed = Math.min(speed, DEFAULT_NARRATOR_SPEED);
+    casts = withoutNarrator(casts);
+  }
+  return { voiceNarrator: voice, voiceNarratorSpeed: speed, voiceCasts: casts };
+}
 
 const bool = (v: unknown, d: boolean) => (typeof v === 'boolean' ? v : d);
 const num = (v: unknown, d: number, lo: number, hi: number) =>
@@ -148,9 +161,11 @@ export function sanitizeSettings(raw: unknown): Settings {
     avatarPicture: typeof r.avatarPicture === 'number' && Number.isFinite(r.avatarPicture) && r.avatarPicture > 0 ? Math.floor(r.avatarPicture) : 0,
     avatarLooks: sanitizeLooks(r.avatarLooks, isFrame),
     avatarFramesSeen: Array.isArray(r.avatarFramesSeen) ? [...new Set(r.avatarFramesSeen.filter((x): x is string => typeof x === 'string' && isFrame(x)))] : null,
-    voiceNarrator: isVoice(r.voiceNarrator) ? r.voiceNarrator : d.voiceNarrator,
-    voiceNarratorSpeed: clampSpeed(r.voiceNarratorSpeed ?? d.voiceNarratorSpeed),
-    voiceCasts: sanitizeSavedCasts(r.voiceCasts),
+    // Settings saved before 2.2.1 used a faster reading pace and Nicole as the usual voice. Once, when the file is
+    // upgraded, the narrator moves to the calm bedtime pace (a pace chosen to be even slower is kept), the old default
+    // voice becomes the new one, and the narrator choices made inside single stories are dropped so that the voice and
+    // speed chosen in Settings apply to every story again. After that the choices are the person's own.
+    ...voiceFields(r, d),
     mood: (MOODS as readonly string[]).includes(r.mood as string) ? (r.mood as Mood) : d.mood,
     reducedMotion: bool(r.reducedMotion, d.reducedMotion),
     disableParticles: bool(r.disableParticles, d.disableParticles),

@@ -21,24 +21,31 @@ export interface Voice {
   feel: string;
 }
 
-/** The nine voices the app offers. Kokoro voice ids: a/b = American/British, f/m = female/male. */
+/**
+ * The nine voices the app offers. The `id` is the speech model's own name for the voice (a/b = American/British,
+ * f/m = female/male) and is never shown; the `name` is what people see and can be changed without touching anything else.
+ */
 export const VOICES: readonly Voice[] = [
-  { id: 'af_nicole', name: 'Nicole', gender: 'f', accent: 'American', feel: 'soft and hushed' },
-  { id: 'af_bella', name: 'Bella', gender: 'f', accent: 'American', feel: 'warm and expressive' },
-  { id: 'af_sarah', name: 'Sarah', gender: 'f', accent: 'American', feel: 'clear and friendly' },
-  { id: 'bf_emma', name: 'Emma', gender: 'f', accent: 'British', feel: 'bright and bookish' },
-  { id: 'bf_isabella', name: 'Isabella', gender: 'f', accent: 'British', feel: 'gentle and kind' },
-  { id: 'am_michael', name: 'Michael', gender: 'm', accent: 'American', feel: 'warm and steady' },
-  { id: 'am_onyx', name: 'Onyx', gender: 'm', accent: 'American', feel: 'deep and calm' },
-  { id: 'am_santa', name: 'Santa', gender: 'm', accent: 'American', feel: 'low and jolly' },
-  { id: 'bm_lewis', name: 'Lewis', gender: 'm', accent: 'British', feel: 'polite and proper' }
+  { id: 'af_nicole', name: 'Wren', gender: 'f', accent: 'American', feel: 'soft and hushed' },
+  { id: 'af_bella', name: 'Saffron', gender: 'f', accent: 'American', feel: 'warm and expressive' },
+  { id: 'af_sarah', name: 'Lark', gender: 'f', accent: 'American', feel: 'clear and friendly' },
+  { id: 'bf_emma', name: 'Elodie', gender: 'f', accent: 'British', feel: 'bright and bookish' },
+  { id: 'bf_isabella', name: 'Linnea', gender: 'f', accent: 'British', feel: 'gentle and kind' },
+  { id: 'am_michael', name: 'Corin', gender: 'm', accent: 'American', feel: 'warm and steady' },
+  { id: 'am_onyx', name: 'Orrin', gender: 'm', accent: 'American', feel: 'deep and calm' },
+  { id: 'am_santa', name: 'Bramble', gender: 'm', accent: 'American', feel: 'low and jolly' },
+  { id: 'bm_lewis', name: 'Edmund', gender: 'm', accent: 'British', feel: 'polite and proper' }
 ];
 export const VOICE_IDS: readonly string[] = VOICES.map((v) => v.id);
 export const isVoice = (id: unknown): id is string => typeof id === 'string' && VOICE_IDS.includes(id);
 export const voiceInfo = (id: string): Voice | undefined => VOICES.find((v) => v.id === id);
 
 export const NARRATOR_ID = 'narrator';
-export const DEFAULT_NARRATOR_VOICE = 'af_nicole';
+export const DEFAULT_NARRATOR_VOICE = 'bf_emma';
+/** The calm bedtime pace. On the speech model 0.8 reads about 85% as fast as 1.0 (measured: a 6.8 second line lasts 8.1 seconds). */
+export const DEFAULT_NARRATOR_SPEED = 0.8;
+/** Characters speak a touch quicker than the narrator, so a conversation still feels lively. */
+export const DEFAULT_CHARACTER_SPEED = 0.85;
 export const SPEED_MIN = 0.6;
 export const SPEED_MAX = 1.4;
 export const clampSpeed = (n: unknown): number => (typeof n === 'number' && Number.isFinite(n) ? Math.round(Math.min(SPEED_MAX, Math.max(SPEED_MIN, n)) * 20) / 20 : 1);
@@ -122,7 +129,7 @@ export function resolveSpeakers(cast: readonly CastMember[] | undefined, saved: 
       voice = prefs.find((v) => !taken.has(v)) ?? prefs[0];
     }
     taken.add(voice);
-    out.push({ id: m.id, name: m.name, isNarrator: false, gender: m.gender, voice, speed: own ? clampSpeed(own.speed) : 1, custom: !!own, aka: m.aka ?? [] });
+    out.push({ id: m.id, name: m.name, isNarrator: false, gender: m.gender, voice, speed: own ? clampSpeed(own.speed) : DEFAULT_CHARACTER_SPEED, custom: !!own, aka: m.aka ?? [] });
   }
   return out;
 }
@@ -240,6 +247,16 @@ export function toChunks(paragraphs: readonly string[], speakers: Speaker[], car
     });
   });
   return chunks;
+}
+
+/** The choices saved for a story without the narrator's, so the narrator chosen in Settings applies to it again. */
+export function withoutNarrator(saved: SavedCasts): SavedCasts {
+  const out: SavedCasts = {};
+  for (const [story, members] of Object.entries(saved)) {
+    const { [NARRATOR_ID]: _n, ...rest } = members;
+    if (Object.keys(rest).length) out[story] = rest;
+  }
+  return out;
 }
 
 /** A short, friendly sample line for trying out a voice. */

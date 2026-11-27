@@ -22,6 +22,8 @@ export interface EngineLink {
   start(): Promise<void>;
   speak(text: string, voice: string, speed: number): Promise<Float32Array>;
   stop(): void;
+  /** Drops every line that has been asked for and not yet started (what is being made right now finishes). */
+  cancel?(): void;
   /** How many lines can be made at the same time. */
   readonly parallel?: number;
 }
@@ -61,6 +63,9 @@ function killAll() {
   waiting.clear();
 }
 
+/** Loading a speech model takes a few seconds; if it takes this long the computer cannot run it, and the next way is tried. */
+const START_LIMIT_MS: Record<EngineMode, number> = { gpu: 45_000, cpu: 120_000 };
+
 function launch(model: Uint8Array, tokenizer: string, device: EngineMode): Promise<Slot> {
   const w = new Worker(new URL('./tts.worker.ts', import.meta.url), { type: 'module' });
   const slot: Slot = { w, busy: 0, sent: new Set() };
@@ -88,6 +93,7 @@ function launch(model: Uint8Array, tokenizer: string, device: EngineMode): Promi
     w.onerror = (e) => reject(new Error(e.message || 'The voice engine could not start.'));
     const init: ToWorker = { type: 'init', model, tokenizer, wasmBase: wasmBase(), device };
     w.postMessage(init, [model.buffer as ArrayBuffer]);
+    setTimeout(() => reject(new Error(device === 'gpu' ? 'The fast voices took too long to start on this computer.' : 'The voices took too long to start.')), START_LIMIT_MS[device]);
   }).catch((e) => {
     w.terminate();
     throw e;
@@ -123,12 +129,24 @@ const nativeLink: EngineLink = {
         }
         try {
           slots = [await launch(model, tokenizer, mode)];
-          // the graphics chip prepares its work on the first sentence; do that now, out of the way
-          if (mode === 'gpu') await nativeLink.speak('Hello.', 'af_nicole', 1).catch(() => {});
+          // the graphics chip prepares its work on the first sentence; do that now, out of the way.
+          // If it never finishes, this computer cannot use the fast voices: the standard ones are tried.
+          if (mode === 'gpu') {
+            let timer: ReturnType<typeof setTimeout> | undefined;
+            await Promise.race([
+              nativeLink.speak('Hello.', 'af_nicole', 1).catch(() => {}),
+              new Promise<never>((_, no) => (timer = setTimeout(() => no(new Error('The fast voices took too long to start on this computer.')), START_LIMIT_MS.gpu)))
+            ]).finally(() => clearTimeout(timer));
+          }
           engineState.set({ status: 'ready', workers: 1, mode });
           return;
         } catch (e) {
           lastError = e;
+          // let go of the engine that did not work before trying the next one
+          for (const s of slots) s.w.terminate();
+          slots = [];
+          for (const p of waiting.values()) p.fail(new Error('Stopped.'));
+          waiting.clear();
         }
       }
       throw lastError instanceof Error ? lastError : new Error('The voice engine could not start.');
@@ -165,6 +183,9 @@ const nativeLink: EngineLink = {
       slot.w.postMessage({ type: 'speak', req, text, voice, speed } satisfies ToWorker);
     });
   },
+  cancel() {
+    for (const s of slots) s.w.postMessage({ type: 'cancel' } satisfies ToWorker);
+  },
   stop() {
     killAll();
     engineState.set({ status: 'off' });
@@ -182,6 +203,11 @@ export const engineParallelism = () => Math.max(1, link.parallel ?? 1);
 function armIdle() {
   if (idleTimer) clearTimeout(idleTimer);
   idleTimer = setTimeout(() => link.stop(), IDLE_MS);
+}
+
+/** Drops the lines still waiting to be made, for when the reading is stopped or moves on to another passage. */
+export function cancelSpeech() {
+  link.cancel?.();
 }
 
 export async function startEngine(): Promise<void> {

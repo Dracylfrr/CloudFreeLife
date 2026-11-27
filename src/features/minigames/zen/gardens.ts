@@ -5,6 +5,7 @@
  * never grow without limit.
  */
 import { getStorage } from '../../../core/storage';
+import { isZenSetting, type ZenSetting } from './settings';
 
 export const GARDEN_ROOT = 'gardens';
 export const FIELD_W = 900;
@@ -39,6 +40,8 @@ export interface Garden {
   name: string;
   /** Which Zen Garden background (level id). */
   levelId: string;
+  /** The place the garden sits in (a Japanese house, the seaside...). Gardens saved before 2.2.1 have none and keep the open sand. */
+  setting?: ZenSetting;
   createdAt: number;
   updatedAt: number;
   strokes: Stroke[];
@@ -52,9 +55,9 @@ export function newGardenId(): string {
   return `garden-${Date.now().toString(36)}${Math.floor(Math.random() * 1296).toString(36)}`;
 }
 
-export function emptyGarden(levelId: string, name = 'My garden'): Garden {
+export function emptyGarden(levelId: string, name = 'My garden', setting: ZenSetting = 'plain'): Garden {
   const now = Date.now();
-  return { schema: 1, id: newGardenId(), name, levelId, createdAt: now, updatedAt: now, strokes: [], objects: [] };
+  return { schema: 1, id: newGardenId(), name, levelId, setting, createdAt: now, updatedAt: now, strokes: [], objects: [] };
 }
 
 /** Accepts anything, returns a valid, size-limited garden (or null when it is not a garden at all). */
@@ -101,6 +104,7 @@ export function sanitizeGarden(raw: unknown, folderId?: string): Garden | null {
     id,
     name: typeof r.name === 'string' && r.name.trim() ? r.name.trim().slice(0, 40) : 'My garden',
     levelId: typeof r.levelId === 'string' && /^[a-z0-9_]{1,64}$/.test(r.levelId) ? r.levelId : 'warm_sand',
+    setting: isZenSetting(r.setting) ? r.setting : 'plain',
     createdAt: num(r.createdAt, 0, Number.MAX_SAFE_INTEGER, now),
     updatedAt: num(r.updatedAt, 0, Number.MAX_SAFE_INTEGER, now),
     strokes,

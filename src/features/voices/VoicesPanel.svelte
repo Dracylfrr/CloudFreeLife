@@ -83,7 +83,7 @@
         </ul>
         {#if $listenState.status === 'error'}<p class="err" role="alert">{$listenState.message}</p>{/if}
         <footer>
-          <p class="fine"><Icon name="check" size={14} /> {voiceInfo(speakers[0]?.voice ?? '')?.name ?? 'Nicole'} is the usual narrator. Change it for every story in Settings > Voices.</p>
+          <p class="fine"><Icon name="check" size={14} /> {voiceInfo(speakers[0]?.voice ?? '')?.name ?? 'Elodie'} is the narrator. Change it for every story in Settings > Voices.</p>
           {#if anyCustom}<Button size="sm" variant="ghost" icon="undo" onclick={() => resetVoices(target.storyId)}>Back to the suggested voices</Button>{/if}
         </footer>
       {/if}

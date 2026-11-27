@@ -20,7 +20,7 @@
   import Icon from '../../ui/Icon.svelte';
   import Select from '../../ui/Select.svelte';
   import VoiceSetup from '../voices/VoiceSetup.svelte';
-  import { SAMPLE_LINE, SPEED_MAX, SPEED_MIN, VOICES } from '../voices/casts';
+  import { SAMPLE_LINE, SPEED_MAX, SPEED_MIN, VOICES, withoutNarrator } from '../voices/casts';
   import { listenState, previewVoice } from '../voices/player';
   import { measureFootprint, programSize, type Footprint, type Part } from './footprint';
   import { downloadModel, removeModel, tierBytes } from '../voices/model';
@@ -197,8 +197,8 @@
         <VoiceSetup />
         {#if $modelReady}
           <h3 class="mini">Narrator</h3>
-          <Select label="Voice for everything that is not spoken" value={$settings.voiceNarrator} options={VOICES.map((v) => ({ value: v.id, label: `${v.name} · ${v.accent} · ${v.feel}` }))} onchange={(v) => updateSettings({ voiceNarrator: v })} />
-          <Slider label="Narrator speed" value={$settings.voiceNarratorSpeed} min={SPEED_MIN} max={SPEED_MAX} step={0.05} format={(v) => `${v.toFixed(2).replace(/0$/, '')}×`} onchange={(v) => updateSettings({ voiceNarratorSpeed: v })} />
+          <Select label="Voice for everything that is not spoken" value={$settings.voiceNarrator} options={VOICES.map((v) => ({ value: v.id, label: `${v.name} · ${v.accent} · ${v.feel}` }))} onchange={(v) => updateSettings({ voiceNarrator: v, voiceCasts: withoutNarrator($settings.voiceCasts) })} />
+          <Slider label="Narrator speed" value={$settings.voiceNarratorSpeed} min={SPEED_MIN} max={SPEED_MAX} step={0.05} format={(v) => `${v.toFixed(2).replace(/0$/, '')}×`} onchange={(v) => updateSettings({ voiceNarratorSpeed: v, voiceCasts: withoutNarrator($settings.voiceCasts) })} />
           <div class="hear">
             <Button variant="soft" icon="play" disabled={$listenState.status === 'loading' || $listenState.status === 'playing'} onclick={() => previewVoice(SAMPLE_LINE, $settings.voiceNarrator, $settings.voiceNarratorSpeed)}>
               {$listenState.status === 'loading' ? 'Getting ready…' : $listenState.status === 'playing' ? 'Speaking…' : 'Hear the narrator'}

@@ -56,6 +56,7 @@
         particles.burst(z.x + z.w / 2, z.y + 30, d.color, 8);
         sfx.sparkle();
       },
+      onReject: () => sfx.thud(),
       onPatternStep: () => sfx.match(),
       onFinish: () => {
         sfx.chime();
@@ -166,23 +167,61 @@
     const lv = level.manifest;
     drawScenery(ctx, FIELD_W, FIELD_H, lv.sky, lv.scenery);
     for (const z of game.zones) {
-      ctx.fillStyle = z.color + '66';
-      ctx.strokeStyle = z.color;
-      ctx.lineWidth = 4;
+      const glow = z.flash ? Math.min(1, z.flash / 0.5) : 0;
+      // a solid box: it stays easy to see on any sky, including the night one
+      ctx.fillStyle = '#fbf9ff';
       ctx.beginPath();
       ctx.roundRect(z.x, z.y, z.w, z.h, 28);
       ctx.fill();
+      ctx.fillStyle = z.color;
+      ctx.beginPath();
+      ctx.roundRect(z.x + 6, z.y + 6, z.w - 12, z.h - 12, 24);
+      ctx.fill();
+      if (glow) {
+        ctx.fillStyle = `rgba(226,84,96,${0.85 * glow})`;
+        ctx.beginPath();
+        ctx.roundRect(z.x + 6, z.y + 6, z.w - 12, z.h - 12, 24);
+        ctx.fill();
+      }
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = glow ? `rgba(200,50,70,${0.6 + 0.4 * glow})` : 'rgba(70,66,110,0.75)';
+      ctx.beginPath();
+      ctx.roundRect(z.x, z.y, z.w, z.h, 28);
       ctx.stroke();
-      ctx.fillStyle = 'rgba(80,76,120,0.8)';
-      ctx.font = '700 15px Nunito, system-ui, sans-serif';
+      // the name sits on a light chip so it can be read on any color
+      ctx.font = '800 15px Nunito, system-ui, sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText(z.label, z.x + z.w / 2, z.y + z.h - 14);
+      const tw = ctx.measureText(z.label).width + 22;
+      ctx.fillStyle = 'rgba(255,255,255,0.94)';
+      ctx.beginPath();
+      ctx.roundRect(z.x + z.w / 2 - tw / 2, z.y + z.h - 36, tw, 24, 12);
+      ctx.fill();
+      ctx.fillStyle = 'rgba(60,56,100,0.95)';
+      ctx.fillText(z.label, z.x + z.w / 2, z.y + z.h - 19);
+      if (game.selected !== null) {
+        ctx.setLineDash([8, 7]);
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = 'rgba(255,255,255,0.95)';
+        ctx.beginPath();
+        ctx.roundRect(z.x - 5, z.y - 5, z.w + 10, z.h + 10, 32);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
     }
     for (const d of game.items) {
       const a = d.settling ? Math.max(0, 1 - Math.max(0, d.settling.t - 0.6) * 2.4) : 1;
       ctx.globalAlpha = a;
       shape(d);
       ctx.globalAlpha = 1;
+      if (game.selected === d.id) {
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = '#ffffff';
+        ctx.setLineDash([7, 6]);
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, d.r + 11, 0, 7);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
     }
     particles.draw(ctx);
   }
@@ -197,7 +236,17 @@
     if (!game || paused || game.finished) return;
     const p = pos(e);
     const d = game.at(p.x, p.y);
-    if (!d) return;
+    if (!d) {
+      // with something picked up, a tap on a box sends it there; a tap anywhere else lets it go
+      if (game.selected !== null) {
+        const z = game.zoneAt(p.x, p.y);
+        if (z) game.sendTo(z.id);
+        else game.selected = null;
+        sync();
+        loop?.drawOnce();
+      }
+      return;
+    }
     try {
       canvas!.setPointerCapture(e.pointerId);
     } catch {
@@ -218,7 +267,7 @@
     if (!game || !held) return;
     const h = held;
     held = null;
-    if (h.moved <= 10) game.autoCatch(h.id);
+    if (h.moved <= 10) game.select(h.id);
     else game.drop(h.id);
     sync();
     loop?.drawOnce();
@@ -242,11 +291,11 @@
 
   const objective = $derived(
     mode === 'relax'
-      ? 'Drag or click anything into any zone. There is nothing to get right.'
+      ? 'Drag anything into any zone, or click it and then click a zone. There is nothing to get right.'
       : mode === 'pattern'
-        ? 'Catch them in the order shown above.'
+        ? 'Catch them in the order shown above. Click one, then click a zone, or drag it there.'
         : mode === 'match'
-          ? 'Match each color to the zone of the same color.'
+          ? 'Match each color to the zone of the same color. Click one, then click a zone, or drag it there.'
           : 'Match colors for as long as you like.'
   );
 </script>
@@ -287,7 +336,7 @@
       </div>
     {/if}
     <!-- svelte-ignore a11y_no_static_element_interactions -->
-    <canvas bind:this={canvas} onpointerdown={down} onpointermove={move} onpointerup={up} onpointercancel={up} aria-label="Cloud Catcher. Drag floating clouds and stars into the zones, or click them."></canvas>
+    <canvas bind:this={canvas} onpointerdown={down} onpointermove={move} onpointerup={up} onpointercancel={up} aria-label="Cloud Catcher. Drag floating clouds and stars into the zones, or click one and then click a zone."></canvas>
     {#if paused}
       <div class="overlay"><h2>Paused</h2><Button variant="primary" icon="play" onclick={() => (paused = false)}>Resume</Button></div>
     {/if}

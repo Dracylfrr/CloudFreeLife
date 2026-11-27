@@ -7,6 +7,7 @@ import { validateBubbleLevel, validateCatcherLevel, validateFlowLevel, validateZ
 import { BubbleGarden, FIELD_H, FIELD_W, MAX_BUBBLES } from '../src/features/minigames/bubbles/logic';
 import { CloudCatcher, MATCH_GOAL, PATTERN_REPEATS, layoutZones, MAX_ITEMS } from '../src/features/minigames/catcher/logic';
 import { FlowBoard, randomBoard, solutionIsValid, type Cell } from '../src/features/minigames/flow/logic';
+import { ZEN_SETTINGS, bedOf } from '../src/features/minigames/zen/settings';
 import { MAX_OBJECTS, MAX_POINTS, MAX_STROKES, addPoint, deleteGarden, duplicateGarden, emptyGarden, listGardens, loadGarden, objectAt, sanitizeGarden, saveGarden, strokeAt } from '../src/features/minigames/zen/gardens';
 import { gamesProgress, loadGamesProgress, recordFlowSolved, recordOpened, recordPlayed, sanitizeGames } from '../src/features/minigames/progress';
 import { createRng } from '../src/core/rng';
@@ -482,6 +483,21 @@ describe('Zen Garden', () => {
     expect(addPoint(s, 30, 10)).toBe(true);
     for (let i = 0; i < 2000; i++) addPoint(s, i * 10, 0);
     expect(s.pts.length).toBeLessThanOrEqual(MAX_POINTS * 2);
+  });
+
+  it('puts a garden in a place (a Japanese house, the seaside...) and keeps old gardens on open sand', async () => {
+    expect(sanitizeGarden({ id: 'old-1' })!.setting).toBe('plain');
+    expect(sanitizeGarden({ id: 'old-2', setting: 'castle-in-the-air' })!.setting).toBe('plain');
+    expect(sanitizeGarden({ id: 'new-1', setting: 'japanese' })!.setting).toBe('japanese');
+    const g = emptyGarden('warm_sand', 'Tea', 'tea');
+    await saveGarden(g);
+    expect((await loadGarden(g.id))!.setting).toBe('tea');
+    for (const z of ZEN_SETTINGS) {
+      const b = bedOf(z);
+      expect(b.x + b.w).toBeLessThanOrEqual(900);
+      expect(b.y + b.h).toBeLessThanOrEqual(580);
+      expect(b.w).toBeGreaterThan(300);
+    }
   });
 
   it('saves automatically-written gardens and loads them back exactly', async () => {

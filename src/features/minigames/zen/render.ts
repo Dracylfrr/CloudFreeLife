@@ -4,6 +4,7 @@
  */
 import type { ZenLevel } from '../../../core/manifests14';
 import { FIELD_H, FIELD_W, type Garden, type Stroke, type ZenObject } from './gardens';
+import { clipToBed, drawBedEdge, drawSetting, type ZenSetting } from './settings';
 
 const LINE = 'rgba(110,106,142,0.6)';
 
@@ -198,12 +199,38 @@ export function drawObject(g: CanvasRenderingContext2D, o: ZenObject) {
   g.restore();
 }
 
+/** The setting and the empty sand inside it, drawn once per setting and sand and kept. */
+const layerCache = new Map<string, HTMLCanvasElement>();
+function settingLayer(setting: ZenSetting, level: ZenLevel): HTMLCanvasElement {
+  const key = `${setting}|${level.id}|${level.ground.join()}`;
+  let c = layerCache.get(key);
+  if (c) return c;
+  c = document.createElement('canvas');
+  c.width = FIELD_W;
+  c.height = FIELD_H;
+  const g = c.getContext('2d')!;
+  drawSetting(g, setting, level);
+  g.save();
+  clipToBed(g, setting);
+  g.drawImage(grain(level), 0, 0);
+  g.restore();
+  if (layerCache.size > 12) layerCache.clear();
+  layerCache.set(key, c);
+  return c;
+}
+
 /** Draws the whole garden. Pass `sand` to reuse an already-drawn layer of raked lines. */
 export function drawGarden(g: CanvasRenderingContext2D, garden: Garden, level: ZenLevel, sand?: HTMLCanvasElement) {
-  g.drawImage(grain(level), 0, 0);
-  frame(g, level);
+  const setting = garden.setting ?? 'plain';
+  if (setting === 'plain') g.drawImage(grain(level), 0, 0);
+  else g.drawImage(settingLayer(setting, level), 0, 0);
+  if (setting === 'plain') frame(g, level);
+  g.save();
+  clipToBed(g, setting);
   if (sand) g.drawImage(sand, 0, 0, FIELD_W, FIELD_H);
   else for (const s of garden.strokes) drawStroke(g, s, level);
+  g.restore();
+  drawBedEdge(g, setting);
   for (const o of [...garden.objects].sort((a, b) => a.y - b.y)) drawObject(g, o);
 }
 

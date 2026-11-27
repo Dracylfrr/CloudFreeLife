@@ -25,7 +25,10 @@
 
   function go(n: number) {
     if (!m) return;
-    step = Math.max(0, Math.min(total - 1, n));
+    const next = Math.max(0, Math.min(total - 1, n));
+    // a new page starts with a fresh timer: nothing keeps counting (or ringing) from the page before
+    if (next !== step) resetTimer();
+    step = next;
     sfx.pageTurn();
   }
   function startTimer() {
@@ -42,7 +45,7 @@
     if (interval) clearInterval(interval);
     interval = null;
     timerOn = false;
-    if (done) sfx.bowl(220);
+    if (done) sfx.softAlarm();
   }
   function resetTimer() {
     stopTimer();

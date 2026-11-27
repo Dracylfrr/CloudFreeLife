@@ -35,8 +35,19 @@ Run through this on the **built** app (`npm run tauri build`, then the installed
 
 ## Games
 - [ ] Pastel Breaker: all 12 levels open; Relax / Classic / Endless; paddle follows the mouse; particles; level-complete screen; Classic game-over.
-- [ ] Splash Wall: all 16 levels open; aim, click-throw, hold-to-charge throw; splat stays in the region; goals count correctly; color match hints; Wash and Save PNG.
+- [ ] Splash Wall: all 15 levels open; aim, click-throw, hold-to-charge throw; splat stays in the region; goals count correctly; color match hints; Wash and Save PNG.
 - [ ] Pause with P; minimize the window and confirm CPU drops to ~0.
+
+## 2.2.1 checks (calmer voices, Zen settings, gentler games)
+- [ ] Listen reads at a clearly calm pace; the narrator is Elodie; Settings > Voices shows the nine new names; changing the speed there changes every story.
+- [ ] Adventure: while a passage is read, the choices are read and highlighted afterwards; picking a choice while Listen is still getting ready works, and Back to Story Adventures and More adventures always work.
+- [ ] Cloud Catcher (all modes, Star Night): boxes are solid; a wrong box glows red and the item floats on; a click picks up, a second click on a box sends it; drag still works.
+- [ ] Bubble Garden bubbles are solid on the sea, night and garden backgrounds.
+- [ ] Zen Garden: the Place menu offers six settings; raking stays inside the sand; gardens saved before 2.2.1 still open (Open sand); saved gardens show under Gallery > Zen Gardens and open from there.
+- [ ] Splash Wall has 15 levels; Rainbow Target needs the rings mostly covered; Memory Meadow shows no tries.
+- [ ] Meditation ends with Repeat and More. Exercise: the timer chimes softly and resets when changing page.
+- [ ] Avatar: Crown, Tiara and Flower crown show on the forehead; a change made just before closing the app is still there on the next start.
+- [ ] Home and the sidebar no longer show Free Draw; Coloring Books > Free Canvas still opens it.
 
 ## 2.2.0 checks (the rename: installer, program file, folder, shortcuts)
 Needs a computer that still has an older version installed (ideally in a custom folder, with a desktop shortcut and a taskbar pin).

@@ -254,7 +254,7 @@
           <h2>A gentle landing</h2>
           <p class="muted">{popped} blocks popped. That's lovely.</p>
           <div class="acts">
-            <Button variant="primary" onclick={() => restart(mode)}>Try again</Button>
+            <Button variant="primary" onclick={() => restart(mode)}>Play again</Button>
             <Button variant="soft" onclick={() => restart('relax')}>Switch to Relax</Button>
           </div>
         </div>

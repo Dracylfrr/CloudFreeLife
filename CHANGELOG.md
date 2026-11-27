@@ -2,6 +2,20 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com), and the project uses [Semantic Versioning](https://semver.org).
 
+## [2.2.1]
+
+### Changed
+- **Calmer voices.** Stories are read at a slower, bedtime pace (about 85% of the old speed) and the usual narrator is now the bright, bookish British voice. Older settings move to this pace once; a slower pace you chose is kept. The narrator and speed set in Settings now apply to every story.
+- **The nine voices have new names**: Wren, Saffron, Lark, Elodie, Linnea, Corin, Orrin, Bramble and Edmund.
+- **Zen Garden has a place to sit in**: open sand, a Japanese house, a tea garden, a cottage, the seaside or a moonlit night. Saved gardens now also show in the Gallery.
+- **Gentler, clearer games.** Bubbles are solid colors. Cloud Catcher boxes are solid and glow soft red for a color that does not belong; click a cloud, then click a box. Splash Wall goals ask for shapes to be mostly covered. Memory Meadow no longer counts tries. Free Splash and the Free Draw shortcuts are gone (Free Canvas stays in Coloring Books).
+- **Meditation** ends with Repeat and More. The Exercise timer rings softly and starts fresh on every page.
+- **Avatar:** a crown, a tiara and a flower crown; changes are saved even when the window is closed right away.
+- In adventures, the choice being read aloud is highlighted.
+
+### Fixed
+- Changing screens or closing the window can no longer wait for ever on a slow save, and the voices no longer start loading when the pointer passes over Listen or keep working on a passage you have left.
+
 ## [2.2.0]
 
 ### Changed

@@ -312,6 +312,13 @@ export const sfx = {
     bell(noteHz(SFX_ROOT, 19), { dur: 1.2, gain: 0.024, delay: 0.14, wet: 0.65 });
     noise({ dur: 0.45, freq: 2200, sweepTo: 3200, q: 0.5, gain: 0.018, attack: 0.15, wet: 0.3 });
   },
+  /** A soothing end-of-timer sound: three soft, falling bells that melt into a warm hum. Never sharp, never a beep. */
+  softAlarm() {
+    bell(noteHz(SFX_ROOT, 12), { dur: 3.2, gain: 0.04, wet: 0.7, attack: 0.05 });
+    bell(noteHz(SFX_ROOT, 7), { dur: 3.4, gain: 0.04, delay: 0.9, wet: 0.7, attack: 0.05 });
+    bell(noteHz(SFX_ROOT, 0), { dur: 4.2, gain: 0.045, delay: 1.8, wet: 0.75, attack: 0.05 });
+    tone({ freq: noteHz(SFX_ROOT, 0) * 0.5, dur: 4.5, gain: 0.012, delay: 1.8, attack: 0.3, lp: 900, wet: 0.7 });
+  },
   /** A singing bowl, for starting and ending a quiet moment. */
   bowl(root = 196) {
     bell(root, { dur: 6, gain: 0.06, attack: 0.04, wet: 0.7 });

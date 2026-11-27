@@ -20,7 +20,6 @@
   let round = $state(1);
   let game: MemoryGame | null = null;
   let cards = $state<Card[]>([]);
-  let moves = $state(0);
   let matches = $state(0);
   let complete = $state(false);
   let hinted = $state<number[]>([]);
@@ -46,7 +45,6 @@
   function sync() {
     if (!game) return;
     cards = game.cards.map((c) => ({ ...c }));
-    moves = game.moves;
     matches = game.matches;
     const was = complete;
     complete = game.complete;
@@ -145,7 +143,6 @@
     {/if}
     <span class="spacer"></span>
     <span class="stat"><Icon name="heart" size={16} /> {matches}/{pairsNow} pairs</span>
-    <span class="stat">{moves} {moves === 1 ? 'try' : 'tries'}</span>
     <Button variant="soft" size="sm" icon="sparkle" title="Show me a pair (H)" onclick={hint}>Hint</Button>
     <Button variant="ghost" size="sm" icon="refresh" title="Shuffle and start over" onclick={() => start()}>Shuffle</Button>
   </header>
@@ -184,7 +181,7 @@
         <GameResult
           big="🌼"
           title="Round {round} complete!"
-          message="All {pairsNow} pairs found in {moves} {moves === 1 ? 'try' : 'tries'}. Lovely."
+          message="All {pairsNow} pairs found. Lovely."
           onAgain={() => start()}
           againLabel="Play again"
           onNext={nextRound}
@@ -194,7 +191,7 @@
         <GameResult
           big="🌼"
           title="All pairs found!"
-          message="{moves} {moves === 1 ? 'try' : 'tries'}. Lovely."
+          message="Every pair found. Lovely."
           level={idx + 1}
           total={levels.length}
           noun="level"

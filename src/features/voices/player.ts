@@ -5,7 +5,7 @@
 import { get, writable } from 'svelte/store';
 import { getSettings } from '../../core/settings';
 import { toChunks, type Chunk, type Speaker } from './casts';
-import { SAMPLE_RATE, engineParallelism, speakLine, startEngine } from './engine';
+import { SAMPLE_RATE, cancelSpeech, engineParallelism, speakLine, startEngine } from './engine';
 
 export interface ListenState {
   status: 'idle' | 'loading' | 'playing' | 'paused' | 'error';
@@ -100,6 +100,7 @@ const volume = () => {
 export async function listen(paragraphs: readonly string[], speakers: Speaker[], opts: { from?: number; extras?: readonly string[] } = {}): Promise<void> {
   const gen = ++generation;
   out.stop();
+  cancelSpeech(); // lines of the passage that was being read are not wanted any more
   const carry: { last?: string } = {};
   const all: Chunk[] = toChunks(paragraphs, speakers, carry);
   const extra: Chunk[] = (opts.extras ?? []).flatMap((t, i) => toChunks([t], speakers).map((c) => ({ ...c, para: paragraphs.length + i, who: 'narrator' })));
@@ -163,6 +164,7 @@ export function resumeListening() {
 export function stopListening() {
   generation++;
   out.stop();
+  cancelSpeech();
   listenState.set(IDLE);
 }
 
@@ -173,6 +175,7 @@ const heardBefore = new Map<string, Float32Array>();
 export async function previewVoice(text: string, voice: string, speed: number): Promise<void> {
   const gen = ++generation;
   out.stop();
+  cancelSpeech();
   const key = `${voice}|${speed}|${text}`;
   listenState.set({ status: 'loading', para: -1, index: 0, total: 1, message: '' });
   try {

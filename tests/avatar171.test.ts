@@ -86,8 +86,15 @@ describe('Avatar data', () => {
     expect(HATS).toContain('cap');
     expect(ACCENT_COLORS.length).toBeGreaterThanOrEqual(10);
   });
+  it('has a crown, a tiara and a flower crown that show on the forehead', () => {
+    for (const hat of ['crown', 'tiara', 'flowers'] as const) {
+      expect(HATS).toContain(hat);
+      expect(avatarSvg({ ...presetFor('girl'), hat, hatColor: '#e8c04a' }, 'x')).toContain('#e8c04a');
+    }
+    expect(sanitizeAvatar({ ...presetFor('girl'), hat: 'crown' })!.hat).toBe('crown');
+  });
   it('keeps sliders inside their limits and ignores junk', () => {
-    const a = sanitizeAvatar({ base: 'boy', style: 'flat', headW: 500, headH: -3, eyeSize: 'big', eyeGap: 1e9, neckLen: Infinity, neckWidth: NaN, hat: 'crown', glasses: 3, earrings: 'rings', hairAcc: null })!;
+    const a = sanitizeAvatar({ base: 'boy', style: 'flat', headW: 500, headH: -3, eyeSize: 'big', eyeGap: 1e9, neckLen: Infinity, neckWidth: NaN, hat: 'sombrero', glasses: 3, earrings: 'rings', hairAcc: null })!;
     expect(a.headW).toBe(LIMITS.headW.max);
     expect(a.headH).toBe(LIMITS.headH.min);
     expect(a.eyeSize).toBe(styleDefaults().eyeSize);

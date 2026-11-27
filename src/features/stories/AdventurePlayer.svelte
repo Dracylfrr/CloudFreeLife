@@ -114,7 +114,7 @@
         {#if node.choices}
           <div class="choices" role="group" aria-label="What do you do?">
             {#each node.choices as c, i}
-              <button class="choice" onclick={() => pick(i)}>
+              <button class="choice" class:reading={$listenState.status !== 'idle' && $listenState.para === node.text.length + i} data-listen-para={node.text.length + i} onclick={() => pick(i)}>
                 <span class="num">{i + 1}</span>
                 <span class="label">{c.text}</span>
               </button>
@@ -321,6 +321,12 @@
     transform: translateY(-2px);
     box-shadow: var(--shadow-m);
     border-color: var(--lavender-deep);
+  }
+  .choice.reading {
+    border-color: var(--lavender-deep);
+    box-shadow:
+      inset 5px 0 0 var(--accent),
+      var(--shadow-m);
   }
   .choice:active {
     transform: scale(0.99);

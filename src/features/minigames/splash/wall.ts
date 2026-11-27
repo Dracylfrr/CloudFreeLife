@@ -25,7 +25,7 @@ export interface GoalStatus {
 }
 
 /** A region counts as "done" when this fraction of it has been painted. */
-export const REGION_DONE = 0.5;
+export const REGION_DONE = 0.8;
 
 export class WallState {
   /** palette index (1-based) of the colour painted at each pixel; 0 = unpainted */

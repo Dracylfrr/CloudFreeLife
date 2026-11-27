@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { findBook, findPage, catalog } from '../../core/content/registry';
   import { confirmDialog, promptDialog, toast } from '../../core/feedback';
   import { navigate } from '../../core/router';
@@ -7,6 +8,9 @@
   import Button from '../../ui/Button.svelte';
   import Icon from '../../ui/Icon.svelte';
   import ArtThumb from './ArtThumb.svelte';
+  import GardenThumb from './GardenThumb.svelte';
+  import { deleteGarden, listGardens, type Garden } from '../minigames/zen/gardens';
+  import { ZEN_SETTING_LABEL } from '../minigames/zen/settings';
   import { artworks, artworksLoaded, clearArtworkPaint, deleteArtwork, duplicateArtwork, renameArtwork, type ArtworkMeta } from './artwork';
   import { exportArtworkPng } from './exportArtwork';
   import { savePngFile } from '../painting/export';
@@ -18,20 +22,36 @@
 
   // search and filters
   let query = $state('');
-  let filter = $state<string>('all'); // all | coloring | free | splash | album:<id>
+  let filter = $state<string>('all'); // all | coloring | free | splash | gardens | album:<id>
   let menuFor = $state<string | null>(null); // the painting whose "Albums" menu is open
+
+  // Zen gardens are saved by the game itself; they are shown here too, next to the paintings.
+  let gardens = $state<Garden[]>([]);
+  onMount(() => {
+    void listGardens().then((g) => (gardens = g));
+  });
+  const shownGardens = $derived(filter === 'all' || filter === 'gardens' ? gardens.filter((g) => matchesQuery(g.name, query)) : []);
+  async function removeGarden(g: Garden) {
+    const ok = await confirmDialog({ title: `Delete ${g.name}?`, message: "This garden will be removed from this computer. This can't be undone.", confirmLabel: 'Delete', danger: true });
+    if (!ok) return;
+    await deleteGarden(g.id);
+    gardens = gardens.filter((x) => x.id !== g.id);
+    toast('Deleted', 'info', 1800);
+  }
 
   const kinds = $derived([
     { id: 'all', label: 'All', count: $artworks.length },
     { id: 'coloring', label: 'Coloring pages', count: $artworks.filter((a) => kindOf(a) === 'coloring').length },
     { id: 'free', label: 'Free Draw', count: $artworks.filter((a) => kindOf(a) === 'free').length },
-    { id: 'splash', label: 'Splash Wall', count: $artworks.filter((a) => kindOf(a) === 'splash').length }
+    { id: 'splash', label: 'Splash Wall', count: $artworks.filter((a) => kindOf(a) === 'splash').length },
+    { id: 'gardens', label: 'Zen Gardens', count: gardens.length }
   ]);
   const shown = $derived(
     $artworks.filter((a) => {
       if (filter.startsWith('album:')) {
         if (!$albums.albums.find((x) => x.id === filter.slice(6))?.art.includes(a.id)) return false;
-      } else if (filter !== 'all' && kindOf(a) !== filter) return false;
+      } else if (filter === 'gardens') return false;
+      else if (filter !== 'all' && kindOf(a) !== filter) return false;
       return matchesQuery(`${a.title} ${bookName(a)} ${pageName(a)}`, query);
     })
   );
@@ -129,12 +149,12 @@
     <div>
       <p class="eyebrow">Your art</p>
       <h1>Gallery</h1>
-      <p class="sub">Everything you've painted, saved automatically on this computer.</p>
+      <p class="sub">Everything you've painted and every garden you've made, saved automatically on this computer.</p>
     </div>
-    <span class="count">{$artworks.length} {$artworks.length === 1 ? 'work' : 'works'}</span>
+    <span class="count">{$artworks.length + gardens.length} {$artworks.length + gardens.length === 1 ? 'work' : 'works'}</span>
   </header>
 
-  {#if $artworks.length > 0}
+  {#if $artworks.length > 0 || gardens.length > 0}
     <div class="finder">
       <label class="search">
         <Icon name="grid" size={16} />
@@ -160,7 +180,7 @@
     </div>
   {/if}
 
-  {#if $artworksLoaded && $artworks.length === 0}
+  {#if $artworksLoaded && $artworks.length === 0 && gardens.length === 0}
     <div class="empty">
       <div class="cloud">☁</div>
       <h2>Nothing here yet</h2>
@@ -170,7 +190,9 @@
         <Button variant="soft" icon="brush" onclick={() => navigate({ name: 'draw' })}>Free Draw</Button>
       </div>
     </div>
-  {:else if shown.length === 0}
+  {:else if filter === 'gardens' && shownGardens.length === 0}
+    <p class="nothing">{query ? 'Nothing matches that search.' : 'No saved gardens yet. Open Zen Garden in Games and it will be kept here.'}</p>
+  {:else if shown.length === 0 && shownGardens.length === 0}
     <p class="nothing">{query ? 'Nothing matches that search.' : filter.startsWith('album:') ? 'This album is empty. Use the folder button on a painting to add it.' : 'Nothing here yet.'}</p>
   {:else}
     <div class="grid cards">
@@ -209,9 +231,41 @@
       {/each}
     </div>
   {/if}
+
+  {#if shownGardens.length > 0}
+    <section class="gardens" aria-label="Zen gardens">
+      {#if filter !== 'gardens'}<h2>Zen gardens</h2>{/if}
+      <div class="grid cards">
+        {#each shownGardens as g (g.id)}
+          <article class="card">
+            <button class="open" onclick={() => navigate({ name: 'zen', gardenId: g.id })} aria-label="Open {g.name}">
+              <GardenThumb garden={g} />
+            </button>
+            <div class="info">
+              <h3 title={g.name}>{g.name}</h3>
+              <p class="meta"><Icon name="leaf" size={13} /> Zen Garden · {ZEN_SETTING_LABEL[g.setting ?? 'plain']}</p>
+              <p class="meta"><Icon name="refresh" size={13} /> {formatDate(g.updatedAt)}</p>
+            </div>
+            <div class="acts">
+              <Button size="sm" variant="primary" icon="leaf" onclick={() => navigate({ name: 'zen', gardenId: g.id })}>Open</Button>
+              <Button size="sm" variant="ghost" icon="trash" title="Delete" onclick={() => removeGarden(g)} />
+            </div>
+          </article>
+        {/each}
+      </div>
+    </section>
+  {/if}
 </div>
 
 <style>
+  .gardens {
+    margin-top: 28px;
+    max-width: 1280px;
+  }
+  .gardens h2 {
+    font-size: 1.15rem;
+    margin: 0 0 12px;
+  }
   .count {
     background: var(--panel-strong);
     padding: 8px 16px;

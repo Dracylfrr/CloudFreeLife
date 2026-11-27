@@ -1,6 +1,6 @@
 [package]
 name = "cloud-freelife"
-version = "2.2.0"
+version = "2.2.1"
 description = "Project D.R.E.A.M: Cloud Sonata - a calm pastel coloring, drawing and mini-game app"
 authors = ["Project D.R.E.A.M contributors"]
 edition = "2021"

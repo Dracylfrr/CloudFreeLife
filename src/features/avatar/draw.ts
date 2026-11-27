@@ -157,6 +157,37 @@ function hatSvg(c: AvatarConfig): string {
         `<path d="M33.6 30Q60 35 86.4 30" fill="none" stroke="${hd}" stroke-width="3" opacity="0.8"/>` +
         `<path d="M12 40Q60 28 108 40Q108 47 98 47Q60 37 22 47Q12 47 12 40Z" fill="${hd}" ${NO_LINE}/>`
       );
+    case 'crown': {
+      // a little royal crown resting on the top of the head, with three soft jewels
+      const jewel = mix(hc, '#ffffff', 0.7);
+      return (
+        `<path d="M35 36L32 14L46 25L53 10L60 24L67 10L74 25L88 14L85 36Z" fill="${hc}" ${NO_LINE}/>` +
+        `<rect x="34" y="32" width="52" height="8" rx="3.5" fill="${hd}" ${NO_LINE}/>` +
+        `<circle cx="32" cy="14" r="3" fill="${jewel}" ${NO_LINE}/><circle cx="53" cy="10" r="3" fill="${jewel}" ${NO_LINE}/><circle cx="67" cy="10" r="3" fill="${jewel}" ${NO_LINE}/><circle cx="88" cy="14" r="3" fill="${jewel}" ${NO_LINE}/>` +
+        `<circle cx="60" cy="36" r="3" fill="#ff9fb4" ${NO_LINE}/><circle cx="46" cy="36" r="2.2" fill="${jewel}" ${NO_LINE}/><circle cx="74" cy="36" r="2.2" fill="${jewel}" ${NO_LINE}/>`
+      );
+    }
+    case 'tiara': {
+      // a slim silver-style tiara that sits at the top of the forehead
+      const jewel = mix(hc, '#ffffff', 0.75);
+      return (
+        `<path d="M35 38Q60 15 85 38L82.5 40.5Q60 22 37.5 40.5Z" fill="${hc}" ${NO_LINE}/>` +
+        `<path d="M60 13L65 23L60 31L55 23Z" fill="${hc}" ${NO_LINE}/><path d="M60 17L62.6 23L60 27.5L57.4 23Z" fill="#ff9fb4" ${NO_LINE}/>` +
+        `<circle cx="45" cy="29" r="2.4" fill="${jewel}" ${NO_LINE}/><circle cx="75" cy="29" r="2.4" fill="${jewel}" ${NO_LINE}/><circle cx="39" cy="35.5" r="1.8" fill="${jewel}" ${NO_LINE}/><circle cx="81" cy="35.5" r="1.8" fill="${jewel}" ${NO_LINE}/>`
+      );
+    }
+    case 'flowers': {
+      // a ring of small flowers across the forehead
+      const bloom = (x: number, y: number, r: number, petal: string) =>
+        `<g transform="translate(${x} ${y})">` +
+        [0, 72, 144, 216, 288].map((a) => `<ellipse cx="0" cy="${-r * 0.95}" rx="${r * 0.62}" ry="${r * 0.78}" transform="rotate(${a})" fill="${petal}" ${NO_LINE}/>`).join('') +
+        `<circle r="${r * 0.5}" fill="#ffe28a" ${NO_LINE}/></g>`;
+      return (
+        `<path d="M32 42Q60 18 88 42" fill="none" stroke="#7fbf8f" stroke-width="3" stroke-linecap="round"/>` +
+        `<ellipse cx="38" cy="33" rx="5" ry="2.4" transform="rotate(-50 38 33)" fill="#8fce9e" ${NO_LINE}/><ellipse cx="82" cy="33" rx="5" ry="2.4" transform="rotate(50 82 33)" fill="#8fce9e" ${NO_LINE}/>` +
+        bloom(34, 40, 5, hc) + bloom(45, 29, 5.4, '#ffffff') + bloom(60, 24.5, 6.2, hc) + bloom(75, 29, 5.4, '#ffffff') + bloom(86, 40, 5, hc)
+      );
+    }
     default:
       return '';
   }

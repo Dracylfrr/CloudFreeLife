@@ -177,12 +177,14 @@ describe('splatter and Splash Wall goals', () => {
     expect(evaluateGoal({ type: 'free' }, s).done).toBe(false);
   });
 
-  it('region goals need half of each region painted', () => {
+  it('region goals need most (four fifths) of each region painted', () => {
     const s = wall();
     for (let i = 0; i < 50; i++) s.paint(i, 1, 1);
     const g: SplashObjective = { type: 'regions', regions: ['top', 'bottom'] };
     expect(evaluateGoal(g, s).done).toBe(false);
-    for (let i = 50; i < 80; i++) s.paint(i, 2, 2);
+    for (let i = 50; i < 80; i++) s.paint(i, 2, 2); // 60% is not yet enough
+    expect(evaluateGoal(g, s).done).toBe(false);
+    for (let i = 80; i < 92; i++) s.paint(i, 2, 2);
     const done = evaluateGoal(g, s);
     expect(done.done).toBe(true);
     expect(done.items.every((i) => i.done)).toBe(true);
